@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiza domena funkcija - Rešenje zadatka</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .solution-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 25px;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #ecf0f1;
+        }
+        .conclusion {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #155724;
+        }
+        .formula-box {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="solution-container">
+    <h1>Analiza domena funkcija</h1>
+    <p><em>Predmet: Analitička matematika / Priprema za ispit</em></p>
+
+    <p>Cilj zadatka je pronalaženje zajedničkog skupa realnih brojeva $x$ (intersekcije domena) za tri definisane funkcije. Proces rešavanja se zasniva na rigoroznoj proveri uslova definisanosti svake komponente.</p>
+
+    <div class="step">
+        <h2>1. Analiza funkcije $f_1(x)$</h2>
+        <p>Funkcija je logaritamska: $f_1(x) = \log_3(x^2 - 10x + 21)$.</p>
+        <p>Uslov definisanosti (argument mora biti pozitivan):</p>
+        <div class="formula-box">
+            $$x^2 - 10x + 21 > 0$$
+        </div>
+        <p>Koreni kvadratne jednačine $x^2 - 10x + 21 = 0$ su $x_1 = 3$ i $x_2 = 7$. Pošto je parabola okrenuta prema gore, rešenje je:</p>
+        <div class="formula-box">
+            $$D_{f_1} = (-\infty, 3) \cup (7, +\infty)$$
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>2. Analiza funkcije $f_2(x)$</h2>
+        <p>Funkcija je racionalna sa korenom četvrtog stepena: $f_2(x) = \frac{1}{\sqrt[4]{10x - x^2}}$.</p>
+        <p>Uslov definisanosti (izraz pod korenom mora biti strogo veći od nule zbog imenioca):</p>
+        <div class="formula-box">
+            $$10x - x^2 > 0 \implies x(10 - x) > 0$$
+        </div>
+        <p>Ova parabola je okrenuta nadole, sa nulama u $x=0$ i $x=10$. Rešenje je:</p>
+        <div class="formula-box">
+            $$D_{f_2} = (0, 10)$$
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>3. Analiza funkcije $f_3(x)$</h2>
+        <p>Funkcija je kombinovana: $f_3(x) = \frac{\log_4(x^2 + 3)}{\sqrt{4 - x}}$.</p>
+        <p>Imamo dva uslova:</p>
+        <ul>
+            <li>Argument logaritma: $x^2 + 3 > 0$ (uvek tačno za svako $x \in \mathbb{R}$).</li>
+            <li>Imenilac: $4 - x > 0 \implies x < 4$.</li>
+        </ul>
+        <div class="formula-box">
+            $$D_{f_3} = (-\infty, 4)$$
+        </div>
+    </div>
+
+    <div class="step">
+        <h2>4. Finalna intersekcija (Sinteza)</h2>
+        <p>Tražimo presek sva tri skupa:</p>
+        <div class="formula-box">
+            $$D_{f_1} \cap D_{f_2} \cap D_{f_3} = ((-\infty, 3) \cup (7, +\infty)) \cap (0, 10) \cap (-\infty, 4)$$
+        </div>
+        <p>Prvo odredimo presek $D_{f_2}$ i $D_{f_3}$:</p>
+        <div class="formula-box">
+            $$(0, 10) \cap (-\infty, 4) = (0, 4)$$
+        </div>
+        <p>Zatim dodajemo $D_{f_1}$ na dobijeni rezultat:</p>
+        <div class="formula-box">
+            $$((-\infty, 3) \cup (7, +\infty)) \cap (0, 4) = (0, 3)$$
+        </div>
+    </div>
+
+    <div class="conclusion">
+        Tačan odgovor je: B) $D_{f_1} \cap D_{f_2} \cap D_{f_3} = (0, 3)$
+    </div>
+</div>
+
+</body>
+</html>
