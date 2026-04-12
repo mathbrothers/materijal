@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadatak 20 - Maksimalna površina pravougaonika</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #2980b9;
+            margin-top: 25px;
+        }
+        .highlight {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+        }
+        .step {
+            margin-bottom: 15px;
+        }
+        .answer {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Zadatak 20.</h2>
+    <p>
+        Dužina osnovice \( AB \) jednakokrakog trougla \( ABC \) jednaka je \( 2\sqrt{3} \text{ cm} \), a ugao na osnovici jednak je \( 30^\circ \). 
+        U trougao \( ABC \) je upisan pravougaonik \( MNPQ \) maksimalne površine tako da \( M, N \in AB \). Površina tog pravougaonika je:
+    </p>
+
+    <hr>
+
+    <h3>1. Analiza elemenata trougla \( ABC \)</h3>
+    <p class="step">
+        Posmatramo visinu \( h_a \) iz temena \( C \) na osnovicu \( AB \). Neka je \( S \) sredina osnovice. 
+        Trougao \( \triangle ASC \) je pravougli sa uglovima \( 30^\circ, 60^\circ, 90^\circ \).
+    </p>
+    <p class="step">
+        Koristeći osobinu <b>polovine jednakostraničnog trougla</b>, znamo da je stranica naspram \( 60^\circ \) (kateta \( AS \)) 
+        jednaka \( h_a\sqrt{3} \).
+    </p>
+    <div class="highlight">
+        \[ AS = \frac{AB}{2} = \sqrt{3} \implies h_a \cdot \sqrt{3} = \sqrt{3} \implies \mathbf{h_a = 1 \text{ cm}} \]
+    </div>
+
+    <h3>2. Formiranje funkcije površine \( P(y) \)</h3>
+    <p class="step">
+        Neka je \( y \) visina pravougaonika (\( MQ = NP = y \)). Trougao \( \triangle AMQ \) u levom uglu je takođe polovina jednakostraničnog (uglovi \( 30^\circ, 60^\circ, 90^\circ \)).
+    </p>
+    <ul>
+        <li>Visina \( MQ = y \) (naspram \( 30^\circ \))</li>
+        <li>Odsečak \( AM = y\sqrt{3} \) (naspram \( 60^\circ \))</li>
+    </ul>
+    <p class="step">
+        Osnovica pravougaonika \( x \) (duž \( MN \)) dobija se oduzimanjem bočnih delova od osnovice \( AB \):
+        \[ x = 2\sqrt{3} - 2y\sqrt{3} = 2\sqrt{3}(1 - y) \]
+    </p>
+    <p class="step">
+        Površina pravougaonika je:
+        \[ P(y) = x \cdot y = 2\sqrt{3}(1 - y) \cdot y = \mathbf{2\sqrt{3}(y - y^2)} \]
+    </p>
+
+    <h3>3. Primena prvog izvoda</h3>
+    <p class="step">
+        Tražimo maksimalnu vrednost funkcije \( P(y) \) preko prvog izvoda:
+        \[ P'(y) = 2\sqrt{3}(1 - 2y) \]
+    </p>
+    <p class="step">
+        Postavljamo uslov \( P'(y) = 0 \):
+        \[ 1 - 2y = 0 \implies \mathbf{y = \frac{1}{2}} \]
+    </p>
+
+    <h3>4. Konačan rezultat</h3>
+    <p class="step">
+        Uvrštavamo \( y = \frac{1}{2} \) u funkciju površine:
+        \[ P_{max} = 2\sqrt{3} \left( \frac{1}{2} - \left(\frac{1}{2}\right)^2 \right) = 2\sqrt{3} \left( \frac{1}{2} - \frac{1}{4} \right) = 2\sqrt{3} \cdot \frac{1}{4} \]
+        \[ \mathbf{P_{max} = \frac{\sqrt{3}}{2} \text{ cm}^2} \]
+    </p>
+
+    <div class="answer">
+        Tačan odgovor je pod A)
+    </div>
+</div>
+
+</body>
+</html>
