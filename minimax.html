@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Analiza optimizacijskog problema - Geometrija</title>
+    <!-- Uključivanje MathJax za profesionalni prikaz matematičkih formula -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .solution-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #f0f7fd;
+        }
+        .result {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.2em;
+        }
+        .final-answer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="solution-container">
+    <h2>Analitičko rešenje problema</h2>
+    
+    <p><strong>Problem:</strong> Pronalaženje maksimalne zapremine $V$ prave pravilne šestostrane prizme fiksne ukupne površine $P$.</p>
+
+    <div class="step">
+        <strong>1. Postavljanje parametara i funkcije površine</strong><br>
+        Neka je $a$ stranica osnove (regularni šestougao), a $h$ visina prizme. 
+        Površina osnove je:
+        $$B = \frac{3\sqrt{reg{3}}}{2}a^2$$
+        Ukupna površina $P$ iznosi:
+        $$P = 2B + 6ah = 3\sqrt{3}a^2 + 6ah$$
+        Izrazimo visinu $h$ preko $a$:
+        $$h = \frac{P - 3\sqrt{3}a^2}{6a}$$
+    </div>
+
+    <div class="step">
+        <strong>2. Definisanje funkcije zapremine</strong><br>
+        Zapremina $V$ kao funkcija parametra $a$:
+        $$V(a) = B \cdot h = \left(\frac{3\sqrt{3}}{2}a^2\right) \cdot \left(\frac{P - 3\sqrt{3}a^2}{6a}\right)$$
+        Sređivanjem izraza dobijamo:
+        $$V(a) = \frac{\sqrt{3}P}{4}a - \frac{9}{4}a^3$$
+    </div>
+
+    <div class="step">
+        <strong>3. Optimizacija (Prvi izvod)</strong><br>
+        Tražimo ekstremnu vrednost tako što postavljamo $\frac{dV}{da} = 0$:
+        $$\frac{dV}{da} = \frac{\sqrt{3}P}{4} - \frac{27}{4}a^2 = 0$$
+        $$\implies a^2 = \frac{\sqrt{3}P}{27} \implies a = \sqrt{\frac{\sqrt{3}P}{27}}$$
+    </div>
+
+    <div class="step">
+        <strong>4. Izračunavanje maksimalne zapremine</strong><br>
+        Uvrštavanjem $a$ u izraz za $V(a)$:
+        $$V_{max} = \frac{\sqrt{3}P}{6}a = \frac{\sqrt{3}P}{6} \cdot \sqrt{\frac{\sqrt{3}P}{27}}$$
+        Sređivanjem korena i iracionalnih brojeva:
+        $$V_{max} = \frac{\sqrt{3}P}{6} \cdot \frac{\sqrt[4]{3}\sqrt{P}}{3\sqrt{3}} = \frac{\sqrt[4]{3}}{18}P\sqrt{P}$$
+    </div>
+
+    <div class="final-answer">
+        <strong>Konačan odgovor:</strong><br>
+        <span class="result">D) $\frac{\sqrt[4]{3}}{18}P\sqrt{P}$</span>
+    </div>
+</div>
+
+</body>
+</html>
