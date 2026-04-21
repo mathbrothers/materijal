@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadatak 8 - Logaritmi</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .problem-box {
+            background: white;
+            border-left: 4px solid #2c3e50;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .step {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .formula {
+            font-size: 1.1em;
+            margin: 15px 0;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .answer {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .note {
+            font-size: 0.95em;
+            color: #555;
+            font-style: italic;
+            margin-top: 10px;
+            padding: 8px;
+            background: #fffef0;
+            border-radius: 3px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        .original {
+            font-size: 1.3em;
+            text-align: center;
+            margin: 20px 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Zadatak 8</h1>
+
+<div class="problem-box">
+    <p><strong>Postavka:</strong></p>
+    <div class="original">
+        $$ \log_2\left(3^{(2-\log_3 72)} \cdot 5^{(\log_5(4/5) + 1)}\right) $$
+    </div>
+    <p class="note">Odrediti vrednost datog izraza.</p>
+</div>
+
+<h2>Rešenje</h2>
+
+<div class="step">
+    <span class="step-number">1</span>
+    <strong>Pojednostavljenje prvog eksponenta</strong>
+    <div class="formula">
+        $$ 3^{(2-\log_3 72)} = \frac{3^2}{3^{\log_3 72}} = \frac{9}{72} = \frac{1}{8} $$
+    </div>
+    <p class="note">
+        Koristimo: \( a^{m-n} = \frac{a^m}{a^n} \) i \( a^{\log_a x} = x \)
+    </p>
+</div>
+
+<div class="step">
+    <span class="step-number">2</span>
+    <strong>Pojednostavljenje drugog eksponenta</strong>
+    <div class="formula">
+        $$ 5^{(\log_5(4/5) + 1)} = 5^{\log_5(4/5)} \cdot 5^1 = \frac{4}{5} \cdot 5 = 4 $$
+    </div>
+    <p class="note">
+        Koristimo: \( a^{m+n} = a^m \cdot a^n \) i \( a^{\log_a x} = x \)
+    </p>
+</div>
+
+<div class="step">
+    <span class="step-number">3</span>
+    <strong>Izračunavanje proizvoda</strong>
+    <div class="formula">
+        $$ \frac{1}{8} \cdot 4 = \frac{4}{8} = \frac{1}{2} $$
+    </div>
+</div>
+
+<div class="step">
+    <span class="step-number">4</span>
+    <strong>Konačan rezultat</strong>
+    <div class="formula">
+        $$ \log_2\left(\frac{1}{2}\right) = \log_2(2^{-1}) = -1 $$
+    </div>
+</div>
+
+<div class="answer">
+    Tačan odgovor: <strong>D) \(-1\)</strong>
+</div>
+
+</body>
+</html>
