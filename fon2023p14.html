@@ -3,90 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zadatak 14 - Trigonometrija</title>
-    
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']],
-                processEscapes: true
-            }
-        };
-    </script>
+    <title>Zadatak 14 — Trigonometrija</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: -apple-system, sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            max-width: 800px; 
-            margin: 2rem auto; 
-            padding: 0 1.5rem; 
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-hover: #334155;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-soft: rgba(56, 189, 248, 0.1);
+            --success: #4ade80;
+            --border: #334155;
+            --shadow: 0 20px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.2);
         }
-        .zadatak-okvir { 
-            background: #fdfdfd; 
-            border: 1px solid #e1e4e8; 
-            padding: 20px; 
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
         }
-        .naslov { color: #0366d6; border-bottom: 2px solid #eaecef; padding-bottom: 10px; }
-        .formula-sekcija { margin: 20px 0; }
-        ul { list-style-type: none; padding-left: 10px; }
-        li { margin-bottom: 8px; }
-        .resenje-final { 
-            background: #e7f3ff; 
-            padding: 15px; 
-            border-radius: 6px; 
-            font-weight: 600;
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--surface);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 2.5rem 2rem;
             text-align: center;
-            margin-top: 20px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-soft);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .problem {
+            padding: 2.5rem 2rem;
+            background: rgba(15, 23, 42, 0.5);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .problem-label {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-label::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .math-display {
+            font-size: 1.3rem;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .step {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--accent-soft);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .formula-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .formula-box::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        .formula-box.highlight {
+            border-color: rgba(56, 189, 248, 0.3);
+            background: var(--accent-soft);
+        }
+
+        .formula-box.highlight::before {
+            opacity: 1;
+            background: var(--accent);
+        }
+
+        .result {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(74, 222, 128, 0.05) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+        }
+
+        .result-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--success);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hint {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #fbbf24;
+        }
+
+        .hint strong {
+            color: #fbbf24;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 2rem 0;
+        }
+
+        .mjx-chtml {
+            font-size: 110% !important;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .header { padding: 1.5rem; }
+            .problem, .content { padding: 1.5rem; }
+            h1 { font-size: 1.4rem; }
+            .math-display { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="zadatak-okvir">
-    <h2 class="naslov">Zadatak 14.</h2>
-    <p>Izračunati vrednost izraza:</p>
-    $$ \frac{\sin 40^\circ \sin 80^\circ + \cos 100^\circ \sin 50^\circ}{\sin 170^\circ \sin 40^\circ - \sin 130^\circ \cos 170^\circ} $$
-
-    <hr>
-
-    <h3>Postupak:</h3>
-    <p>Koristimo vezu $\sin \alpha = \cos(90^\circ - \alpha)$ i $\cos \alpha = \sin(90^\circ - \alpha)$ kako bismo sve sveli na oštre uglove:</p>
-
-    <div class="formula-sekcija">
-        <strong>Brojilac:</strong>
-        <ul>
-            <li>$\sin 80^\circ = \cos(90^\circ - 80^\circ) = \cos 10^\circ$</li>
-            <li>$\cos 100^\circ = \sin(90^\circ - 100^\circ) = \sin(-10^\circ) = -\sin 10^\circ$</li>
-            <li>$\sin 50^\circ = \cos(90^\circ - 50^\circ) = \cos 40^\circ$</li>
-        </ul>
-        Svođenje na $\sin(x-y)$:
-        $$ \sin 40^\circ \cos 10^\circ - \cos 40^\circ \sin 10^\circ = \mathbf{\sin(40^\circ - 10^\circ)} $$
+<div class="container">
+    <div class="header">
+        <div class="badge">Zadatak 14</div>
+        <h1>Trigonometrija — Svođenje na oštre uglove</h1>
     </div>
 
-    <div class="formula-sekcija">
-        <strong>Imenilac:</strong>
-        <ul>
-            <li>$\sin 170^\circ = \cos(90^\circ - 170^\circ) = \cos(-80^\circ) = \sin 10^\circ$</li>
-            <li>$\sin 130^\circ = \cos(90^\circ - 130^\circ) = \cos(-40^\circ) = \sin 50^\circ$</li>
-            <li>$\cos 170^\circ = \sin(90^\circ - 170^\circ) = \sin(-80^\circ) = -\cos 10^\circ$</li>
-        </ul>
-        Svođenje na $\sin(\alpha+\beta)$:
-        $$ \sin 10^\circ \cos 50^\circ + \cos 10^\circ \sin 50^\circ = \mathbf{\sin(10^\circ + 50^\circ)} $$
+    <div class="problem">
+        <div class="problem-label">Postavka zadatka</div>
+        <div class="math-display">
+            $$ \frac{\sin 40^\circ \sin 80^\circ + \cos 100^\circ \sin 50^\circ}{\sin 170^\circ \sin 40^\circ - \sin 130^\circ \cos 170^\circ} $$
+        </div>
     </div>
 
-    <div class="formula-sekcija">
-        <strong>Konačan račun:</strong>
-        $$ \frac{\sin 30^\circ}{\sin 60^\circ} = \frac{\frac{1}{2}}{\frac{\sqrt{3}}{2}} = \frac{1}{\sqrt{3}} $$
-    </div>
+    <div class="content">
+        <div class="hint">
+            <strong>💡 Ključna ideja:</strong> Koristimo veze \(\sin \alpha = \cos(90^\circ - \alpha)\) i \(\cos \alpha = \sin(90^\circ - \alpha)\) kako bismo sve sveli na oštre uglove, a zatim primenimo formule za \(\sin(\alpha \pm \beta)\).
+        </div>
 
-    <div class="resenje-final">
-        Tačan odgovor: C) \(\frac{1}{\sqrt{3}}\)
+        <div class="step">
+            <div class="step-title">
+                <div class="step-number">1</div>
+                Transformacija brojioca
+            </div>
+            
+            <div class="formula-box">
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">Svođenje na oštre uglove:</p>
+                $$ \sin 80^\circ = \cos(90^\circ - 80^\circ) = \cos 10^\circ $$
+                $$ \cos 100^\circ = \sin(90^\circ - 100^\circ) = \sin(-10^\circ) = -\sin 10^\circ $$
+                $$ \sin 50^\circ = \cos(90^\circ - 50^\circ) = \cos 40^\circ $$
+            </div>
+
+            <div class="formula-box highlight">
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">Primena formule \(\sin(\alpha - \beta) = \sin\alpha\cos\beta - \cos\alpha\sin\beta\):</p>
+                $$ \sin 40^\circ \cos 10^\circ - \cos 40^\circ \sin 10^\circ = \mathbf{\sin(40^\circ - 10^\circ) = \sin 30^\circ} $$
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-title">
+                <div class="step-number">2</div>
+                Transformacija imenioca
+            </div>
+            
+            <div class="formula-box">
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">Svođenje na oštre uglove:</p>
+                $$ \sin 170^\circ = \cos(90^\circ - 170^\circ) = \cos(-80^\circ) = \sin 10^\circ $$
+                $$ \sin 130^\circ = \cos(90^\circ - 130^\circ) = \cos(-40^\circ) = \sin 50^\circ $$
+                $$ \cos 170^\circ = \sin(90^\circ - 170^\circ) = \sin(-80^\circ) = -\cos 10^\circ $$
+            </div>
+
+            <div class="formula-box highlight">
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">Primena formule \(\sin(\alpha + \beta) = \sin\alpha\cos\beta + \cos\alpha\sin\beta\):</p>
+                $$ \sin 10^\circ \cos 50^\circ + \cos 10^\circ \sin 50^\circ = \mathbf{\sin(10^\circ + 50^\circ) = \sin 60^\circ} $$
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="step">
+            <div class="step-title">
+                <div class="step-number">3</div>
+                Konačan račun
+            </div>
+            
+            <div class="formula-box" style="text-align: center;">
+                $$ \frac{\sin 30^\circ}{\sin 60^\circ} = \frac{\frac{1}{2}}{\frac{\sqrt{3}}{2}} = \frac{1}{\sqrt{3}} = \frac{\sqrt{3}}{3} $$
+            </div>
+        </div>
+
+        <div class="result">
+            <div class="result-label">Tačan odgovor</div>
+            <div class="result-value">$$ \frac{1}{\sqrt{3}} $$</div>
+            <p style="margin-top: 0.5rem; color: var(--text-muted); font-size: 0.9rem;">(Odnosno \(\frac{\sqrt{3}}{3}\) po racionalizaciji)</p>
+        </div>
     </div>
 </div>
 
