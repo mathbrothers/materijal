@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j12</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .explanation {
+            background-color: #f9fbfc;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #d1e9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>Zadatak fon2025j12</h1>
+
+    <div class="task-container" style="font-size: 1.1rem; padding: 20px 0;">
+        Naći ostatak pri deljenju polinoma \( P(x) = x^{2025} + x^{2024} - x^{2023} + 1 \) polinomom \( Q(x) = x^3 + x^2 + x + 1 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 1: Rastavljanje delioca</span>
+        Polinom \( Q(x) \) možemo faktorisati grupisanjem članova:
+        \[ Q(x) = x^2(x+1) + 1(x+1) = (x+1)(x^2+1) \]
+        Nule delioca su \( x = -1 \) i \( x = \pm i \). Ostatak \( R(x) \) mora biti oblika \( ax^2 + bx + c \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 2: Korišćenje nule x = -1</span>
+        Vrednost polinoma \( P(x) \) u tački \( -1 \) mora biti jednaka vrednosti ostatka \( R(x) \):
+        \[ P(-1) = (-1)^{2025} + (-1)^{2024} - (-1)^{2023} + 1 = -1 + 1 - (-1) + 1 = 2 \]
+        \[ R(-1) = a(-1)^2 + b(-1) + c = a - b + c \]
+        Dobijamo prvu jednačinu: \( a - b + c = 2 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 3: Korišćenje nule x = i</span>
+        Iz \( P(i) = R(i) \) dobijamo:
+        \[ P(i) = i^{2025} + i^{2024} - i^{2023} + 1 = i + 1 - (-i) + 1 = 2i + 2 \]
+        \[ R(i) = a(i)^2 + b(i) + c = -a + bi + c = (c - a) + bi \]
+        Izjednačavanjem realnih i imaginarnih delova dobijamo: \( b = 2 \) i \( c - a = 2 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 4: Određivanje koeficijenata</span>
+        Zamenom \( b = 2 \) i \( c = a + 2 \) u prvu jednačinu:
+        \[ a - 2 + a + 2 = 2 \implies 2a = 2 \implies a = 1 \]
+        Vrednost za \( c \) je \( c = 1 + 2 = 3 \).
+    </div>
+
+    <div class="highlight-box">
+        Ostatak je: \( R(x) = x^2 + 2x + 3 \)<br>
+        Tačan odgovor: A
+    </div>
+</div>
+
+</body>
+</html>
