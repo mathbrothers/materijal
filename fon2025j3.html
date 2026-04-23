@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j3_v2</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .explanation {
+            background-color: #fdfdfd;
+            border-left: 5px solid #27ae60; /* Zelena za alternativnu metodu */
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .step-title {
+            font-weight: bold;
+            color: #27ae60;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #f0fff4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #c6f6d5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>fon2025j3 - Opšta metoda (Sve funkcije)</h1>
+
+    <div class="explanation">
+        <span class="step-title">1. Određivanje opšteg oblika \( f(x) \)</span>
+        Uvodimo smenu \( t = \frac{x-1}{x-2} \). Rešavanjem po \( x \) dobijamo \( x = \frac{2t-1}{t-1} \).<br>
+        Dakle: **\( f(x) = \frac{2x-1}{x-1} \)**.<br>
+        Odavde je \( f(0) = \frac{-1}{-1} = 1 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">2. Određivanje opšteg oblika \( g(x) \)</span>
+        Sređujemo izraz \( f(x)-2 = \frac{2x-1}{x-1} - 2 = \frac{1}{x-1} \).<br>
+        Jednačina postaje \( g\left(\frac{1}{x-1}\right) = x-3 \).<br>
+        Smenom \( u = \frac{1}{x-1} \), nalazimo \( x = \frac{1}{u} + 1 \).<br>
+        Dakle: **\( g(x) = \frac{1}{x} - 2 \)**.
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">3. Određivanje inverzne funkcije \( g^{-1}(x) \)</span>
+        Iz \( y = \frac{1}{x} - 2 \implies \frac{1}{x} = y+2 \implies x = \frac{1}{y+2} \).<br>
+        Dakle: **\( g^{-1}(x) = \frac{1}{x+2} \)**.<br>
+        Odavde je \( g^{-1}(-3) = \frac{1}{-3+2} = -1 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">4. Periodičnost funkcije \( h(x) \)</span>
+        Primetimo da je \( h(h(x)) = \frac{1}{2(\frac{1}{2x})} = x \).<br>
+        Parno ponavljanje funkcije vraća \( x \), neparno primenjuje \( h \).<br>
+        Tri ponavljanja su neparan broj: \( h(h(h(1/4))) = h(1/4) = \frac{1}{2 \cdot 1/4} = 2 \).
+    </div>
+
+    <div class="highlight-box">
+        Konačan rezultat: \( 1 + (-1) + 2 = 2 \)<br>
+        Tačan odgovor: E
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j10</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .explanation {
+            background-color: #f9fbfc;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #d1e9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>Zadatak fon2025j10</h1>
+
+    <div class="task-container" style="font-size: 1.2rem; padding: 20px 0;">
+        Naći proizvod svih realnih rešenja jednačine:
+        \[ 4^{\sqrt{x^2 - 3}} + 8 = 3 \cdot 2^{1 + \sqrt{x^2 - 3}} \]
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 1: Transformacija baze</span>
+        Primetimo da sve članove možemo svesti na osnovu 2. Koristeći pravila za stepenovanje, dobijamo:
+        \[ (2^2)^{\sqrt{x^2 - 3}} + 8 = 3 \cdot 2^1 \cdot 2^{\sqrt{x^2 - 3}} \]
+        \[ (2^{\sqrt{x^2 - 3}})^2 - 6 \cdot 2^{\sqrt{x^2 - 3}} + 8 = 0 \]
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 2: Uvođenje smene</span>
+        Uvodimo smenu \( t = 2^{\sqrt{x^2 - 3}} \), što jednačinu pretvara u kvadratnu:
+        \[ t^2 - 6t + 8 = 0 \]
+        Rešenja ove jednačine su \( t_1 = 4 \) i \( t_2 = 2 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 3: Rešavanje po x i proizvod</span>
+        Vraćamo smenu za oba slučaja:
+        1) \( 2^{\sqrt{x^2 - 3}} = 2^2 \implies x^2 - 3 = 4 \implies x^2 = 7 \implies x_{1,2} = \pm\sqrt{7} \) <br>
+        2) \( 2^{\sqrt{x^2 - 3}} = 2^1 \implies x^2 - 3 = 1 \implies x^2 = 4 \implies x_{3,4} = \pm 2 \) <br><br>
+        Proizvod svih rešenja je:
+        \[ \sqrt{7} \cdot (-\sqrt{7}) \cdot 2 \cdot (-2) = (-7) \cdot (-4) = 28 \]
+    </div>
+
+    <div class="highlight-box">
+        Tačan odgovor: A) 28
+    </div>
+</div>
+
+</body>
+</html>

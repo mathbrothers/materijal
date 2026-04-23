@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j11</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .explanation {
+            background-color: #f9fbfc;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #d1e9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>Zadatak fon2025j11</h1>
+
+    <div class="task-container" style="font-size: 1.2rem; padding: 20px 0;">
+        Naći broj rešenja jednačine u intervalu \( [0, 2\pi) \):
+        \[ 3\sin x + (\cos 2x - 1)\text{ctg}^2 x = 0 \]
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 1: Transformacija i skraćivanje</span>
+        Prvo koristimo identitet \( \cos 2x - 1 = -2\sin^2 x \) i definiciju \( \text{ctg} x = \frac{\cos x}{\sin x} \). <br>
+        Pazimo na uslov: \( \sin x \neq 0 \).
+        \[ 3\sin x + (-2\sin^2 x) \cdot \frac{\cos^2 x}{\sin^2 x} = 0 \]
+        \[ 3\sin x - 2\cos^2 x = 0 \]
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 2: Svođenje na kvadratnu jednačinu</span>
+        Zamenom \( \cos^2 x = 1 - \sin^2 x \) dobijamo jednačinu po sinusu:
+        \[ 3\sin x - 2(1 - \sin^2 x) = 0 \implies 2\sin^2 x + 3\sin x - 2 = 0 \]
+        Uvodimo smenu \( t = \sin x \) i dobijamo \( t_1 = 1/2 \) i \( t_2 = -2 \) (nemoguće).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 3: Prebrojavanje rešenja</span>
+        Rešavamo \( \sin x = 1/2 \) na krugu u intervalu \( [0, 2\pi) \):
+        \[ x_1 = \frac{\pi}{6}, \quad x_2 = \frac{5\pi}{6} \]
+        Obe vrednosti zadovoljavaju početni uslov \( \sin x \neq 0 \).
+    </div>
+
+    <div class="highlight-box">
+        Ukupan broj rešenja: 2 <br>
+        Tačan odgovor: B
+    </div>
+</div>
+
+</body>
+</html>

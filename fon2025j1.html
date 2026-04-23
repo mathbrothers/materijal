@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j1</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .task-container {
+            padding: 20px 0;
+            font-size: 1.2rem;
+        }
+        .explanation {
+            background-color: #f9fbfc; /* Blagi background */
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        /* Stil za inline formule da ne bi "skakale" iz teksta */
+        .mjx-chtml {
+            margin: 0 !important;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>fon2025j1</h1>
+
+    <div class="task-container">
+        Vrednost izraza: 
+        \[ \frac{\sqrt{(-2025)^2} + |-2025| + \sqrt[3]{(-2025)^3}}{\sqrt[7]{(-5)^7} + \sqrt[10]{(-6)^{10}}} \]
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">1. Analiza brojioca</span>
+        Ovde pazimo na parnost korena. Prvi član \(\sqrt{(-2025)^2}\) daje apsolutnu vrednost, odnosno \(2025\). 
+        Drugi član je već pod apsolutnom vrednošću: \(|-2025| = 2025\). 
+        Treći član je neparni koren \(\sqrt[3]{(-2025)^3}\), pa on zadržava minus i iznosi \(-2025\).
+        <br><br>
+        Suma brojioca: \(2025 + 2025 - 2025 = 2025\).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">2. Analiza imenioca</span>
+        Kod \(\sqrt[7]{(-5)^7}\) koren je neparan, pa je rezultat \(-5\). 
+        Kod \(\sqrt[10]{(-6)^{10}}\) koren je paran, pa dobijamo \(|-6| = 6\).
+        <br><br>
+        Suma imenioca: \(-5 + 6 = 1\).
+    </div>
+
+    <div class="highlight-box">
+        Konačan rezultat: \( \frac{2025}{1} = 2025 \)
+        <br>
+        Tačan odgovor: E
+    </div>
+</div>
+
+</body>
+</html>

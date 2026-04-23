@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j6</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* Definisanje osnovnog layout-a i boja */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .explanation {
+            background-color: #f9fbfc; /* Blagi background za scannability */
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #d1e9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>Zadatak fon2025j6</h1>
+
+    <div class="task-container" style="font-size: 1.2rem; padding: 20px 0;">
+        Ako su \( a_1, a_2, a_3 \) članovi geometrijskog niza (\( q \in \mathbb{N} \)), \( a_1 = 8 \) i 
+        \( 2a_2 - \frac{a_3}{2} > 15 \), naći sumu \( a_1 + a_2 + a_3 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 1: Izražavanje članova</span>
+        Sve članove izražavamo preko \( a_1 \) i količnika \( q \): <br>
+        \( a_1 = 8 \), \( a_2 = 8q \), \( a_3 = 8q^2 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 2: Rešavanje nejednačine</span>
+        Uvrštavamo članove u dati uslov:
+        \[ 2(8q) - \frac{8q^2}{2} > 15 \implies 16q - 4q^2 > 15 \]
+        Sređivanjem dobijamo kvadratnu nejednačinu:
+        \[ 4q^2 - 16q + 15 < 0 \]
+        Nule ove funkcije su \( 1.5 \) i \( 2.5 \), što znači da \( q \in (1.5, 2.5) \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 3: Izbor prirodnog broja i suma</span>
+        Pošto je \( q \) prirodan broj, sledi da je \( q = 2 \). <br><br>
+        Sada računamo traženu sumu:
+        \[ S = 8 + 16 + 32 = 56 \]
+    </div>
+
+    <div class="highlight-box">
+        Tačan odgovor: E) 56
+    </div>
+</div>
+
+</body>
+</html>
