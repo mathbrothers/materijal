@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j20</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        .step-card {
+            background-color: #f8faff;
+            border-left: 4px solid #3b82f6;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2563eb;
+            display: block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .answer-box {
+            background-color: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #d1e9f9;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <div class="step-card">
+        <span class="step-title">Analiza uslova i resursa</span>
+        Na raspolaganju imamo: 6 lekara (L), 4 medicinske sestre (S) i 2 hirurga (H). <br>
+        Biramo tim od 6 članova uz uslove: L ≥ 2 i S ≥ 1. <br>
+        Rešenje dobijamo sabiranjem svih mogućih kombinacija po slučajevima.
+    </div>
+
+    <div class="step-card">
+        <span class="step-title">Slučajevi po broju lekara (L)</span>
+        <table>
+            <tr><th>Sastav tima (L, S, H)</th><th>Broj načina</th></tr>
+            <tr><td>2L, 4S, 0H</td><td>\( \binom{6}{2} \cdot \binom{4}{4} \cdot \binom{2}{0} = 15 \cdot 1 \cdot 1 = 15 \)</td></tr>
+            <tr><td>2L, 3S, 1H</td><td>\( \binom{6}{2} \cdot \binom{4}{3} \cdot \binom{2}{1} = 15 \cdot 4 \cdot 2 = 120 \)</td></tr>
+            <tr><td>2L, 2S, 2H</td><td>\( \binom{6}{2} \cdot \binom{4}{2} \cdot \binom{2}{2} = 15 \cdot 6 \cdot 1 = 90 \)</td></tr>
+            <tr><td>3L, 3S, 0H</td><td>\( \binom{6}{3} \cdot \binom{4}{3} \cdot \binom{2}{0} = 20 \cdot 4 \cdot 1 = 80 \)</td></tr>
+            <tr><td>3L, 2S, 1H</td><td>\( \binom{6}{3} \cdot \binom{4}{2} \cdot \binom{2}{1} = 20 \cdot 6 \cdot 2 = 240 \)</td></tr>
+            <tr><td>3L, 1S, 2H</td><td>\( \binom{6}{3} \cdot \binom{4}{1} \cdot \binom{2}{2} = 20 \cdot 4 \cdot 1 = 80 \)</td></tr>
+            <tr><td>4L, 2S, 0H</td><td>\( \binom{6}{4} \cdot \binom{4}{2} \cdot \binom{2}{0} = 15 \cdot 6 \cdot 1 = 90 \)</td></tr>
+            <tr><td>4L, 1S, 1H</td><td>\( \binom{6}{4} \cdot \binom{4}{1} \cdot \binom{2}{1} = 15 \cdot 4 \cdot 2 = 120 \)</td></tr>
+            <tr><td>5L, 1S, 0H</td><td>\( \binom{6}{5} \cdot \binom{4}{1} \cdot \binom{2}{0} = 6 \cdot 4 \cdot 1 = 24 \)</td></tr>
+        </table>
+    </div>
+
+    <div class="step-card">
+        <span class="step-title">Konačan zbir</span>
+        Sabiranjem svih dobijenih vrednosti:
+        \[ 15 + 120 + 90 + 80 + 240 + 80 + 90 + 120 + 24 = 859 \]
+    </div>
+
+    <div class="answer-box">
+        Tačan odgovor: E) 859
+    </div>
+</div>
+
+</body>
+</html>

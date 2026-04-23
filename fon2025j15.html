@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j15</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .formula-box {
+            background-color: #fff9db;
+            border: 1px solid #f08c00;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .explanation {
+            background-color: #f9fbfc;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #d1e9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>Zadatak fon2025j15</h1>
+
+    <div class="formula-box">
+        Logička šema za \( \sqrt{P} > Q \): <br>
+        \( (P \ge 0 \land Q < 0) \cup (Q \ge 0 \land P > Q^2) \)
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 1: Prvi deo formule (P ≥ 0 i Q < 0)</span>
+        Uslov \( P \ge 0 \) predstavlja oblast definisanosti korena: \( 625 - x^2 \ge 0 \), što daje interval \( x \in [-25, 25] \). <br>
+        Uslov \( Q < 0 \) se odnosi na desnu stranu nejednačine: \( -3x < 0 \), što daje \( x > 0 \). <br>
+        Presek ova dva uslova je interval <strong>(0, 25]</strong>, što obuhvata <strong>25 celobrojnih rešenja</strong>.
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 2: Drugi deo formule (Q ≥ 0 i P > Q²)</span>
+        Uslov \( Q \ge 0 \) daje \( -3x \ge 0 \), odnosno \( x \le 0 \). <br>
+        Uslov \( P > Q^2 \) dobijamo kvadriranjem: \( 16(625 - x^2) > (-3x)^2 \), što se svodi na \( 25x^2 < 10000 \), odnosno \( x \in (-20, 20) \). <br>
+        Presek uslova \( x \le 0 \) i intervala \( (-20, 20) \) daje interval <strong>(-20, 0]</strong>, što obuhvata <strong>20 celobrojnih rešenja</strong>.
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 3: Konačan broj rešenja</span>
+        Spajanjem (unijom) rešenja iz oba slučaja dobijamo konačan skup rešenja:
+        \[ x \in (-20, 25] \]
+        Ukupan broj celobrojnih rešenja je \( 20 + 25 = 45 \).
+    </div>
+
+    <div class="highlight-box">
+        Tačan odgovor: D) 45
+    </div>
+</div>
+
+</body>
+</html>

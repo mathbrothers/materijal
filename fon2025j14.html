@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j14</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .explanation {
+            background-color: #f9fbfc;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #d1e9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>Zadatak fon2025j14</h1>
+
+    <div class="task-container" style="font-size: 1.1rem; padding: 20px 0;">
+        Neka je \( t \) tangenta kružnice \( (x-3)^2 + (y+2)^2 = 5 \) u tački \( T(4,0) \). Naći \( a+2b \) ako je \( M(a,b) \) simetrična koordinatnom početku u odnosu na \( t \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 1: Jednačina tangente</span>
+        Centar kružnice je \( C(3,-2) \). Tangentu možemo naći preko uslova normalnosti na poluprečnik \( CT \), ali je efikasnije koristiti formulu za tangentu u tački \( T(x_0, y_0) \):
+        \[ (x_0 - p)(x - p) + (y_0 - q)(y - q) = r^2 \]
+        Zamenom vrednosti \( T(4,0) \), \( p=3 \), \( q=-2 \) i \( r^2=5 \):
+        \[ (4 - 3)(x - 3) + (0 + 2)(y + 2) = 5 \]
+        \[ 1(x - 3) + 2(y + 2) = 5 \implies x - 3 + 2y + 4 = 5 \]
+        Sređena jednačina tangente \( t \) glasi: \( x + 2y - 4 = 0 \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 2: Određivanje simetrične tačke M(a,b)</span>
+        Tačka \( M(a,b) \) je simetrična tački \( O(0,0) \) u odnosu na pravu \( t \). To znači da je prava \( OM \) normalna na \( t \). Koeficijent pravca tangente je \( k_t = -1/2 \), pa je koeficijent pravca prave \( OM \) jednak \( k_{OM} = 2 \). <br>
+        Jednačina prave \( OM \) je \( y = 2x \), što nam daje vezu \( b = 2a \). <br><br>
+        Središte duži \( OM \) je tačka \( S\left(\frac{a}{2}, \frac{b}{2}\right) \), odnosno \( S\left(\frac{a}{2}, a\right) \). Pošto \( S \) pripada tangenti \( t \), uvrštavamo njegove koordinate u jednačinu:
+        \[ \frac{a}{2} + 2a - 4 = 0 \implies \frac{5a}{2} = 4 \implies a = \frac{8}{5} \]
+        Vrednost koordinate \( b \) je \( b = 2 \cdot \frac{8}{5} = \frac{16}{5} \).
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 3: Izračunavanje vrednosti izraza</span>
+        Sada računamo traženu vrednost \( a + 2b \):
+        \[ a + 2b = \frac{8}{5} + 2 \cdot \frac{16}{5} = \frac{8}{5} + \frac{32}{5} = \frac{40}{5} = 8 \]
+    </div>
+
+    <div class="highlight-box">
+        Konačan rezultat: 8 <br>
+        Tačan odgovor: C
+    </div>
+</div>
+
+</body>
+</html>

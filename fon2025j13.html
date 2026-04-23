@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j13</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .explanation {
+            background-color: #f9fbfc;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .highlight-box {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 30px;
+            border: 1px solid #d1e9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <h1>Zadatak fon2025j13 (Metoda \(\sin / \cos\))</h1>
+
+    <div class="task-container" style="font-size: 1.2rem; padding: 20px 0;">
+        Izračunati: \[ \text{tg} \left( \frac{3\pi}{4} - 2\alpha \right) \] 
+        koristeći transformaciju u količnik sinusa i kosinusa.
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 1: Sinus i kosinus dvostrukog ugla</span>
+        Iz \( \sin \alpha = 4/5 \) u II kvadrantu sledi \( \cos \alpha = -3/5 \). <br>
+        Računamo vrednosti za \( 2\alpha \):
+        \[ \sin 2\alpha = 2 \sin \alpha \cos \alpha = 2 \cdot \frac{4}{5} \cdot \left(-\frac{3}{5}\right) = -\frac{24}{25} \]
+        \[ \cos 2\alpha = \cos^2 \alpha - \sin^2 \alpha = \frac{9}{25} - \frac{16}{25} = -\frac{7}{25} \]
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 2: Primena adicionih formula</span>
+        Pišemo tangens kao \( \frac{\sin(\beta)}{\cos(\beta)} \) i primenjujemo adicione formule:
+        \[ \sin \left( \frac{3\pi}{4} - 2\alpha \right) = \sin\frac{3\pi}{4}\cos 2\alpha - \cos\frac{3\pi}{4}\sin 2\alpha = \frac{\sqrt{2}}{2} \cdot \left(-\frac{7}{25}\right) - \left(-\frac{\sqrt{2}}{2}\right) \cdot \left(-\frac{24}{25}\right) = -\frac{31\sqrt{2}}{50} \]
+        \[ \cos \left( \frac{3\pi}{4} - 2\alpha \right) = \cos\frac{3\pi}{4}\cos 2\alpha + \sin\frac{3\pi}{4}\sin 2\alpha = \left(-\frac{\sqrt{2}}{2}\right) \cdot \left(-\frac{7}{25}\right) + \frac{\sqrt{2}}{2} \cdot \left(-\frac{24}{25}\right) = -\frac{17\sqrt{2}}{50} \]
+    </div>
+
+    <div class="explanation">
+        <span class="step-title">Korak 3: Finalni količnik</span>
+        Deljenjem dobijenih vrednosti sinusa i kosinusa dobijamo vrednost tangensa:
+        \[ \text{tg} \left( \frac{3\pi}{4} - 2\alpha \right) = \frac{-\frac{31\sqrt{2}}{50}}{-\frac{17\sqrt{2}}{50}} = \frac{31}{17} \]
+    </div>
+
+    <div class="highlight-box">
+        Tačan odgovor: E) 31/17
+    </div>
+</div>
+
+</body>
+</html>

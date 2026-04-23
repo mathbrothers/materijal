@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fon2025j16</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fcfcfc;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+        }
+        .step-card {
+            background-color: #f8faff;
+            border-left: 4px solid #3b82f6;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .step-title {
+            font-weight: bold;
+            color: #2563eb;
+            display: block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        .answer-box {
+            background-color: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #d1e9f9;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <div class="step-card">
+        <span class="step-title">Korak 1: Odnos elemenata kupe</span>
+        Iz uslova da je površina omotača kupe dva puta veća od površine osnove (M = 2B) dobijamo:
+        \[ r \pi s = 2 r^2 \pi \implies s = 2r \]
+        Ovaj uslov nam govori da je osni presek kupe jednakostranični trougao stranice s = 2r i visine H = r√3.
+    </div>
+
+    <div class="step-card">
+        <span class="step-title">Korak 2: Veza sa poluprečnikom lopte R</span>
+        Centar lopte opisane oko kupe poklapa se sa centrom kruga opisanog oko njenog osnog preseka. Za jednakostranični trougao stranice s upisan u krug poluprečnika R važi:
+        \[ s = R\sqrt{3} \implies 2r = R\sqrt{3} \implies r = \frac{R\sqrt{3}}{2} \]
+        Visina kupe H se tada izražava preko poluprečnika lopte R:
+        \[ H = r\sqrt{3} = \frac{R\sqrt{3}}{2} \cdot \sqrt{3} = \frac{3R}{2} \]
+    </div>
+
+    <div class="step-card">
+        <span class="step-title">Korak 3: Izračunavanje zapremine kupe</span>
+        Zapremina se računa po formuli V = 1/3 r² π H:
+        \[ V = \frac{1}{3} \cdot \left( \frac{R\sqrt{3}}{2} \right)^2 \cdot \pi \cdot \frac{3R}{2} \]
+        \[ V = \frac{1}{3} \cdot \frac{3R^2}{4} \cdot \pi \cdot \frac{3R}{2} = \frac{3}{8} R^3 \pi \]
+    </div>
+
+    <div class="answer-box">
+        Tačan odgovor: E) \( \frac{3}{8} R^3 \pi \)
+    </div>
+</div>
+
+</body>

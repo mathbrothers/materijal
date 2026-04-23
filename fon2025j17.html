@@ -3,88 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rešenje zadatka preko izvoda - fon2025j17</title>
+    <title>Rešenje zadatka - fon2025j17</title>
     <style>
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #2c3e50;
-            max-width: 850px;
+            color: #333;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 30px;
-            background-color: #f8f9fa;
+            padding: 20px;
+            background-color: #f4f7f6;
         }
         .container {
-            background-color: #ffffff;
+            background-color: #fff;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-top: 6px solid #2ecc71;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         h1 {
-            color: #1a1a1a;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
             text-align: center;
-            font-size: 28px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
         h2 {
-            color: #27ae60;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 8px;
-            margin-top: 35px;
+            color: #2980b9;
+            margin-top: 30px;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
         }
-        .problem-statement {
-            background-color: #f1f9f5;
-            padding: 25px;
-            border-radius: 8px;
-            border-left: 5px solid #2ecc71;
-            font-size: 1.1em;
+        .zadatak-box {
+            background-color: #e8f4fd;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+            font-style: italic;
             margin-bottom: 30px;
         }
-        .math-block {
+        .formula {
             display: block;
             text-align: center;
-            font-family: "Cambria", "Times New Roman", serif;
-            font-size: 1.25em;
-            margin: 20px 0;
-            padding: 15px;
-            background: #fdfdfd;
-            border: 1px dashed #ccc;
-            border-radius: 6px;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
         }
-        .step-desc {
-            font-weight: 500;
-            margin-bottom: 10px;
+        .step {
+            margin-bottom: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
         }
         .fraction {
             display: inline-block;
             vertical-align: middle;
             text-align: center;
-            margin: 0 5px;
         }
-        .fraction .num {
+        .fraction span {
             display: block;
-            border-bottom: 1px solid #333;
-            padding: 0 10px;
+            padding: 0 5px;
         }
-        .fraction .den {
-            display: block;
-            padding: 0 10px;
+        .fraction .numerator {
+            border-bottom: 1px solid #000;
         }
-        .ans-highlight {
-            color: #e67e22;
-            font-weight: bold;
-        }
-        .final-box {
+        .result {
+            font-size: 1.3em;
             text-align: center;
-            background-color: #2ecc71;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            font-size: 1.4em;
-            margin-top: 40px;
+            background-color: #dff0d8;
+            padding: 15px;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            margin-top: 30px;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -93,70 +86,72 @@
 <div class="container">
     <h1>fon2025j17</h1>
 
-    <div class="problem-statement">
+    <div class="zadatak-box">
         <strong>Zadatak:</strong> Odrediti vrednost realnog parametra <b>a</b> za koju funkcije 
         <i>f(x) = ax<sup>2</sup> - ax + a - 1</i> i <i>g(x) = 3ax<sup>2</sup> - 2x + a</i> 
         imaju jednake (konačne) maksimalne vrednosti.
     </div>
 
-    <h2>1. Uslov za postojanje maksimuma</h2>
-    <p>Da bi kvadratne funkcije imale maksimum (parabole okrenute nadole), vodeći koeficijenti moraju biti negativni:</p>
-    <ul>
-        <li>Za <i>f(x)</i>: <b>a < 0</b></li>
-        <li>Za <i>g(x)</i>: 3a < 0 &rArr; <b>a < 0</b></li>
-    </ul>
-
-    <h2>2. Određivanje maksimuma preko prvog izvoda</h2>
-    <p>Maksimum se dostiže u tački gde je prvi izvod jednak nuli (<b>y' = 0</b>).</p>
-
-    <div class="step-desc">A) Za funkciju <i>f(x) = ax<sup>2</sup> - ax + a - 1</i>:</div>
-    <div class="math-block">
-        f'(x) = 2ax - a <br>
-        2ax - a = 0  &rArr;  a(2x - 1) = 0  &rArr;  <b>x = 1/2</b>
-    </div>
-    <p>Vrednost funkcije u toj tački:</p>
-    <div class="math-block">
-        f(1/2) = a(1/2)<sup>2</sup> - a(1/2) + a - 1 = 
-        <span class="fraction"><span class="num">a</span><span class="den">4</span></span> - 
-        <span class="fraction"><span class="num">a</span><span class="den">2</span></span> + a - 1 =
-        <span class="ans-highlight">(3a - 4) / 4</span>
+    <div class="step">
+        <h2>1. Uslov za postojanje maksimuma</h2>
+        <p>Kvadratna funkcija oblika <i>h(x) = Ax<sup>2</sup> + Bx + C</i> ima <b>maksimum</b> samo ako je vodeći koeficijent negativan (<b>A < 0</b>).</p>
+        <ul>
+            <li>Za funkciju <i>f(x)</i>: <b>a < 0</b></li>
+            <li>Za funkciju <i>g(x)</i>: 3a < 0 &rArr; <b>a < 0</b></li>
+        </ul>
     </div>
 
-    <div class="step-desc">B) Za funkciju <i>g(x) = 3ax<sup>2</sup> - 2x + a</i>:</div>
-    <div class="math-block">
-        g'(x) = 6ax - 2 <br>
-        6ax - 2 = 0  &rArr;  6ax = 2  &rArr;  <b>x = 1/3a</b>
-    </div>
-    <p>Vrednost funkcije u toj tački:</p>
-    <div class="math-block">
-        g(1/3a) = 3a(1/3a)<sup>2</sup> - 2(1/3a) + a = 
-        <span class="fraction"><span class="num">1</span><span class="den">3a</span></span> - 
-        <span class="fraction"><span class="num">2</span><span class="den">3a</span></span> + a =
-        <span class="ans-highlight">(3a<sup>2</sup> - 1) / 3a</span>
+    <div class="step">
+        <h2>2. Formula za maksimalnu vrednost</h2>
+        <p>Maksimalna vrednost (vrh parabole) se računa po formuli:</p>
+        <div class="formula">
+            y<sub>max</sub> = <div class="fraction"><span class="numerator">4AC - B<sup>2</sup></span><span>4A</span></div>
+        </div>
+
+        <p><b>Za funkciju f(x):</b> A=a, B=-a, C=a-1</p>
+        <div class="formula">
+            y<sub>f</sub> = <div class="fraction"><span class="numerator">4a(a - 1) - (-a)<sup>2</sup></span><span>4a</span></div> = 
+            <div class="fraction"><span class="numerator">3a<sup>2</sup> - 4a</span><span>4a</span></div> = 
+            <span class="highlight"> (3a - 4) / 4 </span>
+        </div>
+
+        <p><b>Za funkciju g(x):</b> A=3a, B=-2, C=a</p>
+        <div class="formula">
+            y<sub>g</sub> = <div class="fraction"><span class="numerator">4(3a)(a) - (-2)<sup>2</sup></span><span>4(3a)</span></div> = 
+            <div class="fraction"><span class="numerator">12a<sup>2</sup> - 4</span><span>12a</span></div> = 
+            <span class="highlight"> (3a<sup>2</sup> - 1) / 3a </span>
+        </div>
     </div>
 
-    <h2>3. Izjednačavanje i rešavanje</h2>
-    <p>Postavljamo uslov <b>f<sub>max</sub> = g<sub>max</sub></b>:</p>
-    <div class="math-block">
-        <span class="fraction"><span class="num">3a - 4</span><span class="den">4</span></span> = 
-        <span class="fraction"><span class="num">3a<sup>2</sup> - 1</span><span class="den">3a</span></span>
-    </div>
-    <p>Nakon množenja sa <b>12a</b> i sređivanja:</p>
-    <div class="math-block">
-        3a(3a - 4) = 4(3a<sup>2</sup> - 1) <br>
-        9a<sup>2</sup> - 12a = 12a<sup>2</sup> - 4 <br>
-        <b>3a<sup>2</sup> + 12a - 4 = 0</b>
+    <div class="step">
+        <h2>3. Izjednačavanje vrednosti</h2>
+        <p>Postavljamo jednačinu <b>y<sub>f</sub> = y<sub>g</sub></b>:</p>
+        <div class="formula">
+            (3a - 4) / 4 = (3a<sup>2</sup> - 1) / 3a
+        </div>
+        <p>Množenjem sa 12a dobijamo:</p>
+        <div class="formula">
+            3a(3a - 4) = 4(3a<sup>2</sup> - 1) <br>
+            9a<sup>2</sup> - 12a = 12a<sup>2</sup> - 4 <br>
+            <b>3a<sup>2</sup> + 12a - 4 = 0</b>
+        </div>
     </div>
 
-    <h2>4. Finalni rezultat</h2>
-    <p>Rešavanjem kvadratne jednačine dobijamo:</p>
-    <div class="math-block">
-        a<sub>1,2</sub> = -2 &plusmn; <span class="fraction"><span class="num">4</span><span class="den">&radic;3</span></span>
+    <div class="step">
+        <h2>4. Rešavanje jednačine</h2>
+        <p>Rešenja kvadratne jednačine su:</p>
+        <div class="formula">
+            a<sub>1,2</sub> = -2 &plusmn; (4 / &radic;3)
+        </div>
+        <p>S obzirom na početni uslov da je <b>a < 0</b>, i da vrednost mora da obezbedi maksimum (teme okrenuto nadole), proveravamo rešenja:</p>
+        <ul>
+            <li>a<sub>1</sub> = -2 + 4/&radic;3 &asymp; 0.31 (Pozitivno, daje minimum - <i>ne odgovara</i>)</li>
+            <li>a<sub>2</sub> = -2 - 4/&radic;3 (Negativno - <b>odgovara</b>)</li>
+        </ul>
     </div>
-    <p>S obzirom na uslov <b>a < 0</b>, jedino logično rešenje koje obezbeđuje maksimum (konkavnost nadole) je negativna vrednost:</p>
-    
-    <div class="final-box">
-        Tačan odgovor: <b>B) -2 - 4/&radic;3</b>
+
+    <div class="result">
+        <strong>Tačan odgovor:</strong> B) -2 - 4/&radic;3
     </div>
 </div>
 
