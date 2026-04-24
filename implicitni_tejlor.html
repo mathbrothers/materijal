@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taylorov Polinom - Implicitna Funkcija</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        .paper {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 { color: #2980b9; text-align: center; border-bottom: 3px solid #3498db; padding-bottom: 15px; }
+        h2 { color: #2c3e50; margin-top: 30px; border-left: 5px solid #3498db; padding-left: 15px; }
+        h3 { color: #16a085; margin-top: 25px; }
+        .problem-statement {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 8px;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        .highlight { background: #fff3cd; padding: 2px 5px; border-radius: 3px; }
+        .step-box {
+            background: #ffffff;
+            border: 1px solid #e1e8ed;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+        .final-result {
+            background: #e8f5e9;
+            border: 2px solid #2e7d32;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .note { font-size: 0.9em; color: #7f8c8d; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="paper">
+    <h1>Taylorov polinom drugog stepena</h1>
+
+    <div class="problem-statement">
+        <strong>Zadatak:</strong> Odrediti Taylorov polinom drugog stepena koji u okolini tačke \( A(1, -1) \) aproksimira funkciju \( z = f(x, y) \) zadatu implicitno jednačinom:
+        $$ z^2 - 6xy + 2x^2z + 2yz = 7, \quad z > 0 $$
+    </div>
+
+    <h2>1. Određivanje tačke \( P(x_0, y_0, z_0) \)</h2>
+    <p>Uvrštavamo koordinate tačke \( A(1, -1) \) u polaznu jednačinu:</p>
+    <div class="step-box">
+        $$ z^2 - 6(1)(-1) + 2(1)^2z + 2(-1)z = 7 $$
+        $$ z^2 + 6 + 2z - 2z = 7 \implies z^2 = 1 $$
+        S obzirom na uslov \( z > 0 \), dobijamo \( \mathbf{z = 1} \).<br>
+        Dakle, radimo u okolini tačke \( \mathbf{P(1, -1, 1)} \).
+    </div>
+
+    <h2>2. Prvi parcijalni izvodi</h2>
+    <p>Diferenciramo implicitnu jednačinu po \( x \) i \( y \), tretirajući \( z \) kao funkciju \( z(x,y) \):</p>
+    
+    <h3>2.1. Izvod po \( x \):</h3>
+    $$ 2zz'_x - 6y + 4xz + 2x^2z'_x + 2yz'_x = 0 $$
+    Uvrštavanjem \( P(1, -1, 1) \):
+    $$ 2(1)z'_x - 6(-1) + 4(1)(1) + 2(1)^2z'_x + 2(-1)z'_x = 0 $$
+    $$ 2z'_x + 6 + 4 + 2z'_x - 2z'_x = 0 \implies 2z'_x = -10 \implies \mathbf{z'_x = -5} $$
+
+    <h3>2.2. Izvod po \( y \):</h3>
+    $$ 2zz'_y - 6x + 2x^2z'_y + 2z + 2yz'_y = 0 $$
+    Uvrštavanjem \( P(1, -1, 1) \):
+    $$ 2(1)z'_y - 6(1) + 2(1)^2z'_y + 2(1) + 2(-1)z'_y = 0 $$
+    $$ 2z'_y - 6 + 2z'_y + 2 - 2z'_y = 0 \implies 2z'_y = 4 \implies \mathbf{z'_y = 2} $$
+
+    <h2>3. Drugi parcijalni izvodi</h2>
+    
+    <h3>3.1. Izvod \( z''_{xx} \)</h3>
+    <p>Diferenciramo jednačinu izvoda po \( x \) ponovo po varijabli \( x \):</p>
+    $$ 2(z'_x)^2 + 2zz''_{xx} + 4z + 4xz'_x + 4xz'_x + 2x^2z''_{xx} + 2yz''_{xx} = 0 $$
+    $$ 2(-5)^2 + 2z''_{xx} + 4 + 8(1)(-5) + 2z''_{xx} - 2z''_{xx} = 0 $$
+    $$ 50 + 2z''_{xx} + 4 - 40 = 0 \implies \mathbf{z''_{xx} = -7} $$
+
+    <h3>3.2. Izvod \( z''_{yy} \)</h3>
+    <p>Diferenciramo jednačinu izvoda po \( y \) ponovo po varijabli \( y \):</p>
+    $$ 2(z'_y)^2 + 2zz''_{yy} + 2x^2z''_{yy} + 2z'_y + 2z'_y + 2yz''_{yy} = 0 $$
+    $$ 2(2)^2 + 2z''_{yy} + 2z''_{yy} + 4(2) - 2z''_{yy} = 0 $$
+    $$ 8 + 2z''_{yy} + 8 = 0 \implies \mathbf{z''_{yy} = -8} $$
+
+    <h3>3.3. Mešoviti izvod \( z''_{xy} \)</h3>
+    <p>Diferenciramo jednačinu izvoda po \( x \) po varijabli \( y \):</p>
+    $$ 2z'_yz'_x + 2zz''_{xy} - 6 + 4xz'_y + 2x^2z''_{xy} + 2z'_x + 2yz''_{xy} = 0 $$
+    $$ 2(2)(-5) + 2z''_{xy} - 6 + 4(1)(2) + 2z''_{xy} - 10 - 2z''_{xy} = 0 $$
+    $$ -20 + 2z''_{xy} - 6 + 8 - 10 = 0 \implies 2z''_{xy} = 28 \implies \mathbf{z''_{xy} = 14} $$
+
+    <div class="final-result">
+        <h2>Konačan Taylorov polinom</h2>
+        <p>Opšta formula za drugi stepen:</p>
+        $$ T_2(x, y) = z_0 + (z'_x \Delta x + z'_y \Delta y) + \frac{1}{2} (z''_{xx} \Delta x^2 + 2z''_{xy} \Delta x \Delta y + z''_{yy} \Delta y^2) $$
+        <p>Zamenom vrednosti za \( \Delta x = x - 1 \) i \( \Delta y = y + 1 \):</p>
+        <div style="font-size: 1.3em; color: #2e7d32;">
+            $$ T_2(x, y) = 1 - 5(x-1) + 2(y+1) - \frac{7}{2}(x-1)^2 + 14(x-1)(y+1) - 4(y+1)^2 $$
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
