@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ekstremne vrednosti funkcije pri uslovu</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --paper: #ffffff;
+      --ink: #182033;
+      --muted: #5d667a;
+      --blue: #2563eb;
+      --blue-soft: #e8f0ff;
+      --green: #15803d;
+      --green-soft: #eaf8ef;
+      --red: #b91c1c;
+      --red-soft: #fff0f0;
+      --orange: #b45309;
+      --orange-soft: #fff6e8;
+      --line: #d9deea;
+      --shadow: 0 16px 40px rgba(24, 32, 51, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #dbeafe 0, transparent 32%), var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(217, 222, 234, 0.9);
+    }
+
+    header {
+      padding: 36px 42px 30px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+    }
+
+    header .tag {
+      display: inline-block;
+      padding: 5px 12px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin-top: 14px;
+      max-width: 760px;
+      font-size: 18px;
+      opacity: 0.92;
+    }
+
+    main {
+      padding: 36px 42px 44px;
+    }
+
+    h2 {
+      margin-top: 42px;
+      margin-bottom: 14px;
+      font-size: 28px;
+      line-height: 1.2;
+      color: #0f172a;
+      border-bottom: 2px solid var(--line);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      font-size: 22px;
+      color: #1e3a8a;
+    }
+
+    p {
+      margin: 12px 0;
+      font-size: 17px;
+    }
+
+    .problem,
+    .note,
+    .result,
+    .warning,
+    .case-card {
+      border-radius: 20px;
+      padding: 18px 22px;
+      margin: 20px 0;
+      border: 1px solid var(--line);
+    }
+
+    .problem {
+      background: var(--blue-soft);
+      border-color: #bfdbfe;
+    }
+
+    .note {
+      background: #f8fafc;
+    }
+
+    .warning {
+      background: var(--orange-soft);
+      border-color: #fed7aa;
+    }
+
+    .result {
+      background: var(--green-soft);
+      border-color: #bbf7d0;
+    }
+
+    .case-card {
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .case-card.maximum {
+      border-left: 8px solid var(--red);
+    }
+
+    .case-card.saddle {
+      border-left: 8px solid var(--orange);
+    }
+
+    .case-card.minimum {
+      border-left: 8px solid var(--green);
+    }
+
+    .formula-block {
+      margin: 18px 0;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #f8fafc;
+      overflow-x: auto;
+      border: 1px solid #e5e7eb;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 22px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 22px 0;
+      overflow: hidden;
+      border-radius: 16px;
+      font-size: 16px;
+    }
+
+    th, td {
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+
+    tr:nth-child(even) td {
+      background: #fbfdff;
+    }
+
+    .final-box {
+      margin-top: 34px;
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #ecfdf5, #eff6ff);
+      border: 2px solid #bbf7d0;
+    }
+
+    .footer {
+      margin-top: 38px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 12px;
+      }
+
+      header,
+      main {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="tag">Uslovni ekstremi</div>
+      <h1>Ekstremne vrednosti funkcije preko Lagranža i drugih izvoda</h1>
+      <div class="subtitle">
+        Kompletno rešenje zadatka sa klasifikacijom kandidata pomoću Hessove matrice Lagranžove funkcije na tangentnoj ravni uslova.
+      </div>
+    </header>
+
+    <main>
+      <section class="problem">
+        <p><strong>Zadatak.</strong> Naći ekstremne vrednosti funkcije</p>
+        <div class="formula-block">
+          $$f(x,y,z)=x^2+y^2+z^2$$
+        </div>
+        <p>pri uslovu</p>
+        <div class="formula-block">
+          $$3y^2+27z^2=3-\frac{x^2}{3}.$$
+        </div>
+      </section>
+
+      <h2>1. Sređivanje uslova</h2>
+
+      <p>Uslov prebacujemo u standardni oblik:</p>
+
+      <div class="formula-block">
+        $$3y^2+27z^2=3-\frac{x^2}{3}$$
+        $$\frac{x^2}{3}+3y^2+27z^2=3.$$
+      </div>
+
+      <p>Zato možemo definisati funkciju uslova:</p>
+
+      <div class="formula-block">
+        $$g(x,y,z)=\frac{x^2}{3}+3y^2+27z^2-3=0.$$
+      </div>
+
+      <div class="note">
+        <p>Geometrijski, uslov predstavlja elipsoid. Pošto je to zatvorena i ograničena površina, a funkcija $f$ je neprekidna, globalni minimum i globalni maksimum postoje.</p>
+      </div>
+
+      <h2>2. Lagranžova funkcija</h2>
+
+      <p>Formiramo Lagranžovu funkciju:</p>
+
+      <div class="formula-block">
+        $$L(x,y,z,\lambda)=f(x,y,z)-\lambda g(x,y,z).$$
+      </div>
+
+      <p>Dakle:</p>
+
+      <div class="formula-block">
+        $$L=x^2+y^2+z^2-\lambda\left(\frac{x^2}{3}+3y^2+27z^2-3\right).$$
+      </div>
+
+      <h2>3. Prvi izvodi</h2>
+
+      <p>Tražimo stacionarne tačke uslovnog problema iz sistema:</p>
+
+      <div class="formula-block">
+        $$L_x=0,\qquad L_y=0,\qquad L_z=0,\qquad g(x,y,z)=0.$$
+      </div>
+
+      <p>Računamo prve parcijalne izvode:</p>
+
+      <div class="formula-block">
+        $$L_x=2x-\lambda\frac{2x}{3}=0,$$
+        $$L_y=2y-6\lambda y=0,$$
+        $$L_z=2z-54\lambda z=0.$$
+      </div>
+
+      <p>Odnosno:</p>
+
+      <div class="formula-block">
+        $$2x\left(1-\frac{\lambda}{3}\right)=0,$$
+        $$2y(1-3\lambda)=0,$$
+        $$2z(1-27\lambda)=0.$$
+      </div>
+
+      <p>Ako je neka promenljiva različita od nule, dobijamo odgovarajuću vrednost za $\lambda$:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Promenljiva</th>
+            <th>Zaključak</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$x\neq 0$</td>
+            <td>$\lambda=3$</td>
+          </tr>
+          <tr>
+            <td>$y\neq 0$</td>
+            <td>$\lambda=\frac13$</td>
+          </tr>
+          <tr>
+            <td>$z\neq 0$</td>
+            <td>$\lambda=\frac1{27}$</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Pošto jedna ista vrednost $\lambda$ ne može istovremeno biti $3$, $\frac13$ i $\frac1{27}$, kandidati se nalaze na koordinatnim osama.</p>
+
+      <h2>4. Kandidati za ekstrem</h2>
+
+      <h3>Tačke na $x$-osi</h3>
+
+      <p>Ako je $y=0$ i $z=0$, iz uslova dobijamo:</p>
+
+      <div class="formula-block">
+        $$\frac{x^2}{3}=3,$$
+        $$x^2=9,$$
+        $$x=\pm 3.$$
+      </div>
+
+      <p>Dakle dobijamo tačke:</p>
+
+      <div class="formula-block">
+        $$(3,0,0),\qquad (-3,0,0).$$
+      </div>
+
+      <h3>Tačke na $y$-osi</h3>
+
+      <p>Ako je $x=0$ i $z=0$, iz uslova dobijamo:</p>
+
+      <div class="formula-block">
+        $$3y^2=3,$$
+        $$y^2=1,$$
+        $$y=\pm 1.$$
+      </div>
+
+      <p>Dakle dobijamo tačke:</p>
+
+      <div class="formula-block">
+        $$(0,1,0),\qquad (0,-1,0).$$
+      </div>
+
+      <h3>Tačke na $z$-osi</h3>
+
+      <p>Ako je $x=0$ i $y=0$, iz uslova dobijamo:</p>
+
+      <div class="formula-block">
+        $$27z^2=3,$$
+        $$z^2=\frac19,$$
+        $$z=\pm \frac13.$$
+      </div>
+
+      <p>Dakle dobijamo tačke:</p>
+
+      <div class="formula-block">
+        $$\left(0,0,\frac13\right),\qquad \left(0,0,-\frac13\right).$$
+      </div>
+
+      <h2>5. Drugi izvodi</h2>
+
+      <p>Sada klasifikujemo kandidate pomoću drugih izvoda Lagranžove funkcije.</p>
+
+      <p>Hessova matrica Lagranžove funkcije po promenljivama $x,y,z$ je:</p>
+
+      <div class="formula-block">
+        $$H_L=
+        \begin{pmatrix}
+        2-\frac{2\lambda}{3} & 0 & 0 \\
+        0 & 2-6\lambda & 0 \\
+        0 & 0 & 2-54\lambda
+        \end{pmatrix}.$$
+      </div>
+
+      <div class="warning">
+        <p><strong>Važna napomena.</strong> Kod uslovnih ekstrema ne gledamo znak Hessove matrice na celom prostoru, nego samo na tangentnoj ravni uslova u posmatranoj tački.</p>
+      </div>
+
+      <p>Tangentni vektor označimo sa</p>
+
+      <div class="formula-block">
+        $$v=(a,b,c).$$
+      </div>
+
+      <p>On mora da zadovolji uslov tangentnosti:</p>
+
+      <div class="formula-block">
+        $$\nabla g\cdot v=0.$$
+      </div>
+
+      <p>Kvadratna forma koju ispitujemo je:</p>
+
+      <div class="formula-block">
+        $$Q(v)=v^T H_L v.$$
+      </div>
+
+      <p>Važi sledeće pravilo:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Znak kvadratne forme $Q$ na tangentnoj ravni</th>
+            <th>Zaključak</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$Q(v)>0$ za svaki nenulti tangentni vektor</td>
+            <td>lokalni minimum</td>
+          </tr>
+          <tr>
+            <td>$Q(v)<0$ za svaki nenulti tangentni vektor</td>
+            <td>lokalni maksimum</td>
+          </tr>
+          <tr>
+            <td>$Q(v)$ menja znak</td>
+            <td>sedlasta tačka</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>6. Klasifikacija kandidata</h2>
+
+      <div class="case-card maximum">
+        <h3>1. Tačke $\boldsymbol{(\pm3,0,0)}$</h3>
+
+        <p>Za ove tačke važi:</p>
+
+        <div class="formula-block">
+          $$\lambda=3.$$
+        </div>
+
+        <p>Zato je:</p>
+
+        <div class="formula-block">
+          $$H_L=
+          \begin{pmatrix}
+          0 & 0 & 0 \\
+          0 & -16 & 0 \\
+          0 & 0 & -160
+          \end{pmatrix}.$$
+        </div>
+
+        <p>Gradijent uslova je:</p>
+
+        <div class="formula-block">
+          $$\nabla g=\left(\frac{2x}{3},6y,54z\right).$$
+        </div>
+
+        <p>U tačkama $(\pm3,0,0)$ imamo:</p>
+
+        <div class="formula-block">
+          $$\nabla g=(\pm2,0,0).$$
+        </div>
+
+        <p>Tangentni vektor $v=(a,b,c)$ mora da zadovolji:</p>
+
+        <div class="formula-block">
+          $$(\pm2,0,0)\cdot(a,b,c)=0,$$
+          $$a=0.$$
+        </div>
+
+        <p>Dakle tangentni vektori su oblika:</p>
+
+        <div class="formula-block">
+          $$v=(0,b,c).$$
+        </div>
+
+        <p>Sada je:</p>
+
+        <div class="formula-block">
+          $$Q(v)=-16b^2-160c^2.$$
+        </div>
+
+        <p>Za svaki nenulti tangentni vektor važi $Q(v)<0$, pa su tačke:</p>
+
+        <div class="result">
+          $$\boxed{(3,0,0)\text{ i }(-3,0,0)\text{ lokalni maksimumi}}$$
+        </div>
+
+        <p>Vrednost funkcije u tim tačkama je:</p>
+
+        <div class="formula-block">
+          $$f(\pm3,0,0)=9.$$
+        </div>
+      </div>
+
+      <div class="case-card saddle">
+        <h3>2. Tačke $\boldsymbol{(0,\pm1,0)}$</h3>
+
+        <p>Za ove tačke važi:</p>
+
+        <div class="formula-block">
+          $$\lambda=\frac13.$$
+        </div>
+
+        <p>Zato je:</p>
+
+        <div class="formula-block">
+          $$H_L=
+          \begin{pmatrix}
+          \frac{16}{9} & 0 & 0 \\
+          0 & 0 & 0 \\
+          0 & 0 & -16
+          \end{pmatrix}.$$
+        </div>
+
+        <p>U tačkama $(0,\pm1,0)$ imamo:</p>
+
+        <div class="formula-block">
+          $$\nabla g=(0,\pm6,0).$$
+        </div>
+
+        <p>Tangentni vektor $v=(a,b,c)$ mora da zadovolji:</p>
+
+        <div class="formula-block">
+          $$(0,\pm6,0)\cdot(a,b,c)=0,$$
+          $$b=0.$$
+        </div>
+
+        <p>Dakle tangentni vektori su oblika:</p>
+
+        <div class="formula-block">
+          $$v=(a,0,c).$$
+        </div>
+
+        <p>Sada je:</p>
+
+        <div class="formula-block">
+          $$Q(v)=\frac{16}{9}a^2-16c^2.$$
+        </div>
+
+        <p>Ova forma menja znak:</p>
+
+        <div class="formula-block">
+          $$c=0,\ a\neq0 \quad\Longrightarrow\quad Q(v)>0,$$
+          $$a=0,\ c\neq0 \quad\Longrightarrow\quad Q(v)<0.$$
+        </div>
+
+        <p>Zato su tačke:</p>
+
+        <div class="result">
+          $$\boxed{(0,1,0)\text{ i }(0,-1,0)\text{ sedlaste tačke}}$$
+        </div>
+
+        <p>Njihova vrednost je:</p>
+
+        <div class="formula-block">
+          $$f(0,\pm1,0)=1.$$
+        </div>
+      </div>
+
+      <div class="case-card minimum">
+        <h3>3. Tačke $\boldsymbol{\left(0,0,\pm\frac13\right)}$</h3>
+
+        <p>Za ove tačke važi:</p>
+
+        <div class="formula-block">
+          $$\lambda=\frac1{27}.$$
+        </div>
+
+        <p>Zato je:</p>
+
+        <div class="formula-block">
+          $$H_L=
+          \begin{pmatrix}
+          \frac{160}{81} & 0 & 0 \\
+          0 & \frac{16}{9} & 0 \\
+          0 & 0 & 0
+          \end{pmatrix}.$$
+        </div>
+
+        <p>U tačkama $\left(0,0,\pm\frac13\right)$ imamo:</p>
+
+        <div class="formula-block">
+          $$\nabla g=(0,0,\pm18).$$
+        </div>
+
+        <p>Tangentni vektor $v=(a,b,c)$ mora da zadovolji:</p>
+
+        <div class="formula-block">
+          $$(0,0,\pm18)\cdot(a,b,c)=0,$$
+          $$c=0.$$
+        </div>
+
+        <p>Dakle tangentni vektori su oblika:</p>
+
+        <div class="formula-block">
+          $$v=(a,b,0).$$
+        </div>
+
+        <p>Sada je:</p>
+
+        <div class="formula-block">
+          $$Q(v)=\frac{160}{81}a^2+\frac{16}{9}b^2.$$
+        </div>
+
+        <p>Za svaki nenulti tangentni vektor važi $Q(v)>0$, pa su tačke:</p>
+
+        <div class="result">
+          $$\boxed{\left(0,0,\frac13\right)\text{ i }\left(0,0,-\frac13\right)\text{ lokalni minimumi}}$$
+        </div>
+
+        <p>Vrednost funkcije u tim tačkama je:</p>
+
+        <div class="formula-block">
+          $$f\left(0,0,\pm\frac13\right)=\frac19.$$
+        </div>
+      </div>
+
+      <h2>7. Konačan odgovor</h2>
+
+      <div class="final-box">
+        <p>Najmanja vrednost funkcije je:</p>
+        <div class="formula-block">
+          $$\boxed{f_{\min}=\frac19}$$
+        </div>
+        <p>i dostiže se u tačkama:</p>
+        <div class="formula-block">
+          $$\boxed{\left(0,0,\frac13\right),\ \left(0,0,-\frac13\right)}.$$
+        </div>
+
+        <p>Najveća vrednost funkcije je:</p>
+        <div class="formula-block">
+          $$\boxed{f_{\max}=9}$$
+        </div>
+        <p>i dostiže se u tačkama:</p>
+        <div class="formula-block">
+          $$\boxed{(3,0,0),\ (-3,0,0)}.$$
+        </div>
+
+        <p>Tačke:</p>
+        <div class="formula-block">
+          $$\boxed{(0,1,0),\ (0,-1,0)}$$
+        </div>
+        <p>su sedlaste tačke uslovne površine.</p>
+      </div>
+
+      <div class="footer">
+        MathBrothers · uslovni ekstremi · Lagranžovi multiplikatori
+      </div>
+    </main>
+  </div>
+</body>
+</html>
