@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Lokalni ekstrem funkcije</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+      line-height: 1.65;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 40px 50px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1f3a5f;
+      margin-bottom: 10px;
+      font-size: 32px;
+    }
+
+    h2 {
+      color: #1f3a5f;
+      border-left: 6px solid #4a90e2;
+      padding-left: 12px;
+      margin-top: 36px;
+    }
+
+    .problem {
+      background: #eef5ff;
+      border-left: 6px solid #4a90e2;
+      padding: 18px 24px;
+      border-radius: 12px;
+      margin: 25px 0;
+      font-size: 20px;
+    }
+
+    .box {
+      background: #f9fafc;
+      border: 1px solid #dce3ec;
+      padding: 18px 24px;
+      border-radius: 12px;
+      margin: 22px 0;
+    }
+
+    .important {
+      background: #fff7e6;
+      border-left: 6px solid #f0a500;
+      padding: 18px 24px;
+      border-radius: 12px;
+      margin: 22px 0;
+    }
+
+    .result {
+      background: #eaf8ef;
+      border-left: 6px solid #2e9d55;
+      padding: 20px 26px;
+      border-radius: 12px;
+      margin-top: 30px;
+      font-size: 20px;
+    }
+
+    .bad {
+      background: #fff0f0;
+      border-left: 6px solid #d9534f;
+      padding: 18px 24px;
+      border-radius: 12px;
+      margin: 22px 0;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    ul {
+      font-size: 18px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .footer {
+      text-align: right;
+      margin-top: 50px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+
+      .container {
+        box-shadow: none;
+        border-radius: 0;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Lokalni ekstrem funkcije</h1>
+
+    <div class="problem">
+      Odrediti lokalne ekstreme funkcije
+      \[
+      f(x,y)=x\ln(x^2+y^2).
+      \]
+    </div>
+
+    <h2>1. Domen funkcije</h2>
+
+    <p>
+      Logaritam je definisan kada je njegov argument pozitivan, pa mora važiti:
+    </p>
+
+    \[
+    x^2+y^2>0.
+    \]
+
+    <p>
+      To znači da funkcija nije definisana samo u tački \((0,0)\).
+    </p>
+
+    <div class="box">
+      \[
+      D_f=\mathbb R^2\setminus\{(0,0)\}.
+      \]
+    </div>
+
+    <h2>2. Prvi parcijalni izvodi</h2>
+
+    <p>
+      Računamo prvi parcijalni izvod po \(x\):
+    </p>
+
+    \[
+    f_x=\frac{\partial}{\partial x}\left(x\ln(x^2+y^2)\right).
+    \]
+
+    <p>
+      Koristimo pravilo za izvod proizvoda:
+    </p>
+
+    \[
+    f_x=\ln(x^2+y^2)+x\cdot \frac{2x}{x^2+y^2}.
+    \]
+
+    <p>
+      Dakle:
+    </p>
+
+    \[
+    f_x=\ln(x^2+y^2)+\frac{2x^2}{x^2+y^2}.
+    \]
+
+    <p>
+      Sada računamo izvod po \(y\):
+    </p>
+
+    \[
+    f_y=x\cdot \frac{2y}{x^2+y^2}.
+    \]
+
+    <p>
+      Odnosno:
+    </p>
+
+    \[
+    f_y=\frac{2xy}{x^2+y^2}.
+    \]
+
+    <h2>3. Sistem za stacionarne tačke</h2>
+
+    <p>
+      Stacionarne tačke dobijamo iz sistema:
+    </p>
+
+    \[
+    \begin{cases}
+    f_x=0,\\
+    f_y=0.
+    \end{cases}
+    \]
+
+    <p>
+      Dakle:
+    </p>
+
+    \[
+    \begin{cases}
+    \ln(x^2+y^2)+\dfrac{2x^2}{x^2+y^2}=0,\\[8pt]
+    \dfrac{2xy}{x^2+y^2}=0.
+    \end{cases}
+    \]
+
+    <p>
+      Pošto je \(x^2+y^2\neq 0\), iz druge jednačine dobijamo:
+    </p>
+
+    \[
+    xy=0.
+    \]
+
+    <p>
+      Zato imamo dva slučaja:
+    </p>
+
+    \[
+    x=0
+    \qquad \text{ili} \qquad
+    y=0.
+    \]
+
+    <h2>4. Prvi slučaj: \(x=0\)</h2>
+
+    <p>
+      Ako je \(x=0\), prva jednačina postaje:
+    </p>
+
+    \[
+    \ln(y^2)=0.
+    \]
+
+    <p>
+      Odavde sledi:
+    </p>
+
+    \[
+    y^2=1.
+    \]
+
+    <p>
+      Dakle:
+    </p>
+
+    \[
+    y=\pm 1.
+    \]
+
+    <p>
+      Dobijamo dve stacionarne tačke:
+    </p>
+
+    \[
+    (0,1), \qquad (0,-1).
+    \]
+
+    <h2>5. Drugi slučaj: \(y=0\)</h2>
+
+    <p>
+      Ako je \(y=0\), tada je:
+    </p>
+
+    \[
+    x^2+y^2=x^2.
+    \]
+
+    <p>
+      Prva jednačina postaje:
+    </p>
+
+    \[
+    \ln(x^2)+\frac{2x^2}{x^2}=0.
+    \]
+
+    <p>
+      Dakle:
+    </p>
+
+    \[
+    \ln(x^2)+2=0.
+    \]
+
+    <p>
+      Odavde je:
+    </p>
+
+    \[
+    \ln(x^2)=-2.
+    \]
+
+    \[
+    x^2=e^{-2}.
+    \]
+
+    <p>
+      Zato je:
+    </p>
+
+    \[
+    x=\pm e^{-1}.
+    \]
+
+    <p>
+      Dobijamo još dve stacionarne tačke:
+    </p>
+
+    \[
+    \left(\frac1e,0\right),
+    \qquad
+    \left(-\frac1e,0\right).
+    \]
+
+    <div class="important">
+      Sve stacionarne tačke su:
+      \[
+      (0,1),\quad (0,-1),\quad
+      \left(\frac1e,0\right),\quad
+      \left(-\frac1e,0\right).
+      \]
+    </div>
+
+    <h2>6. Drugi parcijalni izvodi</h2>
+
+    <p>
+      Za klasifikaciju koristimo Hesijan. Drugi izvodi su:
+    </p>
+
+    \[
+    f_{xx}=
+    \frac{2x(x^2+3y^2)}{(x^2+y^2)^2},
+    \]
+
+    \[
+    f_{yy}=
+    \frac{2x(x^2-y^2)}{(x^2+y^2)^2},
+    \]
+
+    \[
+    f_{xy}=
+    \frac{2y(y^2-x^2)}{(x^2+y^2)^2}.
+    \]
+
+    <p>
+      Determinanta Hesijana je:
+    </p>
+
+    \[
+    \Delta=f_{xx}f_{yy}-f_{xy}^2.
+    \]
+
+    <h2>7. Tačka \((0,1)\)</h2>
+
+    <p>
+      U tački \((0,1)\) imamo:
+    </p>
+
+    \[
+    f_{xx}=0,\qquad f_{yy}=0,\qquad f_{xy}=2.
+    \]
+
+    <p>
+      Zato je:
+    </p>
+
+    \[
+    \Delta=0\cdot 0-2^2=-4<0.
+    \]
+
+    <div class="bad">
+      Pošto je \(\Delta<0\), tačka \((0,1)\) je sedlasta tačka.
+    </div>
+
+    <h2>8. Tačka \((0,-1)\)</h2>
+
+    <p>
+      U tački \((0,-1)\) imamo:
+    </p>
+
+    \[
+    f_{xx}=0,\qquad f_{yy}=0,\qquad f_{xy}=-2.
+    \]
+
+    <p>
+      Zato je:
+    </p>
+
+    \[
+    \Delta=0\cdot 0-(-2)^2=-4<0.
+    \]
+
+    <div class="bad">
+      Pošto je \(\Delta<0\), tačka \((0,-1)\) je sedlasta tačka.
+    </div>
+
+    <h2>9. Tačka \(\left(\frac1e,0\right)\)</h2>
+
+    <p>
+      U tački \(\left(\frac1e,0\right)\) dobijamo:
+    </p>
+
+    \[
+    f_{xx}=2e,\qquad f_{yy}=2e,\qquad f_{xy}=0.
+    \]
+
+    <p>
+      Zato je:
+    </p>
+
+    \[
+    \Delta=(2e)(2e)-0=4e^2>0.
+    \]
+
+    <p>
+      Pošto je još i:
+    </p>
+
+    \[
+    f_{xx}=2e>0,
+    \]
+
+    <p>
+      tačka je lokalni minimum.
+    </p>
+
+    <p>
+      Vrednost funkcije u toj tački je:
+    </p>
+
+    \[
+    f\left(\frac1e,0\right)
+    =
+    \frac1e\ln\left(\frac1{e^2}\right).
+    \]
+
+    \[
+    f\left(\frac1e,0\right)
+    =
+    \frac1e\cdot(-2)
+    =
+    -\frac2e.
+    \]
+
+    <div class="result">
+      \[
+      \left(\frac1e,0\right)
+      \]
+      je lokalni minimum i važi:
+      \[
+      f_{\min}=-\frac2e.
+      \]
+    </div>
+
+    <h2>10. Tačka \(\left(-\frac1e,0\right)\)</h2>
+
+    <p>
+      U tački \(\left(-\frac1e,0\right)\) dobijamo:
+    </p>
+
+    \[
+    f_{xx}=-2e,\qquad f_{yy}=-2e,\qquad f_{xy}=0.
+    \]
+
+    <p>
+      Zato je:
+    </p>
+
+    \[
+    \Delta=(-2e)(-2e)-0=4e^2>0.
+    \]
+
+    <p>
+      Pošto je:
+    </p>
+
+    \[
+    f_{xx}=-2e<0,
+    \]
+
+    <p>
+      tačka je lokalni maksimum.
+    </p>
+
+    <p>
+      Vrednost funkcije u toj tački je:
+    </p>
+
+    \[
+    f\left(-\frac1e,0\right)
+    =
+    -\frac1e\ln\left(\frac1{e^2}\right).
+    \]
+
+    \[
+    f\left(-\frac1e,0\right)
+    =
+    -\frac1e\cdot(-2)
+    =
+    \frac2e.
+    \]
+
+    <div class="result">
+      \[
+      \left(-\frac1e,0\right)
+      \]
+      je lokalni maksimum i važi:
+      \[
+      f_{\max}=\frac2e.
+      \]
+    </div>
+
+    <h2>Konačan odgovor</h2>
+
+    <div class="result">
+      Funkcija
+      \[
+      f(x,y)=x\ln(x^2+y^2)
+      \]
+      ima lokalni minimum u tački
+      \[
+      \boxed{\left(\frac1e,0\right)}
+      \]
+      i njegova vrednost je
+      \[
+      \boxed{-\frac2e}.
+      \]
+
+      <br><br>
+
+      Funkcija ima lokalni maksimum u tački
+      \[
+      \boxed{\left(-\frac1e,0\right)}
+      \]
+      i njegova vrednost je
+      \[
+      \boxed{\frac2e}.
+      \]
+
+      <br><br>
+
+      Tačke
+      \[
+      \boxed{(0,1)}
+      \qquad \text{i} \qquad
+      \boxed{(0,-1)}
+      \]
+      su sedlaste tačke.
+    </div>
+
+    <div class="footer">
+      Powered by ChatGPT
+    </div>
+
+  </div>
+</body>
+</html>
