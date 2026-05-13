@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Rešenje zadatka</title>
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      line-height: 1.6;
+      font-size: 18px;
+      color: #222;
+    }
+
+    h1, h2 {
+      color: #111;
+    }
+
+    .answer {
+      background: #f0f7ff;
+      border-left: 6px solid #2b7cff;
+      padding: 15px 20px;
+      margin: 25px 0;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .method {
+      margin-top: 35px;
+      padding-top: 15px;
+      border-top: 1px solid #ddd;
+    }
+
+    .box {
+      background: #f7f7f7;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Skup vrednosti parametra \(m\)</h1>
+
+<p>
+Data je jednačina:
+</p>
+
+\[
+x^2+(m-4)x+4=0
+\]
+
+<p>
+Traži se skup svih realnih vrednosti parametra \(m\) za koje su oba rešenja jednačine veća od \(1\).
+</p>
+
+<div class="answer">
+  Konačan odgovor je:
+  \[
+  m\in(-1,0]
+  \]
+  Dakle tačan odgovor je C.
+</div>
+
+<div class="method">
+<h2>1. Rešenje preko Vijetovih formula</h2>
+
+<p>
+Neka su rešenja jednačine \(x_1\) i \(x_2\). Po Vijetovim formulama važi:
+</p>
+
+\[
+x_1+x_2=4-m,\qquad x_1x_2=4
+\]
+
+<p>
+Hoćemo:
+</p>
+
+\[
+x_1>1,\qquad x_2>1
+\]
+
+<p>
+Odnosno:
+</p>
+
+\[
+x_1-1>0,\qquad x_2-1>0
+\]
+
+<p>
+Zato posmatramo zbir:
+</p>
+
+\[
+(x_1-1)+(x_2-1)=x_1+x_2-2
+\]
+
+\[
+=4-m-2=2-m
+\]
+
+<p>
+Mora biti:
+</p>
+
+\[
+2-m>0
+\]
+
+\[
+m<2
+\]
+
+<p>
+Sada posmatramo proizvod:
+</p>
+
+\[
+(x_1-1)(x_2-1)=x_1x_2-x_1-x_2+1
+\]
+
+\[
+=4-(4-m)+1=m+1
+\]
+
+<p>
+Mora biti:
+</p>
+
+\[
+m+1>0
+\]
+
+\[
+m>-1
+\]
+
+<p>
+Još moramo obezbediti realna rešenja:
+</p>
+
+\[
+D=(m-4)^2-16
+\]
+
+\[
+D=m^2-8m=m(m-8)
+\]
+
+\[
+m(m-8)\ge 0
+\]
+
+<p>
+Odavde je:
+</p>
+
+\[
+m\le 0 \quad \text{ili} \quad m\ge 8
+\]
+
+<p>
+Presek uslova je:
+</p>
+
+\[
+m>-1,\qquad m<2,\qquad (m\le 0 \text{ ili } m\ge 8)
+\]
+
+<p>
+Zato dobijamo:
+</p>
+
+\[
+m\in(-1,0]
+\]
+
+</div>
+
+<div class="method">
+<h2>2. Manje rešenje veće od \(1\)</h2>
+
+<p>
+Rešenja jednačine su:
+</p>
+
+\[
+x_{1,2}=\frac{4-m\pm\sqrt{m^2-8m}}{2}
+\]
+
+<p>
+Manje rešenje je:
+</p>
+
+\[
+x_{\min}=\frac{4-m-\sqrt{m^2-8m}}{2}
+\]
+
+<p>
+Treba da važi:
+</p>
+
+\[
+x_{\min}>1
+\]
+
+<p>
+Dakle:
+</p>
+
+\[
+\frac{4-m-\sqrt{m^2-8m}}{2}>1
+\]
+
+\[
+4-m-\sqrt{m^2-8m}>2
+\]
+
+\[
+2-m>\sqrt{m^2-8m}
+\]
+
+<p>
+Pošto je desna strana nenegativna, mora biti:
+</p>
+
+\[
+2-m>0
+\]
+
+\[
+m<2
+\]
+
+<p>
+Takođe, koren mora biti definisan:
+</p>
+
+\[
+m^2-8m\ge 0
+\]
+
+\[
+m(m-8)\ge 0
+\]
+
+\[
+m\le 0 \quad \text{ili} \quad m\ge 8
+\]
+
+<p>
+Zajedno sa uslovom \(m<2\), ostaje:
+</p>
+
+\[
+m\le 0
+\]
+
+<p>
+Sada rešavamo iracionalnu nejednačinu kvadriranjem:
+</p>
+
+\[
+2-m>\sqrt{m^2-8m}
+\]
+
+\[
+(2-m)^2>m^2-8m
+\]
+
+\[
+4-4m+m^2>m^2-8m
+\]
+
+\[
+4-4m>-8m
+\]
+
+\[
+4+4m>0
+\]
+
+\[
+m>-1
+\]
+
+<p>
+Dakle:
+</p>
+
+\[
+m>-1,\qquad m\le 0
+\]
+
+<p>
+Zato je:
+</p>
+
+\[
+m\in(-1,0]
+\]
+
+</div>
+
+<div class="method">
+<h2>3. Rešenje preko grafika kvadratne funkcije</h2>
+
+<p>
+Posmatramo kvadratnu funkciju:
+</p>
+
+\[
+f(x)=x^2+(m-4)x+4
+\]
+
+<p>
+Parabola je okrenuta nagore. Da bi oba rešenja bila veća od \(1\), treba:
+</p>
+
+<ul>
+  <li>da postoje realna rešenja,</li>
+  <li>da osa simetrije bude desno od \(1\),</li>
+  <li>da važi \(f(1)>0\).</li>
+</ul>
+
+<p>
+Prvo:
+</p>
+
+\[
+D=m^2-8m=m(m-8)\ge 0
+\]
+
+\[
+m\le 0 \quad \text{ili} \quad m\ge 8
+\]
+
+<p>
+Osa simetrije je:
+</p>
+
+\[
+x_0=-\frac{m-4}{2}=\frac{4-m}{2}
+\]
+
+<p>
+Hoćemo:
+</p>
+
+\[
+x_0>1
+\]
+
+\[
+\frac{4-m}{2}>1
+\]
+
+\[
+m<2
+\]
+
+<p>
+Još računamo:
+</p>
+
+\[
+f(1)=1+(m-4)+4=m+1
+\]
+
+<p>
+Hoćemo:
+</p>
+
+\[
+f(1)>0
+\]
+
+\[
+m+1>0
+\]
+
+\[
+m>-1
+\]
+
+<p>
+Presek uslova je:
+</p>
+
+\[
+m>-1,\qquad m<2,\qquad (m\le 0 \text{ ili } m\ge 8)
+\]
+
+<p>
+Zato je:
+</p>
+
+\[
+m\in(-1,0]
+\]
+
+</div>
+
+<div class="answer">
+  Tačan odgovor je:
+  \[
+  \boxed{(-1,0]}
+  \]
+</div>
+
+</body>
+</html>
