@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Taylorov polinom i ostatak</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #222;
+      background: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .zadatak {
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+
+    .zadatak h2 {
+      margin-top: 0;
+    }
+
+    .napomena {
+      background: #fff7e6;
+      border-left: 4px solid #f0a500;
+      padding: 10px 14px;
+      margin: 16px 0;
+    }
+
+    .odgovor {
+      font-weight: bold;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Taylorov polinom i ostatak</h1>
+
+  <div class="zadatak">
+    <h2>Postavka</h2>
+
+    <p>Data je funkcija</p>
+
+    \[
+    f:\mathbb{R}\to\mathbb{R},
+    \qquad
+    f(x)=x^2e^{-x}.
+    \]
+
+    <p>Treba odrediti Taylorov polinom trećeg stepena oko tačke</p>
+
+    \[
+    a=-1.
+    \]
+
+    <p>Zato će se Taylorov polinom pisati po stepenima izraza</p>
+
+    \[
+    x-a=x+1.
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(a) Taylorov polinom trećeg stepena</h2>
+
+    <p>Računamo izvode funkcije:</p>
+
+    \[
+    f(x)=x^2e^{-x}
+    \]
+
+    \[
+    f'(x)=e^{-x}(2x-x^2)
+    \]
+
+    \[
+    f''(x)=e^{-x}(x^2-4x+2)
+    \]
+
+    \[
+    f'''(x)=e^{-x}(-x^2+6x-6)
+    \]
+
+    <p>Vrednosti izvoda u tački \(x=-1\) su:</p>
+
+    \[
+    f(-1)=e
+    \]
+
+    \[
+    f'(-1)=-3e
+    \]
+
+    \[
+    f''(-1)=7e
+    \]
+
+    \[
+    f'''(-1)=-13e
+    \]
+
+    <p>Taylorov polinom trećeg stepena je:</p>
+
+    \[
+    T_3(f,x,-1)
+    =
+    f(-1)
+    +
+    f'(-1)(x+1)
+    +
+    \frac{f''(-1)}{2!}(x+1)^2
+    +
+    \frac{f'''(-1)}{3!}(x+1)^3.
+    \]
+
+    <p>Ubacivanjem vrednosti dobijamo:</p>
+
+    \[
+    \begin{aligned}
+    T_3(f,x,-1)
+    &=
+    e-3e(x+1)+\frac{7e}{2}(x+1)^2-\frac{13e}{6}(x+1)^3 \\[6pt]
+    &=
+    e\left(
+    1-3(x+1)+\frac{7}{2}(x+1)^2-\frac{13}{6}(x+1)^3
+    \right).
+    \end{aligned}
+    \]
+
+    <p class="odgovor">Odgovor:</p>
+
+    \[
+    \boxed{
+    T_3(f,x,-1)
+    =
+    e\left(
+    1-3(x+1)+\frac{7}{2}(x+1)^2-\frac{13}{6}(x+1)^3
+    \right)
+    }
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(b) Ostatak</h2>
+
+    <p>Po definiciji, ostatak je razlika funkcije i njenog Taylorovog polinoma:</p>
+
+    \[
+    R_3(f,x,-1)
+    =
+    f(x)-T_3(f,x,-1).
+    \]
+
+    <p>Zato je:</p>
+
+    \[
+    \boxed{
+    R_3(f,x,-1)
+    =
+    x^2e^{-x}
+    -
+    e\left(
+    1-3(x+1)+\frac{7}{2}(x+1)^2-\frac{13}{6}(x+1)^3
+    \right)
+    }
+    \]
+
+    <div class="napomena">
+      Ako se traži oblik ostatka pogodan za procenu greške, koristi se Lagrangeov oblik ostatka.
+    </div>
+
+    <p>Za Lagrangeov ostatak potreban nam je četvrti izvod:</p>
+
+    \[
+    f^{(4)}(x)=e^{-x}(x^2-8x+12).
+    \]
+
+    <p>Lagrangeov oblik ostatka glasi:</p>
+
+    \[
+    R_3(f,x,-1)
+    =
+    \frac{f^{(4)}(\xi)}{4!}(x+1)^4,
+    \]
+
+    <p>gde je \(\xi\) između \(-1\) i \(x\). Dakle:</p>
+
+    \[
+    \boxed{
+    R_3(f,x,-1)
+    =
+    \frac{e^{-\xi}(\xi^2-8\xi+12)}{24}(x+1)^4
+    }
+    \]
+
+    <p>pri čemu je \(\xi\) između \(-1\) i \(x\).</p>
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(c) Procena ostatka</h2>
+
+    <p>Treba naći konstantu \(C>0\) takvu da važi:</p>
+
+    \[
+    |f(x)-T_3(f,x,-1)|
+    \leq
+    C|x+1|^4
+    \]
+
+    <p>za svako</p>
+
+    \[
+    x\in[-2,0].
+    \]
+
+    <p>Po Lagrangeovom ostatku imamo:</p>
+
+    \[
+    |R_3(f,x,-1)|
+    =
+    \left|
+    \frac{f^{(4)}(\xi)}{24}(x+1)^4
+    \right|.
+    \]
+
+    <p>Pošto je \(\xi\) između \(-1\) i \(x\), a \(x\in[-2,0]\), dovoljno je posmatrati interval</p>
+
+    \[
+    \xi\in[-2,0].
+    \]
+
+    <p>Na tom intervalu je:</p>
+
+    \[
+    f^{(4)}(\xi)
+    =
+    e^{-\xi}(\xi^2-8\xi+12).
+    \]
+
+    <p>Treba nam gornja ocena izraza</p>
+
+    \[
+    e^{-\xi}(\xi^2-8\xi+12)
+    \]
+
+    <p>na intervalu \([-2,0]\). Maksimum se dobija u tački \(\xi=-2\), pa je:</p>
+
+    \[
+    f^{(4)}(-2)
+    =
+    e^2(4+16+12)
+    =
+    32e^2.
+    \]
+
+    <p>Zato možemo uzeti:</p>
+
+    \[
+    C=\frac{32e^2}{24}.
+    \]
+
+    <p>Odnosno:</p>
+
+    \[
+    C=\frac{4e^2}{3}.
+    \]
+
+    <p class="odgovor">Odgovor:</p>
+
+    \[
+    \boxed{
+    C=\frac{4e^2}{3}
+    }
+    \]
+
+    <p>Dakle, za svako \(x\in[-2,0]\) važi:</p>
+
+    \[
+    \boxed{
+    |f(x)-T_3(f,x,-1)|
+    \leq
+    \frac{4e^2}{3}|x+1|^4
+    }
+    \]
+  </div>
+
+</body>
+</html>
