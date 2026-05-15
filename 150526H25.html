@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Redovi — Leibnizov i Dalamberov kriterijum</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #222;
+      background: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .zadatak {
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+
+    .zadatak h2 {
+      margin-top: 0;
+    }
+
+    .napomena {
+      background: #fff7e6;
+      border-left: 4px solid #f0a500;
+      padding: 10px 14px;
+      margin: 16px 0;
+    }
+
+    .odgovor {
+      font-weight: bold;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Redovi — Leibnizov i Dalamberov kriterijum</h1>
+
+  <div class="zadatak">
+    <h2>Postavka</h2>
+
+    <p>Posmatramo red</p>
+
+    \[
+    \sum_{n=1}^{\infty}\frac{8(-1)^n}{7^n+1}.
+    \]
+
+    <p>Označimo pozitivni deo člana reda sa</p>
+
+    \[
+    a_n=\frac{8}{7^n+1}.
+    \]
+
+    <p>Tada se dati red može pisati kao</p>
+
+    \[
+    \sum_{n=1}^{\infty}(-1)^n a_n.
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(a) Leibnizov kriterijum</h2>
+
+    <p>Za Leibnizov kriterijum potrebno je proveriti da je niz \((a_n)\):</p>
+
+    \[
+    a_n>0,
+    \]
+
+    \[
+    a_{n+1}\leq a_n,
+    \]
+
+    \[
+    \lim_{n\to\infty}a_n=0.
+    \]
+
+    <p>U našem slučaju je</p>
+
+    \[
+    a_n=\frac{8}{7^n+1}>0.
+    \]
+
+    <p>Pošto izraz \(7^n+1\) raste kada \(n\) raste, razlomak opada, pa je</p>
+
+    \[
+    a_{n+1}<a_n.
+    \]
+
+    <p>Takođe:</p>
+
+    \[
+    \lim_{n\to\infty}a_n
+    =
+    \lim_{n\to\infty}\frac{8}{7^n+1}
+    =
+    0.
+    \]
+
+    <p>Dakle, niz \((a_n)\) je pozitivan, opadajući i teži nuli.</p>
+
+    <p class="odgovor">Zaključak po Leibnizovom kriterijumu:</p>
+
+    \[
+    \boxed{
+    \sum_{n=1}^{\infty}\frac{8(-1)^n}{7^n+1}
+    \text{ konvergira.}
+    }
+    \]
+
+    <div class="napomena">
+      Leibnizov kriterijum ovde dokazuje konvergenciju reda, ali ne govori sam po sebi da li je red apsolutno ili uslovno konvergentan.
+    </div>
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(b) Kriterijum količnika — Dalamberov kriterijum</h2>
+
+    <p>Kriterijum količnika je isto što i Dalamberov kriterijum.</p>
+
+    <p>Da bismo ispitali apsolutnu konvergenciju, posmatramo red apsolutnih vrednosti:</p>
+
+    \[
+    \sum_{n=1}^{\infty}
+    \left|
+    \frac{8(-1)^n}{7^n+1}
+    \right|
+    =
+    \sum_{n=1}^{\infty}
+    \frac{8}{7^n+1}.
+    \]
+
+    <p>Primenićemo Dalamberov kriterijum na niz</p>
+
+    \[
+    a_n=\frac{8}{7^n+1}.
+    \]
+
+    <p>Računamo količnik:</p>
+
+    \[
+    \begin{aligned}
+    \frac{a_{n+1}}{a_n}
+    &=
+    \frac{\frac{8}{7^{n+1}+1}}{\frac{8}{7^n+1}} \\[6pt]
+    &=
+    \frac{8}{7^{n+1}+1}\cdot\frac{7^n+1}{8} \\[6pt]
+    &=
+    \frac{7^n+1}{7^{n+1}+1}.
+    \end{aligned}
+    \]
+
+    <p>Sada računamo limes:</p>
+
+    \[
+    \begin{aligned}
+    L
+    &=
+    \lim_{n\to\infty}
+    \frac{7^n+1}{7^{n+1}+1} \\[6pt]
+    &=
+    \lim_{n\to\infty}
+    \frac{7^n\left(1+\frac{1}{7^n}\right)}
+    {7^n\left(7+\frac{1}{7^n}\right)} \\[6pt]
+    &=
+    \lim_{n\to\infty}
+    \frac{1+\frac{1}{7^n}}
+    {7+\frac{1}{7^n}} \\[6pt]
+    &=
+    \frac{1}{7}.
+    \end{aligned}
+    \]
+
+    <p>Pošto je</p>
+
+    \[
+    L=\frac{1}{7}<1,
+    \]
+
+    <p>po Dalamberovom kriterijumu red apsolutnih vrednosti konvergira.</p>
+
+    \[
+    \sum_{n=1}^{\infty}\frac{8}{7^n+1}
+    \quad\text{konvergira.}
+    \]
+
+    <p>To znači da dati red konvergira apsolutno.</p>
+
+    <p class="odgovor">Zaključak po Dalamberovom kriterijumu:</p>
+
+    \[
+    \boxed{
+    \sum_{n=1}^{\infty}\frac{8(-1)^n}{7^n+1}
+    \text{ apsolutno konvergira.}
+    }
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>Konačan zaključak</h2>
+
+    <p>Leibnizov kriterijum pokazuje da red konvergira:</p>
+
+    \[
+    \boxed{
+    \sum_{n=1}^{\infty}\frac{8(-1)^n}{7^n+1}
+    \text{ konvergira.}
+    }
+    \]
+
+    <p>Dalamberov kriterijum, primenjen na red apsolutnih vrednosti, pokazuje jači rezultat:</p>
+
+    \[
+    \boxed{
+    \sum_{n=1}^{\infty}\frac{8(-1)^n}{7^n+1}
+    \text{ apsolutno konvergira.}
+    }
+    \]
+
+    <p>Dakle:</p>
+
+    \[
+    \boxed{
+    \text{red je apsolutno konvergentan, pa samim tim i konvergentan.}
+    }
+    \]
+  </div>
+
+</body>
+</html>
