@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Lokalni ekstremi i prevojne tačke</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #222;
+      background: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .zadatak {
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+
+    .zadatak h2 {
+      margin-top: 0;
+    }
+
+    .odgovor {
+      font-weight: bold;
+      margin-top: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Lokalni ekstremi i prevojne tačke</h1>
+
+  <div class="zadatak">
+    <h2>Postavka</h2>
+
+    <p>Data je funkcija</p>
+
+    \[
+    f:(0,+\infty)\to\mathbb{R},
+    \qquad
+    f(x)=x\left(\ln x+(\ln x)^2\right).
+    \]
+
+    <p>Treba odrediti lokalne ekstreme i prevojne tačke funkcije.</p>
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(a) Lokalni ekstremi</h2>
+
+    <p>Računamo prvi izvod:</p>
+
+    \[
+    \begin{aligned}
+    f'(x)
+    &=
+    \ln x+(\ln x)^2
+    +
+    x\left(\frac{1}{x}+2\ln x\cdot\frac{1}{x}\right) \\[6pt]
+    &=
+    (\ln x)^2+3\ln x+1.
+    \end{aligned}
+    \]
+
+    <p>Kritične tačke dobijamo iz uslova:</p>
+
+    \[
+    f'(x)=0.
+    \]
+
+    \[
+    (\ln x)^2+3\ln x+1=0.
+    \]
+
+    <p>Uvedimo oznaku \(t=\ln x\). Tada je:</p>
+
+    \[
+    t^2+3t+1=0.
+    \]
+
+    \[
+    t_{1,2}=\frac{-3\pm\sqrt{5}}{2}.
+    \]
+
+    <p>Dakle:</p>
+
+    \[
+    \ln x=\frac{-3-\sqrt{5}}{2}
+    \quad\Longrightarrow\quad
+    x=e^{\frac{-3-\sqrt{5}}{2}},
+    \]
+
+    \[
+    \ln x=\frac{-3+\sqrt{5}}{2}
+    \quad\Longrightarrow\quad
+    x=e^{\frac{-3+\sqrt{5}}{2}}.
+    \]
+
+    <p>Za klasifikaciju računamo drugi izvod:</p>
+
+    \[
+    f''(x)=\frac{2\ln x+3}{x}.
+    \]
+
+    <p>Pošto je \(x>0\), znak drugog izvoda zavisi od izraza \(2\ln x+3\).</p>
+
+    <p>Za</p>
+
+    \[
+    x=e^{\frac{-3-\sqrt{5}}{2}}
+    \]
+
+    <p>imamo:</p>
+
+    \[
+    2\ln x+3
+    =
+    2\cdot\frac{-3-\sqrt{5}}{2}+3
+    =
+    -\sqrt{5}<0.
+    \]
+
+    <p>Zato je tu lokalni maksimum.</p>
+
+    <p>Za</p>
+
+    \[
+    x=e^{\frac{-3+\sqrt{5}}{2}}
+    \]
+
+    <p>imamo:</p>
+
+    \[
+    2\ln x+3
+    =
+    2\cdot\frac{-3+\sqrt{5}}{2}+3
+    =
+    \sqrt{5}>0.
+    \]
+
+    <p>Zato je tu lokalni minimum.</p>
+
+    <p class="odgovor">Lokalna maksimalna tačka:</p>
+
+    \[
+    \boxed{
+    x_{\max}=e^{\frac{-3-\sqrt{5}}{2}}
+    }
+    \]
+
+    <p class="odgovor">Lokalna minimalna tačka:</p>
+
+    \[
+    \boxed{
+    x_{\min}=e^{\frac{-3+\sqrt{5}}{2}}
+    }
+    \]
+
+    <p>Ako želimo i koordinate tačaka, koristimo \(t=\ln x\). U kritičnim tačkama važi:</p>
+
+    \[
+    t^2+3t+1=0,
+    \]
+
+    <p>pa je:</p>
+
+    \[
+    t^2=-3t-1.
+    \]
+
+    <p>Zato je:</p>
+
+    \[
+    t+t^2=t-3t-1=-2t-1.
+    \]
+
+    <p>Za maksimum:</p>
+
+    \[
+    t=\frac{-3-\sqrt{5}}{2},
+    \qquad
+    t+t^2=2+\sqrt{5}.
+    \]
+
+    \[
+    \boxed{
+    \left(
+    e^{\frac{-3-\sqrt{5}}{2}},
+    (2+\sqrt{5})e^{\frac{-3-\sqrt{5}}{2}}
+    \right)
+    }
+    \]
+
+    <p>Za minimum:</p>
+
+    \[
+    t=\frac{-3+\sqrt{5}}{2},
+    \qquad
+    t+t^2=2-\sqrt{5}.
+    \]
+
+    \[
+    \boxed{
+    \left(
+    e^{\frac{-3+\sqrt{5}}{2}},
+    (2-\sqrt{5})e^{\frac{-3+\sqrt{5}}{2}}
+    \right)
+    }
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(b) Prevojna tačka</h2>
+
+    <p>Prevojnu tačku tražimo iz uslova:</p>
+
+    \[
+    f''(x)=0.
+    \]
+
+    <p>Kako je</p>
+
+    \[
+    f''(x)=\frac{2\ln x+3}{x},
+    \]
+
+    <p>a \(x>0\), dobijamo:</p>
+
+    \[
+    2\ln x+3=0.
+    \]
+
+    \[
+    \ln x=-\frac{3}{2}.
+    \]
+
+    \[
+    x=e^{-\frac{3}{2}}.
+    \]
+
+    <p>Pošto izraz \(2\ln x+3\) menja znak u toj tački, funkcija ima prevojnu tačku.</p>
+
+    <p>Računamo vrednost funkcije:</p>
+
+    \[
+    \begin{aligned}
+    f\left(e^{-\frac{3}{2}}\right)
+    &=
+    e^{-\frac{3}{2}}
+    \left(
+    -\frac{3}{2}
+    +
+    \left(-\frac{3}{2}\right)^2
+    \right) \\[6pt]
+    &=
+    e^{-\frac{3}{2}}
+    \left(
+    -\frac{3}{2}
+    +
+    \frac{9}{4}
+    \right) \\[6pt]
+    &=
+    e^{-\frac{3}{2}}\cdot\frac{3}{4}.
+    \end{aligned}
+    \]
+
+    <p class="odgovor">Prevojna tačka je:</p>
+
+    \[
+    \boxed{
+    \left(
+    e^{-\frac{3}{2}},
+    \frac{3}{4}e^{-\frac{3}{2}}
+    \right)
+    }
+    \]
+  </div>
+
+</body>
+</html>
