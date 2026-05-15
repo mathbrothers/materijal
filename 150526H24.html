@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kurvendiskussion</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #222;
+      background: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .zadatak {
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 22px;
+      background: #fafafa;
+    }
+
+    .zadatak h2 {
+      margin-top: 0;
+    }
+
+    .odgovor {
+      font-weight: bold;
+      margin-top: 14px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 18px auto;
+      width: 85%;
+      text-align: center;
+    }
+
+    th, td {
+      border: 1px solid #bbb;
+      padding: 8px 10px;
+    }
+
+    th {
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Ispitivanje funkcije</h1>
+
+  <div class="zadatak">
+    <h2>Postavka</h2>
+
+    <p>Data je funkcija</p>
+
+    \[
+    f:(-1,+\infty)\to\mathbb{R},
+    \qquad
+    f(x)=\ln(x^3+1).
+    \]
+
+    <p>Domen je</p>
+
+    \[
+    x^3+1>0
+    \quad\Longleftrightarrow\quad
+    x>-1.
+    \]
+
+    <p>Dakle:</p>
+
+    \[
+    D_f=(-1,+\infty).
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(a) Granične vrednosti</h2>
+
+    <p>Za \(x\to -1^+\) imamo:</p>
+
+    \[
+    x^3+1\to 0^+.
+    \]
+
+    <p>Zato je:</p>
+
+    \[
+    \lim_{x\to -1^+}\ln(x^3+1)=-\infty.
+    \]
+
+    <p>Dakle:</p>
+
+    \[
+    \boxed{
+    \lim_{x\to -1^+} f(x)=-\infty
+    }
+    \]
+
+    <p>Za \(x\to+\infty\) imamo:</p>
+
+    \[
+    x^3+1\to+\infty.
+    \]
+
+    <p>Zato je:</p>
+
+    \[
+    \boxed{
+    \lim_{x\to+\infty} f(x)=+\infty
+    }
+    \]
+
+    <p>Pošto je</p>
+
+    \[
+    \lim_{x\to -1^+}f(x)=-\infty,
+    \]
+
+    <p>prava</p>
+
+    \[
+    \boxed{x=-1}
+    \]
+
+    <p>je vertikalna asimptota.</p>
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(b) Izvodi</h2>
+
+    <p>Prvi izvod:</p>
+
+    \[
+    f'(x)
+    =
+    \frac{1}{x^3+1}\cdot 3x^2
+    =
+    \frac{3x^2}{x^3+1}.
+    \]
+
+    \[
+    \boxed{
+    f'(x)=\frac{3x^2}{x^3+1}
+    }
+    \]
+
+    <p>Drugi izvod:</p>
+
+    \[
+    \begin{aligned}
+    f''(x)
+    &=
+    \left(\frac{3x^2}{x^3+1}\right)' \\[6pt]
+    &=
+    \frac{6x(x^3+1)-3x^2\cdot 3x^2}{(x^3+1)^2} \\[6pt]
+    &=
+    \frac{6x^4+6x-9x^4}{(x^3+1)^2} \\[6pt]
+    &=
+    \frac{6x-3x^4}{(x^3+1)^2} \\[6pt]
+    &=
+    \frac{3x(2-x^3)}{(x^3+1)^2}.
+    \end{aligned}
+    \]
+
+    \[
+    \boxed{
+    f''(x)=\frac{3x(2-x^3)}{(x^3+1)^2}
+    }
+    \]
+
+    <p>Treći izvod:</p>
+
+    \[
+    \boxed{
+    f'''(x)=
+    \frac{6(x^6-7x^3+1)}{(x^3+1)^3}
+    }
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(c) Lokalni ekstremi i prevojne tačke</h2>
+
+    <h3>Lokalni ekstremi</h3>
+
+    <p>Kritične tačke tražimo iz uslova:</p>
+
+    \[
+    f'(x)=0.
+    \]
+
+    <p>Kako je</p>
+
+    \[
+    f'(x)=\frac{3x^2}{x^3+1},
+    \]
+
+    <p>a na domenu je \(x^3+1>0\), dobijamo:</p>
+
+    \[
+    3x^2=0
+    \quad\Longleftrightarrow\quad
+    x=0.
+    \]
+
+    <p>Međutim, za svako \(x\in(-1,+\infty)\) važi:</p>
+
+    \[
+    f'(x)\geq 0,
+    \]
+
+    <p>i \(f'(x)=0\) samo za \(x=0\). Znak izvoda se u \(x=0\) ne menja.</p>
+
+    <table>
+      <tr>
+        <th>\(x\)</th>
+        <td>\((-1,0)\)</td>
+        <td>\(0\)</td>
+        <td>\((0,+\infty)\)</td>
+      </tr>
+      <tr>
+        <th>\(f'(x)\)</th>
+        <td>\(+\)</td>
+        <td>\(0\)</td>
+        <td>\(+\)</td>
+      </tr>
+    </table>
+
+    <p>Zato funkcija nema lokalni maksimum ni lokalni minimum.</p>
+
+    <p class="odgovor">Odgovor:</p>
+
+    \[
+    \boxed{
+    \text{funkcija nema lokalnih ekstremnih tačaka}
+    }
+    \]
+
+    <h3>Prevojne tačke</h3>
+
+    <p>Prevojne tačke tražimo iz uslova:</p>
+
+    \[
+    f''(x)=0.
+    \]
+
+    <p>Kako je</p>
+
+    \[
+    f''(x)=\frac{3x(2-x^3)}{(x^3+1)^2},
+    \]
+
+    <p>a imenilac je pozitivan na domenu, rešavamo:</p>
+
+    \[
+    3x(2-x^3)=0.
+    \]
+
+    \[
+    x=0
+    \quad\text{ili}\quad
+    x=\sqrt[3]{2}.
+    \]
+
+    <p>Posmatramo znak drugog izvoda. Znak zavisi od izraza</p>
+
+    \[
+    x(2-x^3).
+    \]
+
+    <table>
+      <tr>
+        <th>\(x\)</th>
+        <td>\((-1,0)\)</td>
+        <td>\(0\)</td>
+        <td>\((0,\sqrt[3]{2})\)</td>
+        <td>\(\sqrt[3]{2}\)</td>
+        <td>\((\sqrt[3]{2},+\infty)\)</td>
+      </tr>
+      <tr>
+        <th>\(f''(x)\)</th>
+        <td>\(-\)</td>
+        <td>\(0\)</td>
+        <td>\(+\)</td>
+        <td>\(0\)</td>
+        <td>\(-\)</td>
+      </tr>
+    </table>
+
+    <p>Pošto se znak drugog izvoda menja u obe tačke, obe su prevojne tačke.</p>
+
+    <p>Za \(x=0\):</p>
+
+    \[
+    f(0)=\ln 1=0.
+    \]
+
+    <p>Dakle, prva prevojna tačka je:</p>
+
+    \[
+    \boxed{(0,0)}
+    \]
+
+    <p>Za \(x=\sqrt[3]{2}\):</p>
+
+    \[
+    f\left(\sqrt[3]{2}\right)
+    =
+    \ln\left((\sqrt[3]{2})^3+1\right)
+    =
+    \ln(2+1)
+    =
+    \ln 3.
+    \]
+
+    <p>Dakle, druga prevojna tačka je:</p>
+
+    \[
+    \boxed{
+    \left(\sqrt[3]{2},\ln 3\right)
+    }
+    \]
+  </div>
+
+
+  <div class="zadatak">
+    <h2>(d) Podaci za skicu grafa</h2>
+
+    <p>Domen funkcije je:</p>
+
+    \[
+    \boxed{(-1,+\infty)}
+    \]
+
+    <p>Vertikalna asimptota je:</p>
+
+    \[
+    \boxed{x=-1}
+    \]
+
+    <p>Funkcija je rastuća na celom domenu:</p>
+
+    \[
+    \boxed{
+    f'(x)\geq 0
+    \quad\text{za svako }x\in(-1,+\infty)
+    }
+    \]
+
+    <p>Tačka \((0,0)\) je stacionarna prevojna tačka, jer je:</p>
+
+    \[
+    f'(0)=0,
+    \qquad
+    f''(0)=0,
+    \]
+
+    <p>ali funkcija u toj tački nema ekstrem.</p>
+
+    <p>Konkavnost:</p>
+
+    \[
+    \boxed{
+    f''(x)<0
+    \quad\text{na}\quad
+    (-1,0)\cup(\sqrt[3]{2},+\infty)
+    }
+    \]
+
+    \[
+    \boxed{
+    f''(x)>0
+    \quad\text{na}\quad
+    (0,\sqrt[3]{2})
+    }
+    \]
+
+    <p>Prevojne tačke su:</p>
+
+    \[
+    \boxed{(0,0)}
+    \]
+
+    \[
+    \boxed{
+    \left(\sqrt[3]{2},\ln 3\right)
+    }
+    \]
+
+    <p>Za skicu je korisno zapamtiti sledeće:</p>
+
+    <ul>
+      <li>graf ima vertikalnu asimptotu \(x=-1\);</li>
+      <li>kad \(x\to -1^+\), graf ide u \(-\infty\);</li>
+      <li>funkcija stalno raste;</li>
+      <li>prolazi kroz tačku \((0,0)\);</li>
+      <li>u tački \((0,0)\) ima horizontalnu tangentu, ali nema ekstrem;</li>
+      <li>menja konkavnost u tačkama \((0,0)\) i \(\left(\sqrt[3]{2},\ln 3\right)\);</li>
+      <li>kad \(x\to+\infty\), važi \(f(x)\to+\infty\).</li>
+    </ul>
+  </div>
+
+
+  <div class="zadatak">
+    <h2>Konačan sažetak</h2>
+
+    \[
+    \boxed{
+    \lim_{x\to -1^+}f(x)=-\infty
+    }
+    \]
+
+    \[
+    \boxed{
+    \lim_{x\to+\infty}f(x)=+\infty
+    }
+    \]
+
+    \[
+    \boxed{
+    f'(x)=\frac{3x^2}{x^3+1}
+    }
+    \]
+
+    \[
+    \boxed{
+    f''(x)=\frac{3x(2-x^3)}{(x^3+1)^2}
+    }
+    \]
+
+    \[
+    \boxed{
+    f'''(x)=
+    \frac{6(x^6-7x^3+1)}{(x^3+1)^3}
+    }
+    \]
+
+    \[
+    \boxed{
+    \text{nema lokalnih ekstremnih tačaka}
+    }
+    \]
+
+    \[
+    \boxed{
+    (0,0)
+    \quad\text{i}\quad
+    \left(\sqrt[3]{2},\ln 3\right)
+    \text{ su prevojne tačke}
+    }
+    \]
+  </div>
+
+</body>
+</html>
