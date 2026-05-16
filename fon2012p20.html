@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Petocifreni brojevi sa dve različite neparne cifre</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #111;
+      margin: 0;
+      padding: 40px;
+      line-height: 1.65;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 45px;
+    }
+
+    .card {
+      max-width: 1080px;
+      margin: 0 auto 32px auto;
+      padding: 34px 42px;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      background: #fafafa;
+    }
+
+    .blue {
+      background: #f4f8ff;
+    }
+
+    .green {
+      background: #f4fff7;
+    }
+
+    .yellow {
+      background: #fffdf2;
+    }
+
+    .purple {
+      background: #fbf6ff;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 21px;
+      margin: 18px 0;
+    }
+
+    .formula {
+      text-align: center;
+      font-size: 24px;
+      margin: 28px 0;
+    }
+
+    .example {
+      background: #ffffff;
+      border-left: 6px solid #444;
+      padding: 20px 26px;
+      margin: 30px 0;
+      border-radius: 12px;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Petocifreni brojevi sa dve različite neparne cifre</h1>
+
+  <div class="card blue">
+    <h2>Postavka zadatka</h2>
+
+    <p>
+      Neka je \(n\) broj svih petocifrenih brojeva koji su zapisani
+      <strong>samo pomoću dve različite neparne cifre</strong>.
+    </p>
+
+    <p>
+      Neparne cifre su:
+    </p>
+
+    <div class="formula">
+      \[
+      \{1,3,5,7,9\}
+      \]
+    </div>
+
+    <p>
+      Dakle, imamo tačno \(5\) neparnih cifara.
+    </p>
+
+    <p>
+      Tražimo petocifrene brojeve u kojima se pojavljuju tačno dve različite cifre,
+      i obe te cifre moraju biti neparne.
+    </p>
+
+    <p>
+      Na primer, broj \(55555\) ne odgovara, jer ima samo jednu različitu cifru.
+    </p>
+
+    <p>
+      Broj \(53535\) odgovara, jer ima tačno dve različite neparne cifre:
+      \(5\) i \(3\).
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Biramo prvu cifru</h2>
+
+    <p>
+      Prva cifra mora biti neparna, jer se broj piše samo pomoću neparnih cifara.
+    </p>
+
+    <p>
+      Prvu cifru biramo iz skupa:
+    </p>
+
+    <div class="formula">
+      \[
+      \{1,3,5,7,9\}
+      \]
+    </div>
+
+    <p>
+      U tom skupu ima tačno \(5\) cifara.
+    </p>
+
+    <p>
+      Zato za prvu cifru imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      5
+      \]
+    </div>
+
+    <p>
+      mogućnosti.
+    </p>
+
+    <p>
+      Ovde nemamo problem sa nulom, jer nula nije neparna cifra i uopšte ne ulazi
+      u izbor.
+    </p>
+
+    <p>
+      Označimo prvu cifru sa \(a\).
+    </p>
+  </div>
+
+  <div class="card green">
+    <h2>Biramo drugu različitu neparnu cifru</h2>
+
+    <p>
+      Sada biramo drugu cifru, koju ćemo označiti sa \(b\).
+    </p>
+
+    <p>
+      Cifra \(b\) takođe mora biti neparna.
+    </p>
+
+    <p>
+      Dakle, i ona se bira iz skupa:
+    </p>
+
+    <div class="formula">
+      \[
+      \{1,3,5,7,9\}
+      \]
+    </div>
+
+    <p>
+      Ali cifra \(b\) ne sme biti jednaka prvoj cifri \(a\),
+      jer zadatak traži dve različite neparne cifre.
+    </p>
+
+    <p>
+      Pošto u skupu neparnih cifara ima \(5\) cifara, a jednu cifru, baš cifru \(a\),
+      ne smemo ponovo da izaberemo, za cifru \(b\) imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      5-1=4
+      \]
+    </div>
+
+    <p>
+      mogućnosti.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Gde se pojavljuje druga cifra?</h2>
+
+    <p>
+      Sada imamo izabrane dve različite neparne cifre:
+    </p>
+
+    <div class="formula">
+      \[
+      a \quad \text{i} \quad b
+      \]
+    </div>
+
+    <p>
+      Prva cifra broja je već \(a\).
+    </p>
+
+    <p>
+      Preostala četiri mesta su:
+    </p>
+
+    <div class="formula">
+      \[
+      \_ \ \_ \ \_ \ \_
+      \]
+    </div>
+
+    <p>
+      To su mesta \(2,3,4,5\).
+    </p>
+
+    <p>
+      Da bi broj zaista imao dve različite cifre, cifra \(b\) mora da se pojavi
+      bar jednom među ta četiri mesta.
+    </p>
+
+    <p>
+      Cifra \(b\) može da se pojavi:
+    </p>
+
+    <div class="formula">
+      \[
+      1,\ 2,\ 3 \ \text{ili} \ 4
+      \]
+    </div>
+
+    <p>
+      puta među preostala četiri mesta.
+    </p>
+
+    <p>
+      Kada izaberemo na kojim mestima stoji cifra \(b\), sva ostala prazna mesta
+      automatski popunjavamo prvom cifrom \(a\).
+    </p>
+
+    <p>
+      Dakle, posle izbora mesta za cifru \(b\), više nemamo dodatni izbor:
+      preostala mesta moraju biti popunjena cifrom \(a\).
+    </p>
+  </div>
+
+  <div class="card yellow">
+    <h2>Jedan prost primer</h2>
+
+    <p>
+      Neka je prva cifra:
+    </p>
+
+    <div class="formula">
+      \[
+      a=5
+      \]
+    </div>
+
+    <p>
+      i neka je druga različita neparna cifra:
+    </p>
+
+    <div class="formula">
+      \[
+      b=9
+      \]
+    </div>
+
+    <p>
+      Prva cifra broja je već \(5\), pa imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      5 \ \_ \ \_ \ \_ \ \_
+      \]
+    </div>
+
+    <p>
+      Ako odlučimo da se cifra \(9\) nalazi na drugom i petom mestu,
+      onda dobijamo:
+    </p>
+
+    <div class="formula">
+      \[
+      5 \ 9 \ \_ \ \_ \ 9
+      \]
+    </div>
+
+    <p>
+      Prazna mesta se popunjavaju prvom cifrom \(5\), pa je broj:
+    </p>
+
+    <div class="formula">
+      \[
+      59559
+      \]
+    </div>
+
+    <p>
+      Zato je dovoljno samo da izaberemo mesta na kojima stoji cifra \(b\).
+      Ostala mesta su automatski popunjena cifrom \(a\).
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Broj rasporeda za izabrane cifre \(a\) i \(b\)</h2>
+
+    <p>
+      Ako se cifra \(b\) pojavi jednom među četiri mesta, biramo jedno od četiri mesta:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{1}
+      \]
+    </div>
+
+    <p>
+      Ako se cifra \(b\) pojavi dva puta, biramo dva od četiri mesta:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{2}
+      \]
+    </div>
+
+    <p>
+      Ako se cifra \(b\) pojavi tri puta, biramo tri od četiri mesta:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{3}
+      \]
+    </div>
+
+    <p>
+      Ako se cifra \(b\) pojavi četiri puta, biramo sva četiri mesta:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{4}
+      \]
+    </div>
+
+    <p>
+      Zato je ukupan broj rasporeda za već izabrane cifre \(a\) i \(b\):
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{1}
+      +
+      \binom{4}{2}
+      +
+      \binom{4}{3}
+      +
+      \binom{4}{4}
+      \]
+    </div>
+
+    <p>
+      Računamo:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{1}
+      +
+      \binom{4}{2}
+      +
+      \binom{4}{3}
+      +
+      \binom{4}{4}
+      =
+      4+6+4+1=15
+      \]
+    </div>
+  </div>
+
+  <div class="card green">
+    <h2>Ukupan broj petocifrenih brojeva</h2>
+
+    <p>
+      Za prvu neparnu cifru imamo \(5\) mogućnosti.
+    </p>
+
+    <p>
+      Za drugu različitu neparnu cifru imamo \(4\) mogućnosti.
+    </p>
+
+    <p>
+      Za raspored druge cifre među preostala četiri mesta imamo \(15\) mogućnosti.
+    </p>
+
+    <p>
+      Zato je ukupan broj:
+    </p>
+
+    <div class="formula">
+      \[
+      n=5 \cdot 4 \cdot 15
+      \]
+    </div>
+
+    <p>
+      Računamo:
+    </p>
+
+    <div class="formula">
+      \[
+      n=20 \cdot 15 = 300
+      \]
+    </div>
+
+    <p class="answer">
+      \[
+      \boxed{n=300}
+      \]
+    </p>
+  </div>
+
+  <div class="card purple">
+    <h2>Izbor ponuđenog odgovora</h2>
+
+    <p>
+      Pošto smo dobili:
+    </p>
+
+    <div class="formula">
+      \[
+      n=300
+      \]
+    </div>
+
+    <p>
+      proveravamo u koji interval spada broj \(300\).
+    </p>
+
+    <div class="formula">
+      \[
+      300 \le n < 400
+      \]
+    </div>
+
+    <p>
+      Dakle, tačan odgovor je:
+    </p>
+
+    <p class="answer">
+      \[
+      \boxed{\text{B) } 300 \le n < 400}
+      \]
+    </p>
+  </div>
+
+</body>
+</html>
