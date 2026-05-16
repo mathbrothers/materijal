@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
   <meta charset="UTF-8">
-  <title>Petocifreni brojevi sa dve različite cifre</title>
+  <title>Petocifreni brojevi sa tačno dve različite cifre</title>
 
   <script>
     window.MathJax = {
@@ -19,7 +19,7 @@
       color: #111;
       margin: 0;
       padding: 40px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     h1 {
@@ -29,12 +29,24 @@
     }
 
     .card {
-      max-width: 1050px;
-      margin: 0 auto 30px auto;
-      padding: 32px 38px;
+      max-width: 1080px;
+      margin: 0 auto 32px auto;
+      padding: 34px 42px;
       border: 1px solid #ddd;
       border-radius: 18px;
       background: #fafafa;
+    }
+
+    .blue {
+      background: #f4f8ff;
+    }
+
+    .green {
+      background: #f4fff7;
+    }
+
+    .yellow {
+      background: #fffdf2;
     }
 
     h2 {
@@ -44,7 +56,7 @@
     }
 
     p {
-      font-size: 20px;
+      font-size: 21px;
       margin: 18px 0;
     }
 
@@ -56,17 +68,21 @@
 
     .example {
       background: #ffffff;
-      border-left: 5px solid #444;
-      padding: 18px 25px;
-      margin: 28px 0;
-      border-radius: 10px;
+      border-left: 6px solid #444;
+      padding: 20px 26px;
+      margin: 30px 0;
+      border-radius: 12px;
     }
 
     .answer {
       text-align: center;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: bold;
       margin-top: 30px;
+    }
+
+    strong {
+      font-weight: 700;
     }
   </style>
 </head>
@@ -75,49 +91,135 @@
 
   <h1>Petocifreni brojevi sa tačno dve različite cifre</h1>
 
-  <div class="card">
-    <h2>Postavka</h2>
+  <div class="card blue">
+    <h2>Postavka zadatka</h2>
 
     <p>
-      Treba prebrojati različite petocifrene brojeve koji imaju
+      Treba prebrojati koliko ima različitih petocifrenih brojeva koji imaju
       <strong>tačno dve različite cifre</strong>.
     </p>
 
     <p>
-      Prvu cifru biramo tako da broj zaista bude petocifren.
-      Zato prva cifra ne sme biti nula.
-    </p>
-
-    <div class="formula">
-      \[
-      9
-      \]
-    </div>
-
-    <p>
-      Neka je prva cifra \(a\). Sada biramo drugu različitu cifru \(b\).
-      Ona ne sme biti jednaka cifri \(a\), ali sme biti nula.
+      To znači da se u broju smeju pojavljivati samo dve cifre, ali obe te cifre
+      moraju zaista da se pojave.
     </p>
 
     <p>
-      Pošto ukupno ima \(10\) cifara, a cifru \(a\) ne smemo ponovo da biramo,
-      za cifru \(b\) imamo:
+      Na primer, broj \(77777\) ne odgovara, jer ima samo jednu različitu cifru.
     </p>
 
-    <div class="formula">
-      \[
-      9
-      \]
-    </div>
+    <p>
+      Broj \(70707\) odgovara, jer ima tačno dve različite cifre:
+      \(7\) i \(0\).
+    </p>
   </div>
 
   <div class="card">
-    <h2>Raspoređivanje druge cifre</h2>
+    <h2>Biramo prvu cifru</h2>
 
     <p>
-      Sada broj pravimo samo od cifara \(a\) i \(b\).
-      Pošto je prva cifra već \(a\), cifra \(b\) mora da se pojavi
-      bar jednom među preostala četiri mesta:
+      Pošto broj treba da bude petocifren, prva cifra ne sme biti nula.
+    </p>
+
+    <p>
+      Dakle, prva cifra se bira iz skupa:
+    </p>
+
+    <div class="formula">
+      \[
+      \{1,2,3,4,5,6,7,8,9\}
+      \]
+    </div>
+
+    <p>
+      U tom skupu ima tačno \(9\) cifara.
+    </p>
+
+    <p>
+      Zato za prvu cifru imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      9
+      \]
+    </div>
+
+    <p>
+      mogućnosti.
+    </p>
+
+    <p>
+      Označimo tu prvu cifru sa \(a\).
+    </p>
+  </div>
+
+  <div class="card green">
+    <h2>Biramo drugu različitu cifru</h2>
+
+    <p>
+      Sada biramo drugu cifru, koju ćemo označiti sa \(b\).
+    </p>
+
+    <p>
+      Cifra \(b\) mora biti različita od prve cifre \(a\), jer broj treba da ima
+      dve različite cifre.
+    </p>
+
+    <p>
+      Međutim, cifra \(b\) sme biti nula. To je važno, jer nula ne sme da bude
+      prva cifra, ali sme da se pojavi kasnije u broju.
+    </p>
+
+    <p>
+      Dakle, cifra \(b\) se bira iz skupa svih cifara:
+    </p>
+
+    <div class="formula">
+      \[
+      \{0,1,2,3,4,5,6,7,8,9\}
+      \]
+    </div>
+
+    <p>
+      ali ne sme biti jednaka cifri \(a\).
+    </p>
+
+    <p>
+      Pošto ukupno ima \(10\) cifara, a jednu cifru, baš cifru \(a\),
+      ne smemo da izaberemo, za cifru \(b\) ostaje:
+    </p>
+
+    <div class="formula">
+      \[
+      10-1=9
+      \]
+    </div>
+
+    <p>
+      mogućnosti.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Gde se pojavljuje druga cifra?</h2>
+
+    <p>
+      Sada imamo izabrane dve cifre:
+    </p>
+
+    <div class="formula">
+      \[
+      a \quad \text{i} \quad b
+      \]
+    </div>
+
+    <p>
+      Prva cifra broja je već \(a\).
+    </p>
+
+    <p>
+      Preostala četiri mesta su:
     </p>
 
     <div class="formula">
@@ -127,48 +229,104 @@
     </div>
 
     <p>
-      Cifra \(b\) može da se pojavi na \(1\), \(2\), \(3\) ili \(4\)
-      mesta među pozicijama \(2,3,4,5\).
+      To su mesta \(2,3,4,5\).
     </p>
 
     <p>
-      Kada izaberemo na kojim mestima stoji cifra \(b\),
-      sva ostala prazna mesta automatski popunjavamo prvom cifrom \(a\).
+      Da bi broj imao tačno dve različite cifre, cifra \(b\) mora da se pojavi
+      bar jednom među ta četiri mesta.
     </p>
 
-    <div class="example">
-      <p>
-        Na primer, ako je
-      </p>
+    <p>
+      Cifra \(b\) može da se pojavi:
+    </p>
 
-      <div class="formula">
-        \[
-        a=7, \qquad b=0
-        \]
-      </div>
-
-      <p>
-        i ako odlučimo da se cifra \(0\) nalazi na drugom i četvrtom mestu,
-        onda dobijamo broj:
-      </p>
-
-      <div class="formula">
-        \[
-        70707
-        \]
-      </div>
-
-      <p>
-        Dakle, preostala mesta ne biramo posebno — ona moraju biti popunjena cifrom \(a\).
-      </p>
+    <div class="formula">
+      \[
+      1,\ 2,\ 3 \ \text{ili} \ 4
+      \]
     </div>
+
+    <p>
+      puta među preostala četiri mesta.
+    </p>
+
+    <p>
+      Kada izaberemo na kojim mestima stoji cifra \(b\), sva ostala prazna mesta
+      automatski popunjavamo prvom cifrom \(a\).
+    </p>
+
+    <p>
+      Dakle, posle izbora mesta za cifru \(b\), više nemamo nikakav dodatni izbor:
+      preostala mesta moraju biti cifra \(a\).
+    </p>
+  </div>
+
+  <div class="card yellow">
+    <h2>Jedan prost primer</h2>
+
+    <p>
+      Neka je prva cifra:
+    </p>
+
+    <div class="formula">
+      \[
+      a=7
+      \]
+    </div>
+
+    <p>
+      i neka je druga različita cifra:
+    </p>
+
+    <div class="formula">
+      \[
+      b=0
+      \]
+    </div>
+
+    <p>
+      Prva cifra broja je već \(7\), pa imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      7 \ \_ \ \_ \ \_ \ \_
+      \]
+    </div>
+
+    <p>
+      Ako odlučimo da se cifra \(0\) nalazi na drugom i četvrtom mestu,
+      onda dobijamo:
+    </p>
+
+    <div class="formula">
+      \[
+      7 \ 0 \ \_ \ 0 \ \_
+      \]
+    </div>
+
+    <p>
+      Prazna mesta se popunjavaju prvom cifrom \(7\), pa je broj:
+    </p>
+
+    <div class="formula">
+      \[
+      70707
+      \]
+    </div>
+
+    <p>
+      Zato je dovoljno samo da izaberemo mesta na kojima stoji cifra \(b\).
+      Ostala mesta su automatski popunjena cifrom \(a\).
+    </p>
   </div>
 
   <div class="card">
-    <h2>Brojanje</h2>
+    <h2>Broj rasporeda za izabrane cifre \(a\) i \(b\)</h2>
 
     <p>
-      Ako se cifra \(b\) pojavi jednom među četiri mesta, imamo:
+      Ako se cifra \(b\) pojavi jednom među četiri mesta, biramo jedno od četiri mesta:
     </p>
 
     <div class="formula">
@@ -178,7 +336,7 @@
     </div>
 
     <p>
-      Ako se pojavi dva puta:
+      Ako se cifra \(b\) pojavi dva puta, biramo dva od četiri mesta:
     </p>
 
     <div class="formula">
@@ -188,7 +346,7 @@
     </div>
 
     <p>
-      Ako se pojavi tri puta:
+      Ako se cifra \(b\) pojavi tri puta, biramo tri od četiri mesta:
     </p>
 
     <div class="formula">
@@ -198,7 +356,7 @@
     </div>
 
     <p>
-      Ako se pojavi četiri puta:
+      Ako se cifra \(b\) pojavi četiri puta, biramo sva četiri mesta:
     </p>
 
     <div class="formula">
@@ -208,7 +366,23 @@
     </div>
 
     <p>
-      Zato je ukupan broj rasporeda za fiksirane cifre \(a\) i \(b\):
+      Zato je ukupan broj rasporeda za već izabrane cifre \(a\) i \(b\):
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{1}
+      +
+      \binom{4}{2}
+      +
+      \binom{4}{3}
+      +
+      \binom{4}{4}
+      \]
+    </div>
+
+    <p>
+      Računamo:
     </p>
 
     <div class="formula">
@@ -226,11 +400,23 @@
     </div>
   </div>
 
-  <div class="card">
-    <h2>Ukupan broj</h2>
+  <div class="card green">
+    <h2>Ukupan broj petocifrenih brojeva</h2>
 
     <p>
-      Imamo:
+      Za prvu cifru imamo \(9\) mogućnosti.
+    </p>
+
+    <p>
+      Za drugu različitu cifru imamo \(9\) mogućnosti.
+    </p>
+
+    <p>
+      Za raspored druge cifre među preostala četiri mesta imamo \(15\) mogućnosti.
+    </p>
+
+    <p>
+      Zato je ukupan broj:
     </p>
 
     <div class="formula">
@@ -240,12 +426,16 @@
     </div>
 
     <p>
-      odnosno:
+      Računamo:
     </p>
 
     <div class="formula">
       \[
-      81 \cdot 15 = 1215
+      9 \cdot 9 \cdot 15
+      =
+      81 \cdot 15
+      =
+      1215
       \]
     </div>
 
