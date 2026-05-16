@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Petocifreni brojevi sa dve različite cifre</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #111;
+      margin: 0;
+      padding: 40px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 45px;
+    }
+
+    .card {
+      max-width: 1050px;
+      margin: 0 auto 30px auto;
+      padding: 32px 38px;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      background: #fafafa;
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 18px 0;
+    }
+
+    .formula {
+      text-align: center;
+      font-size: 24px;
+      margin: 28px 0;
+    }
+
+    .example {
+      background: #ffffff;
+      border-left: 5px solid #444;
+      padding: 18px 25px;
+      margin: 28px 0;
+      border-radius: 10px;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Petocifreni brojevi sa tačno dve različite cifre</h1>
+
+  <div class="card">
+    <h2>Postavka</h2>
+
+    <p>
+      Treba prebrojati različite petocifrene brojeve koji imaju
+      <strong>tačno dve različite cifre</strong>.
+    </p>
+
+    <p>
+      Prvu cifru biramo tako da broj zaista bude petocifren.
+      Zato prva cifra ne sme biti nula.
+    </p>
+
+    <div class="formula">
+      \[
+      9
+      \]
+    </div>
+
+    <p>
+      Neka je prva cifra \(a\). Sada biramo drugu različitu cifru \(b\).
+      Ona ne sme biti jednaka cifri \(a\), ali sme biti nula.
+    </p>
+
+    <p>
+      Pošto ukupno ima \(10\) cifara, a cifru \(a\) ne smemo ponovo da biramo,
+      za cifru \(b\) imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      9
+      \]
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Raspoređivanje druge cifre</h2>
+
+    <p>
+      Sada broj pravimo samo od cifara \(a\) i \(b\).
+      Pošto je prva cifra već \(a\), cifra \(b\) mora da se pojavi
+      bar jednom među preostala četiri mesta:
+    </p>
+
+    <div class="formula">
+      \[
+      \_ \ \_ \ \_ \ \_
+      \]
+    </div>
+
+    <p>
+      Cifra \(b\) može da se pojavi na \(1\), \(2\), \(3\) ili \(4\)
+      mesta među pozicijama \(2,3,4,5\).
+    </p>
+
+    <p>
+      Kada izaberemo na kojim mestima stoji cifra \(b\),
+      sva ostala prazna mesta automatski popunjavamo prvom cifrom \(a\).
+    </p>
+
+    <div class="example">
+      <p>
+        Na primer, ako je
+      </p>
+
+      <div class="formula">
+        \[
+        a=7, \qquad b=0
+        \]
+      </div>
+
+      <p>
+        i ako odlučimo da se cifra \(0\) nalazi na drugom i četvrtom mestu,
+        onda dobijamo broj:
+      </p>
+
+      <div class="formula">
+        \[
+        70707
+        \]
+      </div>
+
+      <p>
+        Dakle, preostala mesta ne biramo posebno — ona moraju biti popunjena cifrom \(a\).
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Brojanje</h2>
+
+    <p>
+      Ako se cifra \(b\) pojavi jednom među četiri mesta, imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{1}
+      \]
+    </div>
+
+    <p>
+      Ako se pojavi dva puta:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{2}
+      \]
+    </div>
+
+    <p>
+      Ako se pojavi tri puta:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{3}
+      \]
+    </div>
+
+    <p>
+      Ako se pojavi četiri puta:
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{4}
+      \]
+    </div>
+
+    <p>
+      Zato je ukupan broj rasporeda za fiksirane cifre \(a\) i \(b\):
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{4}{1}
+      +
+      \binom{4}{2}
+      +
+      \binom{4}{3}
+      +
+      \binom{4}{4}
+      =
+      4+6+4+1=15
+      \]
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Ukupan broj</h2>
+
+    <p>
+      Imamo:
+    </p>
+
+    <div class="formula">
+      \[
+      9 \cdot 9 \cdot 15
+      \]
+    </div>
+
+    <p>
+      odnosno:
+    </p>
+
+    <div class="formula">
+      \[
+      81 \cdot 15 = 1215
+      \]
+    </div>
+
+    <p class="answer">
+      \[
+      \boxed{1215}
+      \]
+    </p>
+  </div>
+
+</body>
+</html>
