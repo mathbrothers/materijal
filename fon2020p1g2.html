@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Osmocifreni brojevi od cifara 1, 2, 3 i 4</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f6f7fb;
+      color: #222;
+      line-height: 1.65;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .title {
+      background: linear-gradient(135deg, #e0f2fe, #fef3c7);
+      border-left: 8px solid #2563eb;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-top: 0;
+      color: #1e3a8a;
+    }
+
+    h2 {
+      font-size: 22px;
+      color: #374151;
+      margin-top: 0;
+    }
+
+    .step {
+      border-left: 6px solid #60a5fa;
+      background: #eff6ff;
+    }
+
+    .case {
+      border-left: 6px solid #f59e0b;
+      background: #fffbeb;
+    }
+
+    .formula {
+      background: #f3f4f6;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 18px;
+    }
+
+    .answer {
+      background: #ecfdf5;
+      border-left: 8px solid #10b981;
+      font-size: 20px;
+    }
+
+    .note {
+      background: #fff7ed;
+      border-left: 6px solid #fb923c;
+    }
+
+    ul {
+      margin-top: 8px;
+    }
+
+    .boxed {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 2px solid #10b981;
+      border-radius: 12px;
+      background: white;
+      font-weight: bold;
+      color: #065f46;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="card title">
+    <h1>Brojanje osmocifrenih brojeva</h1>
+    <p>
+      Od cifara \(1,2,3,4\) formiraju se osmocifreni brojevi.
+      Svaka od cifara mora da se pojavi bar jednom, a cifra \(4\)
+      mora da se pojavi tačno tri puta.
+    </p>
+  </div>
+
+  <div class="card step">
+    <h2>1. Prvo biramo mesta za cifru 4</h2>
+    <p>
+      Cifra \(4\) se pojavljuje tačno tri puta. Dakle, od ukupno
+      \(8\) mesta biramo \(3\) mesta na kojima će stajati četvorke.
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{8}{3}
+      \]
+    </div>
+
+    <p>
+      Kada ta mesta popunimo četvorkama, ostaje još \(5\) slobodnih mesta.
+    </p>
+  </div>
+
+  <div class="card step">
+    <h2>2. Šta radimo sa preostalih 5 mesta?</h2>
+    <p>
+      Preostalih \(5\) mesta treba popuniti ciframa \(1,2,3\), ali tako
+      da se svaka od tih cifara pojavi bar jednom.
+    </p>
+
+    <p>
+      Dakle, zadatak se sada svodi na poznati tip:
+    </p>
+
+    <div class="formula">
+      Od cifara \(1,2,3\) formirati petocifreni broj tako da se svaka cifra
+      pojavi bar jednom.
+    </div>
+
+    <p>
+      Pošto imamo ukupno \(5\) mesta i tri cifre, moguće raspodele su:
+    </p>
+  </div>
+
+  <div class="card case">
+    <h2>3. Prvi tip: jedna cifra se pojavljuje 3 puta</h2>
+    <p>
+      Moguće raspodele su:
+    </p>
+
+    <div class="formula">
+      \[
+      1,1,1,2,3
+      \]
+      \[
+      1,2,2,2,3
+      \]
+      \[
+      1,2,3,3,3
+      \]
+    </div>
+
+    <p>
+      U svakom od ova tri slučaja imamo permutacije sa ponavljanjem:
+    </p>
+
+    <div class="formula">
+      \[
+      \frac{5!}{3!}
+      \]
+    </div>
+
+    <p>
+      Pošto postoje \(3\) izbora za cifru koja se ponavlja tri puta, broj
+      ovakvih rasporeda je:
+    </p>
+
+    <div class="formula">
+      \[
+      3 \cdot \frac{5!}{3!}
+      \]
+    </div>
+  </div>
+
+  <div class="card case">
+    <h2>4. Drugi tip: dve cifre se pojavljuju po 2 puta</h2>
+    <p>
+      Moguće raspodele su:
+    </p>
+
+    <div class="formula">
+      \[
+      1,1,2,2,3
+      \]
+      \[
+      1,1,2,3,3
+      \]
+      \[
+      1,2,2,3,3
+      \]
+    </div>
+
+    <p>
+      U svakom od ova tri slučaja imamo permutacije sa ponavljanjem:
+    </p>
+
+    <div class="formula">
+      \[
+      \frac{5!}{2! \cdot 2!}
+      \]
+    </div>
+
+    <p>
+      Pošto opet imamo \(3\) moguće raspodele, broj ovakvih rasporeda je:
+    </p>
+
+    <div class="formula">
+      \[
+      3 \cdot \frac{5!}{2! \cdot 2!}
+      \]
+    </div>
+  </div>
+
+  <div class="card step">
+    <h2>5. Ukupan broj popunjavanja preostalih 5 mesta</h2>
+
+    <div class="formula">
+      \[
+      3 \cdot \frac{5!}{3!}
+      +
+      3 \cdot \frac{5!}{2! \cdot 2!}
+      \]
+    </div>
+
+    <p>
+      Računamo:
+    </p>
+
+    <div class="formula">
+      \[
+      \frac{5!}{3!}=\frac{120}{6}=20
+      \]
+      \[
+      \frac{5!}{2! \cdot 2!}=\frac{120}{4}=30
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      3 \cdot 20 + 3 \cdot 30 = 60 + 90 = 150
+      \]
+    </div>
+
+    <p>
+      Dakle, preostalih \(5\) mesta možemo popuniti na \(150\) načina.
+    </p>
+  </div>
+
+  <div class="card answer">
+    <h2>6. Konačno rešenje</h2>
+
+    <p>
+      Prvo biramo mesta za tri četvorke, a zatim popunjavamo preostalih
+      pet mesta ciframa \(1,2,3\).
+    </p>
+
+    <div class="formula">
+      \[
+      \binom{8}{3}
+      \left(
+      3 \cdot \frac{5!}{3!}
+      +
+      3 \cdot \frac{5!}{2! \cdot 2!}
+      \right)
+      \]
+    </div>
+
+    <div class="formula">
+      \[
+      56 \cdot 150 = 8400
+      \]
+    </div>
+
+    <p>
+      Zato je broj svih takvih osmocifrenih brojeva:
+    </p>
+
+    <p class="boxed">
+      \[
+      \boxed{8400}
+      \]
+    </p>
+
+    <p>
+      Tačan odgovor je <strong>A) 8400</strong>.
+    </p>
+  </div>
+
+  <div class="card note">
+    <h2>Kratka ideja</h2>
+    <p>
+      Najvažnije je da cifru \(4\) prvo „zakucamo“ na tačno tri mesta.
+      Posle toga problem više nije osmocifreni broj, nego samo pitanje
+      kako rasporediti cifre \(1,2,3\) na preostalih pet mesta tako da
+      nijedna ne izostane.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
