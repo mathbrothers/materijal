@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rotacija pravouglog trougla oko hipotenuze</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .title-card {
+      background: linear-gradient(135deg, #e0f2fe, #fef3c7);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+      color: #0f172a;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1e3a8a;
+      font-size: 22px;
+    }
+
+    .formula-box {
+      background: #f8fafc;
+      border-left: 6px solid #3b82f6;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+      font-size: 19px;
+    }
+
+    .answer-box {
+      background: #ecfdf5;
+      border: 2px solid #10b981;
+      color: #064e3b;
+      padding: 18px 22px;
+      border-radius: 14px;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .note {
+      background: #fff7ed;
+      border-left: 6px solid #f97316;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+    }
+
+    .diagram-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .small {
+      font-size: 15px;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="card title-card">
+    <h1>Rotacija pravouglog trougla oko hipotenuze</h1>
+    <p>
+      Pravougli trougao ima katete dužina \(2\,\text{cm}\) i \(1.5\,\text{cm}\).
+      Rotira se oko svoje hipotenuze. Treba odrediti zapreminu dobijenog tela.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>1. Obeležavanje trougla</h2>
+
+    <p>
+      Neka je trougao \(ABC\) pravougli u temenu \(C\).
+      Uzimamo:
+    </p>
+
+    <div class="formula-box">
+      \[
+      AC = 2\,\text{cm}, \qquad BC = 1.5\,\text{cm}
+      \]
+    </div>
+
+    <p>
+      Hipotenuza je stranica \(AB\). Po Pitagorinoj teoremi:
+    </p>
+
+    <div class="formula-box">
+      \[
+      AB = \sqrt{2^2 + 1.5^2}
+      =
+      \sqrt{4 + 2.25}
+      =
+      \sqrt{6.25}
+      =
+      2.5\,\text{cm}
+      \]
+    </div>
+
+    <p>
+      Neka je \(H\) podnožje visine iz temena \(C\) na hipotenuzu \(AB\).
+    </p>
+
+    <div class="diagram-wrap">
+      <svg width="640" height="360" viewBox="0 0 640 360">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L7,3 z" fill="#334155"></path>
+          </marker>
+        </defs>
+
+        <!-- background -->
+        <rect x="0" y="0" width="640" height="360" rx="18" fill="#f8fafc"/>
+
+        <!-- triangle coordinates:
+             A(140,70), C(140,230), B(260,230), H(216.8,172.4)
+        -->
+
+        <!-- triangle -->
+        <polygon points="140,70 140,230 260,230"
+                 fill="#dbeafe"
+                 stroke="#1e40af"
+                 stroke-width="4"/>
+
+        <!-- hypotenuse emphasized -->
+        <line x1="140" y1="70" x2="260" y2="230"
+              stroke="#0f172a"
+              stroke-width="5"/>
+
+        <!-- altitude CH -->
+        <line x1="140" y1="230" x2="216.8" y2="172.4"
+              stroke="#ef4444"
+              stroke-width="3"
+              stroke-dasharray="8 7"/>
+
+        <!-- right angle at C -->
+        <polyline points="140,210 160,210 160,230"
+                  fill="none"
+                  stroke="#1e40af"
+                  stroke-width="3"/>
+
+        <!-- points -->
+        <circle cx="140" cy="70" r="6" fill="#0f172a"/>
+        <circle cx="260" cy="230" r="6" fill="#0f172a"/>
+        <circle cx="140" cy="230" r="6" fill="#0f172a"/>
+        <circle cx="216.8" cy="172.4" r="5" fill="#ef4444"/>
+
+        <!-- labels -->
+        <text x="118" y="62" font-size="24" font-weight="700" fill="#0f172a">A</text>
+        <text x="270" y="238" font-size="24" font-weight="700" fill="#0f172a">B</text>
+        <text x="116" y="256" font-size="24" font-weight="700" fill="#0f172a">C</text>
+        <text x="226" y="166" font-size="22" font-weight="700" fill="#ef4444">H</text>
+
+        <!-- side labels -->
+        <text x="80" y="155" font-size="20" fill="#1e3a8a">AC = 2</text>
+        <text x="171" y="257" font-size="20" fill="#1e3a8a">BC = 1.5</text>
+        <text x="225" y="126" font-size="19" fill="#0f172a">AB = 2.5</text>
+
+        <!-- altitude label -->
+        <text x="150" y="190" font-size="19" fill="#ef4444">CH = r</text>
+
+        <!-- axis label -->
+        <line x1="355" y1="95" x2="475" y2="255"
+              stroke="#334155"
+              stroke-width="4"
+              marker-end="url(#arrow)"/>
+        <text x="390" y="178" font-size="19" fill="#334155">
+          osa rotacije je AB
+        </text>
+
+        <!-- explanatory text -->
+        <text x="70" y="315" font-size="17" fill="#475569">
+          Trougao se rotira oko hipotenuze AB; tačka C pri rotaciji opisuje kružnicu poluprečnika CH.
+        </text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Šta nastaje pri rotaciji?</h2>
+
+    <p>
+      Kada se trougao rotira oko hipotenuze \(AB\), tačka \(C\) opisuje kružnicu.
+      Poluprečnik te kružnice je visina \(CH\).
+    </p>
+
+    <p>
+      Dobijeno telo možemo posmatrati kao dva kupa sa zajedničkom osnovom:
+    </p>
+
+    <div class="formula-box">
+      \[
+      \text{prvi kup ima visinu } h_1 = AH,
+      \qquad
+      \text{drugi kup ima visinu } h_2 = BH.
+      \]
+    </div>
+
+    <p>
+      Poluprečnik zajedničke osnove oba kupa je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      r = CH
+      \]
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Računamo poluprečnik osnove, tj. visinu na hipotenuzu</h2>
+
+    <p>
+      Površinu trougla možemo izračunati na dva načina.
+      Prvo preko kateta:
+    </p>
+
+    <div class="formula-box">
+      \[
+      P = \frac{AC \cdot BC}{2}
+      =
+      \frac{2 \cdot 1.5}{2}
+      =
+      1.5
+      \]
+    </div>
+
+    <p>
+      A zatim preko hipotenuze \(AB\) i visine \(CH\):
+    </p>
+
+    <div class="formula-box">
+      \[
+      P = \frac{AB \cdot CH}{2}
+      \]
+    </div>
+
+    <p>
+      Zato je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      1.5 = \frac{2.5 \cdot CH}{2}
+      \]
+      \[
+      3 = 2.5 \cdot CH
+      \]
+      \[
+      CH = \frac{3}{2.5} = \frac{6}{5}
+      \]
+    </div>
+
+    <p>
+      Dakle, poluprečnik zajedničke osnove oba kupa je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      r = CH = \frac{6}{5}
+      \]
+    </div>
+  </div>
+
+<div class="card">
+  <h2>4. Računamo visine pojedinačnih kupa \(h_1\) i \(h_2\)</h2>
+
+  <p>
+    Iako za konačnu zapreminu nije neophodno da ih posebno računamo,
+    korisno je videti kolike su visine oba kupa.
+  </p>
+
+  <p>
+    Pošto je \(H\) podnožje visine iz temena \(C\) na hipotenuzu \(AB\),
+    trouglovi \(ACH\) i \(BCH\) su pravougli.
+  </p>
+
+  <p>
+    Već smo izračunali:
+  </p>
+
+  <div class="formula-box">
+    \[
+    CH = \frac{6}{5}
+    \]
+  </div>
+
+  <p>
+    Prva visina kupa je:
+  </p>
+
+  <div class="formula-box">
+    \[
+    h_1 = AH
+    \]
+  </div>
+
+  <p>
+    U pravouglom trouglu \(ACH\), hipotenuza je \(AC\), pa po Pitagorinoj teoremi:
+  </p>
+
+  <div class="formula-box">
+    \[
+    AH^2 + CH^2 = AC^2
+    \]
+    \[
+    AH^2 + \left(\frac{6}{5}\right)^2 = 2^2
+    \]
+    \[
+    AH^2 + \frac{36}{25} = 4
+    \]
+    \[
+    AH^2 = 4 - \frac{36}{25}
+    =
+    \frac{100}{25} - \frac{36}{25}
+    =
+    \frac{64}{25}
+    \]
+    \[
+    AH = \frac{8}{5}
+    \]
+  </div>
+
+  <p>
+    Dakle:
+  </p>
+
+  <div class="formula-box">
+    \[
+    h_1 = AH = \frac{8}{5}
+    \]
+  </div>
+
+  <p>
+    Druga visina kupa je:
+  </p>
+
+  <div class="formula-box">
+    \[
+    h_2 = BH
+    \]
+  </div>
+
+  <p>
+    U pravouglom trouglu \(BCH\), hipotenuza je \(BC\), pa opet koristimo Pitagorinu teoremu:
+  </p>
+
+  <div class="formula-box">
+    \[
+    BH^2 + CH^2 = BC^2
+    \]
+    \[
+    BH^2 + \left(\frac{6}{5}\right)^2 = \left(\frac{3}{2}\right)^2
+    \]
+    \[
+    BH^2 + \frac{36}{25} = \frac{9}{4}
+    \]
+    \[
+    BH^2 =
+    \frac{9}{4} - \frac{36}{25}
+    =
+    \frac{225}{100} - \frac{144}{100}
+    =
+    \frac{81}{100}
+    \]
+    \[
+    BH = \frac{9}{10}
+    \]
+  </div>
+
+  <p>
+    Dakle:
+  </p>
+
+  <div class="formula-box">
+    \[
+    h_2 = BH = \frac{9}{10}
+    \]
+  </div>
+
+  <p>
+    Provera:
+  </p>
+
+  <div class="formula-box">
+    \[
+    h_1 + h_2
+    =
+    \frac{8}{5} + \frac{9}{10}
+    =
+    \frac{16}{10} + \frac{9}{10}
+    =
+    \frac{25}{10}
+    =
+    \frac{5}{2}
+    =
+    AB
+    \]
+  </div>
+</div>
+  <div class="card">
+    <h2>5. Zapremina dobijenog tela</h2>
+
+    <p>
+      Telo se sastoji od dva kupa sa istim poluprečnikom osnove \(r\),
+      ali sa visinama \(h_1\) i \(h_2\).
+    </p>
+
+    <div class="formula-box">
+      \[
+      V
+      =
+      \frac{1}{3}\pi r^2 h_1
+      +
+      \frac{1}{3}\pi r^2 h_2
+      \]
+    </div>
+
+    <p>
+      Izvlačimo zajednički faktor:
+    </p>
+
+    <div class="formula-box">
+      \[
+      V
+      =
+      \frac{1}{3}\pi r^2 (h_1+h_2)
+      \]
+    </div>
+
+    <p>
+      Pošto je \(h_1+h_2 = AB = \frac{5}{2}\), a \(r = \frac{6}{5}\), dobijamo:
+    </p>
+
+    <div class="formula-box">
+      \[
+      V
+      =
+      \frac{1}{3}\pi
+      \left(\frac{6}{5}\right)^2
+      \cdot
+      \frac{5}{2}
+      \]
+      \[
+      V
+      =
+      \frac{1}{3}\pi
+      \cdot
+      \frac{36}{25}
+      \cdot
+      \frac{5}{2}
+      \]
+      \[
+      V
+      =
+      \frac{1}{3}\pi
+      \cdot
+      \frac{18}{5}
+      =
+      \frac{6\pi}{5}
+      \]
+    </div>
+
+    <div class="answer-box">
+      \[
+      \boxed{V = \frac{6\pi}{5}\ \text{cm}^3}
+      \]
+      Odgovor je E.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Kratka ideja za pamćenje</h2>
+
+    <div class="note">
+      Kada se pravougli trougao rotira oko hipotenuze, ne dobija se jedan kup,
+      nego dva kupa spojena osnovama.  
+      Poluprečnik oba kupa je visina na hipotenuzu.
+    </div>
+
+    <div class="formula-box">
+      \[
+      V
+      =
+      \frac{1}{3}\pi \cdot CH^2 \cdot AB
+      \]
+    </div>
+
+    <p class="small">
+      U ovom zadatku je \(CH = \frac{6}{5}\), a \(AB = \frac{5}{2}\), pa odmah sledi
+      \(V = \frac{6\pi}{5}\).
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
