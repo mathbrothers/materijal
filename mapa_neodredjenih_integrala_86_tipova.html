@@ -977,10 +977,14 @@
         <article class="task-card c6">
           <div class="task-top">
             <span class="num">58</span>
-            <span class="method">Trigonometrijski integrali</span>
+            <span class="method">Smena na racionalnu funkciju</span>
           </div>
-          <div class="formula">\[\int \sec^4 x\tan x\,dx\]</div>
-          <p>Smena \(u=\sec x\), jer je \(\sec x \tan x\,dx\) diferencijal sekansa.</p>
+          <div class="formula">\[\int \frac{dx}{2+\sin^2 x}\]</div>
+          <p>
+            Pošto se trigonometrijska funkcija javlja kroz paran oblik \(\sin^2 x\),
+            prirodna smena je \(u=\tan x\); tada je
+            \(\sin^2 x=\frac{u^2}{1+u^2}\) i \(dx=\frac{du}{1+u^2}\), pa integral prelazi u racionalni.
+          </p>
         </article>
         
         <article class="task-card c6">
@@ -1022,10 +1026,14 @@
         <article class="task-card c6">
           <div class="task-top">
             <span class="num">63</span>
-            <span class="method">Trigonometrijski integrali</span>
+            <span class="method">Univerzalna trigonometrijska smena</span>
           </div>
           <div class="formula">\[\int \frac{dx}{2+\cos x}\]</div>
-          <p>Tipičan kandidat za univerzalnu trigonometrijsku smenu.</p>
+          <p>
+            Tipičan kandidat za univerzalnu smenu \(t=\tan\frac{x}{2}\), pri čemu je
+            \(\cos x=\frac{1-t^2}{1+t^2}\) i \(dx=\frac{2\,dt}{1+t^2}\);
+            posle smene integral postaje racionalan po \(t\).
+          </p>
         </article>
         
         <article class="task-card c6">
