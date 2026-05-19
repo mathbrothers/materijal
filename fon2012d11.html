@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Analitička geometrija — prava i kružnica</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .title-card {
+      background: linear-gradient(135deg, #dbeafe, #fef3c7);
+    }
+
+    .blue-card {
+      background: #eff6ff;
+      border-color: #bfdbfe;
+    }
+
+    .green-card {
+      background: #ecfdf5;
+      border-color: #bbf7d0;
+    }
+
+    .orange-card {
+      background: #fff7ed;
+      border-color: #fed7aa;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 30px;
+      color: #0f172a;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1e3a8a;
+      font-size: 22px;
+    }
+
+    .formula-box {
+      background: #f8fafc;
+      border-left: 6px solid #3b82f6;
+      padding: 14px 18px;
+      border-radius: 12px;
+      margin: 18px 0;
+      font-size: 19px;
+    }
+
+    .answer-box {
+      background: #ecfdf5;
+      border: 2px solid #10b981;
+      color: #064e3b;
+      padding: 18px 22px;
+      border-radius: 14px;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .diagram-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 14px;
+      overflow-x: auto;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .small-note {
+      font-size: 15px;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="card title-card">
+    <h1>Prava i kružnica — površina trougla \(ABC\)</h1>
+
+    <p>
+      Date su prava
+      \[
+      p: x+3y+3=0
+      \]
+      i kružnica
+      \[
+      k: x^2+y^2-2x-4y-15=0.
+      \]
+      Tačke \(A\) i \(B\) su presečne tačke prave i kružnice, a \(C\) je centar kružnice.
+      Treba odrediti površinu trougla \(ABC\).
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>1. Sređujemo jednačinu kružnice</h2>
+
+    <p>
+      Jednačina kružnice je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      x^2+y^2-2x-4y-15=0
+      \]
+    </div>
+
+    <p>
+      Dopunjujemo kvadrate:
+    </p>
+
+    <div class="formula-box">
+      \[
+      x^2-2x+y^2-4y=15
+      \]
+      \[
+      (x-1)^2-1+(y-2)^2-4=15
+      \]
+      \[
+      (x-1)^2+(y-2)^2=20
+      \]
+    </div>
+
+    <p>
+      Dakle, centar kružnice je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      C(1,2)
+      \]
+    </div>
+
+    <p>
+      A poluprečnik kružnice je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      r=\sqrt{20}=2\sqrt5
+      \]
+    </div>
+  </div>
+
+  <div class="card blue-card">
+    <h2>2. Geometrijska ideja</h2>
+
+    <p>
+      Pošto su \(A\) i \(B\) presečne tačke prave i kružnice, duž \(AB\) je tetiva kružnice.
+      Tačka \(C\) je centar kružnice.
+    </p>
+
+    <p>
+      Površinu trougla \(ABC\) možemo računati kao:
+    </p>
+
+    <div class="formula-box">
+      \[
+      P_{ABC}=\frac{AB\cdot h}{2}
+      \]
+    </div>
+
+    <p>
+      Ovde je \(h\) rastojanje centra \(C\) od prave \(p\), jer je prava \(p\) baš prava na kojoj leži osnovica \(AB\).
+    </p>
+
+<div class="diagram-wrap">
+  <svg width="760" height="520" viewBox="0 0 760 520">
+    <rect x="0" y="0" width="760" height="520" rx="18" fill="#f8fafc"/>
+
+    <!--
+      Koordinatni sistem:
+      origin = (380,260), scale = 45
+      screenX = 380 + 45*x
+      screenY = 260 - 45*y
+
+      A(-3,0)  -> (245,260)
+      B(3,-2)  -> (515,350)
+      C(1,2)   -> (425,170)
+      H(0,-1)  -> (380,305)
+    -->
+
+    <!-- mreža -->
+    <g stroke="#e2e8f0" stroke-width="1">
+      <line x1="65" y1="35" x2="65" y2="485"/>
+      <line x1="110" y1="35" x2="110" y2="485"/>
+      <line x1="155" y1="35" x2="155" y2="485"/>
+      <line x1="200" y1="35" x2="200" y2="485"/>
+      <line x1="245" y1="35" x2="245" y2="485"/>
+      <line x1="290" y1="35" x2="290" y2="485"/>
+      <line x1="335" y1="35" x2="335" y2="485"/>
+      <line x1="380" y1="35" x2="380" y2="485"/>
+      <line x1="425" y1="35" x2="425" y2="485"/>
+      <line x1="470" y1="35" x2="470" y2="485"/>
+      <line x1="515" y1="35" x2="515" y2="485"/>
+      <line x1="560" y1="35" x2="560" y2="485"/>
+      <line x1="605" y1="35" x2="605" y2="485"/>
+      <line x1="650" y1="35" x2="650" y2="485"/>
+      <line x1="695" y1="35" x2="695" y2="485"/>
+
+      <line x1="65" y1="35" x2="695" y2="35"/>
+      <line x1="65" y1="80" x2="695" y2="80"/>
+      <line x1="65" y1="125" x2="695" y2="125"/>
+      <line x1="65" y1="170" x2="695" y2="170"/>
+      <line x1="65" y1="215" x2="695" y2="215"/>
+      <line x1="65" y1="260" x2="695" y2="260"/>
+      <line x1="65" y1="305" x2="695" y2="305"/>
+      <line x1="65" y1="350" x2="695" y2="350"/>
+      <line x1="65" y1="395" x2="695" y2="395"/>
+      <line x1="65" y1="440" x2="695" y2="440"/>
+      <line x1="65" y1="485" x2="695" y2="485"/>
+    </g>
+
+    <!-- ose -->
+    <line x1="65" y1="260" x2="705" y2="260" stroke="#475569" stroke-width="2.5"/>
+    <line x1="380" y1="485" x2="380" y2="25" stroke="#475569" stroke-width="2.5"/>
+
+    <!-- strelice -->
+    <polygon points="705,260 692,254 692,266" fill="#475569"/>
+    <polygon points="380,25 374,38 386,38" fill="#475569"/>
+
+    <text x="710" y="253" font-size="20" fill="#334155">x</text>
+    <text x="389" y="31" font-size="20" fill="#334155">y</text>
+    <text x="392" y="278" font-size="16" fill="#64748b">O</text>
+
+    <!-- oznake osa -->
+    <g font-size="13" fill="#64748b">
+      <text x="240" y="280">-3</text>
+      <text x="286" y="280">-2</text>
+      <text x="333" y="280">-1</text>
+      <text x="378" y="280">0</text>
+      <text x="423" y="280">1</text>
+      <text x="468" y="280">2</text>
+      <text x="513" y="280">3</text>
+
+      <text x="360" y="354">-2</text>
+      <text x="360" y="309">-1</text>
+      <text x="365" y="264">0</text>
+      <text x="365" y="219">1</text>
+      <text x="365" y="174">2</text>
+    </g>
+
+    <!-- kružnica -->
+    <circle cx="425" cy="170" r="201.25"
+            fill="#dbeafe" fill-opacity="0.22"
+            stroke="#4361d8" stroke-width="5"/>
+
+    <!-- prava p -->
+    <line x1="110" y1="215" x2="605" y2="380"
+          stroke="#0f172a" stroke-width="5"/>
+
+    <!-- trougao ABC -->
+    <polygon points="245,260 515,350 425,170"
+             fill="#fef3c7" fill-opacity="0.55"
+             stroke="#d97706"
+             stroke-width="3"/>
+
+    <!-- tetiva AB -->
+    <line x1="245" y1="260" x2="515" y2="350"
+          stroke="#4aa36b" stroke-width="6"/>
+
+    <!-- poluprečnici -->
+    <line x1="425" y1="170" x2="245" y2="260"
+          stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="8 6"/>
+    <line x1="425" y1="170" x2="515" y2="350"
+          stroke="#7c3aed" stroke-width="2.5" stroke-dasharray="8 6"/>
+
+    <!-- visina CH -->
+    <line x1="425" y1="170" x2="380" y2="305"
+          stroke="#e11d48" stroke-width="5" stroke-dasharray="10 7"/>
+
+    <!-- oznaka pravog ugla kod H -->
+    <polyline points="380,305 394,301 390,287"
+              fill="none"
+              stroke="#e11d48"
+              stroke-width="3"/>
+
+    <!-- tačke -->
+    <circle cx="245" cy="260" r="8" fill="#56a84b"/>
+    <circle cx="515" cy="350" r="8" fill="#56a84b"/>
+    <circle cx="425" cy="170" r="8" fill="#cf3f2f"/>
+    <circle cx="380" cy="305" r="6.5" fill="#cf3f2f"/>
+
+    <!-- oznake tačaka -->
+    <text x="214" y="252" font-size="24" font-weight="700" fill="#245c2a">A</text>
+    <text x="523" y="363" font-size="24" font-weight="700" fill="#245c2a">B</text>
+    <text x="436" y="162" font-size="24" font-weight="700" fill="#cf3f2f">C</text>
+    <text x="387" y="324" font-size="22" font-weight="700" fill="#cf3f2f">H</text>
+
+    <!-- tekstovi -->
+    <text x="105" y="202" font-size="18" fill="#0f172a">p: x+3y+3=0</text>
+    <text x="500" y="120" font-size="18" fill="#4361d8">k: (x−1)²+(y−2)²=20</text>
+
+    <text x="316" y="303" font-size="18" fill="#4aa36b">AB</text>
+    <text x="392" y="245" font-size="18" fill="#e11d48">h = CH = d(C,p)</text>
+    <text x="307" y="208" font-size="18" fill="#7c3aed">r</text>
+    <text x="488" y="250" font-size="18" fill="#7c3aed">r</text>
+  </svg>
+</div>
+  </div>
+
+  <div class="card">
+    <h2>3. Rastojanje centra od prave</h2>
+
+    <p>
+      Centar kružnice je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      C(1,2)
+      \]
+    </div>
+
+    <p>
+      Rastojanje tačke \((x_0,y_0)\) od prave \(ax+by+c=0\) računa se formulom:
+    </p>
+
+    <div class="formula-box">
+      \[
+      d=\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}
+      \]
+    </div>
+
+    <p>
+      Za pravu
+      \[
+      x+3y+3=0
+      \]
+      imamo \(a=1\), \(b=3\), \(c=3\).
+    </p>
+
+    <div class="formula-box">
+      \[
+      d(C,p)=
+      \frac{|1\cdot 1+3\cdot 2+3|}{\sqrt{1^2+3^2}}
+      \]
+      \[
+      d(C,p)=
+      \frac{|1+6+3|}{\sqrt{10}}
+      =
+      \frac{10}{\sqrt{10}}
+      =
+      \sqrt{10}
+      \]
+    </div>
+
+    <p>
+      Dakle:
+    </p>
+
+    <div class="formula-box">
+      \[
+      h=\sqrt{10}
+      \]
+    </div>
+  </div>
+
+  <div class="card orange-card">
+    <h2>4. Računamo dužinu tetive \(AB\)</h2>
+
+    <p>
+      Prava \(p\) seče kružnicu u tačkama \(A\) i \(B\), pa je \(AB\) tetiva.
+      Ako iz centra kružnice spustimo normalu na tetivu, ona tetivu deli na dva jednaka dela.
+    </p>
+
+    <p>
+      Dobijamo pravougli trougao u kome je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      r=2\sqrt5,
+      \qquad
+      h=\sqrt{10}
+      \]
+    </div>
+
+    <p>
+      Polovina tetive je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      \frac{AB}{2}
+      =
+      \sqrt{r^2-h^2}
+      \]
+      \[
+      \frac{AB}{2}
+      =
+      \sqrt{(2\sqrt5)^2-(\sqrt{10})^2}
+      \]
+      \[
+      \frac{AB}{2}
+      =
+      \sqrt{20-10}
+      =
+      \sqrt{10}
+      \]
+    </div>
+
+    <p>
+      Zato je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      AB=2\sqrt{10}
+      \]
+    </div>
+  </div>
+
+  <div class="card green-card">
+    <h2>5. Površina trougla \(ABC\)</h2>
+
+    <p>
+      Osnovica trougla je tetiva \(AB\), a visina na tu osnovicu je rastojanje centra \(C\)
+      od prave \(p\).
+    </p>
+
+    <div class="formula-box">
+      \[
+      P_{ABC}
+      =
+      \frac{AB\cdot h}{2}
+      \]
+    </div>
+
+    <p>
+      Ubacujemo:
+    </p>
+
+    <div class="formula-box">
+      \[
+      P_{ABC}
+      =
+      \frac{2\sqrt{10}\cdot \sqrt{10}}{2}
+      \]
+      \[
+      P_{ABC}
+      =
+      \frac{2\cdot 10}{2}
+      =
+      10
+      \]
+    </div>
+
+    <div class="answer-box">
+      \[
+      \boxed{P_{ABC}=10}
+      \]
+      Odgovor je C.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Provera preko presečnih tačaka</h2>
+
+    <p>
+      Ovo nije najkraći put, ali lepo proverava sliku.
+      Iz prave:
+    </p>
+
+    <div class="formula-box">
+      \[
+      x+3y+3=0
+      \quad\Rightarrow\quad
+      x=-3y-3
+      \]
+    </div>
+
+    <p>
+      Uvrštavanjem u jednačinu kružnice dobija se:
+    </p>
+
+    <div class="formula-box">
+      \[
+      y=0
+      \quad \text{ili} \quad
+      y=-2
+      \]
+    </div>
+
+    <p>
+      Pa su presečne tačke:
+    </p>
+
+    <div class="formula-box">
+      \[
+      A(-3,0),
+      \qquad
+      B(3,-2)
+      \]
+    </div>
+
+    <p class="small-note">
+      Na crtežu su upravo te tačke obeležene kao preseci prave \(p\) i kružnice \(k\).
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
