@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dvostruki integral — paralelogram smenom</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f1ec;
+      color: #222;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2f3a4f, #667085);
+      color: white;
+      border-radius: 28px;
+      padding: 34px 38px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.92;
+    }
+
+    .task {
+      background: white;
+      border-radius: 24px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border-left: 8px solid #637083;
+    }
+
+    .task h2 {
+      margin-top: 0;
+      font-size: 25px;
+    }
+
+    .card {
+      border-radius: 22px;
+      padding: 24px 28px;
+      margin: 22px 0;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+    }
+
+    .c1 { background: #fff7df; border-left: 8px solid #e8aa2e; }
+    .c2 { background: #eaf5ff; border-left: 8px solid #4d9de0; }
+    .c3 { background: #eef8ec; border-left: 8px solid #55a868; }
+    .c4 { background: #f4edff; border-left: 8px solid #9b72cf; }
+    .c5 { background: #fff0f0; border-left: 8px solid #d96c6c; }
+    .c6 { background: #edf7f6; border-left: 8px solid #4ba3a0; }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 22px;
+    }
+
+    .formula-box {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 18px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .note {
+      background: #263238;
+      color: white;
+      padding: 16px 20px;
+      border-radius: 18px;
+      margin: 18px 0;
+      font-size: 16px;
+    }
+
+    .final {
+      background: linear-gradient(135deg, #1f7a5c, #57b894);
+      color: white;
+      border-radius: 26px;
+      padding: 26px 30px;
+      margin: 28px 0;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.14);
+    }
+
+    .final h2 {
+      margin-top: 0;
+    }
+
+    .diagram-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .diagram {
+      background: white;
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .diagram h4 {
+      margin: 0 0 10px;
+      text-align: center;
+      font-size: 17px;
+    }
+
+    /*
+      VAŽNO:
+      Ne sme globalno svg { width:100%; } jer MathJax formule takođe postaju SVG.
+      Zato stil važi samo za naše nacrtane dijagrame.
+    */
+    .plot-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .footer {
+      text-align: center;
+      color: #555;
+      margin-top: 35px;
+      font-size: 15px;
+    }
+
+    @media (max-width: 760px) {
+      .diagram-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .task, .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <section class="hero">
+    <h1>Dvostruki integral preko paralelograma</h1>
+    <p>
+      Ključna ideja: izabrati smenu koja prave granice paralelograma pretvara u
+      konstantne granice pravougaonika.
+    </p>
+  </section>
+
+  <section class="task">
+    <h2>Zadatak</h2>
+
+    <div class="formula-box">
+      \[
+      I=\iint_D
+      \frac{3x+y}{1+(x-y)^2}\arctan(x-y)\,dx\,dy
+      \]
+    </div>
+
+    <p>
+      Oblast \(D\) je paralelogram ograničen pravama:
+    </p>
+
+    <div class="formula-box">
+      \[
+      y=-3x+1,\qquad y=-3x+\sqrt3,\qquad y=x,\qquad y=x-1.
+      \]
+    </div>
+  </section>
+
+  <section class="card c1">
+    <h3>1. Kako prepoznajemo smenu?</h3>
+
+    <p>
+      U integrandu se pojavljuju baš izrazi
+    </p>
+
+    <div class="formula-box">
+      \[
+      x-y
+      \qquad\text{i}\qquad
+      3x+y.
+      \]
+    </div>
+
+    <p>
+      A granice oblasti su takođe date preko pravih koje se lako prevode u te izraze.
+      Zato biramo smenu:
+    </p>
+
+    <div class="formula-box">
+      \[
+      u=x-y,\qquad v=3x+y.
+      \]
+    </div>
+
+    <div class="note">
+      Ovo je suština zadatka: ne uvodimo smenu nasumično, nego zato što i integrand
+      i granice oblasti već „traže“ izraze \(x-y\) i \(3x+y\).
+    </div>
+  </section>
+
+  <section class="card c2">
+    <h3>2. Šta se dešava sa granicama?</h3>
+
+    <p>
+      Posmatramo redom prave koje ograničavaju paralelogram.
+    </p>
+
+    <div class="formula-box">
+      \[
+      y=x
+      \quad\Rightarrow\quad
+      x-y=0
+      \quad\Rightarrow\quad
+      u=0.
+      \]
+    </div>
+
+    <div class="formula-box">
+      \[
+      y=x-1
+      \quad\Rightarrow\quad
+      x-y=1
+      \quad\Rightarrow\quad
+      u=1.
+      \]
+    </div>
+
+    <div class="formula-box">
+      \[
+      y=-3x+1
+      \quad\Rightarrow\quad
+      3x+y=1
+      \quad\Rightarrow\quad
+      v=1.
+      \]
+    </div>
+
+    <div class="formula-box">
+      \[
+      y=-3x+\sqrt3
+      \quad\Rightarrow\quad
+      3x+y=\sqrt3
+      \quad\Rightarrow\quad
+      v=\sqrt3.
+      \]
+    </div>
+
+    <p>
+      Dakle, paralelogram prelazi u pravougaonik:
+    </p>
+
+    <div class="formula-box">
+      \[
+      0\le u\le 1,\qquad 1\le v\le \sqrt3.
+      \]
+    </div>
+
+    <div class="diagram-wrap">
+
+      <div class="diagram">
+        <h4>U xy-ravni: paralelogram</h4>
+
+        <svg class="plot-svg" viewBox="0 0 420 430">
+          <defs>
+            <marker id="arrowXY" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="#333"/>
+            </marker>
+          </defs>
+
+          <!-- Ose -->
+          <line x1="50" y1="250" x2="385" y2="250"
+                stroke="#333" stroke-width="2.4" marker-end="url(#arrowXY)" />
+          <line x1="80" y1="400" x2="80" y2="35"
+                stroke="#333" stroke-width="2.4" marker-end="url(#arrowXY)" />
+
+          <text x="392" y="257" font-size="18">x</text>
+          <text x="68" y="30" font-size="18">y</text>
+
+          <!-- Prave y=x i y=x-1 -->
+          <line x1="62" y1="268" x2="332" y2="-2"
+                stroke="#8a8a8a" stroke-width="2.2" />
+          <line x1="143" y1="367" x2="359" y2="151"
+                stroke="#8a8a8a" stroke-width="2.2" />
+
+          <!-- Prave 3x+y=sqrt(3) i 3x+y=1 -->
+          <line x1="121" y1="62" x2="229" y2="386"
+                stroke="#a67ccf" stroke-width="2.2" />
+          <line x1="85" y1="86" x2="193" y2="410"
+                stroke="#a67ccf" stroke-width="2.2" />
+
+          <!-- Paralelogram, računato iz preseka pravih -->
+          <!-- y=x, 3x+y=1: A(1/4,1/4) -->
+          <!-- y=x, 3x+y=sqrt(3): B(sqrt(3)/4,sqrt(3)/4) -->
+          <!-- y=x-1, 3x+y=sqrt(3): C((1+sqrt(3))/4,(sqrt(3)-3)/4) -->
+          <!-- y=x-1, 3x+y=1: D(1/2,-1/2) -->
+          <polygon
+            points="125,205 158,172 203,307 170,340"
+            fill="#bcd6f4"
+            opacity="0.85"
+            stroke="#8aa3c2"
+            stroke-width="4"
+          />
+
+          <!-- Blago naglašene stranice paralelograma -->
+          <line x1="125" y1="205" x2="158" y2="172" stroke="#6f8fae" stroke-width="4"/>
+          <line x1="158" y1="172" x2="203" y2="307" stroke="#6f8fae" stroke-width="4"/>
+          <line x1="203" y1="307" x2="170" y2="340" stroke="#6f8fae" stroke-width="4"/>
+          <line x1="170" y1="340" x2="125" y2="205" stroke="#6f8fae" stroke-width="4"/>
+
+          <!-- Oznake pravih -->
+          <text x="250" y="110" font-size="16" fill="#222">y=x</text>
+          <text x="285" y="205" font-size="16" fill="#222">y=x-1</text>
+
+          <text x="130" y="85" font-size="15" fill="#5f448e">3x+y=√3</text>
+          <text x="205" y="355" font-size="15" fill="#5f448e">3x+y=1</text>
+
+          <text x="165" y="255" font-size="18" fill="#1d5f90" font-weight="700">D</text>
+        </svg>
+      </div>
+
+      <div class="diagram">
+        <h4>U uv-ravni: pravougaonik</h4>
+
+        <svg class="plot-svg" viewBox="0 0 420 430">
+          <defs>
+            <marker id="arrowUV" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="#333"/>
+            </marker>
+          </defs>
+
+          <!-- Ose -->
+          <line x1="55" y1="350" x2="380" y2="350"
+                stroke="#333" stroke-width="2.4" marker-end="url(#arrowUV)" />
+          <line x1="90" y1="380" x2="90" y2="55"
+                stroke="#333" stroke-width="2.4" marker-end="url(#arrowUV)" />
+
+          <text x="388" y="357" font-size="18">u</text>
+          <text x="78" y="48" font-size="18">v</text>
+
+          <!-- Pravougaonik: 0 <= u <= 1, 1 <= v <= sqrt(3) -->
+          <rect x="135" y="115" width="185" height="135"
+                fill="#b7e4c7" opacity="0.72"
+                stroke="#1b7f4c" stroke-width="4"/>
+
+          <!-- Pomoćne isprekidane linije -->
+          <line x1="135" y1="350" x2="135" y2="105"
+                stroke="#666" stroke-dasharray="6 6" opacity="0.75"/>
+          <line x1="320" y1="350" x2="320" y2="105"
+                stroke="#666" stroke-dasharray="6 6" opacity="0.75"/>
+
+          <line x1="90" y1="250" x2="330" y2="250"
+                stroke="#666" stroke-dasharray="6 6" opacity="0.75"/>
+          <line x1="90" y1="115" x2="330" y2="115"
+                stroke="#666" stroke-dasharray="6 6" opacity="0.75"/>
+
+          <!-- Oznake granica -->
+          <text x="129" y="374" font-size="16">0</text>
+          <text x="314" y="374" font-size="16">1</text>
+
+          <text x="60" y="255" font-size="16">1</text>
+          <text x="38" y="120" font-size="16">√3</text>
+
+          <text x="215" y="190" font-size="20" fill="#1b7f4c" font-weight="700">D'</text>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="card c3">
+    <h3>3. Inverzna smena i Jakobijan</h3>
+
+    <p>
+      Iz sistema
+    </p>
+
+    <div class="formula-box">
+      \[
+      u=x-y,\qquad v=3x+y
+      \]
+    </div>
+
+    <p>
+      rešavamo \(x\) i \(y\) preko \(u\) i \(v\).
+    </p>
+
+    <p>
+      Iz prve jednačine je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      y=x-u.
+      \]
+    </div>
+
+    <p>
+      Ubacimo u drugu:
+    </p>
+
+    <div class="formula-box">
+      \[
+      v=3x+y=3x+x-u=4x-u.
+      \]
+    </div>
+
+    <p>
+      Dakle:
+    </p>
+
+    <div class="formula-box">
+      \[
+      x=\frac{u+v}{4},
+      \qquad
+      y=\frac{v-3u}{4}.
+      \]
+    </div>
+
+    <p>
+      Jakobijan je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      J=
+      \frac{\partial(x,y)}{\partial(u,v)}
+      =
+      \begin{vmatrix}
+      \frac14 & \frac14\\[4pt]
+      -\frac34 & \frac14
+      \end{vmatrix}
+      =
+      \frac{1}{16}+\frac{3}{16}
+      =
+      \frac14.
+      \]
+    </div>
+
+    <p>
+      Zato važi:
+    </p>
+
+    <div class="formula-box">
+      \[
+      dx\,dy=\frac14\,du\,dv.
+      \]
+    </div>
+  </section>
+
+  <section class="card c4">
+    <h3>4. Integral posle smene</h3>
+
+    <p>
+      Pošto je
+    </p>
+
+    <div class="formula-box">
+      \[
+      x-y=u,
+      \qquad
+      3x+y=v,
+      \]
+    </div>
+
+    <p>
+      integrand postaje:
+    </p>
+
+    <div class="formula-box">
+      \[
+      \frac{3x+y}{1+(x-y)^2}\arctan(x-y)
+      =
+      \frac{v}{1+u^2}\arctan u.
+      \]
+    </div>
+
+    <p>
+      Uzimamo još i Jakobijan:
+    </p>
+
+    <div class="formula-box">
+      \[
+      I=
+      \int_0^1\int_1^{\sqrt3}
+      \frac{v}{1+u^2}\arctan u\cdot \frac14
+      \,dv\,du.
+      \]
+    </div>
+
+    <p>
+      Pošto se izraz razdvaja na deo koji zavisi samo od \(v\) i deo koji zavisi samo od \(u\), imamo:
+    </p>
+
+    <div class="formula-box">
+      \[
+      I=
+      \frac14
+      \left(\int_1^{\sqrt3}v\,dv\right)
+      \left(\int_0^1\frac{\arctan u}{1+u^2}\,du\right).
+      \]
+    </div>
+  </section>
+
+  <section class="card c5">
+    <h3>5. Računanje običnih integrala</h3>
+
+    <p>
+      Prvi integral je:
+    </p>
+
+    <div class="formula-box">
+      \[
+      \int_1^{\sqrt3}v\,dv
+      =
+      \left[\frac{v^2}{2}\right]_1^{\sqrt3}
+      =
+      \frac{3}{2}-\frac12
+      =
+      1.
+      \]
+    </div>
+
+    <p>
+      Za drugi integral koristimo smenu:
+    </p>
+
+    <div class="formula-box">
+      \[
+      t=\arctan u,
+      \qquad
+      dt=\frac{du}{1+u^2}.
+      \]
+    </div>
+
+    <p>
+      Granice se menjaju ovako:
+    </p>
+
+    <div class="formula-box">
+      \[
+      u=0 \Rightarrow t=0,
+      \qquad
+      u=1 \Rightarrow t=\frac{\pi}{4}.
+      \]
+    </div>
+
+    <p>
+      Zato:
+    </p>
+
+    <div class="formula-box">
+      \[
+      \int_0^1\frac{\arctan u}{1+u^2}\,du
+      =
+      \int_0^{\pi/4}t\,dt
+      =
+      \left[\frac{t^2}{2}\right]_0^{\pi/4}
+      =
+      \frac12\left(\frac{\pi}{4}\right)^2
+      =
+      \frac{\pi^2}{32}.
+      \]
+    </div>
+  </section>
+
+  <section class="card c6">
+    <h3>6. Sastavljanje rezultata</h3>
+
+    <p>
+      Sada samo vraćamo izračunate delove:
+    </p>
+
+    <div class="formula-box">
+      \[
+      I=
+      \frac14\cdot 1\cdot \frac{\pi^2}{32}.
+      \]
+    </div>
+
+    <div class="formula-box">
+      \[
+      I=\frac{\pi^2}{128}.
+      \]
+    </div>
+  </section>
+
+  <section class="final">
+    <h2>Konačan odgovor</h2>
+    <div>
+      \[
+      \boxed{I=\frac{\pi^2}{128}}
+      \]
+    </div>
+  </section>
+
+  <section class="footer">
+    Mathbrotherhood × ChatGPT — paralelogram smenom postaje pravougaonik.
+  </section>
+
+</div>
+</body>
+</html>
