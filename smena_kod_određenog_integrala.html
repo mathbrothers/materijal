@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smena koja nije monotona</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6fb;
+      color: #222;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 10px;
+      color: #1f2a44;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #5a6478;
+      margin-bottom: 35px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px 34px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      border-left: 8px solid #5975d9;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #24345c;
+      font-size: 24px;
+    }
+
+    .problem {
+      border-left-color: #3d8b7d;
+      background: #f9fffd;
+    }
+
+    .warning {
+      border-left-color: #d96c59;
+      background: #fff9f7;
+    }
+
+    .solution {
+      border-left-color: #5975d9;
+    }
+
+    .comment {
+      border-left-color: #d9a441;
+      background: #fffaf0;
+    }
+
+    .final {
+      border-left-color: #2f9e44;
+      background: #f6fff7;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .formula-box {
+      background: #eef2ff;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .bad-box {
+      background: #ffeceb;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .good-box {
+      background: #eaf8ef;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    .note {
+      font-size: 17px;
+      color: #40495f;
+    }
+
+    strong {
+      color: #1f2a44;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <h1>Smena koja nije monotona</h1>
+    <div class="subtitle">
+      Primer zašto nekad moramo da rastavimo integral na dva dela
+    </div>
+
+    <section class="card problem">
+      <h2>Primer</h2>
+
+      <p>Izračunati integral:</p>
+
+      <div class="formula-box">
+        \[
+        I=\int_0^\pi \sin x\,dx
+        \]
+      </div>
+
+      <p>
+        Naravno, ovaj integral možemo odmah izračunati:
+      </p>
+
+      <div class="formula-box">
+        \[
+        I=\left[-\cos x\right]_0^\pi
+        =
+        -\cos\pi+\cos0
+        =
+        1+1
+        =
+        2.
+        \]
+      </div>
+
+      <p>
+        Ali ovaj primer koristimo da objasnimo problem sa smenom koja nije monotona.
+      </p>
+    </section>
+
+    <section class="card warning">
+      <h2>Gde nastaje problem?</h2>
+
+      <p>
+        Zamislimo da hoćemo da uvedemo smenu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        t=\sin x.
+        \]
+      </div>
+
+      <p>
+        Ako bismo samo pogledali krajeve intervala, dobili bismo:
+      </p>
+
+      <div class="bad-box">
+        \[
+        x=0 \Rightarrow t=0,
+        \qquad
+        x=\pi \Rightarrow t=0.
+        \]
+      </div>
+
+      <p>
+        Neko bi tada mogao pogrešno da pomisli da novi integral ima granice od \(0\) do \(0\),
+        pa da je integral jednak nuli.
+      </p>
+
+      <div class="bad-box">
+        \[
+        \int_0^\pi \sin x\,dx
+        \neq
+        \int_0^0 \cdots \,dt.
+        \]
+      </div>
+
+      <p>
+        To je greška, jer funkcija \(\sin x\) nije monotona na intervalu \([0,\pi]\).
+      </p>
+    </section>
+
+    <section class="card comment">
+      <h2>Ključni komentar</h2>
+
+      <p>
+        Funkcija \(\sin x\) na intervalu \([0,\pi]\) prvo raste, pa zatim opada:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \sin x:
+        \quad
+        0 \longrightarrow 1 \longrightarrow 0.
+        \]
+      </div>
+
+      <p>
+        Tačnije:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \sin x \text{ raste na } \left[0,\frac{\pi}{2}\right],
+        \]
+        \[
+        \sin x \text{ opada na } \left[\frac{\pi}{2},\pi\right].
+        \]
+      </div>
+
+      <p class="note">
+        Zato smenu \(t=\sin x\) ne radimo preko celog intervala odjednom,
+        nego rastavljamo integral na delove na kojima je smena jednoznačna.
+      </p>
+    </section>
+
+    <section class="card solution">
+      <h2>Pravilno rastavljanje</h2>
+
+      <p>
+        Rastavljamo integral u tački gde \(\sin x\) menja ponašanje:
+      </p>
+
+      <div class="formula-box">
+        \[
+        I=
+        \int_0^{\pi/2}\sin x\,dx
+        +
+        \int_{\pi/2}^{\pi}\sin x\,dx.
+        \]
+      </div>
+
+      <p>
+        Sada uvodimo smenu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        t=\sin x,
+        \qquad
+        dt=\cos x\,dx.
+        \]
+      </div>
+
+      <p>
+        Pošto u integralu nemamo \(\cos x\,dx\), pišemo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        dx=\frac{dt}{\cos x}.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>Prvi deo integrala</h2>
+
+      <p>
+        Na intervalu
+        \[
+        \left[0,\frac{\pi}{2}\right]
+        \]
+        važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \cos x\ge 0,
+        \qquad
+        \cos x=\sqrt{1-\sin^2 x}=\sqrt{1-t^2}.
+        \]
+      </div>
+
+      <p>
+        Granice su:
+      </p>
+
+      <div class="formula-box">
+        \[
+        x=0 \Rightarrow t=0,
+        \qquad
+        x=\frac{\pi}{2} \Rightarrow t=1.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \int_0^{\pi/2}\sin x\,dx
+        =
+        \int_0^1 \frac{t}{\sqrt{1-t^2}}\,dt.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>Drugi deo integrala</h2>
+
+      <p>
+        Na intervalu
+        \[
+        \left[\frac{\pi}{2},\pi\right]
+        \]
+        važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \cos x\le 0,
+        \qquad
+        \cos x=-\sqrt{1-\sin^2 x}=-\sqrt{1-t^2}.
+        \]
+      </div>
+
+      <p>
+        Granice su sada:
+      </p>
+
+      <div class="formula-box">
+        \[
+        x=\frac{\pi}{2} \Rightarrow t=1,
+        \qquad
+        x=\pi \Rightarrow t=0.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \int_{\pi/2}^{\pi}\sin x\,dx
+        =
+        \int_1^0 \frac{t}{-\sqrt{1-t^2}}\,dt.
+        \]
+      </div>
+
+      <p>
+        Minus u imeniocu i obrnute granice daju:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \int_1^0 \frac{t}{-\sqrt{1-t^2}}\,dt
+        =
+        \int_0^1 \frac{t}{\sqrt{1-t^2}}\,dt.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>Sastavljanje rezultata</h2>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="good-box">
+        \[
+        I=
+        2\int_0^1 \frac{t}{\sqrt{1-t^2}}\,dt.
+        \]
+      </div>
+
+      <p>
+        Računamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \int \frac{t}{\sqrt{1-t^2}}\,dt
+        =
+        -\sqrt{1-t^2}.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \int_0^1 \frac{t}{\sqrt{1-t^2}}\,dt
+        =
+        \left[-\sqrt{1-t^2}\right]_0^1
+        =
+        0-(-1)
+        =
+        1.
+        \]
+      </div>
+
+      <p>
+        Prema tome:
+      </p>
+
+      <div class="formula-box">
+        \[
+        I=2\cdot 1=2.
+        \]
+      </div>
+    </section>
+
+    <section class="card final">
+      \[
+      \boxed{
+      \int_0^\pi \sin x\,dx=2
+      }
+      \]
+    </section>
+
+    <section class="card comment">
+      <h2>Pedagoška poenta</h2>
+
+      <p>
+        Ovaj primer je namerno jednostavan, ali je veoma koristan.
+      </p>
+
+      <p>
+        Ako smena nije monotona na celom intervalu, onda ista vrednost nove promenljive
+        može odgovarati različitim vrednostima stare promenljive.
+      </p>
+
+      <p>
+        Ovde je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \sin 0=0,
+        \qquad
+        \sin \pi=0,
+        \]
+      </div>
+
+      <p>
+        ali između toga funkcija ide do vrednosti \(1\), pa se vraća nazad.
+        Zato granice \(0\to 0\) ne znače da je integral jednak nuli.
+      </p>
+
+      <p class="note">
+        Kada smena nije monotona, bezbedan postupak je:
+        rastaviti interval na delove na kojima je smena monotona,
+        pa onda raditi smenu posebno na svakom delu.
+      </p>
+    </section>
+
+  </div>
+</body>
+</html>
