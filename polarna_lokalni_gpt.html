@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Zadatak - Kolokvijum iz Matematike 2</title>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    font-family:'Times New Roman', Times, serif;
+    margin:0; padding:20px;
+    background:#f9fafb;
+}
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+.container{
+    max-width:900px;
+    margin:auto;
+}
+.card{
+    border-radius:8px;
+    box-shadow:0 4px 6px rgba(0,0,0,.1);
+    margin:20px 0;
+    padding:16px;
+    position:relative;
+    border-left:6px solid var(--stripe-color);
+}
+.card-title{
+    background:var(--header-color);
+    color:white;
+    font-weight:bold;
+    padding:8px 12px;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+}
+.task-card{--header-color:#5c9cd1;--stripe-color:#5c9cd1;background:#e0f3ff;}
+.idea-card{--header-color:#7b4fd0;--stripe-color:#7b4fd0;background:#d1b3ea;}
+.analysis-card{--header-color:#d99a22;--stripe-color:#d99a22;background:#ffe6bf;}
+.solution-card{--header-color:#2f9e72;--stripe-color:#2f9e72;background:#d5f1df;}
+.warning-card{--header-color:#d45b5b;--stripe-color:#d45b5b;background:#ffd4d4;}
+.answer-card{--header-color:#047857;--stripe-color:#047857;background:#c7e9dd;}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Zadatak: Izračunavanje dvostrukog integrala na preseku krugova</h1>
+
+    <div class="task-card card">
+        <div class="card-title">Zadatak</div>
+        <p>Izračunaj
+            $$\iint_{D} xy \, dx \, dy,$$
+            gde je  
+            \( D = \{(x,y)\mid x^2 + y^2 \le 2x,\; x^2 + y^2 \le 1,\; y \ge 0\}\).</p>
+    </div>
+
+    <div class="idea-card card">
+        <div class="card-title">Ideja</div>
+        <p>Upotrebiti polarne koordinate: \(x=r\cos\theta,\,y=r\sin\theta\).
+            U gornjoj polupolovini oblast je ograničena od dva kruga –
+            jedinicni krug i krug sa centrom \((1,0)\).  
+            Potrebno je pronaći funkciju \(r_{\max}(\theta)=\min(1,\;2\cos\theta)\)
+            i podeliti integral po tački gde se preklapaju (\(\theta=\pi/3\)).</p>
+    </div>
+
+    <div class="analysis-card card">
+        <div class="card-title">Analiza</div>
+        <p>U polarnim koordinatama
+            \[
+                r_{\max}(\theta)=
+                \begin{cases}
+                    1, & 0\le\theta\le\frac{\pi}{3},\\[4pt]
+                    2\cos\theta, & \frac{\pi}{3}\le\theta\le\frac{\pi}{2}.
+                \end{cases}
+            \]</p>
+        <p>Integrand je \(xy\,dx\,dy = r^{2}\cos\theta\,\sin\theta\,r\,dr\,d\theta
+            = r^{3}\cos\theta\,\sin\theta\,dr\,d\theta\).  
+            Prvi deo:
+            \[
+                I_{1}=\frac{1}{4}\int_{0}^{\pi/3}\!\cos\theta\,\sin\theta\,d\theta
+                =\frac{3}{32}.
+            \]
+            Drugi deo:
+            \[
+                I_{2}=4\int_{\pi/3}^{\pi/2}\!\cos^{5}\theta\,\sin\theta\,d\theta
+                =\frac{1}{96}.
+            \]</p>
+        <p>Ukupno je \(I=I_{1}+I_{2}=\frac{10}{96}=\frac{5}{48}\).</p>
+    </div>
+
+    <div class="solution-card card">
+        <div class="card-title">Rešenje</div>
+        <p>Izračunati integrali daju
+            \[
+                I = \frac{3}{32} + \frac{1}{96}
+                  = \frac{10}{96}
+                  = \boxed{\frac{5}{48}}.
+            \]</p>
+    </div>
+
+    <div class="warning-card card">
+        <div class="card-title">Napomena</div>
+        <p>Ukoliko se ne uzme u obzir segment
+            \(\theta\in[\pi/3,\pi/2]\), rezultat će biti pogrešan.  
+            Dobro je proveriti integral i u kartesijskim koordinatama:
+            \[
+                I = \int_{0}^{1/2}\!\frac{x}{2}(2x-x^{2})\,dx
+                  +\int_{1/2}^{1}\!\frac{x}{2}(1-x^{2})\,dx,
+            \]
+            što daje isti rezultat \(5/48\).</p>
+    </div>
+
+    <div class="answer-card card">
+        <div class="card-title">Odgovor</div>
+        <p>$$I=\frac{5}{48}.$$</p>
+    </div>
+</div>
+</body>
+</html>
