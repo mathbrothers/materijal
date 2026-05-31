@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kompleksni brojevi - algebarski postupak</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7ff, #fff8ee);
+      color: #243044;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2638d8, #6d7cff);
+      color: white;
+      border-radius: 26px;
+      padding: 30px;
+      box-shadow: 0 18px 40px rgba(38, 56, 216, 0.22);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 31px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.95;
+    }
+
+    .card {
+      border-radius: 22px;
+      padding: 24px 28px;
+      margin: 22px 0;
+      box-shadow: 0 10px 28px rgba(30, 45, 90, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+
+    .c1 { background: #ffffff; }
+    .c2 { background: #eef4ff; }
+    .c3 { background: #fff3df; }
+    .c4 { background: #edfdf5; }
+    .c5 { background: #f7efff; }
+
+    h2 {
+      margin-top: 0;
+      font-size: 23px;
+      color: #1d2a4d;
+    }
+
+    .formula-box {
+      background: rgba(255,255,255,0.76);
+      border-left: 6px solid #3446eb;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+
+    .important {
+      background: #fff7cc;
+      border-left: 6px solid #f3b300;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+
+    .answer {
+      background: linear-gradient(135deg, #1f9d62, #49c285);
+      color: white;
+      border-radius: 24px;
+      padding: 26px;
+      margin-top: 26px;
+      box-shadow: 0 16px 35px rgba(31, 157, 98, 0.22);
+    }
+
+    .answer h2 {
+      color: white;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .choice {
+      background: rgba(255,255,255,0.76);
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .correct {
+      background: #dff7e9;
+      border: 2px solid #1f9d62;
+      color: #11633d;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 34px;
+      color: #68728a;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Kompleksni brojevi — čisto algebarski postupak</h1>
+      <p>
+        Glavna ideja: prvo sredimo kompleksni razlomak, zatim koristimo periodičnost stepena broja \(i\).
+      </p>
+    </section>
+
+    <section class="card c1">
+      <h2>Zadatak</h2>
+
+      <p>
+        Ako je
+      </p>
+
+      <div class="formula-box">
+        \[
+        z=\left(5-\frac{3+7i}{1+i}\right)^{2022},
+        \qquad i^2=-1,
+        \]
+      </div>
+
+      <p>
+        odrediti vrednost izraza:
+      </p>
+
+      <div class="formula-box">
+        \[
+        z+\overline z
+        \]
+      </div>
+
+      <div class="choices">
+        <div class="choice correct">A) \(-2^{2023}\)</div>
+        <div class="choice">B) \(2^{2023}\)</div>
+        <div class="choice">C) \(-2^{2022}\)</div>
+        <div class="choice">D) \(2^{2022}\)</div>
+        <div class="choice">E) \(-2^{2021}\)</div>
+      </div>
+    </section>
+
+    <section class="card c2">
+      <h2>1. Sređujemo kompleksni razlomak</h2>
+
+      <p>
+        Prvo računamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{3+7i}{1+i}
+        \]
+      </div>
+
+      <p>
+        Imenilac oslobađamo od imaginarnog dela množenjem sa konjugovanim brojem:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{3+7i}{1+i}
+        =
+        \frac{(3+7i)(1-i)}{(1+i)(1-i)}
+        \]
+      </div>
+
+      <p>
+        Sređujemo brojilac:
+      </p>
+
+      <div class="formula-box">
+        \[
+        (3+7i)(1-i)
+        =
+        3-3i+7i-7i^2
+        \]
+      </div>
+
+      <p>
+        Pošto je \(i^2=-1\), imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        3-3i+7i-7i^2
+        =
+        3+4i+7
+        =
+        10+4i
+        \]
+      </div>
+
+      <p>
+        Imenilac je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        (1+i)(1-i)=1-i^2=1+1=2
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{3+7i}{1+i}
+        =
+        \frac{10+4i}{2}
+        =
+        5+2i
+        \]
+      </div>
+    </section>
+
+    <section class="card c3">
+      <h2>2. Sređujemo izraz u zagradi</h2>
+
+      <p>
+        Sada se unutrašnjost zagrade svodi na vrlo jednostavan broj:
+      </p>
+
+      <div class="formula-box">
+        \[
+        5-\frac{3+7i}{1+i}
+        =
+        5-(5+2i)
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        5-(5+2i)=-2i
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        z=(-2i)^{2022}
+        \]
+      </div>
+
+      <div class="important">
+        Ovo je ključni momenat zadatka. Ne treba prelaziti u trigonometrijski oblik.
+        Dovoljno je algebarski srediti zagradu.
+      </div>
+    </section>
+
+    <section class="card c4">
+      <h2>3. Računamo stepen</h2>
+
+      <p>
+        Razdvojimo stepen:
+      </p>
+
+      <div class="formula-box">
+        \[
+        (-2i)^{2022}=(-2)^{2022}i^{2022}
+        \]
+      </div>
+
+      <p>
+        Pošto je stepen \(2022\) paran, imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        (-2)^{2022}=2^{2022}
+        \]
+      </div>
+
+      <p>
+        Sada računamo \(i^{2022}\). Pošto se stepeni broja \(i\) ponavljaju na svaka \(4\), gledamo ostatak pri deljenju sa \(4\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        2022=4\cdot 505+2
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        i^{2022}=i^2=-1
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+        z=2^{2022}\cdot(-1)
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        z=-2^{2022}
+        \]
+      </div>
+    </section>
+
+    <section class="card c5">
+      <h2>4. Koristimo konjugovani broj</h2>
+
+      <p>
+        Dobili smo da je \(z\) realan broj:
+      </p>
+
+      <div class="formula-box">
+        \[
+        z=-2^{2022}
+        \]
+      </div>
+
+      <p>
+        Ako je broj realan, onda je jednak svom konjugovanom broju:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \overline z=z
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        z+\overline z=z+z=2z
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        z+\overline z
+        =
+        2\cdot(-2^{2022})
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        z+\overline z
+        =
+        -2\cdot 2^{2022}
+        =
+        -2^{2023}
+        \]
+      </div>
+    </section>
+
+    <section class="answer">
+      <h2>Konačan odgovor</h2>
+
+      <p>
+        Tražena vrednost je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{-2^{2023}}
+        \]
+      </div>
+
+      <p>
+        Dakle, tačan odgovor je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{\text{A) }-2^{2023}}
+        \]
+      </div>
+    </section>
+
+    <section class="card c1">
+      <h2>Kratka napomena</h2>
+
+      <p>
+        Najvažnije je prvo algebarski srediti razlomak
+        \(\frac{3+7i}{1+i}\). Kada se dobije \(5+2i\), cela zagrada postaje
+        \(-2i\), pa zadatak dalje ide direktno preko stepena broja \(i\).
+      </p>
+
+      <div class="important">
+        Nije potrebno koristiti trigonometrijski oblik kompleksnog broja.
+        Ovo je potpuno algebarsko rešenje.
+      </div>
+    </section>
+
+    <div class="footer">
+      Mathbrotherhood × ChatGPT — kompleksni brojevi, algebarski i bez panike.
+    </div>
+
+  </main>
+</body>
+</html>
