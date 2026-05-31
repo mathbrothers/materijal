@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigonometrijska jednačina - zbir rešenja</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #f4f7ff, #fff8ed);
+      color: #243044;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 40px auto;
+      padding: 24px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #273cdb, #6b7cff);
+      color: white;
+      border-radius: 26px;
+      padding: 30px;
+      box-shadow: 0 18px 40px rgba(39, 60, 219, 0.22);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 31px;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.95;
+    }
+
+    .card {
+      border-radius: 22px;
+      padding: 24px 28px;
+      margin: 22px 0;
+      box-shadow: 0 10px 28px rgba(30, 45, 90, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+    }
+
+    .c1 { background: #ffffff; }
+    .c2 { background: #eef4ff; }
+    .c3 { background: #fff3df; }
+    .c4 { background: #edfdf5; }
+    .c5 { background: #f7efff; }
+
+    h2 {
+      margin-top: 0;
+      font-size: 23px;
+      color: #1d2a4d;
+    }
+
+    .formula-box {
+      background: rgba(255,255,255,0.76);
+      border-left: 6px solid #3446eb;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+
+    .important {
+      background: #fff7cc;
+      border-left: 6px solid #f3b300;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+
+    .answer {
+      background: linear-gradient(135deg, #1f9d62, #49c285);
+      color: white;
+      border-radius: 24px;
+      padding: 26px;
+      margin-top: 26px;
+      box-shadow: 0 16px 35px rgba(31, 157, 98, 0.22);
+    }
+
+    .answer h2 {
+      color: white;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .choice {
+      background: rgba(255,255,255,0.76);
+      border-radius: 14px;
+      padding: 10px 12px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .correct {
+      background: #dff7e9;
+      border: 2px solid #1f9d62;
+      color: #11633d;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 34px;
+      color: #68728a;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Trigonometrijska jednačina — zbir rešenja</h1>
+      <p>
+        Glavna ideja: jednačinu svodimo na polinom po \(\cos x\), zatim pazimo
+        da je interval zatvoren: \([0,2\pi]\).
+      </p>
+    </section>
+
+    <section class="card c1">
+      <h2>Zadatak</h2>
+
+      <p>
+        Odrediti zbir svih realnih rešenja jednačine
+      </p>
+
+      <div class="formula-box">
+        \[
+        4(3-7\sin^2 x\cos x)=3(3\cos x+\cos 3x)
+        \]
+      </div>
+
+      <p>
+        na intervalu
+      </p>
+
+      <div class="formula-box">
+        \[
+        [0,2\pi].
+        \]
+      </div>
+
+      <div class="choices">
+        <div class="choice">A) \(2\pi\)</div>
+        <div class="choice correct">B) \(4\pi\)</div>
+        <div class="choice">C) \(\frac{7\pi}{3}\)</div>
+        <div class="choice">D) \(\frac{13\pi}{6}\)</div>
+        <div class="choice">E) \(\pi\)</div>
+      </div>
+    </section>
+
+    <section class="card c2">
+      <h2>1. Sređujemo desnu stranu</h2>
+
+      <p>
+        Koristimo identitet:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \cos 3x=4\cos^3x-3\cos x
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        3(3\cos x+\cos 3x)
+        =
+        3(3\cos x+4\cos^3x-3\cos x)
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        3(3\cos x+\cos 3x)=12\cos^3x
+        \]
+      </div>
+
+      <div class="important">
+        Ovde se lepo ponište članovi \(3\cos x\) i \(-3\cos x\).
+      </div>
+    </section>
+
+    <section class="card c3">
+      <h2>2. Sređujemo levu stranu</h2>
+
+      <p>
+        Koristimo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \sin^2x=1-\cos^2x
+        \]
+      </div>
+
+      <p>
+        Leva strana postaje:
+      </p>
+
+      <div class="formula-box">
+        \[
+        4(3-7\sin^2x\cos x)
+        =
+        12-28(1-\cos^2x)\cos x
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        12-28\cos x+28\cos^3x
+        \]
+      </div>
+    </section>
+
+    <section class="card c4">
+      <h2>3. Dobijamo jednačinu po \(\cos x\)</h2>
+
+      <p>
+        Sada jednačina glasi:
+      </p>
+
+      <div class="formula-box">
+        \[
+        12-28\cos x+28\cos^3x=12\cos^3x
+        \]
+      </div>
+
+      <p>
+        Prebacimo sve na jednu stranu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        16\cos^3x-28\cos x+12=0
+        \]
+      </div>
+
+      <p>
+        Podelimo sa \(4\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        4\cos^3x-7\cos x+3=0
+        \]
+      </div>
+
+      <p>
+        Uvedemo smenu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        t=\cos x
+        \]
+      </div>
+
+      <p>
+        Dobijamo kubnu jednačinu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        4t^3-7t+3=0
+        \]
+      </div>
+    </section>
+
+    <section class="card c5">
+      <h2>4. Rešavamo kubnu jednačinu</h2>
+
+      <p>
+        Faktorizacija je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        4t^3-7t+3=(t-1)(4t^2+4t-3)
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        t=1
+        \]
+      </div>
+
+      <p>
+        ili:
+      </p>
+
+      <div class="formula-box">
+        \[
+        4t^2+4t-3=0
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        t=\frac{-4\pm\sqrt{16+48}}{8}
+        =
+        \frac{-4\pm 8}{8}
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        t=\frac12
+        \qquad \text{ili} \qquad
+        t=-\frac32
+        \]
+      </div>
+
+      <div class="important">
+        Pošto je \(t=\cos x\), vrednost \(t=-\frac32\) odbacujemo, jer kosinus
+        ne može biti manji od \(-1\).
+      </div>
+
+      <p>
+        Dakle ostaju:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \cos x=1
+        \qquad \text{ili} \qquad
+        \cos x=\frac12
+        \]
+      </div>
+    </section>
+
+    <section class="card c2">
+      <h2>5. Rešenja na intervalu \([0,2\pi]\)</h2>
+
+      <p>
+        Za \(\cos x=1\), na zatvorenom intervalu \([0,2\pi]\), imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        x=0,\ 2\pi
+        \]
+      </div>
+
+      <p>
+        Za \(\cos x=\frac12\), imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        x=\frac{\pi}{3},\ \frac{5\pi}{3}
+        \]
+      </div>
+
+      <div class="important">
+        Ključna napomena: pošto je interval \([0,2\pi]\), oba kraja intervala
+        ulaze u rešenja. Zato računamo i \(0\) i \(2\pi\).
+      </div>
+    </section>
+
+    <section class="answer">
+      <h2>Konačan zbir</h2>
+
+      <p>
+        Saberemo sva rešenja:
+      </p>
+
+      <div class="formula-box">
+        \[
+        0+2\pi+\frac{\pi}{3}+\frac{5\pi}{3}
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        =
+        2\pi+\frac{6\pi}{3}
+        =
+        2\pi+2\pi
+        =
+        4\pi
+        \]
+      </div>
+
+      <p>
+        Zato je tačan odgovor:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{4\pi}
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        \boxed{\text{B) }4\pi}
+        \]
+      </div>
+    </section>
+
+    <section class="card c1">
+      <h2>Kratka napomena</h2>
+
+      <p>
+        Najlakše je pogrešiti ako se zaboravi da je interval zatvoren.
+        Rešenje \(x=0\) i rešenje \(x=2\pi\) predstavljaju istu tačku na
+        trigonometrijskom krugu, ali su na datom intervalu to dve različite
+        vrednosti promenljive \(x\), pa obe ulaze u zbir.
+      </p>
+    </section>
+
+    <div class="footer">
+      Mathbrotherhood × ChatGPT — trigonometrija bez panike.
+    </div>
+
+  </main>
+</body>
+</html>
