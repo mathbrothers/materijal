@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgabe H27 — Partielle Integration</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #6b7280;
+
+      --blue: #dbeafe;
+      --blue-border: #60a5fa;
+
+      --green: #dcfce7;
+      --green-border: #4ade80;
+
+      --orange: #ffedd5;
+      --orange-border: #fb923c;
+
+      --purple: #ede9fe;
+      --purple-border: #a78bfa;
+
+      --gray-border: #d1d5db;
+    }
+
+    body {
+      margin: 0;
+      padding: 36px 18px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #e0f2fe);
+      border: 1px solid #bfdbfe;
+      border-radius: 24px;
+      padding: 28px 30px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .task-box {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .task-box h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin: 22px 0;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      border-left: 8px solid var(--gray-border);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .blue {
+      background: linear-gradient(180deg, #ffffff, var(--blue));
+      border-left-color: var(--blue-border);
+    }
+
+    .green {
+      background: linear-gradient(180deg, #ffffff, var(--green));
+      border-left-color: var(--green-border);
+    }
+
+    .orange {
+      background: linear-gradient(180deg, #ffffff, var(--orange));
+      border-left-color: var(--orange-border);
+    }
+
+    .purple {
+      background: linear-gradient(180deg, #ffffff, var(--purple));
+      border-left-color: var(--purple-border);
+    }
+
+    .formula-box {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+
+    .note strong {
+      color: #c2410c;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .final {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 28px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    }
+
+    .final h2 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .final .formula-box {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 28px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Aufgabe H 27 — Partielle Integration</h1>
+      <p>
+        Računanje određenih integrala pomoću parcijalne integracije.
+      </p>
+    </section>
+
+    <section class="task-box">
+      <h2>Zadatak</h2>
+
+      <p>Izračunati sledeće integrale:</p>
+
+      <div class="formula-box">
+        \[
+          \text{(a)}\quad
+          \int_1^e x^2(\ln x)^2\,dx
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \text{(b)}\quad
+          \int_0^1 \ln(x^2+1)\,dx
+        \]
+      </div>
+    </section>
+
+    <section class="card blue">
+      <span class="tag">Metod</span>
+      <h2>Formula za parcijalnu integraciju</h2>
+
+      <p>
+        Koristimo formulu:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int u\,dv=uv-\int v\,du.
+        \]
+      </div>
+
+      <p>
+        Kod izraza sa logaritmom često biramo logaritamski deo za \(u\),
+        jer se njegovim izvođenjem izraz pojednostavljuje.
+      </p>
+    </section>
+
+    <section class="card green">
+      <span class="tag">Deo (a)</span>
+      <h2>Integral \(\int_1^e x^2(\ln x)^2\,dx\)</h2>
+
+      <p>
+        Označimo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=\int_1^e x^2(\ln x)^2\,dx.
+        \]
+      </div>
+
+      <p>
+        Biramo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          u=(\ln x)^2,
+          \qquad
+          dv=x^2\,dx.
+        \]
+      </div>
+
+      <p>
+        Tada je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          du=\frac{2\ln x}{x}\,dx,
+          \qquad
+          v=\frac{x^3}{3}.
+        \]
+      </div>
+
+      <p>
+        Primenjujemo parcijalnu integraciju:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left.
+          \frac{x^3}{3}(\ln x)^2
+          \right|_1^e
+          -
+          \int_1^e
+          \frac{x^3}{3}\cdot \frac{2\ln x}{x}\,dx.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left.
+          \frac{x^3}{3}(\ln x)^2
+          \right|_1^e
+          -
+          \frac23
+          \int_1^e x^2\ln x\,dx.
+        \]
+      </div>
+
+      <p>
+        Granični deo je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \left.
+          \frac{x^3}{3}(\ln x)^2
+          \right|_1^e
+          =
+          \frac{e^3}{3}\cdot 1^2
+          -
+          \frac{1}{3}\cdot 0^2
+          =
+          \frac{e^3}{3}.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac{e^3}{3}
+          -
+          \frac23
+          \int_1^e x^2\ln x\,dx.
+        \]
+      </div>
+
+      <p>
+        Sada računamo pomoćni integral:
+      </p>
+
+      <div class="formula-box">
+        \[
+          J=\int_1^e x^2\ln x\,dx.
+        \]
+      </div>
+
+      <p>
+        Opet koristimo parcijalnu integraciju:
+      </p>
+
+      <div class="formula-box">
+        \[
+          u=\ln x,
+          \qquad
+          dv=x^2\,dx.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          du=\frac{1}{x}\,dx,
+          \qquad
+          v=\frac{x^3}{3}.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+          J=
+          \left.
+          \frac{x^3}{3}\ln x
+          \right|_1^e
+          -
+          \int_1^e
+          \frac{x^3}{3}\cdot \frac{1}{x}\,dx.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          J=
+          \left.
+          \frac{x^3}{3}\ln x
+          \right|_1^e
+          -
+          \frac13
+          \int_1^e x^2\,dx.
+        \]
+      </div>
+
+      <p>
+        Računamo prvi deo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \left.
+          \frac{x^3}{3}\ln x
+          \right|_1^e
+          =
+          \frac{e^3}{3}\cdot 1
+          -
+          \frac13\cdot 0
+          =
+          \frac{e^3}{3}.
+        \]
+      </div>
+
+      <p>
+        A drugi deo je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac13\int_1^e x^2\,dx
+          =
+          \frac13
+          \left.
+          \frac{x^3}{3}
+          \right|_1^e
+          =
+          \frac{e^3-1}{9}.
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          J=
+          \frac{e^3}{3}
+          -
+          \frac{e^3-1}{9}
+          =
+          \frac{3e^3-(e^3-1)}{9}
+          =
+          \frac{2e^3+1}{9}.
+        \]
+      </div>
+
+      <p>
+        Vraćamo u izraz za \(I\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac{e^3}{3}
+          -
+          \frac23\cdot
+          \frac{2e^3+1}{9}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac{e^3}{3}
+          -
+          \frac{4e^3+2}{27}
+          =
+          \frac{9e^3-4e^3-2}{27}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          I=\frac{5e^3-2}{27}
+          }.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Pedagoška poenta:</strong>
+        parcijalna integracija se ovde radi dva puta, jer se stepen logaritma smanjuje:
+        \[
+          (\ln x)^2 \longrightarrow \ln x \longrightarrow 1.
+        \]
+      </div>
+    </section>
+
+    <section class="card orange">
+      <span class="tag">Deo (b)</span>
+      <h2>Integral \(\int_0^1 \ln(x^2+1)\,dx\)</h2>
+
+      <p>
+        Označimo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=\int_0^1 \ln(x^2+1)\,dx.
+        \]
+      </div>
+
+      <p>
+        Pošto logaritam ne znamo direktno da integrišemo,
+        biramo logaritamski izraz za \(u\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          u=\ln(x^2+1),
+          \qquad
+          dv=dx.
+        \]
+      </div>
+
+      <p>
+        Tada je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          du=\frac{2x}{x^2+1}\,dx,
+          \qquad
+          v=x.
+        \]
+      </div>
+
+      <p>
+        Primenjujemo parcijalnu integraciju:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left.
+          x\ln(x^2+1)
+          \right|_0^1
+          -
+          \int_0^1
+          x\cdot \frac{2x}{x^2+1}\,dx.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left.
+          x\ln(x^2+1)
+          \right|_0^1
+          -
+          \int_0^1
+          \frac{2x^2}{x^2+1}\,dx.
+        \]
+      </div>
+
+      <p>
+        Prvi deo je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \left.
+          x\ln(x^2+1)
+          \right|_0^1
+          =
+          1\cdot \ln 2
+          -
+          0\cdot \ln 1
+          =
+          \ln 2.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \ln 2
+          -
+          \int_0^1
+          \frac{2x^2}{x^2+1}\,dx.
+        \]
+      </div>
+
+      <p>
+        Sada sređujemo razlomak:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{2x^2}{x^2+1}
+          =
+          2\cdot
+          \frac{x^2+1-1}{x^2+1}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \frac{2x^2}{x^2+1}
+          =
+          2\left(
+          1-\frac{1}{x^2+1}
+          \right)
+          =
+          2-\frac{2}{x^2+1}.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \ln 2
+          -
+          \int_0^1
+          \left(
+          2-\frac{2}{x^2+1}
+          \right)dx.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \ln 2
+          -
+          \left(
+          \int_0^1 2\,dx
+          -
+          \int_0^1
+          \frac{2}{x^2+1}\,dx
+          \right).
+        \]
+      </div>
+
+      <p>
+        Koristimo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int \frac{1}{x^2+1}\,dx=\arctan x.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \ln 2
+          -
+          \left(
+          2x\Big|_0^1
+          -
+          2\arctan x\Big|_0^1
+          \right).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \ln 2
+          -
+          \left(
+          2
+          -
+          2\cdot\frac{\pi}{4}
+          \right).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \ln 2
+          -
+          \left(
+          2-\frac{\pi}{2}
+          \right).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          I=\ln 2+\frac{\pi}{2}-2
+          }.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Ključni detalj:</strong>
+        posle parcijalne integracije pojavljuje se razlomak
+        \[
+          \frac{2x^2}{x^2+1},
+        \]
+        koji treba prepoznati kao
+        \[
+          2-\frac{2}{x^2+1}.
+        \]
+        Tu se prirodno pojavljuje \(\arctan x\).
+      </div>
+    </section>
+
+    <section class="final">
+      <h2>Konačni odgovori</h2>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(a)}\quad
+          \int_1^e x^2(\ln x)^2\,dx
+          =
+          \frac{5e^3-2}{27}
+          }
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(b)}\quad
+          \int_0^1 \ln(x^2+1)\,dx
+          =
+          \ln 2+\frac{\pi}{2}-2
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>
+        Mathbrotherhood × ChatGPT — parcijalna integracija, bez panike i bez preskakanja koraka.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>
