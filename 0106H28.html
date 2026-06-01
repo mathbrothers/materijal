@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgabe H28 — Integration durch Substitution</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #6b7280;
+
+      --blue: #dbeafe;
+      --blue-border: #60a5fa;
+
+      --green: #dcfce7;
+      --green-border: #4ade80;
+
+      --orange: #ffedd5;
+      --orange-border: #fb923c;
+
+      --purple: #ede9fe;
+      --purple-border: #a78bfa;
+
+      --red: #fee2e2;
+      --red-border: #f87171;
+
+      --gray-border: #d1d5db;
+    }
+
+    body {
+      margin: 0;
+      padding: 36px 18px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #e0f2fe);
+      border: 1px solid #bfdbfe;
+      border-radius: 24px;
+      padding: 28px 30px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .task-box {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .task-box h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin: 22px 0;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      border-left: 8px solid var(--gray-border);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .blue {
+      background: linear-gradient(180deg, #ffffff, var(--blue));
+      border-left-color: var(--blue-border);
+    }
+
+    .green {
+      background: linear-gradient(180deg, #ffffff, var(--green));
+      border-left-color: var(--green-border);
+    }
+
+    .orange {
+      background: linear-gradient(180deg, #ffffff, var(--orange));
+      border-left-color: var(--orange-border);
+    }
+
+    .purple {
+      background: linear-gradient(180deg, #ffffff, var(--purple));
+      border-left-color: var(--purple-border);
+    }
+
+    .red {
+      background: linear-gradient(180deg, #ffffff, var(--red));
+      border-left-color: var(--red-border);
+    }
+
+    .formula-box {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+
+    .note strong {
+      color: #c2410c;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .final {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 28px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    }
+
+    .final h2 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .final .formula-box {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 28px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Aufgabe H 28 — Integration durch Substitution</h1>
+      <p>
+        Računanje integrala pomoću smene, uz proveru monotonosti, domena i mogućih nesvojstvenih slučajeva.
+      </p>
+    </section>
+
+    <section class="task-box">
+      <h2>Zadatak</h2>
+
+      <p>Izračunati sledeće integrale:</p>
+
+      <div class="formula-box">
+        \[
+          \text{(a)}\quad
+          \int_1^2
+          \frac{1+2x^2}{x^3(1+x^2)}\,dx,
+          \qquad
+          \text{koristiti smenu } u=x^2.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \text{(b)}\quad
+          \int
+          \frac{1}{x\sqrt{1-(\ln x)^2}}\,dx
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \text{(c)}\quad
+          \int_0^{\ln 2}
+          \frac{1}{e^x+2}\,dx
+        \]
+      </div>
+    </section>
+
+    <section class="card blue">
+      <span class="tag">Pre računanja</span>
+      <h2>Šta proveravamo kod smene?</h2>
+
+      <p>
+        Kod određenih integrala sa smenom posebno pazimo na tri stvari:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \text{domen integranda},\qquad
+          \text{monotonost smene},\qquad
+          \text{da li je integral nesvojstven.}
+        \]
+      </div>
+
+      <p>
+        Ako je smena monotona na posmatranom intervalu, granice se menjaju direktno.
+        Ako smena nije monotona, nekad moramo da rastavimo integral na delove.
+      </p>
+    </section>
+
+    <section class="card green">
+      <span class="tag">Deo (a)</span>
+      <h2>Integral sa zadatom smenom \(u=x^2\)</h2>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_1^2
+          \frac{1+2x^2}{x^3(1+x^2)}\,dx.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Provera:</strong>
+        Na intervalu \([1,2]\) smena \(u=x^2\) je strogo rastuća.
+        Takođe, nema problema sa domenom jer je \(x\neq 0\) i \(1+x^2>0\).
+        Integral nije nesvojstven.
+      </div>
+
+      <p>
+        Uzimamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          u=x^2,
+          \qquad
+          du=2x\,dx,
+          \qquad
+          dx=\frac{du}{2x}.
+        \]
+      </div>
+
+      <p>
+        Granice se menjaju ovako:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x=1 \Rightarrow u=1,
+          \qquad
+          x=2 \Rightarrow u=4.
+        \]
+      </div>
+
+      <p>
+        Pošto je \(x^2=u\), imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          1+2x^2=1+2u,
+          \qquad
+          1+x^2=1+u.
+        \]
+      </div>
+
+      <p>
+        Zbog faktora \(dx=\frac{du}{2x}\), u imeniocu se pojavljuje:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x^3\cdot x=x^4=(x^2)^2=u^2.
+        \]
+      </div>
+
+      <p>
+        Zato integral postaje:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_1^4
+          \frac{1+2u}{2u^2(1+u)}\,du.
+        \]
+      </div>
+
+      <p>
+        Rastavljamo na parcijalne razlomke:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{1+2u}{2u^2(1+u)}
+          =
+          \frac{1}{2u}
+          +
+          \frac{1}{2u^2}
+          -
+          \frac{1}{2(1+u)}.
+        \]
+      </div>
+
+      <p>
+        Sada integrišemo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_1^4
+          \left(
+          \frac{1}{2u}
+          +
+          \frac{1}{2u^2}
+          -
+          \frac{1}{2(1+u)}
+          \right)du.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left[
+          \frac12\ln u
+          -
+          \frac{1}{2u}
+          -
+          \frac12\ln(1+u)
+          \right]_1^4.
+        \]
+      </div>
+
+      <p>
+        Spojimo logaritme:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left[
+          \frac12\ln\frac{u}{1+u}
+          -
+          \frac{1}{2u}
+          \right]_1^4.
+        \]
+      </div>
+
+      <p>
+        Računamo vrednosti na granicama:
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(4)=
+          \frac12\ln\frac45-\frac18,
+          \qquad
+          F(1)=
+          \frac12\ln\frac12-\frac12.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac12\ln\frac45-\frac18
+          -
+          \left(
+          \frac12\ln\frac12-\frac12
+          \right).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac12\ln\frac45
+          -
+          \frac12\ln\frac12
+          +
+          \frac38.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac12\ln\left(\frac45\cdot 2\right)
+          +
+          \frac38.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          I=
+          \frac12\ln\frac85+\frac38
+          }.
+        \]
+      </div>
+    </section>
+
+    <section class="card orange">
+      <span class="tag">Deo (b)</span>
+      <h2>Integral sa smenom \(u=\ln x\)</h2>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int
+          \frac{1}{x\sqrt{1-(\ln x)^2}}\,dx.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Važna napomena o domenu:</strong>
+        Zbog korena u imeniocu mora da važi
+        \[
+          1-(\ln x)^2>0.
+        \]
+        Dakle:
+        \[
+          -1<\ln x<1,
+          \qquad
+          e^{-1}<x<e.
+        \]
+        Zato je integrand realno definisan na intervalu
+        \[
+          \left(\frac1e,e\right).
+        \]
+        Ako bi određeni integral imao granice \(x=\frac1e\) ili \(x=e\),
+        tada bi se pojavio nesvojstveni integral.
+      </div>
+
+      <p>
+        Prirodna smena je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          u=\ln x.
+        \]
+      </div>
+
+      <p>
+        Tada je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          du=\frac1x\,dx.
+        \]
+      </div>
+
+      <p>
+        Integral prelazi u standardni oblik:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int
+          \frac{du}{\sqrt{1-u^2}}.
+        \]
+      </div>
+
+      <p>
+        Koristimo poznati integral:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int
+          \frac{du}{\sqrt{1-u^2}}
+          =
+          \arcsin u+C.
+        \]
+      </div>
+
+      <p>
+        Vraćamo smenu \(u=\ln x\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          I=
+          \arcsin(\ln x)+C
+          }.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Monotonost smene:</strong>
+        Funkcija \(\ln x\) je strogo rastuća za \(x>0\),
+        pa sama smena nema problem monotonosti.
+        Glavna problematika ovog primera je domen izraza pod korenom.
+      </div>
+    </section>
+
+    <section class="card purple">
+      <span class="tag">Deo (c)</span>
+      <h2>Integral sa smenom \(u=e^x\)</h2>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_0^{\ln 2}
+          \frac{1}{e^x+2}\,dx.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Provera:</strong>
+        Na intervalu \([0,\ln 2]\) funkcija \(u=e^x\) je strogo rastuća.
+        Takođe, \(e^x+2>0\), pa nema prekida ni nesvojstvenog integrala.
+      </div>
+
+      <p>
+        Uzimamo smenu:
+      </p>
+
+      <div class="formula-box">
+        \[
+          u=e^x.
+        \]
+      </div>
+
+      <p>
+        Tada je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          du=e^x\,dx=u\,dx,
+          \qquad
+          dx=\frac{du}{u}.
+        \]
+      </div>
+
+      <p>
+        Granice se menjaju ovako:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x=0 \Rightarrow u=1,
+          \qquad
+          x=\ln 2 \Rightarrow u=2.
+        \]
+      </div>
+
+      <p>
+        Integral postaje:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_1^2
+          \frac{1}{u+2}\cdot \frac{du}{u}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_1^2
+          \frac{1}{u(u+2)}\,du.
+        \]
+      </div>
+
+      <p>
+        Rastavljamo na parcijalne razlomke:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{1}{u(u+2)}
+          =
+          \frac{A}{u}
+          +
+          \frac{B}{u+2}.
+        \]
+      </div>
+
+      <p>
+        Množenjem sa \(u(u+2)\) dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          1=A(u+2)+Bu.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          1=(A+B)u+2A.
+        \]
+      </div>
+
+      <p>
+        Odavde:
+      </p>
+
+      <div class="formula-box">
+        \[
+          2A=1 \Rightarrow A=\frac12,
+          \qquad
+          A+B=0 \Rightarrow B=-\frac12.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{1}{u(u+2)}
+          =
+          \frac{1}{2u}
+          -
+          \frac{1}{2(u+2)}.
+        \]
+      </div>
+
+      <p>
+        Sada integrišemo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_1^2
+          \left(
+          \frac{1}{2u}
+          -
+          \frac{1}{2(u+2)}
+          \right)du.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left[
+          \frac12\ln u
+          -
+          \frac12\ln(u+2)
+          \right]_1^2.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \left[
+          \frac12\ln\frac{u}{u+2}
+          \right]_1^2.
+        \]
+      </div>
+
+      <p>
+        Računamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac12\ln\frac{2}{4}
+          -
+          \frac12\ln\frac{1}{3}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac12\ln\frac12
+          -
+          \frac12\ln\frac13.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          \frac12\ln\left(\frac12\cdot 3\right).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          I=
+          \frac12\ln\frac32
+          }.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Ključni detalj:</strong>
+        Kod smene \(u=e^x\) ne smemo zaboraviti da je
+        \[
+          dx=\frac{du}{u}.
+        \]
+        Zato se ne dobija samo imenilac \(u+2\), nego
+        \[
+          u(u+2).
+        \]
+      </div>
+    </section>
+
+    <section class="final">
+      <h2>Konačni odgovori</h2>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(a)}\quad
+          \int_1^2
+          \frac{1+2x^2}{x^3(1+x^2)}\,dx
+          =
+          \frac12\ln\frac85+\frac38
+          }
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(b)}\quad
+          \int
+          \frac{1}{x\sqrt{1-(\ln x)^2}}\,dx
+          =
+          \arcsin(\ln x)+C,
+          \qquad
+          \frac{1}{e}\lt x\lt e
+          }
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(c)}\quad
+          \int_0^{\ln 2}
+          \frac{1}{e^x+2}\,dx
+          =
+          \frac12\ln\frac32
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>
+        Mathbrotherhood × ChatGPT — smene, domeni i monotono ponašanje pod kontrolom.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>
