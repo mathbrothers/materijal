@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgabe H30 — Umkehrfunktion</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #6b7280;
+
+      --blue: #dbeafe;
+      --blue-border: #60a5fa;
+
+      --green: #dcfce7;
+      --green-border: #4ade80;
+
+      --orange: #ffedd5;
+      --orange-border: #fb923c;
+
+      --purple: #ede9fe;
+      --purple-border: #a78bfa;
+
+      --gray-border: #d1d5db;
+    }
+
+    body {
+      margin: 0;
+      padding: 36px 18px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #e0f2fe);
+      border: 1px solid #bfdbfe;
+      border-radius: 24px;
+      padding: 28px 30px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .task-box {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .task-box h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin: 22px 0;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      border-left: 8px solid var(--gray-border);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .blue {
+      background: linear-gradient(180deg, #ffffff, var(--blue));
+      border-left-color: var(--blue-border);
+    }
+
+    .green {
+      background: linear-gradient(180deg, #ffffff, var(--green));
+      border-left-color: var(--green-border);
+    }
+
+    .orange {
+      background: linear-gradient(180deg, #ffffff, var(--orange));
+      border-left-color: var(--orange-border);
+    }
+
+    .purple {
+      background: linear-gradient(180deg, #ffffff, var(--purple));
+      border-left-color: var(--purple-border);
+    }
+
+    .formula-box {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+
+    .note strong {
+      color: #c2410c;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .final {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 28px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    }
+
+    .final h2 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .final .formula-box {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 28px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Aufgabe H 30 — Umkehrfunktion</h1>
+      <p>
+        Bonus zadatak: izvođenje formule za inverznu hiperboličku sinus funkciju.
+      </p>
+    </section>
+
+    <section class="task-box">
+      <h2>Zadatak</h2>
+
+      <p><strong>(a)</strong> Neka je \(y\in\mathbb R\). Odrediti \(t\in\mathbb R^+\) tako da važi:</p>
+
+      <div class="formula-box">
+        \[
+          t^2-2yt-1=0.
+        \]
+      </div>
+
+      <p><strong>(b)</strong> Rešiti jednačinu \(y=\sinh(x)\) po \(x\), koristeći deo (a).</p>
+
+      <p>Time potvrditi da za \(y\in\mathbb R\) važi:</p>
+
+      <div class="formula-box">
+        \[
+          \operatorname{arsinh}(y)
+          =
+          \ln\left(y+\sqrt{y^2+1}\right).
+        \]
+      </div>
+    </section>
+
+    <section class="card blue">
+      <span class="tag">Ideja zadatka</span>
+      <h2>Šta zapravo traže?</h2>
+
+      <p>
+        Reč <em>Umkehrfunktion</em> znači inverzna funkcija. Ovde se izvodi formula
+        za inverznu funkciju hiperboličkog sinusa.
+      </p>
+
+      <div class="formula-box">
+        \[
+          y=\sinh x
+          \qquad\Longleftrightarrow\qquad
+          x=\operatorname{arsinh}(y).
+        \]
+      </div>
+
+      <p>
+        Poenta je da se izraz sa \(\sinh x\) pretvori u kvadratnu jednačinu pomoću smene:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t=e^x.
+        \]
+      </div>
+    </section>
+
+    <section class="card green">
+      <span class="tag">Deo (a)</span>
+      <h2>Pozitivno rešenje kvadratne jednačine</h2>
+
+      <p>
+        Polazimo od jednačine:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t^2-2yt-1=0.
+        \]
+      </div>
+
+      <p>
+        Koristimo formulu za kvadratnu jednačinu:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t=
+          \frac{2y\pm\sqrt{(-2y)^2-4\cdot 1\cdot(-1)}}{2}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          t=
+          \frac{2y\pm\sqrt{4y^2+4}}{2}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          t=
+          \frac{2y\pm 2\sqrt{y^2+1}}{2}.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t=y\pm\sqrt{y^2+1}.
+        \]
+      </div>
+
+      <p>
+        Sada biramo pozitivno rešenje. Pošto je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \sqrt{y^2+1}\gt |y|,
+        \]
+      </div>
+
+      <p>
+        važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+          y+\sqrt{y^2+1}\gt 0,
+        \]
+      </div>
+
+      <p>
+        dok je drugo rešenje negativno:
+      </p>
+
+      <div class="formula-box">
+        \[
+          y-\sqrt{y^2+1}\lt 0.
+        \]
+      </div>
+
+      <p>
+        Zato je traženo pozitivno rešenje:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          t=y+\sqrt{y^2+1}
+          }.
+        \]
+      </div>
+    </section>
+
+    <section class="card orange">
+      <span class="tag">Deo (b)</span>
+      <h2>Rešavanje jednačine \(y=\sinh x\)</h2>
+
+      <p>
+        Koristimo definiciju hiperboličkog sinusa:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \sinh x=\frac{e^x-e^{-x}}{2}.
+        \]
+      </div>
+
+      <p>
+        Data jednačina je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          y=\sinh x.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+          y=
+          \frac{e^x-e^{-x}}{2}.
+        \]
+      </div>
+
+      <p>
+        Uvedimo smenu:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t=e^x.
+        \]
+      </div>
+
+      <p>
+        Pošto je eksponencijalna funkcija uvek pozitivna, imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t\in\mathbb R^+.
+        \]
+      </div>
+
+      <p>
+        Takođe:
+      </p>
+
+      <div class="formula-box">
+        \[
+          e^{-x}=\frac{1}{e^x}=\frac1t.
+        \]
+      </div>
+
+      <p>
+        Zato jednačina postaje:
+      </p>
+
+      <div class="formula-box">
+        \[
+          y=
+          \frac{t-\frac1t}{2}.
+        \]
+      </div>
+
+      <p>
+        Množimo sa \(2\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          2y=t-\frac1t.
+        \]
+      </div>
+
+      <p>
+        Množimo sa \(t\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          2yt=t^2-1.
+        \]
+      </div>
+
+      <p>
+        Prebacimo sve na jednu stranu:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t^2-2yt-1=0.
+        \]
+      </div>
+
+      <p>
+        Ovo je upravo jednačina iz dela (a). Pošto je \(t=e^x\gt 0\),
+        uzimamo pozitivno rešenje:
+      </p>
+
+      <div class="formula-box">
+        \[
+          t=y+\sqrt{y^2+1}.
+        \]
+      </div>
+
+      <p>
+        Vraćamo \(t=e^x\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          e^x=y+\sqrt{y^2+1}.
+        \]
+      </div>
+
+      <p>
+        Sada logaritmujemo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x=
+          \ln\left(y+\sqrt{y^2+1}\right).
+        \]
+      </div>
+
+      <p>
+        Pošto je \(x\) rešenje jednačine \(y=\sinh x\), to znači da je \(x\)
+        vrednost inverzne funkcije od \(\sinh x\).
+      </p>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \operatorname{arsinh}(y)
+          =
+          \ln\left(y+\sqrt{y^2+1}\right)
+          }.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Važan detalj:</strong>
+        izraz
+        \[
+          y+\sqrt{y^2+1}
+        \]
+        je uvek pozitivan, pa je logaritam dobro definisan za svako
+        \(y\in\mathbb R\).
+      </div>
+    </section>
+
+    <section class="card purple">
+      <span class="tag">Kratka provera</span>
+      <h2>Zašto je ovo zaista inverzna funkcija?</h2>
+
+      <p>
+        Funkcija \(\sinh x\) je strogo rastuća na celoj realnoj pravoj, jer je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          (\sinh x)'=\cosh x\gt 0.
+        \]
+      </div>
+
+      <p>
+        Zato ona ima inverznu funkciju na celom skupu realnih brojeva.
+        Dobijena formula važi za svako \(y\in\mathbb R\).
+      </p>
+    </section>
+
+    <section class="final">
+      <h2>Konačni odgovori</h2>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(a)}\quad
+          t=y+\sqrt{y^2+1}
+          }
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(b)}\quad
+          x=
+          \ln\left(y+\sqrt{y^2+1}\right)
+          }
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \operatorname{arsinh}(y)
+          =
+          \ln\left(y+\sqrt{y^2+1}\right),
+          \qquad y\in\mathbb R
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>
+        Mathbrotherhood × ChatGPT — Nemci završeni, hiperbolički sinus ukroćen.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>
