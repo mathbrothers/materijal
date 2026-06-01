@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgabe H29 — Partialbruchzerlegung</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #6b7280;
+
+      --blue: #dbeafe;
+      --blue-border: #60a5fa;
+
+      --green: #dcfce7;
+      --green-border: #4ade80;
+
+      --orange: #ffedd5;
+      --orange-border: #fb923c;
+
+      --purple: #ede9fe;
+      --purple-border: #a78bfa;
+
+      --gray-border: #d1d5db;
+    }
+
+    body {
+      margin: 0;
+      padding: 36px 18px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #e0f2fe);
+      border: 1px solid #bfdbfe;
+      border-radius: 24px;
+      padding: 28px 30px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .task-box {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .task-box h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin: 22px 0;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+      border-left: 8px solid var(--gray-border);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.45rem;
+    }
+
+    .blue {
+      background: linear-gradient(180deg, #ffffff, var(--blue));
+      border-left-color: var(--blue-border);
+    }
+
+    .green {
+      background: linear-gradient(180deg, #ffffff, var(--green));
+      border-left-color: var(--green-border);
+    }
+
+    .orange {
+      background: linear-gradient(180deg, #ffffff, var(--orange));
+      border-left-color: var(--orange-border);
+    }
+
+    .purple {
+      background: linear-gradient(180deg, #ffffff, var(--purple));
+      border-left-color: var(--purple-border);
+    }
+
+    .formula-box {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin: 16px 0;
+    }
+
+    .note strong {
+      color: #c2410c;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .final {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 28px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    }
+
+    .final h2 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .final .formula-box {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 28px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Aufgabe H 29 — Integration durch Partialbruchzerlegung</h1>
+      <p>
+        Integrali racionalnih funkcija: prvo deljenje polinoma kada je potrebno,
+        zatim rastavljanje na parcijalne razlomke.
+      </p>
+    </section>
+
+    <section class="task-box">
+      <h2>Zadatak</h2>
+
+      <p>Izračunati sledeće integrale:</p>
+
+      <div class="formula-box">
+        \[
+          \text{(a)}\quad
+          \int
+          \frac{x^3}{x^2-3x+2}\,dx
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \text{(b)}\quad
+          \int_{-1}^{0}
+          \frac{x^2}{(x-1)^2(x-2)}\,dx
+        \]
+      </div>
+    </section>
+
+    <section class="card blue">
+      <span class="tag">Metod</span>
+      <h2>Šta radimo kod racionalnih funkcija?</h2>
+
+      <p>
+        Ako je stepen brojioca veći ili jednak stepenu imenioca,
+        prvo radimo deljenje polinoma.
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{P(x)}{Q(x)}
+          =
+          \text{polinom}
+          +
+          \frac{\text{ostatak}}{Q(x)}.
+        \]
+      </div>
+
+      <p>
+        Tek posle toga ostatak rastavljamo na parcijalne razlomke.
+      </p>
+    </section>
+
+    <section class="card green">
+      <span class="tag">Deo (a)</span>
+      <h2>Integral \(\int \frac{x^3}{x^2-3x+2}\,dx\)</h2>
+
+      <p>
+        Imenilac faktorišemo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x^2-3x+2=(x-1)(x-2).
+        \]
+      </div>
+
+      <p>
+        Pošto je stepen brojioca veći od stepena imenioca,
+        prvo radimo deljenje polinoma:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{x^3}{x^2-3x+2}
+          =
+          x+3+
+          \frac{7x-6}{x^2-3x+2}.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{x^3}{x^2-3x+2}
+          =
+          x+3+
+          \frac{7x-6}{(x-1)(x-2)}.
+        \]
+      </div>
+
+      <p>
+        Sada rastavljamo ostatak:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{7x-6}{(x-1)(x-2)}
+          =
+          \frac{A}{x-1}
+          +
+          \frac{B}{x-2}.
+        \]
+      </div>
+
+      <p>
+        Množenjem sa \((x-1)(x-2)\) dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          7x-6=A(x-2)+B(x-1).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          7x-6=(A+B)x-(2A+B).
+        \]
+      </div>
+
+      <p>
+        Poređenjem koeficijenata:
+      </p>
+
+      <div class="formula-box">
+        \[
+          A+B=7,
+          \qquad
+          2A+B=6.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          A=-1,
+          \qquad
+          B=8.
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{x^3}{x^2-3x+2}
+          =
+          x+3-\frac{1}{x-1}
+          +
+          \frac{8}{x-2}.
+        \]
+      </div>
+
+      <p>
+        Sada integrišemo član po član:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int
+          \frac{x^3}{x^2-3x+2}\,dx
+          =
+          \int
+          \left(
+          x+3-\frac{1}{x-1}
+          +
+          \frac{8}{x-2}
+          \right)dx.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \int
+          \frac{x^3}{x^2-3x+2}\,dx
+          =
+          \frac{x^2}{2}
+          +
+          3x
+          -
+          \ln|x-1|
+          +
+          8\ln|x-2|
+          +
+          C
+          }.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Napomena o domenu:</strong>
+        integrand nije definisan za \(x=1\) i \(x=2\).
+        Zato primitivna funkcija važi na svakom intervalu koji ne sadrži te tačke.
+      </div>
+    </section>
+
+    <section class="card orange">
+      <span class="tag">Deo (b)</span>
+      <h2>Određeni integral sa dvostrukim faktorom</h2>
+
+      <div class="formula-box">
+        \[
+          I=
+          \int_{-1}^{0}
+          \frac{x^2}{(x-1)^2(x-2)}\,dx.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Provera:</strong>
+        problematične tačke su \(x=1\) i \(x=2\), ali one nisu u intervalu
+        \([-1,0]\). Zato integral nije nesvojstven.
+      </div>
+
+      <p>
+        Pošto imamo faktor \((x-1)^2\), parcijalni razlomci imaju oblik:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{x^2}{(x-1)^2(x-2)}
+          =
+          \frac{A}{x-1}
+          +
+          \frac{B}{(x-1)^2}
+          +
+          \frac{C}{x-2}.
+        \]
+      </div>
+
+      <p>
+        Množenjem sa \((x-1)^2(x-2)\) dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x^2
+          =
+          A(x-1)(x-2)
+          +
+          B(x-2)
+          +
+          C(x-1)^2.
+        \]
+      </div>
+
+      <p>
+        Razvijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x^2
+          =
+          A(x^2-3x+2)
+          +
+          B(x-2)
+          +
+          C(x^2-2x+1).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          x^2
+          =
+          (A+C)x^2
+          +
+          (-3A+B-2C)x
+          +
+          (2A-2B+C).
+        \]
+      </div>
+
+      <p>
+        Poređenjem koeficijenata dobijamo sistem:
+      </p>
+
+      <div class="formula-box">
+        \[
+          A+C=1,
+          \qquad
+          -3A+B-2C=0,
+          \qquad
+          2A-2B+C=0.
+        \]
+      </div>
+
+      <p>
+        Rešenje sistema je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          A=-3,
+          \qquad
+          B=-1,
+          \qquad
+          C=4.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac{x^2}{(x-1)^2(x-2)}
+          =
+          -\frac{3}{x-1}
+          -
+          \frac{1}{(x-1)^2}
+          +
+          \frac{4}{x-2}.
+        \]
+      </div>
+
+      <p>
+        Primitivna funkcija je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(x)
+          =
+          -3\ln|x-1|
+          +
+          \frac{1}{x-1}
+          +
+          4\ln|x-2|.
+        \]
+      </div>
+
+      <p>
+        Sada računamo vrednosti na granicama.
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(0)
+          =
+          -3\ln|-1|
+          +
+          \frac{1}{-1}
+          +
+          4\ln|-2|
+          =
+          -1+4\ln2.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          F(-1)
+          =
+          -3\ln|-2|
+          +
+          \frac{1}{-2}
+          +
+          4\ln|-3|
+          =
+          -3\ln2-\frac12+4\ln3.
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          I=F(0)-F(-1).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          -1+4\ln2
+          -
+          \left(
+          -3\ln2-\frac12+4\ln3
+          \right).
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          I=
+          7\ln2-4\ln3-\frac12.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \int_{-1}^{0}
+          \frac{x^2}{(x-1)^2(x-2)}\,dx
+          =
+          7\ln2-4\ln3-\frac12
+          }.
+        \]
+      </div>
+
+      <div class="note">
+        <strong>Kontrola znaka:</strong>
+        Na intervalu \([-1,0]\) imenilac je negativan,
+        jer je \((x-1)^2\) pozitivan, a \(x-2\) negativan.
+        Brojilac \(x^2\) je nenegativan, pa integral treba da bude negativan.
+        Zaista:
+        \[
+          7\ln2-4\ln3-\frac12\lt 0.
+        \]
+      </div>
+    </section>
+
+    <section class="final">
+      <h2>Konačni odgovori</h2>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(a)}\quad
+          \int
+          \frac{x^3}{x^2-3x+2}\,dx
+          =
+          \frac{x^2}{2}+3x-\ln|x-1|+8\ln|x-2|+C
+          }
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \text{(b)}\quad
+          \int_{-1}^{0}
+          \frac{x^2}{(x-1)^2(x-2)}\,dx
+          =
+          7\ln2-4\ln3-\frac12
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>
+        Mathbrotherhood × ChatGPT — parcijalni razlomci, pa Nemci lagano ćao.
+      </p>
+    </section>
+
+  </main>
+</body>
+</html>
