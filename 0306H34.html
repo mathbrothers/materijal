@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aufgabe H 34 — Potenzreihen und Integrale</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #243b53, #5a7fc8);
+      color: white;
+      padding: 28px 32px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.18);
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 17px;
+      opacity: 0.95;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 26px;
+      box-shadow: 0 8px 24px rgba(31, 41, 55, 0.10);
+      border-left: 8px solid #6b8ac9;
+    }
+
+    .card.task { border-left-color: #2563eb; }
+    .card.a { border-left-color: #0ea5e9; }
+    .card.b { border-left-color: #7c3aed; }
+    .card.c { border-left-color: #16a34a; }
+    .card.d { border-left-color: #f97316; }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3b73;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      color: #374151;
+      font-size: 20px;
+    }
+
+    .formula-box {
+      background: #eef4ff;
+      border: 1px solid #c7d7ff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .idea-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+    }
+
+    .answer-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 20px 0 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-top: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <section class="header">
+      <h1>Aufgabe H 34 — Potenzreihen und Integrale</h1>
+      <p>Redovi stepena, integracija član po član i zatvoreni oblici funkcija.</p>
+    </section>
+
+    <section class="card task">
+      <h2>Zadatak</h2>
+
+      <p>
+        Data je funkcija
+      </p>
+
+      <div class="formula-box">
+        \[
+          f(x)
+          :=
+          \sum_{k=0}^{\infty}
+          \frac{2^k(k+1)}{k!}x^k.
+        \]
+      </div>
+
+      <p>
+        Dalje su definisane funkcije
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(x):=\int_0^x f(t)\,dt,
+          \qquad
+          g(x):=\int_0^x F(t)\,dt.
+        \]
+      </div>
+
+      <div class="idea-box">
+        Pošto se u koeficijentima pojavljuje \(k!\), ovaj red ima beskonačan poluprečnik konvergencije.
+        Zato smemo da integrišemo i diferenciramo član po član za svako realno \(x\).
+      </div>
+    </section>
+
+    <section class="card a">
+      <h2>(a) Odrediti \(F(x)\) kao red stepena</h2>
+
+      <p>
+        Po definiciji:
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(x)
+          =
+          \int_0^x f(t)\,dt.
+        \]
+      </div>
+
+      <p>
+        U funkciji \(f\) promenljivu \(x\) zamenjujemo promenljivom \(t\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          f(t)
+          =
+          \sum_{k=0}^{\infty}
+          \frac{2^k(k+1)}{k!}t^k.
+        \]
+      </div>
+
+      <p>
+        Sada integrišemo član po član:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          F(x)
+          &=
+          \int_0^x
+          \sum_{k=0}^{\infty}
+          \frac{2^k(k+1)}{k!}t^k
+          \,dt \\
+          &=
+          \sum_{k=0}^{\infty}
+          \frac{2^k(k+1)}{k!}
+          \int_0^x t^k\,dt.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Pošto je
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int_0^x t^k\,dt
+          =
+          \frac{x^{k+1}}{k+1},
+        \]
+      </div>
+
+      <p>
+        dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          F(x)
+          &=
+          \sum_{k=0}^{\infty}
+          \frac{2^k(k+1)}{k!}
+          \cdot
+          \frac{x^{k+1}}{k+1}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Ovde se faktor \(k+1\) skrati:
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          F(x)
+          =
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!}x^{k+1}
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Ovo je najvažniji trik u delu (a): faktor \(k+1\) je namerno tu da se prilikom integracije skrati.
+      </div>
+    </section>
+
+    <section class="card b">
+      <h2>(b) Zatvoreni oblik za \(F(x)\)</h2>
+
+      <p>
+        Iz prethodnog dela imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(x)
+          =
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!}x^{k+1}.
+        \]
+      </div>
+
+      <p>
+        Izvučemo jedan faktor \(x\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          F(x)
+          &=
+          x
+          \sum_{k=0}^{\infty}
+          \frac{2^k x^k}{k!} \\
+          &=
+          x
+          \sum_{k=0}^{\infty}
+          \frac{(2x)^k}{k!}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Prepoznajemo poznati red za eksponencijalnu funkciju:
+      </p>
+
+      <div class="formula-box">
+        \[
+          e^u
+          =
+          \sum_{k=0}^{\infty}
+          \frac{u^k}{k!}.
+        \]
+      </div>
+
+      <p>
+        Za \(u=2x\) važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+          e^{2x}
+          =
+          \sum_{k=0}^{\infty}
+          \frac{(2x)^k}{k!}.
+        \]
+      </div>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          F(x)=x e^{2x}
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="card c">
+      <h2>(c) Zatvoreni oblik za \(f(x)\)</h2>
+
+      <p>
+        Iz definicije
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(x)=\int_0^x f(t)\,dt
+        \]
+      </div>
+
+      <p>
+        sledi da je
+      </p>
+
+      <div class="formula-box">
+        \[
+          F'(x)=f(x).
+        \]
+      </div>
+
+      <p>
+        U delu (b) smo dobili:
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(x)=x e^{2x}.
+        \]
+      </div>
+
+      <p>
+        Zato diferenciramo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          f(x)
+          &=
+          F'(x) \\
+          &=
+          \left(x e^{2x}\right)'.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Koristimo pravilo za izvod proizvoda:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \left(x e^{2x}\right)'
+          &=
+          1\cdot e^{2x}
+          +
+          x\cdot 2e^{2x} \\
+          &=
+          e^{2x}+2x e^{2x} \\
+          &=
+          (1+2x)e^{2x}.
+        \end{aligned}
+        \]
+      </div>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          f(x)=(1+2x)e^{2x}
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Ovo je elegantniji put nego da direktno sređujemo početni red.
+        Prvo smo našli zatvoreni oblik za \(F(x)\), pa onda diferencirali.
+      </div>
+    </section>
+
+    <section class="card d">
+      <h2>(d) Red stepena i zatvoreni oblik za \(g(x)\)</h2>
+
+      <h3>1. Red stepena za \(g(x)\)</h3>
+
+      <p>
+        Po definiciji:
+      </p>
+
+      <div class="formula-box">
+        \[
+          g(x)=\int_0^x F(t)\,dt.
+        \]
+      </div>
+
+      <p>
+        Iz dela (a) znamo da je
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(t)
+          =
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!}t^{k+1}.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          g(x)
+          &=
+          \int_0^x
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!}t^{k+1}
+          \,dt \\
+          &=
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!}
+          \int_0^x t^{k+1}\,dt.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Pošto je
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int_0^x t^{k+1}\,dt
+          =
+          \frac{x^{k+2}}{k+2},
+        \]
+      </div>
+
+      <p>
+        dobijamo red stepena:
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          g(x)
+          =
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!(k+2)}x^{k+2}
+          }
+        \]
+      </div>
+
+      <h3>2. Zatvoreni oblik za \(g(x)\)</h3>
+
+      <p>
+        Iz dela (b) imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          F(x)=x e^{2x}.
+        \]
+      </div>
+
+      <p>
+        Zato je
+      </p>
+
+      <div class="formula-box">
+        \[
+          g(x)=\int_0^x t e^{2t}\,dt.
+        \]
+      </div>
+
+      <p>
+        Računamo integral parcijalnom integracijom:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          u &= t, & dv &= e^{2t}\,dt, \\
+          du &= dt, & v &= \frac12 e^{2t}.
+        \end{aligned}
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int t e^{2t}\,dt
+          &=
+          \frac{t}{2}e^{2t}
+          -
+          \frac12\int e^{2t}\,dt \\
+          &=
+          \frac{t}{2}e^{2t}
+          -
+          \frac14 e^{2t} \\
+          &=
+          e^{2t}\left(\frac{t}{2}-\frac14\right).
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Sada ubacujemo granice od \(0\) do \(x\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          g(x)
+          &=
+          \left[
+          e^{2t}\left(\frac{t}{2}-\frac14\right)
+          \right]_0^x \\
+          &=
+          e^{2x}\left(\frac{x}{2}-\frac14\right)
+          -
+          e^0\left(0-\frac14\right) \\
+          &=
+          e^{2x}\left(\frac{x}{2}-\frac14\right)
+          +
+          \frac14.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Možemo srediti u kompaktniji oblik:
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          g(x)
+          =
+          \frac{(2x-1)e^{2x}+1}{4}
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Provera: pošto je \(g(x)=\int_0^x F(t)\,dt\), mora važiti \(g(0)=0\).
+        Za dobijeni izraz:
+        \[
+          g(0)=\frac{(0-1)e^0+1}{4}=0.
+        \]
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Konačni odgovori</h2>
+
+      <div class="answer-box">
+        \[
+        \boxed{
+        \begin{aligned}
+          \text{(a)}\quad
+          F(x)
+          &=
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!}x^{k+1},
+          \\[6pt]
+          \text{(b)}\quad
+          F(x)
+          &=
+          x e^{2x},
+          \\[6pt]
+          \text{(c)}\quad
+          f(x)
+          &=
+          (1+2x)e^{2x},
+          \\[6pt]
+          \text{(d)}\quad
+          g(x)
+          &=
+          \sum_{k=0}^{\infty}
+          \frac{2^k}{k!(k+2)}x^{k+2}
+          =
+          \frac{(2x-1)e^{2x}+1}{4}.
+        \end{aligned}
+        }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>Mathbrotherhood — redovi stepena: prvo prepoznajemo strukturu, pa zatvaramo oblik.</p>
+    </section>
+
+  </div>
+</body>
+</html>
