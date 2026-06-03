@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aufgabe H 33 — Uneigentliche Integrale</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #243b53, #4f83cc);
+      color: white;
+      padding: 28px 32px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.18);
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 17px;
+      opacity: 0.95;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 26px;
+      box-shadow: 0 8px 24px rgba(31, 41, 55, 0.10);
+      border-left: 8px solid #6b8ac9;
+    }
+
+    .card.a { border-left-color: #2563eb; }
+    .card.b { border-left-color: #7c3aed; }
+    .card.c { border-left-color: #dc2626; }
+    .card.d { border-left-color: #16a34a; }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3b73;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      color: #374151;
+      font-size: 20px;
+    }
+
+    .formula-box {
+      background: #eef4ff;
+      border: 1px solid #c7d7ff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .idea-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+    }
+
+    .answer-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 20px 0 0;
+      overflow-x: auto;
+    }
+
+    .bad-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 20px 0 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-top: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <section class="header">
+      <h1>Aufgabe H 33 — Uneigentliche Integrale</h1>
+      <p>Odrediti vrednost nesvojstvenog integrala ako konvergira, a u suprotnom obrazložiti divergenciju.</p>
+    </section>
+
+    <section class="card a">
+      <h2>(a)</h2>
+
+      <div class="formula-box">
+        \[
+          \int_0^{+\infty} x e^{-x}\,dx
+        \]
+      </div>
+
+      <p>
+        Integral je nesvojstven zbog gornje granice \(+\infty\). Zato ga pišemo kao graničnu vrednost:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int_0^{+\infty} x e^{-x}\,dx
+          =
+          \lim_{b\to+\infty}\int_0^b x e^{-x}\,dx.
+        \]
+      </div>
+
+      <p>
+        Prvo računamo određeni integral do \(b\). Koristimo parcijalnu integraciju:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          u &= x, & dv &= e^{-x}\,dx, \\
+          du &= dx, & v &= -e^{-x}.
+        \end{aligned}
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int x e^{-x}\,dx
+          &=
+          -x e^{-x}+\int e^{-x}\,dx \\
+          &=
+          -x e^{-x}-e^{-x} \\
+          &=
+          -(x+1)e^{-x}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Sada:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int_0^b x e^{-x}\,dx
+          &=
+          \left[-(x+1)e^{-x}\right]_0^b \\
+          &=
+          -(b+1)e^{-b}+1.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Kada \(b\to+\infty\), važi
+        \[
+          (b+1)e^{-b}\to 0.
+        \]
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \int_0^{+\infty} x e^{-x}\,dx
+          =
+          1
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Integral konvergira, jer eksponencijalna funkcija \(e^{-x}\) dovoljno brzo opada.
+      </div>
+    </section>
+
+    <section class="card b">
+      <h2>(b)</h2>
+
+      <div class="formula-box">
+        \[
+          \int_1^{+\infty}\frac{1}{1+x^2}\,dx
+        \]
+      </div>
+
+      <p>
+        Integral je nesvojstven zbog gornje granice \(+\infty\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int_1^{+\infty}\frac{1}{1+x^2}\,dx
+          =
+          \lim_{b\to+\infty}
+          \int_1^b \frac{1}{1+x^2}\,dx.
+        \]
+      </div>
+
+      <p>
+        Koristimo osnovni integral:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int \frac{1}{1+x^2}\,dx
+          =
+          \arctan x.
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int_1^b \frac{1}{1+x^2}\,dx
+          &=
+          \left[\arctan x\right]_1^b \\
+          &=
+          \arctan b-\arctan 1.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Kada \(b\to+\infty\), važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \arctan b\to \frac{\pi}{2},
+          \qquad
+          \arctan 1=\frac{\pi}{4}.
+        \]
+      </div>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \int_1^{+\infty}\frac{1}{1+x^2}\,dx
+          =
+          \frac{\pi}{2}-\frac{\pi}{4}
+          =
+          \frac{\pi}{4}
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Integral konvergira i njegova vrednost je \(\frac{\pi}{4}\).
+      </div>
+    </section>
+
+    <section class="card c">
+      <h2>(c)</h2>
+
+      <div class="formula-box">
+        \[
+          \int_1^{+\infty}\frac{1}{\sqrt{x}}\,dx
+        \]
+      </div>
+
+      <p>
+        Integral je nesvojstven zbog gornje granice \(+\infty\). Pišemo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int_1^{+\infty}\frac{1}{\sqrt{x}}\,dx
+          =
+          \lim_{b\to+\infty}
+          \int_1^b x^{-\frac12}\,dx.
+        \]
+      </div>
+
+      <p>
+        Računamo integral:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int x^{-\frac12}\,dx
+          &=
+          2\sqrt{x}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int_1^b x^{-\frac12}\,dx
+          &=
+          \left[2\sqrt{x}\right]_1^b \\
+          &=
+          2\sqrt{b}-2.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Kada \(b\to+\infty\), izraz \(2\sqrt{b}-2\) teži beskonačnosti:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \lim_{b\to+\infty}(2\sqrt{b}-2)=+\infty.
+        \]
+      </div>
+
+      <div class="bad-box">
+        \[
+          \boxed{
+          \int_1^{+\infty}\frac{1}{\sqrt{x}}\,dx
+          \text{ divergira.}
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Iako funkcija \(\frac1{\sqrt{x}}\) opada ka nuli, ne opada dovoljno brzo da bi integral na beskonačnom intervalu konvergirao.
+      </div>
+    </section>
+
+    <section class="card d">
+      <h2>(d)</h2>
+
+      <div class="formula-box">
+        \[
+          \int_0^1 \frac{1}{\sqrt{x}}\,dx
+        \]
+      </div>
+
+      <p>
+        Ovde problem nije beskonačna granica, nego singularnost u tački \(x=0\), jer
+        \[
+          \frac1{\sqrt{x}}\to+\infty
+          \quad \text{kada} \quad x\to 0^+.
+        \]
+      </p>
+
+      <p>
+        Zato integral zapisujemo kao:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int_0^1 \frac{1}{\sqrt{x}}\,dx
+          =
+          \lim_{a\to 0^+}
+          \int_a^1 x^{-\frac12}\,dx.
+        \]
+      </div>
+
+      <p>
+        Računamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int_a^1 x^{-\frac12}\,dx
+          &=
+          \left[2\sqrt{x}\right]_a^1 \\
+          &=
+          2-2\sqrt{a}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Kada \(a\to 0^+\), važi \(\sqrt{a}\to 0\), pa:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \lim_{a\to 0^+}(2-2\sqrt{a})=2.
+        \]
+      </div>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \int_0^1 \frac{1}{\sqrt{x}}\,dx
+          =
+          2
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Ovo je lep kontrast sa delom (c): ista funkcija, ali različit problem.
+        Na intervalu \([0,1]\) singularnost u nuli je dovoljno blaga, pa integral konvergira.
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Konačni odgovori</h2>
+
+      <div class="answer-box">
+        \[
+        \boxed{
+        \begin{aligned}
+          \text{(a)}\quad &\int_0^{+\infty} x e^{-x}\,dx = 1, \\
+          \text{(b)}\quad &\int_1^{+\infty}\frac{1}{1+x^2}\,dx = \frac{\pi}{4}, \\
+          \text{(c)}\quad &\int_1^{+\infty}\frac{1}{\sqrt{x}}\,dx \text{ divergira}, \\
+          \text{(d)}\quad &\int_0^1\frac{1}{\sqrt{x}}\,dx = 2.
+        \end{aligned}
+        }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>Mathbrotherhood — nesvojstveni integrali: granica prvo, zaključak na kraju.</p>
+    </section>
+
+  </div>
+</body>
+</html>
