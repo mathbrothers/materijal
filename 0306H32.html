@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aufgabe H 32 — Unter- und Obersummen</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1e3a5f, #4f7cac);
+      color: white;
+      padding: 28px 32px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.18);
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 17px;
+      opacity: 0.95;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 26px;
+      box-shadow: 0 8px 24px rgba(31, 41, 55, 0.10);
+      border-left: 8px solid #6b8ac9;
+    }
+
+    .card.task {
+      border-left-color: #2563eb;
+    }
+
+    .card.a {
+      border-left-color: #0ea5e9;
+    }
+
+    .card.b {
+      border-left-color: #9333ea;
+    }
+
+    .card.c {
+      border-left-color: #16a34a;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3b73;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      color: #374151;
+      font-size: 20px;
+    }
+
+    .formula-box {
+      background: #eef4ff;
+      border: 1px solid #c7d7ff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .idea-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+    }
+
+    .answer-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 20px 0 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-top: 18px;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <section class="header">
+      <h1>Aufgabe H 32 — Unter- und Obersummen</h1>
+      <p>Donje i gornje Darbouxove sume za monotono opadajuću funkciju.</p>
+    </section>
+
+    <section class="card task">
+      <h2>Zadatak</h2>
+
+      <p>
+        Data je funkcija
+      </p>
+
+      <div class="formula-box">
+        \[
+          f:[1,2]\to\mathbb{R},
+          \qquad
+          f(x)=\frac{\sin x}{x}.
+        \]
+      </div>
+
+      <p>
+        U zadatku je dato da je funkcija \(f\) monotono opadajuća na intervalu \([1,2]\).
+        Posmatramo podelu
+      </p>
+
+      <div class="formula-box">
+        \[
+          P_n=
+          \left\{
+          1,\,
+          1+\frac1n,\,
+          1+\frac2n,\,
+          \ldots,\,
+          1+\frac{n-1}{n},\,
+          2
+          \right\}.
+        \]
+      </div>
+
+      <p>
+        Tačke podele možemo zapisati kao
+      </p>
+
+      <div class="formula-box">
+        \[
+          x_k=1+\frac{k}{n},
+          \qquad k=0,1,2,\ldots,n.
+        \]
+      </div>
+
+      <p>
+        Dužina svakog malog intervala je
+      </p>
+
+      <div class="formula-box">
+        \[
+          \Delta x
+          =
+          x_k-x_{k-1}
+          =
+          \frac1n.
+        \]
+      </div>
+
+      <div class="idea-box">
+        Pošto je \(f\) monotono opadajuća, na svakom intervalu
+        \[
+          [x_{k-1},x_k]
+        \]
+        najveća vrednost je u levom kraju, a najmanja vrednost u desnom kraju.
+      </div>
+
+      <svg viewBox="0 0 760 250">
+        <rect x="40" y="25" width="680" height="190" rx="16" fill="#f8fafc" stroke="#cbd5e1"/>
+
+        <line x1="90" y1="185" x2="680" y2="185" stroke="#334155" stroke-width="2"/>
+        <line x1="90" y1="185" x2="90" y2="55" stroke="#334155" stroke-width="2"/>
+
+        <path d="M 95 75 C 200 95, 300 120, 420 145 C 520 162, 600 172, 675 178"
+              fill="none" stroke="#2563eb" stroke-width="4"/>
+
+        <line x1="90" y1="185" x2="90" y2="72" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4 4"/>
+        <line x1="238" y1="185" x2="238" y2="103" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4 4"/>
+        <line x1="386" y1="185" x2="386" y2="139" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4 4"/>
+        <line x1="534" y1="185" x2="534" y2="164" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4 4"/>
+        <line x1="682" y1="185" x2="682" y2="178" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4 4"/>
+
+        <text x="82" y="207" font-size="16" fill="#334155">1</text>
+        <text x="220" y="207" font-size="16" fill="#334155">x₁</text>
+        <text x="368" y="207" font-size="16" fill="#334155">x₂</text>
+        <text x="516" y="207" font-size="16" fill="#334155">...</text>
+        <text x="671" y="207" font-size="16" fill="#334155">2</text>
+
+        <text x="120" y="58" font-size="16" fill="#2563eb">opadajuća funkcija</text>
+        <text x="440" y="85" font-size="15" fill="#475569">
+          maksimum levo, minimum desno
+        </text>
+      </svg>
+    </section>
+
+    <section class="card a">
+      <h2>(a) Donja i gornja suma</h2>
+
+      <h3>1. Gornja suma</h3>
+
+      <p>
+        Pošto je funkcija monotono opadajuća, na intervalu
+        \[
+          [x_{k-1},x_k]
+        \]
+        najveća vrednost je u levom kraju \(x_{k-1}\).
+      </p>
+
+      <p>
+        Zato je gornja suma:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \overline{S}(f,P_n)
+        =
+        \sum_{k=1}^{n} f(x_{k-1})\Delta x.
+        \]
+      </div>
+
+      <p>
+        Kako je
+        \[
+          x_{k-1}=1+\frac{k-1}{n}
+        \]
+        i
+        \[
+          \Delta x=\frac1n,
+        \]
+        dobijamo
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \overline{S}(f,P_n)
+          =
+          \frac1n
+          \sum_{k=1}^{n}
+          f\left(1+\frac{k-1}{n}\right)
+          }
+        \]
+      </div>
+
+      <p>
+        Pošto je
+        \[
+          f(x)=\frac{\sin x}{x},
+        \]
+        možemo pisati i eksplicitno:
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \overline{S}(f,P_n)
+          =
+          \frac1n
+          \sum_{k=1}^{n}
+          \frac{
+          \sin\left(1+\frac{k-1}{n}\right)
+          }{
+          1+\frac{k-1}{n}
+          }
+          }
+        \]
+      </div>
+
+      <p>
+        Isto to može se zapisati i sa indeksom od \(0\) do \(n-1\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          \overline{S}(f,P_n)
+          =
+          \frac1n
+          \sum_{k=0}^{n-1}
+          \frac{
+          \sin\left(1+\frac{k}{n}\right)
+          }{
+          1+\frac{k}{n}
+          }.
+        \]
+      </div>
+
+      <h3>2. Donja suma</h3>
+
+      <p>
+        Na istom intervalu
+        \[
+          [x_{k-1},x_k]
+        \]
+        najmanja vrednost je u desnom kraju \(x_k\).
+      </p>
+
+      <p>
+        Zato je donja suma:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \underline{S}(f,P_n)
+        =
+        \sum_{k=1}^{n} f(x_k)\Delta x.
+        \]
+      </div>
+
+      <p>
+        Kako je
+        \[
+          x_k=1+\frac{k}{n},
+        \]
+        dobijamo
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \underline{S}(f,P_n)
+          =
+          \frac1n
+          \sum_{k=1}^{n}
+          f\left(1+\frac{k}{n}\right)
+          }
+        \]
+      </div>
+
+      <p>
+        Eksplicitno:
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \underline{S}(f,P_n)
+          =
+          \frac1n
+          \sum_{k=1}^{n}
+          \frac{
+          \sin\left(1+\frac{k}{n}\right)
+          }{
+          1+\frac{k}{n}
+          }
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Dakle, za opadajuću funkciju važi:
+        gornja suma koristi leve krajeve intervala, a donja suma desne krajeve intervala.
+      </div>
+    </section>
+
+    <section class="card b">
+      <h2>(b) Granična vrednost razlike gornje i donje sume</h2>
+
+      <p>
+        Imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \overline{S}(f,P_n)
+          =
+          \frac1n
+          \sum_{k=0}^{n-1}
+          f\left(1+\frac{k}{n}\right),
+        \]
+        \[
+          \underline{S}(f,P_n)
+          =
+          \frac1n
+          \sum_{k=1}^{n}
+          f\left(1+\frac{k}{n}\right).
+        \]
+      </div>
+
+      <p>
+        Kada oduzmemo ove dve sume, skoro svi članovi se skrate.
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \overline{S}(f,P_n)-\underline{S}(f,P_n)
+          &=
+          \frac1n
+          \left[
+          f\left(1\right)
+          +
+          f\left(1+\frac1n\right)
+          +
+          \cdots
+          +
+          f\left(1+\frac{n-1}{n}\right)
+          \right] \\
+          &\quad -
+          \frac1n
+          \left[
+          f\left(1+\frac1n\right)
+          +
+          f\left(1+\frac2n\right)
+          +
+          \cdots
+          +
+          f(2)
+          \right].
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Srednji članovi se poništavaju, pa ostaje samo prvi član iz gornje sume
+        i poslednji član iz donje sume:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \overline{S}(f,P_n)-\underline{S}(f,P_n)
+          =
+          \frac1n\left(f(1)-f(2)\right).
+        \]
+      </div>
+
+      <p>
+        Računamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          f(1)=\frac{\sin 1}{1}=\sin 1,
+          \qquad
+          f(2)=\frac{\sin 2}{2}.
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \overline{S}(f,P_n)-\underline{S}(f,P_n)
+          =
+          \frac1n
+          \left(
+          \sin 1-\frac{\sin 2}{2}
+          \right)
+          }
+        \]
+      </div>
+
+      <p>
+        Pošto je izraz u zagradi konstanta, a
+        \[
+          \frac1n\to 0,
+        \]
+        dobijamo:
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \lim_{n\to\infty}
+          \left(
+          \overline{S}(f,P_n)-\underline{S}(f,P_n)
+          \right)
+          =
+          0
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="card c">
+      <h2>(c) Veza sa određenim integralom</h2>
+
+      <p>
+        Za svaku podelu intervala važi nejednakost:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \underline{S}(f,P_n)
+          \leq
+          \int_1^2 f(x)\,dx
+          \leq
+          \overline{S}(f,P_n).
+        \]
+      </div>
+
+      <p>
+        U našem slučaju:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \underline{S}(f,P_n)
+          \leq
+          \int_1^2 \frac{\sin x}{x}\,dx
+          \leq
+          \overline{S}(f,P_n).
+        \]
+      </div>
+
+      <p>
+        Iz dela (b) znamo da se razlika gornje i donje sume smanjuje ka nuli:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \lim_{n\to\infty}
+          \left(
+          \overline{S}(f,P_n)-\underline{S}(f,P_n)
+          \right)
+          =
+          0.
+        \]
+      </div>
+
+      <p>
+        To znači da se donja i gornja suma u graničnom procesu približavaju istoj vrednosti.
+        Pošto je integral uvek između njih, i on mora imati istu graničnu vrednost.
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \lim_{n\to\infty}
+          \underline{S}(f,P_n)
+          =
+          \int_1^2 \frac{\sin x}{x}\,dx
+          =
+          \lim_{n\to\infty}
+          \overline{S}(f,P_n)
+          }
+        \]
+      </div>
+
+      <div class="note">
+        Ovde nije potrebno računati integral u elementarnim funkcijama.
+        Poenta zadatka je da se pokaže da se donje i gornje sume približavaju
+        istoj vrednosti, a ta vrednost je određeni integral.
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>Mathbrotherhood — donje i gornje sume, bez preskakanja ključne ideje.</p>
+    </section>
+
+  </div>
+</body>
+</html>
