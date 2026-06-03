@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aufgabe H 35 — Mittelwertsatz der Differentialrechnung</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #23395d, #4f75bd);
+      color: white;
+      padding: 28px 32px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.18);
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 17px;
+      opacity: 0.95;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 26px;
+      box-shadow: 0 8px 24px rgba(31, 41, 55, 0.10);
+      border-left: 8px solid #6b8ac9;
+    }
+
+    .card.task { border-left-color: #2563eb; }
+    .card.a { border-left-color: #0ea5e9; }
+    .card.b { border-left-color: #16a34a; }
+    .card.final { border-left-color: #9333ea; }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3b73;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-top: 24px;
+      color: #374151;
+      font-size: 20px;
+    }
+
+    .formula-box {
+      background: #eef4ff;
+      border: 1px solid #c7d7ff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .idea-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+    }
+
+    .answer-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 20px 0 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-top: 18px;
+    }
+
+    svg {
+      width: 100%;
+      max-width: 860px;
+      display: block;
+      margin: 24px auto 10px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <section class="header">
+      <h1>Aufgabe H 35 — Mittelwertsatz der Differentialrechnung</h1>
+      <p>Primena Lagranžove teoreme srednje vrednosti na funkciju trećeg stepena.</p>
+    </section>
+
+    <section class="card task">
+      <h2>Zadatak</h2>
+
+      <p>
+        Data je funkcija
+      </p>
+
+      <div class="formula-box">
+        \[
+          f:[0,3]\to\mathbb{R},
+          \qquad
+          f(x)=x^3-6x^2+8x.
+        \]
+      </div>
+
+      <p>
+        Treba odrediti tačku \(\xi\in(0,3)\) takvu da važi
+      </p>
+
+      <div class="formula-box">
+        \[
+          f'(\xi)=\frac{f(3)-f(0)}{3-0}.
+        \]
+      </div>
+
+      <div class="idea-box">
+        Ovo je direktna primena teoreme srednje vrednosti: tražimo tačku u kojoj je tangenta
+        paralelna sekanti koja spaja krajnje tačke grafa na intervalu \([0,3]\).
+      </div>
+    </section>
+
+    <section class="card a">
+      <h2>(a) Određivanje tačke \(\xi\)</h2>
+
+      <p>
+        Prvo računamo vrednosti funkcije u krajnjim tačkama intervala:
+      </p>
+
+      <div class="formula-box">
+        \[
+          f(0)=0^3-6\cdot 0^2+8\cdot 0=0.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          f(3)
+          &=3^3-6\cdot 3^2+8\cdot 3 \\
+          &=27-54+24 \\
+          &=-3.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Nagib sekante kroz tačke \((0,f(0))\) i \((3,f(3))\) je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{f(3)-f(0)}{3-0}
+        =
+        \frac{-3-0}{3}
+        =
+        -1.
+        \]
+      </div>
+
+      <p>
+        Sada računamo izvod:
+      </p>
+
+      <div class="formula-box">
+        \[
+          f'(x)=3x^2-12x+8.
+        \]
+      </div>
+
+      <p>
+        Tražimo \(\xi\) takvo da je
+      </p>
+
+      <div class="formula-box">
+        \[
+          f'(\xi)=-1.
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          3\xi^2-12\xi+8&=-1,\\
+          3\xi^2-12\xi+9&=0,\\
+          \xi^2-4\xi+3&=0,\\
+          (\xi-1)(\xi-3)&=0.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Dobijamo dve vrednosti:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \xi=1
+          \qquad \text{ili} \qquad
+          \xi=3.
+        \]
+      </div>
+
+      <p>
+        Ali u zadatku se traži
+        \[
+          \xi\in(0,3),
+        \]
+        pa tačka \(\xi=3\) ne dolazi u obzir, jer je to desni kraj intervala.
+      </p>
+
+      <div class="answer-box">
+        \[
+          \boxed{\xi=1}
+        \]
+      </div>
+
+      <div class="note">
+        Vrednost \(\xi=3\) se računski pojavljuje, ali nije dozvoljena jer teorema srednje vrednosti
+        traži tačku iz otvorenog intervala \((0,3)\).
+      </div>
+    </section>
+
+    <section class="card b">
+      <h2>(b) Skica grafa, sekante i tangente</h2>
+
+      <p>
+        Krajnje tačke grafa su:
+      </p>
+
+      <div class="formula-box">
+        \[
+          A=(0,f(0))=(0,0),
+          \qquad
+          B=(3,f(3))=(3,-3).
+        \]
+      </div>
+
+      <p>
+        Sekanta kroz tačke \(A\) i \(B\) ima nagib \(-1\), pa je njena jednačina:
+      </p>
+
+      <div class="formula-box">
+        \[
+          y=-x.
+        \]
+      </div>
+
+      <p>
+        Za tačku dodira tangente imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \xi=1,
+          \qquad
+          f(1)=1^3-6\cdot 1^2+8\cdot 1=3.
+        \]
+      </div>
+
+      <p>
+        Dakle, tangenta dodiruje grafik u tački
+      </p>
+
+      <div class="formula-box">
+        \[
+          T=(1,3).
+        \]
+      </div>
+
+      <p>
+        Pošto je
+        \[
+          f'(1)=-1,
+        \]
+        tangenta ima isti nagib kao sekanta. Njena jednačina je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          y-3&=-1(x-1),\\
+          y&=-x+4.
+        \end{aligned}
+        \]
+      </div>
+
+      <svg viewBox="0 0 860 520" aria-label="Skica grafa funkcije, sekante i tangente">
+        <!-- background -->
+        <rect x="0" y="0" width="860" height="520" rx="18" fill="#f8fafc"/>
+
+        <!-- coordinate transform used visually:
+             x from -0.2 to 3.3, y from -3.8 to 3.8
+        -->
+
+        <!-- grid -->
+        <g stroke="#e2e8f0" stroke-width="1">
+          <line x1="120" y1="50" x2="120" y2="455"/>
+          <line x1="300" y1="50" x2="300" y2="455"/>
+          <line x1="480" y1="50" x2="480" y2="455"/>
+          <line x1="660" y1="50" x2="660" y2="455"/>
+
+          <line x1="80" y1="95" x2="760" y2="95"/>
+          <line x1="80" y1="148" x2="760" y2="148"/>
+          <line x1="80" y1="202" x2="760" y2="202"/>
+          <line x1="80" y1="255" x2="760" y2="255"/>
+          <line x1="80" y1="309" x2="760" y2="309"/>
+          <line x1="80" y1="362" x2="760" y2="362"/>
+          <line x1="80" y1="416" x2="760" y2="416"/>
+        </g>
+
+        <!-- axes -->
+        <line x1="80" y1="255" x2="780" y2="255" stroke="#334155" stroke-width="2"/>
+        <line x1="120" y1="40" x2="120" y2="470" stroke="#334155" stroke-width="2"/>
+
+        <!-- arrows -->
+        <polygon points="780,255 768,249 768,261" fill="#334155"/>
+        <polygon points="120,40 114,52 126,52" fill="#334155"/>
+
+        <!-- labels axes -->
+        <text x="786" y="260" font-size="18" fill="#334155">x</text>
+        <text x="110" y="34" font-size="18" fill="#334155">y</text>
+
+        <!-- x labels -->
+        <text x="113" y="280" font-size="15" fill="#475569">0</text>
+        <text x="294" y="280" font-size="15" fill="#475569">1</text>
+        <text x="474" y="280" font-size="15" fill="#475569">2</text>
+        <text x="654" y="280" font-size="15" fill="#475569">3</text>
+
+        <!-- y labels -->
+        <text x="92" y="101" font-size="15" fill="#475569">3</text>
+        <text x="92" y="208" font-size="15" fill="#475569">1</text>
+        <text x="87" y="315" font-size="15" fill="#475569">-1</text>
+        <text x="87" y="422" font-size="15" fill="#475569">-3</text>
+
+        <!-- graph f(x)=x^3-6x^2+8x, approximate path through points -->
+        <path
+          d="
+            M 120 255
+            C 155 170, 210 85, 272 91
+            C 330 98, 365 175, 480 255
+            C 555 307, 610 365, 660 416
+          "
+          fill="none"
+          stroke="#2563eb"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+
+        <!-- secant y=-x from x=0 to x=3 -->
+        <line x1="120" y1="255" x2="660" y2="416"
+              stroke="#dc2626" stroke-width="4" stroke-dasharray="10 8"/>
+
+        <!-- tangent y=-x+4, through (1,3), visual segment -->
+		<line x1="156" y1="52" x2="696" y2="212"
+			stroke="#16a34a" stroke-width="4" stroke-dasharray="6 6"/>
+        <!-- points A, B, T -->
+        <circle cx="120" cy="255" r="7" fill="#dc2626"/>
+        <circle cx="660" cy="416" r="7" fill="#dc2626"/>
+        <circle cx="300" cy="95" r="8" fill="#16a34a"/>
+
+        <!-- labels -->
+        <text x="132" y="245" font-size="16" fill="#dc2626">A(0,0)</text>
+        <text x="670" y="420" font-size="16" fill="#dc2626">B(3,-3)</text>
+        <text x="310" y="85" font-size="16" fill="#16a34a">T(1,3)</text>
+
+        <text x="530" y="375" font-size="17" fill="#dc2626">sekanta \(y=-x\)</text>
+        <text x="415" y="145" font-size="17" fill="#16a34a">tangenta \(y=-x+4\)</text>
+        <text x="205" y="122" font-size="17" fill="#2563eb">\(f(x)=x^3-6x^2+8x\)</text>
+      </svg>
+
+      <div class="note">
+        Sekanta i tangenta su paralelne jer imaju isti nagib:
+        \[
+          k_{\text{sekante}}=-1,
+          \qquad
+          k_{\text{tangente}}=f'(1)=-1.
+        \]
+      </div>
+    </section>
+
+    <section class="card final">
+      <h2>Konačni rezultat</h2>
+
+      <div class="answer-box">
+        \[
+        \boxed{
+        \xi=1
+        }
+        \]
+      </div>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \text{sekanta: } y=-x,
+          \qquad
+          \text{tangenta u } \xi=1: y=-x+4.
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>Mathbrotherhood — teorema srednje vrednosti: sekanta i paralelna tangenta.</p>
+    </section>
+
+  </div>
+</body>
+</html>
