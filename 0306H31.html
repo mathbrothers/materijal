@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aufgabe H 31 — Partialbruchzerlegung</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #263a63, #506fa8);
+      color: white;
+      padding: 28px 32px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, 0.18);
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 0;
+      font-size: 17px;
+      opacity: 0.95;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 26px;
+      box-shadow: 0 8px 24px rgba(31, 41, 55, 0.10);
+      border-left: 8px solid #6b8ac9;
+    }
+
+    .card.a {
+      border-left-color: #3b82f6;
+    }
+
+    .card.b {
+      border-left-color: #9333ea;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1f3b73;
+      font-size: 24px;
+    }
+
+    h3 {
+      margin-top: 26px;
+      color: #374151;
+      font-size: 20px;
+    }
+
+    .formula-box {
+      background: #eef4ff;
+      border: 1px solid #c7d7ff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .coef-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .answer-box {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin: 20px 0 0;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fefce8;
+      border: 1px solid #fde68a;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-top: 18px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <section class="header">
+      <h1>Aufgabe H 31 — Partialbruchzerlegung</h1>
+      <p>Računanje integrala metodom parcijalnih razlomaka, sa određivanjem nepoznatih koeficijenata.</p>
+    </section>
+
+    <!-- ZADATAK (a) -->
+    <section class="card a">
+      <h2>Zadatak (a)</h2>
+
+      <div class="formula-box">
+        \[
+          \int \frac{x^2+2x+4}{(x+1)(x^2+4)}\,dx
+        \]
+      </div>
+
+      <h3>1. Oblik parcijalnih razlomaka</h3>
+
+      <p>
+        Imenilac se već sastoji od jednog linearnog i jednog nerastavljivog kvadratnog faktora:
+      </p>
+
+      <div class="coef-box">
+        \[
+          \frac{x^2+2x+4}{(x+1)(x^2+4)}
+          =
+          \frac{A}{x+1}
+          +
+          \frac{Bx+C}{x^2+4}
+        \]
+      </div>
+
+      <p>
+        Množimo jednakost sa \((x+1)(x^2+4)\):
+      </p>
+
+      <div class="coef-box">
+        \[
+          x^2+2x+4
+          =
+          A(x^2+4)+(Bx+C)(x+1)
+        \]
+      </div>
+
+      <p>Razvijamo desnu stranu:</p>
+
+      <div class="coef-box">
+        \[
+        \begin{aligned}
+          A(x^2+4)+(Bx+C)(x+1)
+          &=
+          Ax^2+4A+Bx^2+(B+C)x+C \\
+          &=
+          (A+B)x^2+(B+C)x+(4A+C).
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Poređenjem koeficijenata uz iste stepene od \(x\), dobijamo sistem:
+      </p>
+
+      <div class="coef-box">
+        \[
+        \begin{cases}
+          A+B=1, \\
+          B+C=2, \\
+          4A+C=4.
+        \end{cases}
+        \]
+      </div>
+
+      <h3>2. Računanje koeficijenata</h3>
+
+      <div class="coef-box">
+        \[
+        \begin{aligned}
+          B &= 1-A, \\
+          C &= 2-B = 2-(1-A)=1+A.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Ubacujemo u treću jednačinu:</p>
+
+      <div class="coef-box">
+        \[
+        \begin{aligned}
+          4A+C &= 4, \\
+          4A+1+A &= 4, \\
+          5A &= 3, \\
+          A &= \frac35.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Zato je:</p>
+
+      <div class="coef-box">
+        \[
+          B=1-\frac35=\frac25,
+          \qquad
+          C=1+\frac35=\frac85.
+        \]
+      </div>
+
+      <p>Dakle:</p>
+
+      <div class="formula-box">
+        \[
+          \frac{x^2+2x+4}{(x+1)(x^2+4)}
+          =
+          \frac{3}{5}\cdot\frac{1}{x+1}
+          +
+          \frac{\frac25x+\frac85}{x^2+4}
+        \]
+      </div>
+
+      <h3>3. Integracija</h3>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int \frac{x^2+2x+4}{(x+1)(x^2+4)}\,dx
+          &=
+          \frac35\int\frac{dx}{x+1}
+          +
+          \int\frac{\frac25x+\frac85}{x^2+4}\,dx \\
+          &=
+          \frac35\ln|x+1|
+          +
+          \frac25\int\frac{x}{x^2+4}\,dx
+          +
+          \frac85\int\frac{dx}{x^2+4}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Koristimo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int\frac{x}{x^2+4}\,dx
+          =
+          \frac12\ln(x^2+4),
+          \qquad
+          \int\frac{dx}{x^2+4}
+          =
+          \frac12\arctan\frac{x}{2}.
+        \]
+      </div>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \int \frac{x^2+2x+4}{(x+1)(x^2+4)}\,dx
+          =
+          \frac35\ln|x+1|
+          +
+          \frac15\ln(x^2+4)
+          +
+          \frac45\arctan\frac{x}{2}
+          +C
+          }
+        \]
+      </div>
+    </section>
+
+    <!-- ZADATAK (b) -->
+    <section class="card b">
+      <h2>Zadatak (b)</h2>
+
+      <div class="formula-box">
+        \[
+          \int
+          \frac{2x^3+x^2+3x+1}{(x-1)^2(x^2+x+1)}
+          \,dx
+        \]
+      </div>
+
+      <h3>1. Oblik parcijalnih razlomaka</h3>
+
+      <p>
+        Pošto se faktor \((x-1)\) pojavljuje na kvadrat, moramo imati dva člana:
+        jedan sa \((x-1)\), a drugi sa \((x-1)^2\).
+      </p>
+
+      <div class="coef-box">
+        \[
+          \frac{2x^3+x^2+3x+1}{(x-1)^2(x^2+x+1)}
+          =
+          \frac{A}{x-1}
+          +
+          \frac{B}{(x-1)^2}
+          +
+          \frac{Cx+D}{x^2+x+1}
+        \]
+      </div>
+
+      <p>
+        Množimo jednakost sa \((x-1)^2(x^2+x+1)\):
+      </p>
+
+      <div class="coef-box">
+        \[
+          2x^3+x^2+3x+1
+          =
+          A(x-1)(x^2+x+1)
+          +
+          B(x^2+x+1)
+          +
+          (Cx+D)(x-1)^2.
+        \]
+      </div>
+
+      <p>
+        Koristimo:
+      </p>
+
+      <div class="coef-box">
+        \[
+          (x-1)(x^2+x+1)=x^3-1,
+          \qquad
+          (x-1)^2=x^2-2x+1.
+        \]
+      </div>
+
+      <p>Zato je:</p>
+
+      <div class="coef-box">
+        \[
+        \begin{aligned}
+          2x^3+x^2+3x+1
+          &=
+          A(x^3-1)
+          +
+          B(x^2+x+1)
+          +
+          (Cx+D)(x^2-2x+1) \\
+          &=
+          A x^3-A
+          +
+          Bx^2+Bx+B
+          +
+          Cx^3+(D-2C)x^2+(C-2D)x+D \\
+          &=
+          (A+C)x^3
+          +
+          (B+D-2C)x^2
+          +
+          (B+C-2D)x
+          +
+          (-A+B+D).
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Poređenjem koeficijenata dobijamo sistem:
+      </p>
+
+      <div class="coef-box">
+        \[
+        \begin{cases}
+          A+C=2, \\
+          B+D-2C=1, \\
+          B+C-2D=3, \\
+          -A+B+D=1.
+        \end{cases}
+        \]
+      </div>
+
+      <h3>2. Računanje koeficijenata</h3>
+
+      <p>
+        Iz prve jednačine:
+      </p>
+
+      <div class="coef-box">
+        \[
+          A=2-C.
+        \]
+      </div>
+
+      <p>
+        Iz druge jednačine:
+      </p>
+
+      <div class="coef-box">
+        \[
+          B+D-2C=1
+          \quad\Longrightarrow\quad
+          B=1-D+2C.
+        \]
+      </div>
+
+      <p>
+        Ubacujemo to u treću jednačinu:
+      </p>
+
+      <div class="coef-box">
+        \[
+        \begin{aligned}
+          B+C-2D &= 3, \\
+          1-D+2C+C-2D &= 3, \\
+          1+3C-3D &= 3, \\
+          C-D &= \frac23.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Sada koristimo četvrtu jednačinu:
+      </p>
+
+      <div class="coef-box">
+        \[
+        \begin{aligned}
+          -A+B+D &= 1, \\
+          -(2-C)+(1-D+2C)+D &= 1, \\
+          -2+C+1-D+2C+D &= 1, \\
+          -1+3C &= 1, \\
+          3C &= 2, \\
+          C &= \frac23.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Dalje:
+      </p>
+
+      <div class="coef-box">
+        \[
+        \begin{aligned}
+          C-D &= \frac23,
+          \qquad C=\frac23
+          \quad\Longrightarrow\quad
+          D=0, \\
+          A &= 2-C=2-\frac23=\frac43, \\
+          B &= 1-D+2C=1+2\cdot\frac23=\frac73.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Dakle:</p>
+
+      <div class="formula-box">
+        \[
+          \frac{2x^3+x^2+3x+1}{(x-1)^2(x^2+x+1)}
+          =
+          \frac{4}{3}\cdot\frac{1}{x-1}
+          +
+          \frac{7}{3}\cdot\frac{1}{(x-1)^2}
+          +
+          \frac{\frac23 x}{x^2+x+1}
+        \]
+      </div>
+
+      <h3>3. Integracija</h3>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \int
+          \frac{2x^3+x^2+3x+1}{(x-1)^2(x^2+x+1)}
+          \,dx
+          &=
+          \frac43\int\frac{dx}{x-1}
+          +
+          \frac73\int\frac{dx}{(x-1)^2}
+          +
+          \frac23\int\frac{x}{x^2+x+1}\,dx.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Prva dva integrala su direktna:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac43\int\frac{dx}{x-1}
+          =
+          \frac43\ln|x-1|,
+          \qquad
+          \frac73\int\frac{dx}{(x-1)^2}
+          =
+          -\frac{7}{3(x-1)}.
+        \]
+      </div>
+
+      <p>
+        Za poslednji integral koristimo izvod imenioca:
+      </p>
+
+      <div class="formula-box">
+        \[
+          (x^2+x+1)'=2x+1.
+        \]
+      </div>
+
+      <p>
+        Zato brojilac \(\frac23x\) prepakujemo preko \(2x+1\):
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac23x
+          =
+          \frac13(2x+1)-\frac13.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \frac23\int\frac{x}{x^2+x+1}\,dx
+          &=
+          \int\frac{\frac23x}{x^2+x+1}\,dx \\
+          &=
+          \frac13\int\frac{2x+1}{x^2+x+1}\,dx
+          -
+          \frac13\int\frac{dx}{x^2+x+1}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Prvi deo daje logaritam:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \frac13\int\frac{2x+1}{x^2+x+1}\,dx
+          =
+          \frac13\ln(x^2+x+1).
+        \]
+      </div>
+
+      <p>
+        Za drugi deo kompletiramo kvadrat:
+      </p>
+
+      <div class="formula-box">
+        \[
+          x^2+x+1
+          =
+          \left(x+\frac12\right)^2+\frac34.
+        \]
+      </div>
+
+      <p>
+        Zato:
+      </p>
+
+      <div class="formula-box">
+        \[
+          \int\frac{dx}{x^2+x+1}
+          =
+          \frac{2}{\sqrt3}
+          \arctan\frac{2x+1}{\sqrt3}.
+        \]
+      </div>
+
+      <div class="answer-box">
+        \[
+          \boxed{
+          \int
+          \frac{2x^3+x^2+3x+1}{(x-1)^2(x^2+x+1)}
+          \,dx
+          =
+          \frac43\ln|x-1|
+          -
+          \frac{7}{3(x-1)}
+          +
+          \frac13\ln(x^2+x+1)
+          -
+          \frac{2}{3\sqrt3}
+          \arctan\frac{2x+1}{\sqrt3}
+          +C
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      <p>Mathbrotherhood — parcijalni razlomci bez preskakanja koeficijenata.</p>
+    </section>
+
+  </div>
+</body>
+</html>
