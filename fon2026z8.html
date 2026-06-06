@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zadatak 8 – površina trougla BDF</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #667085;
+      --card: #ffffff;
+      --blue: #2563eb;
+      --green: #0f766e;
+      --amber: #b45309;
+      --violet: #7c3aed;
+      --rose: #be185d;
+      --soft-blue: #eaf1ff;
+      --soft-green: #e9fbf6;
+      --soft-amber: #fff4df;
+      --soft-violet: #f3eefe;
+      --soft-rose: #fff0f6;
+      --border: #d9e2f1;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(124,58,237,.10), transparent 34%),
+        var(--bg);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 18px 28px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ffffff 0%, #edf4ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 30px;
+      box-shadow: 0 18px 45px rgba(30, 64, 175, 0.09);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px 24px;
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.06);
+    }
+
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: -0.02em;
+    }
+
+    .task { border-left: 7px solid var(--blue); }
+    .idea { border-left: 7px solid var(--green); background: linear-gradient(90deg, var(--soft-green), #fff 40%); }
+    .calc { border-left: 7px solid var(--amber); background: linear-gradient(90deg, var(--soft-amber), #fff 40%); }
+    .observe { border-left: 7px solid var(--rose); background: linear-gradient(90deg, var(--soft-rose), #fff 40%); }
+    .final { border-left: 7px solid var(--violet); background: linear-gradient(90deg, var(--soft-violet), #fff 40%); }
+
+    .formula-box {
+      margin: 15px 0;
+      padding: 14px 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      overflow-x: auto;
+    }
+
+    mjx-container[jax='SVG'][display='true'] {
+      margin: 0.35em 0;
+    }
+
+    .note {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #eef6ff;
+      border: 1px solid #c7ddff;
+      color: #1e3a8a;
+      margin: 14px 0 0;
+    }
+
+    figure { margin: 0; }
+    figcaption {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .diagram {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: linear-gradient(180deg, #ffffff, #f9fbff);
+      border-radius: 20px;
+      border: 1px solid #e5edf7;
+    }
+
+    .abc-fill { fill: rgba(37, 99, 235, 0.06); }
+    .bdf-fill { fill: rgba(190, 24, 93, 0.18); }
+    .abc { fill: none; stroke: #1f2937; stroke-width: 3; stroke-linejoin: round; }
+    .bdf { fill: none; stroke: #be185d; stroke-width: 4; stroke-linejoin: round; }
+    .altitude { stroke: #dc2626; stroke-width: 3.5; stroke-dasharray: 8 7; }
+    .altitude2 { stroke: #7c3aed; stroke-width: 3.5; stroke-dasharray: 8 7; }
+    .helper { stroke: #0f766e; stroke-width: 3.2; }
+    .right-angle { fill: none; stroke: #111827; stroke-width: 2.5; }
+    .point { fill: #111827; }
+    .special { fill: #be185d; }
+    .special2 { fill: #0f766e; }
+    .label { font: 700 20px Georgia, serif; fill: #111827; }
+    .dim { font: 700 16px system-ui, sans-serif; fill: #374151; }
+    .side { fill: #6b7280; }
+    .caption { font: 700 15px system-ui, sans-serif; fill: #2563eb; }
+    .caption2 { font: 500 13px system-ui, sans-serif; fill: #64748b; }
+
+    .answer {
+      font-size: 21px;
+      font-weight: 800;
+      color: #4c1d95;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header>
+      <h1>Zadatak 8 – površina trougla \(BDF\)</h1>
+      <p class="subtitle">Geometrijsko rešenje sa slikom i HTML izlazom.</p>
+    </header>
+
+    <section class="grid">
+      <article class="card task">
+        <h2>Zadatak</h2>
+        <p>
+          U trouglu \(ABC\) tačka \(E\) je središte stranice \(CA\), a tačke \(D\) i \(F\)
+          su redom podnožja visina iz temena \(A\) i \(C\) na stranice \(BC\) i \(AB\).
+          Ukoliko je
+          \[
+            |DE|=|AF|=1\text{ cm},
+          \]
+          i obim trougla \(ABC\) jednak
+          \[
+            6\text{ cm},
+          \]
+          odrediti površinu trougla \(BDF\).
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Slika</h2>
+        <figure>
+          <svg class="diagram" viewBox="0 0 620 470" role="img" aria-label="Trougao ABC sa tačkama D, E i F">
+
+  <polygon points="90.00,420.00 450.00,420.00 270.00,108.23" class="abc-fill"/>
+  <polyline points="90.00,420.00 270.00,108.23 450.00,420.00 90.00,420.00" class="abc"/>
+
+  <polygon points="450.00,420.00 360.00,264.12 270.00,420.00" class="bdf-fill"/>
+  <polyline points="450.00,420.00 360.00,264.12 270.00,420.00 450.00,420.00" class="bdf"/>
+
+  <line x1="90.00" y1="420.00" x2="360.00" y2="264.12" class="altitude"/>
+  <line x1="270.00" y1="108.23" x2="270.00" y2="420.00" class="altitude2"/>
+  <line x1="360.00" y1="264.12" x2="180.00" y2="264.12" class="helper"/>
+
+  <path d="M 270.00 402.00 L 288.00 402.00 L 288.00 420.00" class="right-angle"/>
+  <path d="M 342.00 254.12 L 355.00 276.12 L 377.00 263.12" class="right-angle"/>
+
+  <circle cx="90.00" cy="420.00" r="5" class="point"/>
+  <circle cx="450.00" cy="420.00" r="5" class="point"/>
+  <circle cx="270.00" cy="108.23" r="5" class="point"/>
+  <circle cx="360.00" cy="264.12" r="5" class="point special"/>
+  <circle cx="180.00" cy="264.12" r="5" class="point special2"/>
+  <circle cx="270.00" cy="420.00" r="5" class="point special"/>
+
+  <text x="62.00" y="448.00" class="label">A</text>
+  <text x="460.00" y="448.00" class="label">B</text>
+  <text x="262.00" y="92.23" class="label">C</text>
+  <text x="370.00" y="256.12" class="label">D</text>
+  <text x="152.00" y="256.12" class="label">E</text>
+  <text x="264.00" y="450.00" class="label">F</text>
+
+  <text x="170.00" y="450.00" class="dim">1</text>
+  <text x="263.00" y="254.12" class="dim">1</text>
+  <text x="140.00" y="258.12" class="dim side">AC = 2</text>
+  <text x="246.00" y="478.00" class="dim side">AB = 2</text>
+  <text x="378.00" y="256.12" class="dim side">BC = 2</text>
+
+  <text x="315" y="48" text-anchor="middle" class="caption">Trougao ABC je jednakostraničan</text>
+  <text x="315" y="70" text-anchor="middle" class="caption2">E je sredina AC, D i F su podnožja visina</text>
+
+</svg>
+          <figcaption>Osenčen je trougao \(BDF\) čiju površinu određujemo.</figcaption>
+        </figure>
+      </article>
+
+      <article class="card idea">
+        <h2>1. Iz uslova \(DE=1\) nalazimo stranicu \(AC\)</h2>
+        <p>
+          Pošto je \(D\) podnožje visine iz temena \(A\), trougao \(ACD\) je pravougli u tački \(D\).
+          Tačka \(E\) je sredina stranice \(AC\), pa je u pravouglom trouglu \(ACD\)
+          tačka \(E\) sredina hipotenuze.
+        </p>
+
+        <p>Zato važi poznato svojstvo:</p>
+
+        <div class="formula-box">
+          \[
+            EA=EC=ED=\frac{AC}{2}.
+          \]
+        </div>
+
+        <p>Kako je \(ED=1\), dobijamo:</p>
+
+        <div class="formula-box">
+          \[
+            \frac{AC}{2}=1
+            \quad\Longrightarrow\quad
+            AC=2.
+          \]
+        </div>
+      </article>
+
+      <article class="card calc">
+        <h2>2. Iz uslova \(AF=1\) određujemo ugao \(A\)</h2>
+        <p>
+          U pravouglom trouglu \(ACF\) imamo hipotenuzu \(AC=2\) i katetu \(AF=1\).
+          Zato je
+        </p>
+
+        <div class="formula-box">
+          \[
+            \cos A = \frac{AF}{AC} = \frac{1}{2}.
+          \]
+        </div>
+
+        <p>Odavde sledi:</p>
+
+        <div class="formula-box">
+          \[
+            \angle A = 60^\circ.
+          \]
+        </div>
+
+        <p class="note">
+          Može se i Pitagorinom teoremom dobiti \(CF=\sqrt3\), što je opet u skladu sa uglom od \(60^\circ\).
+        </p>
+      </article>
+
+      <article class="card observe">
+        <h2>3. Iz obima nalazimo da je trougao \(ABC\) jednakostraničan</h2>
+        <p>
+          Obeležimo
+          \[
+            AB=x, \qquad BC=y.
+          \]
+          Po uslovu o obimu:
+        </p>
+
+        <div class="formula-box">
+          \[
+            x+y+AC=6
+            \quad\Longrightarrow\quad
+            x+y+2=6
+            \quad\Longrightarrow\quad
+            x+y=4.
+          \]
+        </div>
+
+        <p>
+          Na trougao \(ABC\) primenjujemo kosinusnu teoremu uz \(\angle A=60^\circ\):
+        </p>
+
+        <div class="formula-box">
+          \[
+            y^2=x^2+2^2-2\cdot x\cdot 2\cdot \cos 60^\circ
+            =x^2+4-2x.
+          \]
+        </div>
+
+        <p>Kako je \(y=4-x\), sledi:</p>
+
+        <div class="formula-box">
+          \[
+            (4-x)^2=x^2+4-2x.
+          \]
+          \[
+            16-8x+x^2=x^2+4-2x.
+          \]
+          \[
+            12=6x
+            \quad\Longrightarrow\quad
+            x=2.
+          \]
+        </div>
+
+        <p>Zatim je i</p>
+
+        <div class="formula-box">
+          \[
+            y=4-x=2.
+          \]
+        </div>
+
+        <p>Dakle,</p>
+
+        <div class="formula-box">
+          \[
+            AB=BC=AC=2,
+          \]
+        </div>
+
+        <p>pa je trougao \(ABC\) jednakostraničan.</p>
+      </article>
+
+      <article class="card calc">
+        <h2>4. Površina trougla \(BDF\)</h2>
+        <p>
+          U jednakostraničnom trouglu visine su istovremeno i težišne duži,
+          pa su tačke \(D\) i \(F\) sredine stranica \(BC\) i \(AB\).
+        </p>
+
+        <p>
+          Zato je \(DF\) srednja linija u trouglu \(ABC\), pa je trougao \(BDF\)
+          sličan trouglu \(BCA\) sa koeficijentom sličnosti \(\frac12\).
+        </p>
+
+        <div class="formula-box">
+          \[
+            \frac{P_{BDF}}{P_{ABC}}
+            =
+            \left(\frac12\right)^2
+            =
+            \frac14.
+          \]
+        </div>
+
+        <p>Površina jednakostraničnog trougla stranice \(2\) iznosi:</p>
+
+        <div class="formula-box">
+          \[
+            P_{ABC}
+            =
+            \frac{a^2\sqrt3}{4}
+            =
+            \frac{2^2\sqrt3}{4}
+            =
+            \sqrt3.
+          \]
+        </div>
+
+        <p>Zato je</p>
+
+        <div class="formula-box">
+          \[
+            P_{BDF}
+            =
+            \frac14\,P_{ABC}
+            =
+            \frac14\cdot\sqrt3
+            =
+            \frac{\sqrt3}{4}.
+          \]
+        </div>
+      </article>
+
+      <article class="card final">
+        <h2>Konačan odgovor</h2>
+        <div class="formula-box answer">
+          \[
+            \boxed{P_{BDF}=\frac{\sqrt3}{4}\text{ cm}^2}
+          \]
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      MathBrotherhood · planimetrija · HTML rešenje uz pomoć ChatGPT
+    </footer>
+  </main>
+</body>
+</html>
