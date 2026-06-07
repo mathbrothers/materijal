@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prvi probni — Zadatak 16</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --blue: #2563eb;
+      --blue-soft: #e8f0ff;
+      --green: #16a34a;
+      --green-soft: #e8f8ee;
+      --orange-soft: #fff3df;
+      --purple-soft: #f5f3ff;
+      --border: #e5e7eb;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f6f7fb 0%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .hero .label {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    h1, h2 { margin-top: 0; line-height: 1.25; }
+    h1 { font-size: clamp(28px, 4vw, 42px); margin-bottom: 8px; }
+    h2 { font-size: 24px; margin-bottom: 14px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+      margin: 22px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .task { background: var(--blue-soft); border-left: 7px solid var(--blue); }
+    .idea { background: var(--orange-soft); border-left: 7px solid #f59e0b; }
+    .solution { background: white; border-left: 7px solid #6366f1; }
+    .diagram-card { background: var(--purple-soft); border-left: 7px solid #8b5cf6; }
+    .check { background: #f8fafc; border-left: 7px solid #64748b; }
+    .final { background: var(--green-soft); border-left: 7px solid var(--green); }
+
+    .formula-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .choice {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 600;
+    }
+
+    .correct { border-color: var(--green); background: var(--green-soft); color: #166534; }
+    .note { color: var(--muted); font-size: 15px; margin-top: 10px; }
+
+    .svg-wrap {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      overflow-x: auto;
+      margin-top: 18px;
+    }
+
+    svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="label">Prvi probni — zadatak 16</div>
+      <h1>Geometrija — Heron, visina i opisani krug</h1>
+      <p>
+        Da, ovaj lepo ide preko Heronovog obrasca: prvo nađemo visinu \(CD\),
+        zatim položaj tačaka \(D\) i \(E\), pa poluprečnik opisanog kruga trougla \(CDE\).
+      </p>
+    </section>
+
+    <section class="card task">
+      <h2>Zadatak</h2>
+
+      <p>
+        U trouglu \(ABC\) čije su stranice
+      </p>
+
+      <div class="formula-box">
+        \[
+        |BC|=11\text{ cm},\qquad |AC|=9\text{ cm},\qquad |AB|=10\text{ cm},
+        \]
+      </div>
+
+      <p>
+        date su tačke \(D\) i \(E\) na stranici \(AB\) takve da je \(CD\) visina,
+        a \(CE\) težišna duž trougla \(ABC\). Površina kruga opisanog oko trougla
+        \(CDE\) jednaka je:
+      </p>
+
+      <div class="choices">
+        <div class="choice">A) \(18\pi\text{ cm}^2\)</div>
+        <div class="choice correct">B) \(19\pi\text{ cm}^2\)</div>
+        <div class="choice">C) \(\frac{69}{4}\pi\text{ cm}^2\)</div>
+        <div class="choice">D) \(20\pi\text{ cm}^2\)</div>
+        <div class="choice">E) \(23\pi\text{ cm}^2\)</div>
+        <div class="choice">N) Ne znam.</div>
+      </div>
+    </section>
+
+    <section class="card diagram-card">
+      <h2>Skica situacije</h2>
+
+      <p>
+        Tačka \(D\) je podnožje visine iz \(C\), a \(E\) je sredina stranice \(AB\).
+        Pošto je \(CD\perp AB\), trougao \(CDE\) je pravougli u \(D\).
+      </p>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 585" role="img" aria-label="Trougao ABC sa visinom CD, težišnom duži CE i opisanim krugom trougla CDE">
+          <!-- Koordinate su proporcionalne: A(0,0), B(10,0), C(3,6sqrt2), D(3,0), E(5,0). -->
+          <circle cx="278" cy="299.4" r="226.7" fill="rgba(37,99,235,0.07)" stroke="#2563eb" stroke-width="3" />
+
+          <polygon points="70,520 590,520 226,78.9"
+                   fill="rgba(245,158,11,0.08)" stroke="#111827" stroke-width="3" />
+
+          <line x1="226" y1="78.9" x2="226" y2="520" stroke="#dc2626" stroke-width="4" />
+          <line x1="226" y1="78.9" x2="330" y2="520" stroke="#16a34a" stroke-width="4" />
+          <line x1="226" y1="520" x2="330" y2="520" stroke="#16a34a" stroke-width="4" />
+
+          <path d="M 226 520 l 0 -22 l 22 0 l 0 22" fill="none" stroke="#dc2626" stroke-width="3" />
+
+          <circle cx="70" cy="520" r="6" fill="#111827" />
+          <circle cx="590" cy="520" r="6" fill="#111827" />
+          <circle cx="226" cy="78.9" r="6" fill="#111827" />
+          <circle cx="226" cy="520" r="6" fill="#dc2626" />
+          <circle cx="330" cy="520" r="6" fill="#16a34a" />
+
+          <text x="42" y="555" font-size="28" font-weight="700">A</text>
+          <text x="602" y="555" font-size="28" font-weight="700">B</text>
+          <text x="218" y="55" font-size="28" font-weight="700">C</text>
+          <text x="218" y="558" font-size="26" font-weight="700" fill="#dc2626">D</text>
+          <text x="322" y="558" font-size="26" font-weight="700" fill="#16a34a">E</text>
+
+          <text x="138" y="548" font-size="20" fill="#374151">3</text>
+          <text x="270" y="505" font-size="20" fill="#374151">2</text>
+          <text x="455" y="548" font-size="20" fill="#374151">5</text>
+          <text x="238" y="305" font-size="20" fill="#dc2626">CD</text>
+          <text x="292" y="304" font-size="20" fill="#16a34a">CE</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="card idea">
+      <h2>Plan</h2>
+
+      <p>
+        Pošto je \(CD\) visina, trougao \(CDE\) je pravougli u \(D\).
+        Kod pravouglog trougla centar opisanog kruga je sredina hipotenuze,
+        pa je poluprečnik jednak polovini hipotenuze:
+      </p>
+
+      <div class="formula-box">
+        \[
+        R=\frac{CE}{2}
+        \]
+      </div>
+
+      <p>
+        Dakle, dovoljno je da nađemo dužinu težišne duži \(CE\).
+        To ćemo uraditi preko Herona i visine \(CD\).
+      </p>
+    </section>
+
+    <section class="card solution">
+      <h2>1. Površina trougla \(ABC\) preko Herona</h2>
+
+      <p>
+        Stranice trougla su \(9\), \(10\) i \(11\), pa je poluobim:
+      </p>
+
+      <div class="formula-box">
+        \[
+        s=\frac{9+10+11}{2}=15
+        \]
+      </div>
+
+      <p>
+        Po Heronovom obrascu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        P=\sqrt{s(s-a)(s-b)(s-c)}
+        \]
+        \[
+        P=\sqrt{15\cdot 4\cdot 5\cdot 6}
+        \]
+        \[
+        P=\sqrt{1800}=30\sqrt2
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>2. Računanje visine \(CD\)</h2>
+
+      <p>
+        Površinu istog trougla možemo pisati i preko osnove \(AB\) i visine \(CD\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        P=\frac{AB\cdot CD}{2}
+        \]
+      </div>
+
+      <p>
+        Pošto je \(AB=10\), imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        30\sqrt2=\frac{10\cdot CD}{2}
+        \]
+        \[
+        30\sqrt2=5CD
+        \]
+        \[
+        CD=6\sqrt2
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>3. Položaj tačaka \(D\) i \(E\)</h2>
+
+      <p>
+        U pravouglom trouglu \(ACD\) važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+        AC^2=AD^2+CD^2
+        \]
+      </div>
+
+      <p>
+        Pošto je \(AC=9\) i \(CD=6\sqrt2\), dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        9^2=AD^2+(6\sqrt2)^2
+        \]
+        \[
+        81=AD^2+72
+        \]
+        \[
+        AD^2=9
+        \]
+        \[
+        AD=3
+        \]
+      </div>
+
+      <p>
+        Tačka \(E\) je sredina stranice \(AB\), pa je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        AE=\frac{AB}{2}=5
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        DE=AE-AD=5-3=2
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>4. Trougao \(CDE\) i opisani krug</h2>
+
+      <p>
+        Trougao \(CDE\) je pravougli u \(D\), pa je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        CE^2=CD^2+DE^2
+        \]
+        \[
+        CE^2=(6\sqrt2)^2+2^2
+        \]
+        \[
+        CE^2=72+4=76
+        \]
+      </div>
+
+      <p>
+        U pravouglom trouglu poluprečnik opisanog kruga jednak je polovini hipotenuze:
+      </p>
+
+      <div class="formula-box">
+        \[
+        R=\frac{CE}{2}
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        R^2=\frac{CE^2}{4}=\frac{76}{4}=19
+        \]
+      </div>
+    </section>
+
+    <section class="card check">
+      <h2>Provera preko formule za težišnu duž</h2>
+
+      <p>
+        Težišna duž iz temena \(C\) na stranicu \(AB\) može se proveriti formulom:
+      </p>
+
+      <div class="formula-box">
+        \[
+        CE=\frac12\sqrt{2AC^2+2BC^2-AB^2}
+        \]
+      </div>
+
+      <p>
+        U našem slučaju:
+      </p>
+
+      <div class="formula-box">
+        \[
+        CE=\frac12\sqrt{2\cdot 9^2+2\cdot 11^2-10^2}
+        \]
+        \[
+        CE=\frac12\sqrt{162+242-100}
+        =
+        \frac12\sqrt{304}
+        \]
+        \[
+        CE^2=76
+        \]
+      </div>
+
+      <p>
+        Dobijamo isto kao gore.
+      </p>
+    </section>
+
+    <section class="card final">
+      <h2>Konačan odgovor</h2>
+
+      <p>
+        Površina opisanog kruga je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        P_k=R^2\pi=19\pi
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{19\pi\text{ cm}^2}
+        \]
+      </div>
+
+      <p>
+        Tačan odgovor je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{\text{B) }19\pi\text{ cm}^2}
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      Srećno sa prvim probnim želi vam Mathbrotherhood u saradnji sa ChatGPT.
+    </section>
+
+  </main>
+</body>
+</html>
