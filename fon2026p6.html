@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prvi probni — Zadatak 6</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --blue: #2563eb;
+      --blue-soft: #e8f0ff;
+      --green: #16a34a;
+      --green-soft: #e8f8ee;
+      --orange-soft: #fff3df;
+      --purple-soft: #f5f3ff;
+      --border: #e5e7eb;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f6f7fb 0%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .hero .label {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    h1, h2 {
+      margin-top: 0;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+      margin: 22px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .task {
+      background: var(--blue-soft);
+      border-left: 7px solid var(--blue);
+    }
+
+    .idea {
+      background: var(--orange-soft);
+      border-left: 7px solid #f59e0b;
+    }
+
+    .solution {
+      background: white;
+      border-left: 7px solid #6366f1;
+    }
+
+    .substitution {
+      background: var(--purple-soft);
+      border-left: 7px solid #8b5cf6;
+    }
+
+    .check {
+      background: #f8fafc;
+      border-left: 7px solid #64748b;
+    }
+
+    .final {
+      background: var(--green-soft);
+      border-left: 7px solid var(--green);
+    }
+
+    .formula-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .choice {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 600;
+    }
+
+    .correct {
+      border-color: var(--green);
+      background: var(--green-soft);
+      color: #166534;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="label">Prvi probni — zadatak 6</div>
+      <h1>Logaritamska jednačina — prelazak na eksponencijalnu</h1>
+      <p>
+        Prvi korak jeste upravo prelazak sa logaritamskog oblika na eksponencijalni oblik.
+      </p>
+    </section>
+
+    <section class="card task">
+      <h2>Zadatak</h2>
+
+      <p>
+        Zbir svih rešenja jednačine
+      </p>
+
+      <div class="formula-box">
+        \[
+        \log_{2026}\left(2027-2026^{1+x}\right)+x=0
+        \]
+      </div>
+
+      <p>jednak je:</p>
+
+      <div class="choices">
+        <div class="choice">A) \(0\)</div>
+        <div class="choice correct">B) \(-1\)</div>
+        <div class="choice">C) \(2\)</div>
+        <div class="choice">D) \(1\)</div>
+        <div class="choice">E) \(-2\)</div>
+        <div class="choice">N) Ne znam.</div>
+      </div>
+    </section>
+
+    <section class="card idea">
+      <h2>Glavna ideja</h2>
+
+      <p>
+        Iz jednačine prvo izolujemo logaritam:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \log_{2026}\left(2027-2026^{1+x}\right)+x=0
+        \]
+        \[
+        \log_{2026}\left(2027-2026^{1+x}\right)=-x
+        \]
+      </div>
+
+      <p>
+        Sada koristimo vezu između logaritamskog i eksponencijalnog oblika:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \log_a A=B
+        \quad\Longleftrightarrow\quad
+        A=a^B
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>Prelazak na eksponencijalnu jednačinu</h2>
+
+      <p>
+        Pošto je osnova logaritma \(2026\), dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2027-2026^{1+x}=2026^{-x}
+        \]
+      </div>
+
+      <p>
+        Ovo je sada eksponencijalna jednačina.
+        Da bismo je sredili, uvodimo smenu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        t=2026^x
+        \]
+      </div>
+
+      <p>
+        Tada važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2026^{1+x}=2026\cdot 2026^x=2026t
+        \]
+        \[
+        2026^{-x}=\frac{1}{2026^x}=\frac1t
+        \]
+      </div>
+
+      <p>
+        Jednačina postaje:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2027-2026t=\frac1t
+        \]
+      </div>
+    </section>
+
+    <section class="card substitution">
+      <h2>Kvadratna jednačina po \(t\)</h2>
+
+      <p>
+        Množimo jednačinu sa \(t\), pri čemu je \(t>0\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        2027t-2026t^2=1
+        \]
+      </div>
+
+      <p>
+        Prebacujemo sve na jednu stranu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2026t^2-2027t+1=0
+        \]
+      </div>
+
+      <p>
+        Faktorišemo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2026t^2-2027t+1
+        =
+        (t-1)(2026t-1)
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        (t-1)(2026t-1)=0
+        \]
+      </div>
+
+      <p>
+        Dobijamo dve mogućnosti:
+      </p>
+
+      <div class="formula-box">
+        \[
+        t=1
+        \qquad\text{ili}\qquad
+        2026t-1=0
+        \]
+        \[
+        t=1
+        \qquad\text{ili}\qquad
+        t=\frac1{2026}
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>Vraćanje smene</h2>
+
+      <p>
+        Pošto je \(t=2026^x\), iz \(t=1\) dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2026^x=1
+        \]
+        \[
+        2026^x=2026^0
+        \]
+        \[
+        x=0
+        \]
+      </div>
+
+      <p>
+        Iz \(t=\frac1{2026}\) dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2026^x=\frac1{2026}
+        \]
+        \[
+        2026^x=2026^{-1}
+        \]
+        \[
+        x=-1
+        \]
+      </div>
+
+      <p>
+        Dakle, rešenja su:
+      </p>
+
+      <div class="formula-box">
+        \[
+        x_1=0,
+        \qquad
+        x_2=-1
+        \]
+      </div>
+    </section>
+
+    <section class="card check">
+      <h2>Provera uslova</h2>
+
+      <p>
+        Argument logaritma mora biti pozitivan:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2027-2026^{1+x}>0
+        \]
+      </div>
+
+      <p>
+        Za \(x=0\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        2027-2026^{1}=2027-2026=1>0
+        \]
+      </div>
+
+      <p>
+        Za \(x=-1\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        2027-2026^{0}=2027-1=2026>0
+        \]
+      </div>
+
+      <p>
+        Oba rešenja zadovoljavaju uslov.
+      </p>
+    </section>
+
+    <section class="card final">
+      <h2>Konačan odgovor</h2>
+
+      <p>
+        Traži se zbir svih rešenja:
+      </p>
+
+      <div class="formula-box">
+        \[
+        x_1+x_2=0+(-1)=-1
+        \]
+      </div>
+
+      <p>
+        Tačan odgovor je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{\text{B) }-1}
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      Srećno sa prvim probnim želi vam Mathbrotherhood u saradnji sa ChatGPT.
+    </section>
+
+  </main>
+</body>
+</html>
