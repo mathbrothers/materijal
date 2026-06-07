@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prvi probni — Zadatak 12</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --blue: #2563eb;
+      --blue-soft: #e8f0ff;
+      --green: #16a34a;
+      --green-soft: #e8f8ee;
+      --orange-soft: #fff3df;
+      --purple-soft: #f5f3ff;
+      --border: #e5e7eb;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #f6f7fb 0%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+      color: white;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .hero .label {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    h1, h2 {
+      margin-top: 0;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+      margin: 22px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .task {
+      background: var(--blue-soft);
+      border-left: 7px solid var(--blue);
+    }
+
+    .idea {
+      background: var(--orange-soft);
+      border-left: 7px solid #f59e0b;
+    }
+
+    .solution {
+      background: white;
+      border-left: 7px solid #6366f1;
+    }
+
+    .identity {
+      background: var(--purple-soft);
+      border-left: 7px solid #8b5cf6;
+    }
+
+    .check {
+      background: #f8fafc;
+      border-left: 7px solid #64748b;
+    }
+
+    .final {
+      background: var(--green-soft);
+      border-left: 7px solid var(--green);
+    }
+
+    .formula-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .choice {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 600;
+    }
+
+    .correct {
+      border-color: var(--green);
+      background: var(--green-soft);
+      color: #166534;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <div class="label">Prvi probni — zadatak 12</div>
+      <h1>Trigonometrijski izraz — preko sinusa i kosinusa</h1>
+      <p>
+        Radimo baš direktno: \(\operatorname{tg}\) pišemo kao \(\frac{\sin}{\cos}\),
+        a \(\operatorname{ctg}\) kao \(\frac{\cos}{\sin}\).
+      </p>
+    </section>
+
+    <section class="card task">
+      <h2>Zadatak</h2>
+
+      <p>
+        Vrednost izraza
+      </p>
+
+      <div class="formula-box">
+        \[
+        \operatorname{tg}\frac{\pi}{12}+\operatorname{ctg}\frac{\pi}{12}
+        \]
+      </div>
+
+      <p>jednaka je:</p>
+
+      <div class="choices">
+        <div class="choice">A) \(\sqrt6-\sqrt2\)</div>
+        <div class="choice correct">B) \(4\)</div>
+        <div class="choice">C) \(4+2\sqrt3\)</div>
+        <div class="choice">D) \(2\)</div>
+        <div class="choice">E) \(\sqrt3+1\)</div>
+        <div class="choice">N) Ne znam.</div>
+      </div>
+    </section>
+
+    <section class="card idea">
+      <h2>Glavna ideja</h2>
+
+      <p>
+        Neka je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \alpha=\frac{\pi}{12}
+        \]
+      </div>
+
+      <p>
+        Tada izraz postaje:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \operatorname{tg}\alpha+\operatorname{ctg}\alpha
+        \]
+      </div>
+
+      <p>
+        Sada koristimo osnovne definicije:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \operatorname{tg}\alpha=\frac{\sin\alpha}{\cos\alpha},
+        \qquad
+        \operatorname{ctg}\alpha=\frac{\cos\alpha}{\sin\alpha}
+        \]
+      </div>
+    </section>
+
+    <section class="card solution">
+      <h2>Rešenje</h2>
+
+      <p>
+        Pišemo tangens i kotangens preko sinusa i kosinusa:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \operatorname{tg}\alpha+\operatorname{ctg}\alpha
+        =
+        \frac{\sin\alpha}{\cos\alpha}
+        +
+        \frac{\cos\alpha}{\sin\alpha}
+        \]
+      </div>
+
+      <p>
+        Svodimo na zajednički imenilac:
+      </p>
+
+      <div class="formula-box">
+        \[
+        =
+        \frac{\sin^2\alpha+\cos^2\alpha}{\sin\alpha\cos\alpha}
+        \]
+      </div>
+
+      <p>
+        Pošto je
+      </p>
+
+      <div class="formula-box">
+        \[
+        \sin^2\alpha+\cos^2\alpha=1,
+        \]
+      </div>
+
+      <p>
+        dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        =
+        \frac{1}{\sin\alpha\cos\alpha}
+        \]
+      </div>
+    </section>
+
+    <section class="card identity">
+      <h2>Pojavljuje se \(\sin 30^\circ\)</h2>
+
+      <p>
+        Da bismo iskoristili formulu za sinus dvostrukog ugla, množimo brojilac i imenilac sa \(2\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{1}{\sin\alpha\cos\alpha}
+        =
+        \frac{2}{2\sin\alpha\cos\alpha}
+        \]
+      </div>
+
+      <p>
+        Koristimo formulu:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2\sin\alpha\cos\alpha=\sin 2\alpha
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{2}{2\sin\alpha\cos\alpha}
+        =
+        \frac{2}{\sin 2\alpha}
+        \]
+      </div>
+
+      <p>
+        Pošto je \(\alpha=\frac{\pi}{12}\), imamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        2\alpha=2\cdot\frac{\pi}{12}=\frac{\pi}{6}
+        \]
+      </div>
+
+      <p>
+        Dakle:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{2}{\sin 2\alpha}
+        =
+        \frac{2}{\sin\frac{\pi}{6}}
+        \]
+      </div>
+
+      <p>
+        A znamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \sin\frac{\pi}{6}=\sin 30^\circ=\frac12
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{2}{\sin\frac{\pi}{6}}
+        =
+        \frac{2}{\frac12}
+        =
+        4
+        \]
+      </div>
+    </section>
+
+    <section class="card check">
+      <h2>Brza provera</h2>
+
+      <div class="formula-box">
+        \[
+        \operatorname{tg}\frac{\pi}{12}
+        +
+        \operatorname{ctg}\frac{\pi}{12}
+        =
+        \frac{2}{\sin\frac{\pi}{6}}
+        =
+        \frac{2}{1/2}
+        =
+        4
+        \]
+      </div>
+    </section>
+
+    <section class="card final">
+      <h2>Konačan odgovor</h2>
+
+      <div class="formula-box">
+        \[
+        \boxed{4}
+        \]
+      </div>
+
+      <p>
+        Tačan odgovor je:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{\text{B) }4}
+        \]
+      </div>
+    </section>
+
+    <section class="footer">
+      Srećno sa prvim probnim želi vam Mathbrotherhood u saradnji sa ChatGPT.
+    </section>
+
+  </main>
+</body>
+</html>
