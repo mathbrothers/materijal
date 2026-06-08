@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Algebarski izraz sa smenom korena</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 18px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6fb;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 30px;
+      color: #172554;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #1e3a8a;
+      font-size: 22px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 26px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      border-left: 7px solid #60a5fa;
+    }
+
+    .card.green {
+      border-left-color: #34d399;
+    }
+
+    .card.orange {
+      border-left-color: #f59e0b;
+    }
+
+    .card.purple {
+      border-left-color: #a78bfa;
+    }
+
+    .formula-box {
+      background: #eef4ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+      overflow-x: auto;
+    }
+
+    .important {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-top: 16px;
+    }
+
+    .final {
+      background: #fff7ed;
+      border: 2px solid #fdba74;
+      border-radius: 18px;
+      padding: 24px 30px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .note {
+      font-size: 15px;
+      color: #475569;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Algebarsko sređivanje izraza</h1>
+
+    <section class="card">
+      <h2>Zadatak</h2>
+
+      <p>Za međusobno različite pozitivne realne brojeve \(a\) i \(b\), srediti izraz:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{(\sqrt a-\sqrt b)^3+3a\sqrt b-3b\sqrt a}{\sqrt a-\sqrt b}
+        -
+        \frac{(\sqrt a)^3+(\sqrt b)^3}{a-b}
+        :
+        \frac{(\sqrt a)^3-(\sqrt b)^3}
+        {(\sqrt a-\sqrt b)^2\cdot(a+\sqrt{ab}+b)}
+        \]
+      </div>
+
+      <p class="note">
+        Znak „:“ označava deljenje.
+      </p>
+    </section>
+
+    <section class="card green">
+      <h2>1. Smena</h2>
+
+      <p>Uvedimo smenu:</p>
+
+      <div class="formula-box">
+        \[
+        \sqrt a=x,\qquad \sqrt b=y
+        \]
+      </div>
+
+      <p>Pošto su \(a\) i \(b\) pozitivni i različiti, imamo:</p>
+
+      <div class="formula-box">
+        \[
+        x>0,\qquad y>0,\qquad x\ne y
+        \]
+      </div>
+
+      <p>Tada je:</p>
+
+      <div class="formula-box">
+        \[
+        a=x^2,\qquad b=y^2,\qquad \sqrt{ab}=xy
+        \]
+        \[
+        (\sqrt a)^3=x^3,\qquad (\sqrt b)^3=y^3
+        \]
+      </div>
+    </section>
+
+    <section class="card orange">
+      <h2>2. Prvi razlomak</h2>
+
+      <p>Prvi razlomak postaje:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{(x-y)^3+3x^2y-3y^2x}{x-y}
+        \]
+      </div>
+
+      <p>Razvijamo kub razlike:</p>
+
+      <div class="formula-box">
+        \[
+        (x-y)^3=x^3-3x^2y+3xy^2-y^3
+        \]
+      </div>
+
+      <p>Zato je brojilac:</p>
+
+      <div class="formula-box">
+        \[
+        x^3-3x^2y+3xy^2-y^3+3x^2y-3xy^2
+        =
+        x^3-y^3
+        \]
+      </div>
+
+      <p>Dakle:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{x^3-y^3}{x-y}
+        =
+        x^2+xy+y^2
+        \]
+      </div>
+    </section>
+
+    <section class="card purple">
+      <h2>3. Deo sa deljenjem</h2>
+
+      <p>Drugi deo izraza je:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{x^3+y^3}{x^2-y^2}
+        :
+        \frac{x^3-y^3}{(x-y)^2(x^2+xy+y^2)}
+        \]
+      </div>
+
+      <p>Prvo sredimo drugi razlomak:</p>
+
+      <div class="formula-box">
+        \[
+        x^3-y^3=(x-y)(x^2+xy+y^2)
+        \]
+      </div>
+
+      <p>Zato je:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{x^3-y^3}{(x-y)^2(x^2+xy+y^2)}
+        =
+        \frac{(x-y)(x^2+xy+y^2)}
+        {(x-y)^2(x^2+xy+y^2)}
+        =
+        \frac{1}{x-y}
+        \]
+      </div>
+
+      <p>Sada imamo:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{x^3+y^3}{x^2-y^2}
+        :
+        \frac{1}{x-y}
+        =
+        \frac{x^3+y^3}{x^2-y^2}\cdot(x-y)
+        \]
+      </div>
+
+      <p>Pošto je:</p>
+
+      <div class="formula-box">
+        \[
+        x^2-y^2=(x-y)(x+y)
+        \]
+      </div>
+
+      <p>dobijamo:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{x^3+y^3}{(x-y)(x+y)}\cdot(x-y)
+        =
+        \frac{x^3+y^3}{x+y}
+        \]
+      </div>
+
+      <p>A kako je:</p>
+
+      <div class="formula-box">
+        \[
+        x^3+y^3=(x+y)(x^2-xy+y^2)
+        \]
+      </div>
+
+      <p>sledi:</p>
+
+      <div class="formula-box">
+        \[
+        \frac{x^3+y^3}{x+y}
+        =
+        x^2-xy+y^2
+        \]
+      </div>
+    </section>
+
+    <section class="card green">
+      <h2>4. Konačno sređivanje</h2>
+
+      <p>Ceo izraz je sada:</p>
+
+      <div class="formula-box">
+        \[
+        (x^2+xy+y^2)-(x^2-xy+y^2)
+        \]
+      </div>
+
+      <p>Sređivanjem dobijamo:</p>
+
+      <div class="formula-box">
+        \[
+        x^2+xy+y^2-x^2+xy-y^2
+        =
+        2xy
+        \]
+      </div>
+
+      <p>Vraćamo smenu:</p>
+
+      <div class="formula-box">
+        \[
+        x=\sqrt a,\qquad y=\sqrt b
+        \]
+      </div>
+
+      <p>Zato je:</p>
+
+      <div class="formula-box">
+        \[
+        2xy=2\sqrt a\sqrt b
+        \]
+      </div>
+    </section>
+
+    <section class="final">
+      \[
+      \boxed{2\sqrt a\sqrt b}
+      \]
+      <p>Tačan odgovor je A.</p>
+    </section>
+
+  </div>
+</body>
+</html>
