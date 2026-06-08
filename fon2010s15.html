@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binomni razvoj — odnos trećeg i četvrtog člana</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --ink: #1f2937;
+      --muted: #64748b;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --green: #059669;
+      --green-soft: #ecfdf5;
+      --orange: #f59e0b;
+      --orange-soft: #fff7ed;
+      --purple: #7c3aed;
+      --purple-soft: #f5f3ff;
+      --card: #ffffff;
+      --line: #dbeafe;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 36px 18px 54px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, #dbeafe 0, transparent 32%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 38px);
+      color: #172554;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin: 22px 0;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+      border-left: 7px solid var(--blue);
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      color: #1e3a8a;
+      font-size: 22px;
+    }
+
+    .green { border-left-color: var(--green); }
+    .green h2 { color: #065f46; }
+
+    .orange { border-left-color: var(--orange); }
+    .orange h2 { color: #92400e; }
+
+    .purple { border-left-color: var(--purple); }
+    .purple h2 { color: #5b21b6; }
+
+    .formula-box {
+      background: var(--blue-soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+
+    .green .formula-box {
+      background: var(--green-soft);
+      border-color: #a7f3d0;
+    }
+
+    .orange .formula-box {
+      background: var(--orange-soft);
+      border-color: #fed7aa;
+    }
+
+    .purple .formula-box {
+      background: var(--purple-soft);
+      border-color: #ddd6fe;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .final {
+      background: linear-gradient(135deg, #fff7ed, #fffbeb);
+      border: 2px solid #fdba74;
+      border-radius: 22px;
+      padding: 26px 30px;
+      margin-top: 26px;
+      text-align: center;
+      box-shadow: 0 16px 36px rgba(251, 146, 60, 0.18);
+    }
+
+    .final h2 {
+      margin: 0 0 12px;
+      color: #9a3412;
+    }
+
+    .answer {
+      font-size: 22px;
+      font-weight: 700;
+      color: #7c2d12;
+    }
+
+    .check {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #ecfdf5;
+      border: 1px solid #86efac;
+      color: #14532d;
+      text-align: left;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: right;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Binomni razvoj</h1>
+      <p class="subtitle">Odnos trećeg i četvrtog člana</p>
+    </header>
+
+    <section class="card">
+      <h2>Zadatak</h2>
+      <p>
+        Ako je u razvoju
+      </p>
+      <div class="formula-box">
+        \[
+          \left(\sqrt{3}+\frac{1}{\sqrt{3}}\right)^n
+        \]
+      </div>
+      <p>
+        odnos trećeg i četvrtog člana jednak \(9:10\), odrediti zbir svih binomnih koeficijenata u tom razvoju.
+      </p>
+    </section>
+
+    <section class="card green">
+      <h2>1. Opšti član binomnog razvoja</h2>
+      <p>
+        Za razvoj
+      </p>
+      <div class="formula-box">
+        \[
+          (A+B)^n
+        \]
+      </div>
+      <p>
+        članovi se mogu zapisati kao:
+      </p>
+      <div class="formula-box">
+        \[
+          T_{k+1}=\binom{n}{k}A^{n-k}B^k
+        \]
+      </div>
+      <p>
+        Ovde je:
+      </p>
+      <div class="formula-box">
+        \[
+          A=\sqrt{3},\qquad B=\frac{1}{\sqrt{3}}
+        \]
+      </div>
+    </section>
+
+    <section class="card orange">
+      <h2>2. Treći i četvrti član</h2>
+      <p>
+        Treći član dobijamo za \(k=2\):
+      </p>
+      <div class="formula-box">
+        \[
+          T_3=\binom{n}{2}\left(\sqrt{3}\right)^{n-2}
+          \left(\frac{1}{\sqrt{3}}\right)^2
+        \]
+      </div>
+
+      <p>
+        Četvrti član dobijamo za \(k=3\):
+      </p>
+      <div class="formula-box">
+        \[
+          T_4=\binom{n}{3}\left(\sqrt{3}\right)^{n-3}
+          \left(\frac{1}{\sqrt{3}}\right)^3
+        \]
+      </div>
+    </section>
+
+    <section class="card purple">
+      <h2>3. Koristimo dati odnos</h2>
+      <p>
+        Dato je:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{T_3}{T_4}=\frac{9}{10}
+        \]
+      </div>
+
+      <p>
+        Računamo količnik:
+      </p>
+      <div class="formula-box">
+        \[
+        \frac{T_3}{T_4}
+        =
+        \frac{\binom{n}{2}}{\binom{n}{3}}\cdot
+        \frac{\left(\sqrt{3}\right)^{n-2}}{\left(\sqrt{3}\right)^{n-3}}
+        \cdot
+        \frac{\left(\frac{1}{\sqrt{3}}\right)^2}{\left(\frac{1}{\sqrt{3}}\right)^3}
+        \]
+      </div>
+
+      <p>
+        Sređujemo stepene:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{\left(\sqrt{3}\right)^{n-2}}{\left(\sqrt{3}\right)^{n-3}}
+          =\sqrt{3},
+          \qquad
+          \frac{\left(\frac{1}{\sqrt{3}}\right)^2}{\left(\frac{1}{\sqrt{3}}\right)^3}
+          =\sqrt{3}
+        \]
+      </div>
+
+      <p>
+        Zato je njihov proizvod jednak \(3\), pa dobijamo:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{T_3}{T_4}
+          =
+          3\cdot\frac{\binom{n}{2}}{\binom{n}{3}}
+        \]
+      </div>
+
+      <p>
+        Pošto je:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{\binom{n}{2}}{\binom{n}{3}}
+          =
+          \frac{\frac{n(n-1)}{2}}{\frac{n(n-1)(n-2)}{6}}
+          =
+          \frac{3}{n-2}
+        \]
+      </div>
+
+      <p>
+        sledi:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{T_3}{T_4}
+          =
+          3\cdot\frac{3}{n-2}
+          =
+          \frac{9}{n-2}
+        \]
+      </div>
+
+      <p>
+        Iz datog uslova:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{9}{n-2}=\frac{9}{10}
+        \]
+      </div>
+
+      <p>
+        Odakle je:
+      </p>
+      <div class="formula-box">
+        \[
+          n-2=10
+          \qquad\Longrightarrow\qquad
+          n=12
+        \]
+      </div>
+    </section>
+
+    <section class="card green">
+      <h2>4. Zbir svih binomnih koeficijenata</h2>
+      <p>
+        U razvoju \((A+B)^n\), zbir svih binomnih koeficijenata je:
+      </p>
+      <div class="formula-box">
+        \[
+          \binom{n}{0}+\binom{n}{1}+\binom{n}{2}+\cdots+\binom{n}{n}=2^n
+        \]
+      </div>
+
+      <p>
+        Kako je \(n=12\), imamo:
+      </p>
+      <div class="formula-box">
+        \[
+          2^{12}=4096
+        \]
+      </div>
+    </section>
+
+    <section class="final">
+      <h2>Konačan odgovor</h2>
+      <div class="answer">
+        \[
+          \boxed{4096}
+        \]
+        Tačan odgovor je \(\boxed{\text{B}}\).
+      </div>
+
+      <div class="check">
+        <strong>Brza provera:</strong>
+        za \(n=12\) važi
+        \[
+          \frac{T_3}{T_4}=\frac{9}{12-2}=\frac{9}{10},
+        \]
+        što se slaže sa uslovom zadatka.
+      </div>
+    </section>
+
+    <footer>
+      Powered by ChatGPT
+    </footer>
+  </div>
+</body>
+</html>
