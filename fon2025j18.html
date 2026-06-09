@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binomni razvoj — broj necelih članova</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #1f2937;
+      --muted: #5b6472;
+
+      --task: #fff7ed;
+      --task-border: #fed7aa;
+
+      --idea: #eef2ff;
+      --idea-border: #c7d2fe;
+
+      --analysis: #ecfeff;
+      --analysis-border: #a5f3fc;
+
+      --solution: #f0fdf4;
+      --solution-border: #bbf7d0;
+
+      --warning: #fff1f2;
+      --warning-border: #fecdd3;
+
+      --answer: #f5f3ff;
+      --answer-border: #ddd6fe;
+
+      --formula-bg: rgba(255,255,255,0.72);
+      --shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      background:
+        radial-gradient(circle at top left, rgba(199, 210, 254, 0.36), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(187, 247, 208, 0.38), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    p {
+      margin: 0.65rem 0;
+    }
+
+    .subtitle {
+      margin-bottom: 24px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .task-card,
+    .idea-card,
+    .analysis-card,
+    .solution-card,
+    .warning-card,
+    .answer-card {
+      border: 2px solid;
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin: 18px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .task-card {
+      background: var(--task);
+      border-color: var(--task-border);
+    }
+
+    .idea-card {
+      background: var(--idea);
+      border-color: var(--idea-border);
+    }
+
+    .analysis-card {
+      background: var(--analysis);
+      border-color: var(--analysis-border);
+    }
+
+    .solution-card {
+      background: var(--solution);
+      border-color: var(--solution-border);
+    }
+
+    .warning-card {
+      background: var(--warning);
+      border-color: var(--warning-border);
+    }
+
+    .answer-card {
+      background: var(--answer);
+      border-color: var(--answer-border);
+    }
+
+    .formula-box {
+      margin: 16px 0;
+      padding: 14px 18px;
+      background: var(--formula-bg);
+      border: 1px solid rgba(15, 23, 42, 0.09);
+      border-radius: 14px;
+      overflow-x: auto;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .highlight {
+      font-weight: 800;
+      color: #7c2d12;
+    }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .mini {
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: right;
+      color: #8b92a1;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .task-card,
+      .idea-card,
+      .analysis-card,
+      .solution-card,
+      .warning-card,
+      .answer-card {
+        padding: 18px 16px;
+      }
+
+      .check-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<main>
+  <h1>Binomni razvoj — broj članova koji nisu celi brojevi</h1>
+  <p class="subtitle">
+    Ključna poenta: proveravamo kada je član celobrojan. Ti članovi
+    <strong>ne počinju od \(k=0\)</strong>, jer se u prvim članovima pojavljuje negativan stepen broja \(401\).
+  </p>
+
+  <section class="task-card">
+    <h2>Zadatak</h2>
+    <p>
+      Zbir svih binomnih koeficijenata razvoja
+    </p>
+
+    <div class="formula-box">
+      \[
+        \left(
+          \frac{1}{\sqrt{401}}+\sqrt[3]{802}
+        \right)^n
+      \]
+    </div>
+
+    <p>
+      jednak je \(8^{100}\). Odrediti broj članova tog razvoja koji nisu celi brojevi.
+    </p>
+  </section>
+
+  <section class="idea-card">
+    <h2>1. Određivanje stepena razvoja</h2>
+    <p>
+      Zbir svih binomnih koeficijenata za razvoj stepena \(n\) jednak je:
+    </p>
+
+    <div class="formula-box">
+      \[
+        2^n
+      \]
+    </div>
+
+    <p>
+      Po uslovu zadatka:
+    </p>
+
+    <div class="formula-box">
+      \[
+        2^n = 8^{100}
+      \]
+      \[
+        2^n = (2^3)^{100}=2^{300}
+      \]
+      \[
+        n=300
+      \]
+    </div>
+
+    <p>
+      Dakle, razvoj ima:
+    </p>
+
+    <div class="formula-box">
+      \[
+        n+1=300+1=301
+      \]
+    </div>
+
+    <p class="small-note">
+      Ovo je prva česta zamka: razvoj stepena \(300\) ima \(301\) član, jer indeks ide od \(k=0\) do \(k=300\).
+    </p>
+  </section>
+
+  <section class="analysis-card">
+    <h2>2. Opšti član razvoja</h2>
+    <p>
+      Opšti član binomnog razvoja zapisujemo kao:
+    </p>
+
+    <div class="formula-box">
+      \[
+        T_{k+1}
+        =
+        \binom{300}{k}
+        \left(\frac{1}{\sqrt{401}}\right)^{300-k}
+        \left(\sqrt[3]{802}\right)^k,
+        \qquad k=0,1,2,\ldots,300
+      \]
+    </div>
+
+    <p>
+      Pošto je:
+    </p>
+
+    <div class="formula-box">
+      \[
+        802=2\cdot 401
+      \]
+    </div>
+
+    <p>
+      dobijamo:
+    </p>
+
+    <div class="formula-box">
+      \[
+        \left(\sqrt[3]{802}\right)^k
+        =
+        (2\cdot 401)^{k/3}
+        =
+        2^{k/3}401^{k/3}
+      \]
+    </div>
+
+    <p>
+      Takođe:
+    </p>
+
+    <div class="formula-box">
+      \[
+        \left(\frac{1}{\sqrt{401}}\right)^{300-k}
+        =
+        401^{-\frac{300-k}{2}}
+      \]
+    </div>
+
+    <p>
+      Zato je:
+    </p>
+
+    <div class="formula-box">
+      \[
+        T_{k+1}
+        =
+        \binom{300}{k}
+        2^{k/3}
+        401^{\frac{k}{3}-\frac{300-k}{2}}
+      \]
+    </div>
+
+    <p>
+      Sredimo stepen uz \(401\):
+    </p>
+
+    <div class="formula-box">
+      \[
+        \frac{k}{3}-\frac{300-k}{2}
+        =
+        \frac{2k-900+3k}{6}
+        =
+        \frac{5k-900}{6}
+      \]
+    </div>
+
+    <p>
+      Dakle:
+    </p>
+
+    <div class="formula-box">
+      \[
+        T_{k+1}
+        =
+        \binom{300}{k}
+        2^{k/3}
+        401^{\frac{5k-900}{6}}
+      \]
+    </div>
+  </section>
+
+  <section class="solution-card">
+    <h2>3. Kada je član ceo broj?</h2>
+
+    <p>
+      Član će biti ceo broj samo ako su ispunjena dva uslova.
+    </p>
+
+    <div class="check-row">
+      <div class="mini">
+        <p><strong>Prvi uslov:</strong> stepen broja \(2\) mora biti ceo.</p>
+        <div class="formula-box">
+          \[
+            \frac{k}{3}\in\mathbb Z
+          \]
+        </div>
+        <p>Dakle, \(k\) mora biti deljivo sa \(3\).</p>
+      </div>
+
+      <div class="mini">
+        <p><strong>Drugi uslov:</strong> stepen broja \(401\) mora biti ceo.</p>
+        <div class="formula-box">
+          \[
+            \frac{5k-900}{6}\in\mathbb Z
+          \]
+        </div>
+        <p>Uz prethodni uslov, to znači da \(k\) mora biti deljivo sa \(6\).</p>
+      </div>
+    </div>
+
+    <p>
+      Međutim, to još nije dovoljno. Da bi član bio ceo broj, ne sme ostati \(401\) u imeniocu.
+      Zato stepen uz \(401\) mora biti nenegativan:
+    </p>
+
+    <div class="formula-box">
+      \[
+        \frac{5k-900}{6}\ge 0
+      \]
+      \[
+        5k-900\ge 0
+      \]
+      \[
+        k\ge 180
+      \]
+    </div>
+
+    <p>
+      Dakle, celobrojni članovi nastaju za one vrednosti \(k\) koje su deljive sa \(6\),
+      ali tek od \(k=180\) pa nadalje:
+    </p>
+
+    <div class="formula-box">
+      \[
+        k=180,186,192,\ldots,300
+      \]
+    </div>
+
+    <p class="highlight">
+      Poenta: ne počinjemo brojanje celih članova od \(k=0\), nego od \(k=180\).
+    </p>
+  </section>
+
+  <section class="warning-card">
+    <h2>4. Prebrojavanje celih članova</h2>
+    <p>
+      Broj vrednosti u nizu
+    </p>
+
+    <div class="formula-box">
+      \[
+        180,186,192,\ldots,300
+      \]
+    </div>
+
+    <p>
+      jednak je:
+    </p>
+
+    <div class="formula-box">
+      \[
+        \frac{300-180}{6}+1
+        =
+        \frac{120}{6}+1
+        =
+        20+1
+        =
+        21
+      \]
+    </div>
+
+    <p>
+      Znači, razvoj ima \(21\) član koji je ceo broj.
+    </p>
+
+    <p class="small-note">
+      Rezultat \(250\) bi nastao iz pogrešnog prebrojavanja, najčešće zato što se previdi
+      da celobrojni članovi ne kreću od \(k=0\), ili zato što se ukupan broj članova uzme kao \(300\), a ne \(301\).
+    </p>
+  </section>
+
+  <section class="answer-card">
+    <h2>Konačan odgovor</h2>
+
+    <p>
+      Ukupno članova u razvoju je:
+    </p>
+
+    <div class="formula-box">
+      \[
+        301
+      \]
+    </div>
+
+    <p>
+      Broj celih članova je:
+    </p>
+
+    <div class="formula-box">
+      \[
+        21
+      \]
+    </div>
+
+    <p>
+      Zato je broj članova koji <strong>nisu celi brojevi</strong>:
+    </p>
+
+    <div class="formula-box">
+      \[
+        301-21=280
+      \]
+    </div>
+
+    <div class="formula-box">
+      \[
+        \boxed{280}
+      \]
+    </div>
+  </section>
+
+  <footer>
+    Powered by ChatGPT
+  </footer>
+</main>
+</body>
+</html>
