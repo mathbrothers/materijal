@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Integral sa arctg x</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        macros: {
+          arctg: "\\operatorname{arctg}"
+        }
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f6f8ff, #eef7f2);
+      color: #222;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      border-left: 8px solid;
+    }
+
+    .task-card {
+      background: #e8f1ff;
+      border-color: #4f8cff;
+    }
+
+    .idea-card {
+      background: #fff7df;
+      border-color: #f2b84b;
+    }
+
+    .analysis-card {
+      background: #f0ecff;
+      border-color: #8e63d9;
+    }
+
+    .solution-card {
+      background: #e9f9ef;
+      border-color: #42b883;
+    }
+
+    .warning-card {
+      background: #fff0f0;
+      border-color: #e05a5a;
+    }
+
+    .answer-card {
+      background: #f2f8ff;
+      border-color: #2f80ed;
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+    }
+
+    .formula-box {
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #174f8a;
+    }
+
+    .footer {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="task-card card">
+    <h1>Zadatak</h1>
+
+    <p>Izračunati integral:</p>
+
+    <div class="formula-box">
+      \[
+        I=\int \frac{x\arctg x}{(x^2+2)^2}\,dx
+      \]
+    </div>
+  </div>
+
+  <div class="idea-card card">
+    <h2>Ideja</h2>
+
+    <p>
+      Integral je pogodan za <span class="highlight">parcijalnu integraciju</span>,
+      jer se izraz
+      \(\frac{x}{(x^2+2)^2}\)
+      lepo integriše, a izvod od \(\arctg x\) je jednostavan.
+    </p>
+
+    <div class="formula-box">
+      \[
+        u=\arctg x,
+        \qquad
+        dv=\frac{x}{(x^2+2)^2}\,dx
+      \]
+    </div>
+  </div>
+
+  <div class="analysis-card card">
+    <h2>Priprema za parcijalnu integraciju</h2>
+
+    <p>Računamo \(du\):</p>
+
+    <div class="formula-box">
+      \[
+        du=\frac{1}{1+x^2}\,dx
+      \]
+    </div>
+
+    <p>Računamo \(v\):</p>
+
+    <div class="formula-box">
+      \[
+        v=\int \frac{x}{(x^2+2)^2}\,dx
+      \]
+    </div>
+
+    <p>Uzimamo smenu:</p>
+
+    <div class="formula-box">
+      \[
+        t=x^2+2,
+        \qquad
+        dt=2x\,dx
+      \]
+    </div>
+
+    <p>Zato je:</p>
+
+    <div class="formula-box">
+      \[
+        v=
+        \frac12\int t^{-2}\,dt
+        =
+        -\frac{1}{2t}
+        =
+        -\frac{1}{2(x^2+2)}
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Parcijalna integracija</h2>
+
+    <p>Koristimo formulu:</p>
+
+    <div class="formula-box">
+      \[
+        \int u\,dv=uv-\int v\,du
+      \]
+    </div>
+
+    <p>Dobijamo:</p>
+
+    <div class="formula-box">
+      \[
+      \begin{aligned}
+        I
+        &=
+        \arctg x\cdot
+        \left(-\frac{1}{2(x^2+2)}\right)
+        -
+        \int
+        \left(-\frac{1}{2(x^2+2)}\right)
+        \frac{dx}{1+x^2}
+        \\[4pt]
+        &=
+        -\frac{\arctg x}{2(x^2+2)}
+        +
+        \frac12
+        \int
+        \frac{dx}{(x^2+1)(x^2+2)}
+      \end{aligned}
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Rastavljanje racionalnog izraza</h2>
+
+    <p>Preostaje integral:</p>
+
+    <div class="formula-box">
+      \[
+        \int
+        \frac{dx}{(x^2+1)(x^2+2)}
+      \]
+    </div>
+
+    <p>Rastavljamo:</p>
+
+    <div class="formula-box">
+      \[
+        \frac{1}{(x^2+1)(x^2+2)}
+        =
+        \frac{A}{x^2+1}
+        +
+        \frac{B}{x^2+2}
+      \]
+    </div>
+
+    <p>Množenjem sa \((x^2+1)(x^2+2)\) dobijamo:</p>
+
+    <div class="formula-box">
+      \[
+        1=A(x^2+2)+B(x^2+1)
+      \]
+    </div>
+
+    <p>Sređivanjem:</p>
+
+    <div class="formula-box">
+      \[
+        1=(A+B)x^2+(2A+B)
+      \]
+    </div>
+
+    <p>Odakle sledi sistem:</p>
+
+    <div class="formula-box">
+      \[
+        A+B=0,
+        \qquad
+        2A+B=1
+      \]
+    </div>
+
+    <p>Dakle:</p>
+
+    <div class="formula-box">
+      \[
+        A=1,
+        \qquad
+        B=-1
+      \]
+    </div>
+
+    <p>Zato je:</p>
+
+    <div class="formula-box">
+      \[
+        \frac{1}{(x^2+1)(x^2+2)}
+        =
+        \frac{1}{x^2+1}
+        -
+        \frac{1}{x^2+2}
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Računanje preostalog integrala</h2>
+
+    <div class="formula-box">
+      \[
+      \begin{aligned}
+        \int
+        \frac{dx}{(x^2+1)(x^2+2)}
+        &=
+        \int \frac{dx}{x^2+1}
+        -
+        \int \frac{dx}{x^2+2}
+        \\[4pt]
+        &=
+        \arctg x
+        -
+        \frac{1}{\sqrt 2}
+        \arctg \frac{x}{\sqrt 2}
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Vraćamo to u izraz za \(I\):</p>
+
+    <div class="formula-box">
+      \[
+        I=
+        -\frac{\arctg x}{2(x^2+2)}
+        +
+        \frac12
+        \left(
+          \arctg x
+          -
+          \frac{1}{\sqrt 2}
+          \arctg \frac{x}{\sqrt 2}
+        \right)
+        +C
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Sređivanje izraza</h2>
+
+    <p>Sredimo članove uz \(\arctg x\):</p>
+
+    <div class="formula-box">
+      \[
+      \begin{aligned}
+        -\frac{\arctg x}{2(x^2+2)}
+        +
+        \frac12\arctg x
+        &=
+        \left(
+          -\frac{1}{2(x^2+2)}
+          +
+          \frac12
+        \right)
+        \arctg x
+        \\[4pt]
+        &=
+        \frac{x^2+1}{2(x^2+2)}\arctg x
+      \end{aligned}
+      \]
+    </div>
+  </div>
+
+  <div class="answer-card card">
+    <h2>Konačan odgovor</h2>
+
+    <div class="formula-box">
+      \[
+        \boxed{
+        \int \frac{x\arctg x}{(x^2+2)^2}\,dx
+        =
+        \frac{x^2+1}{2(x^2+2)}\arctg x
+        -
+        \frac{1}{2\sqrt 2}
+        \arctg \frac{x}{\sqrt 2}
+        +C
+        }
+      \]
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by ChatGPT
+  </div>
+
+</div>
+</body>
+</html>
