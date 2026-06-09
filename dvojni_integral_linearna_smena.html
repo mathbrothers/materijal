@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dvojni integral - linearna smena</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --blue: #4f8cff;
+      --gold: #f2b84b;
+      --purple: #8e63d9;
+      --green: #42b883;
+      --red: #e05a5a;
+      --darkblue: #2f80ed;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f6f8ff, #eef7f2);
+      color: #222;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .card {
+      border-radius: 20px;
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      border-left: 8px solid;
+    }
+
+    .task-card {
+      background: #e8f1ff;
+      border-color: var(--blue);
+    }
+
+    .idea-card {
+      background: #fff7df;
+      border-color: var(--gold);
+    }
+
+    .analysis-card {
+      background: #f0ecff;
+      border-color: var(--purple);
+    }
+
+    .solution-card {
+      background: #e9f9ef;
+      border-color: var(--green);
+    }
+
+    .warning-card {
+      background: #fff0f0;
+      border-color: var(--red);
+    }
+
+    .answer-card {
+      background: #f2f8ff;
+      border-color: var(--darkblue);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+    }
+
+    .formula-box {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #174f8a;
+    }
+
+    .svg-wrap {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 16px;
+      overflow-x: auto;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: auto;
+    }
+
+    .axis {
+      stroke: #222;
+      stroke-width: 2;
+    }
+
+    .grid {
+      stroke: #d7dce8;
+      stroke-width: 1;
+    }
+
+    .region {
+      fill: #9fd3ff;
+      opacity: 0.55;
+      stroke: #1f6fbd;
+      stroke-width: 3;
+    }
+
+    .line-a {
+      stroke: #d35f5f;
+      stroke-width: 3;
+      stroke-dasharray: 7 6;
+    }
+
+    .line-b {
+      stroke: #42b883;
+      stroke-width: 3;
+      stroke-dasharray: 7 6;
+    }
+
+    .label {
+      font-size: 15px;
+      fill: #222;
+      font-family: Arial, sans-serif;
+    }
+
+    .small-label {
+      font-size: 13px;
+      fill: #444;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="task-card card">
+    <h1>Zadatak</h1>
+
+    <p>Izračunati dvojni integral:</p>
+
+    <div class="formula-box">
+      \[
+        I=\iint_D (x+y)e^{2x+y}\,dx\,dy
+      \]
+    </div>
+
+    <p>Oblast \(D\) ograničena je pravama:</p>
+
+    <div class="formula-box">
+      \[
+        2y=x+6,\qquad
+        2y-x=0,\qquad
+        y=-2x-1,\qquad
+        y=-2x-3
+      \]
+    </div>
+  </div>
+
+  <div class="idea-card card">
+    <h2>Ideja</h2>
+
+    <p>
+      Prave su date u dva para paralelnih pravih. Zato je oblast \(D\)
+      paralelogram, a najprirodnije je uvesti linearnu smenu koja te prave
+      pretvara u konstante.
+    </p>
+
+    <div class="formula-box">
+      \[
+        u=2y-x,
+        \qquad
+        v=2x+y
+      \]
+    </div>
+
+    <p>
+      Tada prave koje ograničavaju oblast postaju vrlo jednostavne.
+    </p>
+  </div>
+
+  <div class="analysis-card card">
+    <h2>Prevođenje granica</h2>
+
+    <p>Prva dva uslova su već u obliku \(u=2y-x\):</p>
+
+    <div class="formula-box">
+      \[
+        2y-x=0,
+        \qquad
+        2y=x+6 \Longleftrightarrow 2y-x=6
+      \]
+    </div>
+
+    <p>Dakle:</p>
+
+    <div class="formula-box">
+      \[
+        0\le u\le 6
+      \]
+    </div>
+
+    <p>Druga dva uslova prebacujemo u oblik \(v=2x+y\):</p>
+
+    <div class="formula-box">
+      \[
+        y=-2x-1 \Longleftrightarrow 2x+y=-1
+      \]
+      \[
+        y=-2x-3 \Longleftrightarrow 2x+y=-3
+      \]
+    </div>
+
+    <p>Dakle:</p>
+
+    <div class="formula-box">
+      \[
+        -3\le v\le -1
+      \]
+    </div>
+
+    <p>
+      Oblast \(D\) u \((u,v)\)-ravni postaje pravougaonik:
+    </p>
+
+    <div class="formula-box">
+      \[
+        0\le u\le 6,
+        \qquad
+        -3\le v\le -1
+      \]
+    </div>
+
+    <div class="svg-wrap">
+      <svg viewBox="0 0 760 430" role="img" aria-label="Skica oblasti i linearne smene">
+        <!-- left xy sketch -->
+        <text class="label" x="120" y="32">Oblast D u xy-ravni</text>
+
+        <line class="axis" x1="80" y1="230" x2="340" y2="230" />
+        <line class="axis" x1="210" y1="350" x2="210" y2="70" />
+        <polygon points="340,230 328,224 328,236" fill="#222" />
+        <polygon points="210,70 204,82 216,82" fill="#222" />
+        <text class="label" x="345" y="235">x</text>
+        <text class="label" x="198" y="65">y</text>
+
+        <!-- parallelogram vertices scaled approximately from:
+             (-1.2,-0.6), (-0.4,-0.2), (-1.6,2.2), (-2.4,1.8) -->
+        <polygon class="region" points="150,254 230,238 110,142 30,158" />
+
+        <!-- boundary direction lines -->
+        <line class="line-a" x1="30" y1="158" x2="150" y2="254" />
+        <line class="line-a" x1="110" y1="142" x2="230" y2="238" />
+        <line class="line-b" x1="30" y1="158" x2="110" y2="142" />
+        <line class="line-b" x1="150" y1="254" x2="230" y2="238" />
+
+        <text class="small-label" x="38" y="286">2y - x = 0</text>
+        <text class="small-label" x="95" y="118">2y - x = 6</text>
+        <text class="small-label" x="240" y="238">2x + y = -1</text>
+        <text class="small-label" x="22" y="150">2x + y = -3</text>
+
+        <!-- arrow -->
+        <line x1="365" y1="210" x2="430" y2="210" stroke="#555" stroke-width="3" />
+        <polygon points="430,210 416,202 416,218" fill="#555" />
+        <text class="small-label" x="360" y="190">u=2y-x</text>
+        <text class="small-label" x="360" y="232">v=2x+y</text>
+
+        <!-- right uv rectangle -->
+        <text class="label" x="485" y="32">Pravougaonik u uv-ravni</text>
+
+        <line class="axis" x1="475" y1="330" x2="700" y2="330" />
+        <line class="axis" x1="500" y1="350" x2="500" y2="80" />
+        <polygon points="700,330 688,324 688,336" fill="#222" />
+        <polygon points="500,80 494,92 506,92" fill="#222" />
+        <text class="label" x="707" y="335">u</text>
+        <text class="label" x="488" y="75">v</text>
+
+        <rect x="500" y="130" width="150" height="120" class="region" />
+        <text class="small-label" x="492" y="270">0</text>
+        <text class="small-label" x="644" y="270">6</text>
+        <text class="small-label" x="465" y="135">-1</text>
+        <text class="small-label" x="465" y="255">-3</text>
+        <text class="small-label" x="520" y="194">0 ≤ u ≤ 6</text>
+        <text class="small-label" x="520" y="216">-3 ≤ v ≤ -1</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Izražavanje \(x\) i \(y\) preko \(u\) i \(v\)</h2>
+
+    <p>Imamo sistem:</p>
+
+    <div class="formula-box">
+      \[
+        u=2y-x,
+        \qquad
+        v=2x+y
+      \]
+    </div>
+
+    <p>Rešavanjem sistema dobijamo:</p>
+
+    <div class="formula-box">
+      \[
+        x=\frac{2v-u}{5},
+        \qquad
+        y=\frac{v+2u}{5}
+      \]
+    </div>
+
+    <p>Zato je:</p>
+
+    <div class="formula-box">
+      \[
+        x+y
+        =
+        \frac{2v-u}{5}
+        +
+        \frac{v+2u}{5}
+        =
+        \frac{u+3v}{5}
+      \]
+    </div>
+
+    <p>Takođe:</p>
+
+    <div class="formula-box">
+      \[
+        2x+y=v
+      \]
+    </div>
+
+    <p>Dakle, integrand postaje:</p>
+
+    <div class="formula-box">
+      \[
+        (x+y)e^{2x+y}
+        =
+        \frac{u+3v}{5}e^v
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Jakobijan</h2>
+
+    <p>Računamo Jakobijan smene:</p>
+
+    <div class="formula-box">
+      \[
+        \frac{\partial(u,v)}{\partial(x,y)}
+        =
+        \begin{vmatrix}
+          -1 & 2\\
+          2 & 1
+        \end{vmatrix}
+        =
+        -1-4=-5
+      \]
+    </div>
+
+    <p>Zato je:</p>
+
+    <div class="formula-box">
+      \[
+        \left|
+        \frac{\partial(x,y)}{\partial(u,v)}
+        \right|
+        =
+        \frac{1}{5}
+      \]
+    </div>
+
+    <p>Odnosno:</p>
+
+    <div class="formula-box">
+      \[
+        dx\,dy=\frac15\,du\,dv
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Prebacivanje integrala</h2>
+
+    <p>Sada integral postaje:</p>
+
+    <div class="formula-box">
+      \[
+      \begin{aligned}
+        I
+        &=
+        \int_0^6
+        \int_{-3}^{-1}
+        \frac{u+3v}{5}e^v\cdot \frac15
+        \,dv\,du
+        \\[4pt]
+        &=
+        \frac{1}{25}
+        \int_0^6
+        \int_{-3}^{-1}
+        (u+3v)e^v
+        \,dv\,du
+      \end{aligned}
+      \]
+    </div>
+
+    <p>
+      Pošto je oblast u \((u,v)\)-ravni pravougaonik, možemo slobodno uzeti redosled
+      koji je lakši za račun. Ovde je zgodno prvo integrisati po \(u\).
+    </p>
+
+    <div class="formula-box">
+      \[
+      \begin{aligned}
+        I
+        &=
+        \frac{1}{25}
+        \int_{-3}^{-1}
+        e^v
+        \left(
+          \int_0^6 (u+3v)\,du
+        \right)
+        dv
+      \end{aligned}
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Računanje unutrašnjeg integrala</h2>
+
+    <div class="formula-box">
+      \[
+      \begin{aligned}
+        \int_0^6 (u+3v)\,du
+        &=
+        \left.
+        \left(
+          \frac{u^2}{2}+3vu
+        \right)
+        \right|_0^6
+        \\[4pt]
+        &=
+        \frac{36}{2}+18v
+        \\[4pt]
+        &=
+        18+18v
+        \\[4pt]
+        &=
+        18(1+v)
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Zato je:</p>
+
+    <div class="formula-box">
+      \[
+        I=
+        \frac{18}{25}
+        \int_{-3}^{-1}
+        (1+v)e^v\,dv
+      \]
+    </div>
+  </div>
+
+  <div class="solution-card card">
+    <h2>Završni integral</h2>
+
+    <p>Primećujemo da je:</p>
+
+    <div class="formula-box">
+      \[
+        \left(ve^v\right)'=(1+v)e^v
+      \]
+    </div>
+
+    <p>Dakle:</p>
+
+    <div class="formula-box">
+      \[
+      \begin{aligned}
+        I
+        &=
+        \frac{18}{25}
+        \left.
+        ve^v
+        \right|_{-3}^{-1}
+        \\[4pt]
+        &=
+        \frac{18}{25}
+        \left(
+          -\frac{1}{e}
+          -
+          \left(
+            -\frac{3}{e^3}
+          \right)
+        \right)
+        \\[4pt]
+        &=
+        \frac{18}{25}
+        \left(
+          \frac{3}{e^3}
+          -
+          \frac{1}{e}
+        \right)
+      \end{aligned}
+      \]
+    </div>
+  </div>
+
+  <div class="warning-card card">
+    <h2>Napomena o znaku</h2>
+
+    <p>
+      Ovo nije zadatak za površinu, već za dvojni integral. Zato se ne uzima
+      apsolutna vrednost integranda. Pošto integrand na delu oblasti ima negativne
+      vrednosti, konačan rezultat može biti negativan.
+    </p>
+  </div>
+
+  <div class="answer-card card">
+    <h2>Konačan odgovor</h2>
+
+    <div class="formula-box">
+      \[
+        \boxed{
+          I=
+          \frac{18}{25}
+          \left(
+            \frac{3}{e^3}
+            -
+            \frac{1}{e}
+          \right)
+        }
+      \]
+    </div>
+
+    <p>Ekvivalentno:</p>
+
+    <div class="formula-box">
+      \[
+        \boxed{
+          I=
+          \frac{18(3-e^2)}{25e^3}
+        }
+      \]
+    </div>
+
+    <p>Približno:</p>
+
+    <div class="formula-box">
+      \[
+        I\approx -0.1574
+      \]
+    </div>
+  </div>
+
+  <div class="footer">
+    Powered by ChatGPT
+  </div>
+
+</div>
+</body>
+</html>
