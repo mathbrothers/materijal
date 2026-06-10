@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgabe H39 — Maxima und Minima</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --ink:#1f2937;
+      --muted:#526173;
+      --task:#5c9cd1;
+      --idea:#7b4fd0;
+      --analysis:#d99a22;
+      --solution:#2f9e72;
+      --warning:#d45b5b;
+      --answer:#047857;
+      --card:#ffffff;
+      --line:#e5eaf2;
+      --soft-blue:#eef6ff;
+      --soft-purple:#f4efff;
+      --soft-orange:#fff7e8;
+      --soft-green:#ecfdf3;
+      --soft-red:#fff0f0;
+      --soft-answer:#e8fff6;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.65;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(92,156,209,.18), transparent 32%),
+        radial-gradient(circle at 100% 0%, rgba(123,79,208,.14), transparent 28%),
+        linear-gradient(180deg,#f7fbff 0%, var(--bg) 52%, #eef3f8 100%);
+    }
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:34px 18px 44px;
+    }
+
+    header{
+      margin-bottom:22px;
+      padding:26px 26px 22px;
+      border-radius:24px;
+      background:linear-gradient(135deg,#20364d,#315b7e);
+      color:#fff;
+      box-shadow:0 18px 35px rgba(28,49,73,.20);
+    }
+
+    header .tag{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      font-size:.86rem;
+      letter-spacing:.02em;
+      margin-bottom:10px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(1.75rem, 3vw, 2.45rem);
+      line-height:1.18;
+    }
+
+    header p{
+      margin:10px 0 0;
+      color:#dcefff;
+      max-width:850px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:20px;
+      margin:18px 0;
+      box-shadow:0 10px 24px rgba(31,41,55,.08);
+      border:1px solid var(--line);
+      overflow:hidden;
+    }
+
+    .card h2{
+      margin:0;
+      color:#fff;
+      font-size:1.1rem;
+      padding:12px 18px;
+      letter-spacing:.01em;
+    }
+
+    .card-body{
+      padding:18px 20px 20px;
+    }
+
+    .task-card{ border-left:7px solid var(--task); background:var(--soft-blue); }
+    .idea-card{ border-left:7px solid var(--idea); background:var(--soft-purple); }
+    .analysis-card{ border-left:7px solid var(--analysis); background:var(--soft-orange); }
+    .solution-card{ border-left:7px solid var(--solution); background:var(--soft-green); }
+    .warning-card{ border-left:7px solid var(--warning); background:var(--soft-red); }
+    .answer-card{ border-left:7px solid var(--answer); background:var(--soft-answer); }
+
+    .task-card h2{ background:var(--task); }
+    .idea-card h2{ background:var(--idea); }
+    .analysis-card h2{ background:var(--analysis); }
+    .solution-card h2{ background:var(--solution); }
+    .warning-card h2{ background:var(--warning); }
+    .answer-card h2{ background:var(--answer); }
+
+    .formula-box{
+      margin:14px 0;
+      padding:13px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(148,163,184,.35);
+      overflow-x:auto;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    @media (max-width:850px){
+      .grid-2{ grid-template-columns:1fr; }
+    }
+
+    .note{
+      color:var(--muted);
+      font-size:.96rem;
+      margin-top:6px;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:rgba(255,255,255,.72);
+      border-radius:14px;
+      overflow:hidden;
+      margin:12px 0;
+    }
+
+    th,td{
+      padding:10px 12px;
+      border-bottom:1px solid #e7edf5;
+      text-align:left;
+      vertical-align:top;
+    }
+
+    th{
+      background:#f1f5f9;
+      color:#334155;
+    }
+
+    tr:last-child td{ border-bottom:none; }
+
+    .svg-wrap{
+      background:#fff;
+      border-radius:18px;
+      border:1px solid #dbe4ee;
+      padding:12px;
+      overflow-x:auto;
+      text-align:center;
+    }
+
+    .footer{
+      margin-top:24px;
+      color:#64748b;
+      font-size:.86rem;
+      text-align:center;
+    }
+
+    .pill{
+      display:inline-block;
+      border-radius:999px;
+      padding:2px 9px;
+      font-size:.86rem;
+      background:#fff;
+      border:1px solid #d7e1ec;
+      color:#334155;
+      margin:2px 3px;
+      white-space:nowrap;
+    }
+
+    .plus{ color:#047857; font-weight:700; }
+    .minus{ color:#b91c1c; font-weight:700; }
+    .zero{ color:#334155; font-weight:700; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="tag">Aufgabe H39 · Maxima und Minima</div>
+      <h1>Ekstremi funkcije dve promenljive na pravougaonicima</h1>
+      <p>
+        Glavna ideja je da se funkcija rastavlja kao proizvod jednog faktora koji zavisi samo od \(x\)
+        i jednog faktora koji zavisi samo od \(y\). Znak i ekstremi se onda čitaju skoro direktno.
+      </p>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <div class="card-body">
+        <p>Data je funkcija</p>
+        <div class="formula-box">
+          \[
+            f:[-4,4]\times[-4,4]\to\mathbb R,\qquad
+            f(x,y)=\sqrt{16-x^2}\sqrt{16-y^2}(1-x^2)(4-y^2).
+          \]
+        </div>
+        <p>
+          (a) Skicirati nulti nivo
+          \[
+            \mathcal N_0=\{(x,y)\in[-4,4]^2\mid f(x,y)=0\}
+          \]
+          i raspodelu znakova funkcije \(f\).
+        </p>
+        <p>
+          (b) Za
+          \[
+            U=(-1,1)\times(-2,2)
+          \]
+          odlučiti da li \(f|_{\overline U}\) na \(\overline U\) dostiže maksimum i minimum.
+          Zatim odlučiti da li \(f|_U\) na \(U\) dostiže maksimum.
+        </p>
+        <p>
+          (c) Za
+          \[
+            V=(1,4)\times(-2,2)
+          \]
+          odlučiti da li \(f|_V\) na \(V\) dostiže minimum.
+        </p>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <div class="card-body">
+        <p>Funkciju pišemo kao proizvod dva jednodimenziona faktora:</p>
+        <div class="formula-box">
+          \[
+            f(x,y)=p(x)\,q(y),
+          \]
+          \[
+            p(x)=\sqrt{16-x^2}(1-x^2),\qquad
+            q(y)=\sqrt{16-y^2}(4-y^2).
+          \]
+        </div>
+        <p>
+          Korenovi su uvek nenegativni na datom kvadratu. Zato znak funkcije zavisi samo od
+          znakova faktora \(1-x^2\) i \(4-y^2\).
+        </p>
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>(a) Nulti nivo i raspodela znakova</h2>
+      <div class="card-body">
+        <p>Nula funkcije nastaje kada je bar jedan faktor jednak nuli:</p>
+        <div class="formula-box">
+          \[
+          \sqrt{16-x^2}=0 \Longleftrightarrow x=\pm4,
+          \qquad
+          1-x^2=0 \Longleftrightarrow x=\pm1,
+          \]
+          \[
+          \sqrt{16-y^2}=0 \Longleftrightarrow y=\pm4,
+          \qquad
+          4-y^2=0 \Longleftrightarrow y=\pm2.
+          \]
+        </div>
+
+        <div class="formula-box">
+          \[
+            \boxed{
+            \mathcal N_0=
+            \{x=-4\}\cup\{x=-1\}\cup\{x=1\}\cup\{x=4\}
+            \cup
+            \{y=-4\}\cup\{y=-2\}\cup\{y=2\}\cup\{y=4\}
+            }
+          \]
+          <p class="note">
+            Sve se posmatra unutar kvadrata \([-4,4]\times[-4,4]\).
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <p>Znakovi faktora:</p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Oblast</th>
+                  <th>Znak \(1-x^2\)</th>
+                  <th>Znak \(4-y^2\)</th>
+                  <th>Znak \(f\)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>\(|x|&lt;1,\ |y|&lt;2\)</td>
+                  <td class="plus">+</td>
+                  <td class="plus">+</td>
+                  <td class="plus">+</td>
+                </tr>
+                <tr>
+                  <td>\(|x|&gt;1,\ |y|&lt;2\)</td>
+                  <td class="minus">−</td>
+                  <td class="plus">+</td>
+                  <td class="minus">−</td>
+                </tr>
+                <tr>
+                  <td>\(|x|&lt;1,\ |y|&gt;2\)</td>
+                  <td class="plus">+</td>
+                  <td class="minus">−</td>
+                  <td class="minus">−</td>
+                </tr>
+                <tr>
+                  <td>\(|x|&gt;1,\ |y|&gt;2\)</td>
+                  <td class="minus">−</td>
+                  <td class="minus">−</td>
+                  <td class="plus">+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="svg-wrap">
+            <svg width="420" height="420" viewBox="0 0 420 420" role="img" aria-label="Skica znakova funkcije">
+              <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#334155"/>
+                </marker>
+              </defs>
+
+              <!-- plotting area mapping: x=-4..4 -> 40..380, y=-4..4 -> 380..40 -->
+              <rect x="40" y="40" width="340" height="340" fill="#fff" stroke="#1f2937" stroke-width="2"/>
+
+              <!-- sign regions -->
+              <!-- x intervals: [-4,-1]=40..167.5, [-1,1]=167.5..252.5, [1,4]=252.5..380 -->
+              <!-- y intervals: [2,4]=40..125, [-2,2]=125..295, [-4,-2]=295..380 -->
+              <rect x="40" y="40" width="127.5" height="85" fill="#bbf7d0" opacity=".75"/>
+              <rect x="167.5" y="40" width="85" height="85" fill="#fecaca" opacity=".75"/>
+              <rect x="252.5" y="40" width="127.5" height="85" fill="#bbf7d0" opacity=".75"/>
+
+              <rect x="40" y="125" width="127.5" height="170" fill="#fecaca" opacity=".75"/>
+              <rect x="167.5" y="125" width="85" height="170" fill="#bbf7d0" opacity=".75"/>
+              <rect x="252.5" y="125" width="127.5" height="170" fill="#fecaca" opacity=".75"/>
+
+              <rect x="40" y="295" width="127.5" height="85" fill="#bbf7d0" opacity=".75"/>
+              <rect x="167.5" y="295" width="85" height="85" fill="#fecaca" opacity=".75"/>
+              <rect x="252.5" y="295" width="127.5" height="85" fill="#bbf7d0" opacity=".75"/>
+
+              <!-- zero lines -->
+              <line x1="40" y1="40" x2="40" y2="380" stroke="#111827" stroke-width="4"/>
+              <line x1="167.5" y1="40" x2="167.5" y2="380" stroke="#111827" stroke-width="3"/>
+              <line x1="252.5" y1="40" x2="252.5" y2="380" stroke="#111827" stroke-width="3"/>
+              <line x1="380" y1="40" x2="380" y2="380" stroke="#111827" stroke-width="4"/>
+
+              <line x1="40" y1="40" x2="380" y2="40" stroke="#111827" stroke-width="4"/>
+              <line x1="40" y1="125" x2="380" y2="125" stroke="#111827" stroke-width="3"/>
+              <line x1="40" y1="295" x2="380" y2="295" stroke="#111827" stroke-width="3"/>
+              <line x1="40" y1="380" x2="380" y2="380" stroke="#111827" stroke-width="4"/>
+
+              <!-- axes -->
+              <line x1="25" y1="210" x2="397" y2="210" stroke="#334155" stroke-width="1.4" marker-end="url(#arrow)"/>
+              <line x1="210" y1="395" x2="210" y2="23" stroke="#334155" stroke-width="1.4" marker-end="url(#arrow)"/>
+
+              <!-- labels for signs -->
+              <text x="100" y="88" font-size="28" fill="#047857" font-weight="700" text-anchor="middle">+</text>
+              <text x="210" y="88" font-size="28" fill="#b91c1c" font-weight="700" text-anchor="middle">−</text>
+              <text x="315" y="88" font-size="28" fill="#047857" font-weight="700" text-anchor="middle">+</text>
+
+              <text x="100" y="218" font-size="28" fill="#b91c1c" font-weight="700" text-anchor="middle">−</text>
+              <text x="210" y="218" font-size="28" fill="#047857" font-weight="700" text-anchor="middle">+</text>
+              <text x="315" y="218" font-size="28" fill="#b91c1c" font-weight="700" text-anchor="middle">−</text>
+
+              <text x="100" y="342" font-size="28" fill="#047857" font-weight="700" text-anchor="middle">+</text>
+              <text x="210" y="342" font-size="28" fill="#b91c1c" font-weight="700" text-anchor="middle">−</text>
+              <text x="315" y="342" font-size="28" fill="#047857" font-weight="700" text-anchor="middle">+</text>
+
+              <!-- tick labels -->
+              <text x="40" y="403" font-size="13" fill="#475569" text-anchor="middle">−4</text>
+              <text x="167.5" y="403" font-size="13" fill="#475569" text-anchor="middle">−1</text>
+              <text x="252.5" y="403" font-size="13" fill="#475569" text-anchor="middle">1</text>
+              <text x="380" y="403" font-size="13" fill="#475569" text-anchor="middle">4</text>
+
+              <text x="20" y="384" font-size="13" fill="#475569" text-anchor="middle">−4</text>
+              <text x="20" y="299" font-size="13" fill="#475569" text-anchor="middle">−2</text>
+              <text x="20" y="129" font-size="13" fill="#475569" text-anchor="middle">2</text>
+              <text x="20" y="44" font-size="13" fill="#475569" text-anchor="middle">4</text>
+
+              <text x="399" y="205" font-size="14" fill="#334155">x</text>
+              <text x="216" y="25" font-size="14" fill="#334155">y</text>
+              <text x="210" y="414" font-size="12" fill="#64748b" text-anchor="middle">nulte linije: \(x=\pm1,\pm4\), \(y=\pm2,\pm4\)</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>(b) Ekstremi na \(\overline U\) i na \(U\)</h2>
+      <div class="card-body">
+        <p>
+          Ovde je
+          \[
+            U=(-1,1)\times(-2,2),\qquad
+            \overline U=[-1,1]\times[-2,2].
+          \]
+        </p>
+        <p>
+          Na zatvorenom pravougaoniku \(\overline U\) funkcija je neprekidna, a \(\overline U\) je kompaktan skup.
+          Zato po Vajerštrasovoj teoremi \(f|_{\overline U}\) dostiže i maksimum i minimum.
+        </p>
+
+        <div class="formula-box">
+          \[
+            f(x,y)\ge 0 \quad \text{na } \overline U.
+          \]
+          Na granici \(\overline U\), kada je \(x=\pm1\) ili \(y=\pm2\), važi \(f(x,y)=0\).
+          Zato je
+          \[
+            \boxed{\min_{\overline U} f=0.}
+          \]
+        </div>
+
+        <p>
+          Maksimum na \(\overline U\) možemo lako naći jer je funkcija proizvod:
+        </p>
+
+        <div class="formula-box">
+          \[
+            p(x)=\sqrt{16-x^2}(1-x^2),\qquad x\in[-1,1],
+          \]
+          \[
+            q(y)=\sqrt{16-y^2}(4-y^2),\qquad y\in[-2,2].
+          \]
+        </div>
+
+        <p>
+          Oba faktora su parna i opadaju za pozitivne vrednosti promenljive u ovim intervalima.
+          Zato su najveći u nuli:
+        </p>
+
+        <div class="formula-box">
+          \[
+            p(0)=4,\qquad q(0)=4\cdot4=16.
+          \]
+          \[
+            \boxed{\max_{\overline U} f=f(0,0)=64.}
+          \]
+        </div>
+
+        <p>
+          Pošto je \((0,0)\in U\), isti maksimum se dostiže i na otvorenom skupu \(U\):
+        </p>
+
+        <div class="formula-box">
+          \[
+            \boxed{f|_U \text{ dostiže maksimum, i to } \max_U f=64 \text{ u } (0,0).}
+          \]
+        </div>
+
+        <p class="note">
+          Minimum na otvorenom \(U\) nije tražen. Da jeste: infimum bi bio \(0\), ali se ne bi dostigao,
+          jer su nule tek na granici \(x=\pm1\) ili \(y=\pm2\), koja ne pripada \(U\).
+        </p>
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>(c) Minimum na \(V=(1,4)\times(-2,2)\)</h2>
+      <div class="card-body">
+        <p>
+          Na \(V\) važi:
+        </p>
+        <div class="formula-box">
+          \[
+            1<x<4 \Longrightarrow 1-x^2<0,
+          \]
+          \[
+            -2<y<2 \Longrightarrow 4-y^2>0.
+          \]
+        </div>
+
+        <p>
+          Korenovi su pozitivni u unutrašnjosti, pa je
+        </p>
+        <div class="formula-box">
+          \[
+            f(x,y)<0 \qquad \text{za svako } (x,y)\in V.
+          \]
+        </div>
+
+        <p>
+          Iako je \(V\) otvoren skup, minimum ipak može da postoji. Pošto je
+          \[
+            f(x,y)=p(x)q(y),
+          \]
+          tražimo gde je \(p(x)\) najnegativniji i gde je \(q(y)\) najveći.
+        </p>
+
+        <h3>Faktor po \(y\)</h3>
+        <div class="formula-box">
+          \[
+            q(y)=\sqrt{16-y^2}(4-y^2),\qquad -2<y<2.
+          \]
+          Najveća vrednost je u \(y=0\):
+          \[
+            q(0)=16.
+          \]
+        </div>
+
+        <h3>Faktor po \(x\)</h3>
+        <p>Za \(1<x<4\):</p>
+        <div class="formula-box">
+          \[
+            p(x)=\sqrt{16-x^2}(1-x^2)
+            =-(x^2-1)\sqrt{16-x^2}.
+          \]
+        </div>
+
+        <p>
+          Da bi \(p(x)\) bio što manji, treba da maksimalizujemo
+        </p>
+
+        <div class="formula-box">
+          \[
+            h(x)=(x^2-1)\sqrt{16-x^2}.
+          \]
+        </div>
+
+        <p>
+          Uvedemo \(z=x^2\), gde je \(1<z<16\). Tada maksimalizujemo
+        </p>
+
+        <div class="formula-box">
+          \[
+            h^2=(z-1)^2(16-z).
+          \]
+        </div>
+
+        <p>Izvodi se:</p>
+        <div class="formula-box">
+          \[
+            \frac{d}{dz}\bigl((z-1)^2(16-z)\bigr)
+            =
+            2(z-1)(16-z)-(z-1)^2
+          \]
+          \[
+            =
+            (z-1)\bigl(2(16-z)-(z-1)\bigr).
+          \]
+          Pošto je \(z>1\), kritična vrednost je
+          \[
+            2(16-z)=z-1
+            \Longrightarrow
+            32-2z=z-1
+            \Longrightarrow
+            z=11.
+          \]
+        </div>
+
+        <p>
+          Dakle:
+        </p>
+
+        <div class="formula-box">
+          \[
+            x^2=11,\qquad x=\sqrt{11}.
+          \]
+          \[
+            p(\sqrt{11})
+            =
+            \sqrt{16-11}(1-11)
+            =
+            \sqrt5\cdot(-10)
+            =
+            -10\sqrt5.
+          \]
+        </div>
+
+        <p>Zato je minimum na \(V\):</p>
+
+        <div class="formula-box">
+          \[
+            f(\sqrt{11},0)
+            =
+            (-10\sqrt5)\cdot16
+            =
+            -160\sqrt5.
+          \]
+          \[
+            \boxed{
+              \min_V f=-160\sqrt5
+              \quad\text{u tački}\quad
+              (\sqrt{11},0).
+            }
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važna napomena</h2>
+      <div class="card-body">
+        <p>
+          U delu (b) za \(\overline U\) možemo odmah da koristimo teoremu o dostizanju maksimuma i minimuma,
+          jer je skup zatvoren i ograničen.
+        </p>
+        <p>
+          Ali u delu (c) skup \(V\) je otvoren, pa ne smemo automatski da kažemo da ekstrem postoji.
+          Ovde minimum postoji zbog konkretne strukture funkcije: na granici \(V\) funkcija teži ka \(0\),
+          dok je u unutrašnjosti negativna i ima najnegativniju vrednost.
+        </p>
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačni odgovori</h2>
+      <div class="card-body">
+        <div class="formula-box">
+          \[
+            \boxed{
+            \mathcal N_0:
+            x=\pm1,\ x=\pm4,\ y=\pm2,\ y=\pm4
+            \quad\text{unutar }[-4,4]^2.
+            }
+          \]
+        </div>
+
+        <div class="formula-box">
+          \[
+            \boxed{
+            f>0 \text{ za }
+            (|x|<1,|y|<2)
+            \text{ ili }
+            (|x|>1,|y|>2).
+            }
+          \]
+          \[
+            \boxed{
+            f<0 \text{ za }
+            (|x|>1,|y|<2)
+            \text{ ili }
+            (|x|<1,|y|>2).
+            }
+          \]
+        </div>
+
+        <div class="formula-box">
+          \[
+            \boxed{
+            f|_{\overline U}\text{ dostiže i maksimum i minimum.}
+            }
+          \]
+          \[
+            \boxed{
+            \max_{\overline U}f=64,\qquad \min_{\overline U}f=0.
+            }
+          \]
+        </div>
+
+        <div class="formula-box">
+          \[
+            \boxed{
+            f|_U\text{ dostiže maksimum, i to }64\text{ u }(0,0).
+            }
+          \]
+        </div>
+
+        <div class="formula-box">
+          \[
+            \boxed{
+            f|_V\text{ dostiže minimum, i to }
+            -160\sqrt5\text{ u }(\sqrt{11},0).
+            }
+          \]
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Powered by ChatGPT · Mathbrotherhood format · Aufgabe H39
+    </div>
+  </main>
+</body>
+</html>
