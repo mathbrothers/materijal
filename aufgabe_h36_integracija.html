@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgabe H36 – Integracija</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+
+      --task: #5c9cd1;
+      --idea: #7b4fd0;
+      --analysis: #d99a22;
+      --solution: #2f9e72;
+      --warning: #d45b5b;
+      --answer: #047857;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(92, 156, 209, 0.16), transparent 32rem),
+        radial-gradient(circle at bottom right, rgba(123, 79, 208, 0.14), transparent 30rem),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 38px auto;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, #ffffff, #eef5ff);
+      border: 1px solid rgba(92, 156, 209, 0.25);
+      border-radius: 24px;
+      padding: 30px 34px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.12;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      margin-top: 12px;
+      color: #475569;
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 26px;
+      margin: 18px 0;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .task-card { --accent: var(--task); background: #eef7ff; }
+    .idea-card { --accent: var(--idea); background: #f4efff; }
+    .analysis-card { --accent: var(--analysis); background: #fff7e8; }
+    .solution-card { --accent: var(--solution); background: #ecfdf3; }
+    .warning-card { --accent: var(--warning); background: #fff1f2; }
+    .answer-card { --accent: var(--answer); background: #ecfdf5; }
+
+    .card h2 {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 1.35rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.08);
+      color: #334155;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .formula-box {
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini {
+      background: rgba(255, 255, 255, 0.68);
+      border-radius: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(15, 23, 42, 0.07);
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #0f172a;
+    }
+
+    .footer {
+      margin: 30px 0 8px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 20px, 980px);
+        margin: 18px auto;
+      }
+
+      header.hero,
+      .card {
+        padding: 20px 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">Aufgabe H36 · Integration</div>
+      <h1>Parcijalni razlomci i integral</h1>
+      <p class="subtitle">
+        Radimo prvo razlaganje na parcijalne razlomke, pa zatim integral člana po člana.
+      </p>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Data je racionalna funkcija:</p>
+      <div class="formula-box">
+        \[
+          \frac{4x+4}{x(x^2+4)^2}.
+        \]
+      </div>
+      <p>Traži se:</p>
+      <div class="formula-box">
+        \[
+          \text{(a) parcijalna razgradnja,}
+          \qquad
+          \text{(b) } \int \frac{4x+4}{x(x^2+4)^2}\,dx.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena o obliku razlaganja</h2>
+      <p>
+        Imenilac je proizvod jednog linearnog faktora i kvadratnog faktora drugog stepena:
+      </p>
+      <div class="formula-box">
+        \[
+          x(x^2+4)^2.
+        \]
+      </div>
+      <p>
+        Zato uzimamo oblik:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{4x+4}{x(x^2+4)^2}
+          =
+          \frac{A}{x}
+          +
+          \frac{Bx+C}{x^2+4}
+          +
+          \frac{Dx+E}{(x^2+4)^2}.
+        \]
+      </div>
+      <p>
+        Pošto je kvadratni faktor ponovljen, moramo imati i član sa
+        \((x^2+4)\) i član sa \((x^2+4)^2\).
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Računanje koeficijenata</h2>
+      <p>Množimo jednačinu sa \(x(x^2+4)^2\):</p>
+      <div class="formula-box">
+        \[
+          4x+4
+          =
+          A(x^2+4)^2
+          +
+          x(Bx+C)(x^2+4)
+          +
+          x(Dx+E).
+        \]
+      </div>
+
+      <p>Sada razvijamo desnu stranu:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          4x+4
+          &=
+          A(x^4+8x^2+16)
+          +
+          (Bx^2+Cx)(x^2+4)
+          +
+          Dx^2+Ex \\[2mm]
+          &=
+          (A+B)x^4
+          +
+          Cx^3
+          +
+          (8A+4B+D)x^2
+          +
+          (4C+E)x
+          +
+          16A.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Upoređujemo koeficijente uz iste stepene od \(x\):</p>
+      <div class="formula-box">
+        \[
+        \begin{cases}
+          A+B=0,\\
+          C=0,\\
+          8A+4B+D=0,\\
+          4C+E=4,\\
+          16A=4.
+        \end{cases}
+        \]
+      </div>
+
+      <p>Iz poslednje jednačine odmah dobijamo:</p>
+      <div class="formula-box">
+        \[
+          A=\frac14.
+        \]
+      </div>
+
+      <p>Zatim redom:</p>
+      <div class="formula-box">
+        \[
+          B=-\frac14,\qquad
+          C=0,\qquad
+          D=-1,\qquad
+          E=4.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>(a) Parcijalna razgradnja</h2>
+      <div class="formula-box">
+        \[
+          \boxed{
+          \frac{4x+4}{x(x^2+4)^2}
+          =
+          \frac{1}{4x}
+          -
+          \frac{x}{4(x^2+4)}
+          +
+          \frac{-x+4}{(x^2+4)^2}
+          }
+        \]
+      </div>
+      <p>Za integraciju je zgodno poslednji razlomak odmah rastaviti:</p>
+      <div class="formula-box">
+        \[
+          \frac{-x+4}{(x^2+4)^2}
+          =
+          -\frac{x}{(x^2+4)^2}
+          +
+          \frac{4}{(x^2+4)^2}.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>(b) Integracija član po član</h2>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          I
+          &=
+          \int
+          \frac{4x+4}{x(x^2+4)^2}\,dx \\[1mm]
+          &=
+          \int
+          \left(
+          \frac{1}{4x}
+          -
+          \frac{x}{4(x^2+4)}
+          -
+          \frac{x}{(x^2+4)^2}
+          +
+          \frac{4}{(x^2+4)^2}
+          \right)dx.
+        \end{aligned}
+        \]
+      </div>
+
+      <div class="grid">
+        <div class="mini">
+          <strong>Prvi član</strong>
+          \[
+            \int \frac{1}{4x}\,dx
+            =
+            \frac14\ln|x|.
+          \]
+        </div>
+
+        <div class="mini">
+          <strong>Drugi član</strong>
+          \[
+            \int -\frac{x}{4(x^2+4)}\,dx
+            =
+            -\frac18\ln(x^2+4).
+          \]
+        </div>
+
+        <div class="mini">
+          <strong>Treći član</strong>
+          \[
+            \int -\frac{x}{(x^2+4)^2}\,dx
+            =
+            \frac{1}{2(x^2+4)}.
+          \]
+        </div>
+
+        <div class="mini">
+          <strong>Četvrti član</strong>
+          \[
+            \int \frac{4}{(x^2+4)^2}\,dx
+            =
+            \frac{x}{2(x^2+4)}
+            +
+            \frac14\arctan\frac{x}{2}.
+          \]
+        </div>
+      </div>
+
+      <p>
+        Kod poslednjeg člana korišćena je standardna formula:
+      </p>
+      <div class="formula-box">
+        \[
+          \int \frac{dx}{(x^2+a^2)^2}
+          =
+          \frac{x}{2a^2(x^2+a^2)}
+          +
+          \frac{1}{2a^3}\arctan\frac{x}{a}
+          +
+          C.
+        \]
+      </div>
+      <p>
+        Ovde je \(a=2\), pa se posle množenja sa \(4\) dobija prikazani rezultat.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan odgovor</h2>
+      <p>Spajanjem racionalnih članova:</p>
+      <div class="formula-box">
+        \[
+          \frac{1}{2(x^2+4)}
+          +
+          \frac{x}{2(x^2+4)}
+          =
+          \frac{x+1}{2(x^2+4)}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          \int
+          \frac{4x+4}{x(x^2+4)^2}\,dx
+          =
+          \frac14\ln|x|
+          -
+          \frac18\ln(x^2+4)
+          +
+          \frac{x+1}{2(x^2+4)}
+          +
+          \frac14\arctan\frac{x}{2}
+          +
+          C
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Kratka provera</h2>
+      <p>
+        Izvod dobijenog izraza vraća početnu funkciju:
+      </p>
+      <div class="formula-box">
+        \[
+          \left(
+          \frac14\ln|x|
+          -
+          \frac18\ln(x^2+4)
+          +
+          \frac{x+1}{2(x^2+4)}
+          +
+          \frac14\arctan\frac{x}{2}
+          \right)'
+          =
+          \frac{4x+4}{x(x^2+4)^2}.
+        \]
+      </div>
+      <p>
+        Domena integranda je \(x\neq 0\). Faktor \(x^2+4\) nema realne nule.
+      </p>
+    </section>
+
+
+
+    <section class="card analysis-card">
+      <h2>Dodatak: četvrti član bez gotove formule</h2>
+      <p>
+        Četvrti član je jedini koji nije odmah elementaran na prvi pogled:
+      </p>
+      <div class="formula-box">
+        \[
+          I_4=\int \frac{4}{(x^2+4)^2}\,dx.
+        \]
+      </div>
+
+      <p>
+        Umesto gotove formule, u brojilac dodamo i oduzmemo \(x^2\):
+      </p>
+      <div class="formula-box">
+        \[
+          4=4+x^2-x^2=(x^2+4)-x^2.
+        \]
+      </div>
+
+      <p>Zato se integral rastavlja na dva dela:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          I_4
+          &=\int \frac{x^2+4}{(x^2+4)^2}\,dx
+          -\int \frac{x^2}{(x^2+4)^2}\,dx \\[1mm]
+          &=\int \frac{dx}{x^2+4}
+          -\int \frac{x^2}{(x^2+4)^2}\,dx.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Drugi integral pišemo kao \(x\cdot x\), pa radimo parcijalnu integraciju:
+      </p>
+      <div class="formula-box">
+        \[
+          K=\int \frac{x^2}{(x^2+4)^2}\,dx
+          =\int x\cdot \frac{x}{(x^2+4)^2}\,dx.
+        \]
+      </div>
+
+      <p>Uzimamo:</p>
+      <div class="formula-box">
+        \[
+          u=x,\qquad
+          dv=\frac{x}{(x^2+4)^2}\,dx.
+        \]
+        \[
+          du=dx,\qquad
+          v=\int \frac{x}{(x^2+4)^2}\,dx
+          =-\frac{1}{2(x^2+4)}.
+        \]
+      </div>
+
+      <p>Sada:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          K
+          &=uv-\int v\,du \\[1mm]
+          &=-\frac{x}{2(x^2+4)}
+          +\frac12\int \frac{dx}{x^2+4}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Vraćamo to u \(I_4\):</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          I_4
+          &=\int \frac{dx}{x^2+4}
+          -\left(
+          -\frac{x}{2(x^2+4)}
+          +\frac12\int \frac{dx}{x^2+4}
+          \right) \\[1mm]
+          &=\frac{x}{2(x^2+4)}
+          +\frac12\int \frac{dx}{x^2+4}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Još samo standardni arktangens:</p>
+      <div class="formula-box">
+        \[
+          \int \frac{dx}{x^2+4}
+          =\frac12\arctan\frac{x}{2}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+          I_4
+          =
+          \int \frac{4}{(x^2+4)^2}\,dx
+          =
+          \frac{x}{2(x^2+4)}
+          +
+          \frac14\arctan\frac{x}{2}
+          +C
+          }
+        \]
+      </div>
+
+      <p>
+        Ista ideja može da se zapiše i rekurzivno, baš u obliku „\(I=\cdots-I\)”.
+        Ako se doda i oduzme \(x^2\) kao
+        \(4=(4-x^2)+x^2\), onda je:
+      </p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          I_4
+          &=\int \frac{4-x^2}{(x^2+4)^2}\,dx
+          +\int \frac{x^2}{(x^2+4)^2}\,dx \\[1mm]
+          &=\frac{x}{x^2+4}
+          +\int \frac{x^2+4-4}{(x^2+4)^2}\,dx \\[1mm]
+          &=\frac{x}{x^2+4}
+          +\int \frac{dx}{x^2+4}
+          -I_4.
+        \end{aligned}
+        \]
+      </div>
+      <p>
+        Odatle opet sledi isti rezultat:
+      </p>
+      <div class="formula-box">
+        \[
+          2I_4=\frac{x}{x^2+4}+\int \frac{dx}{x^2+4},
+          \qquad
+          I_4=\frac{x}{2(x^2+4)}+\frac14\arctan\frac{x}{2}+C.
+        \]
+      </div>
+    </section>
+
+    <div class="footer">
+      Powered by ChatGPT · Mathbrotherhood
+    </div>
+  </main>
+</body>
+</html>
