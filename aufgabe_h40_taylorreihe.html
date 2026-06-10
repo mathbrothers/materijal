@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aufgabe H40 — Taylorreihe</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --task:#5c9cd1;
+      --idea:#7b4fd0;
+      --analysis:#d99a22;
+      --solution:#2f9e72;
+      --warning:#d45b5b;
+      --answer:#047857;
+      --card:#ffffff;
+      --shadow:0 10px 24px rgba(15,23,42,.08);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(92,156,209,.18), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(4,120,87,.16), transparent 28%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:34px 18px 44px;
+    }
+
+    header{
+      text-align:center;
+      margin-bottom:26px;
+    }
+
+    header .label{
+      display:inline-block;
+      padding:6px 14px;
+      border-radius:999px;
+      background:#dbeafe;
+      color:#1d4ed8;
+      font-weight:700;
+      font-size:.88rem;
+      margin-bottom:10px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(1.8rem, 4vw, 2.65rem);
+      line-height:1.15;
+      letter-spacing:-.03em;
+    }
+
+    .subtitle{
+      margin:12px auto 0;
+      color:var(--muted);
+      max-width:760px;
+      font-size:1.02rem;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin:18px 0;
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,.25);
+    }
+
+    .card-title{
+      color:#fff;
+      font-weight:800;
+      font-size:1.08rem;
+      padding:12px 18px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .card-content{
+      padding:18px 20px 20px;
+    }
+
+    .task-card{ border-left:7px solid var(--task); }
+    .idea-card{ border-left:7px solid var(--idea); }
+    .analysis-card{ border-left:7px solid var(--analysis); }
+    .solution-card{ border-left:7px solid var(--solution); }
+    .warning-card{ border-left:7px solid var(--warning); }
+    .answer-card{ border-left:7px solid var(--answer); }
+
+    .task-card .card-title{ background:var(--task); }
+    .idea-card .card-title{ background:var(--idea); }
+    .analysis-card .card-title{ background:var(--analysis); }
+    .solution-card .card-title{ background:var(--solution); }
+    .warning-card .card-title{ background:var(--warning); }
+    .answer-card .card-title{ background:var(--answer); }
+
+    .formula-box{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:14px;
+      padding:12px 14px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:36px 1fr;
+      gap:12px;
+      align-items:start;
+      margin:12px 0;
+    }
+
+    .step-no{
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:#e0f2fe;
+      color:#0369a1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      flex:0 0 auto;
+    }
+
+    .mini-note{
+      color:#475569;
+      font-size:.98rem;
+      margin-top:6px;
+    }
+
+    .highlight{
+      background:linear-gradient(transparent 58%, #fde68a 58%);
+      font-weight:800;
+    }
+
+    footer{
+      text-align:center;
+      color:#64748b;
+      font-size:.9rem;
+      margin-top:28px;
+    }
+
+    @media (max-width:640px){
+      .page{ padding:22px 12px 34px; }
+      .card-content{ padding:16px 14px 18px; }
+      .step{ grid-template-columns:1fr; }
+      .step-no{ margin-bottom:-4px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="label">Aufgabe H40 · Maßgeschneiderte Reihen</div>
+      <h1>Taylorov red funkcije \(-\cos(2x)\) u tački \(x_0=\frac{\pi}{4}\)</h1>
+      <p class="subtitle">Najbrži put je da se razvojni centar prebaci u novu promenljivu \(h=x-x_0\), pa se zadatak svodi na poznati Maklorenov red za sinus.</p>
+    </header>
+
+    <section class="card task-card">
+      <div class="card-title">Zadatak</div>
+      <div class="card-content">
+        <p>Odrediti Taylorov red funkcije</p>
+        <div class="formula-box">
+          \[
+            f:\mathbb R\to\mathbb R,\qquad f(x)=-\cos(2x)
+          \]
+        </div>
+        <p>u razvojnoj tački</p>
+        <div class="formula-box">
+          \[
+            x_0=\frac{\pi}{4}.
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <div class="card-title">Ideja</div>
+      <div class="card-content">
+        <p>Pošto razvoj nije oko nule, uvodimo pomeraj od centra:</p>
+        <div class="formula-box">
+          \[
+            h=x-\frac{\pi}{4}.
+          \]
+        </div>
+        <p>Tada je</p>
+        <div class="formula-box">
+          \[
+            x=\frac{\pi}{4}+h.
+          \]
+        </div>
+        <p class="mini-note">Taylorov red oko \(x_0\) biće zapravo Maklorenov red po promenljivoj \(h\).</p>
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <div class="card-title">Svođenje funkcije</div>
+      <div class="card-content">
+        <div class="step">
+          <div class="step-no">1</div>
+          <div>
+            <p>U funkciji zamenjujemo \(x=\frac{\pi}{4}+h\):</p>
+            <div class="formula-box">
+              \[
+                f\!\left(\frac{\pi}{4}+h\right)
+                =-\cos\!\left(2\left(\frac{\pi}{4}+h\right)\right).
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-no">2</div>
+          <div>
+            <p>Sredimo argument kosinusa:</p>
+            <div class="formula-box">
+              \[
+                2\left(\frac{\pi}{4}+h\right)=\frac{\pi}{2}+2h.
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-no">3</div>
+          <div>
+            <p>Koristimo identitet</p>
+            <div class="formula-box">
+              \[
+                \cos\left(\frac{\pi}{2}+u\right)=-\sin u.
+              \]
+            </div>
+            <p>Zato je</p>
+            <div class="formula-box">
+              \[
+                -\cos\left(\frac{\pi}{2}+2h\right)
+                =-\bigl(-\sin(2h)\bigr)=\sin(2h).
+              \]
+            </div>
+          </div>
+        </div>
+
+        <p>Dakle, oko tačke \(x_0=\frac{\pi}{4}\) funkcija se ponaša kao:</p>
+        <div class="formula-box">
+          \[
+            f\!\left(\frac{\pi}{4}+h\right)=\sin(2h).
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <div class="card-title">Razvoj u red</div>
+      <div class="card-content">
+        <p>Poznati Maklorenov red je</p>
+        <div class="formula-box">
+          \[
+            \sin u=\sum_{n=0}^{\infty}(-1)^n\frac{u^{2n+1}}{(2n+1)!}.
+          \]
+        </div>
+
+        <p>Ovde je \(u=2h\), pa dobijamo</p>
+        <div class="formula-box">
+          \[
+            \sin(2h)
+            =\sum_{n=0}^{\infty}(-1)^n\frac{(2h)^{2n+1}}{(2n+1)!}.
+          \]
+        </div>
+
+        <p>Vraćamo</p>
+        <div class="formula-box">
+          \[
+            h=x-\frac{\pi}{4}.
+          \]
+        </div>
+
+        <p>Zato je Taylorov red:</p>
+        <div class="formula-box">
+          \[
+            -\cos(2x)
+            =\sum_{n=0}^{\infty}(-1)^n
+            \frac{2^{2n+1}}{(2n+1)!}
+            \left(x-\frac{\pi}{4}\right)^{2n+1}.
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <div class="card-title">Napomena</div>
+      <div class="card-content">
+        <p>U ovom razvoju se pojavljuju samo <span class="highlight">neparni stepeni</span> izraza \(x-\frac{\pi}{4}\), jer smo funkciju sveli na sinus.</p>
+        <div class="formula-box">
+          \[
+            -\cos(2x)
+            =2\left(x-\frac{\pi}{4}\right)
+            -\frac{2^3}{3!}\left(x-\frac{\pi}{4}\right)^3
+            +\frac{2^5}{5!}\left(x-\frac{\pi}{4}\right)^5
+            -\cdots
+          \]
+        </div>
+        <p>Pošto su sinus i kosinus definisani i analitički na celoj realnoj pravoj, red važi za svako \(x\in\mathbb R\).</p>
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <div class="card-title">Konačan odgovor</div>
+      <div class="card-content">
+        <div class="formula-box">
+          \[
+            \boxed{
+            -\cos(2x)
+            =
+            \sum_{n=0}^{\infty}(-1)^n
+            \frac{2^{2n+1}}{(2n+1)!}
+            \left(x-\frac{\pi}{4}\right)^{2n+1}
+            }
+          \]
+        </div>
+        <div class="formula-box">
+          \[
+            \boxed{R=+\infty}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Powered by ChatGPT · Mathbrotherhood
+    </footer>
+  </main>
+</body>
+</html>
