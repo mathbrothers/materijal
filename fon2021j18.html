@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maksimalna zapremina pravilne šestostrane prizme</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 30px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #1e3a8a;
+    }
+
+    .task-card,
+    .idea-card,
+    .solution-card,
+    .answer-card {
+      background: white;
+      border-radius: 14px;
+      padding: 22px 26px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+      border-left: 7px solid;
+    }
+
+    .task-card {
+      border-color: #5c9cd1;
+      background: #eef6ff;
+    }
+
+    .idea-card {
+      border-color: #7b4fd0;
+      background: #f4efff;
+    }
+
+    .solution-card {
+      border-color: #2f9e72;
+      background: #effaf5;
+    }
+
+    .answer-card {
+      border-color: #047857;
+      background: #ecfdf5;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+
+    .task-card h2 { color: #2563eb; }
+    .idea-card h2 { color: #6d28d9; }
+    .solution-card h2 { color: #047857; }
+    .answer-card h2 { color: #065f46; }
+
+    .formula-box {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .option {
+      background: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .correct {
+      border: 2px solid #dc2626;
+      color: #dc2626;
+      font-weight: 700;
+      background: #fff7f7;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 35px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Maksimalna zapremina pravilne šestostrane prizme</h1>
+
+    <section class="task-card">
+      <h2>Zadatak</h2>
+
+      <p>
+        Maksimalna zapremina prave pravilne šestostrane prizme površine \(P\) iznosi:
+      </p>
+
+      <div class="options">
+        <div class="option">A) \(\dfrac{\sqrt[4]{3}}{9}P\sqrt P\)</div>
+        <div class="option">B) \(\dfrac{\sqrt3}{18}P\sqrt P\)</div>
+        <div class="option">C) \(\dfrac{\sqrt3}{9}P\sqrt P\)</div>
+        <div class="option correct">D) \(\dfrac{\sqrt[4]{3}}{18}P\sqrt P\)</div>
+        <div class="option">E) \(\dfrac{1}{18}P\sqrt P\)</div>
+        <div class="option">N) Не знам</div>
+      </div>
+    </section>
+
+    <section class="idea-card">
+      <h2>Račun</h2>
+
+      <p>
+        Neka je \(a\) stranica pravilnog šestougla, a \(H\) visina prizme.
+      </p>
+
+      <div class="formula-box">
+        \[
+          B=\frac{3\sqrt3}{2}a^2
+        \]
+        \[
+          P=2B+6aH
+        \]
+      </div>
+    </section>
+
+    <section class="solution-card">
+      <h2>Rešenje</h2>
+
+      <p>
+        Ukupna površina prizme je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          P
+          =
+          2\cdot \frac{3\sqrt3}{2}a^2+6aH
+        \]
+        \[
+          P=3\sqrt3 a^2+6aH
+        \]
+      </div>
+
+      <p>
+        Odavde izražavamo visinu:
+      </p>
+
+      <div class="formula-box">
+        \[
+          6aH=P-3\sqrt3 a^2
+        \]
+        \[
+          H=\frac{P-3\sqrt3 a^2}{6a}
+        \]
+      </div>
+
+      <p>
+        Zapremina je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          V=BH
+        \]
+        \[
+          V=
+          \frac{3\sqrt3}{2}a^2
+          \cdot
+          \frac{P-3\sqrt3 a^2}{6a}
+        \]
+        \[
+          V=
+          \frac{\sqrt3}{4}a(P-3\sqrt3 a^2)
+        \]
+        \[
+          V=
+          \frac{\sqrt3 P}{4}a-\frac94a^3
+        \]
+      </div>
+
+      <p>
+        Tražimo maksimum:
+      </p>
+
+      <div class="formula-box">
+        \[
+          V'(a)=\frac{\sqrt3P}{4}-\frac{27}{4}a^2
+        \]
+        \[
+          V'(a)=0
+        \]
+        \[
+          \frac{\sqrt3P}{4}-\frac{27}{4}a^2=0
+        \]
+        \[
+          27a^2=\sqrt3P
+        \]
+        \[
+          a^2=\frac{\sqrt3P}{27}
+        \]
+      </div>
+
+      <p>
+        Sada iz uslova za površinu dobijamo visinu u maksimumu:
+      </p>
+
+      <div class="formula-box">
+        \[
+          H=\frac{P-3\sqrt3 a^2}{6a}
+        \]
+        \[
+          H=
+          \frac{P-3\sqrt3\cdot\frac{\sqrt3P}{27}}{6a}
+        \]
+        \[
+          H=
+          \frac{P-\frac{P}{3}}{6a}
+          =
+          \frac{\frac{2P}{3}}{6a}
+          =
+          \frac{P}{9a}
+        \]
+      </div>
+
+      <p>
+        Pošto je
+      </p>
+
+      <div class="formula-box">
+        \[
+          a^2=\frac{\sqrt3P}{27},
+        \]
+      </div>
+
+      <p>
+        važi:
+      </p>
+
+      <div class="formula-box">
+        \[
+          P=9\sqrt3a^2
+        \]
+        \[
+          H=\frac{9\sqrt3a^2}{9a}=\sqrt3a
+        \]
+      </div>
+
+      <p>
+        Maksimalna zapremina je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          V_{\max}
+          =
+          \frac{3\sqrt3}{2}a^2\cdot \sqrt3a
+        \]
+        \[
+          V_{\max}=\frac92a^3
+        \]
+      </div>
+
+      <p>
+        Iz
+      </p>
+
+      <div class="formula-box">
+        \[
+          a^2=\frac{P}{9\sqrt3}
+        \]
+      </div>
+
+      <p>
+        dobijamo:
+      </p>
+
+      <div class="formula-box">
+        \[
+          a^3=
+          \left(\frac{P}{9\sqrt3}\right)^{\frac32}
+        \]
+      </div>
+
+      <p>
+        Zato je:
+      </p>
+
+      <div class="formula-box">
+        \[
+          V_{\max}
+          =
+          \frac92
+          \left(\frac{P}{9\sqrt3}\right)^{\frac32}
+        \]
+        \[
+          V_{\max}
+          =
+          \frac{1}{6\sqrt[4]{27}}P\sqrt P
+        \]
+        \[
+          V_{\max}
+          =
+          \frac{\sqrt[4]{3}}{18}P\sqrt P
+        \]
+      </div>
+    </section>
+
+    <section class="answer-card">
+      <h2>Konačan odgovor</h2>
+
+      <div class="formula-box">
+        \[
+          \boxed{
+            \frac{\sqrt[4]{3}}{18}P\sqrt P
+          }
+        \]
+      </div>
+
+      <p>
+        Tačan odgovor je <strong>D)</strong>.
+      </p>
+    </section>
+
+    <footer>
+      Mathbrotherhood Powered by ChatGPT
+    </footer>
+  </div>
+</body>
+</html>
