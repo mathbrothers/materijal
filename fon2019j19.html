@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Broj rešenja trigonometrijske jednačine u intervalu</title>
+
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg1: #eef2ff;
+      --bg2: #f8fafc;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --white: #ffffff;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --task: #818cf8;
+      --idea: #38bdf8;
+      --analysis: #a78bfa;
+      --solution: #34d399;
+      --warning: #f59e0b;
+      --answer: #f97316;
+      --green: #16a34a;
+      --red: #dc2626;
+      --axis: #334155;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 18px 48px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 0 0 28px;
+      font-size: 2.1rem;
+      color: #0f172a;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 24px 26px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      border-left: 8px solid #cbd5e1;
+    }
+
+    .task-card { border-left-color: var(--task); }
+    .idea-card { border-left-color: var(--idea); }
+    .analysis-card { border-left-color: var(--analysis); }
+    .solution-card { border-left-color: var(--solution); }
+    .warning-card { border-left-color: var(--warning); }
+    .answer-card { border-left-color: var(--answer); }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+      color: #111827;
+    }
+
+    p { margin: 10px 0; }
+
+    .formula-box {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    ul {
+      margin: 10px 0 10px 24px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .numberline-wrap {
+      background: linear-gradient(180deg, #fcfcff, #f8fafc);
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 16px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      font-size: 0.98rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.green { background: var(--green); }
+    .dot.red { background: var(--red); }
+
+    .answer {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 30px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 720px) {
+      h1 { font-size: 1.65rem; }
+      .card { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Trigonometrijska jednačina — broj rešenja u intervalu</h1>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Odrediti broj rešenja jednačine</p>
+      <div class="formula-box">
+        \[
+          2\cos x\cos 2x = \cos x - \frac12
+        \]
+      </div>
+      <p>koja pripadaju intervalu</p>
+      <div class="formula-box">
+        \[
+          \left[-\frac{8\pi}{9},\,\frac{8\pi}{9}\right).
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Ovde je najprirodnije da odmah iskoristimo formulu za proizvod kosinusa:
+      </p>
+      <div class="formula-box">
+        \[
+          2\cos \alpha \cos \beta = \cos(\alpha+\beta)+\cos(\alpha-\beta).
+        \]
+      </div>
+      <p>
+        Za \(\alpha=x\) i \(\beta=2x\) dobijamo izraz sa \(\cos 3x\), pa se zadatak svodi na jednu veoma standardnu trigonometrijsku jednačinu.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          2\cos x\cos 2x &= \cos(x+2x)+\cos(x-2x) \\
+                           &= \cos 3x + \cos(-x) \\
+                           &= \cos 3x + \cos x.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Zato početna jednačina postaje:</p>
+      <div class="formula-box">
+        \[
+        \cos 3x + \cos x = \cos x - \frac12.
+        \]
+      </div>
+
+      <p>Oduzmemo \(\cos x\) sa obe strane:</p>
+      <div class="formula-box">
+        \[
+          \cos 3x = -\frac12.
+        \]
+      </div>
+
+      <p>Znamo da je:</p>
+      <div class="formula-box">
+        \[
+          \cos t = -\frac12
+          \quad \Longleftrightarrow \quad
+          t = \frac{2\pi}{3}+2k\pi
+          \quad \text{ili} \quad
+          t = \frac{4\pi}{3}+2k\pi,
+          \qquad k\in\mathbb Z.
+        \]
+      </div>
+
+      <p>Pošto je \(t=3x\), sledi:</p>
+      <div class="formula-box">
+        \[
+          x = \frac{2\pi}{9} + \frac{2k\pi}{3}
+          \quad \text{ili} \quad
+          x = \frac{4\pi}{9} + \frac{2k\pi}{3},
+          \qquad k\in\mathbb Z.
+        \]
+      </div>
+
+      <p>Sada tražimo samo ona rešenja koja pripadaju intervalu \(\left[-\frac{8\pi}{9},\frac{8\pi}{9}\right)\).</p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          x = \frac{2\pi}{9} + \frac{2k\pi}{3}
+          &\Rightarrow x\in\left\{-\frac{4\pi}{9},\,\frac{2\pi}{9}\right\}, \\
+          x = \frac{4\pi}{9} + \frac{2k\pi}{3}
+          &\Rightarrow x\in\left\{-\frac{8\pi}{9},\,-\frac{2\pi}{9},\,\frac{4\pi}{9}\right\}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Ukupno dobijamo sledećih pet rešenja iz zadatog intervala:</p>
+      <div class="formula-box">
+        \[
+          -\frac{8\pi}{9},\; -\frac{4\pi}{9},\; -\frac{2\pi}{9},\; \frac{2\pi}{9},\; \frac{4\pi}{9}.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Prikaz na brojnoj osi</h2>
+      <p>
+        Zelenom bojom obeležena su rešenja koja pripadaju intervalu, a crvenom nekoliko najbližih rešenja koja ne pripadaju intervalu.
+      </p>
+
+      <div class="numberline-wrap">
+        <svg viewBox="0 0 980 250" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Brojna osa sa rešenjima">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#334155"></polygon>
+            </marker>
+          </defs>
+
+          <!-- Title -->
+          <text x="490" y="28" text-anchor="middle" font-size="20" font-weight="600" fill="#0f172a">
+            Rešenja jednačine na brojnoj osi
+          </text>
+
+          <!-- Axis -->
+          <line x1="70" y1="120" x2="910" y2="120" stroke="#334155" stroke-width="3" marker-end="url(#arrow)" />
+
+          <!-- Interval highlight -->
+          <line x1="210" y1="120" x2="770" y2="120" stroke="#93c5fd" stroke-width="12" stroke-linecap="round" opacity="0.85"/>
+
+          <!-- Brackets for interval -->
+          <line x1="210" y1="92" x2="210" y2="148" stroke="#2563eb" stroke-width="4"/>
+          <line x1="210" y1="92" x2="224" y2="92" stroke="#2563eb" stroke-width="4"/>
+          <line x1="210" y1="148" x2="224" y2="148" stroke="#2563eb" stroke-width="4"/>
+
+          <line x1="770" y1="92" x2="770" y2="148" stroke="#2563eb" stroke-width="4"/>
+          <circle cx="770" cy="120" r="10" fill="#ffffff" stroke="#2563eb" stroke-width="4"/>
+
+          <!-- ticks and labels -->
+          <!-- positions based on p from -12 to 12 where x = p*pi/9 -->
+          <g font-size="15" fill="#1f2937" text-anchor="middle">
+            <g>
+              <line x1="70" y1="108" x2="70" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="70" y="160">−4π/3</text>
+            </g>
+            <g>
+              <line x1="140" y1="108" x2="140" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="140" y="160">−10π/9</text>
+            </g>
+            <g>
+              <line x1="210" y1="108" x2="210" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="210" y="160">−8π/9</text>
+            </g>
+            <g>
+              <line x1="350" y1="108" x2="350" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="350" y="160">−4π/9</text>
+            </g>
+            <g>
+              <line x1="420" y1="108" x2="420" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="420" y="160">−2π/9</text>
+            </g>
+            <g>
+              <line x1="490" y1="108" x2="490" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="490" y="160">0</text>
+            </g>
+            <g>
+              <line x1="560" y1="108" x2="560" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="560" y="160">2π/9</text>
+            </g>
+            <g>
+              <line x1="630" y1="108" x2="630" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="630" y="160">4π/9</text>
+            </g>
+            <g>
+              <line x1="770" y1="108" x2="770" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="770" y="160">8π/9</text>
+            </g>
+            <g>
+              <line x1="840" y1="108" x2="840" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="840" y="160">10π/9</text>
+            </g>
+            <g>
+              <line x1="910" y1="108" x2="910" y2="132" stroke="#64748b" stroke-width="2"/>
+              <text x="910" y="160">4π/3</text>
+            </g>
+          </g>
+
+          <!-- included solutions -->
+          <g>
+            <circle cx="210" cy="120" r="9" fill="#16a34a" stroke="#14532d" stroke-width="2"/>
+            <circle cx="350" cy="120" r="9" fill="#16a34a" stroke="#14532d" stroke-width="2"/>
+            <circle cx="420" cy="120" r="9" fill="#16a34a" stroke="#14532d" stroke-width="2"/>
+            <circle cx="560" cy="120" r="9" fill="#16a34a" stroke="#14532d" stroke-width="2"/>
+            <circle cx="630" cy="120" r="9" fill="#16a34a" stroke="#14532d" stroke-width="2"/>
+          </g>
+
+          <!-- excluded nearby solutions -->
+          <g>
+            <circle cx="140" cy="120" r="9" fill="#dc2626" stroke="#7f1d1d" stroke-width="2"/>
+            <circle cx="770" cy="120" r="9" fill="#dc2626" stroke="#7f1d1d" stroke-width="2" opacity="0.9"/>
+            <circle cx="840" cy="120" r="9" fill="#dc2626" stroke="#7f1d1d" stroke-width="2"/>
+          </g>
+
+          <!-- top labels -->
+          <g font-size="14" text-anchor="middle">
+            <text x="210" y="88" fill="#166534">pripada</text>
+            <text x="140" y="88" fill="#b91c1c">ne pripada</text>
+            <text x="770" y="88" fill="#b91c1c">desni kraj nije uključen</text>
+          </g>
+        </svg>
+
+        <div class="legend">
+          <div class="legend-item"><span class="dot green"></span> rešenja koja pripadaju intervalu</div>
+          <div class="legend-item"><span class="dot red"></span> rešenja koja ne pripadaju intervalu</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>
+        Obrati pažnju da je interval
+        \(\left[-\frac{8\pi}{9},\frac{8\pi}{9}\right)\)
+        <strong>zatvoren sa leve</strong>, a <strong>otvoren sa desne strane</strong>.
+        Zato je \(-\frac{8\pi}{9}\) dozvoljeno rešenje, dok \(\frac{8\pi}{9}\) nije.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan odgovor</h2>
+      <div class="answer">
+        \[
+          \boxed{5}
+        \]
+        <p style="margin-top:8px;">Tačan odgovor je <strong>C)</strong>.</p>
+      </div>
+    </section>
+
+    <footer>
+      Mathbrotherhood Powered by ChatGPT
+    </footer>
+  </div>
+</body>
+</html>
