@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Građevinski fakultet — zadatak 20</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg1: #f7fbff;
+      --bg2: #fff7ed;
+      --text: #172033;
+      --muted: #586174;
+      --blue: #6aa9ff;
+      --green: #7ad7a8;
+      --orange: #ffbf73;
+      --purple: #bba7ff;
+      --red: #ff8d8d;
+      --gold: #ffd36e;
+      --card: rgba(255,255,255,0.94);
+      --shadow: 0 18px 45px rgba(35, 45, 80, 0.13);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(106,169,255,0.20), transparent 28%),
+        radial-gradient(circle at 90% 0%, rgba(255,191,115,0.24), transparent 32%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 26px;
+    }
+
+    header {
+      margin-bottom: 22px;
+      padding: 30px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255,255,255,0.76));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4vw, 3.1rem);
+      line-height: 1.12;
+    }
+
+    .subtitle {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 20px 0;
+      padding: 24px 26px 24px 30px;
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.86);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 9px;
+      border-radius: var(--radius) 0 0 var(--radius);
+      background: var(--blue);
+    }
+
+    .task-card::before { background: var(--blue); }
+    .idea-card::before { background: var(--green); }
+    .analysis-card::before { background: var(--purple); }
+    .solution-card::before { background: var(--orange); }
+    .warning-card::before { background: var(--red); }
+    .answer-card::before { background: var(--gold); }
+
+    h2 {
+      margin: 0 0 13px;
+      font-size: 1.28rem;
+    }
+
+    p { margin: 10px 0; }
+
+    .formula-box {
+      margin: 15px 0;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(245, 248, 255, 0.90);
+      border: 1px solid rgba(130, 153, 205, 0.22);
+      overflow-x: auto;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .option {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(120, 140, 180, 0.18);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .svg-wrap {
+      margin-top: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,248,255,0.9));
+      border: 1px solid rgba(130, 153, 205, 0.20);
+      overflow-x: auto;
+      padding: 12px;
+    }
+
+    svg {
+      width: 100%;
+      min-width: 760px;
+      height: auto;
+      display: block;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    footer {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 18px 0 8px;
+    }
+
+    @media (max-width: 640px) {
+      .page { width: min(100% - 20px, 980px); padding-top: 18px; }
+      header, .card { padding: 22px 18px 22px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="kicker">Građevinski fakultet · prijemni stil</p>
+      <h1>Zbir rešenja trigonometrijske jednačine</h1>
+      <p class="subtitle">Zadatak je najlakši kada se apsolutna vrednost pretvori u jednu pomoćnu promenljivu.</p>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Odrediti zbir svih rešenja jednačine</p>
+      <div class="formula-box">
+        \[
+          4|\sin x|+2\cos 2x=3
+        \]
+      </div>
+      <p>na intervalu \( [-\pi,2\pi] \).</p>
+      <div class="options">
+        <div class="option">A) \(-3\pi\)</div>
+        <div class="option">Б) \(0\)</div>
+        <div class="option">В) \(3\pi\)</div>
+        <div class="option">Г) \(-\dfrac{\pi}{6}\)</div>
+        <div class="option">Д) \(\dfrac{\pi}{6}\)</div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>Pošto se javlja \(|\sin x|\), uvedimo</p>
+      <div class="formula-box">
+        \[
+          t=|\sin x|, \qquad 0\leq t\leq 1.
+        \]
+      </div>
+      <p>Tada važi \(\sin^2x=t^2\), pa formulu za dvostruki ugao pišemo kao</p>
+      <div class="formula-box">
+        \[
+          \cos 2x=1-2\sin^2x=1-2t^2.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Analiza jednačine</h2>
+      <p>Ubacujemo \(t=|\sin x|\) u početnu jednačinu:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          4t+2(1-2t^2)&=3 \\
+          4t+2-4t^2&=3 \\
+          -4t^2+4t-1&=0 \\
+          4t^2-4t+1&=0 \\
+          (2t-1)^2&=0.
+        \end{aligned}
+        \]
+      </div>
+      <p>Dakle, jedina moguća vrednost je</p>
+      <div class="formula-box">
+        \[
+          t=\frac12.
+        \]
+      </div>
+      <p>Pošto je \(t=|\sin x|\), dobijamo jednostavnu jednačinu</p>
+      <div class="formula-box">
+        \[
+          |\sin x|=\frac12.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenja na intervalu</h2>
+      <p>Jednačina \(|\sin x|=\dfrac12\) ima u jednom periodu rešenja</p>
+      <div class="formula-box">
+        \[
+          x=\frac{\pi}{6}+k\pi
+          \qquad \text{ili} \qquad
+          x=\frac{5\pi}{6}+k\pi,
+          \qquad k\in\mathbb Z.
+        \]
+      </div>
+      <p>Sada biramo samo ona rešenja koja pripadaju intervalu \([-\pi,2\pi]\):</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          x&=-\frac{5\pi}{6},\ \frac{\pi}{6},\ \frac{7\pi}{6}, \\
+          x&=-\frac{\pi}{6},\ \frac{5\pi}{6},\ \frac{11\pi}{6}.
+        \end{aligned}
+        \]
+      </div>
+
+      <div class="svg-wrap" aria-label="Brojevna prava sa rešenjima">
+        <svg viewBox="0 0 940 250" role="img">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#34415f" />
+            </marker>
+          </defs>
+
+          <rect x="18" y="18" width="904" height="214" rx="22" fill="#ffffff" opacity="0.78" />
+          <text x="470" y="48" text-anchor="middle" font-size="20" font-weight="700" fill="#172033">Rešenja na intervalu [-π, 2π]</text>
+
+          <line x1="70" y1="135" x2="870" y2="135" stroke="#34415f" stroke-width="3" marker-end="url(#arrow)" />
+
+          <!-- scale: -pi at 90, 2pi at 850, distance 760 = 3pi -->
+          <g font-size="15" fill="#586174" text-anchor="middle">
+            <line x1="90" y1="122" x2="90" y2="148" stroke="#34415f" stroke-width="2" />
+            <text x="90" y="174">-π</text>
+
+            <line x1="343.33" y1="122" x2="343.33" y2="148" stroke="#34415f" stroke-width="2" />
+            <text x="343.33" y="174">0</text>
+
+            <line x1="596.67" y1="122" x2="596.67" y2="148" stroke="#34415f" stroke-width="2" />
+            <text x="596.67" y="174">π</text>
+
+            <line x1="850" y1="122" x2="850" y2="148" stroke="#34415f" stroke-width="2" />
+            <text x="850" y="174">2π</text>
+          </g>
+
+          <g font-size="14" font-weight="700" text-anchor="middle">
+            <circle cx="132.22" cy="135" r="8" fill="#ffbf73" />
+            <text x="132.22" y="110" fill="#172033">-5π/6</text>
+
+            <circle cx="301.11" cy="135" r="8" fill="#ffbf73" />
+            <text x="301.11" y="110" fill="#172033">-π/6</text>
+
+            <circle cx="385.56" cy="135" r="8" fill="#7ad7a8" />
+            <text x="385.56" y="110" fill="#172033">π/6</text>
+
+            <circle cx="554.44" cy="135" r="8" fill="#7ad7a8" />
+            <text x="554.44" y="110" fill="#172033">5π/6</text>
+
+            <circle cx="638.89" cy="135" r="8" fill="#bba7ff" />
+            <text x="638.89" y="110" fill="#172033">7π/6</text>
+
+            <circle cx="807.78" cy="135" r="8" fill="#bba7ff" />
+            <text x="807.78" y="110" fill="#172033">11π/6</text>
+          </g>
+
+          <text x="470" y="215" text-anchor="middle" font-size="15" fill="#586174">
+            Krajevi intervala nisu rešenja, jer je sin(-π)=0 i sin(2π)=0.
+          </text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>Ovde je ključ da se ne stane čim se dobije \(|\sin x|=\dfrac12\). Zadatak traži zbir rešenja na celom intervalu \([-\pi,2\pi]\), pa moramo prebrojati svih šest rešenja.</p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan račun</h2>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          S
+          &=\left(-\frac{5\pi}{6}+\frac{\pi}{6}+\frac{7\pi}{6}\right)
+          +\left(-\frac{\pi}{6}+\frac{5\pi}{6}+\frac{11\pi}{6}\right) \\
+          &=\frac{-5\pi+\pi+7\pi-\pi+5\pi+11\pi}{6} \\
+          &=\frac{18\pi}{6} \\
+          &=3\pi.
+        \end{aligned}
+        \]
+      </div>
+      <div class="formula-box">
+        \[
+          \boxed{S=3\pi}
+        \]
+      </div>
+      <p><strong>Tačan odgovor je В) \(3\pi\).</strong></p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
