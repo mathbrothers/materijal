@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kvadratne jednačine – mali tutorijal</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg1:#f7f8ff;
+      --bg2:#fff8ed;
+      --ink:#1f2937;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --shadow:0 14px 35px rgba(31,41,55,.10);
+      --blue:#93c5fd;
+      --green:#86efac;
+      --yellow:#fde68a;
+      --pink:#f9a8d4;
+      --purple:#c4b5fd;
+      --orange:#fdba74;
+      --red:#fca5a5;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(147,197,253,.35), transparent 32%),
+        radial-gradient(circle at 90% 0%, rgba(253,186,116,.32), transparent 30%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+      line-height:1.65;
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:34px 18px 46px;
+    }
+    header{
+      text-align:center;
+      margin-bottom:26px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(1.9rem,4vw,3rem);
+      letter-spacing:-.03em;
+    }
+    .subtitle{
+      margin:10px auto 0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.06rem;
+    }
+    .task-card,.idea-card,.analysis-card,.solution-card,.warning-card,.answer-card{
+      background:var(--card);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:22px 24px;
+      margin:18px 0;
+      border-left:10px solid var(--blue);
+    }
+    .task-card{border-left-color:var(--blue)}
+    .idea-card{border-left-color:var(--green)}
+    .analysis-card{border-left-color:var(--purple)}
+    .solution-card{border-left-color:var(--orange)}
+    .warning-card{border-left-color:var(--red)}
+    .answer-card{border-left-color:var(--pink)}
+    h2{
+      margin:0 0 12px;
+      font-size:1.38rem;
+      letter-spacing:-.015em;
+    }
+    h3{
+      margin:18px 0 8px;
+      font-size:1.08rem;
+    }
+    p{margin:8px 0}
+    ul,ol{margin:8px 0 8px 22px; padding:0}
+    li{margin:5px 0}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+    .mini{
+      background:#f9fafb;
+      border:1px solid #eef2f7;
+      border-radius:16px;
+      padding:14px 16px;
+    }
+    .tag{
+      display:inline-block;
+      font-size:.78rem;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      color:#374151;
+      background:#eef2ff;
+      border-radius:999px;
+      padding:3px 10px;
+      margin-bottom:8px;
+      font-weight:700;
+    }
+    .eq{
+      overflow-x:auto;
+      padding:4px 0;
+    }
+    .note{
+      color:var(--muted);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:12px;
+      overflow:hidden;
+      border-radius:14px;
+      background:#fff;
+    }
+    th,td{
+      border:1px solid #e5e7eb;
+      padding:10px 12px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{background:#f3f4f6}
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width:760px){
+      .two-col{grid-template-columns:1fr}
+      .task-card,.idea-card,.analysis-card,.solution-card,.warning-card,.answer-card{padding:18px 16px}
+    }
+    footer{
+      text-align:center;
+      margin-top:28px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Kvadratne jednačine – mali tutorijal</h1>
+      <p class="subtitle">Kratak vodič za najosnovnije tipove kvadratnih jednačina: izvlačenje zajedničkog činioca, razlika kvadrata, rastavljanje trinoma i formula.</p>
+    </header>
+
+    <section class="task-card">
+      <h2>Zadatak</h2>
+      <p>Rešiti jednačine:</p>
+      <div class="two-col">
+        <ol type="a">
+          <li>\(x^2-4x=0\)</li>
+          <li>\(x^2-3x=0\)</li>
+          <li>\(x^2-9=0\)</li>
+          <li>\(x^2-16=0\)</li>
+          <li>\(x^2+2x-15=0\)</li>
+          <li>\(x^2+2x-8=0\)</li>
+        </ol>
+        <ol type="a" start="7">
+          <li>\(3x^2-10x+3=0\)</li>
+          <li>\(x^2-8x+15=0\)</li>
+          <li>\(x^2-6x-7=0\)</li>
+          <li>\((x+2)^2-16=0\)</li>
+          <li>\((x-3)^2-25=0\)</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="idea-card">
+      <h2>Ideja: ne počinjemo uvek od formule</h2>
+      <p>Kod ovakvih zadataka prvo gledamo da li jednačina može brzo da se rastavi na činioce. Kada dobijemo proizvod jednak nuli, koristimo najvažnije pravilo:</p>
+      <div class="eq">
+        \[
+          A\cdot B=0 \quad \Longrightarrow \quad A=0 \;\text{ili}\; B=0.
+        \]
+      </div>
+      <p>To znači: ako je proizvod dva izraza jednak nuli, bar jedan od tih izraza mora biti nula.</p>
+    </section>
+
+    <section class="analysis-card">
+      <h2>Mali tutorijal</h2>
+      <div class="grid">
+        <div class="mini">
+          <span class="tag">Tip 1</span>
+          <h3>Izvlačenje zajedničkog činioca</h3>
+          <p>Ako oba člana imaju \(x\), izvučemo \(x\):</p>
+          <div class="eq">\[x^2-4x=x(x-4).\]</div>
+        </div>
+        <div class="mini">
+          <span class="tag">Tip 2</span>
+          <h3>Razlika kvadrata</h3>
+          <p>Koristimo formulu:</p>
+          <div class="eq">\[a^2-b^2=(a-b)(a+b).\]</div>
+          <p>Na primer: \(x^2-9=(x-3)(x+3)\).</p>
+        </div>
+        <div class="mini">
+          <span class="tag">Tip 3</span>
+          <h3>Rastavljanje trinoma</h3>
+          <p>Za \(x^2+px+q\) tražimo dva broja čiji je zbir \(p\), a proizvod \(q\).</p>
+          <div class="eq">\[x^2+2x-15=(x+5)(x-3).\]</div>
+        </div>
+        <div class="mini">
+          <span class="tag">Tip 4</span>
+          <h3>Kvadratna formula</h3>
+          <p>Za \(ax^2+bx+c=0\) možemo koristiti:</p>
+          <div class="eq">
+            \[
+              D=b^2-4ac,\qquad x_{1,2}=\frac{-b\pm\sqrt D}{2a}.
+            \]
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="warning-card">
+      <h2>Napomena za rad</h2>
+      <p>Na ovako lakim jednačinama cilj nije da se nauči napamet jedan postupak, nego da se prepozna najkraći put. Zato redom proveravamo:</p>
+      <ol>
+        <li>da li može da se izvuče zajednički činilac,</li>
+        <li>da li je razlika kvadrata,</li>
+        <li>da li se trinom lako rastavlja,</li>
+        <li>ako ništa od toga nije očigledno, koristimo formulu.</li>
+      </ol>
+    </section>
+
+    <section class="solution-card">
+      <h2>Rešenja</h2>
+
+      <h3>a) \(x^2-4x=0\)</h3>
+      <div class="eq">
+        \[
+          x^2-4x=0 \quad\Longleftrightarrow\quad x(x-4)=0.
+        \]
+        \[
+          x=0 \quad\text{ili}\quad x-4=0.
+        \]
+        \[
+          \boxed{x=0 \;\text{ili}\; x=4}
+        \]
+      </div>
+
+      <h3>b) \(x^2-3x=0\)</h3>
+      <div class="eq">
+        \[
+          x^2-3x=0 \quad\Longleftrightarrow\quad x(x-3)=0.
+        \]
+        \[
+          x=0 \quad\text{ili}\quad x-3=0.
+        \]
+        \[
+          \boxed{x=0 \;\text{ili}\; x=3}
+        \]
+      </div>
+
+      <h3>c) \(x^2-9=0\)</h3>
+      <div class="eq">
+        \[
+          x^2-9=0 \quad\Longleftrightarrow\quad (x-3)(x+3)=0.
+        \]
+        \[
+          x-3=0 \quad\text{ili}\quad x+3=0.
+        \]
+        \[
+          \boxed{x=3 \;\text{ili}\; x=-3}
+        \]
+      </div>
+
+      <h3>d) \(x^2-16=0\)</h3>
+      <div class="eq">
+        \[
+          x^2-16=0 \quad\Longleftrightarrow\quad (x-4)(x+4)=0.
+        \]
+        \[
+          x-4=0 \quad\text{ili}\quad x+4=0.
+        \]
+        \[
+          \boxed{x=4 \;\text{ili}\; x=-4}
+        \]
+      </div>
+
+      <h3>e) \(x^2+2x-15=0\)</h3>
+      <p>Tražimo dva broja čiji je zbir \(2\), a proizvod \(-15\). To su \(5\) i \(-3\).</p>
+      <div class="eq">
+        \[
+          x^2+2x-15=0 \quad\Longleftrightarrow\quad (x+5)(x-3)=0.
+        \]
+        \[
+          x+5=0 \quad\text{ili}\quad x-3=0.
+        \]
+        \[
+          \boxed{x=-5 \;\text{ili}\; x=3}
+        \]
+      </div>
+
+      <h3>f) \(x^2+2x-8=0\)</h3>
+      <p>Tražimo dva broja čiji je zbir \(2\), a proizvod \(-8\). To su \(4\) i \(-2\).</p>
+      <div class="eq">
+        \[
+          x^2+2x-8=0 \quad\Longleftrightarrow\quad (x+4)(x-2)=0.
+        \]
+        \[
+          x+4=0 \quad\text{ili}\quad x-2=0.
+        \]
+        \[
+          \boxed{x=-4 \;\text{ili}\; x=2}
+        \]
+      </div>
+
+      <h3>g) \(3x^2-10x+3=0\)</h3>
+      <p>Ovde koeficijent uz \(x^2\) nije \(1\), pa je formula najčistiji put.</p>
+      <div class="eq">
+        \[
+          a=3,\qquad b=-10,\qquad c=3.
+        \]
+        \[
+          D=b^2-4ac=(-10)^2-4\cdot3\cdot3=100-36=64.
+        \]
+        \[
+          x_{1,2}=\frac{-b\pm\sqrt D}{2a}=\frac{10\pm 8}{6}.
+        \]
+        \[
+          x_1=\frac{18}{6}=3,\qquad x_2=\frac{2}{6}=\frac13.
+        \]
+        \[
+          \boxed{x=3 \;\text{ili}\; x=\frac13}
+        \]
+      </div>
+      <p class="note">Isto se može proveriti rastavljanjem: \(3x^2-10x+3=(3x-1)(x-3)\).</p>
+
+      <h3>h) \(x^2-8x+15=0\)</h3>
+      <p>Tražimo dva broja čiji je zbir \(-8\), a proizvod \(15\). To su \(-3\) i \(-5\).</p>
+      <div class="eq">
+        \[
+          x^2-8x+15=0 \quad\Longleftrightarrow\quad (x-3)(x-5)=0.
+        \]
+        \[
+          x-3=0 \quad\text{ili}\quad x-5=0.
+        \]
+        \[
+          \boxed{x=3 \;\text{ili}\; x=5}
+        \]
+      </div>
+
+      <h3>i) \(x^2-6x-7=0\)</h3>
+      <p>Tražimo dva broja čiji je zbir \(-6\), a proizvod \(-7\). To su \(-7\) i \(1\).</p>
+      <div class="eq">
+        \[
+          x^2-6x-7=0 \quad\Longleftrightarrow\quad (x-7)(x+1)=0.
+        \]
+        \[
+          x-7=0 \quad\text{ili}\quad x+1=0.
+        \]
+        \[
+          \boxed{x=7 \;\text{ili}\; x=-1}
+        \]
+      </div>
+
+      <h3>j) \((x+2)^2-16=0\)</h3>
+      <p>Ovo je razlika kvadrata, jer je \(16=4^2\).</p>
+      <div class="eq">
+        \[
+          (x+2)^2-16=0
+          \quad\Longleftrightarrow\quad
+          \bigl((x+2)-4\bigr)\bigl((x+2)+4\bigr)=0.
+        \]
+        \[
+          (x-2)(x+6)=0.
+        \]
+        \[
+          x-2=0 \quad\text{ili}\quad x+6=0.
+        \]
+        \[
+          \boxed{x=2 \;\text{ili}\; x=-6}
+        \]
+      </div>
+
+      <h3>k) \((x-3)^2-25=0\)</h3>
+      <p>Ovo je razlika kvadrata, jer je \(25=5^2\).</p>
+      <div class="eq">
+        \[
+          (x-3)^2-25=0
+          \quad\Longleftrightarrow\quad
+          \bigl((x-3)-5\bigr)\bigl((x-3)+5\bigr)=0.
+        \]
+        \[
+          (x-8)(x+2)=0.
+        \]
+        \[
+          x-8=0 \quad\text{ili}\quad x+2=0.
+        \]
+        \[
+          \boxed{x=8 \;\text{ili}\; x=-2}
+        \]
+      </div>
+    </section>
+
+    <section class="answer-card">
+      <h2>Konačni odgovori</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Zadatak</th>
+            <th>Rešenja</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>a)</td><td>\(\boxed{x\in\{0,4\}}\)</td></tr>
+          <tr><td>b)</td><td>\(\boxed{x\in\{0,3\}}\)</td></tr>
+          <tr><td>c)</td><td>\(\boxed{x\in\{-3,3\}}\)</td></tr>
+          <tr><td>d)</td><td>\(\boxed{x\in\{-4,4\}}\)</td></tr>
+          <tr><td>e)</td><td>\(\boxed{x\in\{-5,3\}}\)</td></tr>
+          <tr><td>f)</td><td>\(\boxed{x\in\{-4,2\}}\)</td></tr>
+          <tr><td>g)</td><td>\(\boxed{x\in\left\{\frac13,3\right\}}\)</td></tr>
+          <tr><td>h)</td><td>\(\boxed{x\in\{3,5\}}\)</td></tr>
+          <tr><td>i)</td><td>\(\boxed{x\in\{-1,7\}}\)</td></tr>
+          <tr><td>j)</td><td>\(\boxed{x\in\{-6,2\}}\)</td></tr>
+          <tr><td>k)</td><td>\(\boxed{x\in\{-2,8\}}\)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
