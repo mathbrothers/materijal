@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Svrha teoreme 4.1.1</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --text:#182033;
+      --muted:#5d667a;
+      --card:#ffffff;
+      --blue:#77b7ff;
+      --green:#8fd6aa;
+      --yellow:#ffd66b;
+      --pink:#f39ac0;
+      --purple:#b89cff;
+      --red:#ff9f9f;
+      --shadow:0 12px 28px rgba(25,35,60,.10);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,#fbfcff 0%,var(--bg) 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .page{max-width:980px;margin:0 auto;padding:34px 18px 48px}
+    header{margin-bottom:22px;text-align:left}
+    h1{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15;margin:0 0 10px}
+    .subtitle{color:var(--muted);font-size:1.05rem;margin:0}
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin:18px 0;
+      padding:22px 24px;
+      border-left:9px solid var(--blue);
+    }
+    .task-card{border-left-color:var(--pink)}
+    .idea-card{border-left-color:var(--yellow)}
+    .analysis-card{border-left-color:var(--blue)}
+    .solution-card{border-left-color:var(--green)}
+    .warning-card{border-left-color:var(--red)}
+    .answer-card{border-left-color:var(--purple)}
+    h2{margin:0 0 12px;font-size:1.28rem}
+    h3{margin:16px 0 8px;font-size:1.08rem}
+    p{margin:8px 0}
+    ul{margin:8px 0 8px 20px;padding:0}
+    li{margin:6px 0}
+    .formula{
+      background:#f3f6ff;
+      border:1px solid #dce5ff;
+      border-radius:14px;
+      padding:12px 14px;
+      margin:14px 0;
+      overflow-x:auto;
+    }
+    .mini{font-size:.95rem;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}.card{padding:18px}}
+    .tag{display:inline-block;background:#eef2ff;border-radius:999px;padding:3px 10px;color:#394269;font-weight:650;font-size:.9rem}
+    footer{margin-top:26px;text-align:center;color:var(--muted);font-size:.95rem}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Svrha teoreme 4.1.1 u dokazu Tejlorovog polinoma</h1>
+      <p class="subtitle">Za funkcije dve promenljive: zašto se prvo uvodi teorema o srednjoj vrednosti?</p>
+    </header>
+
+    <section class="task-card card">
+      <h2>Pitanje</h2>
+      <p>Gde se koristi teorema 4.1.1 u kasnijem dokazu i koja je njena stvarna svrha?</p>
+    </section>
+
+    <section class="answer-card card">
+      <h2>Kratak odgovor</h2>
+      <p>
+        Teorema 4.1.1 je <strong>priprema</strong> za dokaz Tejlorove formule za dve promenljive.
+        Njena glavna uloga nije da se kasnije mehanički „ubaci“ u neki red, nego da pokaže osnovni trik:
+      </p>
+      <div class="formula">
+        \[
+          \text{funkciju dve promenljive posmatramo duž jedne prave.}
+        \]
+      </div>
+      <p>
+        Tada se funkcija \(f(x,y)\) pretvara u funkciju jedne promenljive, pa možemo da koristimo
+        poznate teoreme iz jedne promenljive: prvo Lagranžovu teoremu, a zatim Tejlorovu formulu.
+      </p>
+    </section>
+
+    <section class="idea-card card">
+      <h2>Glavna ideja</h2>
+      <p>Neka su</p>
+      <div class="formula">
+        \[
+          P_0=(x_0,y_0), \qquad P_1=(x_0+\Delta x,\,y_0+\Delta y).
+        \]
+      </div>
+      <p>
+        Umesto da se odjednom borimo sa dve promenljive, gledamo tačke na duži od \(P_0\) do \(P_1\):
+      </p>
+      <div class="formula">
+        \[
+          P_t=(x_0+t\Delta x,\,y_0+t\Delta y), \qquad 0\le t\le 1.
+        \]
+      </div>
+      <p>Zatim uvodimo pomoćnu funkciju jedne promenljive:</p>
+      <div class="formula">
+        \[
+          \Phi(t)=f(x_0+t\Delta x,\,y_0+t\Delta y).
+        \]
+      </div>
+      <p>
+        Sada \(t\) ide od 0 do 1. Kada je \(t=0\), nalazimo se u \(P_0\). Kada je \(t=1\), nalazimo se u \(P_1\).
+      </p>
+    </section>
+
+    <section class="analysis-card card">
+      <h2>Šta tačno kaže teorema 4.1.1?</h2>
+      <p>
+        Teorema 4.1.1 kaže da postoji neka tačka između \(P_0\) i \(P_1\), tj. neka vrednost
+        \(\theta\in(0,1)\), za koju važi:
+      </p>
+      <div class="formula">
+        \[
+          f(P_1)-f(P_0)
+          = f_x'(P_\theta)\Delta x+f_y'(P_\theta)\Delta y.
+        \]
+      </div>
+      <p>A pošto je</p>
+      <div class="formula">
+        \[
+          df(P_\theta)=f_x'(P_\theta)\Delta x+f_y'(P_\theta)\Delta y,
+        \]
+      </div>
+      <p>možemo kraće da pišemo:</p>
+      <div class="formula">
+        \[
+          f(P_1)-f(P_0)=df(P_\theta).
+        \]
+      </div>
+      <p class="mini">
+        Značenje: promena funkcije od \(P_0\) do \(P_1\) jednaka je jednom diferencijalu izračunatom
+        u nekoj međutački na pravoj koja spaja te dve tačke.
+      </p>
+    </section>
+
+    <section class="solution-card card">
+      <h2>Gde se to vidi u dokazu Tejlorove formule?</h2>
+      <p>
+        U dokazu Tejlorove formule ponavlja se isti potez. Opet se uvodi
+      </p>
+      <div class="formula">
+        \[
+          \Phi(t)=f(x_0+t\Delta x,\,y_0+t\Delta y).
+        \]
+      </div>
+      <p>
+        Zatim se na \(\Phi(t)\), koja je funkcija jedne promenljive, primenjuje obična Tejlorova formula:
+      </p>
+      <div class="formula">
+        \[
+          \Phi(1)=\Phi(0)+\frac{\Phi'(0)}{1!}+\frac{\Phi''(0)}{2!}+\cdots+
+          \frac{\Phi^{(n)}(0)}{n!}+\frac{\Phi^{(n+1)}(\theta)}{(n+1)!}.
+        \]
+      </div>
+      <p>
+        A onda se izvodi funkcije \(\Phi\) prevode nazad na diferencijale funkcije \(f\):
+      </p>
+      <div class="formula">
+        \[
+          \Phi'(t)=df(P_t), \qquad
+          \Phi''(t)=d^2f(P_t), \qquad \ldots \qquad
+          \Phi^{(k)}(t)=d^kf(P_t).
+        \]
+      </div>
+      <p>
+        Zato na kraju dobijamo Tejlorovu formulu za funkciju dve promenljive:
+      </p>
+      <div class="formula">
+        \[
+        f(P_1)=f(P_0)+df(P_0)+\frac{1}{2!}d^2f(P_0)+\cdots+
+        \frac{1}{n!}d^nf(P_0)+\frac{1}{(n+1)!}d^{n+1}f(P_\theta).
+        \]
+      </div>
+    </section>
+
+    <section class="warning-card card">
+      <h2>Najvažnija veza</h2>
+      <p>
+        Teorema 4.1.1 je zapravo <strong>specijalan slučaj Tejlorove formule</strong>.
+      </p>
+      <p>Ako u Tejlorovoj formuli uzmemo samo početni član i ostatak prvog reda, dobijamo:</p>
+      <div class="formula">
+        \[
+          f(P_1)=f(P_0)+df(P_\theta), \qquad 0<\theta<1,
+        \]
+      </div>
+      <p>odnosno</p>
+      <div class="formula">
+        \[
+          f(P_1)-f(P_0)=df(P_\theta),
+        \]
+      </div>
+      <p>što je baš teorema 4.1.1.</p>
+    </section>
+
+    <section class="answer-card card">
+      <h2>Pedagoški sažetak</h2>
+      <p>
+        Teorema 4.1.1 služi da učenik prvi put vidi ključni trik:
+      </p>
+      <div class="formula">
+        \[
+          (x,y) \text{ problem } \quad \longrightarrow \quad t \text{ problem.}
+        \]
+      </div>
+      <p>
+        Dakle, umesto da direktno razvijamo funkciju dve promenljive, posmatramo je samo duž prave
+        od stare do nove tačke. Na toj pravoj funkcija zavisi samo od jednog parametra \(t\).
+      </p>
+      <p>
+        <span class="tag">Svrha</span>
+        Teorema 4.1.1 je most između funkcija jedne promenljive i funkcija dve promenljive.
+        Ona je Lagranžova teorema u pravcu \(P_0P_1\), a Tejlorova formula je isti taj princip,
+        samo razvijen do višeg reda.
+      </p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
