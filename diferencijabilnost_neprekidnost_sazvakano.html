@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diferencijabilnost povlači neprekidnost</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2937;
+      --muted: #5f6b7a;
+      --card: #ffffff;
+      --shadow: 0 14px 32px rgba(31, 41, 55, 0.10);
+      --task: #f9a8d4;
+      --idea: #a7f3d0;
+      --analysis: #bfdbfe;
+      --solution: #fde68a;
+      --warning: #fecaca;
+      --answer: #c4b5fd;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 16px 48px;
+      background: radial-gradient(circle at top left, #eef2ff 0, #f6f7fb 36%, #f8fafc 100%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      padding: 28px 30px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    header .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      color: #c7d2fe;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+
+    header p {
+      margin: 0;
+      color: #e5e7eb;
+      font-size: 1.05rem;
+      max-width: 760px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+      line-height: 1.25;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 1.1rem;
+    }
+
+    p { margin: 0 0 12px; }
+
+    .card {
+      position: relative;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 22px 24px 22px 28px;
+      margin: 18px 0;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(229, 231, 235, 0.8);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 8px;
+      background: var(--analysis);
+    }
+
+    .task-card::before { background: var(--task); }
+    .idea-card::before { background: var(--idea); }
+    .analysis-card::before { background: var(--analysis); }
+    .solution-card::before { background: var(--solution); }
+    .warning-card::before { background: var(--warning); }
+    .answer-card::before { background: var(--answer); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #f3f4f6;
+      color: #374151;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .formula-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .mini {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .arrow-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      margin: 10px 0 4px;
+    }
+
+    .bubble {
+      text-align: center;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      font-weight: 700;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .bad-arrow {
+      color: #dc2626;
+    }
+
+    ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+
+    li { margin: 6px 0; }
+
+    .svg-wrap {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      margin-top: 14px;
+      overflow-x: auto;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .caption {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      margin: 14px 0;
+      align-items: start;
+    }
+
+    .num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #111827;
+      color: white;
+      font-weight: 800;
+      flex: none;
+    }
+
+    .highlight {
+      background: linear-gradient(transparent 58%, #fde68a 58%);
+      font-weight: 700;
+    }
+
+    .footer {
+      text-align: center;
+      color: #6b7280;
+      margin-top: 28px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      body { padding: 18px 10px 36px; }
+      header { padding: 24px 20px; border-radius: 20px; }
+      .card { padding: 20px 18px 20px 24px; }
+      .two-col, .arrow-row { grid-template-columns: 1fr; }
+      .arrow { transform: rotate(90deg); text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="eyebrow">Mali tutorijal · funkcije dve promenljive</div>
+      <h1>Diferencijabilnost povlači neprekidnost</h1>
+      <p>
+        Ideja ove teoreme je jednostavna: ako funkcija u okolini tačke ima dobar linearni opis,
+        onda u toj tački ne može imati prekid.
+      </p>
+    </header>
+
+    <section class="card task-card">
+      <div class="tag">Teorema</div>
+      <h2>Šta tvrdi teorema?</h2>
+      <p>
+        Ako je funkcija \(z=f(x,y)\) <strong>diferencijabilna</strong> u tački
+        \(P_0(x_0,y_0)\), onda je ona i <strong>neprekidna</strong> u toj tački.
+      </p>
+
+      <div class="formula-box">
+        \[
+        \boxed{\text{diferencijabilnost u }P_0 \Rightarrow \text{neprekidnost u }P_0}
+        \]
+      </div>
+
+      <div class="arrow-row">
+        <div class="bubble">Funkcija se lokalno ponaša skoro kao ravan</div>
+        <div class="arrow">\(\Rightarrow\)</div>
+        <div class="bubble">Funkcija nema skok ili rupu u toj tački</div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <div class="tag">Intuicija</div>
+      <h2>Šta znači diferencijabilnost?</h2>
+      <p>
+        Kod funkcije jedne promenljive, diferencijabilnost znači da se graf u maloj okolini tačke
+        može dobro približiti tangentom.
+      </p>
+      <p>
+        Kod funkcije dve promenljive, graf je površ, pa se u maloj okolini tačke može dobro
+        približiti <span class="highlight">tangentnom ravni</span>.
+      </p>
+
+      <div class="two-col">
+        <div class="mini">
+          <strong>Jedna promenljiva</strong>
+          \[
+          y=f(x)
+          \]
+          <p>U maloj okolini tačke graf liči na pravu.</p>
+        </div>
+        <div class="mini">
+          <strong>Dve promenljive</strong>
+          \[
+          z=f(x,y)
+          \]
+          <p>U maloj okolini tačke graf liči na ravan.</p>
+        </div>
+      </div>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 760 260" role="img" aria-label="Diferencijabilnost kao linearno približenje">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#374151" />
+            </marker>
+            <linearGradient id="plane" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#bfdbfe" stop-opacity="0.95" />
+              <stop offset="100%" stop-color="#c4b5fd" stop-opacity="0.95" />
+            </linearGradient>
+          </defs>
+
+          <line x1="90" y1="220" x2="300" y2="220" stroke="#374151" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="90" y1="220" x2="90" y2="40" stroke="#374151" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="305" y="225" font-size="18" fill="#374151">x</text>
+          <text x="76" y="35" font-size="18" fill="#374151">y</text>
+          <path d="M110 185 C150 80, 225 235, 285 80" fill="none" stroke="#2563eb" stroke-width="4" />
+          <line x1="165" y1="150" x2="255" y2="112" stroke="#ef4444" stroke-width="4" />
+          <circle cx="210" cy="130" r="5" fill="#111827" />
+          <text x="132" y="248" font-size="16" fill="#374151">jedna promenljiva: tangenta</text>
+
+          <line x1="430" y1="220" x2="660" y2="220" stroke="#374151" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="430" y1="220" x2="430" y2="40" stroke="#374151" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="430" y1="220" x2="360" y2="245" stroke="#374151" stroke-width="2" marker-end="url(#arrow)" />
+          <text x="666" y="225" font-size="18" fill="#374151">x</text>
+          <text x="416" y="36" font-size="18" fill="#374151">z</text>
+          <text x="340" y="250" font-size="18" fill="#374151">y</text>
+          <path d="M455 150 C500 95, 575 110, 625 70" fill="none" stroke="#2563eb" stroke-width="5" opacity="0.8" />
+          <polygon points="438,160 640,92 665,145 460,215" fill="url(#plane)" stroke="#4f46e5" stroke-width="2" opacity="0.9" />
+          <circle cx="545" cy="138" r="6" fill="#111827" />
+          <text x="472" y="248" font-size="16" fill="#374151">dve promenljive: tangentna ravan</text>
+        </svg>
+        <div class="caption">Diferencijabilnost znači da postoji dobar linearni model u okolini tačke.</div>
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <div class="tag">Formula koja nosi dokaz</div>
+      <h2>Kako se piše priraštaj funkcije?</h2>
+      <p>
+        Kada pomerimo tačku \((x_0,y_0)\) za male vrednosti \(\Delta x\) i \(\Delta y\), promena funkcije je
+      </p>
+
+      <div class="formula-box">
+        \[
+        \Delta z(x_0,y_0)=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0).
+        \]
+      </div>
+
+      <p>
+        Diferencijabilnost kaže da se taj priraštaj može zapisati ovako:
+      </p>
+
+      <div class="formula-box">
+        \[
+        \Delta z(x_0,y_0)
+        =f'_x(x_0,y_0)\Delta x+f'_y(x_0,y_0)\Delta y+\alpha\Delta x+\beta\Delta y,
+        \]
+        \[
+        \alpha\to 0,\qquad \beta\to 0
+        \quad \text{kada} \quad
+        \Delta x\to 0,\;\Delta y\to 0.
+        \]
+      </div>
+
+      <p>
+        Prva dva člana su <strong>glavni linearni deo</strong>, a poslednja dva člana su
+        <strong>greška</strong> koja postaje zanemarljiva kada se približavamo tački.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <div class="tag">Dokaz bez teške priče</div>
+      <h2>Zašto iz toga sledi neprekidnost?</h2>
+
+      <div class="step">
+        <div class="num">1</div>
+        <div>
+          <p>Kada \((x,y)\to(x_0,y_0)\), tada:</p>
+          <div class="formula-box">
+            \[
+            \Delta x\to 0,\qquad \Delta y\to 0.
+            \]
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">2</div>
+        <div>
+          <p>Zato svi delovi formule za priraštaj teže nuli:</p>
+          <div class="formula-box">
+            \[
+            f'_x(x_0,y_0)\Delta x\to 0,
+            \qquad
+            f'_y(x_0,y_0)\Delta y\to 0,
+            \]
+            \[
+            \alpha\Delta x\to 0,
+            \qquad
+            \beta\Delta y\to 0.
+            \]
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">3</div>
+        <div>
+          <p>Prema tome:</p>
+          <div class="formula-box">
+            \[
+            \Delta z(x_0,y_0)\to 0.
+            \]
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">4</div>
+        <div>
+          <p>Pošto je</p>
+          <div class="formula-box">
+            \[
+            \Delta z(x_0,y_0)=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0),
+            \]
+          </div>
+          <p>dobijamo:</p>
+          <div class="formula-box">
+            \[
+            f(x_0+\Delta x,y_0+\Delta y)\to f(x_0,y_0).
+            \]
+          </div>
+        </div>
+      </div>
+
+      <p>To je upravo definicija neprekidnosti funkcije u tački \((x_0,y_0)\):</p>
+      <div class="formula-box">
+        \[
+        \boxed{\lim_{(x,y)\to(x_0,y_0)} f(x,y)=f(x_0,y_0)}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <div class="tag">Važna napomena</div>
+      <h2>Obrnuto ne važi</h2>
+      <p>
+        Iz neprekidnosti ne mora da sledi diferencijabilnost.
+      </p>
+
+      <div class="arrow-row">
+        <div class="bubble">Diferencijabilnost</div>
+        <div class="arrow">\(\Rightarrow\)</div>
+        <div class="bubble">Neprekidnost</div>
+      </div>
+
+      <div class="arrow-row">
+        <div class="bubble">Neprekidnost</div>
+        <div class="arrow bad-arrow">\(\nRightarrow\)</div>
+        <div class="bubble">Diferencijabilnost</div>
+      </div>
+
+      <p>
+        Učeniku je ovde najvažnije da zapamti:
+      </p>
+      <div class="formula-box">
+        \[
+        \boxed{\text{diferencijabilnost je jača osobina od neprekidnosti.}}
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <div class="tag">Primer iz knjige</div>
+      <h2>Funkcija koja je neprekidna, ali nije diferencijabilna</h2>
+      <p>Posmatramo funkciju:</p>
+      <div class="formula-box">
+        \[
+        f(x,y)=\sqrt[3]{xy}
+        \]
+      </div>
+      <p>u tački \((0,0)\).</p>
+
+      <h3>1. Neprekidnost</h3>
+      <p>
+        Kada \((x,y)\to(0,0)\), tada \(xy\to 0\), pa zato:
+      </p>
+      <div class="formula-box">
+        \[
+        \sqrt[3]{xy}\to 0.
+        \]
+      </div>
+      <p>
+        Pošto je \(f(0,0)=0\), funkcija je neprekidna u \((0,0)\).
+      </p>
+
+      <h3>2. Parcijalni izvodi postoje</h3>
+      <p>
+        Ako menjamo samo \(x\), a držimo \(y=0\), funkcija je stalno jednaka nuli:
+      </p>
+      <div class="formula-box">
+        \[
+        f'_x(0,0)=\lim_{\Delta x\to 0}\frac{f(\Delta x,0)-f(0,0)}{\Delta x}
+        =\lim_{\Delta x\to 0}\frac{0}{\Delta x}=0.
+        \]
+      </div>
+      <p>Slično je i:</p>
+      <div class="formula-box">
+        \[
+        f'_y(0,0)=0.
+        \]
+      </div>
+
+      <h3>3. Ipak nije diferencijabilna</h3>
+      <p>
+        Pošto su oba parcijalna izvoda u \((0,0)\) jednaka nuli, linearni deo bi bio nula.
+        Za diferencijabilnost bi moralo da važi:
+      </p>
+      <div class="formula-box">
+        \[
+        K=\frac{\Delta f(0,0)-f'_x(0,0)\Delta x-f'_y(0,0)\Delta y}
+        {\sqrt{\Delta x^2+\Delta y^2}}\to 0.
+        \]
+      </div>
+      <p>Ovde to postaje:</p>
+      <div class="formula-box">
+        \[
+        K=\frac{\sqrt[3]{\Delta x\Delta y}}{\sqrt{\Delta x^2+\Delta y^2}}.
+        \]
+      </div>
+      <p>
+        Uzmimo putanju \(\Delta x=\Delta y=t\), pri čemu \(t\to 0^+\). Tada je:
+      </p>
+      <div class="formula-box">
+        \[
+        K=\frac{\sqrt[3]{t^2}}{\sqrt{t^2+t^2}}
+        =\frac{t^{2/3}}{\sqrt2\,t}
+        =\frac{1}{\sqrt2\,t^{1/3}}.
+        \]
+      </div>
+      <p>
+        Ovaj izraz ne teži nuli. Naprotiv, raste bez granice kada \(t\to 0^+\).
+        Zato funkcija nije diferencijabilna u \((0,0)\).
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <div class="tag">Konačna poruka</div>
+      <h2>Šta učenik treba da ponese?</h2>
+      <p>
+        Neprekidnost znači: funkcija nema prekid u tački.
+      </p>
+      <p>
+        Diferencijabilnost znači mnogo više: funkcija se u maloj okolini tačke ponaša skoro kao
+        linearna funkcija, odnosno kao tangentna ravan.
+      </p>
+      <div class="formula-box">
+        \[
+        \boxed{\text{diferencijabilnost }\Rightarrow\text{ neprekidnost, ali ne obrnuto.}}
+        \]
+      </div>
+      <p>
+        Primer \(f(x,y)=\sqrt[3]{xy}\) pokazuje da funkcija može biti neprekidna i čak imati parcijalne
+        izvode u tački, ali ipak ne mora biti diferencijabilna u toj tački.
+      </p>
+    </section>
+
+    <div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+  </main>
+</body>
+</html>

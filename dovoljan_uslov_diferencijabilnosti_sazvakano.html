@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dovoljan uslov za diferencijabilnost — sažvakan dokaz</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --text:#1f2937;
+      --muted:#64748b;
+      --card:#ffffff;
+      --shadow:0 12px 30px rgba(15,23,42,.08);
+      --task:#f59e0b;
+      --idea:#8b5cf6;
+      --analysis:#06b6d4;
+      --solution:#22c55e;
+      --warning:#ef4444;
+      --answer:#0ea5e9;
+      --line:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background: radial-gradient(circle at top left,#eef2ff 0,#f6f7fb 40%,#f8fafc 100%);
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:34px 18px 46px;
+    }
+    header{
+      background:linear-gradient(135deg,#111827,#334155);
+      color:white;
+      padding:30px 28px;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      margin-bottom:22px;
+    }
+    header h1{margin:0 0 8px;font-size:clamp(1.55rem,3vw,2.25rem);line-height:1.18}
+    header p{margin:0;color:#dbeafe;font-size:1.04rem}
+    .card{
+      background:var(--card);
+      border-radius:20px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:var(--shadow);
+      border-left:9px solid var(--line);
+    }
+    .task-card{border-left-color:var(--task)}
+    .idea-card{border-left-color:var(--idea)}
+    .analysis-card{border-left-color:var(--analysis)}
+    .solution-card{border-left-color:var(--solution)}
+    .warning-card{border-left-color:var(--warning)}
+    .answer-card{border-left-color:var(--answer)}
+    h2{margin:0 0 12px;font-size:1.28rem}
+    h3{margin:18px 0 8px;font-size:1.08rem}
+    p{margin:10px 0}
+    .tag{
+      display:inline-block;
+      font-size:.78rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      color:#475569;
+      background:#f1f5f9;
+      border-radius:999px;
+      padding:4px 10px;
+      margin-bottom:8px;
+    }
+    .formula-box{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:16px;
+      padding:12px 16px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    @media(max-width:760px){.two-col{grid-template-columns:1fr}.card{padding:19px 18px}}
+    .mini{
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .step{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      margin:12px 0;
+    }
+    .num{
+      width:30px;height:30px;border-radius:50%;
+      background:#eef2ff;color:#3730a3;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;flex:0 0 auto;
+    }
+    svg{max-width:100%;height:auto;display:block;margin:8px auto 0}
+    .svg-label{font: 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill:#1f2937}
+    footer{
+      text-align:center;
+      color:#64748b;
+      font-size:.94rem;
+      margin-top:28px;
+      padding:18px 0 0;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Dovoljan uslov za diferencijabilnost funkcije dve promenljive</h1>
+      <p>Teorema 2.3.3 — isti dokaz, ali bez knjigovodstvene magle.</p>
+    </header>
+
+    <section class="card task-card">
+      <span class="tag">Teorema</span>
+      <h2>Šta treba dokazati?</h2>
+      <p>Neka je funkcija \(z=f(x,y)\) definisana u okolini tačke</p>
+      <div class="formula-box">
+        \[
+          P_0(x_0,y_0).
+        \]
+      </div>
+      <p>Ako u tački \(P_0\) postoje oba parcijalna izvoda, i ako je bar jedan od njih neprekidan u toj tački, onda je funkcija diferencijabilna u tački \(P_0\).</p>
+      <p>Radi jednostavnosti pretpostavljamo da je neprekidan izvod po \(y\):</p>
+      <div class="formula-box">
+        \[
+          f'_y(x,y) \text{ je neprekidan u } (x_0,y_0).
+        \]
+      </div>
+      <p class="mini">Ako je neprekidan \(f'_x\), dokaz ide isto, samo se redosled koraka zameni.</p>
+    </section>
+
+    <section class="card idea-card">
+      <span class="tag">Glavna ideja</span>
+      <h2>Ukupan pomeraj rastavimo na dva obična pomeraja</h2>
+      <p>Umesto da iz tačke \((x_0,y_0)\) odmah idemo dijagonalno u tačku \((x_0+\Delta x,y_0+\Delta y)\), idemo u dva poteza:</p>
+      <div class="step"><div class="num">1</div><div>prvo vodoravno: promenimo samo \(x\), a \(y\) držimo fiksno;</div></div>
+      <div class="step"><div class="num">2</div><div>zatim uspravno: promenimo samo \(y\), a novi \(x=x_0+\Delta x\) držimo fiksno.</div></div>
+
+      <svg viewBox="0 0 720 320" role="img" aria-label="Razlaganje priraštaja na horizontalni i vertikalni korak">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#334155"></path>
+          </marker>
+        </defs>
+        <line x1="80" y1="260" x2="660" y2="260" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+        <line x1="120" y1="280" x2="120" y2="40" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+        <text x="666" y="266" class="svg-label">x</text>
+        <text x="112" y="34" class="svg-label">y</text>
+
+        <line x1="220" y1="220" x2="520" y2="220" stroke="#cbd5e1" stroke-dasharray="6 6"/>
+        <line x1="520" y1="220" x2="520" y2="100" stroke="#cbd5e1" stroke-dasharray="6 6"/>
+        <line x1="220" y1="220" x2="220" y2="260" stroke="#cbd5e1" stroke-dasharray="6 6"/>
+        <line x1="520" y1="100" x2="520" y2="260" stroke="#cbd5e1" stroke-dasharray="6 6"/>
+        <line x1="120" y1="100" x2="520" y2="100" stroke="#cbd5e1" stroke-dasharray="6 6"/>
+
+        <path d="M220 220 L520 220" stroke="#7c3aed" stroke-width="5" fill="none" marker-end="url(#arrow)"/>
+        <path d="M520 220 L520 100" stroke="#059669" stroke-width="5" fill="none" marker-end="url(#arrow)"/>
+        <path d="M220 220 C330 135, 410 110, 520 100" stroke="#ef4444" stroke-width="2.5" fill="none" stroke-dasharray="8 8"/>
+
+        <circle cx="220" cy="220" r="7" fill="#111827"/>
+        <circle cx="520" cy="220" r="7" fill="#111827"/>
+        <circle cx="520" cy="100" r="7" fill="#111827"/>
+
+        <text x="184" y="246" class="svg-label">\(P_0\)</text>
+        <text x="445" y="246" class="svg-label">\((x_0+\Delta x,y_0)\)</text>
+        <text x="533" y="94" class="svg-label">\((x_0+\Delta x,y_0+\Delta y)\)</text>
+        <text x="335" y="209" class="svg-label">promena po x</text>
+        <text x="532" y="170" class="svg-label">promena po y</text>
+        <text x="328" y="118" class="svg-label">direktno je teže</text>
+      </svg>
+    </section>
+
+    <section class="card analysis-card">
+      <span class="tag">Rastavljanje priraštaja</span>
+      <h2>Prvo napišemo ukupnu promenu funkcije</h2>
+      <p>Ukupan priraštaj je:</p>
+      <div class="formula-box">
+        \[
+        \Delta z=f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0).
+        \]
+      </div>
+      <p>Dodamo i oduzmemo isti izraz \(f(x_0+\Delta x,y_0)\). To je cela fora.</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        \Delta z
+        &=f(x_0+\Delta x,y_0+\Delta y)-f(x_0+\Delta x,y_0) \\
+        &\quad +f(x_0+\Delta x,y_0)-f(x_0,y_0).
+        \end{aligned}
+        \]
+      </div>
+      <p>Prvi deo je promena po \(y\), drugi deo je promena po \(x\).</p>
+    </section>
+
+    <section class="card solution-card">
+      <span class="tag">Dokaz</span>
+      <h2>Dokaz bez gubljenja u oznakama</h2>
+
+      <h3>1. Deo koji dolazi od promene po \(x\)</h3>
+      <p>Gledamo izraz:</p>
+      <div class="formula-box">
+        \[
+        f(x_0+\Delta x,y_0)-f(x_0,y_0).
+        \]
+      </div>
+      <p>Po definiciji parcijalnog izvoda po \(x\) u tački \((x_0,y_0)\), taj izraz se može napisati kao:</p>
+      <div class="formula-box">
+        \[
+        f(x_0+\Delta x,y_0)-f(x_0,y_0)
+        =f'_x(x_0,y_0)\Delta x+\alpha\Delta x,
+        \]
+      </div>
+      <p>gde</p>
+      <div class="formula-box">
+        \[
+        \alpha\to 0 \quad \text{kada} \quad \Delta x\to 0.
+        \]
+      </div>
+      <p class="mini">Ovo samo znači: promena po \(x\) je približno \(f'_x(x_0,y_0)\Delta x\), uz malu grešku.</p>
+
+      <h3>2. Deo koji dolazi od promene po \(y\)</h3>
+      <p>Sada gledamo izraz:</p>
+      <div class="formula-box">
+        \[
+        f(x_0+\Delta x,y_0+\Delta y)-f(x_0+\Delta x,y_0).
+        \]
+      </div>
+      <p>Ovde je \(x=x_0+\Delta x\) fiksiran, pa se funkcija posmatra kao funkcija jedne promenljive \(y\). Zato možemo da upotrebimo Lagranžovu teoremu:</p>
+      <div class="formula-box">
+        \[
+        f(x_0+\Delta x,y_0+\Delta y)-f(x_0+\Delta x,y_0)
+        =f'_y(x_0+\Delta x,y_0+b\Delta y)\Delta y,
+        \]
+      </div>
+      <p>gde je \(b\in(0,1)\). Drugim rečima, izvod po \(y\) uzima se u nekoj međutački između \(y_0\) i \(y_0+\Delta y\).</p>
+      <p>Sada dodamo i oduzmemo \(f'_y(x_0,y_0)\):</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        f'_y(x_0+\Delta x,y_0+b\Delta y)\Delta y
+        &=f'_y(x_0,y_0)\Delta y \\
+        &\quad +\bigl(f'_y(x_0+\Delta x,y_0+b\Delta y)-f'_y(x_0,y_0)\bigr)\Delta y.
+        \end{aligned}
+        \]
+      </div>
+      <p>Označimo:</p>
+      <div class="formula-box">
+        \[
+        \beta=f'_y(x_0+\Delta x,y_0+b\Delta y)-f'_y(x_0,y_0).
+        \]
+      </div>
+      <p>Pošto je \(f'_y\) neprekidan u \((x_0,y_0)\), kada \(\Delta x\to0\) i \(\Delta y\to0\), međutačka \((x_0+\Delta x,y_0+b\Delta y)\) ide ka \((x_0,y_0)\). Zato:</p>
+      <div class="formula-box">
+        \[
+        \beta\to 0.
+        \]
+      </div>
+      <p>Dakle, promena po \(y\) ima oblik:</p>
+      <div class="formula-box">
+        \[
+        f(x_0+\Delta x,y_0+\Delta y)-f(x_0+\Delta x,y_0)
+        =f'_y(x_0,y_0)\Delta y+\beta\Delta y,
+        \]
+      </div>
+      <p>gde \(\beta\to0\).</p>
+    </section>
+
+    <section class="card solution-card">
+      <span class="tag">Spajanje</span>
+      <h2>Na kraju dobijamo baš definiciju diferencijabilnosti</h2>
+      <p>Sada spojimo deo po \(x\) i deo po \(y\):</p>
+      <div class="formula-box">
+        \[
+        \Delta z
+        =f'_x(x_0,y_0)\Delta x+f'_y(x_0,y_0)\Delta y+
+        \alpha\Delta x+\beta\Delta y,
+        \]
+      </div>
+      <p>pri čemu:</p>
+      <div class="formula-box">
+        \[
+        \alpha\to0,\qquad \beta\to0
+        \quad \text{kada} \quad
+        \Delta x\to0,\ \Delta y\to0.
+        \]
+      </div>
+      <p>To je upravo oblik koji znači da je funkcija diferencijabilna u tački \((x_0,y_0)\).</p>
+    </section>
+
+    <section class="card warning-card">
+      <span class="tag">Zašto radi samo jedan neprekidan parcijalni izvod?</span>
+      <h2>Mala, ali važna poenta</h2>
+      <p>U dokazu izvod po \(x\) koristimo samo u samoj tački \((x_0,y_0)\). Zato nam za taj deo nije potrebna neprekidnost.</p>
+      <p>Međutim, izvod po \(y\) koristimo u međutački:</p>
+      <div class="formula-box">
+        \[
+        (x_0+\Delta x,y_0+b\Delta y).
+        \]
+      </div>
+      <p>Ta međutačka nije baš \((x_0,y_0)\), nego joj samo prilazi. Zato nam treba neprekidnost \(f'_y\), da bismo mogli da zaključimo:</p>
+      <div class="formula-box">
+        \[
+        f'_y(x_0+\Delta x,y_0+b\Delta y)	o f'_y(x_0,y_0).
+        \]
+      </div>
+      <p>Ako je umesto \(f'_y\) neprekidan \(f'_x\), onda se dokaz samo uradi drugim redom: prvo promena po \(y\), pa promena po \(x\).</p>
+    </section>
+
+    <section class="card answer-card">
+      <span class="tag">Šta učenik treba da zapamti</span>
+      <h2>Suština dokaza u jednoj rečenici</h2>
+      <p>Ukupnu promenu funkcije rastavimo na horizontalni i vertikalni korak; jedan korak obradimo definicijom parcijalnog izvoda, drugi Lagranžovom teoremom i neprekidnošću parcijalnog izvoda.</p>
+      <div class="formula-box">
+        \[
+        \boxed{
+        \Delta z=f'_x(x_0,y_0)\Delta x+f'_y(x_0,y_0)\Delta y+
+        \alpha\Delta x+\beta\Delta y,
+        \qquad \alpha,\beta\to0
+        }
+        \]
+      </div>
+      <p>Zato je funkcija diferencijabilna u tački \(P_0(x_0,y_0)\).</p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
