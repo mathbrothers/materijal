@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Implicitna funkcija jedne promenljive — sažvakano</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --task: #a78bfa;
+      --idea: #60a5fa;
+      --analysis: #34d399;
+      --solution: #f59e0b;
+      --warning: #fb7185;
+      --answer: #22c55e;
+      --card: #ffffff;
+      --border: #e5e7eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px 16px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 { line-height: 1.25; margin: 0 0 14px; }
+    h1 { font-size: clamp(1.8rem, 3vw, 2.45rem); letter-spacing: -0.03em; }
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1.12rem; }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 8px 0 0 22px; padding: 0; }
+    li { margin: 6px 0; }
+    .lead { font-size: 1.08rem; color: #374151; }
+    .small { color: var(--muted); font-size: 0.95rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin: 18px 0;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.07);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+      background: var(--task);
+    }
+    .task-card::before { background: var(--task); }
+    .idea-card::before { background: var(--idea); }
+    .analysis-card::before { background: var(--analysis); }
+    .solution-card::before { background: var(--solution); }
+    .warning-card::before { background: var(--warning); }
+    .answer-card::before { background: var(--answer); }
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: #374151;
+      background: #f3f4f6;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+    .formula-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 760px) {
+      .two-col { grid-template-columns: 1fr; }
+      body { padding: 18px 10px; }
+      .card { padding: 18px 18px 18px 22px; }
+    }
+    .svg-wrap {
+      background: #fbfdff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 12px;
+      margin: 10px 0 4px;
+      overflow-x: auto;
+    }
+    svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .caption { text-align: center; color: var(--muted); font-size: 0.93rem; margin-top: 6px; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .pill {
+      border: 1px solid #d1d5db;
+      background: #fff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.95rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+    }
+    th, td {
+      padding: 11px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #f3f4f6; }
+    tr:last-child td { border-bottom: none; }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 28px 0 4px;
+    }
+    .highlight { font-weight: 800; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="card task-card">
+      <span class="tag">Tema</span>
+      <h1>Implicitna funkcija jedne promenljive</h1>
+      <p class="lead">
+        Ovo je „sažvakana” verzija teoreme o implicitnoj funkciji. Ideja je da učenik razume šta teorema zapravo kaže,
+        zašto se pojavljuje uslov \(F'_y(x_0,y_0)\ne 0\), i kako se iz jednačine \(F(x,y)=0\) dobija izvod funkcije \(y=\varphi(x)\).
+      </p>
+      <div class="pill-row">
+        <span class="pill">implicitno: \(F(x,y)=0\)</span>
+        <span class="pill">eksplicitno: \(y=\varphi(x)\)</span>
+        <span class="pill">lokalno: u maloj okolini tačke</span>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <span class="tag">Prva ideja</span>
+      <h2>Šta znači da je funkcija zadata implicitno?</h2>
+      <p>
+        Kada funkciju napišemo kao \(y=f(x)\), onda je sve direktno: za svako \(x\) odmah računamo \(y\).
+        To je <span class="highlight">eksplicitno</span> zadavanje.
+      </p>
+      <p>
+        Ali često imamo samo jednačinu u kojoj su \(x\) i \(y\) pomešani, na primer:
+      </p>
+      <div class="formula-box">
+        \[
+          F(x,y)=0.
+        \]
+      </div>
+      <p>
+        Tada se pitamo: da li ova jednačina u okolini neke tačke zapravo određuje \(y\) kao funkciju od \(x\)?
+        Drugim rečima, da li možemo pisati:
+      </p>
+      <div class="formula-box">
+        \[
+          y=\varphi(x)?
+        \]
+      </div>
+      <p>
+        Ako za svako blisko \(x\) postoji tačno jedno blisko \(y\) koje zadovoljava jednačinu \(F(x,y)=0\), onda kažemo
+        da je jednačinom implicitno definisana funkcija \(y=\varphi(x)\).
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <span class="tag">Važna napomena</span>
+      <h2>Teorema je lokalna, ne globalna</h2>
+      <p>
+        Reč „u okolini tačke” je ključna. Teorema ne tvrdi da se cela kriva može napisati kao jedna funkcija \(y=f(x)\).
+        Ona tvrdi samo da se to može uraditi u dovoljno malom pravougaoniku oko posmatrane tačke.
+      </p>
+      <p>
+        Na primer, kružnica \(x^2+y^2=1\) nije globalno funkcija \(y=f(x)\), jer za isti \(x\) obično postoje dve vrednosti \(y\).
+        Ali u blizini gornje tačke kružnice možemo uzeti samo gornju granu, pa tu jeste funkcija.
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <span class="tag">Geometrijska slika</span>
+      <h2>Jednačina \(F(x,y)=0\) crta krivu u ravni</h2>
+      <p>
+        Skup tačaka koje zadovoljavaju \(F(x,y)=0\) možemo zamišljati kao krivu u \(xy\)-ravni. Ako svaka vertikalna prava
+        blizu \(x_0\) seče tu krivu tačno jednom, onda krivu u toj okolini možemo gledati kao grafik funkcije \(y=\varphi(x)\).
+      </p>
+
+      <div class="svg-wrap">
+        <svg width="720" height="360" viewBox="0 0 720 360" role="img" aria-label="Lokalna funkcija na krivoj F(x,y)=0">
+          <defs>
+            <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#111827"></path>
+            </marker>
+          </defs>
+          <line x1="70" y1="290" x2="650" y2="290" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"></line>
+          <line x1="120" y1="320" x2="120" y2="35" stroke="#111827" stroke-width="2" marker-end="url(#arrow)"></line>
+          <text x="655" y="294" font-size="20" fill="#111827">x</text>
+          <text x="112" y="28" font-size="20" fill="#111827">y</text>
+
+          <rect x="330" y="82" width="150" height="170" rx="8" fill="#dbeafe" stroke="#60a5fa" stroke-width="2" stroke-dasharray="8 6"></rect>
+          <text x="485" y="105" font-size="17" fill="#2563eb">mala okolina</text>
+
+          <path d="M115,250 C190,80 335,320 430,170 C490,75 560,120 610,65" fill="none" stroke="#111827" stroke-width="4" stroke-linecap="round"></path>
+          <path d="M348,230 C378,200 405,162 455,108" fill="none" stroke="#22c55e" stroke-width="7" stroke-linecap="round"></path>
+          <text x="510" y="78" font-size="18" fill="#111827">F(x,y)=0</text>
+
+          <line x1="405" y1="82" x2="405" y2="252" stroke="#ef4444" stroke-width="2" stroke-dasharray="7 6"></line>
+          <circle cx="405" cy="164" r="6" fill="#ef4444"></circle>
+          <text x="414" y="160" font-size="18" fill="#ef4444">tačno jedno y</text>
+          <text x="390" y="313" font-size="17" fill="#ef4444">x</text>
+
+          <text x="210" y="330" font-size="16" fill="#6b7280">van male okoline može biti komplikovano</text>
+        </svg>
+        <div class="caption">U maloj okolini kriva može da se ponaša kao grafik funkcije, iako cela kriva ne mora biti funkcija.</div>
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <span class="tag">Teorema 2.7.7</span>
+      <h2>Kada smemo da napišemo \(y=\varphi(x)\)?</h2>
+      <p>
+        Neka su funkcija \(F(x,y)\) i njen parcijalni izvod po \(y\), tj. \(F'_y(x,y)\), definisani i neprekidni u okolini tačke
+        \((x_0,y_0)\). Ako važi:
+      </p>
+      <div class="formula-box">
+        \[
+          F(x_0,y_0)=0
+          \qquad \text{i} \qquad
+          F'_y(x_0,y_0)\ne 0,
+        \]
+      </div>
+      <p>
+        onda u nekoj maloj okolini tačke \(x_0\) postoji jedinstvena neprekidna funkcija
+      </p>
+      <div class="formula-box">
+        \[
+          y=\varphi(x), \qquad y_0=\varphi(x_0),
+        \]
+      </div>
+      <p>
+        takva da svaka tačka njenog grafika zadovoljava jednačinu \(F(x,y)=0\).
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <span class="tag">Zašto baš uslov \(F'_y\ne 0\)?</span>
+      <h2>Najvažnija intuicija iz dokaza</h2>
+      <p>
+        Uzmimo, radi jednostavnosti, da je \(F'_y(x_0,y_0)>0\). Pošto je \(F'_y\) neprekidan, u dovoljno malom pravougaoniku oko
+        tačke \((x_0,y_0)\) on ostaje pozitivan. To znači:
+      </p>
+      <div class="formula-box">
+        \[
+          \text{kada je } x \text{ fiksno, funkcija } y\mapsto F(x,y) \text{ raste.}
+        \]
+      </div>
+      <p>
+        Dakle, ako idemo odozdo nagore, vrednost funkcije \(F\) raste. Pošto je u sredini \(F(x_0,y_0)=0\), možemo izabrati
+        mali pravougaonik tako da je na donjoj stranici \(F<0\), a na gornjoj stranici \(F>0\).
+      </p>
+
+      <div class="svg-wrap">
+        <svg width="720" height="410" viewBox="0 0 720 410" role="img" aria-label="Pravougaonik u dokazu implicitne funkcije">
+          <defs>
+            <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#111827"></path>
+            </marker>
+          </defs>
+          <line x1="75" y1="330" x2="650" y2="330" stroke="#111827" stroke-width="2" marker-end="url(#arrow2)"></line>
+          <line x1="120" y1="360" x2="120" y2="45" stroke="#111827" stroke-width="2" marker-end="url(#arrow2)"></line>
+          <text x="655" y="334" font-size="20" fill="#111827">x</text>
+          <text x="112" y="38" font-size="20" fill="#111827">y</text>
+
+          <rect x="250" y="100" width="240" height="180" fill="#ffffff" stroke="#111827" stroke-width="3"></rect>
+          <line x1="250" y1="100" x2="490" y2="100" stroke="#ef4444" stroke-width="5"></line>
+          <line x1="250" y1="280" x2="490" y2="280" stroke="#2563eb" stroke-width="5"></line>
+          <line x1="370" y1="80" x2="370" y2="305" stroke="#6b7280" stroke-width="2" stroke-dasharray="8 6"></line>
+          <line x1="235" y1="190" x2="510" y2="190" stroke="#6b7280" stroke-width="2" stroke-dasharray="8 6"></line>
+
+          <circle cx="370" cy="190" r="7" fill="#111827"></circle>
+          <text x="382" y="184" font-size="18" fill="#111827">P₀(x₀,y₀)</text>
+          <text x="495" y="107" font-size="18" fill="#ef4444">gore: F &gt; 0</text>
+          <text x="495" y="284" font-size="18" fill="#2563eb">dole: F &lt; 0</text>
+          <text x="362" y="325" font-size="17" fill="#6b7280">x₀</text>
+          <text x="210" y="195" font-size="17" fill="#6b7280">y₀</text>
+
+          <path d="M270,260 C320,245 345,212 370,190 C397,166 432,130 470,115" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round"></path>
+          <line x1="315" y1="100" x2="315" y2="280" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8 6"></line>
+          <circle cx="315" cy="244" r="6" fill="#f59e0b"></circle>
+          <text x="132" y="385" font-size="16" fill="#6b7280">Svaka bliska vertikalna prava kreće iz F&lt;0, završava u F&gt;0 i zato mora preseći nulu.</text>
+        </svg>
+        <div class="caption">Donja stranica je negativna, gornja pozitivna, a između njih mora postojati nula.</div>
+      </div>
+
+      <p>
+        Sada fiksiramo neko blisko \(x\). Na donjoj stranici je \(F<0\), a na gornjoj \(F>0\). Po Koši-Bolcanovoj teoremi,
+        između njih postoji bar jedno \(y\) za koje je \(F(x,y)=0\).
+      </p>
+      <p>
+        Pošto funkcija po promenljivoj \(y\) raste, ta nula ne može biti dve puta. Zato za svako blisko \(x\) postoji
+        <span class="highlight">tačno jedno</span> blisko \(y\). Tako dobijamo funkciju \(y=\varphi(x)\).
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <span class="tag">Prevod dokaza na jednu rečenicu</span>
+      <h2>Šta dokaz zapravo radi?</h2>
+      <p>
+        Napravimo mali pravougaonik oko tačke. U njemu je \(F\) po promenljivoj \(y\) monotona, dole ima negativan znak,
+        gore pozitivan znak, pa svaka vertikalna prava blizu \(x_0\) mora jednom i samo jednom da preseče krivu \(F(x,y)=0\).
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <span class="tag">Teorema 2.7.8</span>
+      <h2>Formula za izvod implicitne funkcije</h2>
+      <p>
+        Ako su pored \(F\) neprekidni i parcijalni izvodi \(F'_x\) i \(F'_y\), i ako je \(F'_y(x_0,y_0)\ne 0\), onda je implicitno
+        definisana funkcija \(y=\varphi(x)\) diferencijabilna, a njen izvod je:
+      </p>
+      <div class="formula-box">
+        \[
+          \boxed{\varphi'(x)=-\frac{F'_x(x,\varphi(x))}{F'_y(x,\varphi(x))}}.
+        \]
+      </div>
+      <p>
+        Ovo je formula koju u zadacima najčešće koristimo.
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <span class="tag">Odakle formula?</span>
+      <h2>Brza logika za izvod</h2>
+      <p>
+        Pošto sve tačke na grafiku funkcije \(y=\varphi(x)\) zadovoljavaju jednačinu \(F(x,y)=0\), važi:
+      </p>
+      <div class="formula-box">
+        \[
+          F(x,\varphi(x))=0.
+        \]
+      </div>
+      <p>
+        Ako malo promenimo \(x\), promeniće se i \(y\). U linearnoj aproksimaciji imamo:
+      </p>
+      <div class="formula-box">
+        \[
+          F'_x\,\Delta x+F'_y\,\Delta y\approx 0.
+        \]
+      </div>
+      <p>
+        Podelimo sa \(\Delta x\):
+      </p>
+      <div class="formula-box">
+        \[
+          F'_x+F'_y\frac{\Delta y}{\Delta x}\approx 0.
+        \]
+      </div>
+      <p>
+        Kada \(\Delta x\to 0\), količnik \(\frac{\Delta y}{\Delta x}\) prelazi u izvod \(y'\), pa dobijamo:
+      </p>
+      <div class="formula-box">
+        \[
+          F'_x+F'_y y'=0
+          \qquad\Longrightarrow\qquad
+          \boxed{y'=-\frac{F'_x}{F'_y}}.
+        \]
+      </div>
+      <p class="small">
+        U knjizi se ovo strože dobija preko Lagranžove teoreme o srednjoj vrednosti. Za računanje zadataka, prethodna linija je prava suština.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <span class="tag">Obrnuta varijanta</span>
+      <h2>Kada pišemo \(x=\psi(y)\)?</h2>
+      <p>
+        Ako umesto uslova \(F'_y(x_0,y_0)\ne 0\) imamo uslov
+      </p>
+      <div class="formula-box">
+        \[
+          F'_x(x_0,y_0)\ne 0,
+        \]
+      </div>
+      <p>
+        onda u okolini tačke možemo rešavati jednačinu po promenljivoj \(x\), pa pišemo:
+      </p>
+      <div class="formula-box">
+        \[
+          x=\psi(y).
+        \]
+      </div>
+      <p>
+        Tada je formula za izvod obrnute implicitne funkcije:
+      </p>
+      <div class="formula-box">
+        \[
+          \boxed{\psi'(y)=-\frac{F'_y(\psi(y),y)}{F'_x(\psi(y),y)}}.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <span class="tag">Primer</span>
+      <h2>Kružnica \(x^2+y^2=1\)</h2>
+      <p>
+        Jednačinu kružnice možemo napisati kao:
+      </p>
+      <div class="formula-box">
+        \[
+          F(x,y)=x^2+y^2-1=0.
+        \]
+      </div>
+      <p>
+        Parcijalni izvodi su:
+      </p>
+      <div class="formula-box">
+        \[
+          F'_x=2x, \qquad F'_y=2y.
+        \]
+      </div>
+
+      <div class="svg-wrap">
+        <svg width="650" height="420" viewBox="0 0 650 420" role="img" aria-label="Kružnica kao implicitna funkcija">
+          <defs>
+            <marker id="arrow3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#111827"></path>
+            </marker>
+          </defs>
+          <line x1="80" y1="210" x2="570" y2="210" stroke="#111827" stroke-width="2" marker-end="url(#arrow3)"></line>
+          <line x1="325" y1="360" x2="325" y2="50" stroke="#111827" stroke-width="2" marker-end="url(#arrow3)"></line>
+          <text x="575" y="215" font-size="20" fill="#111827">x</text>
+          <text x="316" y="43" font-size="20" fill="#111827">y</text>
+
+          <circle cx="325" cy="210" r="120" fill="none" stroke="#111827" stroke-width="4"></circle>
+          <path d="M240,125 A120,120 0 0 1 410,125" fill="none" stroke="#22c55e" stroke-width="7" stroke-linecap="round"></path>
+          <text x="430" y="105" font-size="17" fill="#16a34a">gornja grana: y=√(1−x²)</text>
+
+          <path d="M205,210 A120,120 0 0 1 325,90" fill="none" stroke="#f59e0b" stroke-width="7" stroke-linecap="round"></path>
+          <text x="80" y="92" font-size="17" fill="#d97706">leva grana: x=−√(1−y²)</text>
+
+          <circle cx="325" cy="90" r="7" fill="#22c55e"></circle>
+          <text x="337" y="88" font-size="17" fill="#111827">(0,1), Fᵧ=2≠0</text>
+          <circle cx="445" cy="210" r="7" fill="#ef4444"></circle>
+          <text x="455" y="232" font-size="17" fill="#111827">(1,0), Fᵧ=0, ali Fₓ=2≠0</text>
+
+          <line x1="385" y1="90" x2="385" y2="330" stroke="#6b7280" stroke-dasharray="7 6" stroke-width="2"></line>
+          <circle cx="385" cy="106" r="5" fill="#6b7280"></circle>
+          <circle cx="385" cy="314" r="5" fill="#6b7280"></circle>
+          <text x="397" y="306" font-size="15" fill="#6b7280">isto x, dva y globalno</text>
+        </svg>
+        <div class="caption">Cela kružnica nije jedna funkcija \(y=f(x)\), ali svaka mala grana može biti funkcija.</div>
+      </div>
+
+      <h3>1) Tačka \((0,1)\)</h3>
+      <p>
+        Ovde je \(F'_y(0,1)=2\ne 0\). Zato u okolini tačke \((0,1)\) kružnica definiše funkciju \(y=\varphi(x)\).
+        To je gornja grana:
+      </p>
+      <div class="formula-box">
+        \[
+          y=\sqrt{1-x^2}.
+        \]
+      </div>
+      <p>
+        Izvod dobijamo formulom:
+      </p>
+      <div class="formula-box">
+        \[
+          y'=-\frac{F'_x}{F'_y}=-\frac{2x}{2y}=-\frac{x}{y}.
+        \]
+      </div>
+      <p>
+        U tački \((0,1)\) je:
+      </p>
+      <div class="formula-box">
+        \[
+          y'(0)=-\frac{0}{1}=0.
+        \]
+      </div>
+
+      <h3>2) Tačka \((1,0)\)</h3>
+      <p>
+        Ovde je \(F'_y(1,0)=0\), pa teorema za \(y=\varphi(x)\) ne radi. To je očekivano, jer je u toj tački kružnica
+        „bočno okrenuta”. Međutim:
+      </p>
+      <div class="formula-box">
+        \[
+          F'_x(1,0)=2\ne 0.
+        \]
+      </div>
+      <p>
+        Zato u okolini te tačke možemo pisati \(x=\psi(y)\), konkretno desnu granu:
+      </p>
+      <div class="formula-box">
+        \[
+          x=\sqrt{1-y^2}.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <span class="tag">Recept za zadatke</span>
+      <h2>Kako ovo koristiš na ispitu?</h2>
+      <ol>
+        <li>Sve prebaciš na jednu stranu i napišeš \(F(x,y)=0\).</li>
+        <li>Proveriš da li data tačka zaista leži na krivoj: \(F(x_0,y_0)=0\).</li>
+        <li>Izračunaš parcijalne izvode \(F'_x\) i \(F'_y\).</li>
+        <li>Ako je \(F'_y(x_0,y_0)\ne 0\), onda lokalno postoji \(y=\varphi(x)\).</li>
+        <li>Izvod računaš formulom \(\displaystyle \varphi'(x)=-\frac{F'_x}{F'_y}\).</li>
+        <li>Ako je \(F'_y(x_0,y_0)=0\), ali je \(F'_x(x_0,y_0)\ne 0\), onda lokalno postoji \(x=\psi(y)\).</li>
+      </ol>
+    </section>
+
+    <section class="card warning-card">
+      <span class="tag">Još jedna fina napomena</span>
+      <h2>Ako uslov nije ispunjen, šta onda?</h2>
+      <p>
+        Ako je \(F'_y(x_0,y_0)=0\), to ne znači automatski da funkcija \(y=\varphi(x)\) ne postoji. To samo znači da ovu teoremu
+        ne smemo direktno da primenimo. Teorema daje dovoljan uslov: ako je uslov ispunjen, sigurni smo da lokalna funkcija postoji.
+      </p>
+    </section>
+
+    <div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+  </main>
+</body>
+</html>
