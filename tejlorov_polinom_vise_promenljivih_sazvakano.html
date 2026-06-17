@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tejlorov polinom funkcije dve promenljive — sažvakano</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --ink:#202334;
+      --muted:#5f6678;
+      --card:#ffffff;
+      --shadow:0 14px 35px rgba(31,38,64,.10);
+      --task:#6c8cff;
+      --idea:#22b8a0;
+      --analysis:#ffb020;
+      --solution:#8e6de8;
+      --warning:#ff6b8a;
+      --answer:#34c759;
+      --line:#e7eaf3;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,#f8fbff 0%, var(--bg) 100%);
+      color:var(--ink);
+      line-height:1.62;
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:34px 18px 46px;
+    }
+    .hero{
+      background:linear-gradient(135deg,#1f2a52,#4452a3);
+      color:white;
+      border-radius:28px;
+      padding:34px 34px 30px;
+      box-shadow:var(--shadow);
+      margin-bottom:24px;
+    }
+    .hero h1{margin:0 0 10px;font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.02em}
+    .hero p{margin:0;max-width:760px;color:#eef2ff;font-size:18px}
+    .card{
+      background:var(--card);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:24px 26px;
+      margin:18px 0;
+      border:1px solid rgba(231,234,243,.9);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:8px;
+      background:var(--task);
+    }
+    .task-card::before{background:var(--task)}
+    .idea-card::before{background:var(--idea)}
+    .analysis-card::before{background:var(--analysis)}
+    .solution-card::before{background:var(--solution)}
+    .warning-card::before{background:var(--warning)}
+    .answer-card::before{background:var(--answer)}
+    h2{margin:0 0 14px;font-size:25px;letter-spacing:-.01em}
+    h3{margin:22px 0 8px;font-size:20px}
+    p{margin:10px 0}
+    .tag{
+      display:inline-block;
+      font-size:13px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:#60677a;
+      font-weight:800;
+      margin-bottom:6px;
+    }
+    .formula-box{
+      background:#f7f8fc;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px 18px;
+      margin:14px 0;
+      overflow-x:auto;
+    }
+    .mini{
+      color:var(--muted);
+      font-size:15px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    @media(max-width:780px){.grid{grid-template-columns:1fr}.hero{padding:26px 22px}.card{padding:22px 20px}}
+    .steps{counter-reset:step;margin:16px 0 0;padding:0;list-style:none}
+    .steps li{
+      counter-increment:step;
+      margin:12px 0;
+      padding:13px 14px 13px 48px;
+      background:#f8f9fd;
+      border:1px solid var(--line);
+      border-radius:16px;
+      position:relative;
+    }
+    .steps li::before{
+      content:counter(step);
+      position:absolute;
+      left:13px; top:13px;
+      width:24px; height:24px;
+      border-radius:50%;
+      background:#1f2a52;
+      color:white;
+      font-size:13px;
+      font-weight:800;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .svg-wrap{
+      margin:10px 0 4px;
+      background:#fbfcff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:12px;
+      overflow-x:auto;
+    }
+    svg{max-width:100%;height:auto;display:block;margin:0 auto}
+    .note{
+      border-left:4px solid var(--warning);
+      background:#fff7f9;
+      padding:12px 14px;
+      border-radius:14px;
+      margin:14px 0;
+    }
+    footer{
+      text-align:center;
+      color:#73798c;
+      margin-top:26px;
+      font-size:14px;
+    }
+    strong{font-weight:800}
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:16px;
+      border:1px solid var(--line);
+      margin:14px 0;
+      background:white;
+    }
+    th,td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+    th{background:#f7f8fc;text-align:left}
+    tr:last-child td{border-bottom:0}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Tejlorov polinom funkcije dve promenljive</h1>
+      <p>Najkraće moguće: umesto da funkciju dve promenljive napadamo direktno, mi kroz dve tačke provučemo pravu i problem svedemo na Tejlorovu formulu jedne promenljive.</p>
+    </section>
+
+    <section class="card task-card">
+      <div class="tag">Šta učenik treba da razume</div>
+      <h2>Glavna ideja</h2>
+      <p>
+        Kod funkcije jedne promenljive znamo da u okolini tačke funkciju možemo približno zameniti polinomom:
+      </p>
+      <div class="formula-box">
+        \[
+          f(x) \approx f(x_0)+f'(x_0)(x-x_0)+\frac{f''(x_0)}{2!}(x-x_0)^2+\cdots
+        \]
+      </div>
+      <p>
+        Kod funkcije dve promenljive radimo isto, samo se promena ne meri jednim brojem \(x-x_0\), nego parom:
+      </p>
+      <div class="formula-box">
+        \[
+          \Delta x=x-x_0,\qquad \Delta y=y-y_0.
+        \]
+      </div>
+      <p>
+        Zato Tejlorov polinom više promenljivih ima članove u kojima se mešaju \(\Delta x\) i \(\Delta y\):
+        \(\Delta x^2\), \(\Delta x\Delta y\), \(\Delta y^2\), i tako dalje.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <div class="tag">Najvažniji trik</div>
+      <h2>Od dve promenljive pravimo jednu</h2>
+      <p>
+        Imamo početnu tačku:
+      </p>
+      <div class="formula-box">
+        \[
+          P_0(x_0,y_0)
+        \]
+      </div>
+      <p>
+        i tačku blizu nje:
+      </p>
+      <div class="formula-box">
+        \[
+          P_1(x_0+\Delta x,\,y_0+\Delta y).
+        \]
+      </div>
+      <p>
+        Sada ne gledamo celu okolinu odjednom, nego samo duž od \(P_0\) do \(P_1\). Ta duž se opisuje jednom promenljivom \(t\):
+      </p>
+      <div class="formula-box">
+        \[
+          P_t(x_0+t\Delta x,\,y_0+t\Delta y),\qquad 0\le t\le 1.
+        \]
+      </div>
+
+      <div class="svg-wrap">
+        <svg width="760" height="250" viewBox="0 0 760 250" role="img" aria-label="Duž od P0 do P1">
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L8,3 z" fill="#25304f" />
+            </marker>
+          </defs>
+          <rect x="1" y="1" width="758" height="248" rx="18" fill="#fbfcff" stroke="#e7eaf3"/>
+          <line x1="80" y1="205" x2="690" y2="205" stroke="#25304f" stroke-width="2" marker-end="url(#arrow)"/>
+          <line x1="95" y1="220" x2="95" y2="35" stroke="#25304f" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="698" y="211" font-size="18" fill="#25304f">x</text>
+          <text x="88" y="28" font-size="18" fill="#25304f">y</text>
+
+          <line x1="190" y1="165" x2="565" y2="70" stroke="#6c8cff" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="190" cy="165" r="7" fill="#1f2a52"/>
+          <circle cx="565" cy="70" r="7" fill="#1f2a52"/>
+          <circle cx="400" cy="112" r="7" fill="#ff6b8a"/>
+          <line x1="190" y1="165" x2="190" y2="205" stroke="#9aa3b7" stroke-dasharray="6 6"/>
+          <line x1="565" y1="70" x2="565" y2="205" stroke="#9aa3b7" stroke-dasharray="6 6"/>
+          <line x1="190" y1="165" x2="95" y2="165" stroke="#9aa3b7" stroke-dasharray="6 6"/>
+          <line x1="565" y1="70" x2="95" y2="70" stroke="#9aa3b7" stroke-dasharray="6 6"/>
+          <text x="142" y="154" font-size="18" fill="#1f2a52">P₀</text>
+          <text x="578" y="66" font-size="18" fill="#1f2a52">P₁</text>
+          <text x="410" y="105" font-size="18" fill="#b51d4b">Pₜ</text>
+          <text x="250" y="195" font-size="17" fill="#5f6678">krećemo se samo po ovoj pravoj</text>
+        </svg>
+      </div>
+
+      <p>
+        Onda uvodimo pomoćnu funkciju jedne promenljive:
+      </p>
+      <div class="formula-box">
+        \[
+          \Phi(t)=f(x_0+t\Delta x,\,y_0+t\Delta y).
+        \]
+      </div>
+      <p>
+        To je cela magija. Funkcija \(f(x,y)\) je funkcija dve promenljive, ali \(\Phi(t)\) je obična funkcija jedne promenljive, jer se \(x\) i \(y\) menjaju zajedno preko istog parametra \(t\).
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <div class="tag">Teorema o srednjoj vrednosti</div>
+      <h2>Prva formula pre Tejlora</h2>
+      <p>
+        Za \(\Phi(t)\) možemo primeniti Lagranžovu teoremu:
+      </p>
+      <div class="formula-box">
+        \[
+          \Phi(1)-\Phi(0)=\Phi'(\theta),\qquad 0<\theta<1.
+        \]
+      </div>
+      <p>
+        Računamo izvod složene funkcije:
+      </p>
+      <div class="formula-box">
+        \[
+          \Phi'(t)=f_x'(P_t)\Delta x+f_y'(P_t)\Delta y.
+        \]
+      </div>
+      <p>
+        Zato dobijamo formulu:
+      </p>
+      <div class="formula-box">
+        \[
+          f(x_0+\Delta x,y_0+\Delta y)-f(x_0,y_0)
+          =f_x'(P_\theta)\Delta x+f_y'(P_\theta)\Delta y.
+        \]
+      </div>
+      <p>
+        Ovo je samo verzija teoreme o srednjoj vrednosti za dve promenljive. Nije strašno: izvod se uzima u nekoj međutački \(P_\theta\) na duži između \(P_0\) i \(P_1\).
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <div class="tag">Tejlorova formula</div>
+      <h2>Formula koju treba koristiti u zadacima</h2>
+      <p>
+        Neka je:
+      </p>
+      <div class="formula-box">
+        \[
+          \Delta x=x-x_0,\qquad \Delta y=y-y_0.
+        \]
+      </div>
+      <p>
+        Tejlorov polinom reda \(n\) oko tačke \(P_0(x_0,y_0)\) je:
+      </p>
+      <div class="formula-box">
+        \[
+          T_n(x,y)=f(P_0)+df(P_0)+\frac{1}{2!}d^2f(P_0)+\cdots+\frac{1}{n!}d^nf(P_0).
+        \]
+      </div>
+      <p>
+        Ostatak, odnosno greška, može se zapisati u Lagranžovom obliku:
+      </p>
+      <div class="formula-box">
+        \[
+          R_n^L(x,y)=\frac{1}{(n+1)!}d^{n+1}f(P_\theta),\qquad 0<\theta<1.
+        \]
+      </div>
+      <p>
+        Dakle:
+      </p>
+      <div class="formula-box">
+        \[
+          f(x,y)=T_n(x,y)+R_n(x,y).
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <div class="tag">Šta znače simboli df, d²f, d³f</div>
+      <h2>To je binomna formula sa izvodima</h2>
+      <p>
+        Prvi diferencijal je:
+      </p>
+      <div class="formula-box">
+        \[
+          df(P_0)=f_x'(P_0)\Delta x+f_y'(P_0)\Delta y.
+        \]
+      </div>
+      <p>
+        Drugi diferencijal je najvažniji za zadatke sa drugim stepenom:
+      </p>
+      <div class="formula-box">
+        \[
+          d^2f(P_0)=f_{xx}''(P_0)\Delta x^2+2f_{xy}''(P_0)\Delta x\Delta y+f_{yy}''(P_0)\Delta y^2.
+        \]
+      </div>
+      <p>
+        Treći bi išao po istom šablonu:
+      </p>
+      <div class="formula-box">
+        \[
+          d^3f(P_0)=f_{xxx}'''\Delta x^3+3f_{xxy}'''\Delta x^2\Delta y+3f_{xyy}'''\Delta x\Delta y^2+f_{yyy}'''\Delta y^3.
+        \]
+      </div>
+      <p class="mini">
+        Svi izvodi u prethodnoj formuli računaju se u tački \(P_0\). Namerno nije svuda dopisano \((P_0)\), da formula ne izgleda teže nego što jeste.
+      </p>
+      <div class="note">
+        <strong>Ključ:</strong> koeficijenti \(1,2,1\), zatim \(1,3,3,1\), zatim \(1,4,6,4,1\) dolaze iz binomne formule. Samo se umesto običnih stepena pojavljuju odgovarajući parcijalni izvodi.
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <div class="tag">Najkraći dokaz</div>
+      <h2>Kako bih ja učeniku objasnio dokaz</h2>
+      <ol class="steps">
+        <li>
+          Uzmeš dve tačke: početnu \(P_0\) i krajnju \(P_1\). Između njih povučeš duž.
+        </li>
+        <li>
+          Po toj duži uvedeš jednu promenljivu \(t\):
+          \[
+            \Phi(t)=f(x_0+t\Delta x,y_0+t\Delta y).
+          \]
+        </li>
+        <li>
+          Na \(\Phi(t)\) primeniš običnu Tejlorovu formulu jedne promenljive.
+        </li>
+        <li>
+          Pošto je \(\Phi(0)=f(x_0,y_0)\), a \(\Phi(1)=f(x_0+\Delta x,y_0+\Delta y)\), na kraju samo staviš \(t=1\).
+        </li>
+      </ol>
+      <p>
+        Zato je dokaz u knjizi dug, ali ideja je kratka: <strong>Tejlor za dve promenljive je Tejlor za jednu promenljivu primenjen duž prave.</strong>
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <div class="tag">Recept za zadatak</div>
+      <h2>Kako se pravi Tejlorov polinom</h2>
+      <ol class="steps">
+        <li>
+          Odredi tačku razvoja \(P_0(x_0,y_0)\).
+        </li>
+        <li>
+          Uvedi:
+          \[
+            \Delta x=x-x_0,\qquad \Delta y=y-y_0.
+          \]
+        </li>
+        <li>
+          Izračunaj funkciju i potrebne parcijalne izvode u tački \(P_0\).
+        </li>
+        <li>
+          Ubaci u formulu:
+          \[
+            T_1=f(P_0)+df(P_0),
+          \]
+          ili
+          \[
+            T_2=f(P_0)+df(P_0)+\frac12 d^2f(P_0).
+          \]
+        </li>
+        <li>
+          Ako treba procena greške, koristi ostatak \(R_n\). Ako ne treba, staješ kod polinoma.
+        </li>
+      </ol>
+    </section>
+
+    <section class="card warning-card">
+      <div class="tag">Važna napomena</div>
+      <h2>Maklorenov polinom je samo poseban slučaj</h2>
+      <p>
+        Ako se razvija oko tačke \((0,0)\), onda Tejlorov polinom zovemo Maklorenov polinom.
+      </p>
+      <div class="formula-box">
+        \[
+          P_0=(0,0)\quad \Longrightarrow \quad \Delta x=x,\quad \Delta y=y.
+        \]
+      </div>
+      <p>
+        Dakle, nema nove teorije. Samo je početna tačka nula.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <div class="tag">Primer iz knjige</div>
+      <h2>Primer: \(f(x,y)=\cos(x^2+y^2)\)</h2>
+      <p>
+        Ovde je zgodno uvesti smenu:
+      </p>
+      <div class="formula-box">
+        \[
+          t=x^2+y^2.
+        \]
+      </div>
+      <p>
+        Za funkciju jedne promenljive \(g(t)=\cos t\) važi:
+      </p>
+      <div class="formula-box">
+        \[
+          \cos t=1-\frac{t^2}{2!}+\cdots
+        \]
+      </div>
+      <p>
+        Vraćamo \(t=x^2+y^2\):
+      </p>
+      <div class="formula-box">
+        \[
+          T_4(x,y)=1-\frac{(x^2+y^2)^2}{2}.
+        \]
+      </div>
+      <p>
+        Ako želimo potpuno razvijeno:
+      </p>
+      <div class="formula-box">
+        \[
+          T_4(x,y)=1-\frac{x^4+2x^2y^2+y^4}{2}.
+        \]
+      </div>
+      <div class="note">
+        <strong>Pazi na stepen.</strong> Pošto je \(t=x^2+y^2\), onda je \(t^2=(x^2+y^2)^2\). Zato se dobija polinom četvrtog stepena. Ako negde stoji bez spoljnog kvadrata, to treba proveriti kao moguću štamparsku grešku.
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <div class="tag">Mini primer za prvi stepen</div>
+      <h2>Primer: \(f(x,y)=\dfrac{1}{3x-y}\) oko \((1,1)\)</h2>
+      <p>
+        Računamo vrednost funkcije u početnoj tački:
+      </p>
+      <div class="formula-box">
+        \[
+          f(1,1)=\frac{1}{3\cdot1-1}=\frac12.
+        \]
+      </div>
+      <p>
+        Parcijalni izvodi su:
+      </p>
+      <div class="formula-box">
+        \[
+          f_x'(x,y)=-\frac{3}{(3x-y)^2},
+          \qquad
+          f_y'(x,y)=\frac{1}{(3x-y)^2}.
+        \]
+      </div>
+      <p>
+        U tački \((1,1)\):
+      </p>
+      <div class="formula-box">
+        \[
+          f_x'(1,1)=-\frac34,
+          \qquad
+          f_y'(1,1)=\frac14.
+        \]
+      </div>
+      <p>
+        Zato je Tejlorov polinom prvog stepena:
+      </p>
+      <div class="formula-box">
+        \[
+          T_1(x,y)=\frac12-\frac34(x-1)+\frac14(y-1).
+        \]
+      </div>
+      <p>
+        Na primer, za tačku \(P_1\left(\frac{11}{10},\frac65\right)=(1.1,1.2)\) imamo:
+      </p>
+      <div class="formula-box">
+        \[
+          \Delta x=0.1,
+          \qquad
+          \Delta y=0.2.
+        \]
+        \[
+          T_1(1.1,1.2)=\frac12-\frac34\cdot0.1+\frac14\cdot0.2=0.475.
+        \]
+      </div>
+      <p>
+        Tačna vrednost je:
+      </p>
+      <div class="formula-box">
+        \[
+          f(1.1,1.2)=\frac{1}{3.3-1.2}=\frac{10}{21}\approx0.47619.
+        \]
+      </div>
+      <p>
+        Aproksimacija je blizu, jer je tačka \((1.1,1.2)\) blizu tačke \((1,1)\).
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <div class="tag">Ostatak / greška</div>
+      <h2>Šta znači \(R_n=o(\rho^n)\)?</h2>
+      <p>
+        Neka je rastojanje od početne do nove tačke:
+      </p>
+      <div class="formula-box">
+        \[
+          \rho=\sqrt{(x-x_0)^2+(y-y_0)^2}
+          =\sqrt{\Delta x^2+\Delta y^2}.
+        \]
+      </div>
+      <p>
+        Zapis:
+      </p>
+      <div class="formula-box">
+        \[
+          R_n=o(\rho^n)
+        \]
+      </div>
+      <p>
+        znači: ostatak je mnogo manji od \(\rho^n\) kada se tačka približava \(P_0\). Za učenika je dovoljno da ovo čita kao:
+      </p>
+      <div class="formula-box">
+        \[
+          \text{što smo bliže tački razvoja, Tejlorov polinom je bolja aproksimacija.}
+        \]
+      </div>
+      <p>
+        Lagranžov oblik ostatka je konkretniji, jer kaže da se greška računa pomoću sledećeg diferencijala u nekoj međutački:
+      </p>
+      <div class="formula-box">
+        \[
+          R_n^L=\frac{1}{(n+1)!}d^{n+1}f(P_\theta),\qquad 0<\theta<1.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <div class="tag">Za pamćenje</div>
+      <h2>Suština u četiri rečenice</h2>
+      <p>
+        Tejlorov polinom funkcije dve promenljive je lokalna polinomna zamena za funkciju \(f(x,y)\).
+      </p>
+      <p>
+        Da bismo razumeli formulu, zamislimo da se od \(P_0\) do \(P_1\) krećemo po pravoj, pa funkciju dve promenljive pretvorimo u funkciju jedne promenljive \(\Phi(t)\).
+      </p>
+      <p>
+        Simboli \(df,d^2f,d^3f\) samo skupljaju parcijalne izvode i stepene \(\Delta x,\Delta y\) po binomnom obrascu.
+      </p>
+      <p>
+        U zadacima se najčešće koristi:
+      </p>
+      <div class="formula-box">
+        \[
+          T_2=f(P_0)+f_x'(P_0)\Delta x+f_y'(P_0)\Delta y+
+          \frac12\left(f_{xx}''(P_0)\Delta x^2+2f_{xy}''(P_0)\Delta x\Delta y+f_{yy}''(P_0)\Delta y^2\right).
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
