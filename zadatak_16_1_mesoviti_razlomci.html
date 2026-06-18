@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Zadatak 16.1 — mešoviti razlomci i decimale</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f4f6fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --task:#4f46e5;
+      --idea:#0ea5e9;
+      --analysis:#f59e0b;
+      --solution:#10b981;
+      --warning:#ef4444;
+      --answer:#8b5cf6;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:30px 18px 44px;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:32px;
+      color:#111827;
+    }
+    .subtitle{
+      margin-top:-8px;
+      margin-bottom:22px;
+      color:var(--muted);
+    }
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      padding:20px 22px;
+      margin:18px 0;
+      box-shadow:0 10px 28px rgba(15,23,42,.08);
+      border-left:10px solid #ddd;
+    }
+    .task-card{border-left-color:var(--task)}
+    .idea-card{border-left-color:var(--idea)}
+    .analysis-card{border-left-color:var(--analysis)}
+    .solution-card{border-left-color:var(--solution)}
+    .warning-card{border-left-color:var(--warning)}
+    .answer-card{border-left-color:var(--answer)}
+    .card h2{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+    .math-block{
+      overflow-x:auto;
+      padding:4px 0;
+    }
+    .small{
+      color:var(--muted);
+      font-size:15px;
+    }
+    table{
+      border-collapse:collapse;
+      width:100%;
+      margin:14px 0 4px;
+      background:white;
+    }
+    th,td{
+      border:1px solid #e5e7eb;
+      padding:10px 12px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{background:#f9fafb}
+    .final{
+      font-size:24px;
+      font-weight:bold;
+      text-align:center;
+      margin-top:10px;
+    }
+    footer{
+      margin-top:30px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Zadatak 16.1.</h1>
+    <p class="subtitle">Mešoviti razlomci, decimalni brojevi i periodični zapis.</p>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Odrediti vrednost izraza:</p>
+      <div class="math-block">
+      \[
+      \frac{
+      \left(2.4+1\frac12\right)\cdot 2.5+
+      \left(6\frac{1}{12}:6-1\frac{1}{72}\right):
+      \left(8\frac57-1\frac{5}{21}\right)
+      }{
+      0.4\cdot \left(54.75-4.5:0.1\right)\cdot
+      \left(3\frac12+0.666\ldots\right)\cdot \frac35
+      }.
+      \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Sve pretvaramo u razlomke. Posebno važno:
+      </p>
+      <div class="math-block">
+      \[
+      0.666\ldots=\frac23.
+      \]
+      </div>
+      <p>
+        Zadatak izgleda dugačak, ali se jedan deo brojioca poništava na nulu.
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Prebacivanje u razlomke</h2>
+      <table>
+        <tr>
+          <th>Zapis</th>
+          <th>Razlomak</th>
+        </tr>
+        <tr>
+          <td>\(2.4\)</td>
+          <td>\(\frac{24}{10}=\frac{12}{5}\)</td>
+        </tr>
+        <tr>
+          <td>\(2.5\)</td>
+          <td>\(\frac52\)</td>
+        </tr>
+        <tr>
+          <td>\(0.4\)</td>
+          <td>\(\frac25\)</td>
+        </tr>
+        <tr>
+          <td>\(4.5\)</td>
+          <td>\(\frac92\)</td>
+        </tr>
+        <tr>
+          <td>\(0.1\)</td>
+          <td>\(\frac1{10}\)</td>
+        </tr>
+        <tr>
+          <td>\(54.75\)</td>
+          <td>\(\frac{5475}{100}=\frac{219}{4}\)</td>
+        </tr>
+        <tr>
+          <td>\(0.666\ldots\)</td>
+          <td>\(\frac23\)</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Brojilac</h2>
+      <p>Prvi deo brojioca:</p>
+      <div class="math-block">
+      \[
+      \left(2.4+1\frac12\right)\cdot 2.5
+      =
+      \left(\frac{12}{5}+\frac32\right)\cdot \frac52
+      =
+      \left(\frac{24}{10}+\frac{15}{10}\right)\cdot \frac52
+      =
+      \frac{39}{10}\cdot \frac52
+      =
+      \frac{39}{4}.
+      \]
+      </div>
+
+      <p>Drugi deo brojioca:</p>
+      <div class="math-block">
+      \[
+      6\frac{1}{12}:6-1\frac{1}{72}
+      =
+      \frac{73}{12}:6-\frac{73}{72}
+      =
+      \frac{73}{12}\cdot \frac16-\frac{73}{72}
+      =
+      \frac{73}{72}-\frac{73}{72}
+      =
+      0.
+      \]
+      </div>
+
+      <p>Zato je ceo drugi sabirak u brojiocu jednak nuli:</p>
+      <div class="math-block">
+      \[
+      \left(6\frac{1}{12}:6-1\frac{1}{72}\right):
+      \left(8\frac57-1\frac{5}{21}\right)
+      =
+      0.
+      \]
+      </div>
+
+      <p>Dakle, brojilac je:</p>
+      <div class="math-block">
+      \[
+      B=\frac{39}{4}.
+      \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Imenilac</h2>
+      <p>Najpre sredimo zagrade:</p>
+      <div class="math-block">
+      \[
+      54.75-4.5:0.1
+      =
+      \frac{219}{4}-\frac92:\frac1{10}
+      =
+      \frac{219}{4}-\frac92\cdot 10
+      =
+      \frac{219}{4}-45
+      =
+      \frac{219}{4}-\frac{180}{4}
+      =
+      \frac{39}{4}.
+      \]
+      </div>
+
+      <div class="math-block">
+      \[
+      3\frac12+0.666\ldots
+      =
+      \frac72+\frac23
+      =
+      \frac{21}{6}+\frac{4}{6}
+      =
+      \frac{25}{6}.
+      \]
+      </div>
+
+      <p>Sada imenilac iznosi:</p>
+      <div class="math-block">
+      \[
+      I=
+      \frac25\cdot \frac{39}{4}\cdot \frac{25}{6}\cdot \frac35.
+      \]
+      </div>
+
+      <p>Skratimo:</p>
+      <div class="math-block">
+      \[
+      I=
+      \frac25\cdot \frac{39}{4}\cdot \frac{25}{6}\cdot \frac35
+      =
+      \frac{39}{4}.
+      \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan odgovor</h2>
+      <div class="math-block">
+      \[
+      \frac{B}{I}
+      =
+      \frac{\frac{39}{4}}{\frac{39}{4}}
+      =
+      1.
+      \]
+      </div>
+      <div class="final">
+        \[
+        \boxed{1}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>
+        Ovde je korisno prvo uočiti da je
+        \[
+        6\frac{1}{12}:6=1\frac{1}{72},
+        \]
+        pa je taj deo brojioca odmah jednak nuli. To značajno skraćuje račun.
+      </p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
