@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drugi probni FON 2026 — Zadatak 15</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --text:#102033;
+      --muted:#526173;
+      --card:#ffffff;
+      --border:#e4eaf2;
+      --shadow:0 18px 45px rgba(16,32,51,.08);
+      --task:#7c3aed;
+      --idea:#0ea5e9;
+      --analysis:#f97316;
+      --solution:#22c55e;
+      --warning:#f59e0b;
+      --answer:#ef4444;
+      --blue:#1d4ed8;
+      --green:#15803d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);
+      color:var(--text);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.65;
+    }
+    main{max-width:980px;margin:0 auto;padding:34px 18px 46px}
+    header{text-align:center;margin-bottom:24px}
+    h1{font-size:clamp(1.55rem,3vw,2.2rem);margin:0 0 8px}
+    .subtitle{color:var(--muted);font-size:1rem}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:24px 26px;
+      margin:18px 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--accent)}
+    .task-card{--accent:var(--task)}
+    .idea-card{--accent:var(--idea)}
+    .analysis-card{--accent:var(--analysis)}
+    .solution-card{--accent:var(--solution)}
+    .warning-card{--accent:var(--warning)}
+    .answer-card{--accent:var(--answer)}
+    h2{margin:0 0 12px;font-size:1.25rem}
+    p{margin:10px 0}
+    .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px 18px;margin-top:16px}
+    .choice{padding:8px 10px;border-radius:12px;background:#f8fafc;border:1px solid #eef2f7}
+    .choice.correct{background:#ecfdf5;border-color:#bbf7d0;font-weight:700}
+    .figure-wrap{display:grid;grid-template-columns:minmax(280px,1.05fr) minmax(280px,.95fr);gap:22px;align-items:center;margin-top:12px}
+    .svg-box{background:#fbfdff;border:1px solid #e7edf6;border-radius:18px;padding:12px}
+    .svg-box > svg{width:100%;height:auto;display:block}
+    /* Ne diramo MathJax SVG-ove: globalno svg pravilo bi uvećalo inline formule. */
+    .step{display:flex;gap:12px;align-items:flex-start;margin:12px 0;padding:12px 14px;background:#f8fafc;border:1px solid #e9eef7;border-radius:16px}
+    .num{min-width:34px;height:34px;border-radius:10px;background:#dcfce7;color:#166534;display:flex;align-items:center;justify-content:center;font-weight:800}
+    .blue{color:var(--blue);font-weight:700}
+    .green{color:var(--green);font-weight:700}
+    .boxed{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:14px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      font-weight:700;
+    }
+    .final{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      font-size:1.08rem;
+    }
+    .final .result{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:14px;
+      background:#f0fdf4;
+      border:1px solid #86efac;
+      color:#166534;
+      font-weight:800;
+    }
+    footer{margin-top:30px;text-align:center;color:#6b7280;font-size:.95rem}
+    @media (max-width:820px){
+      .figure-wrap{grid-template-columns:1fr}
+      .card{padding:22px 20px}
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Drugi probni FON 2026 — zadatak 15</h1>
+    <div class="subtitle">Koncentrični krugovi — čisto geometrijski</div>
+  </header>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>
+      Neka su data dva koncentrična kruga takva da je tetiva većeg kruga, dužine \(10\text{ cm}\),
+      ujedno i tangenta manjeg kruga. Tada je površina kružnog prstena koji obrazuju ova dva kruga jednaka:
+    </p>
+    <div class="choices">
+      <div class="choice">A) \(5\pi\text{ cm}^2\)</div>
+      <div class="choice">B) \(30\pi\text{ cm}^2\)</div>
+      <div class="choice correct">C) \(25\pi\text{ cm}^2\)</div>
+      <div class="choice">D) \(8\pi\text{ cm}^2\)</div>
+      <div class="choice">E) \(20\pi\text{ cm}^2\)</div>
+    </div>
+  </section>
+
+  <section class="card idea-card">
+    <h2>Ideja</h2>
+    <p>
+      Ne moramo da znamo posebno ni veliki poluprečnik \(R\), ni mali poluprečnik \(r\).
+      Za površinu prstena treba nam samo razlika \(R^2-r^2\).
+    </p>
+    <p>
+      Tu razliku direktno dobijamo iz pravouglog trougla koji nastaje kada iz centra spustimo normalu na tetivu.
+    </p>
+  </section>
+
+  <section class="card analysis-card">
+    <h2>Slika i geometrija</h2>
+    <div class="figure-wrap">
+      <div class="svg-box">
+        <svg viewBox="0 0 520 410" role="img" aria-label="Dva koncentrična kruga, tetiva AB većeg kruga tangentna na manji krug u tački M">
+          <defs>
+            <marker id="dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5">
+              <circle cx="5" cy="5" r="5" fill="#111827" />
+            </marker>
+          </defs>
+
+          <!-- circles -->
+          <circle cx="250" cy="165" r="156" fill="none" stroke="#1e3a8a" stroke-width="4" />
+          <circle cx="250" cy="165" r="105" fill="none" stroke="#15803d" stroke-width="4" />
+
+          <!-- chord/tangent -->
+          <line x1="135" y1="270" x2="365" y2="270" stroke="#111827" stroke-width="4" stroke-linecap="round" />
+
+          <!-- perpendicular and radius -->
+          <line x1="250" y1="165" x2="250" y2="270" stroke="#111827" stroke-width="3" marker-start="url(#dot)" marker-end="url(#dot)" />
+          <line x1="250" y1="165" x2="365" y2="270" stroke="#111827" stroke-width="3" marker-end="url(#dot)" />
+          <circle cx="135" cy="270" r="5" fill="#111827" />
+
+          <!-- right angle marker -->
+          <path d="M250 252 L268 252 L268 270" fill="none" stroke="#111827" stroke-width="3" />
+
+          <!-- segment labels -->
+          <text x="190" y="293" text-anchor="middle" font-size="26" font-family="Georgia, serif" fill="#1d4ed8">5 cm</text>
+          <text x="310" y="293" text-anchor="middle" font-size="26" font-family="Georgia, serif" fill="#1d4ed8">5 cm</text>
+          <text x="250" y="350" text-anchor="middle" font-size="30" font-family="Georgia, serif" fill="#1d4ed8">10 cm</text>
+
+          <!-- brace-ish line -->
+          <path d="M135 317 C135 335 160 335 170 335 L330 335 C340 335 365 335 365 317" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+          <path d="M250 335 C250 350 238 350 238 350 M250 335 C250 350 262 350 262 350" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" />
+
+          <!-- labels -->
+          <text x="238" y="151" font-size="32" font-family="Georgia, serif" font-style="italic" fill="#111827">O</text>
+          <text x="105" y="284" font-size="32" font-family="Georgia, serif" font-style="italic" fill="#111827">A</text>
+          <text x="377" y="284" font-size="32" font-family="Georgia, serif" font-style="italic" fill="#111827">B</text>
+          <text x="238" y="304" font-size="32" font-family="Georgia, serif" font-style="italic" fill="#111827">M</text>
+          <text x="220" y="225" font-size="30" font-family="Georgia, serif" font-style="italic" fill="#15803d">r</text>
+          <text x="310" y="218" font-size="30" font-family="Georgia, serif" font-style="italic" fill="#1d4ed8">R</text>
+
+          <!-- helper labels -->
+          <text x="250" y="31" text-anchor="middle" font-size="18" font-family="system-ui, sans-serif" fill="#526173">zajednički centar</text>
+          <path d="M250 38 L250 130" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 6" />
+        </svg>
+      </div>
+
+      <div>
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            Poluprečnik spušten na tetivu deli tetivu na dva jednaka dela, pa je
+            \[
+              AM=MB=5\text{ cm}.
+            \]
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            Pošto je tetiva većeg kruga tangenta manjeg kruga, rastojanje od centra do tetive je poluprečnik manjeg kruga:
+            \[
+              OM=r.
+            \]
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card solution-card">
+    <h2>Rešenje</h2>
+    <p>
+      U pravouglom trouglu \(OMB\) imamo:
+    </p>
+    \[
+      OB^2=OM^2+MB^2.
+    \]
+    <p>
+      Kako je \(OB=R\), \(OM=r\), a \(MB=5\), sledi:
+    </p>
+    \[
+      R^2=r^2+5^2.
+    \]
+    <p>
+      Dakle,
+    </p>
+    \[
+      R^2-r^2=25.
+    \]
+    <p>
+      Površina kružnog prstena jednaka je razlici površina dva kruga:
+    </p>
+    \[
+      P=R^2\pi-r^2\pi=\pi(R^2-r^2).
+    \]
+    <p>
+      Zato je
+    </p>
+    \[
+      P=\pi\cdot 25=25\pi\text{ cm}^2.
+    \]
+  </section>
+
+  <section class="card answer-card">
+    <h2>Odgovor</h2>
+    <div class="final">
+      <span>Tačan odgovor je</span>
+      <span class="result">\(\boxed{25\pi\text{ cm}^2}\)</span>
+      <span>odnosno <strong>C</strong>.</span>
+    </div>
+  </section>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>

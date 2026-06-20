@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drugi probni FON 2026 — Zadatak 11</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --text:#102033;
+      --muted:#526173;
+      --card:#ffffff;
+      --border:#e4eaf2;
+      --shadow:0 18px 45px rgba(16,32,51,.08);
+      --task:#7c3aed;
+      --idea:#0ea5e9;
+      --solution:#22c55e;
+      --warning:#f59e0b;
+      --answer:#ef4444;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);
+      color:var(--text);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.65;
+    }
+    main{max-width:980px;margin:0 auto;padding:34px 18px 46px}
+    header{text-align:center;margin-bottom:24px}
+    h1{font-size:clamp(1.55rem,3vw,2.2rem);margin:0 0 8px}
+    .subtitle{color:var(--muted);font-size:1rem}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:24px 26px;
+      margin:18px 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--accent)}
+    .task-card{--accent:var(--task)}
+    .idea-card{--accent:var(--idea)}
+    .solution-card{--accent:var(--solution)}
+    .warning-card{--accent:var(--warning)}
+    .answer-card{--accent:var(--answer)}
+    h2{margin:0 0 12px;font-size:1.25rem}
+    p{margin:10px 0}
+    .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px 18px;margin-top:16px}
+    .choice{padding:8px 10px;border-radius:12px;background:#f8fafc;border:1px solid #eef2f7}
+    .boxed{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:14px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      font-weight:700;
+    }
+    footer{margin-top:30px;text-align:center;color:#6b7280;font-size:.95rem}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Drugi probni FON 2026 — zadatak 11</h1>
+    <div class="subtitle">Iracionalna nejednačina — školski slučaj \(\sqrt P &gt; Q\)</div>
+  </header>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>
+      Broj svih celobrojnih rešenja nejednačine
+      \[
+        x+5&lt;\sqrt{x+47}
+      \]
+      jednak je:
+    </p>
+    <div class="choices">
+      <div class="choice">A) \(46\)</div>
+      <div class="choice">B) \(14\)</div>
+      <div class="choice">C) \(48\)</div>
+      <div class="choice">D) \(7\)</div>
+      <div class="choice">E) \(49\)</div>
+    </div>
+  </section>
+
+  <section class="card idea-card">
+    <h2>Ideja</h2>
+    <p>
+      Pišemo nejednačinu u školskom obliku
+      \[
+        \sqrt{P}&gt;Q.
+      \]
+      Ovde je
+      \[
+        P=x+47, \qquad Q=x+5.
+      \]
+    </p>
+    <p>
+      Za ovaj tip nejednačine koristimo pravilo:
+      \[
+        \sqrt P&gt;Q
+        \Longleftrightarrow
+        \begin{cases}
+          P\ge 0,\\
+          Q&lt;0
+        \end{cases}
+        \ \cup\
+        \begin{cases}
+          Q\ge 0,\\
+          P&gt;Q^2.
+        \end{cases}
+      \]
+    </p>
+  </section>
+
+  <section class="card solution-card">
+    <h2>Prvi slučaj: \(P\ge 0\) i \(Q&lt;0\)</h2>
+    <p>Dobijamo sistem:</p>
+    \[
+      \begin{cases}
+        x+47\ge 0,\\
+        x+5&lt;0.
+      \end{cases}
+    \]
+    <p>Odnosno:</p>
+    \[
+      \begin{cases}
+        x\ge -47,\\
+        x&lt;-5.
+      \end{cases}
+    \]
+    <p>Zato je rešenje prvog slučaja:</p>
+    \[
+      x\in[-47,-5).
+    \]
+  </section>
+
+  <section class="card solution-card">
+    <h2>Drugi slučaj: \(Q\ge 0\) i \(P&gt;Q^2\)</h2>
+    <p>Dobijamo sistem:</p>
+    \[
+      \begin{cases}
+        x+5\ge 0,\\
+        x+47&gt;(x+5)^2.
+      \end{cases}
+    \]
+    <p>Prvi uslov daje:</p>
+    \[
+      x\ge -5.
+    \]
+    <p>Drugi uslov sređujemo:</p>
+    \[
+      x+47&gt;x^2+10x+25,
+    \]
+    \[
+      0&gt;x^2+9x-22,
+    \]
+    \[
+      x^2+9x-22&lt;0.
+    \]
+    <p>Rastavljamo kvadratni trinom:</p>
+    \[
+      x^2+9x-22=(x+11)(x-2).
+    \]
+    <p>Zato je:</p>
+    \[
+      (x+11)(x-2)&lt;0
+      \quad\Longrightarrow\quad
+      x\in(-11,2).
+    \]
+    <p>Presek sa uslovom \(x\ge -5\) daje:</p>
+    \[
+      x\in[-5,2).
+    \]
+  </section>
+
+  <section class="card solution-card">
+    <h2>Unija rešenja</h2>
+    <p>Sada spajamo dva slučaja:</p>
+    \[
+      [-47,-5)\cup[-5,2)=[-47,2).
+    \]
+    <p>
+      Dakle, sva realna rešenja nejednačine su
+      \[
+        x\in[-47,2).
+      \]
+    </p>
+  </section>
+
+  <section class="card warning-card">
+    <h2>Celobrojna rešenja</h2>
+    <p>
+      Traže se samo celobrojna rešenja. Iz intervala
+      \[
+        [-47,2)
+      \]
+      dobijamo cele brojeve:
+      \[
+        -47,-46,-45,\ldots,0,1.
+      \]
+    </p>
+    <p>Njihov broj je:</p>
+    \[
+      1-(-47)+1=49.
+    \]
+  </section>
+
+  <section class="card answer-card">
+    <h2>Odgovor</h2>
+    <p class="boxed">\(\boxed{49}\)</p>
+    <p>Tačan odgovor je <b>E)</b>.</p>
+  </section>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>

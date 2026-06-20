@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drugi probni FON – Zadatak 6</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      --task: #dbeafe;
+      --idea: #dcfce7;
+      --analysis: #fef3c7;
+      --solution: #ede9fe;
+      --warning: #fee2e2;
+      --answer: #cffafe;
+      --accent: #2563eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #eef2ff 0%, var(--bg) 42%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 18px 46px;
+    }
+
+    header {
+      margin-bottom: 22px;
+      text-align: center;
+    }
+
+    .label {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #e0e7ff;
+      color: #3730a3;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.75rem, 4vw, 2.55rem);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin: 18px 0;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 9px;
+      background: var(--accent);
+    }
+
+    .task-card::before { background: var(--task); }
+    .idea-card::before { background: var(--idea); }
+    .analysis-card::before { background: var(--analysis); }
+    .solution-card::before { background: var(--solution); }
+    .warning-card::before { background: var(--warning); }
+    .answer-card::before { background: var(--answer); }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    p { margin: 10px 0; }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px 18px;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .math-block {
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .sign-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 14px;
+      font-size: 0.98rem;
+    }
+
+    .sign-table th,
+    .sign-table td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: center;
+      background: #fff;
+    }
+
+    .sign-table th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .plain-math {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      font-family: "Times New Roman", Cambria, serif;
+      font-size: 1.08em;
+      white-space: nowrap;
+    }
+
+    .final-box {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 2px solid #0f172a;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 1.35rem;
+      background: #ffffff;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="label">Drugi probni FON</div>
+      <h1>Zadatak 6</h1>
+      <div class="subtitle">Kvadratna racionalna nejednačina i broj celobrojnih rešenja</div>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Broj svih celobrojnih rešenja nejednačine</p>
+      <div class="math-block">
+        \[
+          \frac{(x-5)^2}{(2x-3)^2}>1
+        \]
+      </div>
+      <p>jednak je:</p>
+      <div class="choices">
+        <div>A) \(4\)</div>
+        <div>B) \(2\)</div>
+        <div>C) \(1\)</div>
+        <div>D) \(3\)</div>
+        <div>E) \(0\)</div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>Prebacujemo jedinicu na levu stranu i svodimo na jednu racionalnu nejednačinu. Pošto je imenilac kvadrat, njegov znak je pozitivan svuda gde je izraz definisan.</p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Svođenje nejednačine</h2>
+      <p>Najpre uslov definisanosti:</p>
+      <div class="math-block">
+        \[
+          2x-3\ne 0 \quad\Longrightarrow\quad x\ne \frac32.
+        \]
+      </div>
+      <p>Sada rešavamo:</p>
+      <div class="math-block">
+        \[
+        \begin{aligned}
+          \frac{(x-5)^2}{(2x-3)^2} &> 1 \\
+          \frac{(x-5)^2}{(2x-3)^2}-1 &> 0 \\
+          \frac{(x-5)^2-(2x-3)^2}{(2x-3)^2} &> 0.
+        \end{aligned}
+        \]
+      </div>
+      <p>U brojiocu koristimo razliku kvadrata:</p>
+      <div class="math-block">
+        \[
+        \begin{aligned}
+          (x-5)^2-(2x-3)^2
+          &=\bigl((x-5)-(2x-3)\bigr)\bigl((x-5)+(2x-3)\bigr) \\
+          &=(-x-2)(3x-8).
+        \end{aligned}
+        \]
+      </div>
+      <p>Dakle, dobijamo:</p>
+      <div class="math-block">
+        \[
+          \frac{(-x-2)(3x-8)}{(2x-3)^2}>0.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Znak izraza</h2>
+      <p>Pošto je</p>
+      <div class="math-block">
+        \[
+          (2x-3)^2>0 \quad \text{za } x\ne \frac32,
+        \]
+      </div>
+      <p>znak celog razlomka zavisi samo od brojioca:</p>
+      <div class="math-block">
+        \[
+          (-x-2)(3x-8)>0.
+        \]
+      </div>
+      <p>Kritične tačke su</p>
+      <div class="math-block">
+        \[
+          x=-2, \qquad x=\frac83.
+        \]
+      </div>
+
+      <table class="sign-table">
+        <thead>
+          <tr>
+            <th>Interval</th>
+            <th>\((-\infty,-2)\)</th>
+            <th>\((-2,\frac83)\)</th>
+            <th>\((\frac83,\infty)\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(-x-2\)</td>
+            <td>+</td>
+            <td>−</td>
+            <td>−</td>
+          </tr>
+          <tr>
+            <td>\(3x-8\)</td>
+            <td>−</td>
+            <td>−</td>
+            <td>+</td>
+          </tr>
+          <tr>
+            <td>Proizvod</td>
+            <td>−</td>
+            <td>+</td>
+            <td>−</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Zato je realno rešenje nejednačine
+        <span class="plain-math">−2 &lt; x &lt; 8/3, &nbsp; x ≠ 3/2</span>.
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Celobrojna rešenja</h2>
+      <p>
+        Traže se samo celobrojna rešenja. Iz intervala
+        <span class="plain-math">−2 &lt; x &lt; 8/3</span>
+        dobijamo
+        <span class="plain-math">x ∈ {−1, 0, 1, 2}</span>.
+      </p>
+      <p class="small-note">Zabrana <span class="plain-math">x = 3/2</span> ne utiče na broj celobrojnih rešenja, jer <span class="plain-math">3/2</span> nije ceo broj.</p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="final-box">4</div>
+      <p>Tačan odgovor je <strong>A)</strong>.</p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>

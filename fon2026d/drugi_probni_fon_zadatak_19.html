@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drugi probni FON – Zadatak 19</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#4b5563;
+      --task:#e9ddff;
+      --idea:#dbeafe;
+      --analysis:#dcfce7;
+      --solution:#fef3c7;
+      --warning:#fee2e2;
+      --answer:#d1fae5;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    .page{max-width:980px; margin:0 auto; padding:32px 18px 56px;}
+    h1{text-align:center; margin:0 0 26px; font-size:36px; color:#1e3a8a;}
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin:18px 0;
+      padding:26px 30px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:12px;
+    }
+    .task-card::before{background:var(--task)}
+    .idea-card::before{background:var(--idea)}
+    .analysis-card::before{background:var(--analysis)}
+    .solution-card::before{background:var(--solution)}
+    .warning-card::before{background:var(--warning)}
+    .answer-card::before{background:var(--answer)}
+    .card h2{margin:0 0 14px; font-size:22px; color:#111827}
+    .task-text{font-size:20px}
+    .formula{
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:14px;
+      padding:14px 18px;
+      margin:14px 0;
+    }
+    .center{text-align:center}
+    .answer-box{
+      font-size:30px;
+      font-weight:700;
+      text-align:center;
+      color:#065f46;
+    }
+    .note{color:var(--muted)}
+    mjx-container{overflow-x:auto; overflow-y:hidden; max-width:100%;}
+    mjx-container svg{max-width:100%; height:auto !important; width:auto !important;}
+    footer{
+      text-align:center;
+      color:#6b7280;
+      margin-top:30px;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>19. Najveća vrednost funkcije</h1>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <div class="task-text">
+        Najveća vrednost funkcije
+        \[
+          f(x)=3^{x-1}-27^{x+1}
+        \]
+        jednaka je:
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Idemo direktno: nađemo prvi izvod, iz uslova \(f'(x)=0\) dobijemo kritičnu tačku
+        \(x_0\), pa izračunamo \(f(x_0)\).
+      </p>
+      <p class="note">
+        Pre računanja izvoda korisno je sve prebaciti na osnovu \(3\), jer je
+        \(27=3^3\).
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <p>Najpre sredimo funkciju:</p>
+      <div class="formula center">
+        \[
+          f(x)=3^{x-1}-27^{x+1}
+              =3^{x-1}-\left(3^3\right)^{x+1}
+              =3^{x-1}-3^{3x+3}.
+        \]
+      </div>
+
+      <p>Prvi izvod je:</p>
+      <div class="formula center">
+        \[
+          f'(x)=3^{x-1}\ln 3-3^{3x+3}\cdot 3\ln 3.
+        \]
+      </div>
+
+      <p>Uslov za ekstrem:</p>
+      <div class="formula center">
+        \[
+          f'(x)=0
+        \]
+        \[
+          3^{x-1}\ln 3-3\cdot 3^{3x+3}\ln 3=0.
+        \]
+      </div>
+
+      <p>Pošto je \(\ln 3\neq 0\), delimo sa \(\ln 3\):</p>
+      <div class="formula center">
+        \[
+          3^{x-1}=3\cdot 3^{3x+3}.
+        \]
+      </div>
+
+      <p>Desnu stranu zapisujemo kao stepen broja \(3\):</p>
+      <div class="formula center">
+        \[
+          3\cdot 3^{3x+3}=3^{1}\cdot 3^{3x+3}=3^{3x+4}.
+        \]
+      </div>
+
+      <p>Zato je:</p>
+      <div class="formula center">
+        \[
+          3^{x-1}=3^{3x+4}
+          \quad\Longrightarrow\quad
+          x-1=3x+4.
+        \]
+      </div>
+
+      <div class="formula center">
+        \[
+          -5=2x
+          \quad\Longrightarrow\quad
+          x_0=-\frac52.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Vrednost funkcije u kritičnoj tački</h2>
+      <p>Sada računamo \(f(x_0)\):</p>
+
+      <div class="formula center">
+        \[
+          f\!\left(-\frac52\right)
+          =
+          3^{-\frac52-1}
+          -
+          3^{3\left(-\frac52\right)+3}.
+        \]
+      </div>
+
+      <div class="formula center">
+        \[
+          f\!\left(-\frac52\right)
+          =
+          3^{-\frac72}
+          -
+          3^{-\frac92}.
+        \]
+      </div>
+
+      <p>Izvučemo manji stepen \(3^{-\frac92}\):</p>
+      <div class="formula center">
+        \[
+          3^{-\frac72}-3^{-\frac92}
+          =
+          3^{-\frac92}\left(3^1-1\right)
+          =
+          2\cdot 3^{-\frac92}.
+        \]
+      </div>
+
+      <div class="formula center">
+        \[
+          2\cdot 3^{-\frac92}
+          =
+          \frac{2}{3^4\sqrt3}
+          =
+          \frac{2\sqrt3}{3^4\cdot 3}
+          =
+          \frac{2\sqrt3}{3^5}.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Zašto je to najveća vrednost?</h2>
+      <p>
+        Izvod menja znak iz plus u minus u tački \(x_0=-\frac52\), pa funkcija tu ima maksimum.
+        Takođe, za \(x\to -\infty\) funkcija teži ka \(0\), a za \(x\to+\infty\)
+        drugi član dominira i \(f(x)\to -\infty\), pa dobijeni maksimum jeste najveća vrednost.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="answer-box">
+        \[
+          \boxed{\frac{2\sqrt3}{3^5}}
+        \]
+      </div>
+      <p class="center">Tačan odgovor je <b>B</b>.</p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </div>
+</body>
+</html>
