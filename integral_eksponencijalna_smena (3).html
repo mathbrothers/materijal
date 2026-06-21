@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integral sa eksponencijalnom smenom</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --task: #5c9cd1;
+      --idea: #7b4fd0;
+      --analysis: #d99a22;
+      --solution: #2f9e72;
+      --warning: #d45b5b;
+      --answer: #047857;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 28px;
+      text-align: center;
+      font-size: 30px;
+      color: #111827;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.10);
+      border-left: 6px solid currentColor;
+    }
+
+    .card-title {
+      padding: 12px 18px;
+      color: white;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .card-body {
+      padding: 18px 22px 20px;
+      font-size: 17px;
+    }
+
+    .task-card {
+      color: var(--task);
+      background: #eaf4fd;
+    }
+
+    .task-card .card-title {
+      background: var(--task);
+    }
+
+    .idea-card {
+      color: var(--idea);
+      background: #f1ecff;
+    }
+
+    .idea-card .card-title {
+      background: var(--idea);
+    }
+
+    .analysis-card {
+      color: var(--analysis);
+      background: #fff5df;
+    }
+
+    .analysis-card .card-title {
+      background: var(--analysis);
+    }
+
+    .solution-card {
+      color: var(--solution);
+      background: #e9f8f1;
+    }
+
+    .solution-card .card-title {
+      background: var(--solution);
+    }
+
+    .warning-card {
+      color: var(--warning);
+      background: #fdecec;
+    }
+
+    .warning-card .card-title {
+      background: var(--warning);
+    }
+
+    .answer-card {
+      color: var(--answer);
+      background: #e7f7f1;
+    }
+
+    .answer-card .card-title {
+      background: var(--answer);
+    }
+
+    .card-body p {
+      margin: 0 0 12px;
+      color: #1f2937;
+    }
+
+    .card-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .math-block {
+      margin: 14px 0;
+      color: #111827;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .card-body {
+        padding: 16px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Integral sa eksponencijalnom smenom</h1>
+
+    <section class="card task-card">
+      <div class="card-title">Zadatak</div>
+      <div class="card-body">
+        <p>Izračunati integral:</p>
+        <div class="math-block">
+          \[
+          \int \frac{e^{3x}+e^x}{e^{2x}+5e^x-6}\,dx
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <div class="card-title">Ideja</div>
+      <div class="card-body">
+        <p>Pošto se u izrazu pojavljuju stepeni od \(e^x\), prirodna smena je:</p>
+        <div class="math-block">
+          \[
+          t=e^x
+          \]
+        </div>
+        <p>Tada važi:</p>
+        <div class="math-block">
+          \[
+          dx=\frac{dt}{t}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <div class="card-title">Analiza</div>
+      <div class="card-body">
+        <p>Iz smene \(t=e^x\) dobijamo:</p>
+        <div class="math-block">
+          \[
+          e^{3x}=t^3, \qquad e^x=t, \qquad e^{2x}=t^2
+          \]
+        </div>
+        <p>Zato integral prelazi u racionalni integral:</p>
+        <div class="math-block">
+          \[
+          \int \frac{t^3+t}{t^2+5t-6}\cdot\frac{dt}{t}
+          =
+          \int \frac{t^2+1}{t^2+5t-6}\,dt
+          \]
+        </div>
+        <p>Sada rastavljamo imenilac:</p>
+        <div class="math-block">
+          \[
+          t^2+5t-6=(t-1)(t+6)
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <div class="card-title">Rešenje</div>
+      <div class="card-body">
+        <p>Najpre podelimo polinome:</p>
+        <div class="math-block">
+          \[
+          \frac{t^2+1}{t^2+5t-6}
+          =
+          1+\frac{-5t+7}{t^2+5t-6}
+          \]
+        </div>
+        <p>Zatim razložimo razlomak:</p>
+        <div class="math-block">
+          \[
+          \frac{-5t+7}{(t-1)(t+6)}
+          =
+          \frac{A}{t-1}+\frac{B}{t+6}
+          \]
+        </div>
+        <p>Odavde:</p>
+        <div class="math-block">
+          \[
+          -5t+7=A(t+6)+B(t-1)
+          \]
+        </div>
+        <p>Dobija se:</p>
+        <div class="math-block">
+          \[
+          A=\frac{2}{7}, \qquad B=-\frac{37}{7}
+          \]
+        </div>
+        <p>Zato je:</p>
+        <div class="math-block">
+          \[
+          \int \frac{t^2+1}{t^2+5t-6}\,dt
+          =
+          \int \left(1+\frac{2}{7}\cdot\frac{1}{t-1}-\frac{37}{7}\cdot\frac{1}{t+6}\right)dt
+          \]
+        </div>
+        <p>Integracijom dobijamo:</p>
+        <div class="math-block">
+          \[
+          t+\frac{2}{7}\ln|t-1|-\frac{37}{7}\ln|t+6|+C
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <div class="card-title">Napomena</div>
+      <div class="card-body">
+        <p>Pošto je \(t=e^x\), vraćamo smenu \(t=e^x\).</p>
+        <p>Takođe, izraz \(e^x+6\) je uvek pozitivan, pa apsolutna vrednost kod tog logaritma nije neophodna.</p>
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <div class="card-title">Odgovor</div>
+      <div class="card-body">
+        <div class="math-block">
+          \[
+          \boxed{
+          e^x+\frac{2}{7}\ln|e^x-1|-\frac{37}{7}\ln(e^x+6)+C
+          }
+          \]
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
