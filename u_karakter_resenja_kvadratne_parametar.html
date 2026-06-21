@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karakter rešenja kvadratne jednačine</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #172033;
+      --muted: #657083;
+      --card: #ffffff;
+      --line: #e4e8f0;
+      --idea: #d8cef9;
+      --task: #cbe7ff;
+      --analysis: #d6f3e5;
+      --solution: #fff1c7;
+      --warning: #ffd6dc;
+      --answer: #d9f7f4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 24px;
+      padding: 28px 32px;
+      background: linear-gradient(135deg, #ffffff, #eef4ff);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 18px 45px rgba(30, 50, 90, 0.08);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+      font-size: clamp(28px, 4vw, 42px);
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 28px 24px 34px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 16px 40px rgba(20, 35, 70, 0.07);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: #ddd;
+    }
+
+    .task-card::before { background: var(--task); }
+    .idea-card::before { background: var(--idea); }
+    .analysis-card::before { background: var(--analysis); }
+    .solution-card::before { background: var(--solution); }
+    .warning-card::before { background: var(--warning); }
+    .answer-card::before { background: var(--answer); }
+
+    .formula {
+      margin: 16px 0;
+      padding: 14px 18px;
+      background: #f8fafd;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      text-align: center;
+      font-size: 1.15rem;
+      overflow-x: auto;
+    }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .mini-table th {
+      background: #f1f5fb;
+    }
+
+    .mini-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .important {
+      font-weight: 800;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    footer {
+      margin-top: 36px;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Karakter rešenja kvadratne jednačine</h1>
+      <p class="subtitle">Mali tutorijal: kako se preko diskriminante diskutuje broj i priroda rešenja.</p>
+    </header>
+
+    <section class="task-card card">
+      <h2>Zadaci</h2>
+      <p>Ispitati prirodu rešenja kvadratnih jednačina u zavisnosti od parametra \(m\):</p>
+      <ol>
+        <li>\(x^2+3x-m-1=0\)</li>
+        <li>\(mx^2+x-2=0,\quad m\ne0\)</li>
+      </ol>
+    </section>
+
+    <section class="idea-card card">
+      <h2>Mali tutorijal</h2>
+      <p>Opšti oblik kvadratne jednačine je:</p>
+      <div class="formula">\(ax^2+bx+c=0\)</div>
+      <p class="important">Prvo i obavezno proveravamo da li je koeficijent uz \(x^2\) različit od nule:</p>
+      <div class="formula">\(a\ne0\)</div>
+      <p>Ako je \(a=0\), onda to više nije kvadratna jednačina, nego linearna jednačina.</p>
+
+      <p>Karakter rešenja određuje diskriminanta:</p>
+      <div class="formula">\(D=b^2-4ac\)</div>
+
+      <table class="mini-table">
+        <thead>
+          <tr>
+            <th>Diskriminanta</th>
+            <th>Karakter rešenja</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(D>0\)</td>
+            <td>jednačina ima dva različita realna rešenja</td>
+          </tr>
+          <tr>
+            <td>\(D=0\)</td>
+            <td>jednačina ima jedno dvostruko realno rešenje</td>
+          </tr>
+          <tr>
+            <td>\(D<0\)</td>
+            <td>jednačina nema realnih rešenja; postoje dva kompleksna konjugovana rešenja</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Kada se u zadatku pojavljuje parametar, diskriminanta zavisi od tog parametra, pa posebno rešavamo uslove \(D>0\), \(D=0\) i \(D<0\).</p>
+    </section>
+
+    <section class="solution-card card">
+      <h2>Rešenje 4)</h2>
+      <p>Data je jednačina:</p>
+      <div class="formula">\(x^2+3x-m-1=0\)</div>
+      <p>Ovde su:</p>
+      <div class="formula">\(a=1,\quad b=3,\quad c=-m-1\)</div>
+      <p>Pošto je \(a=1\ne0\), jednačina je za svako \(m\) zaista kvadratna.</p>
+
+      <p>Računamo diskriminantu:</p>
+      <div class="formula">\(D=b^2-4ac\)</div>
+      <div class="formula">\(D=3^2-4\cdot1\cdot(-m-1)\)</div>
+      <div class="formula">\(D=9+4m+4=4m+13\)</div>
+
+      <p>Sada diskutujemo znak diskriminante:</p>
+      <div class="formula">\(D>0\quad\Longleftrightarrow\quad 4m+13>0\quad\Longleftrightarrow\quad m>-\frac{13}{4}\)</div>
+      <div class="formula">\(D=0\quad\Longleftrightarrow\quad 4m+13=0\quad\Longleftrightarrow\quad m=-\frac{13}{4}\)</div>
+      <div class="formula">\(D<0\quad\Longleftrightarrow\quad 4m+13<0\quad\Longleftrightarrow\quad m<-\frac{13}{4}\)</div>
+
+      <p>Ako su potrebna i sama rešenja, ona su:</p>
+      <div class="formula">\(x_{1,2}=\frac{-3\pm\sqrt{4m+13}}{2}\)</div>
+      <p>Za \(m=-\frac{13}{4}\), dobija se dvostruko rešenje:</p>
+      <div class="formula">\(x=-\frac{3}{2}\)</div>
+    </section>
+
+    <section class="answer-card card">
+      <h2>Odgovor za 4)</h2>
+      <ul>
+        <li>Za \(m>-\frac{13}{4}\), jednačina ima dva različita realna rešenja.</li>
+        <li>Za \(m=-\frac{13}{4}\), jednačina ima jedno dvostruko realno rešenje.</li>
+        <li>Za \(m<-\frac{13}{4}\), jednačina nema realnih rešenja; postoje dva kompleksna konjugovana rešenja.</li>
+      </ul>
+    </section>
+
+    <section class="solution-card card">
+      <h2>Rešenje 5)</h2>
+      <p>Data je jednačina:</p>
+      <div class="formula">\(mx^2+x-2=0,\quad m\ne0\)</div>
+
+      <p>Ovde su:</p>
+      <div class="formula">\(a=m,\quad b=1,\quad c=-2\)</div>
+
+      <p class="important">Pošto je koeficijent uz \(x^2\) jednak \(m\), moramo imati:</p>
+      <div class="formula">\(m\ne0\)</div>
+      <p>Ovaj uslov je već dat u zadatku. Da je \(m=0\), jednačina ne bi bila kvadratna.</p>
+
+      <p>Računamo diskriminantu:</p>
+      <div class="formula">\(D=b^2-4ac\)</div>
+      <div class="formula">\(D=1^2-4\cdot m\cdot(-2)\)</div>
+      <div class="formula">\(D=1+8m\)</div>
+
+      <p>Sada diskutujemo znak diskriminante:</p>
+      <div class="formula">\(D>0\quad\Longleftrightarrow\quad 1+8m>0\quad\Longleftrightarrow\quad m>-\frac{1}{8}\)</div>
+      <p>Ali ne smemo zaboraviti uslov \(m\ne0\), pa za dva različita realna rešenja važi:</p>
+      <div class="formula">\(m>-\frac{1}{8}\quad \text{i}\quad m\ne0\)</div>
+      <div class="formula">\(m\in\left(-\frac{1}{8},0\right)\cup(0,+\infty)\)</div>
+
+      <div class="formula">\(D=0\quad\Longleftrightarrow\quad 1+8m=0\quad\Longleftrightarrow\quad m=-\frac{1}{8}\)</div>
+      <p>Ova vrednost je dozvoljena jer je \(-\frac{1}{8}\ne0\).</p>
+
+      <div class="formula">\(D<0\quad\Longleftrightarrow\quad 1+8m<0\quad\Longleftrightarrow\quad m<-\frac{1}{8}\)</div>
+
+      <p>Ako su potrebna i sama rešenja, preko formule su:</p>
+      <div class="formula">\(x_{1,2}=\frac{-1\pm\sqrt{1+8m}}{2m},\quad m\ne0\)</div>
+      <p>Za \(m=-\frac{1}{8}\), dvostruko rešenje je:</p>
+      <div class="formula">\(x=\frac{-1}{2m}=\frac{-1}{2\cdot\left(-\frac{1}{8}\right)}=4\)</div>
+    </section>
+
+    <section class="answer-card card">
+      <h2>Odgovor za 5)</h2>
+      <ul>
+        <li>Za \(m\in\left(-\frac{1}{8},0\right)\cup(0,+\infty)\), jednačina ima dva različita realna rešenja.</li>
+        <li>Za \(m=-\frac{1}{8}\), jednačina ima jedno dvostruko realno rešenje.</li>
+        <li>Za \(m<-\frac{1}{8}\), jednačina nema realnih rešenja; postoje dva kompleksna konjugovana rešenja.</li>
+        <li>Vrednost \(m=0\) nije predmet diskusije kao kvadratna jednačina, jer je tada koeficijent uz \(x^2\) jednak nuli.</li>
+      </ul>
+    </section>
+
+    <section class="warning-card card">
+      <h2>Najvažnija napomena</h2>
+      <p>Kod zadataka sa parametrima ne gledamo samo diskriminantu. Uvek prvo proveravamo da li je jednačina zaista kvadratna:</p>
+      <div class="formula">\(a\ne0\)</div>
+      <p>Tek posle toga ide diskusija preko \(D>0\), \(D=0\) i \(D<0\).</p>
+    </section>
+
+    <footer>
+      Mathbrotherhood Powered by ChatGPT
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parametar — konjugovano kompleksna rešenja</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      chtml: { scale: 1.04 }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border:#dbe3ef;
+      --blue:#dbeafe;
+      --green:#dcfce7;
+      --amber:#fef3c7;
+      --violet:#ede9fe;
+      --shadow:0 18px 45px rgba(15,23,42,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.65;
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:34px 18px 50px;
+    }
+    .card{
+      position:relative;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:26px;
+      padding:26px 30px;
+      margin:22px 0;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:10px;
+      background:var(--blue);
+    }
+    .task-card::before{background:var(--blue)}
+    .warning-card::before{background:var(--amber)}
+    .solution-card::before{background:var(--green)}
+    .answer-card::before{background:var(--violet)}
+    .pill{
+      display:inline-block;
+      background:#eef2f7;
+      padding:7px 15px;
+      border-radius:999px;
+      font-weight:800;
+      color:#1e293b;
+      margin-bottom:12px;
+    }
+    h1,h2,h3{line-height:1.2;margin:8px 0 14px}
+    h1{font-size:34px}
+    h2{font-size:27px}
+    h3{font-size:22px}
+    p{font-size:18px;margin:10px 0}
+    .formula-box{
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:14px 18px;
+      margin:14px 0;
+      overflow-x:auto;
+    }
+    .boxed{
+      background:#f0fdf4;
+      border-color:#bbf7d0;
+      font-weight:800;
+    }
+    .note{
+      color:var(--muted);
+      font-size:17px;
+    }
+    footer{
+      text-align:center;
+      color:var(--muted);
+      margin-top:28px;
+      font-size:15px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <section class="card task-card">
+    <span class="pill">Zadaci 11 i 12</span>
+    <h1>Parametar za konjugovano kompleksna rešenja</h1>
+    <p>Odrediti vrednost realnog parametra \(p\) tako da jednačina ima konjugovano kompleksna rešenja.</p>
+
+    <div class="formula-box">
+      <p>\(11)\quad x^2-(p+1)x+2p-1=0\)</p>
+      <p>\(12)\quad (2p+1)x^2-(p+2)x+p-3=0\)</p>
+    </div>
+  </section>
+
+  <section class="card warning-card">
+    <span class="pill">Podsetnik</span>
+    <h2>Uslov za konjugovano kompleksna rešenja</h2>
+    <p>Za kvadratnu jednačinu sa realnim koeficijentima mora da važi:</p>
+    <div class="formula-box">
+      \[
+      a\ne 0
+      \qquad\text{i}\qquad
+      D\lt 0.
+      \]
+    </div>
+    <p class="note">Za rešavanje dobijenih nejednačina pogledaj generalni tutorijal za kvadratne nejednačine.</p>
+  </section>
+
+  <section class="card solution-card">
+    <span class="pill">Rešenje 11</span>
+    <h2>\(x^2-(p+1)x+2p-1=0\)</h2>
+
+    <p>Ovde je \(a=1\), pa je jednačina uvek kvadratna.</p>
+
+    <p>Računamo diskriminantu:</p>
+    <div class="formula-box">
+      \[
+      D=\bigl(-(p+1)\bigr)^2-4\cdot1\cdot(2p-1)
+      \]
+      \[
+      D=(p+1)^2-8p+4
+      \]
+      \[
+      D=p^2+2p+1-8p+4
+      \]
+      \[
+      D=p^2-6p+5=(p-1)(p-5).
+      \]
+    </div>
+
+    <p>Tražimo konjugovano kompleksna rešenja, dakle \(D\lt0\):</p>
+    <div class="formula-box">
+      \[
+      (p-1)(p-5)\lt0.
+      \]
+    </div>
+
+    <p>Proizvod je negativan između nula \(1\) i \(5\).</p>
+
+    <div class="formula-box boxed">
+      \[
+      \boxed{\,1\lt p\lt5\,}
+      \]
+    </div>
+  </section>
+
+  <section class="card solution-card">
+    <span class="pill">Rešenje 12</span>
+    <h2>\((2p+1)x^2-(p+2)x+p-3=0\)</h2>
+
+    <p>Prvo mora da važi uslov da jednačina bude kvadratna:</p>
+    <div class="formula-box">
+      \[
+      2p+1\ne0
+      \qquad\Longleftrightarrow\qquad
+      p\ne-\frac12.
+      \]
+    </div>
+
+    <p>Računamo diskriminantu:</p>
+    <div class="formula-box">
+      \[
+      D=\bigl(-(p+2)\bigr)^2-4(2p+1)(p-3)
+      \]
+      \[
+      D=(p+2)^2-4(2p+1)(p-3)
+      \]
+      \[
+      D=p^2+4p+4-4(2p^2-5p-3)
+      \]
+      \[
+      D=p^2+4p+4-8p^2+20p+12
+      \]
+      \[
+      D=-7p^2+24p+16.
+      \]
+    </div>
+
+    <p>Tražimo \(D\lt0\):</p>
+    <div class="formula-box">
+      \[
+      -7p^2+24p+16\lt0.
+      \]
+    </div>
+
+    <p>Pomnožimo sa \(-1\), pa se znak nejednačine menja:</p>
+    <div class="formula-box">
+      \[
+      7p^2-24p-16\gt0.
+      \]
+    </div>
+
+    <p>Nađimo nule kvadratnog trinoma \(7p^2-24p-16\):</p>
+    <div class="formula-box">
+      \[
+      p_{1,2}=\frac{24\pm\sqrt{(-24)^2-4\cdot7\cdot(-16)}}{2\cdot7}
+      \]
+      \[
+      p_{1,2}=\frac{24\pm\sqrt{1024}}{14}
+      \]
+      \[
+      p_{1,2}=\frac{24\pm32}{14}.
+      \]
+      \[
+      p_1=-\frac47,\qquad p_2=4.
+      \]
+    </div>
+
+    <p>Parabola \(7p^2-24p-16\) je okrenuta nagore, pa je pozitivna izvan intervala između nula:</p>
+    <div class="formula-box">
+      \[
+      p\lt-\frac47
+      \qquad\text{ili}\qquad
+      p\gt4.
+      \]
+    </div>
+
+    <p>Uslov \(p\ne-\frac12\) je automatski ispunjen, jer \(-\frac12\) ne pripada dobijenim intervalima.</p>
+
+    <div class="formula-box boxed">
+      \[
+      \boxed{\,p\in\left(-\infty,-\frac47\right)\cup(4,\infty)\,}
+      \]
+    </div>
+  </section>
+
+  <section class="card answer-card">
+    <span class="pill">Odgovor</span>
+    <h2>Konačno</h2>
+    <div class="formula-box boxed">
+      <p>\(11)\quad \boxed{p\in(1,5)}\)</p>
+      <p>\(12)\quad \boxed{p\in\left(-\infty,-\frac47\right)\cup(4,\infty)}\)</p>
+    </div>
+  </section>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+
+</div>
+</body>
+</html>

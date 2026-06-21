@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vijetove formule — mali tutorijal</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #172033;
+      --muted: #5f6b7a;
+      --card: #ffffff;
+      --border: #e3e7ef;
+      --shadow: 0 16px 40px rgba(23, 32, 51, 0.08);
+      --task: #dbeafe;
+      --idea: #dcfce7;
+      --analysis: #ede9fe;
+      --solution: #ffedd5;
+      --warning: #fee2e2;
+      --answer: #cffafe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px 48px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #eef2ff 0, transparent 34%), var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 26px;
+      padding: 30px 32px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, #ffffff, #f8fbff);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 46px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .task-card,
+    .idea-card,
+    .analysis-card,
+    .solution-card,
+    .warning-card,
+    .answer-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px 28px;
+      margin: 20px 0;
+      box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .task-card::before,
+    .idea-card::before,
+    .analysis-card::before,
+    .solution-card::before,
+    .warning-card::before,
+    .answer-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 9px;
+    }
+
+    .task-card::before { background: var(--task); }
+    .idea-card::before { background: var(--idea); }
+    .analysis-card::before { background: var(--analysis); }
+    .solution-card::before { background: var(--solution); }
+    .warning-card::before { background: var(--warning); }
+    .answer-card::before { background: var(--answer); }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 25px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 20px;
+    }
+
+    p { margin: 10px 0; }
+
+    ul { margin: 10px 0 0 22px; padding: 0; }
+    li { margin: 6px 0; }
+
+    .formula-box {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .mini {
+      padding: 15px 16px;
+      border-radius: 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .final-answer {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .muted { color: var(--muted); }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 22px 0;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      margin-top: 30px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Vijetove formule — mali tutorijal</h1>
+      <p class="subtitle">Kako računamo izraze sa rešenjima kvadratne jednačine, a da sama rešenja ne nalazimo.</p>
+    </header>
+
+    <section class="task-card">
+      <h2>Zadaci</h2>
+      <p>Ne nalazeći rešenja \(x_1\) i \(x_2\), izračunati vrednosti izraza.</p>
+      <p><strong>7)</strong> Za jednačinu</p>
+      \[
+        x^2-2x+3=0
+      \]
+      <p>izračunati:</p>
+      \[
+        \text{a) }\frac1{x_1}+\frac1{x_2},\qquad
+        \text{b) }x_1^2+x_2^2,
+      \]
+      \[
+        \text{c) }\frac1{x_1^2}+\frac1{x_2^2},\qquad
+        \text{d) }\frac{x_1}{x_2}+\frac{x_2}{x_1}.
+      \]
+
+      <p><strong>8)</strong> Za jednačinu</p>
+      \[
+        x^2-5x+3=0
+      \]
+      <p>izračunati iste izraze.</p>
+    </section>
+
+    <section class="idea-card">
+      <h2>1. Osnovna ideja</h2>
+      <p>Za kvadratnu jednačinu</p>
+      \[
+        ax^2+bx+c=0,\qquad a\ne0,
+      \]
+      <p>ako su njena rešenja \(x_1\) i \(x_2\), važe <strong>Vijetove formule</strong>:</p>
+      <div class="formula-box">
+        \[
+          x_1+x_2=-\frac ba,
+          \qquad
+          x_1x_2=\frac ca.
+        \]
+      </div>
+      <p>U zadacima ovog tipa najčešće uopšte ne tražimo posebno \(x_1\) i \(x_2\), nego odmah računamo preko njihovog zbira i proizvoda.</p>
+    </section>
+
+    <section class="analysis-card">
+      <h2>2. Oznake koje stalno koristimo</h2>
+      <p>Da kraće pišemo, uvodimo:</p>
+      <div class="formula-box">
+        \[
+          S=x_1+x_2,
+          \qquad
+          P=x_1x_2.
+        \]
+      </div>
+      <p>Tada su najkorisnije formule:</p>
+      <div class="grid">
+        <div class="mini">
+          \[
+            x_1^2+x_2^2=(x_1+x_2)^2-2x_1x_2=S^2-2P
+          \]
+        </div>
+        <div class="mini">
+          \[
+            \frac1{x_1}+\frac1{x_2}=\frac{x_1+x_2}{x_1x_2}=\frac SP
+          \]
+        </div>
+        <div class="mini">
+          \[
+            \frac1{x_1^2}+\frac1{x_2^2}=\frac{x_1^2+x_2^2}{x_1^2x_2^2}=\frac{S^2-2P}{P^2}
+          \]
+        </div>
+        <div class="mini">
+          \[
+            \frac{x_1}{x_2}+\frac{x_2}{x_1}=\frac{x_1^2+x_2^2}{x_1x_2}=\frac{S^2-2P}{P}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="solution-card">
+      <h2>3. Kratak primer</h2>
+      <p>Uzmimo jednačinu:</p>
+      \[
+        x^2-3x+2=0.
+      \]
+      <p>Ovde je \(a=1\), \(b=-3\), \(c=2\), pa po Vijetovim formulama:</p>
+      \[
+        x_1+x_2=-\frac{-3}{1}=3,
+        \qquad
+        x_1x_2=\frac21=2.
+      \]
+
+      <div class="divider"></div>
+
+      <p>Odmah dobijamo:</p>
+      \[
+        2x_1+2x_2=2(x_1+x_2)=2\cdot3=6.
+      \]
+      \[
+        x_1^2x_2^2=(x_1x_2)^2=2^2=4.
+      \]
+      \[
+        \frac1{x_1}+\frac1{x_2}=\frac{x_1+x_2}{x_1x_2}=\frac32.
+      \]
+      <p class="muted">Poenta: ne moramo da znamo koliko su posebno \(x_1\) i \(x_2\). Dovoljni su zbir i proizvod.</p>
+    </section>
+
+    <section class="warning-card">
+      <h2>Napomena</h2>
+      <p>Kod razlomaka, kao što su \(\frac1{x_1}\), \(\frac1{x_2}\), \(\frac{x_1}{x_2}\), mora važiti \(x_1x_2\ne0\), tj. \(P\ne0\).</p>
+      <p>U našim zadacima je \(P=3\), pa nema problema sa deljenjem nulom.</p>
+    </section>
+
+    <section class="solution-card">
+      <h2>Rešenje 7)</h2>
+      <p>Data je jednačina:</p>
+      \[
+        x^2-2x+3=0.
+      \]
+      <p>Ovde je \(a=1\), \(b=-2\), \(c=3\). Zato je:</p>
+      \[
+        S=x_1+x_2=-\frac ba=-\frac{-2}{1}=2,
+        \qquad
+        P=x_1x_2=\frac ca=\frac31=3.
+      \]
+
+      <h3>a)</h3>
+      \[
+        \frac1{x_1}+\frac1{x_2}=\frac SP=\frac23.
+      \]
+
+      <h3>b)</h3>
+      \[
+        x_1^2+x_2^2=S^2-2P=2^2-2\cdot3=4-6=-2.
+      \]
+
+      <h3>c)</h3>
+      \[
+        \frac1{x_1^2}+\frac1{x_2^2}=\frac{x_1^2+x_2^2}{(x_1x_2)^2}=\frac{-2}{3^2}=-\frac29.
+      \]
+
+      <h3>d)</h3>
+      \[
+        \frac{x_1}{x_2}+\frac{x_2}{x_1}=\frac{x_1^2+x_2^2}{x_1x_2}=\frac{-2}{3}=-\frac23.
+      \]
+    </section>
+
+    <section class="answer-card">
+      <h2>Odgovor za 7)</h2>
+      <p class="final-answer">
+        \[
+          \boxed{\text{a) }\frac23,\quad
+          \text{b) }-2,\quad
+          \text{c) }-\frac29,\quad
+          \text{d) }-\frac23}
+        \]
+      </p>
+    </section>
+
+    <section class="solution-card">
+      <h2>Rešenje 8)</h2>
+      <p>Data je jednačina:</p>
+      \[
+        x^2-5x+3=0.
+      \]
+      <p>Ovde je \(a=1\), \(b=-5\), \(c=3\). Zato je:</p>
+      \[
+        S=x_1+x_2=-\frac ba=-\frac{-5}{1}=5,
+        \qquad
+        P=x_1x_2=\frac ca=\frac31=3.
+      \]
+
+      <h3>a)</h3>
+      \[
+        \frac1{x_1}+\frac1{x_2}=\frac SP=\frac53.
+      \]
+
+      <h3>b)</h3>
+      \[
+        x_1^2+x_2^2=S^2-2P=5^2-2\cdot3=25-6=19.
+      \]
+
+      <h3>c)</h3>
+      \[
+        \frac1{x_1^2}+\frac1{x_2^2}=\frac{x_1^2+x_2^2}{(x_1x_2)^2}=\frac{19}{3^2}=\frac{19}{9}.
+      \]
+
+      <h3>d)</h3>
+      \[
+        \frac{x_1}{x_2}+\frac{x_2}{x_1}=\frac{x_1^2+x_2^2}{x_1x_2}=\frac{19}{3}.
+      \]
+    </section>
+
+    <section class="answer-card">
+      <h2>Odgovor za 8)</h2>
+      <p class="final-answer">
+        \[
+          \boxed{\text{a) }\frac53,\quad
+          \text{b) }19,\quad
+          \text{c) }\frac{19}{9},\quad
+          \text{d) }\frac{19}{3}}
+        \]
+      </p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
