@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Najveća vrednost funkcije — smena 3^x=t</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --task:#93c5fd;
+      --idea:#f9a8d4;
+      --solution:#86efac;
+      --warning:#fde68a;
+      --answer:#c4b5fd;
+      --shadow:0 12px 30px rgba(15,23,42,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    .wrap{
+      max-width:920px;
+      margin:0 auto;
+      padding:34px 18px 28px;
+    }
+    h1{
+      font-size:clamp(1.55rem, 2.6vw, 2.2rem);
+      margin:0 0 18px;
+      letter-spacing:-.02em;
+    }
+    .subtitle{
+      color:var(--muted);
+      margin:-6px 0 24px;
+    }
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px 24px;
+      margin:18px 0;
+      border-left:9px solid #ddd;
+    }
+    .task-card{border-left-color:var(--task);}
+    .idea-card{border-left-color:var(--idea);}
+    .solution-card{border-left-color:var(--solution);}
+    .warning-card{border-left-color:var(--warning);}
+    .answer-card{border-left-color:var(--answer);}
+    .card h2{
+      font-size:1.14rem;
+      margin:0 0 10px;
+    }
+    .choices{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+      gap:8px 18px;
+      margin-top:10px;
+    }
+    .choice{
+      padding:8px 10px;
+      background:#f9fafb;
+      border-radius:10px;
+      text-align:center;
+    }
+    .choice.good{
+      outline:2px solid #8b5cf6;
+      background:#f5f3ff;
+      font-weight:700;
+    }
+    .step{
+      margin:12px 0;
+    }
+    .pill{
+      display:inline-block;
+      padding:2px 9px;
+      border-radius:999px;
+      background:#eef2ff;
+      color:#3730a3;
+      font-weight:700;
+      font-size:.92rem;
+    }
+    footer{
+      margin-top:30px;
+      text-align:center;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Najveća vrednost funkcije</h1>
+    <p class="subtitle">Smena \(3^x=t\), uz obavezno \(t&gt;0\).</p>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Najveća vrednost funkcije</p>
+      \[
+        f(x)=3^{x-1}-27^{x+1}
+      \]
+      <p>jednaka je:</p>
+      <div class="choices">
+        <div class="choice">A) \(\dfrac{2\sqrt3}{3^3}\)</div>
+        <div class="choice good">B) \(\dfrac{2\sqrt3}{3^5}\)</div>
+        <div class="choice">C) \(\dfrac{26\sqrt3}{3^8}\)</div>
+        <div class="choice">D) \(\dfrac{8}{3^6}\)</div>
+        <div class="choice">E) \(1\)</div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>Pošto se u izrazu pojavljuju stepeni broja \(3\), uvodimo smenu</p>
+      \[
+        3^x=t, \qquad t&gt;0.
+      \]
+      <p>Onda funkciju po \(x\) pretvaramo u funkciju po pozitivnoj promenljivoj \(t\).</p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <div class="step">
+        Iz smene \(3^x=t\) dobijamo:
+        \[
+          3^{x-1}=\frac{3^x}{3}=\frac{t}{3}.
+        \]
+      </div>
+
+      <div class="step">
+        Takođe je
+        \[
+          27^{x+1}=27^x\cdot 27=(3^3)^x\cdot 27=(3^x)^3\cdot 27=27t^3.
+        \]
+      </div>
+
+      <div class="step">
+        Dakle,
+        \[
+          f(x)=3^{x-1}-27^{x+1}
+          =\frac{t}{3}-27t^3.
+        \]
+        Posmatramo funkciju
+        \[
+          F(t)=\frac{t}{3}-27t^3, \qquad t&gt;0.
+        \]
+      </div>
+
+      <div class="step">
+        Tražimo ekstremum preko izvoda:
+        \[
+          F'(t)=\frac13-81t^2.
+        \]
+        Uslov \(F'(t)=0\) daje
+        \[
+          \frac13-81t^2=0
+        \]
+        \[
+          81t^2=\frac13
+        \]
+        \[
+          t^2=\frac{1}{243}=\frac{1}{3^5}.
+        \]
+      </div>
+
+      <div class="step">
+        Pošto je \(t&gt;0\), uzimamo samo pozitivan koren:
+        \[
+          t=\frac{1}{\sqrt{3^5}}=\frac{1}{9\sqrt3}.
+        \]
+      </div>
+
+      <div class="step">
+        Sada računamo najveću vrednost. Iz uslova
+        \[
+          81t^2=\frac13
+        \]
+        dobijamo
+        \[
+          27t^2=\frac19.
+        \]
+        Zato je
+        \[
+          27t^3=t\cdot 27t^2=\frac{t}{9}.
+        \]
+        Pa je
+        \[
+          F(t)=\frac{t}{3}-27t^3
+          =\frac{t}{3}-\frac{t}{9}
+          =\frac{2t}{9}.
+        \]
+      </div>
+
+      <div class="step">
+        Uvrstimo \(t=\dfrac{1}{9\sqrt3}\):
+        \[
+          F_{\max}=\frac{2}{9}\cdot \frac{1}{9\sqrt3}
+          =\frac{2}{81\sqrt3}.
+        \]
+        Racionalizujemo imenilac:
+        \[
+          \frac{2}{81\sqrt3}\cdot \frac{\sqrt3}{\sqrt3}
+          =\frac{2\sqrt3}{243}
+          =\frac{2\sqrt3}{3^5}.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>Važno je da se ne zaboravi uslov \(t&gt;0\), jer je \(t=3^x\). Zato se iz jednačine \(t^2=\frac1{3^5}\) uzima samo pozitivan koren.</p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      \[
+        \boxed{\frac{2\sqrt3}{3^5}}
+      \]
+      <p><span class="pill">Tačno je B)</span></p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
