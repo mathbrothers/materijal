@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lokalni ekstrem implicitno zadate funkcije</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      margin: 22px 0;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border-left: 6px solid;
+      background: white;
+    }
+
+    .card-title {
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 12px 18px;
+    }
+
+    .card-body {
+      padding: 18px 22px;
+      font-size: 18px;
+    }
+
+    .task-card {
+      border-left-color: #5c9cd1;
+      background: #eaf4fc;
+    }
+    .task-card .card-title { background: #5c9cd1; }
+
+    .idea-card {
+      border-left-color: #7b4fd0;
+      background: #f1ecfb;
+    }
+    .idea-card .card-title { background: #7b4fd0; }
+
+    .analysis-card {
+      border-left-color: #d99a22;
+      background: #fff6e6;
+    }
+    .analysis-card .card-title { background: #d99a22; }
+
+    .solution-card {
+      border-left-color: #2f9e72;
+      background: #eaf8f2;
+    }
+    .solution-card .card-title { background: #2f9e72; }
+
+    .warning-card {
+      border-left-color: #d45b5b;
+      background: #fdecec;
+    }
+    .warning-card .card-title { background: #d45b5b; }
+
+    .answer-card {
+      border-left-color: #047857;
+      background: #e7f7ef;
+    }
+    .answer-card .card-title { background: #047857; }
+
+    .math-note {
+      background: rgba(255,255,255,0.6);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="card task-card">
+      <div class="card-title">Zadatak</div>
+      <div class="card-body">
+        Odrediti lokalne ekstreme implicitno zadate funkcije \(z=z(x,y)\), ako je
+        \[
+        \frac12 x^2+y^2+3z^2-z(x+y)+x=\frac{13}{2}.
+        \]
+      </div>
+    </div>
+
+    <div class="card idea-card">
+      <div class="card-title">Ideja</div>
+      <div class="card-body">
+        Posmatramo jednačinu kao nivo-površ
+        \[
+        F(x,y,z)=0,
+        \]
+        gde je
+        \[
+        F(x,y,z)=\frac12 x^2+y^2+3z^2-z(x+y)+x-\frac{13}{2}.
+        \]
+        Pošto je funkcija implicitno data, parcijalni izvodi su
+        \[
+        z_x=-\frac{F_x}{F_z}, \qquad z_y=-\frac{F_y}{F_z}.
+        \]
+        U tački lokalnog ekstrema mora važiti
+        \[
+        z_x=0, \qquad z_y=0,
+        \]
+        odnosno, ako je \(F_z\ne 0\), dobijamo uslove
+        \[
+        F_x=0, \qquad F_y=0.
+        \]
+      </div>
+    </div>
+
+    <div class="card analysis-card">
+      <div class="card-title">Analiza</div>
+      <div class="card-body">
+        Računamo parcijalne izvode:
+        \[
+        F_x=x-z+1,
+        \]
+        \[
+        F_y=2y-z,
+        \]
+        \[
+        F_z=6z-x-y.
+        \]
+        Uslovi \(F_x=0\) i \(F_y=0\) daju:
+        \[
+        x-z+1=0 \quad \Rightarrow \quad x=z-1,
+        \]
+        \[
+        2y-z=0 \quad \Rightarrow \quad y=\frac z2.
+        \]
+        Sada ove izraze ubacujemo u početnu jednačinu:
+        \[
+        \frac12(z-1)^2+\left(\frac z2\right)^2+3z^2-z\left(z-1+\frac z2\right)+z-1=\frac{13}{2}.
+        \]
+        Posle sređivanja dobija se
+        \[
+        \frac94 z^2+z-7=0,
+        \]
+        odnosno
+        \[
+        (z+2)(9z-14)=0.
+        \]
+        Zato su kandidati za ekstrem:
+        \[
+        z=-2 \quad \Rightarrow \quad x=-3,\ y=-1,
+        \]
+        i
+        \[
+        z=\frac{14}{9} \quad \Rightarrow \quad x=\frac59,\ y=\frac79.
+        \]
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <div class="card-title">Rešenje</div>
+      <div class="card-body">
+        Sada klasifikujemo kandidate preko Heseove matrice funkcije \(z=z(x,y)\).
+
+        Pošto je u stacionarnim tačkama
+        \[
+        z_x=0, \qquad z_y=0,
+        \]
+        drugi izvodi se pojednostavljuju na
+        \[
+        z_{xx}=-\frac{F_{xx}}{F_z}, \qquad
+        z_{xy}=-\frac{F_{xy}}{F_z}, \qquad
+        z_{yy}=-\frac{F_{yy}}{F_z}.
+        \]
+
+        Računamo druge izvode funkcije \(F\):
+        \[
+        F_{xx}=1, \qquad F_{xy}=0, \qquad F_{yy}=2.
+        \]
+
+        Zato je Heseova matrica funkcije \(z=z(x,y)\):
+        \[
+        H_z=
+        \begin{pmatrix}
+        z_{xx} & z_{xy} \\
+        z_{xy} & z_{yy}
+        \end{pmatrix}
+        =
+        -\frac{1}{F_z}
+        \begin{pmatrix}
+        1 & 0 \\
+        0 & 2
+        \end{pmatrix}.
+        \]
+
+        Još nam treba vrednost \(F_z\):
+        \[
+        F_z=6z-x-y.
+        \]
+        Pošto u kandidatima važi \(x=z-1\) i \(y=\frac z2\), dobijamo
+        \[
+        F_z=6z-(z-1)-\frac z2=\frac92z+1.
+        \]
+
+        Za tačku \((-3,-1,-2)\):
+        \[
+        F_z=\frac92(-2)+1=-8.
+        \]
+        Zato je
+        \[
+        H_z=-\frac1{-8}
+        \begin{pmatrix}
+        1 & 0 \\
+        0 & 2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        \frac18 & 0 \\
+        0 & \frac14
+        \end{pmatrix}.
+        \]
+        Ova matrica je pozitivno definitna, pa je u toj tački lokalni minimum.
+
+        Za tačku \(\left(\frac59,\frac79,\frac{14}{9}\right)\):
+        \[
+        F_z=\frac92\cdot\frac{14}{9}+1=8.
+        \]
+        Zato je
+        \[
+        H_z=-\frac18
+        \begin{pmatrix}
+        1 & 0 \\
+        0 & 2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+        -\frac18 & 0 \\
+        0 & -\frac14
+        \end{pmatrix}.
+        \]
+        Ova matrica je negativno definitna, pa je u toj tački lokalni maksimum.
+      </div>
+    </div>
+
+    <div class="card warning-card">
+      <div class="card-title">Napomena</div>
+      <div class="card-body">
+        Kod implicitno zadate funkcije ne gledamo direktno Heseovu matricu funkcije \(F\), nego Heseovu matricu funkcije \(z=z(x,y)\).
+        U stacionarnim tačkama se formula lepo skraćuje jer je
+        \[
+        z_x=z_y=0.
+        \]
+        Zato ostaje jednostavno
+        \[
+        H_z=-\frac{1}{F_z}
+        \begin{pmatrix}
+        F_{xx} & F_{xy} \\
+        F_{xy} & F_{yy}
+        \end{pmatrix}.
+        \]
+      </div>
+    </div>
+
+    <div class="card answer-card">
+      <div class="card-title">Odgovor</div>
+      <div class="card-body">
+        Funkcija \(z=z(x,y)\) ima lokalni minimum u tački
+        \[
+        (x,y,z)=(-3,-1,-2),
+        \]
+        pa je minimalna vrednost
+        \[
+        z_{\\min}=-2.
+        \]
+
+        Funkcija \(z=z(x,y)\) ima lokalni maksimum u tački
+        \[
+        (x,y,z)=\left(\frac59,\frac79,\frac{14}{9}\right),
+        \]
+        pa je maksimalna vrednost
+        \[
+        z_{\\max}=\frac{14}{9}.
+        \]
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
