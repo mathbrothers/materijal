@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dopuna trigonometrijskih formula</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --task:#e3f2fd;
+      --idea:#e8f5e9;
+      --analysis:#eef2ff;
+      --solution:#fff3e0;
+      --warning:#fff8e1;
+      --answer:#f3e5f5;
+      --text:#182033;
+      --muted:#5f6675;
+      --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#f7f7fb;
+      line-height:1.6;
+    }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:32px 18px 60px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 10px;
+      font-size:32px;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+      font-size:18px;
+    }
+    .card{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:var(--task)}
+    .idea-card::before{background:var(--idea)}
+    .analysis-card::before{background:var(--analysis)}
+    .solution-card::before{background:var(--solution)}
+    .warning-card::before{background:var(--warning)}
+    .answer-card::before{background:var(--answer)}
+    .card h2{
+      margin:0 0 12px;
+      font-size:24px;
+    }
+    .card h3{
+      margin:18px 0 8px;
+      font-size:20px;
+    }
+    .math-block{
+      background:#fafafa;
+      border:1px solid #ececec;
+      border-radius:12px;
+      padding:12px 14px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0;
+      background:#fff;
+      overflow:hidden;
+      border-radius:12px;
+    }
+    th, td{
+      border:1px solid #e7e7e7;
+      padding:10px 12px;
+      text-align:center;
+      vertical-align:middle;
+    }
+    th{
+      background:#f3f5fb;
+      font-weight:bold;
+    }
+    .left{text-align:left}
+    .final{
+      font-size:19px;
+      font-weight:bold;
+    }
+    ul{margin:10px 0 10px 22px}
+    footer{
+      margin-top:34px;
+      text-align:center;
+      color:#666;
+      font-size:14px;
+    }
+    @media (max-width:760px){
+      h1{font-size:28px}
+      th, td{font-size:14px; padding:8px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Dopuna trigonometrijskih formula</h1>
+    <div class="subtitle">Parnost, neparnost i granični slučajevi kod osnovnih jednačina</div>
+
+    <div class="card task-card">
+      <h2>Zašto nam treba ova dopuna?</h2>
+      <p>
+        U mini paketu već imamo pravila za osnovne jednačine:
+      </p>
+      <div class="math-block">
+        $$\sin x=a \qquad \text{i} \qquad \cos x=a$$
+      </div>
+      <p>
+        Ova dopuna nam pomaže kada se pojave negativni uglovi i kada je sinus ili kosinus jednak
+        $0$, $1$ ili $-1$.
+      </p>
+    </div>
+
+    <div class="card idea-card">
+      <h2>1. Formule za negativan ugao</h2>
+      <p>
+        Sinus menja znak kada promenimo znak ugla:
+      </p>
+      <div class="math-block">
+        $$\boxed{\sin(-\alpha)=-\sin\alpha}$$
+      </div>
+      <p>
+        Kosinus ne menja znak kada promenimo znak ugla:
+      </p>
+      <div class="math-block">
+        $$\boxed{\cos(-\alpha)=\cos\alpha}$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Kako to praktično koristimo?</h2>
+      <p>
+        Iz tablice osnovnih uglova znamo:
+      </p>
+      <div class="math-block">
+        $$\sin\frac{\pi}{6}=\frac12,\qquad
+        \cos\frac{\pi}{3}=\frac12,\qquad
+        \cos\frac{\pi}{4}=\frac{\sqrt2}{2}$$
+      </div>
+
+      <p>
+        Onda za negativne uglove odmah dobijamo:
+      </p>
+      <div class="math-block">
+        $$\sin\left(-\frac{\pi}{6}\right)
+        =-\sin\frac{\pi}{6}
+        =-\frac12$$
+
+        $$\cos\left(-\frac{\pi}{3}\right)
+        =\cos\frac{\pi}{3}
+        =\frac12$$
+
+        $$\cos\left(-\frac{\pi}{4}\right)
+        =\cos\frac{\pi}{4}
+        =\frac{\sqrt2}{2}$$
+      </div>
+    </div>
+
+    <div class="card analysis-card">
+      <h2>2. Specijalni slučajevi za sinus</h2>
+      <p>
+        Ove slučajeve je najbolje znati odmah, jer se ne uklapaju uvek lepo u običnu šemu
+        sa dva različita rešenja.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Jednačina</th>
+            <th>Rešenje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$\sin x=0$</td>
+            <td>$\boxed{x=k\pi,\quad k\in\mathbb Z}$</td>
+          </tr>
+          <tr>
+            <td>$\sin x=1$</td>
+            <td>$\boxed{x=\frac{\pi}{2}+2k\pi,\quad k\in\mathbb Z}$</td>
+          </tr>
+          <tr>
+            <td>$\sin x=-1$</td>
+            <td>$\boxed{x=-\frac{\pi}{2}+2k\pi,\quad k\in\mathbb Z}$</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        Za poslednji red može se pisati i:
+      </p>
+      <div class="math-block">
+        $$x=\frac{3\pi}{2}+2k\pi,\qquad k\in\mathbb Z$$
+      </div>
+      <p>
+        jer su uglovi $-\frac{\pi}{2}$ i $\frac{3\pi}{2}$ isti položaj na krugu.
+      </p>
+    </div>
+
+    <div class="card analysis-card">
+      <h2>3. Specijalni slučajevi za kosinus</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Jednačina</th>
+            <th>Rešenje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>$\cos x=0$</td>
+            <td>$\boxed{x=\frac{\pi}{2}+k\pi,\quad k\in\mathbb Z}$</td>
+          </tr>
+          <tr>
+            <td>$\cos x=1$</td>
+            <td>$\boxed{x=2k\pi,\quad k\in\mathbb Z}$</td>
+          </tr>
+          <tr>
+            <td>$\cos x=-1$</td>
+            <td>$\boxed{x=\pi+2k\pi,\quad k\in\mathbb Z}$</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card warning-card">
+      <h2>4. Obavezna provera vrednosti</h2>
+      <p>
+        Sinus i kosinus nikada ne mogu biti manji od $-1$ niti veći od $1$:
+      </p>
+      <div class="math-block">
+        $$-1\leq \sin x\leq 1,\qquad -1\leq \cos x\leq 1$$
+      </div>
+      <p>
+        Zato jednačine poput:
+      </p>
+      <div class="math-block">
+        $$\sin x=2,\qquad \cos x=-3$$
+      </div>
+      <p>
+        nemaju rešenje.
+      </p>
+    </div>
+
+    <div class="card answer-card">
+      <h2>Kratak pregled za pamćenje</h2>
+      <div class="math-block final">
+        $$\boxed{\sin(-\alpha)=-\sin\alpha},\qquad
+        \boxed{\cos(-\alpha)=\cos\alpha}$$
+
+        $$\boxed{\sin x=0 \Rightarrow x=k\pi}$$
+
+        $$\boxed{\sin x=1 \Rightarrow x=\frac{\pi}{2}+2k\pi},\qquad
+        \boxed{\sin x=-1 \Rightarrow x=-\frac{\pi}{2}+2k\pi}$$
+
+        $$\boxed{\cos x=0 \Rightarrow x=\frac{\pi}{2}+k\pi}$$
+
+        $$\boxed{\cos x=1 \Rightarrow x=2k\pi},\qquad
+        \boxed{\cos x=-1 \Rightarrow x=\pi+2k\pi}$$
+
+        $$k\in\mathbb Z$$
+      </div>
+    </div>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </div>
+</body>
+</html>
