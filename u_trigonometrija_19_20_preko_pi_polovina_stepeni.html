@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigonometrija – zadaci 19 i 20</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --task:#e3f2fd;
+      --idea:#e8f5e9;
+      --solution:#fff3e0;
+      --answer:#f3e5f5;
+      --warning:#fff8e1;
+      --text:#222;
+      --muted:#666;
+      --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#f7f7fb;
+      line-height:1.6;
+    }
+    .wrap{
+      max-width:960px;
+      margin:0 auto;
+      padding:32px 18px 60px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 10px;
+      font-size:32px;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+      font-size:18px;
+    }
+    .card{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:var(--task)}
+    .idea-card::before{background:var(--idea)}
+    .solution-card::before{background:var(--solution)}
+    .answer-card::before{background:var(--answer)}
+    .warning-card::before{background:var(--warning)}
+    .card h2{
+      margin:0 0 12px;
+      font-size:24px;
+    }
+    .card h3{
+      margin:18px 0 8px;
+      font-size:20px;
+    }
+    .math-block{
+      background:#fafafa;
+      border:1px solid #ececec;
+      border-radius:12px;
+      padding:12px 14px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    .final{
+      font-size:19px;
+      font-weight:bold;
+    }
+    ul{margin:10px 0 10px 22px}
+    @media (max-width:760px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:28px}
+    }
+    footer{
+      margin-top:34px;
+      text-align:center;
+      color:#666;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Trigonometrija – zadaci 19 i 20</h1>
+    <div class="subtitle">Radijani, osnovni uglovi i redukcija preko $\frac{\pi}{2}$</div>
+
+    <div class="card task-card">
+      <h2>Zadatak</h2>
+      <p><strong>19)</strong> Izračunati:</p>
+      <div class="math-block">
+        $$a)\ \sin\frac{2\pi}{3} \qquad b)\ \cos\frac{5\pi}{6}$$
+      </div>
+      <p><strong>20)</strong> Izračunati:</p>
+      <div class="math-block">
+        $$a)\ \cos\frac{2\pi}{3} \qquad b)\ \sin\frac{5\pi}{6}$$
+      </div>
+    </div>
+
+    <div class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Po dogovoru nećemo se ovde kačiti na ugao $\pi$, nego uglove pišemo
+        preko $\frac{\pi}{2}$ plus još koliko treba.
+      </p>
+      <div class="math-block">
+        $$\frac{2\pi}{3}=\frac{\pi}{2}+\frac{\pi}{6}
+        \quad\Longleftrightarrow\quad
+        120^\circ=90^\circ+30^\circ$$
+
+        $$\frac{5\pi}{6}=\frac{\pi}{2}+\frac{\pi}{3}
+        \quad\Longleftrightarrow\quad
+        150^\circ=90^\circ+60^\circ$$
+      </div>
+      <p>
+        Dakle, praktično gledamo:
+        $\frac{2\pi}{3}$ kao $90^\circ+30^\circ$, a
+        $\frac{5\pi}{6}$ kao $90^\circ+60^\circ$.
+      </p>
+      <p>Koristimo redukcione formule preko $90^\circ$, to jest preko $\frac{\pi}{2}$:</p>
+      <div class="math-block">
+        $$\sin\left(\frac{\pi}{2}+x\right)=\cos x$$
+        $$\cos\left(\frac{\pi}{2}+x\right)=-\sin x$$
+      </div>
+      <p>
+        Posle toga se samo pozivamo na tablicu osnovnih uglova
+        $\frac{\pi}{6}$ i $\frac{\pi}{3}$.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card solution-card">
+        <h2>19a)</h2>
+        <div class="math-block">
+          $$\sin\frac{2\pi}{3}
+          =\sin\left(\frac{\pi}{2}+\frac{\pi}{6}\right)$$
+          $$\text{odnosno:}\qquad
+          \sin120^\circ=\sin(90^\circ+30^\circ)$$
+        </div>
+        <p>Preko redukcione formule:</p>
+        <div class="math-block">
+          $$\sin\left(\frac{\pi}{2}+\frac{\pi}{6}\right)
+          =\cos\frac{\pi}{6}$$
+        </div>
+        <p>Iz tablice osnovnih uglova:</p>
+        <div class="math-block">
+          $$\cos\frac{\pi}{6}=\frac{\sqrt3}{2}$$
+        </div>
+        <p>Zato je:</p>
+        <div class="math-block">
+          $$\boxed{\sin\frac{2\pi}{3}=\frac{\sqrt3}{2}}$$
+        </div>
+      </div>
+
+      <div class="card solution-card">
+        <h2>19b)</h2>
+        <div class="math-block">
+          $$\cos\frac{5\pi}{6}
+          =\cos\left(\frac{\pi}{2}+\frac{\pi}{3}\right)$$
+          $$\text{odnosno:}\qquad
+          \cos150^\circ=\cos(90^\circ+60^\circ)$$
+        </div>
+        <p>Preko redukcione formule:</p>
+        <div class="math-block">
+          $$\cos\left(\frac{\pi}{2}+\frac{\pi}{3}\right)
+          =-\sin\frac{\pi}{3}$$
+        </div>
+        <p>Iz tablice osnovnih uglova:</p>
+        <div class="math-block">
+          $$\sin\frac{\pi}{3}=\frac{\sqrt3}{2}$$
+        </div>
+        <p>Zato je:</p>
+        <div class="math-block">
+          $$\boxed{\cos\frac{5\pi}{6}=-\frac{\sqrt3}{2}}$$
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card solution-card">
+        <h2>20a)</h2>
+        <div class="math-block">
+          $$\cos\frac{2\pi}{3}
+          =\cos\left(\frac{\pi}{2}+\frac{\pi}{6}\right)$$
+          $$\text{odnosno:}\qquad
+          \cos120^\circ=\cos(90^\circ+30^\circ)$$
+        </div>
+        <p>Preko redukcione formule:</p>
+        <div class="math-block">
+          $$\cos\left(\frac{\pi}{2}+\frac{\pi}{6}\right)
+          =-\sin\frac{\pi}{6}$$
+        </div>
+        <p>Iz tablice osnovnih uglova:</p>
+        <div class="math-block">
+          $$\sin\frac{\pi}{6}=\frac12$$
+        </div>
+        <p>Zato je:</p>
+        <div class="math-block">
+          $$\boxed{\cos\frac{2\pi}{3}=-\frac12}$$
+        </div>
+      </div>
+
+      <div class="card solution-card">
+        <h2>20b)</h2>
+        <div class="math-block">
+          $$\sin\frac{5\pi}{6}
+          =\sin\left(\frac{\pi}{2}+\frac{\pi}{3}\right)$$
+          $$\text{odnosno:}\qquad
+          \sin150^\circ=\sin(90^\circ+60^\circ)$$
+        </div>
+        <p>Preko redukcione formule:</p>
+        <div class="math-block">
+          $$\sin\left(\frac{\pi}{2}+\frac{\pi}{3}\right)
+          =\cos\frac{\pi}{3}$$
+        </div>
+        <p>Iz tablice osnovnih uglova:</p>
+        <div class="math-block">
+          $$\cos\frac{\pi}{3}=\frac12$$
+        </div>
+        <p>Zato je:</p>
+        <div class="math-block">
+          $$\boxed{\sin\frac{5\pi}{6}=\frac12}$$
+        </div>
+      </div>
+    </div>
+
+    <div class="card answer-card">
+      <h2>Odgovori</h2>
+      <div class="math-block final">
+        $$19a)\ \frac{\sqrt3}{2}, \qquad 19b)\ -\frac{\sqrt3}{2}$$
+        $$20a)\ -\frac12, \qquad 20b)\ \frac12$$
+      </div>
+    </div>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </div>
+</body>
+</html>

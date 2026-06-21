@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigonometrija – dodatak za radijane i zadatak 22</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --task:#e3f2fd;
+      --idea:#e8f5e9;
+      --analysis:#eef2ff;
+      --solution:#fff3e0;
+      --warning:#fff8e1;
+      --answer:#f3e5f5;
+      --text:#222;
+      --muted:#666;
+      --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#f7f7fb;
+      line-height:1.6;
+    }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:32px 18px 60px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 10px;
+      font-size:32px;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+      font-size:18px;
+    }
+    .card{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:var(--task)}
+    .idea-card::before{background:var(--idea)}
+    .analysis-card::before{background:var(--analysis)}
+    .solution-card::before{background:var(--solution)}
+    .warning-card::before{background:var(--warning)}
+    .answer-card::before{background:var(--answer)}
+    .card h2{
+      margin:0 0 12px;
+      font-size:24px;
+    }
+    .card h3{
+      margin:18px 0 8px;
+      font-size:20px;
+    }
+    .math-block{
+      background:#fafafa;
+      border:1px solid #ececec;
+      border-radius:12px;
+      padding:12px 14px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+    .note{
+      color:#555;
+      font-size:15px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    ul{margin:10px 0 10px 22px}
+    .final{
+      font-size:19px;
+      font-weight:bold;
+    }
+    @media (max-width:760px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:28px}
+    }
+    footer{
+      margin-top:34px;
+      text-align:center;
+      color:#666;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Trigonometrija – radijani i zadatak 22</h1>
+    <div class="subtitle">Mali dodatak na prethodni zadatak + računanje $\sin 2\alpha$ i $\cos 2\alpha$</div>
+
+    <div class="card idea-card">
+      <h2>Dodatak na prethodni zadatak: radijani i stepeni</h2>
+      <p>
+        Osnovna veza je:
+      </p>
+      <div class="math-block">
+        $$\pi \text{ radijana}=180^\circ$$
+      </div>
+      <p>
+        Zato se iz radijana u stepene prelazi tako što množimo sa:
+      </p>
+      <div class="math-block">
+        $$\frac{180^\circ}{\pi}$$
+      </div>
+      <p>
+        A iz stepeni u radijane tako što množimo sa:
+      </p>
+      <div class="math-block">
+        $$\frac{\pi}{180^\circ}$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Zašto je $\frac{2\pi}{3}=120^\circ$?</h2>
+      <p>Prebacimo ugao iz radijana u stepene:</p>
+      <div class="math-block">
+        $$\frac{2\pi}{3}\cdot\frac{180^\circ}{\pi}
+        =\frac{2\cdot 180^\circ}{3}=120^\circ$$
+      </div>
+      <p>Pošto je:</p>
+      <div class="math-block">
+        $$120^\circ=90^\circ+30^\circ$$
+      </div>
+      <p>zato u prethodnom zadatku pišemo:</p>
+      <div class="math-block">
+        $$\frac{2\pi}{3}=\frac{\pi}{2}+\frac{\pi}{6}$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Zašto je $\frac{5\pi}{6}=150^\circ$?</h2>
+      <p>Opet prebacimo iz radijana u stepene:</p>
+      <div class="math-block">
+        $$\frac{5\pi}{6}\cdot\frac{180^\circ}{\pi}
+        =\frac{5\cdot 180^\circ}{6}=150^\circ$$
+      </div>
+      <p>Pošto je:</p>
+      <div class="math-block">
+        $$150^\circ=90^\circ+60^\circ$$
+      </div>
+      <p>zato u prethodnom zadatku pišemo:</p>
+      <div class="math-block">
+        $$\frac{5\pi}{6}=\frac{\pi}{2}+\frac{\pi}{3}$$
+      </div>
+    </div>
+
+    <div class="card task-card">
+      <h2>Zadatak 22</h2>
+      <p>Izračunati $\sin 2\alpha$ i $\cos 2\alpha$ ako je:</p>
+      <div class="math-block">
+        $$\cos\alpha=\frac45,\qquad \alpha\in\left(\frac{3\pi}{2},2\pi\right)$$
+      </div>
+    </div>
+
+    <div class="card analysis-card">
+      <h2>Prvo gledamo u kom je kvadrantu ugao</h2>
+      <p>Prebacimo granice intervala u stepene:</p>
+      <div class="math-block">
+        $$\frac{3\pi}{2}\cdot\frac{180^\circ}{\pi}=270^\circ,
+        \qquad
+        2\pi\cdot\frac{180^\circ}{\pi}=360^\circ$$
+      </div>
+      <p>Dakle:</p>
+      <div class="math-block">
+        $$\alpha\in\left(\frac{3\pi}{2},2\pi\right)
+        \quad\Longleftrightarrow\quad
+        \alpha\in(270^\circ,360^\circ)$$
+      </div>
+      <p>To je <strong>četvrti kvadrant</strong>.</p>
+      <p>U četvrtom kvadrantu važi:</p>
+      <div class="math-block">
+        $$\sin\alpha<0,\qquad \cos\alpha>0$$
+      </div>
+    </div>
+
+    <div class="card idea-card">
+      <h2>Šta sada znamo?</h2>
+      <p>
+        Pošto je $\alpha$ u četvrtom kvadrantu, kosinus je pozitivan,
+        što se slaže sa podatkom iz zadatka:
+      </p>
+      <div class="math-block">
+        $$\cos\alpha=\frac45$$
+      </div>
+      <p>
+        U četvrtom kvadrantu sinus je negativan, pa ćemo iz osnovne veze
+        $\sin^2\alpha+\cos^2\alpha=1$ uzeti negativnu vrednost za sinus.
+      </p>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Računamo $\sin\alpha$</h2>
+      <p>Koristimo osnovnu vezu:</p>
+      <div class="math-block">
+        $$\sin^2\alpha+\cos^2\alpha=1$$
+      </div>
+      <p>Pošto je $\cos\alpha=\frac45$, imamo:</p>
+      <div class="math-block">
+        $$\sin^2\alpha+\left(\frac45\right)^2=1$$
+        $$\sin^2\alpha+\frac{16}{25}=1$$
+        $$\sin^2\alpha=\frac9{25}$$
+      </div>
+      <p>Odavde je:</p>
+      <div class="math-block">
+        $$\sin\alpha=\pm\frac35$$
+      </div>
+      <p>
+        Ali pošto je ugao u četvrtom kvadrantu, sinus je negativan, pa je:
+      </p>
+      <div class="math-block">
+        $$\sin\alpha=-\frac35$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Formule za dupli ugao</h2>
+      <p>Koristimo:</p>
+      <div class="math-block">
+        $$\sin2\alpha=2\sin\alpha\cos\alpha$$
+        $$\cos2\alpha=\cos^2\alpha-\sin^2\alpha$$
+      </div>
+
+      <h3>Računanje $\sin2\alpha$</h3>
+      <div class="math-block">
+        $$\sin2\alpha
+        =2\cdot\left(-\frac35\right)\cdot\frac45
+        =-\frac{24}{25}$$
+      </div>
+
+      <h3>Računanje $\cos2\alpha$</h3>
+      <div class="math-block">
+        $$\cos2\alpha
+        =\left(\frac45\right)^2-\left(-\frac35\right)^2
+        =\frac{16}{25}-\frac9{25}
+        =\frac7{25}$$
+      </div>
+    </div>
+
+    <div class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="math-block final">
+        $$\boxed{\sin2\alpha=-\frac{24}{25}},\qquad
+        \boxed{\cos2\alpha=\frac7{25}}$$
+      </div>
+    </div>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </div>
+</body>
+</html>

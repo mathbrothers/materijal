@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kosinus razlike — zadaci 15 i 16</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      --blue: #dbeafe;
+      --green: #dcfce7;
+      --yellow: #fef3c7;
+      --purple: #ede9fe;
+      --red: #fee2e2;
+      --answer: #e0f2fe;
+      --line: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #ffffff 0, var(--bg) 42%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 18px 28px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px 24px;
+      margin: 18px 0;
+      border-left: 10px solid var(--blue);
+    }
+
+    .task-card { border-left-color: var(--blue); }
+    .idea-card { border-left-color: var(--yellow); }
+    .analysis-card { border-left-color: var(--purple); }
+    .solution-card { border-left-color: var(--green); }
+    .warning-card { border-left-color: var(--red); }
+    .answer-card { border-left-color: var(--answer); }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 1.12rem;
+    }
+
+    p { margin: 8px 0; }
+
+    .formula-box {
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px var(--line);
+    }
+
+    th, td {
+      padding: 11px 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: #f3f4f6;
+      font-weight: 700;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mini {
+      background: #fafafa;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .boxed-answer {
+      font-size: 1.1rem;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      .two-col { grid-template-columns: 1fr; }
+      .card { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Kosinus razlike — zadaci 15 i 16</h1>
+      <div class="subtitle">Prepoznajemo oblik \(\cos a\cos b+\sin a\sin b\), pa ga pretvaramo u \(\cos(a-b)\).</div>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadaci</h2>
+      <p><strong>15)</strong> Izračunati vrednost izraza</p>
+      <div class="formula-box">
+        \[
+          \cos68^\circ\cos23^\circ+\sin68^\circ\sin23^\circ.
+        \]
+      </div>
+      <p><strong>16)</strong> Izračunati vrednost izraza</p>
+      <div class="formula-box">
+        \[
+          \cos72^\circ\cos42^\circ+\sin72^\circ\sin42^\circ.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>Ovo ne računamo posebno. Ne tražimo vrednosti za \(68^\circ\), \(23^\circ\), \(72^\circ\), \(42^\circ\).</p>
+      <p>Treba prepoznati formulu za kosinus razlike:</p>
+      <div class="formula-box">
+        \[
+          \boxed{\cos(a-b)=\cos a\cos b+\sin a\sin b}
+        \]
+      </div>
+      <p>Dakle, čim vidimo oblik</p>
+      <div class="formula-box">
+        \[
+          \cos a\cos b+\sin a\sin b,
+        \]
+      </div>
+      <p>prepišemo ga kao:</p>
+      <div class="formula-box">
+        \[
+          \cos(a-b).
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Tablica osnovnih uglova koja nam treba</h2>
+      <p>Posle primene formule dobijamo uglove iz osnovne tablice:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Ugao</th>
+            <th>\(30^\circ\)</th>
+            <th>\(45^\circ\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(\cos\)</td>
+            <td>\(\dfrac{\sqrt3}{2}\)</td>
+            <td>\(\dfrac{\sqrt2}{2}\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card solution-card">
+      <h2>15) Prvi izraz</h2>
+      <p>Prepoznajemo da je ovde \(a=68^\circ\), a \(b=23^\circ\).</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        \cos68^\circ\cos23^\circ+\sin68^\circ\sin23^\circ
+        &= \cos(68^\circ-23^\circ)\\
+        &= \cos45^\circ\\
+        &= \frac{\sqrt2}{2}.
+        \end{aligned}
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>16) Drugi izraz</h2>
+      <p>Prepoznajemo da je ovde \(a=72^\circ\), a \(b=42^\circ\).</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        \cos72^\circ\cos42^\circ+\sin72^\circ\sin42^\circ
+        &= \cos(72^\circ-42^\circ)\\
+        &= \cos30^\circ\\
+        &= \frac{\sqrt3}{2}.
+        \end{aligned}
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan odgovor</h2>
+      <div class="two-col boxed-answer">
+        <div class="mini">
+          <h3>15)</h3>
+          \[
+            \boxed{\frac{\sqrt2}{2}}
+          \]
+        </div>
+        <div class="mini">
+          <h3>16)</h3>
+          \[
+            \boxed{\frac{\sqrt3}{2}}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>Ključ je znak plus između proizvoda:</p>
+      <div class="formula-box">
+        \[
+          \cos a\cos b+\sin a\sin b=\cos(a-b).
+        \]
+      </div>
+      <p>Da je umesto plusa bio minus, dobili bismo formulu za kosinus zbira:</p>
+      <div class="formula-box">
+        \[
+          \cos a\cos b-\sin a\sin b=\cos(a+b).
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>

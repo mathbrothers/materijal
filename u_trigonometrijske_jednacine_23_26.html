@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigonometrijske jednačine – zadaci 23–26</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --task:#e3f2fd;
+      --idea:#e8f5e9;
+      --analysis:#eef2ff;
+      --solution:#fff3e0;
+      --warning:#fff8e1;
+      --answer:#f3e5f5;
+      --text:#182033;
+      --muted:#5f6675;
+      --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#f7f7fb;
+      line-height:1.6;
+    }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:32px 18px 60px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 10px;
+      font-size:32px;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+      font-size:18px;
+    }
+    .card{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:var(--task)}
+    .idea-card::before{background:var(--idea)}
+    .analysis-card::before{background:var(--analysis)}
+    .solution-card::before{background:var(--solution)}
+    .warning-card::before{background:var(--warning)}
+    .answer-card::before{background:var(--answer)}
+    .card h2{
+      margin:0 0 12px;
+      font-size:24px;
+    }
+    .card h3{
+      margin:18px 0 8px;
+      font-size:20px;
+    }
+    .math-block{
+      background:#fafafa;
+      border:1px solid #ececec;
+      border-radius:12px;
+      padding:12px 14px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+    ul{margin:10px 0 10px 22px}
+    .final{
+      font-size:19px;
+      font-weight:bold;
+    }
+    .small{
+      color:#555;
+      font-size:15px;
+    }
+    footer{
+      margin-top:34px;
+      text-align:center;
+      color:#666;
+      font-size:14px;
+    }
+    @media (max-width:760px){
+      h1{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Trigonometrijske jednačine – zadaci 23–26</h1>
+    <div class="subtitle">Radimo po pravilima iz mini paketa za osnovne trigonometrijske jednačine</div>
+
+    <div class="card task-card">
+      <h2>Zadaci</h2>
+      <div class="math-block">
+        $$23)\quad 2\cos x-\sqrt2=0$$
+        $$24)\quad 2\sin x-1=0$$
+        $$25)\quad 2\sin^2x-\sin x-1=0$$
+        $$26)\quad 2\sin^2x-3\sin x+1=0$$
+      </div>
+    </div>
+
+    <div class="card idea-card">
+      <h2>Mini paket koji koristimo</h2>
+
+      <h3>Jednačina $\sin x=a$</h3>
+      <p>
+        Ako je $\alpha$ ugao za koji važi $\sin\alpha=a$, onda su rešenja:
+      </p>
+      <div class="math-block">
+        $$\boxed{x=\alpha+2k\pi \quad \text{ili} \quad x=\pi-\alpha+2k\pi,\qquad k\in\mathbb Z}$$
+      </div>
+
+      <h3>Jednačina $\cos x=a$</h3>
+      <p>
+        Ako je $\alpha$ ugao za koji važi $\cos\alpha=a$, onda su rešenja:
+      </p>
+      <div class="math-block">
+        $$\boxed{x=\pm\alpha+2k\pi,\qquad k\in\mathbb Z}$$
+      </div>
+
+      <p>
+        Dakle, prvo sredimo jednačinu do oblika $\sin x=a$ ili $\cos x=a$,
+        pa tek onda pišemo opšta rešenja.
+      </p>
+    </div>
+
+    <div class="card warning-card">
+      <h2>Za jednačine sa $\sin^2x$</h2>
+      <p>
+        Kod zadataka 25 i 26 uvodimo smenu:
+      </p>
+      <div class="math-block">
+        $$t=\sin x$$
+      </div>
+      <p>
+        Tada dobijamo običnu kvadratnu jednačinu po $t$.
+        Pošto je $t=\sin x$, mora da važi:
+      </p>
+      <div class="math-block">
+        $$-1\leq t\leq 1$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>23) Rešiti jednačinu $2\cos x-\sqrt2=0$</h2>
+      <p>Sredimo jednačinu:</p>
+      <div class="math-block">
+        $$2\cos x-\sqrt2=0$$
+        $$2\cos x=\sqrt2$$
+        $$\cos x=\frac{\sqrt2}{2}$$
+      </div>
+
+      <p>Iz tablice osnovnih uglova znamo:</p>
+      <div class="math-block">
+        $$\cos\frac{\pi}{4}=\frac{\sqrt2}{2}$$
+      </div>
+
+      <p>Dakle, ovde je:</p>
+      <div class="math-block">
+        $$\alpha=\frac{\pi}{4}$$
+      </div>
+
+      <p>Po pravilu za $\cos x=a$:</p>
+      <div class="math-block">
+        $$x=\pm\alpha+2k\pi$$
+      </div>
+
+      <p>Zato je:</p>
+      <div class="math-block">
+        $$\boxed{x=\pm\frac{\pi}{4}+2k\pi,\qquad k\in\mathbb Z}$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>24) Rešiti jednačinu $2\sin x-1=0$</h2>
+      <p>Sredimo jednačinu:</p>
+      <div class="math-block">
+        $$2\sin x-1=0$$
+        $$2\sin x=1$$
+        $$\sin x=\frac12$$
+      </div>
+
+      <p>Iz tablice osnovnih uglova znamo:</p>
+      <div class="math-block">
+        $$\sin\frac{\pi}{6}=\frac12$$
+      </div>
+
+      <p>Dakle, ovde je:</p>
+      <div class="math-block">
+        $$\alpha=\frac{\pi}{6}$$
+      </div>
+
+      <p>Po pravilu za $\sin x=a$:</p>
+      <div class="math-block">
+        $$x=\alpha+2k\pi \quad \text{ili} \quad x=\pi-\alpha+2k\pi$$
+      </div>
+
+      <p>Zato je:</p>
+      <div class="math-block">
+        $$x=\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\pi-\frac{\pi}{6}+2k\pi$$
+        $$\boxed{x=\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{5\pi}{6}+2k\pi,\qquad k\in\mathbb Z}$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>25) Rešiti jednačinu $2\sin^2x-\sin x-1=0$</h2>
+      <p>Uvodimo smenu:</p>
+      <div class="math-block">
+        $$t=\sin x$$
+      </div>
+
+      <p>Tada je:</p>
+      <div class="math-block">
+        $$2t^2-t-1=0$$
+        $$(2t+1)(t-1)=0$$
+      </div>
+
+      <p>Dobijamo:</p>
+      <div class="math-block">
+        $$2t+1=0 \quad \text{ili} \quad t-1=0$$
+        $$t=-\frac12 \quad \text{ili} \quad t=1$$
+      </div>
+
+      <p>Vraćamo smenu:</p>
+      <div class="math-block">
+        $$\sin x=-\frac12 \quad \text{ili} \quad \sin x=1$$
+      </div>
+
+      <h3>Prvi slučaj: $\sin x=-\frac12$</h3>
+      <p>
+        Biramo ugao $\alpha=-\frac{\pi}{6}$, jer je:
+      </p>
+      <div class="math-block">
+        $$\sin\left(-\frac{\pi}{6}\right)=-\frac12$$
+      </div>
+
+      <p>Po pravilu za $\sin x=a$:</p>
+      <div class="math-block">
+        $$x=\alpha+2k\pi \quad \text{ili} \quad x=\pi-\alpha+2k\pi$$
+      </div>
+
+      <p>Dobijamo:</p>
+      <div class="math-block">
+        $$x=-\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\pi-\left(-\frac{\pi}{6}\right)+2k\pi$$
+        $$x=-\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{7\pi}{6}+2k\pi$$
+      </div>
+
+      <h3>Drugi slučaj: $\sin x=1$</h3>
+      <p>
+        Biramo $\alpha=\frac{\pi}{2}$, jer je:
+      </p>
+      <div class="math-block">
+        $$\sin\frac{\pi}{2}=1$$
+      </div>
+
+      <p>Po pravilu za sinus:</p>
+      <div class="math-block">
+        $$x=\frac{\pi}{2}+2k\pi
+        \quad \text{ili} \quad
+        x=\pi-\frac{\pi}{2}+2k\pi$$
+      </div>
+
+      <p>Oba oblika daju isto rešenje:</p>
+      <div class="math-block">
+        $$x=\frac{\pi}{2}+2k\pi$$
+      </div>
+
+      <p>Opšte rešenje je:</p>
+      <div class="math-block">
+        $$\boxed{x=-\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{7\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{\pi}{2}+2k\pi,\qquad k\in\mathbb Z}$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>26) Rešiti jednačinu $2\sin^2x-3\sin x+1=0$</h2>
+      <p>Uvodimo smenu:</p>
+      <div class="math-block">
+        $$t=\sin x$$
+      </div>
+
+      <p>Tada je:</p>
+      <div class="math-block">
+        $$2t^2-3t+1=0$$
+        $$(2t-1)(t-1)=0$$
+      </div>
+
+      <p>Dobijamo:</p>
+      <div class="math-block">
+        $$2t-1=0 \quad \text{ili} \quad t-1=0$$
+        $$t=\frac12 \quad \text{ili} \quad t=1$$
+      </div>
+
+      <p>Vraćamo smenu:</p>
+      <div class="math-block">
+        $$\sin x=\frac12 \quad \text{ili} \quad \sin x=1$$
+      </div>
+
+      <h3>Prvi slučaj: $\sin x=\frac12$</h3>
+      <p>
+        Biramo $\alpha=\frac{\pi}{6}$, jer je:
+      </p>
+      <div class="math-block">
+        $$\sin\frac{\pi}{6}=\frac12$$
+      </div>
+
+      <p>Po pravilu za $\sin x=a$:</p>
+      <div class="math-block">
+        $$x=\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\pi-\frac{\pi}{6}+2k\pi$$
+        $$x=\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{5\pi}{6}+2k\pi$$
+      </div>
+
+      <h3>Drugi slučaj: $\sin x=1$</h3>
+      <p>
+        Biramo $\alpha=\frac{\pi}{2}$, jer je:
+      </p>
+      <div class="math-block">
+        $$\sin\frac{\pi}{2}=1$$
+      </div>
+
+      <p>Po pravilu za sinus oba rešenja se poklapaju:</p>
+      <div class="math-block">
+        $$x=\frac{\pi}{2}+2k\pi$$
+      </div>
+
+      <p>Opšte rešenje je:</p>
+      <div class="math-block">
+        $$\boxed{x=\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{5\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{\pi}{2}+2k\pi,\qquad k\in\mathbb Z}$$
+      </div>
+    </div>
+
+    <div class="card answer-card">
+      <h2>Konačni odgovori</h2>
+      <div class="math-block final">
+        $$23)\quad \boxed{x=\pm\frac{\pi}{4}+2k\pi,\qquad k\in\mathbb Z}$$
+
+        $$24)\quad \boxed{x=\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{5\pi}{6}+2k\pi,\qquad k\in\mathbb Z}$$
+
+        $$25)\quad \boxed{x=-\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{7\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{\pi}{2}+2k\pi,\qquad k\in\mathbb Z}$$
+
+        $$26)\quad \boxed{x=\frac{\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{5\pi}{6}+2k\pi
+        \quad \text{ili} \quad
+        x=\frac{\pi}{2}+2k\pi,\qquad k\in\mathbb Z}$$
+      </div>
+    </div>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigonometrija — minimalni paket formula</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --text:#202635;
+      --muted:#5e6778;
+      --white:#ffffff;
+      --shadow:0 14px 35px rgba(35,45,75,.10);
+      --task:#8ecae6;
+      --idea:#b7e4c7;
+      --analysis:#ffd6a5;
+      --solution:#cdb4db;
+      --warning:#ffb4a2;
+      --answer:#a8dadc;
+      --line:#e6e9f2;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .page{
+      max-width:1050px;
+      margin:0 auto;
+      padding:34px 18px 46px;
+    }
+    header{
+      background:linear-gradient(135deg,#ffffff,#eef6ff);
+      border-radius:24px;
+      padding:30px 30px 24px;
+      box-shadow:var(--shadow);
+      margin-bottom:24px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.12;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:18px;
+    }
+    .card{
+      background:var(--white);
+      border-radius:20px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:var(--shadow);
+      border-left:10px solid var(--line);
+    }
+    .task-card{border-left-color:var(--task)}
+    .idea-card{border-left-color:var(--idea)}
+    .analysis-card{border-left-color:var(--analysis)}
+    .solution-card{border-left-color:var(--solution)}
+    .warning-card{border-left-color:var(--warning)}
+    .answer-card{border-left-color:var(--answer)}
+    h2{
+      margin:0 0 14px;
+      font-size:25px;
+    }
+    h3{
+      margin:18px 0 9px;
+      font-size:19px;
+    }
+    p{margin:8px 0 12px}
+    ul,ol{margin:8px 0 0 22px; padding:0}
+    li{margin:6px 0}
+    .formula-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px 16px;
+      background:#fbfcff;
+    }
+    .mini b{display:block; margin-bottom:6px}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0;
+      overflow:hidden;
+      border-radius:14px;
+      background:white;
+    }
+    th,td{
+      border:1px solid var(--line);
+      padding:10px 12px;
+      text-align:center;
+      vertical-align:middle;
+    }
+    th{background:#f0f4fb}
+    .left{text-align:left}
+    .tag{
+      display:inline-block;
+      padding:3px 9px;
+      border-radius:999px;
+      background:#eef3ff;
+      color:#41506b;
+      font-size:13px;
+      margin:3px 6px 3px 0;
+      white-space:nowrap;
+    }
+    .note{
+      background:#fff8ec;
+      border:1px solid #ffe0ad;
+      padding:12px 14px;
+      border-radius:14px;
+      margin-top:12px;
+    }
+    .small{font-size:14px;color:var(--muted)}
+    .footer{
+      text-align:center;
+      margin-top:26px;
+      color:#6d7585;
+      font-size:14px;
+    }
+    @media (max-width:700px){
+      .page{padding:22px 12px 34px}
+      header,.card{padding:20px 18px}
+      th,td{padding:8px 7px; font-size:14px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Trigonometrija — minimalni paket formula</h1>
+      <p class="subtitle">Šta treba znati da bismo radili zadatke 13–26: što manje formula, ali dovoljno da sve ide školski i čisto.</p>
+    </header>
+
+    <section class="card task-card">
+      <h2>0. Glavna ideja</h2>
+      <p>Ne učimo veliki spisak formula. Za ove zadatke je dovoljno da znamo:</p>
+      <p>
+        <span class="tag">poznate uglove</span>
+        <span class="tag">sinus i kosinus zbira/razlike</span>
+        <span class="tag">redukciju preko 90° i 360°</span>
+        <span class="tag">znake po kvadrantima</span>
+        <span class="tag">dvostruki ugao</span>
+        <span class="tag">osnovne jednačine</span>
+      </p>
+      <div class="note">
+        Nećemo posebno pamtiti formule za zbir sinusa i zbir kosinusa. Zadatke tipa
+        \[
+        \sin\left(\frac\pi4+\alpha\right)+\sin\left(\frac\pi4-\alpha\right)
+        \]
+        radimo tako što otvorimo oba sinusa formulom za sinus zbira i sinus razlike.
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>1. Poznati uglovi</h2>
+      <p>Ovo mora da bude automatski. Najčešće koristimo uglove \(30^\circ\), \(45^\circ\), \(60^\circ\), \(90^\circ\).</p>
+      <table>
+        <thead>
+          <tr>
+            <th>ugao</th>
+            <th>\(0^\circ\)</th>
+            <th>\(30^\circ\)</th>
+            <th>\(45^\circ\)</th>
+            <th>\(60^\circ\)</th>
+            <th>\(90^\circ\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>radijani</th>
+            <td>\(0\)</td>
+            <td>\(\frac{\pi}{6}\)</td>
+            <td>\(\frac{\pi}{4}\)</td>
+            <td>\(\frac{\pi}{3}\)</td>
+            <td>\(\frac{\pi}{2}\)</td>
+          </tr>
+          <tr>
+            <th>\(\sin\)</th>
+            <td>\(0\)</td>
+            <td>\(\frac12\)</td>
+            <td>\(\frac{\sqrt2}{2}\)</td>
+            <td>\(\frac{\sqrt3}{2}\)</td>
+            <td>\(1\)</td>
+          </tr>
+          <tr>
+            <th>\(\cos\)</th>
+            <td>\(1\)</td>
+            <td>\(\frac{\sqrt3}{2}\)</td>
+            <td>\(\frac{\sqrt2}{2}\)</td>
+            <td>\(\frac12\)</td>
+            <td>\(0\)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        Za \(15^\circ\) i \(75^\circ\) ne pamtimo nove vrednosti. Pišemo:
+        \[
+        75^\circ=45^\circ+30^\circ, \qquad 15^\circ=45^\circ-30^\circ.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>2. Formule za zbir i razliku uglova</h2>
+      <p>Ovo je glavni alat. Sa ove četiri formule radimo uglove \(15^\circ\), \(75^\circ\), ali i dokaze sa \(\frac\pi4\pm\alpha\) i \(\frac\pi3\pm\alpha\).</p>
+      <div class="formula-grid">
+        <div class="mini">
+          <b>Sinus zbira</b>
+          \[
+          \sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta
+          \]
+        </div>
+        <div class="mini">
+          <b>Sinus razlike</b>
+          \[
+          \sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta
+          \]
+        </div>
+        <div class="mini">
+          <b>Kosinus zbira</b>
+          \[
+          \cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta
+          \]
+        </div>
+        <div class="mini">
+          <b>Kosinus razlike</b>
+          \[
+          \cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta
+          \]
+        </div>
+      </div>
+
+      <h3>Jedna korisna posledica</h3>
+      <p>Iz formule za kosinus razlike dobijamo:</p>
+      \[
+      \boxed{\cos A\cos B+\sin A\sin B=\cos(A-B)}
+      \]
+      <p>Zato izrazi kao</p>
+      \[
+      \cos68^\circ\cos23^\circ+\sin68^\circ\sin23^\circ
+      \]
+      <p>odmah postaju \(\cos(68^\circ-23^\circ)\).</p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>3. Kako radimo dokaze bez posebnih formula za zbir sinusa/kosinusa?</h2>
+      <p>Otvaramo obe zagrade. Na primer:</p>
+      \[
+      \sin\left(\frac\pi4+\alpha\right)
+      =\sin\frac\pi4\cos\alpha+\cos\frac\pi4\sin\alpha
+      \]
+      \[
+      \sin\left(\frac\pi4-\alpha\right)
+      =\sin\frac\pi4\cos\alpha-\cos\frac\pi4\sin\alpha
+      \]
+      <p>Kad ih saberemo, članovi sa \(\sin\alpha\) se ponište. To je cela ideja.</p>
+      <div class="note">
+        Dakle, za ovaj tip zadataka ne treba nova formula. Samo koristimo sinus zbira, sinus razlike, kosinus zbira i kosinus razlike.
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>4. Radijani i redukcija uglova</h2>
+      <p>U zadacima se javljaju uglovi u radijanima, pa treba znati osnovne veze:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>radijani</th>
+            <th>\(\frac{\pi}{6}\)</th>
+            <th>\(\frac{\pi}{4}\)</th>
+            <th>\(\frac{\pi}{3}\)</th>
+            <th>\(\frac{\pi}{2}\)</th>
+            <th>\(\frac{2\pi}{3}\)</th>
+            <th>\(\frac{5\pi}{6}\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>stepeni</th>
+            <td>\(30^\circ\)</td>
+            <td>\(45^\circ\)</td>
+            <td>\(60^\circ\)</td>
+            <td>\(90^\circ\)</td>
+            <td>\(120^\circ\)</td>
+            <td>\(150^\circ\)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Redukcija preko 90°</h3>
+      <p>Ovo nam je dovoljno za \(120^\circ\) i \(150^\circ\), jer:</p>
+      \[
+      120^\circ=90^\circ+30^\circ, \qquad 150^\circ=90^\circ+60^\circ.
+      \]
+      <div class="formula-grid">
+        <div class="mini">
+          \[
+          \boxed{\sin(90^\circ+\alpha)=\cos\alpha}
+          \]
+          <p class="small">U radijanima: \(\sin\left(\frac\pi2+\alpha\right)=\cos\alpha\).</p>
+        </div>
+        <div class="mini">
+          \[
+          \boxed{\cos(90^\circ+\alpha)=-\sin\alpha}
+          \]
+          <p class="small">U radijanima: \(\cos\left(\frac\pi2+\alpha\right)=-\sin\alpha\).</p>
+        </div>
+      </div>
+
+      <h3>Redukcija preko 360°</h3>
+      <p>Ovo nam treba kada je ugao oblika \(360^\circ-\alpha\) ili \(2\pi-\alpha\).</p>
+      <div class="formula-grid">
+        <div class="mini">
+          \[
+          \boxed{\sin(360^\circ-\alpha)=-\sin\alpha}
+          \]
+          <p class="small">U radijanima: \(\sin(2\pi-\alpha)=-\sin\alpha\).</p>
+        </div>
+        <div class="mini">
+          \[
+          \boxed{\cos(360^\circ-\alpha)=\cos\alpha}
+          \]
+          <p class="small">U radijanima: \(\cos(2\pi-\alpha)=\cos\alpha\).</p>
+        </div>
+      </div>
+      <div class="note">
+        Dodatno pamtimo periodičnost:
+        \[
+        \sin(x+2k\pi)=\sin x, \qquad \cos(x+2k\pi)=\cos x, \qquad k\in\mathbb Z.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>5. Znaci po kvadrantima</h2>
+      <p>Ovo je bitno kada imamo samo \(\sin\alpha\) ili samo \(\cos\alpha\), a treba naći drugi trigonometrijski broj.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>kvadrant</th>
+            <th>interval</th>
+            <th>znak \(\sin\)</th>
+            <th>znak \(\cos\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>I</td>
+            <td>\((0,\frac{\pi}{2})\)</td>
+            <td>\(+\)</td>
+            <td>\(+\)</td>
+          </tr>
+          <tr>
+            <td>II</td>
+            <td>\((\frac{\pi}{2},\pi)\)</td>
+            <td>\(+\)</td>
+            <td>\(-\)</td>
+          </tr>
+          <tr>
+            <td>III</td>
+            <td>\((\pi,\frac{3\pi}{2})\)</td>
+            <td>\(-\)</td>
+            <td>\(-\)</td>
+          </tr>
+          <tr>
+            <td>IV</td>
+            <td>\((\frac{3\pi}{2},2\pi)\)</td>
+            <td>\(-\)</td>
+            <td>\(+\)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Osnovna veza je:</p>
+      \[
+      \boxed{\sin^2\alpha+\cos^2\alpha=1}
+      \]
+      <p>Ako je, na primer, \(\sin\alpha=\frac45\), onda je</p>
+      \[
+      \cos^2\alpha=1-\frac{16}{25}=\frac9{25}, \qquad \cos\alpha=\pm\frac35.
+      \]
+      <p>Tek iz kvadranta odlučujemo da li ide plus ili minus.</p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>6. Dvostruki ugao</h2>
+      <p>Za zadatke 21 i 22 treba znati formule za \(\sin2\alpha\) i \(\cos2\alpha\):</p>
+      <div class="formula-grid">
+        <div class="mini">
+          <b>Sinus dvostrukog ugla</b>
+          \[
+          \boxed{\sin2\alpha=2\sin\alpha\cos\alpha}
+          \]
+        </div>
+        <div class="mini">
+          <b>Kosinus dvostrukog ugla</b>
+          \[
+          \boxed{\cos2\alpha=\cos^2\alpha-\sin^2\alpha}
+          \]
+        </div>
+      </div>
+      <div class="note">
+        Može i preko jedne veličine:
+        \[
+        \cos2\alpha=1-2\sin^2\alpha, \qquad \cos2\alpha=2\cos^2\alpha-1.
+        \]
+        Ali ako učeniku to pravi gužvu, dovoljno je pamtiti \(\cos2\alpha=\cos^2\alpha-\sin^2\alpha\).
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>7. Osnovne trigonometrijske jednačine</h2>
+      <p>Za zadatke 23 i 24 treba rešavati osnovne jednačine tipa \(\sin x=a\) i \(\cos x=a\).</p>
+
+      <h3>Jednačina \(\sin x=a\)</h3>
+      <p>Ako je \(\alpha\) osnovni ugao za koji važi \(\sin\alpha=a\), onda su rešenja:</p>
+      \[
+      \boxed{x=\alpha+2k\pi \quad \text{ili} \quad x=\pi-\alpha+2k\pi, \quad k\in\mathbb Z.}
+      \]
+
+      <h3>Jednačina \(\cos x=a\)</h3>
+      <p>Ako je \(\alpha\) osnovni ugao za koji važi \(\cos\alpha=a\), onda su rešenja:</p>
+      \[
+      \boxed{x=\pm\alpha+2k\pi, \quad k\in\mathbb Z.}
+      \]
+      <div class="note">
+        U zadacima prvo sredimo jednačinu do oblika \(\sin x=a\) ili \(\cos x=a\), pa tek onda pišemo opšta rešenja.
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>8. Jednačine kvadratne po \(\sin x\)</h2>
+      <p>Za zadatke kao:</p>
+      \[
+      2\sin^2x-\sin x-1=0, \qquad 2\sin^2x-3\sin x+1=0
+      \]
+      <p>radimo smenu:</p>
+      \[
+      t=\sin x, \qquad -1\leq t\leq 1.
+      \]
+      <p>Dobijamo običnu kvadratnu jednačinu po \(t\). Kada nađemo \(t\), vraćamo:</p>
+      \[
+      \sin x=t.
+      \]
+      <div class="note">
+        Obavezno proverimo uslov \(-1\leq t\leq1\). Ako kvadratna jednačina da, na primer, \(t=2\), to odbacujemo jer sinus ne može biti veći od 1.
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>9. Koja formula ide uz koji tip zadatka?</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>tip zadatka</th>
+            <th class="left">šta koristimo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(\sin75^\circ,\cos75^\circ,\sin15^\circ,\cos15^\circ\)</td>
+            <td class="left">\(75^\circ=45^\circ+30^\circ\), \(15^\circ=45^\circ-30^\circ\), pa formule za \(\sin(\alpha\pm\beta)\), \(\cos(\alpha\pm\beta)\)</td>
+          </tr>
+          <tr>
+            <td>\(\cos A\cos B+\sin A\sin B\)</td>
+            <td class="left">prepoznamo \(\cos(A-B)\)</td>
+          </tr>
+          <tr>
+            <td>\(\sin\left(\frac\pi4+\alpha\right)+\sin\left(\frac\pi4-\alpha\right)\)</td>
+            <td class="left">otvorimo oba sinusa formulama za sinus zbira i sinus razlike</td>
+          </tr>
+          <tr>
+            <td>\(\cos\left(\frac\pi3+\alpha\right)+\cos\left(\frac\pi3-\alpha\right)\)</td>
+            <td class="left">otvorimo oba kosinusa formulama za kosinus zbira i kosinus razlike</td>
+          </tr>
+          <tr>
+            <td>\(\sin\frac{2\pi}{3}\), \(\cos\frac{2\pi}{3}\), \(\cos\frac{5\pi}{6}\), \(\sin\frac{5\pi}{6}\)</td>
+            <td class="left">prebacimo u stepene: \(120^\circ=90^\circ+30^\circ\), \(150^\circ=90^\circ+60^\circ\), pa redukcija preko 90°</td>
+          </tr>
+          <tr>
+            <td>dato \(\sin\alpha\) ili \(\cos\alpha\), traži se \(\sin2\alpha,\cos2\alpha\)</td>
+            <td class="left">\(\sin^2\alpha+\cos^2\alpha=1\), znak po kvadrantu, pa formule za dvostruki ugao</td>
+          </tr>
+          <tr>
+            <td>\(2\cos x-\sqrt2=0\), \(2\sin x-1=0\)</td>
+            <td class="left">svedemo na \(\cos x=a\) ili \(\sin x=a\), zatim opšta rešenja</td>
+          </tr>
+          <tr>
+            <td>\(2\sin^2x-\sin x-1=0\)</td>
+            <td class="left">smena \(t=\sin x\), rešimo kvadratnu, proverimo \(t\in[-1,1]\), pa rešimo \(\sin x=t\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card task-card">
+      <h2>10. Mini redosled za sledeće četove</h2>
+      <ol>
+        <li>Prvo prepoznamo tip zadatka.</li>
+        <li>Zapišemo samo potrebnu formulu.</li>
+        <li>Ubacimo poznate uglove ili vrednosti.</li>
+        <li>Kod zadataka sa \(\alpha\) otvorimo zagrade i pustimo da se članovi sami skrate.</li>
+        <li>Kod jednačina obavezno pišemo opšte rešenje sa \(k\in\mathbb Z\).</li>
+        <li>Kod kvadratnih jednačina po \(\sin x\) pazimo na uslov \([-1,1]\).</li>
+      </ol>
+    </section>
+
+    <div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+  </main>
+</body>
+</html>

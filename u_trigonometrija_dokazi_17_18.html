@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigonometrijski dokazi — zadaci 17 i 18</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      --blue: #dbeafe;
+      --green: #dcfce7;
+      --yellow: #fef3c7;
+      --purple: #ede9fe;
+      --red: #fee2e2;
+      --answer: #e0f2fe;
+      --line: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #ffffff 0, var(--bg) 42%, #eef2ff 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 18px 28px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px 24px;
+      margin: 18px 0;
+      border-left: 10px solid var(--blue);
+    }
+
+    .task-card { border-left-color: var(--blue); }
+    .idea-card { border-left-color: var(--yellow); }
+    .analysis-card { border-left-color: var(--purple); }
+    .solution-card { border-left-color: var(--green); }
+    .warning-card { border-left-color: var(--red); }
+    .answer-card { border-left-color: var(--answer); }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.35rem;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 1.12rem;
+    }
+
+    p { margin: 8px 0; }
+
+    .formula-box {
+      background: #f9fafb;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px var(--line);
+    }
+
+    th, td {
+      padding: 11px 10px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: #f3f4f6;
+      font-weight: 700;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .mini {
+      background: #fafafa;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .boxed-answer {
+      font-size: 1.1rem;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 760px) {
+      .two-col { grid-template-columns: 1fr; }
+      .card { padding: 18px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Trigonometrijski dokazi — zadaci 17 i 18</h1>
+      <div class="subtitle">Otvaramo zagrade preko formula za sinus i kosinus zbira i razlike.</div>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadaci</h2>
+      <p><strong>17)</strong> Dokazati</p>
+      <div class="formula-box">
+        \[
+          \sin\left(\frac{\pi}{4}+\alpha\right)+\sin\left(\frac{\pi}{4}-\alpha\right)=\sqrt2\sin\alpha.
+        \]
+      </div>
+      <p><strong>18)</strong> Dokazati</p>
+      <div class="formula-box">
+        \[
+          \cos\left(\frac{\pi}{3}+\alpha\right)+\cos\left(\frac{\pi}{3}-\alpha\right)=\cos\alpha.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>Ne koristimo posebnu formulu za zbir sinusa ili zbir kosinusa. Svaki izraz otvaramo direktno:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        \sin(x+y)&=\sin x\cos y+\cos x\sin y,\\
+        \sin(x-y)&=\sin x\cos y-\cos x\sin y,\\[4pt]
+        \cos(x+y)&=\cos x\cos y-\sin x\sin y,\\
+        \cos(x-y)&=\cos x\cos y+\sin x\sin y.
+        \end{aligned}
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Tablica osnovnih uglova koja nam treba</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Ugao</th>
+            <th>\(\dfrac{\pi}{4}\)</th>
+            <th>\(\dfrac{\pi}{3}\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(\sin\)</td>
+            <td>\(\dfrac{\sqrt2}{2}\)</td>
+            <td>\(\dfrac{\sqrt3}{2}\)</td>
+          </tr>
+          <tr>
+            <td>\(\cos\)</td>
+            <td>\(\dfrac{\sqrt2}{2}\)</td>
+            <td>\(\dfrac12\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važna napomena za 17)</h2>
+      <p>Kako je zadatak napisan, desna strana ne može biti \(\sqrt2\sin\alpha\). Kada otvorimo levu stranu, dobija se \(\sqrt2\cos\alpha\).</p>
+      <p>Zato je najverovatnije u tekstu zadatka omaška: ili treba da piše \(\sqrt2\cos\alpha\), ili između dva sinusa treba da stoji minus.</p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>17) Provera izraza iz zadatka</h2>
+      <p>Otvaramo oba sinusa preko formula za zbir i razliku:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        &\sin\left(\frac{\pi}{4}+\alpha\right)+\sin\left(\frac{\pi}{4}-\alpha\right)\\[4pt]
+        &=\left(\sin\frac{\pi}{4}\cos\alpha+\cos\frac{\pi}{4}\sin\alpha\right)
+        +\left(\sin\frac{\pi}{4}\cos\alpha-\cos\frac{\pi}{4}\sin\alpha\right)\\[4pt]
+        &=\left(\frac{\sqrt2}{2}\cos\alpha+\frac{\sqrt2}{2}\sin\alpha\right)
+        +\left(\frac{\sqrt2}{2}\cos\alpha-\frac{\sqrt2}{2}\sin\alpha\right)\\[4pt]
+        &=\frac{\sqrt2}{2}\cos\alpha+\frac{\sqrt2}{2}\cos\alpha\\[4pt]
+        &=\sqrt2\cos\alpha.
+        \end{aligned}
+        \]
+      </div>
+      <p>Dakle, tačna jednakost sa plusom jeste:</p>
+      <div class="formula-box">
+        \[
+          \boxed{\sin\left(\frac{\pi}{4}+\alpha\right)+\sin\left(\frac{\pi}{4}-\alpha\right)=\sqrt2\cos\alpha.}
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Ako je cilj bio \(\sqrt2\sin\alpha\)</h2>
+      <p>Tada između dva sinusa treba da bude minus:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        &\sin\left(\frac{\pi}{4}+\alpha\right)-\sin\left(\frac{\pi}{4}-\alpha\right)\\[4pt]
+        &=\left(\frac{\sqrt2}{2}\cos\alpha+\frac{\sqrt2}{2}\sin\alpha\right)
+        -\left(\frac{\sqrt2}{2}\cos\alpha-\frac{\sqrt2}{2}\sin\alpha\right)\\[4pt]
+        &=\frac{\sqrt2}{2}\sin\alpha+\frac{\sqrt2}{2}\sin\alpha\\[4pt]
+        &=\sqrt2\sin\alpha.
+        \end{aligned}
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>18) Dokaz</h2>
+      <p>Otvaramo oba kosinusa preko formula za zbir i razliku:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        &\cos\left(\frac{\pi}{3}+\alpha\right)+\cos\left(\frac{\pi}{3}-\alpha\right)\\[4pt]
+        &=\left(\cos\frac{\pi}{3}\cos\alpha-\sin\frac{\pi}{3}\sin\alpha\right)
+        +\left(\cos\frac{\pi}{3}\cos\alpha+\sin\frac{\pi}{3}\sin\alpha\right)\\[4pt]
+        &=\left(\frac12\cos\alpha-\frac{\sqrt3}{2}\sin\alpha\right)
+        +\left(\frac12\cos\alpha+\frac{\sqrt3}{2}\sin\alpha\right)\\[4pt]
+        &=\frac12\cos\alpha+\frac12\cos\alpha\\[4pt]
+        &=\cos\alpha.
+        \end{aligned}
+        \]
+      </div>
+      <p>Time je jednakost dokazana.</p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan zaključak</h2>
+      <div class="two-col boxed-answer">
+        <div class="mini">
+          <h3>17)</h3>
+          \[
+            \boxed{\sin\left(\frac{\pi}{4}+\alpha\right)+\sin\left(\frac{\pi}{4}-\alpha\right)=\sqrt2\cos\alpha}
+          \]
+          <p>U tekstu sa \(\sqrt2\sin\alpha\) postoji omaška.</p>
+        </div>
+        <div class="mini">
+          <h3>18)</h3>
+          \[
+            \boxed{\cos\left(\frac{\pi}{3}+\alpha\right)+\cos\left(\frac{\pi}{3}-\alpha\right)=\cos\alpha}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
