@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Najmanja i najveća vrednost funkcije</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --text:#1f2937;
+      --muted:#64748b;
+      --card:#ffffff;
+      --task:#93c5fd;
+      --idea:#a7f3d0;
+      --analysis:#fde68a;
+      --solution:#c4b5fd;
+      --warning:#fecaca;
+      --answer:#86efac;
+      --border:#e5e7eb;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:linear-gradient(180deg,#eef5ff 0%,var(--bg) 100%);
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:32px 18px 48px;
+    }
+    header{
+      text-align:center;
+      margin-bottom:28px;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:clamp(1.8rem,3vw,2.5rem);
+      letter-spacing:-0.03em;
+    }
+    .subtitle{
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:0 14px 30px rgba(15,23,42,0.08);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto 0 0;
+      width:9px;
+      background:var(--task);
+    }
+    .idea-card::before{background:var(--idea);}
+    .analysis-card::before{background:var(--analysis);}
+    .solution-card::before{background:var(--solution);}
+    .warning-card::before{background:var(--warning);}
+    .answer-card::before{background:var(--answer);}
+    h2{
+      margin:0 0 12px;
+      font-size:1.25rem;
+    }
+    p{margin:10px 0;}
+    ul{margin:10px 0 10px 22px; padding:0;}
+    li{margin:6px 0;}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0 6px;
+      overflow:hidden;
+      border-radius:12px;
+      font-size:0.98rem;
+    }
+    th,td{
+      border:1px solid var(--border);
+      padding:10px 12px;
+      text-align:left;
+      vertical-align:top;
+    }
+    th{background:#f8fafc;}
+    .math-center{
+      overflow-x:auto;
+      padding:4px 0;
+    }
+    .note{
+      color:var(--muted);
+    }
+    footer{
+      text-align:center;
+      color:var(--muted);
+      margin-top:30px;
+      font-size:0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Najmanja i najveća vrednost funkcije</h1>
+      <div class="subtitle">Funkcija dve promenljive na zatvorenoj oblasti</div>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Naći najmanju i najveću vrednost funkcije</p>
+      <div class="math-center">
+        \[
+          f(x,y)=x^2+y^2+y
+        \]
+      </div>
+      <p>na oblasti</p>
+      <div class="math-center">
+        \[
+          D=\{(x,y)\mid y\le 1,\; y\le x+1,\; y\ge x^2-1\}.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Pošto je oblast zatvorena i ograničena, najmanja i najveća vrednost postoje.
+        Tražimo kandidate na dva mesta:
+      </p>
+      <ul>
+        <li>u unutrašnjosti oblasti: rešavamo \(f'_x=0\), \(f'_y=0\),</li>
+        <li>na granici oblasti: proveravamo svaku graničnu krivu.</li>
+      </ul>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Oblast \(D\)</h2>
+      <p>Donja granica je parabola</p>
+      <div class="math-center">
+        \[
+          y=x^2-1.
+        \]
+      </div>
+      <p>Gornje granice su prave \(y=1\) i \(y=x+1\).</p>
+      <p>Preseci koji nam određuju granicu su:</p>
+      <div class="math-center">
+        \[
+        \begin{aligned}
+          x^2-1=x+1 &\Rightarrow x^2-x-2=0
+          \Rightarrow x=-1 \text{ ili } x=2,\\
+          x^2-1=1 &\Rightarrow x^2=2
+          \Rightarrow x=\pm\sqrt2,\\
+          1=x+1 &\Rightarrow x=0.
+        \end{aligned}
+        \]
+      </div>
+      <p>
+        Za našu zatvorenu oblast relevantni delovi granice su:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Granica</th>
+            <th>Interval</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(y=x^2-1\)</td>
+            <td>\(-1\le x\le \sqrt2\)</td>
+          </tr>
+          <tr>
+            <td>\(y=x+1\)</td>
+            <td>\(-1\le x\le 0\)</td>
+          </tr>
+          <tr>
+            <td>\(y=1\)</td>
+            <td>\(0\le x\le \sqrt2\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card solution-card">
+      <h2>1. Unutrašnjost oblasti</h2>
+      <p>Računamo parcijalne izvode:</p>
+      <div class="math-center">
+        \[
+          f'_x=2x,\qquad f'_y=2y+1.
+        \]
+      </div>
+      <p>Stacionarna tačka se dobija iz sistema</p>
+      <div class="math-center">
+        \[
+          2x=0,\qquad 2y+1=0.
+        \]
+      </div>
+      <p>Zato je</p>
+      <div class="math-center">
+        \[
+          x=0,\qquad y=-\frac12.
+        \]
+      </div>
+      <p>Tačka \(\left(0,-\frac12\right)\) pripada oblasti \(D\), pa računamo:</p>
+      <div class="math-center">
+        \[
+          f\left(0,-\frac12\right)
+          =0^2+\left(-\frac12\right)^2-\frac12
+          =\frac14-\frac12
+          =-\frac14.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>2. Granica \(y=x^2-1\)</h2>
+      <p>Na paraboli važi \(y=x^2-1\), gde je \(-1\le x\le \sqrt2\).</p>
+      <div class="math-center">
+        \[
+        \begin{aligned}
+          f(x,x^2-1)
+          &=x^2+(x^2-1)^2+(x^2-1)\\
+          &=x^2+x^4-2x^2+1+x^2-1\\
+          &=x^4.
+        \end{aligned}
+        \]
+      </div>
+      <p>Dakle, na ovom delu granice posmatramo \(g(x)=x^4\), \(-1\le x\le \sqrt2\).</p>
+      <div class="math-center">
+        \[
+          g'(x)=4x^3=0 \Rightarrow x=0.
+        \]
+      </div>
+      <p>Proveravamo krajeve i kritičnu tačku:</p>
+      <div class="math-center">
+        \[
+          g(-1)=1,\qquad g(0)=0,\qquad g(\sqrt2)=4.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>3. Granica \(y=x+1\)</h2>
+      <p>Na pravoj \(y=x+1\), gde je \(-1\le x\le 0\), imamo:</p>
+      <div class="math-center">
+        \[
+        \begin{aligned}
+          f(x,x+1)
+          &=x^2+(x+1)^2+(x+1)\\
+          &=2x^2+3x+2.
+        \end{aligned}
+        \]
+      </div>
+      <p>Neka je \(h(x)=2x^2+3x+2\).</p>
+      <div class="math-center">
+        \[
+          h'(x)=4x+3=0 \Rightarrow x=-\frac34.
+        \]
+      </div>
+      <p>Proveravamo krajeve i kritičnu tačku:</p>
+      <div class="math-center">
+        \[
+          h(-1)=1,\qquad
+          h\left(-\frac34\right)=\frac78,\qquad
+          h(0)=2.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>4. Granica \(y=1\)</h2>
+      <p>Na pravoj \(y=1\), gde je \(0\le x\le \sqrt2\), dobijamo:</p>
+      <div class="math-center">
+        \[
+          f(x,1)=x^2+1+1=x^2+2.
+        \]
+      </div>
+      <p>Na intervalu \([0,\sqrt2]\):</p>
+      <div class="math-center">
+        \[
+          f(0,1)=2,\qquad f(\sqrt2,1)=4.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Poređenje svih kandidata</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tačka</th>
+            <th>Vrednost funkcije</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(\left(0,-\frac12\right)\)</td>
+            <td>\(-\frac14\)</td>
+          </tr>
+          <tr>
+            <td>\((-1,0)\)</td>
+            <td>\(1\)</td>
+          </tr>
+          <tr>
+            <td>\((0,-1)\)</td>
+            <td>\(0\)</td>
+          </tr>
+          <tr>
+            <td>\((\sqrt2,1)\)</td>
+            <td>\(4\)</td>
+          </tr>
+          <tr>
+            <td>\(\left(-\frac34,\frac14\right)\)</td>
+            <td>\(\frac78\)</td>
+          </tr>
+          <tr>
+            <td>\((0,1)\)</td>
+            <td>\(2\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <p>Najmanja vrednost je</p>
+      <div class="math-center">
+        \[
+          \boxed{f_{\min}=-\frac14}
+        \]
+      </div>
+      <p>i dostiže se u tački</p>
+      <div class="math-center">
+        \[
+          \boxed{\left(0,-\frac12\right)}.
+        \]
+      </div>
+      <p>Najveća vrednost je</p>
+      <div class="math-center">
+        \[
+          \boxed{f_{\max}=4}
+        \]
+      </div>
+      <p>i dostiže se u tački</p>
+      <div class="math-center">
+        \[
+          \boxed{(\sqrt2,1)}.
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
