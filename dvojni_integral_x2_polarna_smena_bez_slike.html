@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dvojni integral — polarna smena</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg:#f5f7fb;
+      --ink:#162033;
+      --muted:#5d667a;
+      --card:#ffffff;
+      --task:#7aa7ff;
+      --idea:#8bd3c7;
+      --analysis:#ffd166;
+      --solution:#b8e986;
+      --warning:#ff9aa2;
+      --answer:#cdb4db;
+      --shadow:0 10px 28px rgba(22,32,51,.10);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,#f7f9fd 0%,#eef3fb 100%);
+      color:var(--ink);
+      line-height:1.65;
+    }
+    main{max-width:980px;margin:0 auto;padding:34px 18px 46px}
+    h1{font-size:clamp(1.7rem,3vw,2.45rem);line-height:1.15;margin:0 0 22px;color:#101827}
+    h2{font-size:1.18rem;margin:0 0 12px;color:#101827}
+    p{margin:8px 0}
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px 24px;
+      margin:18px 0;
+      border-left:10px solid var(--task);
+    }
+    .task-card{border-left-color:var(--task)}
+    .idea-card{border-left-color:var(--idea)}
+    .analysis-card{border-left-color:var(--analysis)}
+    .solution-card{border-left-color:var(--solution)}
+    .warning-card{border-left-color:var(--warning)}
+    .answer-card{border-left-color:var(--answer)}
+    .math-block{overflow-x:auto;padding:4px 0}
+    table{border-collapse:collapse;width:100%;margin:14px 0;background:#fff;border-radius:14px;overflow:hidden}
+    th,td{border:1px solid #dce3ef;padding:10px 12px;text-align:center;vertical-align:middle}
+    th{background:#f0f4fb}
+    footer{margin-top:28px;text-align:center;color:#6b7280;font-size:.95rem}
+  </style>
+</head>
+
+<body>
+<main>
+  <h1>Dvojni integral pomoću polarne smene</h1>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>Izračunati dvojni integral</p>
+    <div class="math-block">
+      \[
+        I=\iint_D x^2\,dx\,dy,
+      \]
+    </div>
+    <p>gde je oblast</p>
+    <div class="math-block">
+      \[
+        D:\quad x^2+y^2\le 4,\qquad x\ge 1,\qquad y\ge 1.
+      \]
+    </div>
+  </section>
+
+  <section class="card idea-card">
+    <h2>Ideja</h2>
+    <p>
+      Oblast je deo kruga poluprečnika \(2\), ali odsečen pravama \(x=1\) i \(y=1\).
+      Zato je polarna smena prirodna za krug. Jedina fora je da se oblast mora podeliti na dva dela.
+    </p>
+    <div class="math-block">
+      \[
+        x=r\cos\theta,\qquad y=r\sin\theta,\qquad dx\,dy=r\,dr\,d\theta.
+      \]
+    </div>
+  </section>
+
+  <section class="card analysis-card">
+    <h2>Granice oblasti u polarnim koordinatama</h2>
+
+    <p>Iz uslova kruga dobijamo:</p>
+    <div class="math-block">
+      \[
+        x^2+y^2\le 4
+        \quad\Longrightarrow\quad
+        r^2\le 4
+        \quad\Longrightarrow\quad
+        r\le 2.
+      \]
+    </div>
+
+    <p>Iz uslova \(x\ge 1\) i \(y\ge 1\) dobijamo:</p>
+    <div class="math-block">
+      \[
+        r\cos\theta\ge 1
+        \quad\Longrightarrow\quad
+        r\ge \frac{1}{\cos\theta},
+      \]
+      \[
+        r\sin\theta\ge 1
+        \quad\Longrightarrow\quad
+        r\ge \frac{1}{\sin\theta}.
+      \]
+    </div>
+
+    <p>Da bi tačka uopšte mogla da stane u krug \(r\le 2\), mora da važi:</p>
+    <div class="math-block">
+      \[
+        \frac{1}{\cos\theta}\le 2
+        \quad\Longrightarrow\quad
+        \cos\theta\ge \frac12
+        \quad\Longrightarrow\quad
+        \theta\le \frac{\pi}{3},
+      \]
+      \[
+        \frac{1}{\sin\theta}\le 2
+        \quad\Longrightarrow\quad
+        \sin\theta\ge \frac12
+        \quad\Longrightarrow\quad
+        \theta\ge \frac{\pi}{6}.
+      \]
+    </div>
+
+    <p>Zato je ugao:</p>
+    <div class="math-block">
+      \[
+        \frac{\pi}{6}\le \theta\le \frac{\pi}{3}.
+      \]
+    </div>
+
+    <p>
+      Donja granica za \(r\) je veća od dve vrednosti
+      \(\frac{1}{\cos\theta}\) i \(\frac{1}{\sin\theta}\).
+      One se menjaju na \(\theta=\frac{\pi}{4}\), jer je tada
+      \(\sin\theta=\cos\theta\).
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Interval za \(\theta\)</th>
+          <th>Donja granica za \(r\)</th>
+          <th>Gornja granica za \(r\)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>\(\displaystyle \frac{\pi}{6}\le\theta\le\frac{\pi}{4}\)</td>
+          <td>\(\displaystyle r=\frac{1}{\sin\theta}\)</td>
+          <td>\(\displaystyle r=2\)</td>
+        </tr>
+        <tr>
+          <td>\(\displaystyle \frac{\pi}{4}\le\theta\le\frac{\pi}{3}\)</td>
+          <td>\(\displaystyle r=\frac{1}{\cos\theta}\)</td>
+          <td>\(\displaystyle r=2\)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card solution-card">
+    <h2>Rešenje</h2>
+
+    <p>Pošto je \(x=r\cos\theta\), imamo:</p>
+    <div class="math-block">
+      \[
+        x^2\,dx\,dy
+        =
+        (r\cos\theta)^2\cdot r\,dr\,d\theta
+        =
+        r^3\cos^2\theta\,dr\,d\theta.
+      \]
+    </div>
+
+    <p>Zato je:</p>
+    <div class="math-block">
+      \[
+      I=
+      \int_{\pi/6}^{\pi/4}
+      \int_{1/\sin\theta}^{2}
+      r^3\cos^2\theta\,dr\,d\theta
+      +
+      \int_{\pi/4}^{\pi/3}
+      \int_{1/\cos\theta}^{2}
+      r^3\cos^2\theta\,dr\,d\theta.
+      \]
+    </div>
+
+    <p>Prvo integrišemo po \(r\):</p>
+    <div class="math-block">
+      \[
+      I=
+      \frac14
+      \int_{\pi/6}^{\pi/4}
+      \cos^2\theta
+      \left(16-\frac{1}{\sin^4\theta}\right)d\theta
+      +
+      \frac14
+      \int_{\pi/4}^{\pi/3}
+      \cos^2\theta
+      \left(16-\frac{1}{\cos^4\theta}\right)d\theta.
+      \]
+    </div>
+
+    <p>Odnosno, bez sekansa i kosekansa:</p>
+    <div class="math-block">
+      \[
+      I=
+      \int_{\pi/6}^{\pi/4}
+      \left(
+      4\cos^2\theta
+      -
+      \frac14\cdot\frac{\cos^2\theta}{\sin^4\theta}
+      \right)d\theta
+      +
+      \int_{\pi/4}^{\pi/3}
+      \left(
+      4\cos^2\theta
+      -
+      \frac{1}{4\cos^2\theta}
+      \right)d\theta.
+      \]
+    </div>
+
+    <p>
+      U prvom integralu koristimo smenu
+      \(u=\cot\theta\), jer je
+      \(du=-\frac{1}{\sin^2\theta}\,d\theta\).
+    </p>
+
+    <div class="math-block">
+      \[
+      \frac{\cos^2\theta}{\sin^4\theta}\,d\theta
+      =
+      \cot^2\theta\cdot\frac{1}{\sin^2\theta}\,d\theta.
+      \]
+    </div>
+
+    <p>Koristimo i formulu:</p>
+    <div class="math-block">
+      \[
+        \int \cos^2\theta\,d\theta
+        =
+        \frac{\theta}{2}+\frac{\sin 2\theta}{4}.
+      \]
+    </div>
+
+    <p>Prvi deo:</p>
+    <div class="math-block">
+      \[
+      I_1=
+      \left[
+      2\theta+\sin 2\theta+\frac{\cot^3\theta}{12}
+      \right]_{\pi/6}^{\pi/4}
+      =
+      \frac{\pi}{6}+\frac{13}{12}-\frac{3\sqrt3}{4}.
+      \]
+    </div>
+
+    <p>Drugi deo:</p>
+    <div class="math-block">
+      \[
+      I_2=
+      \left[
+      2\theta+\sin 2\theta-\frac{\tan\theta}{4}
+      \right]_{\pi/4}^{\pi/3}
+      =
+      \frac{\pi}{6}+\frac{\sqrt3}{4}-\frac34.
+      \]
+    </div>
+
+    <p>Sabiramo:</p>
+    <div class="math-block">
+      \[
+      I=I_1+I_2
+      =
+      \frac{\pi}{3}+\frac13-\frac{\sqrt3}{2}.
+      \]
+    </div>
+  </section>
+
+  <section class="card warning-card">
+    <h2>Napomena</h2>
+    <p>
+      Ovde je suština da se oblast pravilno pročita.
+      Ugao ide od \(\frac{\pi}{6}\) do \(\frac{\pi}{3}\), ali se donja granica za \(r\)
+      menja na \(\frac{\pi}{4}\).
+    </p>
+    <p>
+      Ako bi u integralu stajalo \(y^2\) umesto \(x^2\), dobija se isti rezultat,
+      jer je oblast simetrična u odnosu na pravu \(y=x\).
+    </p>
+  </section>
+
+  <section class="card answer-card">
+    <h2>Konačan odgovor</h2>
+    <div class="math-block">
+      \[
+        \boxed{
+        \displaystyle
+        \iint_D x^2\,dx\,dy
+        =
+        \frac{\pi}{3}+\frac13-\frac{\sqrt3}{2}
+        }
+      \]
+    </div>
+  </section>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
