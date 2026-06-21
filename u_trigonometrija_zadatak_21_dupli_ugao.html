@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trigonometrija – zadatak 21</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --task:#e3f2fd;
+      --idea:#e8f5e9;
+      --analysis:#eef2ff;
+      --solution:#fff3e0;
+      --warning:#fff8e1;
+      --answer:#f3e5f5;
+      --text:#182033;
+      --muted:#5f6675;
+      --border:#e6e6e6;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:#f7f7fb;
+      line-height:1.6;
+    }
+    .wrap{
+      max-width:980px;
+      margin:0 auto;
+      padding:32px 18px 60px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 10px;
+      font-size:32px;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+      font-size:18px;
+    }
+    .card{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px 24px;
+      margin:18px 0;
+      box-shadow:0 10px 24px rgba(0,0,0,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:var(--task)}
+    .idea-card::before{background:var(--idea)}
+    .analysis-card::before{background:var(--analysis)}
+    .solution-card::before{background:var(--solution)}
+    .warning-card::before{background:var(--warning)}
+    .answer-card::before{background:var(--answer)}
+    .card h2{
+      margin:0 0 12px;
+      font-size:24px;
+    }
+    .card h3{
+      margin:18px 0 8px;
+      font-size:20px;
+    }
+    .math-block{
+      background:#fafafa;
+      border:1px solid #ececec;
+      border-radius:12px;
+      padding:12px 14px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+    .final{
+      font-size:19px;
+      font-weight:bold;
+    }
+    footer{
+      margin-top:34px;
+      text-align:center;
+      color:#666;
+      font-size:14px;
+    }
+    @media (max-width:760px){
+      h1{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Trigonometrija – zadatak 21</h1>
+    <div class="subtitle">Računanje $\sin 2\alpha$ i $\cos 2\alpha$</div>
+
+    <div class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Izračunati $\sin 2\alpha$ i $\cos 2\alpha$ ako je:</p>
+      <div class="math-block">
+        $$\sin\alpha=\frac45,\qquad \alpha\in\left(\frac{\pi}{2},\pi\right).$$
+      </div>
+    </div>
+
+    <div class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Da bismo izračunali $\sin 2\alpha$ i $\cos 2\alpha$, treba nam i
+        $\cos\alpha$.
+      </p>
+      <p>
+        Prvo određujemo u kom je kvadrantu ugao $\alpha$.
+      </p>
+      <div class="math-block">
+        $$\alpha\in\left(\frac{\pi}{2},\pi\right)
+        \quad\Longleftrightarrow\quad
+        \alpha\in(90^\circ,180^\circ).$$
+      </div>
+      <p>
+        To je drugi kvadrant. U drugom kvadrantu sinus je pozitivan,
+        a kosinus negativan.
+      </p>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Računamo $\cos\alpha$</h2>
+      <p>Koristimo osnovnu vezu:</p>
+      <div class="math-block">
+        $$\sin^2\alpha+\cos^2\alpha=1.$$
+      </div>
+
+      <p>Pošto je $\sin\alpha=\frac45$, imamo:</p>
+      <div class="math-block">
+        $$\left(\frac45\right)^2+\cos^2\alpha=1$$
+        $$\frac{16}{25}+\cos^2\alpha=1$$
+        $$\cos^2\alpha=\frac9{25}.$$
+      </div>
+
+      <p>Odavde je:</p>
+      <div class="math-block">
+        $$\cos\alpha=\pm\frac35.$$
+      </div>
+
+      <p>
+        Ali $\alpha$ je u drugom kvadrantu, pa je kosinus negativan:
+      </p>
+      <div class="math-block">
+        $$\boxed{\cos\alpha=-\frac35}.$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Računamo $\sin 2\alpha$</h2>
+      <p>Koristimo formulu za sinus duplog ugla:</p>
+      <div class="math-block">
+        $$\sin2\alpha=2\sin\alpha\cos\alpha.$$
+      </div>
+
+      <p>Zamenimo poznate vrednosti:</p>
+      <div class="math-block">
+        $$\sin2\alpha
+        =2\cdot\frac45\cdot\left(-\frac35\right)
+        =-\frac{24}{25}.$$
+      </div>
+    </div>
+
+    <div class="card solution-card">
+      <h2>Računamo $\cos 2\alpha$</h2>
+      <p>Koristimo formulu:</p>
+      <div class="math-block">
+        $$\cos2\alpha=\cos^2\alpha-\sin^2\alpha.$$
+      </div>
+
+      <p>Zamenimo:</p>
+      <div class="math-block">
+        $$\cos2\alpha
+        =\left(-\frac35\right)^2-\left(\frac45\right)^2$$
+        $$\cos2\alpha
+        =\frac9{25}-\frac{16}{25}
+        =-\frac7{25}.$$
+      </div>
+    </div>
+
+    <div class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="math-block final">
+        $$\boxed{\sin2\alpha=-\frac{24}{25}},\qquad
+        \boxed{\cos2\alpha=-\frac7{25}}.$$
+      </div>
+    </div>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </div>
+</body>
+</html>
