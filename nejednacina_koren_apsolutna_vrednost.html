@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nejednačina sa korenom i apsolutnom vrednošću</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f7f7fb;
+      --ink:#232323;
+      --muted:#61616b;
+      --card:#ffffff;
+      --task:#f6c7c7;
+      --idea:#ffe1a8;
+      --analysis:#bfe4ff;
+      --solution:#c9efd7;
+      --warning:#ead7ff;
+      --answer:#d5f5f0;
+      --shadow: 0 10px 24px rgba(0,0,0,.08);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #ffffff 0, var(--bg) 42%, #f1f3f8 100%);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    .page{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 18px 42px;
+    }
+    header{
+      text-align:center;
+      margin-bottom: 24px;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size: clamp(1.75rem, 4vw, 2.55rem);
+      letter-spacing:-.03em;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+    .card{
+      position:relative;
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin:18px 0;
+      padding:22px 24px 22px 28px;
+      overflow:hidden;
+      border:1px solid rgba(0,0,0,.05);
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0 auto 0 0;
+      width:9px;
+      background:var(--stripe,#ddd);
+    }
+    .task-card{--stripe:var(--task)}
+    .idea-card{--stripe:var(--idea)}
+    .analysis-card{--stripe:var(--analysis)}
+    .solution-card{--stripe:var(--solution)}
+    .warning-card{--stripe:var(--warning)}
+    .answer-card{--stripe:var(--answer)}
+    h2{
+      margin:0 0 12px;
+      font-size:1.25rem;
+    }
+    h3{
+      margin:22px 0 8px;
+      font-size:1.1rem;
+    }
+    p{margin:10px 0}
+    .formula{
+      background:#f7f8fb;
+      border:1px solid #e7e8ef;
+      border-radius:14px;
+      padding:14px 16px;
+      margin:14px 0;
+    }
+    .step{
+      padding:10px 14px;
+      border-left:4px solid #e5e7ef;
+      background:#fbfbfd;
+      border-radius:10px;
+      margin:12px 0;
+    }
+    .small-note{
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .tag{
+      display:inline-block;
+      padding:3px 10px;
+      border-radius:999px;
+      background:#f0f2f8;
+      color:#4d4f58;
+      font-size:.88rem;
+      font-weight:650;
+      margin-bottom:8px;
+    }
+    footer{
+      text-align:center;
+      color:#777985;
+      font-size:.95rem;
+      margin-top:26px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1>Nejednačina sa korenom i apsolutnom vrednošću</h1>
+      <p class="subtitle">Školski postupak: dva slučaja i uslovi za kvadriranje.</p>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Rešiti nejednačinu:</p>
+      <div class="formula">
+        \[
+          \sqrt{x^2-2x+9}-x\le 2+|2x-7|.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>Prvo razbijamo apsolutnu vrednost:</p>
+      <div class="formula">
+        \[
+        |2x-7|=
+        \begin{cases}
+        7-2x, & x<\dfrac72,\\[4pt]
+        2x-7, & x\ge \dfrac72.
+        \end{cases}
+        \]
+      </div>
+      <p>Zatim u svakom slučaju dobijamo nejednačinu oblika:</p>
+      <div class="formula">
+        \[
+          \sqrt{A}\le B.
+        \]
+      </div>
+      <p>Za nju koristimo standardno pravilo:</p>
+      <div class="formula">
+        \[
+          \sqrt{A}\le B
+          \quad\Longleftrightarrow\quad
+          B\ge 0 \quad \text{i} \quad A\le B^2,
+        \]
+      </div>
+      <p class="small-note">Ovde je radikand uvek pozitivan, jer je \(x^2-2x+9=(x-1)^2+8>0\).</p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <h3>Prvi slučaj: \(x<\dfrac72\)</h3>
+      <p>Tada je \(|2x-7|=7-2x\), pa početna nejednačina postaje:</p>
+      <div class="step">
+        \[
+        \sqrt{x^2-2x+9}-x\le 2+7-2x.
+        \]
+        \[
+        \sqrt{x^2-2x+9}-x\le 9-2x.
+        \]
+        \[
+        \sqrt{x^2-2x+9}\le 9-x.
+        \]
+      </div>
+
+      <p>Sada primenjujemo pravilo \(\sqrt{A}\le B\).</p>
+      <p><span class="tag">Uslov 1</span></p>
+      <div class="step">
+        \[
+          9-x\ge 0
+          \quad\Longleftrightarrow\quad
+          x\le 9.
+        \]
+        <p>Ovo je automatski ispunjeno u ovom slučaju, jer već imamo \(x<\dfrac72\).</p>
+      </div>
+
+      <p><span class="tag">Uslov 2</span></p>
+      <div class="step">
+        \[
+        x^2-2x+9\le (9-x)^2.
+        \]
+        \[
+        x^2-2x+9\le x^2-18x+81.
+        \]
+        \[
+        -2x+9\le -18x+81.
+        \]
+        \[
+        16x\le 72.
+        \]
+        \[
+        x\le \frac92.
+        \]
+        <p>I ovo je automatski ispunjeno za svako \(x<\dfrac72\).</p>
+      </div>
+
+      <p>Zato prvi slučaj daje:</p>
+      <div class="formula">
+        \[
+          x<\frac72.
+        \]
+      </div>
+
+      <h3>Drugi slučaj: \(x\ge\dfrac72\)</h3>
+      <p>Tada je \(|2x-7|=2x-7\), pa dobijamo:</p>
+      <div class="step">
+        \[
+        \sqrt{x^2-2x+9}-x\le 2+2x-7.
+        \]
+        \[
+        \sqrt{x^2-2x+9}-x\le 2x-5.
+        \]
+        \[
+        \sqrt{x^2-2x+9}\le 3x-5.
+        \]
+      </div>
+
+      <p>Opet primenjujemo pravilo \(\sqrt{A}\le B\).</p>
+      <p><span class="tag">Uslov 1</span></p>
+      <div class="step">
+        \[
+          3x-5\ge 0
+          \quad\Longleftrightarrow\quad
+          x\ge \frac53.
+        \]
+        <p>Ovo je automatski ispunjeno u ovom slučaju, jer je \(x\ge\dfrac72\).</p>
+      </div>
+
+      <p><span class="tag">Uslov 2</span></p>
+      <div class="step">
+        \[
+        x^2-2x+9\le (3x-5)^2.
+        \]
+        \[
+        x^2-2x+9\le 9x^2-30x+25.
+        \]
+        \[
+        0\le 8x^2-28x+16.
+        \]
+        \[
+        0\le 4(2x^2-7x+4).
+        \]
+        \[
+        2x^2-7x+4\ge 0.
+        \]
+      </div>
+
+      <p>Rešavamo kvadratnu nejednačinu. Nule su:</p>
+      <div class="step">
+        \[
+        x_{1,2}=\frac{7\pm\sqrt{49-32}}{4}
+        =\frac{7\pm\sqrt{17}}4.
+        \]
+      </div>
+      <p>Pošto je koeficijent uz \(x^2\) pozitivan, parabola je „smajli“, pa je:</p>
+      <div class="formula">
+        \[
+        2x^2-7x+4\ge0
+        \quad\Longleftrightarrow\quad
+        x\le \frac{7-\sqrt{17}}4
+        \quad \text{ili} \quad
+        x\ge \frac{7+\sqrt{17}}4.
+        \]
+      </div>
+      <p>Ali u ovom slučaju već imamo \(x\ge\dfrac72\). Kako je</p>
+      <div class="step">
+        \[
+        \frac{7+\sqrt{17}}4<\frac72,
+        \]
+      </div>
+      <p>svi brojevi iz slučaja \(x\ge\dfrac72\) prolaze.</p>
+
+      <p>Zato drugi slučaj daje:</p>
+      <div class="formula">
+        \[
+          x\ge\frac72.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan odgovor</h2>
+      <p>Prvi slučaj daje \(x<\dfrac72\), a drugi slučaj daje \(x\ge\dfrac72\). Njihova unija je ceo skup realnih brojeva.</p>
+      <div class="formula">
+        \[
+          \boxed{x\in\mathbb{R}}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>Ključni detalj je da se ne kvadrira odmah „na slepo“. Kada iz nejednačine dobijemo oblik \(\sqrt{A}\le B\), prvo se obavezno proverava uslov \(B\ge0\), pa tek onda \(A\le B^2\).</p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
