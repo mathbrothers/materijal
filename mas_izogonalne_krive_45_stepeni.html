@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Izogonalne krive pod uglom 45 stepeni</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)'], ['$', '$']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#d7deea;
+      --shadow:0 10px 24px rgba(31,41,55,.08);
+      --task:#e9f2ff;
+      --idea:#eefbf3;
+      --analysis:#fff7e8;
+      --solution:#f4f0ff;
+      --warning:#fff1f2;
+      --answer:#ecfeff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+      line-height:1.65;
+    }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:32px 18px 42px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 8px;
+      font-size:2rem;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:22px 24px 24px;
+      margin:18px 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:#60a5fa}
+    .idea-card::before{background:#34d399}
+    .analysis-card::before{background:#fbbf24}
+    .solution-card::before{background:#8b5cf6}
+    .warning-card::before{background:#fb7185}
+    .answer-card::before{background:#22c55e}
+    .task-card{background:linear-gradient(180deg,var(--task),#fff 24%)}
+    .idea-card{background:linear-gradient(180deg,var(--idea),#fff 24%)}
+    .analysis-card{background:linear-gradient(180deg,var(--analysis),#fff 24%)}
+    .solution-card{background:linear-gradient(180deg,var(--solution),#fff 24%)}
+    .warning-card{background:linear-gradient(180deg,var(--warning),#fff 24%)}
+    .answer-card{background:linear-gradient(180deg,var(--answer),#fff 24%)}
+    h2{margin:0 0 12px;font-size:1.28rem}
+    h3{margin:18px 0 8px;font-size:1.06rem}
+    p{margin:10px 0}
+    ul,ol{margin:10px 0 10px 24px}
+    .math-block{
+      margin:14px 0;
+      padding:12px 14px;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      overflow-x:auto;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:start;
+    }
+    .svg-box{
+      background:#fcfdff;
+      border:1px solid #dbe4f0;
+      border-radius:14px;
+      padding:8px;
+    }
+    .note{color:var(--muted);font-size:.96rem}
+    .boxed{font-weight:700;color:#0f766e}
+    .footer{
+      text-align:center;
+      color:#6b7280;
+      font-size:.95rem;
+      margin-top:26px;
+      padding-top:10px;
+    }
+    @media(max-width:850px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <h1>Izogonalne krive pod uglom \(45^\circ\)</h1>
+  <div class="subtitle">Slično kao ortogonalne trajektorije, samo umesto \(90^\circ\) koristimo zadati ugao</div>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>Naći krivu izogonalnu u odnosu na familiju krivih</p>
+    <div class="math-block">
+      \[
+        x-y=x^2+a^2,\qquad a=\text{const.}
+      \]
+    </div>
+    <p>pod uglom od \(45^\circ\), koja prolazi kroz tačku \((1,1)\).</p>
+  </section>
+
+  <section class="card idea-card">
+    <h2>Mali tutorijal — izogonalne trajektorije</h2>
+
+    <p>
+      Kod ortogonalnih krivih ugao preseka je \(90^\circ\), pa koristimo pravilo
+      \(m_1m_2=-1\).
+    </p>
+
+    <p>
+      Kod izogonalnih krivih ugao preseka nije \(90^\circ\), nego neki zadati ugao
+      \(\alpha\). Ako je nagib date familije \(m\), a nagib tražene krive \(p\), onda važi:
+    </p>
+
+    <div class="math-block">
+      \[
+        \tan\alpha=
+        \left|
+        \frac{p-m}{1+mp}
+        \right|.
+      \]
+    </div>
+
+    <p>Za orijentisani ugao može se koristiti formula:</p>
+
+    <div class="math-block">
+      \[
+        p=\frac{m+\tan\alpha}{1-m\tan\alpha}.
+      \]
+    </div>
+
+    <p>Ako ugao posmatramo bez orijentacije, postoje dve mogućnosti:</p>
+
+    <div class="math-block">
+      \[
+        p_1=\frac{m+\tan\alpha}{1-m\tan\alpha},
+        \qquad
+        p_2=\frac{m-\tan\alpha}{1+m\tan\alpha}.
+      \]
+    </div>
+
+    <p class="note">
+      U ovom zadatku je \(\alpha=45^\circ\), pa je \(\tan45^\circ=1\).
+    </p>
+  </section>
+
+  <section class="card analysis-card">
+    <h2>Geometrijska slika</h2>
+
+    <div class="grid">
+      <div>
+        <p>Familija je</p>
+        <div class="math-block">
+          \[
+            x-y=x^2+a^2
+            \qquad\Longleftrightarrow\qquad
+            y=x-x^2-a^2.
+          \]
+        </div>
+
+        <p>
+          To su parabole istog oblika, samo pomerene nadole za različite vrednosti \(a^2\).
+          Kada ih diferenciramo, konstanta \(a^2\) nestaje, pa sve krive iz familije imaju isti
+          zakon za nagib tangente:
+        </p>
+
+        <div class="math-block">
+          \[
+            y'=1-2x.
+          \]
+        </div>
+
+        <p>
+          U tački sa \(x=1\) taj nagib je
+        </p>
+
+        <div class="math-block">
+          \[
+            m=1-2\cdot1=-1.
+          \]
+        </div>
+
+        <p>
+          Prava sa nagibom \(-1\) pravi ugao od \(45^\circ\) i sa horizontalnom pravom
+          i sa vertikalnom pravom. Zato se u tački \((1,1)\) prirodno vide dve moguće
+          izogonalne direkcije.
+        </p>
+      </div>
+
+      <div class="svg-box">
+        <svg viewBox="0 0 430 330" width="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/>
+            </marker>
+          </defs>
+
+          <rect width="430" height="330" fill="#fcfdff"/>
+
+          <!-- axes -->
+          <line x1="45" y1="250" x2="395" y2="250" stroke="#4b5563" stroke-width="2" marker-end="url(#arr)"/>
+          <line x1="110" y1="300" x2="110" y2="35" stroke="#4b5563" stroke-width="2" marker-end="url(#arr)"/>
+          <text x="402" y="245" font-size="15" fill="#374151">x</text>
+          <text x="118" y="42" font-size="15" fill="#374151">y</text>
+
+          <!-- sample parabolas y=x-x^2-c, scaled roughly, not through P -->
+          <path d="M70 235 C120 145, 175 120, 230 155 C270 180, 300 230, 320 290" fill="none" stroke="#93c5fd" stroke-width="2"/>
+          <path d="M70 260 C120 170, 175 145, 230 180 C270 205, 300 255, 320 315" fill="none" stroke="#93c5fd" stroke-width="2" opacity=".65"/>
+          <path d="M70 210 C120 120, 175 95, 230 130 C270 155, 300 205, 320 265" fill="none" stroke="#93c5fd" stroke-width="2" opacity=".65"/>
+
+          <!-- P(1,1) at (210,150) -->
+          <circle cx="210" cy="150" r="5" fill="#dc2626"/>
+          <text x="220" y="144" font-size="14" fill="#dc2626">P(1,1)</text>
+
+          <!-- tangent direction m=-1 through P -->
+          <line x1="150" y1="90" x2="270" y2="210" stroke="#f59e0b" stroke-width="3" stroke-dasharray="8 6"/>
+          <text x="262" y="216" font-size="13" fill="#b45309">pravac familije, m=-1</text>
+
+          <!-- horizontal solution direction -->
+          <line x1="135" y1="150" x2="290" y2="150" stroke="#059669" stroke-width="3"/>
+          <text x="138" y="137" font-size="13" fill="#047857">izogonalna 1</text>
+
+          <!-- vertical solution direction -->
+          <line x1="210" y1="70" x2="210" y2="235" stroke="#7c3aed" stroke-width="3"/>
+          <text x="218" y="78" font-size="13" fill="#6d28d9">izogonalna 2</text>
+
+          <!-- angle labels -->
+          <path d="M230 150 A20 20 0 0 1 224 164" fill="none" stroke="#111827" stroke-width="1.5"/>
+          <text x="235" y="168" font-size="12" fill="#111827">45°</text>
+
+          <path d="M210 130 A20 20 0 0 1 224 136" fill="none" stroke="#111827" stroke-width="1.5"/>
+          <text x="227" y="133" font-size="12" fill="#111827">45°</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="card solution-card">
+    <h2>Računsko rešenje</h2>
+
+    <h3>1. Diferencijalna jednačina date familije</h3>
+
+    <p>Polazimo od:</p>
+
+    <div class="math-block">
+      \[
+        x-y=x^2+a^2.
+      \]
+    </div>
+
+    <p>Diferenciramo po \(x\):</p>
+
+    <div class="math-block">
+      \[
+        1-y'=2x.
+      \]
+    </div>
+
+    <p>Odavde je nagib tangente na datu familiju:</p>
+
+    <div class="math-block">
+      \[
+        y'=1-2x.
+      \]
+    </div>
+
+    <p>Označimo taj nagib sa \(m\):</p>
+
+    <div class="math-block">
+      \[
+        m=1-2x.
+      \]
+    </div>
+
+    <h3>2. Izogonalna kriva pod uglom \(45^\circ\)</h3>
+
+    <p>Pošto je \(\tan45^\circ=1\), za orijentisani ugao uzimamo:</p>
+
+    <div class="math-block">
+      \[
+        p=\frac{m+1}{1-m}.
+      \]
+    </div>
+
+    <p>Ubacujemo \(m=1-2x\):</p>
+
+    <div class="math-block">
+      \[
+      \begin{aligned}
+        p
+        &=\frac{1-2x+1}{1-(1-2x)}\\
+        &=\frac{2-2x}{2x}\\
+        &=\frac{1-x}{x}.
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Dakle tražena kriva zadovoljava diferencijalnu jednačinu:</p>
+
+    <div class="math-block">
+      \[
+        \frac{dy}{dx}=\frac{1-x}{x}
+        =
+        \frac1x-1.
+      \]
+    </div>
+
+    <h3>3. Integracija</h3>
+
+    <div class="math-block">
+      \[
+      \begin{aligned}
+        y
+        &=\int\left(\frac1x-1\right)\,dx\\
+        &=\ln|x|-x+C.
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Pošto tražena kriva prolazi kroz \((1,1)\), ubacujemo \(x=1\), \(y=1\):</p>
+
+    <div class="math-block">
+      \[
+        1=\ln 1-1+C.
+      \]
+    </div>
+
+    <p>Kako je \(\ln1=0\), dobijamo:</p>
+
+    <div class="math-block">
+      \[
+        1=-1+C
+        \qquad\Longrightarrow\qquad
+        C=2.
+      \]
+    </div>
+
+    <p>Zato je tražena kriva:</p>
+
+    <div class="math-block">
+      \[
+        y=\ln|x|-x+2.
+      \]
+    </div>
+
+    <p>Pošto kriva prolazi kroz tačku sa \(x=1>0\), u okolini te tačke možemo pisati:</p>
+
+    <div class="math-block">
+      \[
+        y=\ln x-x+2.
+      \]
+    </div>
+  </section>
+
+  <section class="card warning-card">
+    <h2>Napomena o dve moguće izogonalne direkcije</h2>
+
+    <p>
+      Ako se ugao \(45^\circ\) posmatra bez orijentacije, postoji i druga direkcija:
+    </p>
+
+    <div class="math-block">
+      \[
+        p_2=\frac{m-1}{1+m}.
+      \]
+    </div>
+
+    <p>Za \(m=1-2x\):</p>
+
+    <div class="math-block">
+      \[
+        p_2=
+        \frac{1-2x-1}{1+1-2x}
+        =
+        \frac{-2x}{2-2x}
+        =
+        \frac{x}{x-1}.
+      \]
+    </div>
+
+    <p>
+      Ova familija ima vertikalnu direkciju u tački \(x=1\). Zbog toga se kao druga
+      kriva kroz \((1,1)\) javlja vertikalna prava
+    </p>
+
+    <div class="math-block">
+      \[
+        x=1.
+      \]
+    </div>
+
+    <p>
+      U standardnom školskom računu, kada se koristi orijentisana formula
+      \(\displaystyle p=\frac{m+\tan45^\circ}{1-m\tan45^\circ}\), dobija se glavna
+      kriva:
+    </p>
+
+    <div class="math-block">
+      \[
+        y=\ln x-x+2.
+      \]
+    </div>
+  </section>
+
+  <section class="card analysis-card">
+    <h2>Provera ugla u tački \((1,1)\)</h2>
+
+    <p>Nagib date familije u tački sa \(x=1\) je:</p>
+
+    <div class="math-block">
+      \[
+        m=1-2\cdot1=-1.
+      \]
+    </div>
+
+    <p>Za dobijenu krivu</p>
+
+    <div class="math-block">
+      \[
+        y=\ln x-x+2
+      \]
+    </div>
+
+    <p>nagib je:</p>
+
+    <div class="math-block">
+      \[
+        y'=\frac1x-1.
+      \]
+    </div>
+
+    <p>U tački \(x=1\):</p>
+
+    <div class="math-block">
+      \[
+        y'(1)=1-1=0.
+      \]
+    </div>
+
+    <p>Ugao između pravih sa nagibima \(-1\) i \(0\) zadovoljava:</p>
+
+    <div class="math-block">
+      \[
+        \tan\varphi=
+        \left|
+        \frac{0-(-1)}{1+0\cdot(-1)}
+        \right|
+        =1.
+      \]
+    </div>
+
+    <p>Prema tome:</p>
+
+    <div class="math-block">
+      \[
+        \varphi=45^\circ.
+      \]
+    </div>
+  </section>
+
+  <section class="card answer-card">
+    <h2>Konačan odgovor</h2>
+
+    <p>Tražena izogonalna kriva, za standardno orijentisani ugao od \(45^\circ\), jeste:</p>
+
+    <div class="math-block">
+      \[
+        \boxed{y=\ln x-x+2}.
+      \]
+    </div>
+
+    <p>
+      Ako se ugao \(45^\circ\) posmatra bez orijentacije, onda se kroz tačku \((1,1)\)
+      pojavljuje i druga moguća izogonalna kriva:
+    </p>
+
+    <div class="math-block">
+      \[
+        \boxed{x=1}.
+      \]
+    </div>
+  </section>
+
+  <div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+
+</div>
+</body>
+</html>
