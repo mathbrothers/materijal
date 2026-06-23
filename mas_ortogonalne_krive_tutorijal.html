@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ortogonalne krive – tutorijal i rešenje</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)'], ['$', '$']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#d7deea;
+      --shadow:0 10px 24px rgba(31,41,55,0.08);
+      --task:#e9f2ff;
+      --idea:#eefbf3;
+      --analysis:#fff7e8;
+      --solution:#f4f0ff;
+      --warning:#fff1f2;
+      --answer:#ecfeff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.65;
+    }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:32px 18px 40px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 10px;
+      font-size:2rem;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+      font-size:1.02rem;
+    }
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:22px 24px 24px;
+      margin:18px 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:#60a5fa}
+    .idea-card::before{background:#34d399}
+    .analysis-card::before{background:#fbbf24}
+    .solution-card::before{background:#8b5cf6}
+    .warning-card::before{background:#fb7185}
+    .answer-card::before{background:#22c55e}
+    .task-card{background:linear-gradient(180deg, var(--task), #fff 22%)}
+    .idea-card{background:linear-gradient(180deg, var(--idea), #fff 22%)}
+    .analysis-card{background:linear-gradient(180deg, var(--analysis), #fff 22%)}
+    .solution-card{background:linear-gradient(180deg, var(--solution), #fff 22%)}
+    .warning-card{background:linear-gradient(180deg, var(--warning), #fff 22%)}
+    .answer-card{background:linear-gradient(180deg, var(--answer), #fff 22%)}
+    h2{
+      margin:0 0 12px;
+      font-size:1.3rem;
+    }
+    h3{
+      margin:18px 0 8px;
+      font-size:1.08rem;
+    }
+    p{margin:10px 0}
+    ul,ol{margin:10px 0 10px 24px}
+    .math-block{
+      margin:14px 0;
+      padding:12px 14px;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      overflow-x:auto;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1.2fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    .note{
+      color:var(--muted);
+      font-size:0.96rem;
+    }
+    .svg-box{
+      background:#fcfdff;
+      border:1px solid #dbe4f0;
+      border-radius:14px;
+      padding:8px;
+    }
+    .footer{
+      text-align:center;
+      color:#6b7280;
+      font-size:0.95rem;
+      margin-top:26px;
+      padding-top:10px;
+    }
+    .boxed{
+      font-weight:700;
+      color:#0f766e;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Ortogonalne krive</h1>
+    <div class="subtitle">Mali tutorijal + geometrijsko objašnjenje + potpuno rešenje zadatka</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Naći onu krivu familije krivih ortogonalne na krivu</p>
+      <div class="math-block">\[
+        x^2+y^2+y=0
+      \]</div>
+      <p>koja prolazi kroz tačku \((2,1)\).</p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Mali tutorijal – kako se rade ortogonalne trajektorije</h2>
+      <ol>
+        <li><b>Pođemo od date familije/krive</b> i diferenciranjem dobijemo nagib tangente \(y'\).</li>
+        <li><b>Za ortogonalne krive</b> nagib mora biti negativna recipročna vrednost:
+          <div class="math-block">\[
+            m_1\cdot m_2=-1
+            \qquad\Longrightarrow\qquad
+            y'_{\perp}=-\frac{1}{y'}.
+          \]</div>
+        </li>
+        <li><b>Taj novi nagib</b> daje diferencijalnu jednačinu ortogonalnih krivih.</li>
+        <li><b>Rešimo diferencijalnu jednačinu</b> i na kraju iz uslova prolaska kroz zadatu tačku odredimo konstantu.</li>
+      </ol>
+      <p class="note">Suština: prvo nađemo smer tangente date krive, a onda uzmemo smer normale, jer je normala uvek ortogonalna tangenti.</p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Geometrijsko objašnjenje</h2>
+      <div class="grid">
+        <div>
+          <p>Jednačina</p>
+          <div class="math-block">\[
+            x^2+y^2+y=0
+          \]</div>
+          <p>se može srediti na oblik</p>
+          <div class="math-block">\[
+            x^2+\left(y+\frac12\right)^2=\frac14.
+          \]</div>
+          <p>To je <b>kružnica</b> sa centrom</p>
+          <div class="math-block">\[
+            C\left(0,-\frac12\right)
+          \]</div>
+          <p>i poluprečnikom \(r=\tfrac12\).</p>
+          <p>Znamo iz geometrije da je <b>radijus kružnice normalan na tangentu</b>. Zato su krive ortogonalne na ovu kružnicu baš one krive koje idu u pravcu radijusa. To su ovde <b>prave kroz centar kružnice</b>.</p>
+          <p>Pošto tražena kriva treba da prođe kroz tačku \((2,1)\), zapravo tražimo <b>pravu kroz dve tačke</b>:</p>
+          <div class="math-block">\[
+            C\left(0,-\frac12\right)
+            \quad \text{i} \quad
+            P(2,1).
+          \]</div>
+        </div>
+        <div class="svg-box">
+          <svg viewBox="0 0 420 320" width="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/>
+              </marker>
+            </defs>
+            <rect x="0" y="0" width="420" height="320" fill="#fcfdff"/>
+            <line x1="35" y1="160" x2="390" y2="160" stroke="#4b5563" stroke-width="2" marker-end="url(#arrow)"/>
+            <line x1="110" y1="295" x2="110" y2="25" stroke="#4b5563" stroke-width="2" marker-end="url(#arrow)"/>
+            <text x="395" y="154" font-size="16" fill="#374151">x</text>
+            <text x="118" y="34" font-size="16" fill="#374151">y</text>
+
+            <!-- circle center at (0,-1/2), radius 1/2 in a scaled coordinate system -->
+            <!-- scale: 1 unit = 70 px; origin = (110,160) -->
+            <circle cx="110" cy="195" r="35" fill="none" stroke="#2563eb" stroke-width="3"/>
+            <circle cx="110" cy="195" r="4" fill="#2563eb"/>
+            <text x="118" y="206" font-size="14" fill="#2563eb">C(0,-1/2)</text>
+
+            <!-- point P(2,1) -->
+            <circle cx="250" cy="90" r="4.5" fill="#dc2626"/>
+            <text x="258" y="84" font-size="14" fill="#dc2626">P(2,1)</text>
+
+            <!-- line through C and P -->
+            <line x1="60" y1="232.5" x2="330" y2="30" stroke="#059669" stroke-width="3"/>
+            <text x="280" y="38" font-size="14" fill="#059669">tražena ortogonalna kriva</text>
+
+            <!-- radius to touch point intersection concept -->
+            <line x1="110" y1="195" x2="131" y2="179" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6 5"/>
+            <line x1="131" y1="179" x2="145" y2="198" stroke="#f59e0b" stroke-width="2"/>
+            <rect x="131" y="179" width="10" height="10" fill="none" stroke="#111827" stroke-width="1.5"/>
+            <text x="148" y="205" font-size="13" fill="#6b7280">tangenta</text>
+            <text x="75" y="173" font-size="13" fill="#6b7280">radijus ⟂ tangenta</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Računsko rešenje</h2>
+
+      <h3>1. Diferenciranje date krive</h3>
+      <p>Polazimo od:</p>
+      <div class="math-block">\[
+        x^2+y^2+y=0.
+      \]</div>
+      <p>Diferenciramo implicitno po \(x\):</p>
+      <div class="math-block">\[
+        2x+2y\,y'+y'=0.
+      \]</div>
+      <p>Izlučimo \(y'\):</p>
+      <div class="math-block">\[
+        2x+(2y+1)y'=0
+        \qquad\Longrightarrow\qquad
+        y'=-\frac{2x}{2y+1}.
+      \]</div>
+
+      <h3>2. Nagib ortogonalne krive</h3>
+      <p>Za ortogonalnu krivu uzimamo negativnu recipročnu vrednost:</p>
+      <div class="math-block">\[
+        y'_{\perp}=-\frac{1}{y'}=-\frac{1}{-\frac{2x}{2y+1}}=\frac{2y+1}{2x}.
+      \]</div>
+      <p>Dakle, tražena ortogonalna familija zadovoljava diferencijalnu jednačinu</p>
+      <div class="math-block">\[
+        \frac{dy}{dx}=\frac{2y+1}{2x}.
+      \]</div>
+
+      <h3>3. Rešavanje diferencijalne jednačine</h3>
+      <p>Prebacimo u linearni oblik:</p>
+      <div class="math-block">\[
+        \frac{dy}{dx}-\frac{1}{x}y=\frac{1}{2x}.
+      \]</div>
+      <p>Integracioni množilac je</p>
+      <div class="math-block">\[
+        \mu(x)=e^{\int -\frac{1}{x}\,dx}=e^{-\ln|x|}=\frac{1}{|x|}.
+      \]</div>
+      <p>Na grani koja sadrži tačku \((2,1)\) možemo uzeti \(\mu(x)=\frac{1}{x}\), pa dobijamo:</p>
+      <div class="math-block">\[
+        \frac{1}{x}\frac{dy}{dx}-\frac{1}{x^2}y=\frac{1}{2x^2}.
+      \]</div>
+      <p>Leva strana je izvod količnika \(\frac{y}{x}\):</p>
+      <div class="math-block">\[
+        \left(\frac{y}{x}\right)'=\frac{1}{2x^2}.
+      \]</div>
+      <p>Integracijom dobijamo:</p>
+      <div class="math-block">\[
+        \frac{y}{x}=\int \frac{1}{2x^2}\,dx
+        =\frac12\int x^{-2}\,dx
+        =-\frac{1}{2x}+C.
+      \]</div>
+      <p>Množenjem sa \(x\):</p>
+      <div class="math-block">\[
+        y=-\frac12+Cx.
+      \]</div>
+      <p>Dakle opšta ortogonalna familija je</p>
+      <div class="math-block">\[
+        y=Cx-\frac12.
+      \]</div>
+
+      <h3>4. Uslov prolaska kroz \((2,1)\)</h3>
+      <p>Ubacimo \(x=2\) i \(y=1\):</p>
+      <div class="math-block">\[
+        1=2C-\frac12.
+      \]</div>
+      <p>Odavde:</p>
+      <div class="math-block">\[
+        2C=\frac32
+        \qquad\Longrightarrow\qquad
+        C=\frac34.
+      \]</div>
+      <p>Zato je tražena kriva:</p>
+      <div class="math-block">\[
+        y=\frac34x-\frac12.
+      \]</div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Brza napomena za pamćenje</h2>
+      <ul>
+        <li>Kod ortogonalnih trajektorija najvažnija formula je: \(m_1m_2=-1\).</li>
+        <li>Ako je data kriva kružnica, često postoji i lepo <b>geometrijsko skraćenje</b>: normale na kružnicu su njeni radijusi.</li>
+        <li>Ovde zato nije slučajno što smo na kraju dobili <b>prave kroz centar kružnice</b>.</li>
+      </ul>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan odgovor</h2>
+      <p>Tražena ortogonalna kriva koja prolazi kroz tačku \((2,1)\) jeste</p>
+      <div class="math-block">\[
+        \boxed{y=\frac34x-\frac12}.
+      \]</div>
+      <p class="boxed">Geometrijski: to je prava koja prolazi kroz centar kružnice \(\left(0,-\frac12\right)\) i tačku \((2,1)\).</p>
+    </section>
+
+    <div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+  </div>
+</body>
+</html>
