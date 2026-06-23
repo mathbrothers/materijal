@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tangentna ravan, normala i parcijalni izvodi</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)'], ['$', '$']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#d7deea;
+      --shadow:0 10px 24px rgba(31,41,55,.08);
+      --task:#e9f2ff;
+      --idea:#eefbf3;
+      --analysis:#fff7e8;
+      --solution:#f4f0ff;
+      --warning:#fff1f2;
+      --answer:#ecfeff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Segoe UI", Tahoma, Arial, sans-serif;
+      line-height:1.65;
+    }
+    .wrap{
+      max-width:1050px;
+      margin:0 auto;
+      padding:32px 18px 42px;
+    }
+    h1{
+      text-align:center;
+      margin:0 0 8px;
+      font-size:2rem;
+    }
+    .subtitle{
+      text-align:center;
+      color:var(--muted);
+      margin-bottom:28px;
+    }
+    .card{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:22px 24px 24px;
+      margin:18px 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:10px;
+    }
+    .task-card::before{background:#60a5fa}
+    .idea-card::before{background:#34d399}
+    .analysis-card::before{background:#fbbf24}
+    .solution-card::before{background:#8b5cf6}
+    .warning-card::before{background:#fb7185}
+    .answer-card::before{background:#22c55e}
+
+    .task-card{background:linear-gradient(180deg,var(--task),#fff 24%)}
+    .idea-card{background:linear-gradient(180deg,var(--idea),#fff 24%)}
+    .analysis-card{background:linear-gradient(180deg,var(--analysis),#fff 24%)}
+    .solution-card{background:linear-gradient(180deg,var(--solution),#fff 24%)}
+    .warning-card{background:linear-gradient(180deg,var(--warning),#fff 24%)}
+    .answer-card{background:linear-gradient(180deg,var(--answer),#fff 24%)}
+
+    h2{margin:0 0 12px;font-size:1.28rem}
+    h3{margin:18px 0 8px;font-size:1.06rem}
+    p{margin:10px 0}
+    ul,ol{margin:10px 0 10px 24px}
+    .math-block{
+      margin:14px 0;
+      padding:12px 14px;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      overflow-x:auto;
+    }
+    .note{
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin:14px 0;
+      background:#fff;
+      border-radius:12px;
+      overflow:hidden;
+    }
+    th,td{
+      border:1px solid #e5e7eb;
+      padding:10px 12px;
+      vertical-align:top;
+    }
+    th{
+      background:#f1f5f9;
+      text-align:left;
+    }
+    .boxed{
+      font-weight:700;
+      color:#0f766e;
+    }
+    .footer{
+      text-align:center;
+      color:#6b7280;
+      font-size:.95rem;
+      margin-top:26px;
+      padding-top:10px;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Tangentna ravan, normala i parcijalni izvodi</h1>
+  <div class="subtitle">Implicitno zadana površ \(F(x,y,z)=0\)</div>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>Da li tačka \(M(1,1,1)\) pripada površi</p>
+    <div class="math-block">
+      \[
+        x^2-2y^2+3z^2-yz+y=2?
+      \]
+    </div>
+    <p>
+      Obrazložiti odgovor i, ukoliko je odgovor potvrdan, napisati jednačinu tangentne ravni
+      i normale na ovu površ u tački \(M\). Naći
+    </p>
+    <div class="math-block">
+      \[
+        \frac{\partial z}{\partial x},\qquad
+        \frac{\partial z}{\partial y},\qquad
+        \frac{\partial x}{\partial y}.
+      \]
+    </div>
+  </section>
+
+  <section class="card idea-card">
+    <h2>Mali tutorijal — formule koje se koriste</h2>
+
+    <p>Ako je površ data implicitno:</p>
+    <div class="math-block">
+      \[
+        F(x,y,z)=0,
+      \]
+    </div>
+
+    <p>onda je vektor normale na površ u tački \(M(x_0,y_0,z_0)\):</p>
+    <div class="math-block">
+      \[
+        \vec n=\nabla F(M)=
+        \left(F_x(M),F_y(M),F_z(M)\right).
+      \]
+    </div>
+
+    <p><b>Tangentna ravan</b> u tački \(M(x_0,y_0,z_0)\):</p>
+    <div class="math-block">
+      \[
+        F_x(M)(x-x_0)+F_y(M)(y-y_0)+F_z(M)(z-z_0)=0.
+      \]
+    </div>
+
+    <p><b>Normala</b> na površ u tački \(M\):</p>
+    <div class="math-block">
+      \[
+        \frac{x-x_0}{F_x(M)}
+        =
+        \frac{y-y_0}{F_y(M)}
+        =
+        \frac{z-z_0}{F_z(M)}.
+      \]
+    </div>
+
+    <p>Za parcijalne izvode iz implicitne jednačine važe formule:</p>
+    <div class="math-block">
+      \[
+        \frac{\partial z}{\partial x}
+        =
+        -\frac{F_x}{F_z},
+        \qquad
+        \frac{\partial z}{\partial y}
+        =
+        -\frac{F_y}{F_z},
+        \qquad
+        \frac{\partial x}{\partial y}
+        =
+        -\frac{F_y}{F_x}.
+      \]
+    </div>
+
+    <p class="note">
+      Prve dve formule znače da posmatramo \(z=z(x,y)\). Poslednja formula znači da
+      posmatramo \(x=x(y,z)\), pa je \(z\) tada konstantno.
+    </p>
+  </section>
+
+  <section class="card analysis-card">
+    <h2>1. Provera da li tačka pripada površi</h2>
+
+    <p>Prebacimo sve na levu stranu:</p>
+    <div class="math-block">
+      \[
+        F(x,y,z)=x^2-2y^2+3z^2-yz+y-2.
+      \]
+    </div>
+
+    <p>Tačka \(M(1,1,1)\) pripada površi ako je \(F(1,1,1)=0\).</p>
+
+    <div class="math-block">
+      \[
+      \begin{aligned}
+        F(1,1,1)
+        &=1^2-2\cdot 1^2+3\cdot 1^2-1\cdot 1+1-2\\
+        &=1-2+3-1+1-2\\
+        &=0.
+      \end{aligned}
+      \]
+    </div>
+
+    <p class="boxed">Dakle, tačka \(M(1,1,1)\) pripada datoj površi.</p>
+  </section>
+
+  <section class="card solution-card">
+    <h2>2. Gradijent, tangentna ravan i normala</h2>
+
+    <p>Računamo parcijalne izvode funkcije \(F\):</p>
+
+    <div class="math-block">
+      \[
+      \begin{aligned}
+        F_x &= 2x,\\
+        F_y &= -4y-z+1,\\
+        F_z &= 6z-y.
+      \end{aligned}
+      \]
+    </div>
+
+    <p>U tački \(M(1,1,1)\):</p>
+
+    <div class="math-block">
+      \[
+      \begin{aligned}
+        F_x(1,1,1)&=2,\\
+        F_y(1,1,1)&=-4\cdot1-1+1=-4,\\
+        F_z(1,1,1)&=6\cdot1-1=5.
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Zato je vektor normale:</p>
+    <div class="math-block">
+      \[
+        \vec n=(2,-4,5).
+      \]
+    </div>
+
+    <h3>Tangentna ravan</h3>
+
+    <div class="math-block">
+      \[
+        2(x-1)-4(y-1)+5(z-1)=0.
+      \]
+    </div>
+
+    <p>Sređivanjem:</p>
+
+    <div class="math-block">
+      \[
+        2x-4y+5z-3=0.
+      \]
+    </div>
+
+    <h3>Normala</h3>
+
+    <p>Prava normale prolazi kroz \(M(1,1,1)\) i ima pravac \((2,-4,5)\):</p>
+
+    <div class="math-block">
+      \[
+        \frac{x-1}{2}
+        =
+        \frac{y-1}{-4}
+        =
+        \frac{z-1}{5}.
+      \]
+    </div>
+
+    <p>Parametarski oblik iste normale je:</p>
+
+    <div class="math-block">
+      \[
+        x=1+2t,\qquad
+        y=1-4t,\qquad
+        z=1+5t.
+      \]
+    </div>
+  </section>
+
+  <section class="card solution-card">
+    <h2>3. Traženi parcijalni izvodi</h2>
+
+    <p>Koristimo formule iz implicitne funkcije:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Izvod</th>
+          <th>Formula</th>
+          <th>Vrednost u tački \(M(1,1,1)\)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>\(\displaystyle \frac{\partial z}{\partial x}\)</td>
+          <td>
+            \[
+              \frac{\partial z}{\partial x}
+              =
+              -\frac{F_x}{F_z}
+              =
+              -\frac{2x}{6z-y}
+            \]
+          </td>
+          <td>
+            \[
+              \left.\frac{\partial z}{\partial x}\right|_M
+              =
+              -\frac{2}{5}
+            \]
+          </td>
+        </tr>
+        <tr>
+          <td>\(\displaystyle \frac{\partial z}{\partial y}\)</td>
+          <td>
+            \[
+              \frac{\partial z}{\partial y}
+              =
+              -\frac{F_y}{F_z}
+              =
+              -\frac{-4y-z+1}{6z-y}
+              =
+              \frac{4y+z-1}{6z-y}
+            \]
+          </td>
+          <td>
+            \[
+              \left.\frac{\partial z}{\partial y}\right|_M
+              =
+              \frac{4}{5}
+            \]
+          </td>
+        </tr>
+        <tr>
+          <td>\(\displaystyle \frac{\partial x}{\partial y}\)</td>
+          <td>
+            \[
+              \frac{\partial x}{\partial y}
+              =
+              -\frac{F_y}{F_x}
+              =
+              -\frac{-4y-z+1}{2x}
+              =
+              \frac{4y+z-1}{2x}
+            \]
+          </td>
+          <td>
+            \[
+              \left.\frac{\partial x}{\partial y}\right|_M
+              =
+              \frac{4}{2}=2
+            \]
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card warning-card">
+    <h2>Napomena</h2>
+    <p>
+      Kod \(\frac{\partial z}{\partial x}\) i \(\frac{\partial z}{\partial y}\) tretiramo \(z\) kao funkciju od \(x,y\).
+      Kod \(\frac{\partial x}{\partial y}\) tretiramo \(x\) kao funkciju od \(y,z\).
+    </p>
+    <p>
+      Zato se menja imenilac: za \(z\)-izvode delimo sa \(F_z\), a za \(x\)-izvod delimo sa \(F_x\).
+    </p>
+  </section>
+
+  <section class="card answer-card">
+    <h2>Konačan odgovor</h2>
+
+    <p>Tačka \(M(1,1,1)\) pripada površi.</p>
+
+    <div class="math-block">
+      \[
+        \boxed{2x-4y+5z-3=0}
+      \]
+    </div>
+    <p>je tangentna ravan.</p>
+
+    <div class="math-block">
+      \[
+        \boxed{
+        \frac{x-1}{2}
+        =
+        \frac{y-1}{-4}
+        =
+        \frac{z-1}{5}}
+      \]
+    </div>
+    <p>je normala.</p>
+
+    <p>Traženi parcijalni izvodi u tački \(M\) su:</p>
+
+    <div class="math-block">
+      \[
+        \boxed{
+        \frac{\partial z}{\partial x}=-\frac25,
+        \qquad
+        \frac{\partial z}{\partial y}=\frac45,
+        \qquad
+        \frac{\partial x}{\partial y}=2
+        }.
+      \]
+    </div>
+  </section>
+
+  <div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+
+</div>
+</body>
+</html>
