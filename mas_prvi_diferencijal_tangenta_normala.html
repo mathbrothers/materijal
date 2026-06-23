@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prvi diferencijal, tangentna ravan i normala</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --text:#1f2937;
+      --muted:#64748b;
+      --card:#ffffff;
+      --shadow:0 10px 28px rgba(15,23,42,.08);
+      --task:#f9a8d4;
+      --idea:#93c5fd;
+      --analysis:#a7f3d0;
+      --solution:#fde68a;
+      --warning:#fdba74;
+      --answer:#c4b5fd;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#f8fafc 0%,var(--bg) 100%);
+      color:var(--text);
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.65;
+    }
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      padding:34px 18px 46px;
+    }
+    h1{
+      margin:0 0 18px;
+      font-size:clamp(1.8rem,3vw,2.55rem);
+      line-height:1.15;
+      letter-spacing:-.03em;
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:1.23rem;
+    }
+    p{margin:.45rem 0}
+    .subtitle{
+      color:var(--muted);
+      margin-bottom:24px;
+      font-size:1.02rem;
+    }
+    .card{
+      position:relative;
+      background:var(--card);
+      border-radius:20px;
+      padding:22px 24px 22px 28px;
+      margin:18px 0;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,.18);
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0; top:0; bottom:0;
+      width:8px;
+      background:var(--accent);
+    }
+    .task-card{--accent:var(--task)}
+    .idea-card{--accent:var(--idea)}
+    .analysis-card{--accent:var(--analysis)}
+    .solution-card{--accent:var(--solution)}
+    .warning-card{--accent:var(--warning)}
+    .answer-card{--accent:var(--answer)}
+    .formula-box{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:14px;
+      padding:14px 16px;
+      margin:12px 0;
+      overflow-x:auto;
+    }
+    .steps{
+      margin:10px 0 0;
+      padding-left:1.25rem;
+    }
+    .steps li{margin:.35rem 0}
+    .tag{
+      display:inline-block;
+      font-weight:700;
+      color:#0f172a;
+      background:#eef2ff;
+      border:1px solid #c7d2fe;
+      padding:2px 9px;
+      border-radius:999px;
+      font-size:.86rem;
+      margin-right:6px;
+    }
+    footer{
+      text-align:center;
+      color:#94a3b8;
+      font-size:.95rem;
+      margin-top:30px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Prvi diferencijal, tangentna ravan i normala</h1>
+    <p class="subtitle">Mali šablon za zadatke u kojima je data površ \(z=f(x,y)\).</p>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Odrediti prvi diferencijal funkcije</p>
+      <div class="formula-box">
+        \[
+          f(x,y)=\left(\cos x\right)^{\sin\frac{y}{x}},
+        \]
+      </div>
+      <p>a zatim napisati jednačinu tangentne ravni i normale u tački</p>
+      <div class="formula-box">
+        \[
+          \left(\frac{\pi}{3},\frac{\pi^2}{18},z_0\right)
+        \]
+      </div>
+      <p>na površi datoj sa \(z=f(x,y)\), gde je \(z_0\) koordinata koju prvo treba odrediti.</p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Mini tutorijal za ovaj tip zadatka</h2>
+      <ol class="steps">
+        <li>
+          <span class="tag">1</span>
+          Ako je funkcija oblika „nešto na nešto”, najčistije je logaritmovanje:
+          \[
+            f=a(x,y)^{b(x,y)} \quad\Longrightarrow\quad
+            \ln f=b(x,y)\ln a(x,y).
+          \]
+        </li>
+        <li>
+          <span class="tag">2</span>
+          Za diferencijal koristimo:
+          \[
+            df=f_x\,dx+f_y\,dy.
+          \]
+          Ako napišemo \(f=e^g\), onda je još kraće:
+          \[
+            df=f\,dg.
+          \]
+        </li>
+        <li>
+          <span class="tag">3</span>
+          Za površ \(z=f(x,y)\), u tački \((x_0,y_0,z_0)\), važi:
+          \[
+            z_0=f(x_0,y_0).
+          \]
+          Tangentna ravan je:
+          \[
+            z-z_0=f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0).
+          \]
+          Jedan vektor normale je:
+          \[
+            \vec n=\bigl(f_x(x_0,y_0),\,f_y(x_0,y_0),\,-1\bigr).
+          \]
+        </li>
+      </ol>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena o domenu</h2>
+      <p>
+        Pošto ćemo koristiti \(\ln(\cos x)\), radimo u okolini u kojoj je \(\cos x&gt;0\).
+        U našoj tački je \(x_0=\frac{\pi}{3}\), pa je \(\cos\frac{\pi}{3}=\frac12&gt;0\), tako da je sve u redu.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>1. Prvi diferencijal</h2>
+      <p>Uvedimo oznaku:</p>
+      <div class="formula-box">
+        \[
+          u=\frac{y}{x}.
+        \]
+      </div>
+      <p>Tada je:</p>
+      <div class="formula-box">
+        \[
+          f(x,y)=\left(\cos x\right)^{\sin u}
+          =e^{\sin u\cdot \ln(\cos x)}.
+        \]
+      </div>
+      <p>Zato možemo da pišemo:</p>
+      <div class="formula-box">
+        \[
+          df=f\,d\Bigl(\sin u\cdot \ln(\cos x)\Bigr).
+        \]
+      </div>
+      <p>Računamo deo po deo:</p>
+      <div class="formula-box">
+        \[
+          d\left(\frac{y}{x}\right)
+          =\frac{x\,dy-y\,dx}{x^2},
+        \]
+        \[
+          d\bigl(\ln(\cos x)\bigr)
+          =-\tan x\,dx.
+        \]
+      </div>
+      <p>Dakle:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          df
+          &=f\left[
+            \cos\frac{y}{x}\cdot d\left(\frac{y}{x}\right)\cdot \ln(\cos x)
+            +\sin\frac{y}{x}\cdot d\bigl(\ln(\cos x)\bigr)
+          \right] \\
+          &=\left(\cos x\right)^{\sin\frac{y}{x}}
+          \left[
+            \cos\frac{y}{x}\cdot \frac{x\,dy-y\,dx}{x^2}\cdot \ln(\cos x)
+            -\sin\frac{y}{x}\tan x\,dx
+          \right].
+        \end{aligned}
+        \]
+      </div>
+      <p>Ako razdvojimo koeficijente uz \(dx\) i \(dy\), dobijamo:</p>
+      <div class="formula-box">
+        \[
+        \boxed{
+        \begin{gathered}
+          df=\left(\cos x\right)^{\sin\frac{y}{x}}
+          \Biggl[
+          \left(
+            -\frac{y}{x^2}\cos\frac{y}{x}\ln(\cos x)
+            -\sin\frac{y}{x}\tan x
+          \right)dx \\[1mm]
+          +\left(
+            \frac{1}{x}\cos\frac{y}{x}\ln(\cos x)
+          \right)dy
+          \Biggr].
+        \end{gathered}}
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>2. Određivanje tačke</h2>
+      <p>Data je tačka:</p>
+      <div class="formula-box">
+        \[
+          x_0=\frac{\pi}{3},\qquad y_0=\frac{\pi^2}{18}.
+        \]
+      </div>
+      <p>Prvo računamo:</p>
+      <div class="formula-box">
+        \[
+          \frac{y_0}{x_0}
+          =\frac{\frac{\pi^2}{18}}{\frac{\pi}{3}}
+          =\frac{\pi}{6}.
+        \]
+      </div>
+      <p>Zato je:</p>
+      <div class="formula-box">
+        \[
+          \sin\frac{y_0}{x_0}=\sin\frac{\pi}{6}=\frac12,
+          \qquad
+          \cos x_0=\cos\frac{\pi}{3}=\frac12.
+        \]
+      </div>
+      <p>Odavde dobijamo:</p>
+      <div class="formula-box">
+        \[
+          z_0=f(x_0,y_0)
+          =\left(\frac12\right)^{1/2}
+          =\frac{1}{\sqrt2}.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>3. Parcijalni izvodi u tački</h2>
+      <p>Iz izraza za diferencijal čitamo:</p>
+      <div class="formula-box">
+        \[
+          f_x=f\left(
+            -\frac{y}{x^2}\cos\frac{y}{x}\ln(\cos x)
+            -\sin\frac{y}{x}\tan x
+          \right),
+        \]
+        \[
+          f_y=f\left(
+            \frac{1}{x}\cos\frac{y}{x}\ln(\cos x)
+          \right).
+        \]
+      </div>
+      <p>U našoj tački važi:</p>
+      <div class="formula-box">
+        \[
+          f(x_0,y_0)=\frac1{\sqrt2},\qquad
+          \frac{y_0}{x_0^2}=\frac12,
+          \qquad
+          \cos\frac{y_0}{x_0}=\cos\frac{\pi}{6}=\frac{\sqrt3}{2},
+        \]
+        \[
+          \ln\left(\cos\frac{\pi}{3}\right)=\ln\frac12=-\ln2,
+          \qquad
+          \tan\frac{\pi}{3}=\sqrt3.
+        \]
+      </div>
+      <p>Zato je:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          f_x(x_0,y_0)
+          &=\frac1{\sqrt2}\left(
+            -\frac12\cdot\frac{\sqrt3}{2}\cdot(-\ln2)
+            -\frac12\cdot\sqrt3
+          \right) \\
+          &=\frac1{\sqrt2}\left(
+            \frac{\sqrt3\ln2}{4}-\frac{\sqrt3}{2}
+          \right) \\
+          &=\frac{\sqrt6(\ln2-2)}{8}.
+        \end{aligned}
+        \]
+      </div>
+      <p>Slično:</p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          f_y(x_0,y_0)
+          &=\frac1{\sqrt2}\left(
+            \frac{3}{\pi}\cdot\frac{\sqrt3}{2}\cdot(-\ln2)
+          \right) \\
+          &=-\frac{3\sqrt6\ln2}{4\pi}.
+        \end{aligned}
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>4. Tangentna ravan</h2>
+      <p>Koristimo formulu:</p>
+      <div class="formula-box">
+        \[
+          z-z_0=f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0).
+        \]
+      </div>
+      <p>Dobijamo:</p>
+      <div class="formula-box">
+        \[
+        \boxed{
+          z-\frac1{\sqrt2}
+          =\frac{\sqrt6(\ln2-2)}{8}\left(x-\frac{\pi}{3}\right)
+          -\frac{3\sqrt6\ln2}{4\pi}\left(y-\frac{\pi^2}{18}\right)
+        }.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>5. Normala</h2>
+      <p>Jedan vektor normale je:</p>
+      <div class="formula-box">
+        \[
+          \vec n=\left(
+            \frac{\sqrt6(\ln2-2)}{8},
+            -\frac{3\sqrt6\ln2}{4\pi},
+            -1
+          \right).
+        \]
+      </div>
+      <p>Zato normalu možemo zapisati parametarski:</p>
+      <div class="formula-box">
+        \[
+        \boxed{
+        \begin{cases}
+          x=\dfrac{\pi}{3}+\dfrac{\sqrt6(\ln2-2)}{8}\,t,\\[2mm]
+          y=\dfrac{\pi^2}{18}-\dfrac{3\sqrt6\ln2}{4\pi}\,t,\\[2mm]
+          z=\dfrac1{\sqrt2}-t,
+        \end{cases}
+        \qquad t\in\mathbb R.}
+        \]
+      </div>
+      <p>Ili simetrično:</p>
+      <div class="formula-box">
+        \[
+        \boxed{
+          \frac{x-\frac{\pi}{3}}{\frac{\sqrt6(\ln2-2)}{8}}
+          =
+          \frac{y-\frac{\pi^2}{18}}{-\frac{3\sqrt6\ln2}{4\pi}}
+          =
+          \frac{z-\frac1{\sqrt2}}{-1}
+        }.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan odgovor</h2>
+      <div class="formula-box">
+        \[
+          \boxed{z_0=\frac1{\sqrt2}}
+        \]
+        \[
+          \boxed{
+          \begin{gathered}
+          df=\left(\cos x\right)^{\sin\frac{y}{x}}
+          \Biggl[
+          \left(
+            -\frac{y}{x^2}\cos\frac{y}{x}\ln(\cos x)
+            -\sin\frac{y}{x}\tan x
+          \right)dx \\[1mm]
+          +
+          \left(
+            \frac{1}{x}\cos\frac{y}{x}\ln(\cos x)
+          \right)dy
+          \Biggr]
+          \end{gathered}}
+        \]
+        \[
+          \boxed{
+          z-\frac1{\sqrt2}
+          =\frac{\sqrt6(\ln2-2)}{8}\left(x-\frac{\pi}{3}\right)
+          -\frac{3\sqrt6\ln2}{4\pi}\left(y-\frac{\pi^2}{18}\right)}
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
