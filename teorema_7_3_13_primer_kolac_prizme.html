@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Teorema 7.3.13 kroz prost primer</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6fb;
+    color:#1f2937;
+    line-height:1.65;
+  }
+  .wrap{
+    max-width:1000px;
+    margin:32px auto;
+    padding:0 18px 44px;
+  }
+  h1{
+    text-align:center;
+    margin-bottom:8px;
+    color:#111827;
+  }
+  .subtitle{
+    text-align:center;
+    color:#6b7280;
+    margin-bottom:28px;
+  }
+  .card{
+    background:white;
+    border-radius:16px;
+    padding:24px 28px;
+    margin:18px 0;
+    box-shadow:0 8px 22px rgba(15,23,42,.08);
+    border-left:8px solid #93c5fd;
+  }
+  .task-card{border-left-color:#93c5fd;}
+  .idea-card{border-left-color:#fbbf24;}
+  .analysis-card{border-left-color:#60a5fa;}
+  .solution-card{border-left-color:#34d399;}
+  .warning-card{border-left-color:#fb7185;}
+  .answer-card{border-left-color:#a78bfa;}
+  h2{
+    margin-top:0;
+    color:#111827;
+  }
+  .formula{
+    background:#f9fafb;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:14px 0;
+    overflow-x:auto;
+  }
+  .mini{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:14px 0;
+  }
+  .note{
+    background:#f0fdf4;
+    border:1px solid #bbf7d0;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:14px 0;
+  }
+  svg{
+    display:block;
+    max-width:100%;
+    margin:10px auto 0;
+    background:#ffffff;
+  }
+  .footer{
+    text-align:center;
+    color:#6b7280;
+    margin-top:28px;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Teorema 7.3.13 kroz prost primer</h1>
+<div class="subtitle">Pratimo korake iz knjige na primeru \(f(x,y)=x^2+y^2\), bez dodatne slike</div>
+
+<div class="card task-card">
+<h2>Naš primer</h2>
+
+<p>
+Uzimamo funkciju
+</p>
+
+<div class="formula">
+\[
+f(x,y)=x^2+y^2
+\]
+</div>
+
+<p>
+i pravougaonu oblast
+</p>
+
+<div class="formula">
+\[
+E=\{(x,y):1\le x\le 2,\;3\le y\le 4\}.
+\]
+</div>
+
+<p>
+Dakle, u oznakama iz knjige:
+</p>
+
+<div class="formula">
+\[
+a=1,\qquad b=2,\qquad c=3,\qquad d=4.
+\]
+</div>
+
+<p>
+Ovo je baš onaj prvi, specijalni slučaj iz dokaza: oblast je pravougaonik.
+Tu su granice po \(y\) konstantne:
+</p>
+
+<div class="formula">
+\[
+y_1(x)=3,\qquad y_2(x)=4.
+\]
+</div>
+</div>
+
+<div class="card idea-card">
+<h2>Šta treba da pokažemo u ovom primeru?</h2>
+
+<p>
+Treba da razumemo zašto važi:
+</p>
+
+<div class="formula">
+\[
+\iint_E f(x,y)\,dx\,dy
+=
+\int_1^2
+\left(
+\int_3^4 f(x,y)\,dy
+\right)
+dx.
+\]
+</div>
+
+<p>
+U našem primeru to je:
+</p>
+
+<div class="formula">
+\[
+\iint_E (x^2+y^2)\,dx\,dy
+=
+\int_1^2
+\left(
+\int_3^4 (x^2+y^2)\,dy
+\right)
+dx.
+\]
+</div>
+
+<div class="mini">
+<b>Čitanje formule:</b><br>
+Zamisli da je grafik funkcije iznad oblasti kao jedan matematički kolač.  
+Za fiksirano \(x\) kao da nožem presečemo taj kolač ravni paralelnom \(y\)-osi.  
+Taj jedan presek posmatramo kao običan određeni integral po promenljivoj \(y\), od \(3\) do \(4\).
+</div>
+</div>
+
+<div class="card idea-card">
+<h2>Metafora sa kolačem</h2>
+
+<p>
+Najbolje je ovako: zamislimo da je površ iznad oblasti \(E\) jedan kolač.
+Kada fiksiramo \(x\), mi kao da nožem presečemo kolač ravni paralelnom \(y\)-osi.
+</p>
+
+<p>
+Taj presek nije nova oblast u ravni \(xy\), nego jedan običan jednodimenzioni
+presek po pravcu \(y\). Zato se na njemu pojavljuje običan određeni integral:
+</p>
+
+<div class="formula">
+\[
+F(x)=\int_3^4 (x^2+y^2)\,dy.
+\]
+</div>
+
+<p>
+Tek kada takve preseke saberemo za sva \(x\) od \(1\) do \(2\), dobijamo dvojni integral.
+</p>
+
+</div>
+
+<div class="card solution-card">
+<h2>Korak 1 iz knjige: za fiksirano \(x\) pravimo funkciju \(F(x)\)</h2>
+
+<p>
+Knjiga uvodi:
+</p>
+
+<div class="formula">
+\[
+F(x)=\int_c^d f(x,y)\,dy.
+\]
+</div>
+
+<p>
+U našem primeru:
+</p>
+
+<div class="formula">
+\[
+F(x)=\int_3^4 (x^2+y^2)\,dy.
+\]
+</div>
+
+<p>
+Ovde je \(x\) trenutno fiksiran. To znači da je \(x^2\) za unutrašnji integral
+samo konstanta.
+</p>
+
+<div class="formula">
+\[
+F(x)
+=
+\left[x^2y+\frac{y^3}{3}\right]_3^4
+=
+4x^2+\frac{64}{3}
+-
+\left(3x^2+\frac{27}{3}\right)
+\]
+\[
+F(x)=x^2+\frac{37}{3}.
+\]
+</div>
+
+<div class="note">
+<b>Prevod na običan jezik:</b><br>
+Za svako fiksirano \(x\) gledamo jedan rez kolača paralelan \(y\)-osi. Na tom rezu saberemo vrednosti funkcije duž pravca \(y\), od \(y=3\) do \(y=4\).
+Taj rezultat zavisi od toga na kom smo \(x\), pa zato dobijamo novu funkciju \(F(x)\).
+</div>
+</div>
+
+
+<div class="card idea-card">
+<h2>Kako od preseka nastaje zapremina?</h2>
+
+<p>
+Ovo je još jedan važan korak u razumevanju knjige.
+Kada za jedno fiksirano \(x\) izračunamo
+</p>
+
+<div class="formula">
+\[
+F(x)=\int_3^4 (x^2+y^2)\,dy,
+\]
+</div>
+
+<p>
+taj broj možemo da posmatramo kao <b>površinu preseka</b> koji smo dobili
+kada smo „kolač” presekli ravni paralelnom \(y\)-osi.
+</p>
+
+<p>
+Sada ne gledamo samo jedan rez, nego mali interval po \(x\):
+</p>
+
+<div class="formula">
+\[
+[x_i,x_i+\Delta x_i].
+\]
+</div>
+
+<p>
+Ako na tom malom intervalu uzmemo jednu reprezentativnu vrednost \(\xi_i\),
+onda je \(F(\xi_i)\) približna površina preseka kroz taj mali deo.
+Kada tu površinu pomnožimo sa malom debljinom \(\Delta x_i\), dobijamo
+zapreminu jednog malog prizmatičnog tela:
+</p>
+
+<div class="formula">
+\[
+\text{zapremina malog dela}
+\approx
+F(\xi_i)\,\Delta x_i.
+\]
+</div>
+
+<p>
+Dakle:
+</p>
+
+<div class="formula">
+\[
+\text{površina preseka}\cdot\text{debljina}
+=
+\text{mala zapremina}.
+\]
+</div>
+
+<p>
+Kada saberemo sve takve male delove, dobijamo Rimanovu sumu:
+</p>
+
+<div class="formula">
+\[
+\sum_i F(\xi_i)\Delta x_i.
+\]
+</div>
+
+<p>
+A kada podele po \(x\) postanu sve sitnije, ta suma prelazi u integral:
+</p>
+
+<div class="formula">
+\[
+\int_1^2 F(x)\,dx.
+\]
+</div>
+
+<div class="mini">
+<b>Prevod na sliku:</b><br>
+Prvo jednim rezom dobijemo površinu preseka.  
+Zatim toj površini damo malu debljinu \(\Delta x_i\).  
+Tako nastaje malo prizmatično telo.  
+Sabrana zapremina svih tih tela daje zapreminu iz definicije dvojnog integrala.
+</div>
+</div>
+
+<div class="card analysis-card">
+<h2>Kako se ovde vidi suma iz knjige?</h2>
+
+<p>
+Knjiga prvo deli segment \([c,d]\), odnosno kod nas segment \([3,4]\).
+U svakoj maloj dužini po \(y\) bira jednu tačku \(\mu_j\).
+Tada je približno:
+</p>
+
+<div class="formula">
+\[
+F_m(x)=\sum_{j=1}^{m} f(x,\mu_j)\Delta y_j.
+\]
+</div>
+
+<p>
+Za našu funkciju to izgleda ovako:
+</p>
+
+<div class="formula">
+\[
+F_m(x)=\sum_{j=1}^{m} (x^2+\mu_j^2)\Delta y_j.
+\]
+</div>
+
+<p>
+Kada podela po \(y\) postaje sve sitnija, ova suma prelazi u integral:
+</p>
+
+<div class="formula">
+\[
+\sum_{j=1}^{m} (x^2+\mu_j^2)\Delta y_j
+\longrightarrow
+\int_3^4 (x^2+y^2)\,dy
+=
+F(x).
+\]
+</div>
+</div>
+
+<div class="card solution-card">
+<h2>Korak 2 iz knjige: sada saberemo sve \(F(x)\) po \(x\)</h2>
+
+<p>
+Pošto smo za jedan rez, odnosno za jedno fiksirano \(x\), dobili broj \(F(x)\), sada te vrednosti sabiramo
+za sva \(x\) od \(1\) do \(2\):
+</p>
+
+<div class="formula">
+\[
+\int_1^2 F(x)\,dx
+=
+\int_1^2
+\left(x^2+\frac{37}{3}\right)dx.
+\]
+</div>
+
+<p>
+Računamo:
+</p>
+
+<div class="formula">
+\[
+\int_1^2
+\left(x^2+\frac{37}{3}\right)dx
+=
+\left[\frac{x^3}{3}+\frac{37x}{3}\right]_1^2
+\]
+\[
+=
+\left(\frac{8}{3}+\frac{74}{3}\right)
+-
+\left(\frac{1}{3}+\frac{37}{3}\right)
+=
+\frac{44}{3}.
+\]
+</div>
+</div>
+
+<div class="card analysis-card">
+<h2>Gde se pojavljuje dvostruka suma iz knjige?</h2>
+
+<p>
+Knjiga zatim kaže: ako i integral po \(x\) pišemo preko Rimanove sume, dobijamo:
+</p>
+
+<div class="formula">
+\[
+\sum_{i=1}^{n}F(\xi_i)\Delta x_i.
+\]
+</div>
+
+<p>
+Ali \(F(\xi_i)\) je već granica unutrašnjih suma po \(y\), pa možemo misliti ovako:
+</p>
+
+<div class="formula">
+\[
+F(\xi_i)
+\approx
+\sum_{j=1}^{m} f(\xi_i,\mu_j)\Delta y_j.
+\]
+</div>
+
+<p>
+Kada to ubacimo u spoljašnju sumu, dobijamo:
+</p>
+
+<div class="formula">
+\[
+\sum_{i=1}^{n}
+\left(
+\sum_{j=1}^{m} f(\xi_i,\mu_j)\Delta y_j
+\right)
+\Delta x_i.
+\]
+</div>
+
+<p>
+A to se sređuje u dvostruku sumu:
+</p>
+
+<div class="formula">
+\[
+\sum_{i=1}^{n}\sum_{j=1}^{m}
+f(\xi_i,\mu_j)\Delta x_i\Delta y_j.
+\]
+</div>
+
+<div class="note">
+<b>Ovo je ključni trenutak:</b><br>
+Proizvod \(\Delta x_i\Delta y_j\) je površina jednog malog pravougaonika.
+Vrednost \(f(\xi_i,\mu_j)\) je visina iznad tog pravougaonika.
+Dakle, svaki član sume predstavlja malu zapreminu.
+</div>
+</div>
+
+<div class="card warning-card">
+<h2>Šta znači ona priča sa dijagonalom \(d_k\)?</h2>
+
+<p>
+Knjiga male pravougaonike nekad označi jednim redom:
+</p>
+
+<div class="formula">
+\[
+P_k=\Delta x_i\Delta y_j.
+\]
+</div>
+
+<p>
+A \(d_k\) je dijagonala tog malog pravougaonika:
+</p>
+
+<div class="formula">
+\[
+d_k=\sqrt{(\Delta x_i)^2+(\Delta y_j)^2}.
+\]
+</div>
+
+<p>
+Kada \(d_k\to 0\), to znači da svi mali pravougaonici postaju sitni u oba pravca:
+i po \(x\), i po \(y\). Tada dvostruka suma zaista prelazi u dvojni integral.
+</p>
+
+<div class="formula">
+\[
+\sum_{k=1}^{mn} f(x_k,y_k)P_k
+\longrightarrow
+\iint_E f(x,y)\,dx\,dy.
+\]
+</div>
+</div>
+
+<div class="card answer-card">
+<h2>Zaključak za naš primer</h2>
+
+<p>
+Za funkciju \(f(x,y)=x^2+y^2\) i pravougaonik
+\(1\le x\le 2,\;3\le y\le 4\), dobijamo:
+</p>
+
+<div class="formula">
+\[
+\iint_E (x^2+y^2)\,dx\,dy
+=
+\int_1^2
+\left(
+\int_3^4 (x^2+y^2)\,dy
+\right)
+dx
+=
+\frac{44}{3}.
+\]
+</div>
+
+<p>
+Ovim smo na konkretnom primeru ispratili baš glavnu logiku dokaza iz knjige:
+</p>
+
+<p>
+<b>prvo jedan rez kolača za fiksirano \(x\), zatim od tog preseka pravimo malo prizmatično telo debljine \(\Delta x_i\), a sabiranjem svih tih tela dobijamo zapreminu iz definicije dvojnog integrala.</b>
+</p>
+</div>
+
+<div class="card idea-card">
+<h2>Kako se ovo prenosi na opštu oblast \(D\)?</h2>
+
+<p>
+U knjizi se posle pravougaonika prelazi na oblast \(D\) koja je odozdo
+ograničena sa \(y_1(x)\), a odozgo sa \(y_2(x)\).
+Ideja je ista:
+</p>
+
+<div class="formula">
+\[
+\text{za fiksirano }x,
+\quad
+ y\text{ ide od }y_1(x)\text{ do }y_2(x).
+\]
+</div>
+
+<p>
+Ako oblast nije pravougaonik, knjiga je ubaci u veći pravougaonik \(E\), pa
+van oblasti \(D\) definiše pomoćnu funkciju kao nulu.
+Tako pravougaoni slučaj i dalje radi, a van \(D\) nema doprinosa jer je tamo
+funkcija jednaka nuli.
+</p>
+
+<div class="formula">
+\[
+g(x,y)=
+\begin{cases}
+f(x,y), & (x,y)\in D,\\
+0, & (x,y)\in E\setminus D.
+\end{cases}
+\]
+</div>
+
+<p>
+Zato na kraju ostaje ista logika:
+</p>
+
+<div class="formula">
+\[
+\iint_D f(x,y)\,dx\,dy
+=
+\int_a^b
+\left(
+\int_{y_1(x)}^{y_2(x)} f(x,y)\,dy
+\right)
+dx.
+\]
+</div>
+</div>
+
+<div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+
+</div>
+</body>
+</html>
