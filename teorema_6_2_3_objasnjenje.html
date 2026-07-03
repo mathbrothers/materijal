@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Teorema 6.2.3 – objašnjenje dokaza</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6fb;
+    color:#1f2937;
+    line-height:1.65;
+  }
+  .wrap{
+    max-width: 980px;
+    margin: 32px auto;
+    padding: 0 18px 40px;
+  }
+  h1{
+    text-align:center;
+    margin-bottom:8px;
+    color:#111827;
+  }
+  .subtitle{
+    text-align:center;
+    color:#6b7280;
+    margin-bottom:28px;
+  }
+  .card{
+    background:white;
+    border-radius:16px;
+    padding:24px 28px;
+    margin:18px 0;
+    box-shadow:0 8px 22px rgba(15,23,42,.08);
+    border-left:8px solid #93c5fd;
+  }
+  .idea{ border-left-color:#fbbf24; }
+  .analysis{ border-left-color:#60a5fa; }
+  .solution{ border-left-color:#34d399; }
+  .warning{ border-left-color:#fb7185; }
+  .answer{ border-left-color:#a78bfa; }
+  h2{
+    margin-top:0;
+    color:#111827;
+  }
+  .formula{
+    background:#f9fafb;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:12px 0;
+    overflow-x:auto;
+  }
+  .mini{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:12px 0;
+  }
+  ul{ margin-top:8px; }
+  .footer{
+    text-align:center;
+    color:#6b7280;
+    margin-top:28px;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Teorema 6.2.3 – mala pričica uz dokaz</h1>
+<div class="subtitle">Posebno objašnjenje dela sa \(+I-I\) i sa \(\varepsilon/2\)</div>
+
+<div class="card idea">
+<h2>Teorema</h2>
+<p>
+Neka je funkcija \(f\) ograničena na segmentu \([a,b]\).
+Tada je \(f\) integrabilna na \([a,b]\) <b>ako i samo ako</b>
+za svako \(\varepsilon>0\) postoji \(\delta>0\) tako da za svaku podelu \(P\)
+za koju je \(\lambda(P)<\delta\) važi
+</p>
+
+<div class="formula">
+\[
+\overline{S}_n(f,P)-\underline{S}_n(f,P)<\varepsilon.
+\]
+</div>
+
+<p>
+Drugim rečima: kada je podela dovoljno sitna, gornja i donja Darbuova suma
+moraju biti veoma bliske.
+</p>
+</div>
+
+<div class="card analysis">
+<h2>Šta teorema suštinski govori</h2>
+<p>
+Postoje dva načina da priđemo integralu:
+</p>
+<ul>
+  <li><b>Rimanovski:</b> računamo integralne sume i gledamo da li idu ka istom broju \(I\).</li>
+  <li><b>Darbuovski:</b> gledamo da li se gornje i donje sume mogu stisnuti jedna uz drugu.</li>
+</ul>
+<p>
+Teorema kaže da su ta dva pogleda ekvivalentna.
+</p>
+</div>
+
+<div class="card solution">
+<h2>Prvi smer: ako važi uslov sa Darbuovim sumama, onda je \(f\) integrabilna</h2>
+
+<p>
+Pretpostavimo da za svako \(\varepsilon>0\) postoji \(\delta>0\) tako da iz
+\(\lambda(P)<\delta\) sledi
+</p>
+
+<div class="formula">
+\[
+\overline{S}_n(f,P)-\underline{S}_n(f,P)<\varepsilon.
+\]
+</div>
+
+<p>
+Pošto uvek važi
+</p>
+
+<div class="formula">
+\[
+\underline{S}_n(f,P)\le S_n(f,P,\xi)\le \overline{S}_n(f,P),
+\]
+</div>
+
+<p>
+onda su sve Rimanove sume za finu podelu zarobljene između donje i gornje sume.
+Ako je razlika između te dve ograde manja od \(\varepsilon\),
+onda su i sve Rimanove sume sabijene u uzak pojas širine manje od \(\varepsilon\).
+To je upravo ono što vodi do integrabilnosti.
+</p>
+</div>
+
+<div class="card solution">
+<h2>Drugi smer: ako je \(f\) integrabilna, zašto onda dobijamo uslov sa Darbuovim sumama?</h2>
+
+<p>
+Ovde je deo koji si označio. Pretpostavimo da je \(f\) integrabilna i da je
+</p>
+
+<div class="formula">
+\[
+\int_a^b f(x)\,dx = I.
+\]
+</div>
+
+<p>
+Po definiciji Rimanove integrabilnosti, za svako \(\varepsilon>0\) postoji \(\delta>0\)
+tako da za svaku podelu sa istaknutim tačkama \((P',\xi')\) i \((P'',\xi'')\),
+ako su obe dovoljno sitne, važi
+</p>
+
+<div class="formula">
+\[
+|S_n(f,P',\xi')-I|<\frac{\varepsilon}{2}
+\qquad\text{i}\qquad
+|S_n(f,P'',\xi'')-I|<\frac{\varepsilon}{2}.
+\]
+</div>
+
+<div class="mini">
+<b>Zašto baš \(\varepsilon/2\)?</b><br>
+Zato što ćemo kasnije sabrati dve greške. Ako svaka od njih bude manja od \(\varepsilon/2\),
+njihov zbir će biti manji od \(\varepsilon\). To je standardna fora u analizama:
+„rezervišemo“ pola tolerancije za jedan deo i pola za drugi.
+</div>
+
+<p>
+Sada hoćemo da procenimo razliku dve Rimanove sume.
+Tu se pojavljuje trik sa <b>\(+I-I\)</b>.
+Pišemo:
+</p>
+
+<div class="formula">
+\[
+S_n(f,P',\xi')-S_n(f,P'',\xi'')
+=
+\bigl(S_n(f,P',\xi')-I\bigr)+\bigl(I-S_n(f,P'',\xi'')\bigr).
+\]
+</div>
+
+<p>
+Po apsolutnoj vrednosti:
+</p>
+
+<div class="formula">
+\[
+|S_n(f,P',\xi')-S_n(f,P'',\xi'')|
+=
+\left|\bigl(S_n(f,P',\xi')-I\bigr)+\bigl(I-S_n(f,P'',\xi'')\bigr)\right|.
+\]
+</div>
+
+<p>
+A sada primenjujemo <b>nejednakost trougla</b>:
+</p>
+
+<div class="formula">
+\[
+|A+B|\le |A|+|B|.
+\]
+</div>
+
+<p>
+Ovde su
+</p>
+
+<div class="formula">
+\[
+A=S_n(f,P',\xi')-I,\qquad
+B=I-S_n(f,P'',\xi'').
+\]
+</div>
+
+<p>
+Zato dobijamo
+</p>
+
+<div class="formula">
+\[
+|S_n(f,P',\xi')-S_n(f,P'',\xi'')|
+\le
+|S_n(f,P',\xi')-I|+|I-S_n(f,P'',\xi'')|.
+\]
+</div>
+
+<p>
+A svaka od te dve apsolutne vrednosti je manja od \(\varepsilon/2\), pa:
+</p>
+
+<div class="formula">
+\[
+|S_n(f,P',\xi')-S_n(f,P'',\xi'')|
+<
+\frac{\varepsilon}{2}+\frac{\varepsilon}{2}
+=
+\varepsilon.
+\]
+</div>
+
+<div class="mini">
+<b>To je cela poenta dela sa \(+I-I\):</b><br>
+ubacujemo integral \(I\) između dve sume da bismo mogli da kažemo:
+„prva suma je blizu \(I\), druga suma je takođe blizu \(I\), pa su zato i one blizu jedna drugoj.“
+</div>
+</div>
+
+<div class="card analysis">
+<h2>Kako iz toga izlaze Darbuove sume?</h2>
+
+<p>
+Sada uzmemo <b>istu podelu</b> \(P\), ali dve različite grupe istaknutih tačaka:
+</p>
+<ul>
+  <li>jedne koje daju skoro najveću moguću Rimanovu sumu na toj podeli,</li>
+  <li>druge koje daju skoro najmanju moguću Rimanovu sumu na toj podeli.</li>
+</ul>
+
+<p>
+Tada iz prethodne procene sledi da i na istoj podeli važi
+</p>
+
+<div class="formula">
+\[
+\overline{S}_n(f,P)-\underline{S}_n(f,P)<\varepsilon.
+\]
+</div>
+
+<p>
+Dakle, ako je funkcija Riman-integrabilna, onda se za dovoljno sitne podele
+gornja i donja Darbuova suma moraju približiti koliko god hoćemo.
+</p>
+</div>
+
+<div class="card answer">
+<h2>Najkraća verzija za učenicu</h2>
+
+<p><b>1.</b> Ako je funkcija integrabilna, postoji broj \(I\) kome teže Rimanove sume.</p>
+
+<p><b>2.</b> Zato za dovoljno sitne podele svaka Rimanova suma mora biti blizu \(I\).</p>
+
+<p><b>3.</b> Ako su dve sume obe blizu \(I\), onda su blizu i jedna drugoj.</p>
+
+<p><b>4.</b> To dokazujemo tako što umetnemo \(+I-I\):</p>
+
+<div class="formula">
+\[
+S_1-S_2=(S_1-I)+(I-S_2).
+\]
+</div>
+
+<p><b>5.</b> Onda nejednakost trougla daje</p>
+
+<div class="formula">
+\[
+|S_1-S_2|\le |S_1-I|+|I-S_2|.
+\]
+</div>
+
+<p><b>6.</b> Ako je svako od ta dva odstupanja manje od \(\varepsilon/2\),
+onda je ukupna razlika manja od \(\varepsilon\).</p>
+
+<p><b>7.</b> Primenimo to na skoro najveću i skoro najmanju sumu za istu podelu,
+i dobijamo da je \(\overline{S}_n(f,P)-\underline{S}_n(f,P)<\varepsilon\).</p>
+</div>
+
+<div class="card warning">
+<h2>Mala napomena o intuiciji</h2>
+<p>
+Broj \(I\) je kao „centar okupljanja“ svih finih Rimanovih suma.
+Trik \(+I-I\) samo formalno zapisuje tu ideju.
+A \(\varepsilon/2\) služi da se dve male greške lepo saberu u ukupnu grešku manju od \(\varepsilon\).
+</p>
+</div>
+
+<div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+
+</div>
+</body>
+</html>
