@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Osnovna ideja teoreme 7.3.13</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6fb;
+    color:#1f2937;
+    line-height:1.65;
+  }
+  .wrap{
+    max-width:980px;
+    margin:32px auto;
+    padding:0 18px 42px;
+  }
+  h1{
+    text-align:center;
+    margin-bottom:8px;
+    color:#111827;
+  }
+  .subtitle{
+    text-align:center;
+    color:#6b7280;
+    margin-bottom:28px;
+  }
+  .card{
+    background:#ffffff;
+    border-radius:16px;
+    padding:24px 28px;
+    margin:18px 0;
+    box-shadow:0 8px 22px rgba(15,23,42,.08);
+    border-left:8px solid #93c5fd;
+  }
+  .idea{border-left-color:#fbbf24;}
+  .analysis{border-left-color:#60a5fa;}
+  .solution{border-left-color:#34d399;}
+  .warning{border-left-color:#fb7185;}
+  .answer{border-left-color:#a78bfa;}
+  h2{
+    margin-top:0;
+    color:#111827;
+  }
+  .formula{
+    background:#f9fafb;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:14px 0;
+    overflow-x:auto;
+  }
+  .mini{
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:14px 0;
+  }
+  svg{
+    display:block;
+    max-width:100%;
+    margin:8px auto 0;
+    background:#ffffff;
+  }
+  .footer{
+    text-align:center;
+    color:#6b7280;
+    margin-top:28px;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Teorema 7.3.13 — osnovna ideja</h1>
+<div class="subtitle">Kako dvojni integral pretvaramo u dva obična integrala</div>
+
+<div class="card idea">
+<h2>1. O čemu se radi?</h2>
+<p>
+Imamo neku oblast \(D\) u ravni. Ona nije običan pravougaonik, nego je
+odozdo ograničena krivom \(y_1(x)\), a odozgo krivom \(y_2(x)\).
+Levo i desno stoje prave \(x=a\) i \(x=b\).
+</p>
+
+<p>
+Znači, za svako \(x\) između \(a\) i \(b\), oblast \(D\) ima jednu
+vertikalnu „crtu“ koja ide od donje krive do gornje krive.
+</p>
+
+<div class="formula">
+\[
+D=\{(x,y): a\le x\le b,\; y_1(x)\le y\le y_2(x)\}
+\]
+</div>
+</div>
+
+<div class="card analysis">
+<h2>2. Priča sa vertikalnim sečenjem</h2>
+
+<p>
+Zamisli da oblast \(D\) sečemo tankim vertikalnim trakama.
+Svaka traka ima neku malu širinu u pravcu \(x\), a njena visina ide od
+\(y_1(x)\) do \(y_2(x)\).
+</p>
+
+<p>
+Na jednoj takvoj traci prvo sabiramo vrednosti funkcije po pravcu \(y\).
+To je unutrašnji integral:
+</p>
+
+<div class="formula">
+\[
+\int_{y_1(x)}^{y_2(x)} f(x,y)\,dy
+\]
+</div>
+
+<p>
+To znači: za trenutno fiksirano \(x\), idemo odozdo nagore kroz oblast.
+</p>
+
+<div class="mini">
+<b>Ključna rečenica:</b><br>
+Prvo obradimo jednu vertikalnu traku, a onda saberemo sve takve trake od
+\(x=a\) do \(x=b\).
+</div>
+</div>
+
+<div class="card">
+<h2>3. Slika ideje</h2>
+
+<svg viewBox="0 0 760 360" width="760" height="360" aria-label="Vertikalno sečenje oblasti D">
+  <line x1="85" y1="305" x2="700" y2="305" stroke="#111827" stroke-width="2"/>
+  <line x1="115" y1="325" x2="115" y2="35" stroke="#111827" stroke-width="2"/>
+  <polygon points="700,305 688,299 688,311" fill="#111827"/>
+  <polygon points="115,35 109,47 121,47" fill="#111827"/>
+  <text x="708" y="310" font-size="18" fill="#111827">x</text>
+  <text x="100" y="30" font-size="18" fill="#111827">y</text>
+
+  <line x1="200" y1="305" x2="200" y2="95" stroke="#9ca3af" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="610" y1="305" x2="610" y2="105" stroke="#9ca3af" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <path d="M200,210 
+           C270,225 340,225 410,205
+           C485,184 555,205 610,230
+           L610,105
+           C540,85 470,65 395,85
+           C315,108 260,100 200,120
+           Z"
+        fill="#dbeafe" stroke="none"/>
+
+  <path d="M200,210 
+           C270,225 340,225 410,205
+           C485,184 555,205 610,230"
+        fill="none" stroke="#2563eb" stroke-width="4"/>
+  <path d="M200,120
+           C260,100 315,108 395,85
+           C470,65 540,85 610,105"
+        fill="none" stroke="#2563eb" stroke-width="4"/>
+
+  <line x1="420" y1="202" x2="420" y2="82" stroke="#ef4444" stroke-width="5"/>
+  <rect x="414" y="82" width="12" height="120" fill="#ef4444" opacity="0.22"/>
+
+  <text x="190" y="328" font-size="18" fill="#111827">a</text>
+  <text x="603" y="328" font-size="18" fill="#111827">b</text>
+  <text x="300" y="252" font-size="20" fill="#111827">D</text>
+  <text x="615" y="100" font-size="18" fill="#2563eb">y₂(x)</text>
+  <text x="615" y="235" font-size="18" fill="#2563eb">y₁(x)</text>
+  <text x="432" y="150" font-size="18" fill="#ef4444">jedna vertikalna traka</text>
+
+  <line x1="665" y1="105" x2="665" y2="230" stroke="#ef4444" stroke-width="2"/>
+  <line x1="655" y1="105" x2="675" y2="105" stroke="#ef4444" stroke-width="2"/>
+  <line x1="655" y1="230" x2="675" y2="230" stroke="#ef4444" stroke-width="2"/>
+</svg>
+
+</div>
+
+<div class="card solution">
+<h2>4. Formula kao rečenica</h2>
+
+<div class="formula">
+\[
+\iint_D f(x,y)\,dx\,dy
+=
+\int_a^b
+\left(
+\int_{y_1(x)}^{y_2(x)} f(x,y)\,dy
+\right)
+dx
+\]
+</div>
+
+<p>
+Ova formula se može čitati ovako:
+</p>
+
+<p>
+<b>Dvojni integral preko cele oblasti \(D\)</b> dobijamo tako što
+prvo, za jedno fiksirano \(x\), saberemo funkciju po vertikali od \(y_1(x)\)
+do \(y_2(x)\), a zatim taj rezultat saberemo za sva \(x\) od \(a\) do \(b\).
+</p>
+</div>
+
+<div class="card warning">
+<h2>5. Zašto se u dokazu prvo radi pravougaonik?</h2>
+
+<p>
+Pravougaonik je najlakši slučaj, jer su granice po \(y\) stalne:
+</p>
+
+<div class="formula">
+\[
+c\le y\le d
+\]
+</div>
+
+<p>
+Tu nema krivih granica. Svaka vertikalna traka ide od iste donje prave
+\(y=c\) do iste gornje prave \(y=d\).
+Zato se prvo dokaže formula za pravougaonik.
+</p>
+
+<p>
+Posle toga se opšta oblast \(D\) ubaci u jedan veći pravougaonik \(E\).
+Van oblasti \(D\) funkciju zamišljamo kao nulu.
+Tako ne dodajemo ništa novo, jer tamo gde nismo u oblasti \(D\), doprinos je nula.
+</p>
+
+<div class="mini">
+<b>Ideja dokaza:</b><br>
+Prvo rešimo lak slučaj — pravougaonik.  
+Zatim krivu oblast \(D\) pretvorimo u deo pravougaonika tako što van nje
+funkcija ima vrednost \(0\).
+</div>
+</div>
+
+<div class="card answer">
+<h2>6. Najkraće za pamćenje</h2>
+
+<p>
+Ako oblast može da se opiše tako da za svako \(x\) idemo od donje krive
+do gornje krive, onda dvojni integral računamo ovako:
+</p>
+
+<div class="formula">
+\[
+\text{prvo po } y,\quad \text{pa po } x.
+\]
+</div>
+
+<p>
+Unutrašnji integral prolazi kroz jednu vertikalnu traku.
+Spoljašnji integral sabira sve te trake.
+</p>
+
+<p>
+To je cela osnovna ideja teoreme.
+</p>
+</div>
+
+<div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+
+</div>
+</body>
+</html>
