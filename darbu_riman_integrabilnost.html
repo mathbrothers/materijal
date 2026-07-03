@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Darbuova i Rimanova integrabilnost</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$', '$']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+  body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f4f6fb;
+    color:#1f2937;
+    line-height:1.65;
+  }
+  .wrap{
+    max-width:900px;
+    margin:32px auto;
+    padding:0 18px 40px;
+  }
+  h1{
+    text-align:center;
+    margin-bottom:8px;
+    color:#111827;
+  }
+  .subtitle{
+    text-align:center;
+    color:#6b7280;
+    margin-bottom:28px;
+  }
+  .card{
+    background:white;
+    border-radius:16px;
+    padding:22px 26px;
+    margin:18px 0;
+    box-shadow:0 8px 22px rgba(15,23,42,.08);
+    border-left:8px solid #93c5fd;
+  }
+  .idea{border-left-color:#fbbf24;}
+  .solution{border-left-color:#34d399;}
+  .warning{border-left-color:#fb7185;}
+  .answer{border-left-color:#a78bfa;}
+  h2{
+    margin-top:0;
+    color:#111827;
+  }
+  .formula{
+    background:#f9fafb;
+    border-radius:12px;
+    padding:12px 16px;
+    margin:12px 0;
+    overflow-x:auto;
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:12px;
+  }
+  th,td{
+    border:1px solid #e5e7eb;
+    padding:10px 12px;
+    vertical-align:top;
+  }
+  th{
+    background:#f3f4f6;
+  }
+  .footer{
+    text-align:center;
+    color:#6b7280;
+    margin-top:28px;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Darbuova i Rimanova integrabilnost</h1>
+<div class="subtitle">Ista ideja površine, ali dva različita načina gledanja</div>
+
+<div class="card idea">
+<h2>1. Intuicija</h2>
+<p>
+Hoćemo da izračunamo površinu ispod grafika funkcije na segmentu \([a,b]\).
+Oba pristupa dele segment na male delove i prave zbir pravougaonika.
+Razlika je u tome <b>koju visinu pravougaonika uzimamo</b>.
+</p>
+</div>
+
+<div class="card">
+<h2>2. Rimanov pristup</h2>
+<p>
+Kod Rimanove sume u svakom malom intervalu izaberemo jednu tačku \(\xi_i\)
+i uzmemo vrednost funkcije u toj tački kao visinu pravougaonika.
+</p>
+
+<div class="formula">
+\[
+S(f,P,\xi)=\sum_{i=1}^{n} f(\xi_i)\Delta x_i
+\]
+</div>
+
+<p>
+Dakle, Riman kaže:
+</p>
+
+<p>
+<b>Biraj tačke kako hoćeš, ali ako su intervali dovoljno mali, svi ti zbirovi
+moraju da idu ka istom broju.</b>
+</p>
+
+<p>
+Funkcija je Riman-integrabilna ako Rimanove sume teže istom broju kada se
+podela sve više usitnjava, bez obzira na izbor tačaka \(\xi_i\).
+</p>
+</div>
+
+<div class="card">
+<h2>3. Darbuov pristup</h2>
+<p>
+Darbu ne bira jednu tačku u intervalu. On u svakom malom intervalu gleda:
+</p>
+
+<ul>
+<li>najmanju moguću vrednost funkcije, odnosno infimum \(m_i\),</li>
+<li>najveću moguću vrednost funkcije, odnosno supremum \(M_i\).</li>
+</ul>
+
+<div class="formula">
+\[
+s(f,P)=\sum_{i=1}^{n} m_i\Delta x_i
+\]
+\[
+S(f,P)=\sum_{i=1}^{n} M_i\Delta x_i
+\]
+</div>
+
+<p>
+Donja Darbuova suma pravi pravougaonike koji su sigurno <b>ispod</b> funkcije,
+a gornja Darbuova suma pravi pravougaonike koji su sigurno <b>iznad</b> funkcije.
+</p>
+
+<p>
+Darbu kaže:
+</p>
+
+<p>
+<b>Ako mogu da stisnem funkciju između donjih i gornjih suma tako da razlika
+postane proizvoljno mala, onda integral postoji.</b>
+</p>
+
+<div class="formula">
+\[
+\sup_P s(f,P)=\inf_P S(f,P)
+\]
+</div>
+</div>
+
+<div class="card solution">
+<h2>4. Glavna razlika</h2>
+
+<table>
+<tr>
+<th>Riman</th>
+<th>Darbu</th>
+</tr>
+<tr>
+<td>Bira po jednu tačku \(\xi_i\) u svakom intervalu.</td>
+<td>Ne bira tačku, nego gleda najmanju i najveću vrednost na intervalu.</td>
+</tr>
+<tr>
+<td>Radi sa običnim integralnim sumama.</td>
+<td>Radi sa donjim i gornjim sumama.</td>
+</tr>
+<tr>
+<td>Pita: da li svi mogući izbori tačaka daju isti granični broj?</td>
+<td>Pita: da li se donje i gornje sume mogu približiti koliko god hoćemo?</td>
+</tr>
+<tr>
+<td>Gleda konkretne visine \(f(\xi_i)\).</td>
+<td>Gleda „ogradu” oko funkcije: odozdo i odozgo.</td>
+</tr>
+</table>
+</div>
+
+<div class="card warning">
+<h2>5. Važna činjenica</h2>
+<p>
+Za ograničene funkcije na zatvorenom segmentu \([a,b]\), Darbuova i Rimanova
+integrabilnost su <b>ekvivalentne</b>.
+</p>
+
+<div class="formula">
+\[
+f \text{ je Riman-integrabilna}
+\quad \Longleftrightarrow \quad
+f \text{ je Darbu-integrabilna}
+\]
+</div>
+
+<p>
+I ne samo to: ako integral postoji, vrednost integrala je ista.
+</p>
+
+<div class="formula">
+\[
+\int_a^b f(x)\,dx
+=
+\sup_P s(f,P)
+=
+\inf_P S(f,P)
+\]
+</div>
+</div>
+
+<div class="card answer">
+<h2>6. Kako reći učenici najkraće</h2>
+<p>
+Riman pravi pravougaonike tako što u svakom intervalu izabere jednu tačku i
+uzme vrednost funkcije u toj tački.
+</p>
+
+<p>
+Darbu pravi dve ograde: donju, pomoću najmanjih vrednosti funkcije, i gornju,
+pomoću najvećih vrednosti funkcije.
+</p>
+
+<p>
+Ako se te dve ograde mogu stisnuti do istog broja, funkcija je integrabilna.
+Za funkcije koje radimo u klasičnoj analizi na \([a,b]\), to je isto kao
+Rimanova integrabilnost.
+</p>
+</div>
+
+<div class="footer">Mathbrotherhood Powered by ChatGPT</div>
+
+</div>
+</body>
+</html>
