@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dve notacije za iterirani integral</title>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+        h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+        .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+        .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+        .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+        .zadatak-section h2 { color: #1565c0; }
+        .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+        .ideja-section h2 { color: #e65100; }
+        .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+        .resenje-section h2 { color: #2e7d32; }
+        .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+        .odgovor-section h2 { color: #7b1fa2; }
+        .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+        .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+        table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+        th, td { border: 1px solid #555; padding: 8px; text-align: left; }
+        th { background: #e0e0e0; }
+    </style>
+</head>
+<body>
+
+<h1>Zašto postoje dve notacije za iterirani integral?</h1>
+
+<div class="section-box zadatak-section">
+    <h2>Zadatak</h2>
+    <p>Objasniti zašto se u matematičkoj literaturi iterirani integral sreće u dva oblika:</p>
+    <p><strong>Prvi oblik (sa \(dx\) ispred):</strong></p>
+    \[
+    \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy
+    \]
+    <p><strong>Drugi oblik (sa \(dx\) na kraju, u zagradama):</strong></p>
+    \[
+    \int_a^b \left( \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy \right) dx
+    \]
+    <p>Koja notacija je „logičnija" i zašto se koriste obe?</p>
+</div>
+
+<div class="section-box ideja-section">
+    <h2>Ideja</h2>
+    <p>Ključna činjenica je da <strong>razlika između ove dve notacije nije matematička, već isključivo notaciona i tradicijska</strong>. Obe notacije označavaju potpuno istu operaciju — uzastopno (iterirano) integriranje funkcije \(f(x,y)\), prvo po \(y\), pa po \(x\). Razlika potiče iz različitih matematičkih škola i konvencija.</p>
+</div>
+
+<div class="section-box resenje-section">
+    <h2>Objašnjenje</h2>
+    
+    <h3 style="color: #1565c0;">1. Prva notacija — \(dx\) ispred</h3>
+    \[
+    \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy
+    \]
+    <p><strong>Poreklo:</strong> Nemačka, ruska i srednjoevropska matematička tradicija (Fubini, Lebesgue, Kolmogorov).</p>
+    <p><strong>Logika:</strong> Izraz \(\int_a^b dx\) se posmatra kao <em>operator</em> koji deluje na sve što sledi iza njega. Granice su odmah uz odgovarajuću promenljivu, pa se lako vidi koja granica pripada kojoj integraciji.</p>
+    <p><strong>Prednosti:</strong></p>
+    <ul>
+        <li>Kompaktnija i brža za pisanje</li>
+        <li>Granice su vizuelno „vezane" za svoju promenljivu</li>
+        <li>Prirodna za više dimenzija: \(\int dx \int dy \int dz\)</li>
+    </ul>
+
+    <h3 style="color: #1565c0;">2. Druga notacija — \(dx\) na kraju</h3>
+    \[
+    \int_a^b \left( \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy \right) dx
+    \]
+    <p><strong>Poreklo:</strong> Anglo-američka tradicija i moderna teorija mere (Lebesgue-ov integral, Fubini-jeva teorema u meri).</p>
+    <p><strong>Logika:</strong> Integral se posmatra kao funkcional koji deluje na podintegralnu funkciju, a \(dx\) označava meru po kojoj se integriše. Zagrade jasno pokazuju hijerarhiju.</p>
+    <p><strong>Prednosti:</strong></p>
+    <ul>
+        <li>Konzistentna sa teorijom mere (\(d\mu\) je deo integracione strukture)</li>
+        <li>Zagrade jasno definišu redosled operacija</li>
+        <li>Pedagoški jasnija za početnike</li>
+    </ul>
+
+    <h3 style="color: #1565c0;">3. Poređenje</h3>
+    <table>
+        <tr>
+            <th>Kriterijum</th>
+            <th>Prva notacija (\(dx\) ispred)</th>
+            <th>Druga notacija (\(dx\) na kraju)</th>
+        </tr>
+        <tr>
+            <td>Tradicija</td>
+            <td>Srednja Evropa, Rusija</td>
+            <td>Anglo-američka, fizika</td>
+        </tr>
+        <tr>
+            <td>Kompaktnost</td>
+            <td>✓ Kompaktnija</td>
+            <td>✗ Zahteva zagrade</td>
+        </tr>
+        <tr>
+            <td>Pedagoška jasnoća</td>
+            <td>✗ Može zbuniti početnike</td>
+            <td>✓ Jasno vidi redosled</td>
+        </tr>
+        <tr>
+            <td>Teorijska osnova</td>
+            <td>Operatorski pristup</td>
+            <td>Teorija mere</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section-box odgovor-section">
+    <h2>Odgovor</h2>
+    <p>Ne postoji „ispravna" ili „pogrešna" notacija — obe su matematički ekvivalentne i označavaju istu stvar:</p>
+    <div class="boxed">
+        \[
+        \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy \;\equiv\; \int_a^b \left( \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy \right) dx
+        \]
+    </div>
+    <p style="margin-top: 15px;"><strong>Praktičan savet:</strong></p>
+    <ul>
+        <li>Ako ste <em>početnik</em>, koristite drugu notaciju (sa zagradama) jer je jasnija.</li>
+        <li>Ako radite u <em>višedimenzionalnim integralima</em>, prva notacija postaje preglednija.</li>
+        <li>Uvek pratite notaciju svog <em>profesora ili udžbenika</em> radi doslednosti.</li>
+    </ul>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Qwen3.7-Plus</div>
+
+</body>
+</html>
