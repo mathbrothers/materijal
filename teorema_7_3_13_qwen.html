@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokaz Teoreme 7.3.13 - Fubini-jeva teorema za oblasti tipa I</title>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+        h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+        .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+        .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+        .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+        .zadatak-section h2 { color: #1565c0; }
+        .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+        .ideja-section h2 { color: #e65100; }
+        .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+        .resenje-section h2 { color: #2e7d32; }
+        .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+        .odgovor-section h2 { color: #7b1fa2; }
+        .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+        .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+        .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+<h1>Dokaz Teoreme 7.3.13</h1>
+
+<div class="section-box zadatak-section">
+    <h2>Zadatak</h2>
+    <p>Dokazati da za realnu funkciju \(f\) koja je integrabilna na oblasti</p>
+    \[
+    D = \{(x,y) \in \mathbb{R}^2 : a \leqslant x \leqslant b, \; y_1(x) \leqslant y \leqslant y_2(x)\}
+    \]
+    <p>i za koju za svako \(x \in [a,b]\) postoji određeni integral \(\displaystyle\int_{y_1(x)}^{y_2(x)} f(x,y) \, dy\), važi jednakost:</p>
+    \[
+    \iint_D f(x,y) \, dxdy = \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy
+    \]
+</div>
+
+<div class="section-box ideja-section">
+    <h2>Ideja dokaza</h2>
+    <p>Dokaz se zasniva na definiciji dvostrukog integrala preko <strong>Riemannovih suma</strong> i njihovoj konvergenciji ka integralu kada norma particije teži nuli. Ključni koraci su:</p>
+    <ol>
+        <li><strong>Particija oblasti:</strong> Podeliti oblast \(D\) na male elementarne delove koristeći particije segmenta \([a,b]\) i odgovarajuće vertikalne segmente.</li>
+        <li><strong>Riemannove sume:</strong> Formirati Riemannove sume za dvostruki integral i pokazati da se one mogu zapisati kao <em>iterirane (uzastopne) sume</em>.</li>
+        <li><strong>Prelazak na graničnu vrednost:</strong> Iskoristiti činjenicu da kada norma particije teži nuli, Riemannove sume konvergiraju ka odgovarajućim integralima.</li>
+        <li><strong>Korišćenje pretpostavke:</strong> Iskoristiti postojanje integrala \(\int_{y_1(x)}^{y_2(x)} f(x,y) \, dy\) za svako fiksirano \(x\).</li>
+    </ol>
+</div>
+
+<div class="section-box resenje-section">
+    <h2>Dokaz</h2>
+    
+    <p><strong>Korak 1: Konstrukcija particije</strong></p>
+    <p>Neka je \(P_x = \{x_0, x_1, \ldots, x_n\}\) particija segmenta \([a,b]\), gde je</p>
+    \[
+    a = x_0 < x_1 < \cdots < x_n = b
+    \]
+    <p>Neka je \(\Delta x_i = x_i - x_{i-1}\) za \(i = 1, 2, \ldots, n\), i neka je \(\|P_x\| = \max\limits_{1 \leqslant i \leqslant n} \Delta x_i\) norma ove particije.</p>
+    
+    <p>Za svako \(i = 1, 2, \ldots, n\), izaberimo tačku \(\xi_i \in [x_{i-1}, x_i]\). Oblast \(D\) možemo predstaviti kao uniju vertikalnih traka:</p>
+    \[
+    D = \bigcup_{i=1}^n D_i
+    \]
+    <p>gde je</p>
+    \[
+    D_i = \{(x,y) : x_{i-1} \leqslant x \leqslant x_i, \; y_1(x) \leqslant y \leqslant y_2(x)\}
+    \]
+    
+    <p><strong>Korak 2: Riemannove sume za dvostruki integral</strong></p>
+    <p>Prema definiciji dvostrukog integrala, važi:</p>
+    \[
+    \iint_D f(x,y) \, dxdy = \lim_{\|P\| \to 0} \sum_{i=1}^n \sum_{j=1}^{m_i} f(\xi_i, \eta_{ij}) \, \Delta A_{ij}
+    \]
+    <p>gde smo za svaku vertikalnu traku \(D_i\) izvršili dodatnu particiju u \(y\)-pravcu.</p>
+    
+    <p><strong>Korak 3: Razdvajanje suma</strong></p>
+    <p>Fiksirajmo indeks \(i\) i posmatrajmo integral po \(y\) za dato \(x = \xi_i\). Po pretpostavci teoreme, za svako \(\xi_i \in [a,b]\) postoji integral:</p>
+    \[
+    I(\xi_i) = \int_{y_1(\xi_i)}^{y_2(\xi_i)} f(\xi_i, y) \, dy
+    \]
+    <p>Ovaj integral možemo aproksimirati Riemannovom sumom:</p>
+    \[
+    I(\xi_i) \approx \sum_{j=1}^{m_i} f(\xi_i, \eta_{ij}) \, \Delta y_{ij}
+    \]
+    <p>gde \(\eta_{ij} \in [y_{j-1}(\xi_i), y_j(\xi_i)]\) i \(\Delta y_{ij} = y_j(\xi_i) - y_{j-1}(\xi_i)\).</p>
+    
+    <p><strong>Korak 4: Prelazak na graničnu vrednost</strong></p>
+    <p>Kada \(\|P_y\| \to 0\) (norma particije u \(y\)-pravcu teži nuli), imamo:</p>
+    \[
+    \lim_{\|P_y\| \to 0} \sum_{j=1}^{m_i} f(\xi_i, \eta_{ij}) \, \Delta y_{ij} = \int_{y_1(\xi_i)}^{y_2(\xi_i)} f(\xi_i, y) \, dy
+    \]
+    <p>Sada, Riemannova suma za dvostruki integral postaje:</p>
+    \[
+    S(P,f) = \sum_{i=1}^n \left[ \sum_{j=1}^{m_i} f(\xi_i, \eta_{ij}) \, \Delta y_{ij} \right] \Delta x_i
+    \]
+    <p>Kada \(\|P_y\| \to 0\), unutrašnja suma teži ka integralu:</p>
+    \[
+    S(P,f) \to \sum_{i=1}^n \left[ \int_{y_1(\xi_i)}^{y_2(\xi_i)} f(\xi_i, y) \, dy \right] \Delta x_i
+    \]
+    
+    <p><strong>Korak 5: Konačan prelaz na graničnu vrednost</strong></p>
+    <p>Definišimo funkciju:</p>
+    \[
+    F(x) = \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy
+    \]
+    <p>Tada poslednja suma postaje Riemannova suma za integral funkcije \(F(x)\) po segmentu \([a,b]\):</p>
+    \[
+    \sum_{i=1}^n F(\xi_i) \, \Delta x_i
+    \]
+    <p>Kada \(\|P_x\| \to 0\), ova suma konvergira ka:</p>
+    \[
+    \int_a^b F(x) \, dx = \int_a^b \left[ \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy \right] dx
+    \]
+    
+    <p><strong>Korak 6: Zaključak dokaza</strong></p>
+    <p>Kako je \(f\) integrabilna na \(D\), granična vrednost Riemannovih suma ne zavisi od izbora particija i tačaka \(\xi_i, \eta_{ij}\). Stoga važi:</p>
+    \[
+    \iint_D f(x,y) \, dxdy = \lim_{\|P\| \to 0} S(P,f) = \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy
+    \]
+    <p>čime je teorema dokazana. ∎</p>
+</div>
+
+<div class="section-box odgovor-section">
+    <h2>Odgovor</h2>
+    <p>Dokazano je da se dvostruki integral po oblasti tipa I može izračunati kao uzastopni (iterirani) integral:</p>
+    <div class="boxed">
+        \[
+        \iint_D f(x,y) \, dxdy = \int_a^b \left( \int_{y_1(x)}^{y_2(x)} f(x,y) \, dy \right) dx
+        \]
+    </div>
+    <p style="margin-top: 15px;">Ova jednakost važi pod uslovom da je funkcija \(f\) integrabilna na oblasti \(D\) i da za svako \(x \in [a,b]\) postoji odgovarajući određeni integral po promenljivoj \(y\).</p>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Qwen3.7-Plus</div>
+
+</body>
+</html>
