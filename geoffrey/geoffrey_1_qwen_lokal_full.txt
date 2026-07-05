@@ -1,0 +1,1027 @@
+[Applause]
+0:04
+So today I'm going to talk about what
+0:06
+understanding is. We need the scientific
+0:08
+community to agree on what understanding
+0:10
+is.
+0:12
+If you think about the first step in
+0:14
+tackling climate change, we had to reach
+0:16
+a scientific consensus on what was
+0:18
+causing it before we could advise on
+0:20
+what to do about it.
+0:22
+Now with these large language models,
+0:24
+chatbots,
+0:26
+there's still many scientists who don't
+0:28
+think that they really understand the
+0:29
+same way as we do. They believe in a
+0:32
+very different model of what human
+0:34
+understanding is. For the last 70 years,
+0:37
+there've been two very different
+0:38
+paradigms for intelligence.
+0:41
+The logic inspired paradigm which
+0:43
+dominated for about the first 50 years
+0:45
+of AI is that the essence of
+0:47
+intelligence is reasoning. And reasoning
+0:49
+is done by using symbolic rules to
+0:52
+manipulate symbolic expressions. So your
+0:54
+knowledge is a bunch of symbolic
+0:56
+expressions inside your head. They
+0:58
+thought learning could wait. The first
+1:00
+thing we have to understand is how
+1:01
+knowledge is represented. It's some
+1:03
+special logically unamiguous language.
+1:06
+And figuring out how knowledge is
+1:08
+represented has to come first. The
+1:10
+contrast was a biologically inspired
+1:11
+approach. That's what people like Turing
+1:14
+and Fonoman believed in. And there the
+1:17
+essence of intelligence is learning the
+1:19
+strengths of the connections in a neural
+1:21
+network. And those people think that
+1:23
+reasoning can wait. First we have to
+1:26
+understand how learning works and later
+1:27
+on we'll understand reasoning. Reasoning
+1:29
+is something that came very late
+1:31
+biologically.
+1:33
+So the real transition to most people
+1:37
+believing in the biological approach
+1:39
+rather than the logical approach came in
+1:42
+2012 when a deep neural network trained
+1:46
+with back propagation got about half the
+1:49
+error rate of standard computer vision
+1:52
+systems which have been highly tuned for
+1:54
+this competition the imageet
+1:55
+competition. Once that happened, then
+1:58
+the whole computer vision community
+2:00
+fairly rapidly switched to um using
+2:03
+neural nets and that opened the
+2:05
+floodgates for what we see now, which is
+2:07
+neural nets being used for everything.
+2:09
+So now what people mean by AI is
+2:12
+artificial neural networks. For a long
+2:15
+long time, what they meant by AI was
+2:17
+definitely not artificial neural
+2:18
+networks. It was um symbolic AI. But
+2:22
+even when we could do vision better than
+2:25
+standard symbolic AI, many people in the
+2:29
+symbolic AI community said, "Yeah, but
+2:31
+they'll never do language." Because
+2:32
+obviously if symbolic AI is going to be
+2:34
+good for anything, it's going to be good
+2:35
+for language because that is strings of
+2:37
+symbols in and strings of symbols out.
+2:39
+The linguists were also very skeptical.
+2:41
+So most linguists believed in Chsky's
+2:44
+theory, which I think is crazy, um that
+2:47
+language is not learned. I think Chsk is
+2:50
+sort of a cult leader. If you can get
+2:51
+people to agree on something that's
+2:53
+manifest nonsense that language is not
+2:55
+learned, then you've got them. Now,
+2:57
+Chsky never had a theory of meaning. It
+2:59
+was all about syntax. He didn't sort of
+3:03
+know how to have a theory of meaning.
+3:06
+And for the linguist, the idea that a
+3:08
+big neural network with random weights
+3:10
+and no innate knowledge could actually
+3:12
+learn both syntax and semantics um just
+3:15
+by looking at data was real anathema.
+3:17
+They were very confident that could
+3:19
+never happen. Chsky was so confident
+3:21
+that even after it had happened, he
+3:23
+published articles saying, "Well, they'd
+3:25
+never be able to do this," without
+3:27
+actually checking and asking them to do
+3:29
+that, which they did very well.
+3:32
+So, here's two very different theories
+3:34
+of the meaning of a word. And for a long
+3:36
+time, it looked as though these two
+3:37
+theories were just alternative theories
+3:39
+of meaning. The symbolic AI theory is
+3:42
+that the meaning of a word comes from
+3:44
+its relationships to other words. So
+3:47
+what a verb means is determined by how
+3:49
+it occurs with these other words in
+3:51
+sentences.
+3:53
+And to capture meaning, we need
+3:54
+something like a relational graph where
+3:56
+you have words, you have links between
+3:58
+them, you have the relationship attached
+4:01
+to the link, and that's how you're going
+4:04
+to represent meaning, a knowledge graph
+4:06
+of some kind.
+4:08
+Psychologists, particularly in the
+4:09
+1930s, I think, thought that the meaning
+4:12
+of a word is actually just a big set of
+4:14
+semantic features. There might also be
+4:16
+syntactic features and the words with
+4:18
+similar meanings have similar semantic
+4:20
+features. So Tuesday and Wednesday will
+4:22
+have very similar sets of semantic
+4:24
+features whereas Tuesday and although
+4:26
+will have very different sets of
+4:27
+semantic features and syntactic
+4:29
+features. In 1985 I made a tiny language
+4:33
+model that tried to unify those two
+4:36
+theories. So the idea was you would
+4:39
+learn semantic features for each word
+4:41
+symbol and you'd learn how to make all
+4:44
+those features of the previous words
+4:46
+interact to predict the features of the
+4:48
+next word. The model was trained by back
+4:51
+propagation to predict the next word. So
+4:54
+that's just like these large large
+4:55
+language models today. And like those
+4:58
+models today, instead of storing
+5:01
+sentences or propositions like the
+5:02
+symbolic eye people thought you ought
+5:04
+to, it would actually not store any
+5:06
+sentences or any propositions. It would
+5:08
+generate sentences by repeatedly
+5:11
+predicting the next word when it wanted
+5:13
+to generate a sentence. There were no
+5:15
+sentences inside. The knowledge it had
+5:18
+was relational knowledge that resided in
+5:20
+the way features of words interacted so
+5:22
+as to predict the features of the next
+5:24
+word. That's very different from a bunch
+5:26
+of propositions and rules for
+5:27
+manipulating them. If you ask what
+5:29
+happened over the next 30 years, about
+5:31
+10 years after that tiny language model,
+5:33
+which is really tiny, it only had a few
+5:35
+thousand weights. Yoshu Benjio showed
+5:38
+that you could actually use similar
+5:40
+kinds of models for predicting the next
+5:43
+word in real natural language. So you
+5:45
+could model what was going on in natural
+5:47
+language with this kind of model. And it
+5:49
+was about the same as the
+5:50
+state-of-the-art. About 10 years after
+5:52
+that, leading computational linguists
+5:55
+began to accept that feature vectors,
+5:57
+which they called embeddings, were
+5:59
+actually a good way to model meanings of
+6:01
+words. And about 10 years after that,
+6:04
+researchers at Google
+6:06
+invented transformers
+6:08
+and published them. And OpenAI then used
+6:11
+them and showed the world what they
+6:12
+could do. And that's when people not
+6:15
+just researchers but everybody began to
+6:18
+get interested in what was happening in
+6:20
+these large language models. Were they
+6:22
+really understanding what they were
+6:23
+saying? So the large language models can
+6:26
+be viewed particularly by me as
+6:29
+descendants of the tiny language model.
+6:31
+They use many more words as input. They
+6:33
+have big contexts. They use many more
+6:36
+layers of neurons so that they can
+6:38
+disambiguate words as they go through
+6:40
+the net. A word like may initially you
+6:43
+represent it with some feature vector
+6:45
+that's sort of hedging its bets between
+6:46
+whether it's a month or a modal or a
+6:48
+woman's name. As you go through the net,
+6:50
+you use interactions with the context to
+6:53
+clean it up into one of those three
+6:55
+meanings. They use much more complicated
+6:57
+interactions between the learned
+6:59
+features. In the original tiny language
+7:01
+model, the interaction is very simple.
+7:03
+In current large language models,
+7:05
+they're very complicated. They use
+7:06
+something called attention. And I'm now
+7:08
+going to try and give you an analogy for
+7:11
+how words work. Um, this is fairly
+7:13
+ambitious because I think people have
+7:15
+completely the wrong model of how
+7:17
+language models reality. So, I want to
+7:21
+give you an alternative model. It's not
+7:24
+perfect. It's an analogy. There's lots
+7:26
+of things wrong with it, but it sort of
+7:27
+gives you something to hang on to in
+7:29
+thinking about how we use language to
+7:31
+model reality because we need some way
+7:33
+of modeling things. That's what meaning
+7:35
+is. Meaning is having a model. So think
+7:38
+of words as like highdimensional Lego
+7:40
+blocks. With Lego blocks, you can model
+7:42
+any 3D shape moderately well. Don't
+7:44
+worry about the surface, which may be
+7:45
+sort of rectangular, but the volume you
+7:48
+can model pretty well if it's big with
+7:50
+3D Lego blocks. Think of words as like
+7:53
+Lego blocks, but instead of being 3D,
+7:56
+they're like thousanddimensional.
+7:58
+Now, that's a bit of a problem for most
+8:00
+people cuz they're not sure how to think
+8:01
+about a thousand dimensions. I'll tell
+8:03
+you how everybody does it. You think of
+8:05
+a three-dimensional thing like a Lego
+8:07
+block and you say thousand to yourself
+8:09
+very loudly. That's the best you can do.
+8:12
+So there these thousand dimensional Lego
+8:14
+blocks and so the shapes are very
+8:17
+complicated because they're in thousand
+8:18
+dimensions. And we can use combinations
+8:20
+of those to model anything at all. Not
+8:23
+just the distribution of matter in 3D
+8:24
+but anything
+8:27
+like theories of how the brain works.
+8:28
+Now, instead of having just a few
+8:30
+different kinds of Lego block, we've got
+8:32
+thousands of different kinds of these
+8:34
+special highdimensional Lego blocks,
+8:36
+namely all the different words. And each
+8:39
+one isn't a fixed shape. Each one has a
+8:42
+range of shapes it can adopt. It's
+8:44
+flexible. It can distort. It can't adopt
+8:46
+any old shape. Once you know what the
+8:48
+word is, you constrained with the shape.
+8:51
+There may be several alternative shapes
+8:53
+like for the word may, but for things
+8:55
+that only have one central meaning,
+8:57
+there's just a sort of a range of
+8:59
+possible shapes. And what they do is
+9:02
+they deform to fit in with the other
+9:04
+words in the context. So the context
+9:07
+gives a particular shape to each word. I
+9:11
+should say at this point in transformers
+9:13
+it really happens with word fragments,
+9:14
+but let's just suppose it's words. And
+9:17
+instead of thinking of them fitting
+9:19
+together by using little plastic
+9:21
+cylinders that plug into holes like Lego
+9:23
+blocks do, a very kind of rigid way of
+9:25
+fitting together, think of the words as
+9:27
+having lots of little hands on them. And
+9:29
+these hands have funny shapes. And the
+9:31
+way they fit together with other words
+9:33
+is they do handshakes. That's called
+9:36
+query key handshakes in a transformer.
+9:39
+And actually as you change the precise
+9:43
+vector that you're using for the meaning
+9:44
+of a word, as the context changes that
+9:47
+you actually change the shapes of the
+9:48
+hands. So it's slightly more complicated
+9:50
+than they have a fixed set of hand
+9:52
+shapes. The hand shapes change as you
+9:54
+change as you deform them. And what they
+9:56
+want to do is they want to deform in
+9:58
+such a way that they change their hand
+10:00
+shapes so that the words in the context
+10:02
+can shake hands with other words. And
+10:05
+that's what understanding is.
+10:07
+Understanding is taking those words,
+10:10
+finding how to deform them and how to
+10:12
+deform their hands so they can shake
+10:14
+hands with other words and then you've
+10:16
+got a structure. It's a bit like a bunch
+10:18
+of ammonia forming a structure but a lot
+10:20
+more complicated and in a thousand
+10:21
+dimensions. That's my image of what
+10:24
+understanding is. Understanding is you
+10:26
+take these word symbols and the word
+10:28
+symbols don't mean anything by
+10:29
+themselves. They need an interpreter
+10:32
+and you're the interpreter. your brain
+10:35
+is and it deforms these thousand
+10:38
+dimensional shapes roughly a thousand so
+10:41
+that their hands will deform so they can
+10:43
+all shake hands with other ones and so
+10:45
+now you formed a structure and that's
+10:47
+what it means to understand something to
+10:49
+form that structure that structure is
+10:51
+understanding.
+10:53
+So the large language models, if you
+10:55
+want to model all of human knowledge,
+10:57
+they're complicated. They have many
+10:59
+layers, very complicated interactions.
+11:00
+And so it's very hard to analyze what
+11:02
+they've actually learned and to see that
+11:04
+they really are understanding what
+11:06
+they're saying, particularly if you have
+11:07
+the wrong model of understanding. So
+11:10
+people influenced by symbolic AI and by
+11:13
+um Chsky and those other linguists
+11:15
+questioned whether they really were
+11:17
+intelligent or whether they really
+11:18
+understood what they were saying. And
+11:20
+they used two main arguments. One was
+11:22
+they said it's just autocomplete. It's
+11:24
+just using statistical correlations to
+11:27
+paste together bits of text and predict
+11:29
+the next word. And the text was all
+11:30
+created by people so it's not creative
+11:32
+at all. Well actually it beats most
+11:35
+people on stand test of creativity. So
+11:37
+that's not a very good argument. And
+11:39
+then the second argument they used was
+11:40
+well they hallucinate which shows they
+11:42
+don't really understand anything.
+11:44
+So let's take the autocomplete
+11:46
+objection. In the old days when you did
+11:48
+autocomplete, you keep tables of how
+11:51
+often particular combinations of words
+11:52
+occurred. So in a simple case, you might
+11:55
+store tables of how often triples of
+11:57
+words occurred. And then if you saw fish
+11:59
+and you'd realize that fish and chips
+12:02
+occurs a lot of times, so that's a
+12:03
+likely next word. I actually gave this
+12:05
+talk in the House of Lords and realized
+12:07
+that there fish and hunt is probably
+12:09
+more likely than fish and chips. But um
+12:11
+there are obviously alternatives, but
+12:13
+that's not at all how LLM's predict the
+12:15
+next word.
+12:16
+that's disappeared. They don't store any
+12:19
+text. They don't store any tables of
+12:21
+combinations of words. They model all
+12:23
+the text they've seen by inventing
+12:26
+feature vectors for words that can
+12:27
+deform with contextual influences.
+12:30
+And
+12:32
+these complicated interactions between
+12:34
+these word fragments by these
+12:36
+handshakes.
+12:38
+And that's what their knowledge is.
+12:40
+Their knowledge is in those
+12:42
+interactions. It's a bunch of weights in
+12:44
+the neural network. So that's what
+12:46
+knowledge is in these large language
+12:47
+models and it's what knowledge is in us
+12:50
+too. The original tiny language model
+12:52
+wasn't invented to be good at modeling
+12:54
+natural language. It was invented to
+12:57
+explain how we can understand the senses
+12:59
+of words. How can I take a sentence like
+13:02
+she scrummed him with the frying pan?
+13:04
+I've never heard the word scrum before
+13:06
+but in one sentence I already know a lot
+13:08
+about what it means because of the hole
+13:10
+created by the context tells you what it
+13:12
+ought to mean. So my claim is that we
+13:16
+model reality by using these word
+13:20
+fragments in much the same way as
+13:22
+machines do.
+13:24
+It's obviously not exactly the same.
+13:26
+Another argument is well hallucinations
+13:28
+show they don't really understand
+13:29
+anything. First of all, they should be
+13:31
+called confabulations. They've been
+13:32
+studied by psychologists for a long time
+13:34
+and they're very characteristic of
+13:35
+people. We store knowledge in weights,
+13:37
+not in stored strings. We think we store
+13:39
+files in memory and then retrieve the
+13:41
+files from memory. But our memory
+13:43
+doesn't work like that at all. We make
+13:44
+up a memory when we need it. We
+13:46
+construct it. It's a very constructive
+13:48
+business. It's not stored anywhere. It's
+13:50
+created when we need it. And so it'll be
+13:52
+influenced by things we learned since
+13:54
+the events happened.
+13:56
+And we'll be very confident by the
+13:58
+details that we get wrong. There's a
+13:59
+very nice example of that which is John
+14:01
+Dean's memory when he testified at the
+14:03
+Watergate TR. He was testifying about
+14:05
+what happened in the Oval Office about
+14:07
+meetings in the Oval Office and he had
+14:09
+no idea that there were tapes but he was
+14:12
+trying to tell the truth and you can see
+14:14
+that he's wrong about huge numbers of
+14:15
+details meeting. He says there were
+14:17
+meetings between these people. Those
+14:18
+meetings never happened. He says this
+14:20
+person said one thing actually was
+14:21
+somebody else said that. But you can
+14:22
+also see that the gist of what he said
+14:24
+was exactly right. There was a cover up
+14:26
+going on and those were the kinds of
+14:27
+things people said.
+14:29
+So what he was doing was he was creating
+14:31
+these meetings, creating them in his
+14:34
+mind and what he was creating was what
+14:36
+seemed plausible to him. That's exactly
+14:38
+what the chatbots do, but it's also
+14:39
+exactly what people do. Now currently
+14:42
+chatbots are worse than most
+14:44
+non-presidents at knowing whether
+14:46
+they're just making it up. But that's
+14:48
+going to change. So finally, if you ask
+14:51
+how do we share knowledge with each
+14:53
+other? Well, we've got these words that
+14:55
+have names. And so I make this structure
+14:58
+out of these complicated thousand
+15:00
+dimensional le Lego block shaking hands.
+15:03
+And I can't tell you all that structure,
+15:06
+but I can tell you the names of the
+15:08
+words. And now you can create the same
+15:10
+structure using the names of the words.
+15:13
+I can also put into these complicated
+15:15
+thousand dimensional things little clues
+15:17
+about what should shake hands with what.
+15:19
+That's called syntax. The symbolic AI
+15:21
+theory
+15:23
+is we share knowledge by copying a
+15:26
+proposition from my head to your head or
+15:28
+from my head to the computer and this
+15:30
+proposition is written in this funny
+15:31
+logical language. The neural net theory
+15:35
+is that you have a teacher and a student
+15:38
+and the teacher produces a produce some
+15:41
+action and the student tries to mimic
+15:42
+it. So for language the teacher produces
+15:45
+a string of words. The student tries to
+15:48
+predict the next word and takes the
+15:50
+errors in predicting the next word and
+15:52
+back propagates them to learn how you
+15:54
+should convert symbols into feature
+15:56
+vectors these thousand dimensional Lego
+15:58
+blocks and how these things should
+15:59
+interact. That's called distillation.
+16:02
+And the problem is it's very
+16:04
+inefficient. That's also how we get
+16:06
+knowledge from people into computers. So
+16:09
+that's how these large language models
+16:11
+learn by trying to predict the next word
+16:12
+a person said. But it's not efficient.
+16:14
+If you take a typical sentence, string
+16:16
+of symbols, it's only got about 100
+16:18
+bits. It's a few hundred or maybe less
+16:20
+than 100, but it's that order. And that
+16:23
+means the most that a student can get is
+16:26
+100 bits of information because that's
+16:28
+all there is in the sentence. That's not
+16:30
+a very big learning signal. Now compare
+16:33
+that with what happens when you have
+16:36
+multiple copies of the same agent and
+16:37
+it's a digital agent. So these digital
+16:40
+agents, you can have multiple copies.
+16:42
+The multiple copies have exactly the
+16:43
+same weights. They work exactly the same
+16:45
+way because they're digital. And so one
+16:47
+copy looks at one bit of the internet,
+16:49
+another copy looks at another bit of the
+16:50
+internet. They both figure out how
+16:52
+they'd like to change their weights. And
+16:54
+then they share how they'd like to
+16:55
+change their weights. So now both copies
+16:57
+know what each copy experienced.
+17:00
+And if you ask how much are they sharing
+17:02
+when they share their weights or the
+17:04
+gradients for their weights, they're
+17:05
+sharing trillions of bits if they've got
+17:07
+trillions of weights. So you're talking
+17:09
+about the difference between being able
+17:10
+to share trillions of bits and being
+17:12
+able to share hundreds of bits. It's
+17:14
+really no competition.
+17:16
+It only works if the agents are digital
+17:18
+and use their weights in exactly the
+17:20
+same way and have exactly the same
+17:22
+weights, but it's hugely more efficient.
+17:24
+And that's why GPT4 can know thousands
+17:27
+of times more than any one person. It's
+17:29
+a not very good expert at everything. So
+17:31
+the conclusions are that digital agents
+17:34
+understand language in much the same way
+17:36
+as people do. It's not a completely
+17:39
+different kind of system. We we are like
+17:41
+them and they are like us. They're much
+17:43
+more like us than they are like standard
+17:45
+computer code. Digital computation
+17:47
+requires a lot more energy because it's
+17:49
+digital. So you have to drive
+17:50
+transistors very hard. You can't use the
+17:51
+funny quirky properties of analog
+17:53
+hardware.
+17:55
+But because they're digital, they have
+17:57
+this really efficient means of sharing.
+18:00
+They can share weights or gradients.
+18:02
+Biological computation is much lower
+18:04
+power because it can use all the quirky
+18:06
+properties of neurons. But it's no good
+18:08
+at sharing knowledge. So the overall
+18:11
+conclusion is that if energy is cheap or
+18:14
+at least abundant, digital computation
+18:16
+is just better because it can share
+18:19
+knowledge efficiently. And that's a very
+18:21
+scary conclusion.
