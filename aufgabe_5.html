@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rešenje Zadatk 5</title>
+    <style>
+        body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+        h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+        .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+        .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+        .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+        .zadatak-section h2 { color: #1565c0; }
+        .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+        .ideja-section h2 { color: #e65100; }
+        .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+        .resenje-section h2 { color: #2e7d32; }
+        .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+        .odgovor-section h2 { color: #7b1fa2; }
+        .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+        .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+    </style>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <div class="section-box zadatak-section">
+        <h2>Zadatak</h2>
+        <p>
+            Data je sledeća funkcija:
+            \[ f: \mathbb{R}^3 \to \mathbb{R}: (x, y, z) \mapsto 3y - \sqrt{7}z + 1. \]
+        </p>
+        <p>
+            <strong>(a)</strong> Navedite pet jednačina (po \( x, y, z, \lambda_1 \) i \( \lambda_2 \)) koje opisuju Lagranžove uslove za relativne ekstreme funkcije \( f \) pod ograničenjima \( g_1(x, y, z) = 0 \) i \( g_2(x, y, z) = 0 \), gde je:
+            \[ g_1: \mathbb{R}^3 \to \mathbb{R}: (x, y, z) \mapsto x^2 + y^2 + z^2 - 5 \quad \text{i} \quad g_2: \mathbb{R}^3 \to \mathbb{R}: (x, y, z) \mapsto x - 2. \]
+        </p>
+        <p>
+            <strong>(b)</strong> Odredite sve kritične tačke funkcije \( f \) pod datim ograničenjima i navedite vrednost funkcije i tip ekstremuma.
+        </p>
+    </div>
+
+    <div class="section-box ideja-section">
+        <h2>Ideja</h2>
+        <p>
+            Da bismo pronašli uslovne ekstreme funkcije \( f \) pod datim ograničenjima, koristimo metodu Lagranžovih množitelja. Formiraćemo funkciju Lagranža ili direktno koristiti uslov da gradijent funkcije \( f \) mora biti linearna kombinacija gradijenata funkcija ograničenja \( g_1 \) i \( g_2 \):
+            \[ \nabla f + \lambda_1 \nabla g_1 + \lambda_2 \nabla g_2 = 0 \]
+            Uz ove jednačine, moramo zadovoljiti i same uslove ograničenja \( g_1 = 0 \) i \( g_2 = 0 \). Dobijeni sistem od 5 jednačina sa 5 nepoznatih (\( x, y, z, \lambda_1, \lambda_2 \)) ćemo rešiti kako bismo našli kritične tačke.
+        </p>
+    </div>
+
+    <div class="section-box resenje-section">
+        <h2>Rešenje</h2>
+        <p>
+            <strong>(a) Postavljanje sistema jednačina</strong>
+        </p>
+        <p>
+            Prvo računamo gradijente funkcija:
+            \[ \nabla f = (0, 3, -\sqrt{7}), \quad \nabla g_1 = (2x, 2y, 2z), \quad \nabla g_2 = (1, 0, 0). \]
+        </p>
+        <p>
+            Uslov \( \nabla f + \lambda_1 \nabla g_1 + \lambda_2 \nabla g_2 = 0 \) daje nam prve tri jednačine po komponentama:
+        </p>
+        <ul>
+            <li>Po \( x \): \( 0 + \lambda_1(2x) + \lambda_2(1) = 0 \implies 2\lambda_1 x + \lambda_2 = 0 \)</li>
+            <li>Po \( y \): \( 3 + \lambda_1(2y) + \lambda_2(0) = 0 \implies 3 + 2\lambda_1 y = 0 \)</li>
+            <li>Po \( z \): \( -\sqrt{7} + \lambda_1(2z) + \lambda_2(0) = 0 \implies -\sqrt{7} + 2\lambda_1 z = 0 \)</li>
+        </ul>
+        <p>
+            Dodajemo i jednačine ograničenja:
+        </p>
+        <ul>
+            <li>\( x^2 + y^2 + z^2 - 5 = 0 \)</li>
+            <li>\( x - 2 = 0 \)</li>
+        </ul>
+        <p>
+            <strong>(b) Rešavanje sistema</strong>
+        </p>
+        <p>
+            Iz poslednje jednačine odmah dobijamo <strong>\( x = 2 \)</strong>.
+        </p>
+        <p>
+            Iz druge i treće jednačine izražavamo \( y \) i \( z \) preko \( \lambda_1 \):
+            \[ 2\lambda_1 y = -3 \implies y = -\frac{3}{2\lambda_1} \]
+            \[ 2\lambda_1 z = \sqrt{7} \implies z = \frac{\sqrt{7}}{2\lambda_1} \]
+        </p>
+        <p>
+            Zamenom \( x, y, z \) u jednačinju sfere (\( g_1 = 0 \)):
+            \[ 2^2 + \left(-\frac{3}{2\lambda_1}\right)^2 + \left(\frac{\sqrt{7}}{2\lambda_1}\right)^2 - 5 = 0 \]
+            \[ 4 + \frac{9}{4\lambda_1^2} + \frac{7}{4\lambda_1^2} - 5 = 0 \]
+            \[ -1 + \frac{16}{4\lambda_1^2} = 0 \implies \frac{4}{\lambda_1^2} = 1 \implies \lambda_1^2 = 4 \implies \lambda_1 = \pm 2. \]
+        </p>
+        <p>
+            Razmatramo dva slučaja:
+        </p>
+        <p>
+            <strong>Slučaj 1:</strong> \( \lambda_1 = 2 \)<br>
+            \( y = -\frac{3}{4}, \quad z = \frac{\sqrt{7}}{4} \).<br>
+            Tačka: \( T_1\left(2, -\frac{3}{4}, \frac{\sqrt{7}}{4}\right) \).<br>
+            Vrednost: \( f(T_1) = 3\left(-\frac{3}{4}\right) - \sqrt{7}\left(\frac{\sqrt{7}}{4}\right) + 1 = -\frac{9}{4} - \frac{7}{4} + 1 = -4 + 1 = -3 \).
+        </p>
+        <p>
+            <strong>Slučaj 2:</strong> \( \lambda_1 = -2 \)<br>
+            \( y = \frac{3}{4}, \quad z = -\frac{\sqrt{7}}{4} \).<br>
+            Tačka: \( T_2\left(2, \frac{3}{4}, -\frac{\sqrt{7}}{4}\right) \).<br>
+            Vrednost: \( f(T_2) = 3\left(\frac{3}{4}\right) - \sqrt{7}\left(-\frac{\sqrt{7}}{4}\right) + 1 = \frac{9}{4} + \frac{7}{4} + 1 = 4 + 1 = 5 \).
+        </p>
+        <p>
+            Pošto je domen (presek sfere i ravni, što je krug) kompaktan skup, a funkcija neprekidna, ekstremi moraju postojati. Upoređivanjem vrednosti, zaključujemo da je \(-3\) minimum, a \(5\) maksimum.
+        </p>
+    </div>
+
+    <div class="section-box odgovor-section">
+        <h2>Odgovor</h2>
+        <div style="text-align: center;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stelle (Tačka)</th>
+                        <th>Funktionswert (Vrednost)</th>
+                        <th>Typ (Tip)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>\( \left(2, -\frac{3}{4}, \frac{\sqrt{7}}{4}\right) \)</td>
+                        <td>\( -3 \)</td>
+                        <td>apsolutni minimum</td>
+                    </tr>
+                    <tr>
+                        <td>\( \left(2, \frac{3}{4}, -\frac{\sqrt{7}}{4}\right) \)</td>
+                        <td>\( 5 \)</td>
+                        <td>apsolutni maksimum</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="potpis">Mathbrotherhood Powered by Qwen3.7-Plus</div>
+
+</body>
+</html>
