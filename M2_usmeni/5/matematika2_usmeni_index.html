@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematika 2 – Usmeni | Glavna strana</title>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --paper: #ffffff;
+      --ink: #172033;
+      --muted: #64748b;
+      --line: #e7dccb;
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --gold: #b7791f;
+      --green: #047857;
+      --violet: #7c3aed;
+      --red: #b91c1c;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(183, 121, 31, 0.10), transparent 35%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 48px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #fff9ec 100%);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 9px;
+      background: linear-gradient(180deg, var(--blue), var(--gold));
+    }
+
+    .kicker {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.08rem;
+      margin: 0;
+    }
+
+    .toolbar {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .search {
+      flex: 1 1 320px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 13px 15px;
+      font-size: 1rem;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: rgba(37, 99, 235, 0.55);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: rgba(255,255,255,0.8);
+      color: var(--muted);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .section {
+      margin-top: 26px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      letter-spacing: -0.02em;
+    }
+
+    .section-note {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .badge {
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--green);
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .lesson {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 16px 15px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      position: relative;
+      min-height: 116px;
+    }
+
+    .lesson:hover {
+      transform: translateY(-2px);
+      border-color: rgba(37, 99, 235, 0.40);
+      box-shadow: 0 15px 32px rgba(15, 23, 42, 0.10);
+    }
+
+    .lesson .num {
+      color: var(--blue);
+      font-size: .88rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .lesson .title {
+      font-weight: 800;
+      font-size: 1.06rem;
+      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+    }
+
+    .lesson .desc {
+      color: var(--muted);
+      font-size: .94rem;
+      margin: 0;
+    }
+
+    .lesson.example .num { color: var(--violet); }
+    .lesson.summary .num { color: var(--gold); }
+    .lesson.method .num { color: var(--green); }
+
+    .chapter-map {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .map-item {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .map-item strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .empty-note {
+      display: none;
+      margin-top: 18px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: #9a3412;
+      font-weight: 650;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 780px) {
+      .hero, .section { padding: 22px; }
+      .grid { grid-template-columns: 1fr; }
+      .chapter-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-header { flex-direction: column; }
+    }
+
+    @media (max-width: 520px) {
+      .chapter-map { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="kicker">Matematika 2 – usmeni</div>
+      <h1>Glavna strana skripte</h1>
+      <p class="subtitle">
+        Povezana HTML skripta za teoriju, dokaze, metode i primere. Trenutno je obrađena oblast neodređenog integrala, a stranica je spremna da se kasnije dopunjuje određenim integralima i ostalim temama.
+      </p>
+
+      <div class="toolbar">
+        <input class="search" id="searchBox" type="search" placeholder="Pretraži lekcije: smena, parcijalna, racionalne, trigonometrijski..." />
+        <span class="pill">17 HTML fajlova</span>
+        <span class="pill">Poglavlje 5: Neodređeni integral</span>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>Mapa trenutnog poglavlja</h2>
+          <p class="section-note">Najpre osnovni pojmovi, zatim svojstva, metode, pa posebne klase integrala.</p>
+        </div>
+        <span class="badge">status: završeno</span>
+      </div>
+
+      <div class="chapter-map">
+        <div class="map-item"><strong>5.1</strong>Primitivna funkcija i neodređeni integral</div>
+        <div class="map-item"><strong>5.2</strong>Osnovna svojstva i linearnost</div>
+        <div class="map-item"><strong>5.3–5.4</strong>Smena promenljive i parcijalna integracija</div>
+        <div class="map-item"><strong>5.6–5.9</strong>Racionalne, trigonometrijske i iracionalne funkcije</div>
+      </div>
+    </section>
+
+    <section class="section lesson-section">
+      <div class="section-header">
+        <div>
+          <h2>5. Neodređeni integral</h2>
+          <p class="section-note">Klik na karticu otvara odgovarajući HTML fajl. Svi fajlovi treba da budu u istom folderu kao ova glavna strana.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="lessonGrid">
+        <a class="lesson" href="matematika2_primitivna_funkcija_definicija_5_1_1.html" data-search="definicija primitivna funkcija 5.1.1 izvod F'(x)=f(x)">
+          <div class="num">Definicija 5.1.1</div>
+          <div class="title">Primitivna funkcija</div>
+          <p class="desc">Osnovna definicija: funkcija čiji je izvod jednak datoj funkciji.</p>
+        </a>
+
+        <a class="lesson" href="matematika2_primitivne_funkcije_teorema_5_1_1.html" data-search="teorema 5.1.1 primitivne funkcije konstanta razlika dve primitivne Lagranž">
+          <div class="num">Teorema 5.1.1</div>
+          <div class="title">Primitivne funkcije i konstanta</div>
+          <p class="desc">Ako je jedna primitivna funkcija poznata, ostale se razlikuju za konstantu.</p>
+        </a>
+
+        <a class="lesson" href="matematika2_neodredjeni_integral_definicija_5_1_2.html" data-search="definicija 5.1.2 neodređeni integral podintegralna funkcija tablica osnovnih integrala">
+          <div class="num">Definicija 5.1.2</div>
+          <div class="title">Neodređeni integral</div>
+          <p class="desc">Skup svih primitivnih funkcija i osnovna tablica integrala.</p>
+        </a>
+
+        <a class="lesson" href="matematika2_svojstva_neodredjenih_integrala_teorema_5_2_2.html" data-search="teorema 5.2.2 svojstva neodređenih integrala diferencijal integral dF">
+          <div class="num">Teorema 5.2.2</div>
+          <div class="title">Svojstva neodređenog integrala</div>
+          <p class="desc">Veza diferenciranja i integracije kroz osnovna svojstva.</p>
+        </a>
+
+        <a class="lesson" href="matematika2_konstanta_ispred_integrala_teorema_5_2_3.html" data-search="teorema 5.2.3 konstanta ispred integrala c f(x)">
+          <div class="num">Teorema 5.2.3</div>
+          <div class="title">Konstanta ispred integrala</div>
+          <p class="desc">Konstanta se može izvući ispred znaka integrala.</p>
+        </a>
+
+        <a class="lesson" href="matematika2_zbir_integrala_teorema_5_2_4.html" data-search="teorema 5.2.4 integral zbira funkcija f+g linearnost prvi deo">
+          <div class="num">Teorema 5.2.4</div>
+          <div class="title">Integral zbira funkcija</div>
+          <p class="desc">Integral zbira jednak je zbiru integrala.</p>
+        </a>
+
+        <a class="lesson" href="matematika2_konacni_zbir_integrala_teorema_5_2_5.html" data-search="teorema 5.2.5 konačni zbir integrala generalizacija f1 f2 fn">
+          <div class="num">Teorema 5.2.5</div>
+          <div class="title">Integral konačnog zbira</div>
+          <p class="desc">Generalizacija prethodne teoreme na konačno mnogo funkcija.</p>
+        </a>
+
+        <a class="lesson" href="matematika2_linearnost_neodredjenog_integrala_teorema_5_2_6.html" data-search="teorema 5.2.6 linearnost neodređenog integrala alfa beta linearna kombinacija">
+          <div class="num">Teorema 5.2.6</div>
+          <div class="title">Linearnost neodređenog integrala</div>
+          <p class="desc">Integral linearne kombinacije je linearna kombinacija integrala.</p>
+        </a>
+
+        <a class="lesson method" href="matematika2_zamena_promenljive_integraciona_formula_teorema_5_2_7.html" data-search="teorema 5.2.7 zamena promenljive integraciona formula u diferencijalna funkcija">
+          <div class="num">Teorema 5.2.7</div>
+          <div class="title">Zamena promenljive u integracionoj formuli</div>
+          <p class="desc">Formalna ideja da integraciona formula zadržava oblik pri zameni promenljive.</p>
+        </a>
+
+        <a class="lesson method" href="matematika2_linearni_argument_integrala_teorema_5_2_8.html" data-search="teorema 5.2.8 linearni argument ax+b integral 1/a F(ax+b)">
+          <div class="num">Teorema 5.2.8</div>
+          <div class="title">Integral funkcije linearnog argumenta</div>
+          <p class="desc">Poseban slučaj smene kada je argument oblika ax+b.</p>
+        </a>
+
+        <a class="lesson method" href="matematika2_smena_promenljive_teorema_5_3_9.html" data-search="teorema 5.3.9 smena promenljive x=g(t) g'(t) integral">
+          <div class="num">Teorema 5.3.9</div>
+          <div class="title">Smena promenljive</div>
+          <p class="desc">Opšta teorema o smeni promenljive u neodređenom integralu.</p>
+        </a>
+
+        <a class="lesson method" href="matematika2_parcijalna_integracija_teorema_5_4_10.html" data-search="teorema 5.4.10 parcijalna integracija u dv uv v du">
+          <div class="num">Teorema 5.4.10</div>
+          <div class="title">Parcijalna integracija</div>
+          <p class="desc">Metoda zasnovana na diferencijalu proizvoda dve funkcije.</p>
+        </a>
+
+        <a class="lesson summary" href="matematika2_racionalne_funkcije_sazetak_5_6_5_7.html" data-search="racionalne funkcije polinomi pravi razlomci proste razlomke 5.6 5.7 sažetak">
+          <div class="num">5.6–5.7</div>
+          <div class="title">Racionalne funkcije — sažetak</div>
+          <p class="desc">Kratak pregled razlaganja racionalnih funkcija i ideje integracije.</p>
+        </a>
+
+        <a class="lesson method" href="matematika2_trigonometrijski_integrali_smena_tg_polovine_teorema_5_8_18.html" data-search="teorema 5.8.18 trigonometrijski integrali smena tg x/2 polovine sin cos R(sin,cos)">
+          <div class="num">Teorema 5.8.18</div>
+          <div class="title">Trigonometrijski integrali: smena tg(x/2)</div>
+          <p class="desc">Univerzalna smena kojom se integral racionalne funkcije sinusa i kosinusa svodi na racionalni integral.</p>
+        </a>
+
+        <a class="lesson example" href="matematika2_primer_5_8_31_integral_1_kroz_5_minus_3cosx.html" data-search="primer 5.8.31 integral dx kroz 5 minus 3 cos x tg x/2">
+          <div class="num">Primer 5.8.31</div>
+          <div class="title">Integral \(1/(5-3\cos x)\)</div>
+          <p class="desc">Primer primene smene tg(x/2) na konkretnom trigonometrijskom integralu.</p>
+        </a>
+
+        <a class="lesson method" href="matematika2_trigonometrijski_integrali_posebne_smene.html" data-search="trigonometrijski integrali posebne smene neparna po sinusu neparna po kosinusu parna tgx sin cos">
+          <div class="num">Posebne smene</div>
+          <div class="title">Posebni slučajevi trigonometrijskih integrala</div>
+          <p class="desc">Kada koristiti smene \(t=\cos x\), \(t=\sin x\) ili \(t=\operatorname{tg}x\).</p>
+        </a>
+
+        <a class="lesson method" href="matematika2_iracionalne_funkcije_smene_5_9.html" data-search="5.9 iracionalne funkcije smene koren ax+b n-ti koren linearni razlomak racionalizacija">
+          <div class="num">5.9</div>
+          <div class="title">Iracionalne funkcije — standardne smene</div>
+          <p class="desc">Dva tipična slučaja u kojima se iracionalni integral svodi na racionalni integral.</p>
+        </a>
+      </div>
+
+      <div class="empty-note" id="emptyNote">Nema rezultata za ovu pretragu.</div>
+    </section>
+
+    <footer>
+      Mathbrotherhood - Powered by ChatGPT
+    </footer>
+  </main>
+
+  <script>
+    const searchBox = document.getElementById('searchBox');
+    const lessons = Array.from(document.querySelectorAll('.lesson'));
+    const emptyNote = document.getElementById('emptyNote');
+
+    searchBox.addEventListener('input', () => {
+      const query = searchBox.value.trim().toLowerCase();
+      let visible = 0;
+
+      lessons.forEach(card => {
+        const haystack = (card.innerText + ' ' + card.dataset.search).toLowerCase();
+        const match = haystack.includes(query);
+        card.style.display = match ? 'block' : 'none';
+        if (match) visible++;
+      });
+
+      emptyNote.style.display = visible === 0 ? 'block' : 'none';
+    });
+  </script>
+</body>
+</html>

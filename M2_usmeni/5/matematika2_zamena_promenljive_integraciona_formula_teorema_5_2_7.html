@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teorema 5.2.7 — Zamena promenljive u integracionoj formuli</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --card: #ffffff;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --purple: #8b5cf6;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --gray: #64748b;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 36px 18px 42px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(16,185,129,0.10), transparent 26%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 26px;
+      padding: 28px 30px;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    header .kicker {
+      margin: 0 0 8px;
+      color: #bfdbfe;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.45rem);
+      line-height: 1.15;
+    }
+
+    header p {
+      max-width: 820px;
+      margin: 14px 0 0;
+      color: #d1d5db;
+      font-size: 1.02rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--gray);
+    }
+
+    .theorem-card::before { background: var(--blue); }
+    .intro-card::before { background: var(--purple); }
+    .idea-card::before { background: var(--green); }
+    .proof-card::before { background: var(--orange); }
+    .example-card::before { background: var(--blue); }
+    .warning-card::before { background: var(--red); }
+    .conclusion-card::before { background: var(--gray); }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.32rem;
+      line-height: 1.25;
+    }
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      margin: 10px 0 0 22px;
+      padding: 0;
+    }
+
+    li { margin: 7px 0; }
+
+    .formula-box {
+      margin: 16px 0 8px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      overflow-x: auto;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .example {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+
+    .example:last-child { margin-bottom: 0; }
+    .muted { color: var(--muted); }
+    strong { color: #111827; }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: #6b7280;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="kicker">Matematika 2 · Usmeni ispit</p>
+      <h1>Teorema 5.2.7 — Zamena promenljive u integracionoj formuli</h1>
+      <p>
+        Ovo je teorema koja objašnjava zašto tablične integrale smemo da koristimo i kada
+        promenljiva nije samo \(x\), već neka diferencijabilna funkcija \(u\).
+      </p>
+    </header>
+
+    <section class="card theorem-card">
+      <h2>Teorema</h2>
+      <p>
+        Integraciona formula
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(x)\,dx = F(x)+C
+        \]
+      </div>
+      <p>
+        ne menja svoj oblik ako se u njoj nezavisna promenljiva zameni nekom
+        diferencijabilnom funkcijom. Dakle, važi
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(u)\,du = F(u)+C,
+        \]
+      </div>
+      <p>
+        gde je \(u\) proizvoljna diferencijabilna funkcija čije vrednosti pripadaju intervalu
+        na kome je \(F\) primitivna funkcija funkcije \(f\).
+      </p>
+    </section>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        Ako znamo tablični integral po promenljivoj \(x\), isti oblik formule važi i po
+        promenljivoj \(u\). Na primer, iz formule
+      </p>
+      <div class="formula-box">
+        \[
+          \int e^x\,dx=e^x+C
+        \]
+      </div>
+      <p>
+        odmah dobijamo i
+      </p>
+      <div class="formula-box">
+        \[
+          \int e^u\,du=e^u+C.
+        \]
+      </div>
+      <p>
+        Suština je da se promenljiva može zvati drugačije, ali se oblik integracione formule
+        ne menja.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja dokaza</h2>
+      <p>
+        Pošto je \(F\) primitivna funkcija funkcije \(f\), važi \(F'(x)=f(x)\). Ako sada
+        umesto \(x\) uzmemo neku diferencijabilnu funkciju \(u\), onda se koristi pravilo za
+        izvod složene funkcije:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{d}{dx}F(u(x)) = F'(u(x))\,u'(x).
+        \]
+      </div>
+      <p>
+        Pošto je \(F'(u)=f(u)\), dobija se diferencijalni zapis
+      </p>
+      <div class="formula-box">
+        \[
+          dF(u)=f(u)\,du.
+        \]
+      </div>
+      <p>
+        Zato integral od \(f(u)\,du\) mora biti \(F(u)+C\).
+      </p>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Dokaz</h2>
+      <p>
+        Neka je \(F\) primitivna funkcija funkcije \(f\). Tada je, po definiciji primitivne
+        funkcije,
+      </p>
+      <div class="formula-box">
+        \[
+          F'(x)=f(x).
+        \]
+      </div>
+      <p>
+        Neka je sada \(u=u(x)\) diferencijabilna funkcija. Posmatramo složenu funkciju
+        \(F(u(x))\). Po pravilu za izvod složene funkcije imamo
+      </p>
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+          \frac{d}{dx}F(u(x))
+          &=F'(u(x))\cdot u'(x) \\
+          &=f(u(x))\cdot u'(x).
+        \end{aligned}
+        \]
+      </div>
+      <p>
+        Pošto je \(du=u'(x)\,dx\), prethodna jednakost možemo zapisati u diferencijalnom
+        obliku:
+      </p>
+      <div class="formula-box">
+        \[
+          dF(u)=f(u)\,du.
+        \]
+      </div>
+      <p>
+        Integrisanjem obe strane dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(u)\,du = F(u)+C.
+        \]
+      </div>
+      <p>
+        Time je pokazano da integraciona formula zadržava isti oblik kada se nezavisna
+        promenljiva zameni diferencijabilnom funkcijom.
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važan komentar</h2>
+      <p>
+        Ova teorema ne kaže da smemo proizvoljno zameniti \(x\) sa \(u(x)\) i zaboraviti
+        diferencijal. Ako je \(u=u(x)\), onda je
+      </p>
+      <div class="formula-box">
+        \[
+          du=u'(x)\,dx.
+        \]
+      </div>
+      <p>
+        Zato je pravilno:
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(u)\,du = \int f(u(x))u'(x)\,dx.
+        \]
+      </div>
+      <p>
+        Dakle, u zadacima moramo proveriti da li se u integralu pojavljuje i izvod unutrašnje
+        funkcije. To je početak metode smene promenljive.
+      </p>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primeri</h2>
+
+      <div class="example">
+        <span class="tag">Primer 1</span>
+        <p>
+          Iz formule \(\int \cos x\,dx=\sin x+C\) sledi
+        </p>
+        <div class="formula-box">
+          \[
+            \int \cos u\,du=\sin u+C.
+          \]
+        </div>
+        <p>
+          Ako je \(u=3x+1\), tada je \(du=3\,dx\), pa dobijamo
+        </p>
+        <div class="formula-box">
+          \[
+            \int 3\cos(3x+1)\,dx=\sin(3x+1)+C.
+          \]
+        </div>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 2</span>
+        <p>
+          Iz formule \(\int e^u\,du=e^u+C\), za \(u=x^2\), dobijamo
+        </p>
+        <div class="formula-box">
+          \[
+            du=2x\,dx.
+          \]
+        </div>
+        <p>
+          Zato je
+        </p>
+        <div class="formula-box">
+          \[
+            \int 2x e^{x^2}\,dx=e^{x^2}+C.
+          \]
+        </div>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 3</span>
+        <p>
+          Iz formule
+        </p>
+        <div class="formula-box">
+          \[
+            \int \frac{du}{u}=\ln|u|+C
+          \]
+        </div>
+        <p>
+          za \(u=x^2+1\) dobijamo \(du=2x\,dx\). Zato je
+        </p>
+        <div class="formula-box">
+          \[
+            \int \frac{2x}{x^2+1}\,dx=\ln(x^2+1)+C.
+          \]
+        </div>
+        <p class="muted">
+          Ovde apsolutna vrednost može da se izostavi jer je \(x^2+1&gt;0\) za svako realno \(x\).
+        </p>
+      </div>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak za usmeni</h2>
+      <p>
+        Za usmeni treba zapamtiti da se oblik tabličnog integrala ne menja kada se promenljiva
+        \(x\) zameni diferencijabilnom funkcijom \(u\). Glavna formula je
+      </p>
+      <div class="formula-box">
+        \[
+          \boxed{\int f(u)\,du=F(u)+C.}
+        \]
+      </div>
+      <p>
+        Najvažniji uslov za primenu u zadacima jeste da se uz funkciju \(f(u)\) pojavi i
+        odgovarajući diferencijal \(du\). Drugim rečima, ako je \(u=u(x)\), mora se pojaviti
+        faktor \(u'(x)\,dx\).
+      </p>
+    </section>
+
+    <div class="footer">
+      Mathbrotherhood - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>

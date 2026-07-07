@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teorema 5.2.4 — Integral zbira funkcija</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --card: #ffffff;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --purple: #8b5cf6;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --gray: #64748b;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 36px 18px 42px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(16,185,129,0.10), transparent 26%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 26px;
+      padding: 28px 30px;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    header .kicker {
+      margin: 0 0 8px;
+      color: #bfdbfe;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.45rem);
+      line-height: 1.15;
+    }
+
+    header p {
+      max-width: 820px;
+      margin: 14px 0 0;
+      color: #d1d5db;
+      font-size: 1.02rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--gray);
+    }
+
+    .theorem-card::before { background: var(--blue); }
+    .intro-card::before { background: var(--purple); }
+    .idea-card::before { background: var(--green); }
+    .proof-card::before { background: var(--orange); }
+    .example-card::before { background: var(--blue); }
+    .warning-card::before { background: var(--red); }
+    .conclusion-card::before { background: var(--gray); }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.32rem;
+      line-height: 1.25;
+    }
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      margin: 10px 0 0 22px;
+      padding: 0;
+    }
+
+    li { margin: 7px 0; }
+
+    .formula-box {
+      margin: 16px 0 8px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      overflow-x: auto;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .mini-title {
+      margin-top: 14px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .example {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+
+    .example:last-child { margin-bottom: 0; }
+    .muted { color: var(--muted); }
+    strong { color: #111827; }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: #6b7280;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="kicker">Matematika 2 · Usmeni ispit</p>
+      <h1>Teorema 5.2.4 — Integral zbira funkcija</h1>
+      <p>
+        Ovo je osnovno svojstvo neodređenog integrala koje kaže da se integral zbira
+        može rastaviti na zbir integrala.
+      </p>
+    </header>
+
+    <section class="card theorem-card">
+      <h2>Teorema</h2>
+      <p>
+        Ako funkcije \(f\) i \(g\) imaju primitivne funkcije, tada važi
+      </p>
+      <div class="formula-box">
+        \[
+          \int \bigl(f(x)+g(x)\bigr)\,dx
+          =
+          \int f(x)\,dx + \int g(x)\,dx.
+        \]
+      </div>
+      <p>
+        Drugim rečima, neodređeni integral je aditivan: zbir funkcija integrišemo tako što
+        integrišemo svaki sabirak posebno.
+      </p>
+    </section>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        Neodređeni integral je skup svih primitivnih funkcija. Ako funkcija \(F\) odgovara
+        funkciji \(f\), a funkcija \(G\) odgovara funkciji \(g\), onda je prirodno očekivati da
+        funkcija \(F+G\) odgovara funkciji \(f+g\).
+      </p>
+      <div class="formula-box">
+        \[
+          F'(x)=f(x), \qquad G'(x)=g(x).
+        \]
+      </div>
+      <p>
+        Tada se dokaz svodi na poznato pravilo za izvod zbira funkcija.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja dokaza</h2>
+      <p>
+        Ideja je vrlo jednostavna: uzmemo jednu primitivnu funkciju funkcije \(f\) i jednu
+        primitivnu funkciju funkcije \(g\), saberemo ih, pa proverimo izvod dobijene funkcije.
+      </p>
+      <div class="formula-box">
+        \[
+          (F(x)+G(x))'=F'(x)+G'(x)=f(x)+g(x).
+        \]
+      </div>
+      <p>
+        Dakle, \(F(x)+G(x)\) je primitivna funkcija funkcije \(f(x)+g(x)\).
+      </p>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Dokaz</h2>
+      <p>
+        Neka je \(F\) primitivna funkcija funkcije \(f\), a \(G\) primitivna funkcija funkcije
+        \(g\) na posmatranom intervalu. Po definiciji primitivne funkcije važi
+      </p>
+      <div class="formula-box">
+        \[
+          F'(x)=f(x), \qquad G'(x)=g(x).
+        \]
+      </div>
+      <p>
+        Posmatrajmo funkciju
+      </p>
+      <div class="formula-box">
+        \[
+          H(x)=F(x)+G(x).
+        \]
+      </div>
+      <p>
+        Tada je njen izvod
+      </p>
+      <div class="formula-box">
+        \[
+          H'(x)=(F(x)+G(x))'=F'(x)+G'(x)=f(x)+g(x).
+        \]
+      </div>
+      <p>
+        Prema tome, funkcija \(H(x)=F(x)+G(x)\) je primitivna funkcija funkcije
+        \(f(x)+g(x)\). Zato je
+      </p>
+      <div class="formula-box">
+        \[
+          \int \bigl(f(x)+g(x)\bigr)\,dx=F(x)+G(x)+C.
+        \]
+      </div>
+      <p>
+        Sa druge strane, pošto je
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(x)\,dx=F(x)+C_1, \qquad
+          \int g(x)\,dx=G(x)+C_2,
+        \]
+      </div>
+      <p>
+        njihov zbir je
+      </p>
+      <div class="formula-box">
+        \[
+          F(x)+G(x)+C_1+C_2.
+        \]
+      </div>
+      <p>
+        Pošto je \(C_1+C_2\) opet proizvoljna konstanta, pišemo samo jednu konstantu
+        \(C\). Zato dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          \boxed{
+          \int \bigl(f(x)+g(x)\bigr)\,dx
+          =
+          \int f(x)\,dx + \int g(x)\,dx.}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena za usmeni</h2>
+      <p>
+        U računanju se najčešće ne pišu posebne konstante uz svaki integral. Umesto toga,
+        na kraju se piše jedna proizvoljna konstanta.
+      </p>
+      <div class="formula-box">
+        \[
+          \int \bigl(f(x)+g(x)\bigr)\,dx
+          =F(x)+G(x)+C.
+        \]
+      </div>
+      <p>
+        Ako bismo pisali \(C_1\) i \(C_2\), njihov zbir bi se opet sveo na jednu konstantu:
+      </p>
+      <div class="formula-box">
+        \[
+          C_1+C_2=C.
+        \]
+      </div>
+      <p>
+        Na usmenom je važno reći da se dokaz oslanja na pravilo za izvod zbira funkcija.
+      </p>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primeri</h2>
+
+      <div class="example">
+        <span class="tag">Primer 1</span>
+        <p>
+          Izračunati integral:
+        </p>
+        <div class="formula-box">
+          \[
+            \int (x^2+x)\,dx.
+          \]
+        </div>
+        <p>
+          Rastavimo integral zbira na zbir integrala:
+        </p>
+        <div class="formula-box">
+          \[
+            \int (x^2+x)\,dx
+            =\int x^2\,dx+\int x\,dx
+            =\frac{x^3}{3}+\frac{x^2}{2}+C.
+          \]
+        </div>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 2</span>
+        <p>
+          Izračunati integral:
+        </p>
+        <div class="formula-box">
+          \[
+            \int (\cos x+e^x)\,dx.
+          \]
+        </div>
+        <p>
+          Svaki sabirak integrišemo posebno:
+        </p>
+        <div class="formula-box">
+          \[
+            \int (\cos x+e^x)\,dx
+            =\int \cos x\,dx+\int e^x\,dx
+            =\sin x+e^x+C.
+          \]
+        </div>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 3</span>
+        <p>
+          Izračunati integral:
+        </p>
+        <div class="formula-box">
+          \[
+            \int \left(\frac{1}{x}+2x\right)dx, \qquad x\neq 0.
+          \]
+        </div>
+        <p>
+          Koristimo aditivnost integrala:
+        </p>
+        <div class="formula-box">
+          \[
+            \int \left(\frac{1}{x}+2x\right)dx
+            =\int \frac{1}{x}\,dx+\int 2x\,dx
+            =\ln|x|+x^2+C.
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak za usmeni</h2>
+      <p>
+        Teorema kaže da se integral zbira može rastaviti na zbir integrala:
+      </p>
+      <div class="formula-box">
+        \[
+          \int \bigl(f(x)+g(x)\bigr)\,dx
+          =
+          \int f(x)\,dx + \int g(x)\,dx.
+        \]
+      </div>
+      <p>
+        Dokaz je direktan: ako je \(F'(x)=f(x)\) i \(G'(x)=g(x)\), onda je
+        \((F(x)+G(x))'=f(x)+g(x)\). Zato je \(F+G\) primitivna funkcija funkcije \(f+g\).
+      </p>
+      <p>
+        Zajedno sa pravilom za izvođenje konstante ispred integrala, ova teorema daje osnovnu
+        linearnost neodređenog integrala.
+      </p>
+    </section>
+
+    <div class="footer">
+      Mathbrotherhood - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>

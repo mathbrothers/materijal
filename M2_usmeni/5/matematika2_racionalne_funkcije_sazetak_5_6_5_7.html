@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematika 2 — Racionalne funkcije i njihova integracija</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f2e8;
+      --text: #243041;
+      --muted: #667085;
+      --card: #ffffff;
+      --line: #e7dfcf;
+      --accent: #b7791f;
+      --accent-soft: #fff4dc;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --green: #14804a;
+      --green-soft: #ecfdf3;
+      --red: #b42318;
+      --red-soft: #fff1f0;
+      --purple: #6941c6;
+      --purple-soft: #f4f0ff;
+      --shadow: 0 12px 28px rgba(31, 41, 55, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 18px 50px;
+      background:
+        radial-gradient(circle at top left, rgba(183, 121, 31, 0.12), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 28px;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fffaf0, #ffffff);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(183, 121, 31, 0.18);
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8a4f09;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+      color: #1f2937;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 26px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(231, 223, 207, 0.9);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .intro-card::before { background: var(--blue); }
+    .idea-card::before { background: var(--green); }
+    .method-card::before { background: var(--purple); }
+    .warning-card::before { background: var(--red); }
+    .example-card::before { background: var(--accent); }
+    .conclusion-card::before { background: var(--green); }
+
+    h2 {
+      margin: 0 0 14px;
+      color: #1f2937;
+      font-size: 23px;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 18px;
+      color: #344054;
+    }
+
+    p { margin: 10px 0; }
+
+    .math-box {
+      margin: 14px 0;
+      padding: 14px 16px;
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow-x: auto;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--blue-soft);
+      border: 1px solid rgba(37, 99, 235, 0.15);
+    }
+
+    .warning {
+      margin-top: 12px;
+      padding: 13px 15px;
+      border-radius: 14px;
+      background: var(--red-soft);
+      border: 1px solid rgba(180, 35, 24, 0.18);
+    }
+
+    .recipe {
+      counter-reset: step;
+      display: grid;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .step {
+      position: relative;
+      padding: 13px 15px 13px 48px;
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 14px;
+      top: 13px;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: #8a4f09;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    th, td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #fff7e8;
+      color: #344054;
+      font-weight: 800;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .example {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+    }
+
+    .example-title {
+      margin-top: 0;
+      font-weight: 800;
+      color: #344054;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 18px 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer strong { color: #344054; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { max-width: none; }
+      header, .card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="label">Matematika 2 · Neodređeni integral</div>
+      <h1>Racionalne funkcije i njihova integracija</h1>
+      <p class="subtitle">Sažetak odeljaka 5.6 i 5.7 — polinomi, pravi razlomci i metoda prostih razlomaka.</p>
+    </header>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        Racionalna funkcija je količnik dva polinoma:
+      </p>
+      <div class="math-box">
+        \[
+          R(x)=\frac{P(x)}{Q(x)},\qquad Q(x)\neq 0.
+        \]
+      </div>
+      <p>
+        Cilj ovog dela nije da pamtimo mnogo tehničkih teorema, nego da razumemo osnovnu proceduru:
+        integral racionalne funkcije svodi se na polinom i na zbir jednostavnih razlomaka.
+      </p>
+      <div class="note">
+        Za usmeni je najvažnije da učenik ume da kaže: prvo delimo polinome ako treba, zatim imenilac rastavljamo na faktore, pa funkciju razlažemo na proste razlomke.
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Glavna ideja</h2>
+      <p>
+        Ako je stepen brojioca veći ili jednak stepenu imenioca, prvo se izvrši deljenje polinoma:
+      </p>
+      <div class="math-box">
+        \[
+          \frac{P(x)}{Q(x)}=K(x)+\frac{r(x)}{Q(x)},
+        \]
+      </div>
+      <p>
+        gde je \(K(x)\) polinom, a ostatak \(r(x)\) ima manji stepen od \(Q(x)\).
+        Razlomak
+      </p>
+      <div class="math-box">
+        \[
+          \frac{r(x)}{Q(x)},\qquad \deg r<\deg Q,
+        \]
+      </div>
+      <p>
+        zove se <strong>prava racionalna funkcija</strong>. Pravi deo se zatim razlaže na proste razlomke.
+      </p>
+    </section>
+
+    <section class="card method-card">
+      <h2>Šta treba znati o imeniocu</h2>
+      <p>
+        Nad realnim brojevima polinom u imeniocu može da se rastavi na faktore dva osnovna tipa:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Tip faktora</th>
+            <th>Kako izgleda</th>
+            <th>Komentar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Linearni faktor</td>
+            <td>\((x-a)^k\)</td>
+            <td>dolazi od realne nule \(a\)</td>
+          </tr>
+          <tr>
+            <td>Nerastavljivi kvadratni faktor</td>
+            <td>\((x^2+bx+c)^k\)</td>
+            <td>važi \(b^2-4c<0\), nema realnih nula</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Zato se pravi racionalni razlomak razlaže na proste razlomke koji odgovaraju baš ovim faktorima.
+      </p>
+    </section>
+
+    <section class="card method-card">
+      <h2>Prosti razlomci — forma koju treba zapamtiti</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Faktor u imeniocu</th>
+            <th>Prosti razlomci koji mu odgovaraju</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\((x-a)^k\)</td>
+            <td>
+              \[
+                \frac{A_1}{x-a}+\frac{A_2}{(x-a)^2}+\cdots+\frac{A_k}{(x-a)^k}
+              \]
+            </td>
+          </tr>
+          <tr>
+            <td>\((x^2+bx+c)^k\), \(b^2-4c<0\)</td>
+            <td>
+              \[
+                \frac{B_1x+C_1}{x^2+bx+c}+\frac{B_2x+C_2}{(x^2+bx+c)^2}+\cdots+\frac{B_kx+C_k}{(x^2+bx+c)^k}
+              \]
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="warning">
+        Kod linearnog faktora u brojiocu stoji konstanta. Kod kvadratnog faktora u brojiocu stoji linearni izraz. To je najčešće mesto gde učenici pogreše.
+      </div>
+    </section>
+
+    <section class="card method-card">
+      <h2>Postupak integracije racionalne funkcije</h2>
+      <div class="recipe">
+        <div class="step">
+          Ako je \(\deg P\geq \deg Q\), prvo podeliti polinome:
+          \(P/Q=K+r/Q\).
+        </div>
+        <div class="step">
+          Polinom \(K(x)\) integriše se direktno, član po član.
+        </div>
+        <div class="step">
+          Imenilac pravog razlomka rastaviti na linearne i nerastavljive kvadratne faktore.
+        </div>
+        <div class="step">
+          Postaviti razlaganje na proste razlomke i odrediti nepoznate koeficijente.
+        </div>
+        <div class="step">
+          Svaki prost razlomak integrisati posebno, koristeći osnovnu tablicu integrala.
+        </div>
+      </div>
+    </section>
+
+    <section class="card method-card">
+      <h2>Osnovni integrali koji se ovde najčešće javljaju</h2>
+      <div class="math-box">
+        \[
+          \int \frac{dx}{x-a}=\ln|x-a|+C.
+        \]
+      </div>
+      <div class="math-box">
+        \[
+          \int \frac{dx}{(x-a)^k}
+          =-\frac{1}{k-1}\cdot \frac{1}{(x-a)^{k-1}}+C,
+          \qquad k>1.
+        \]
+      </div>
+      <div class="math-box">
+        \[
+          \int \frac{2x+b}{x^2+bx+c}\,dx
+          =\ln(x^2+bx+c)+C.
+        \]
+      </div>
+      <p>
+        Ako u imeniocu imamo nerastavljiv kvadrat, često se pojavljuje i integral koji vodi na arkustangens.
+        Na primer:
+      </p>
+      <div class="math-box">
+        \[
+          \int \frac{dx}{x^2+1}=\operatorname{arctg}x+C.
+        \]
+      </div>
+      <div class="note">
+        Komplikovanije formule za stepene kvadratnog faktora postoje, ali za osnovno razumevanje metode dovoljno je znati da se i one rešavaju istim duhom: svodimo na logaritam, arkustangens i jednostavnije integrale.
+      </div>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primeri</h2>
+
+      <div class="example">
+        <p class="example-title">Primer 1: prvo deljenje, zatim prosti razlomci</p>
+        <p>Izračunati:</p>
+        <div class="math-box">
+          \[
+            \int \frac{x^3-2x-35}{x^2-2x-15}\,dx.
+          \]
+        </div>
+        <p>Pošto je stepen brojioca veći od stepena imenioca, prvo delimo polinome:</p>
+        <div class="math-box">
+          \[
+            \frac{x^3-2x-35}{x^2-2x-15}
+            =x+2+\frac{17x-5}{x^2-2x-15}.
+          \]
+        </div>
+        <p>Imenilac se rastavlja:</p>
+        <div class="math-box">
+          \[
+            x^2-2x-15=(x-5)(x+3).
+          \]
+        </div>
+        <p>Zato pišemo:</p>
+        <div class="math-box">
+          \[
+            \frac{17x-5}{(x-5)(x+3)}=\frac{A}{x-5}+\frac{B}{x+3}.
+          \]
+        </div>
+        <p>Množenjem sa \((x-5)(x+3)\) dobijamo:</p>
+        <div class="math-box">
+          \[
+            17x-5=A(x+3)+B(x-5).
+          \]
+        </div>
+        <p>Odavde je \(A=10\), \(B=7\), pa je</p>
+        <div class="math-box">
+          \[
+            \frac{x^3-2x-35}{x^2-2x-15}
+            =x+2+\frac{10}{x-5}+\frac{7}{x+3}.
+          \]
+        </div>
+        <p>Sada integral ide direktno:</p>
+        <div class="math-box">
+          \[
+            \boxed{
+            \int \frac{x^3-2x-35}{x^2-2x-15}\,dx
+            =\frac{x^2}{2}+2x+10\ln|x-5|+7\ln|x+3|+C.}
+          \]
+        </div>
+      </div>
+
+      <div class="example">
+        <p class="example-title">Primer 2: nerastavljiv kvadratni imenilac</p>
+        <p>Izračunati:</p>
+        <div class="math-box">
+          \[
+            \int \frac{2x+3}{x^2+1}\,dx.
+          \]
+        </div>
+        <p>Brojilac razdvojimo tako da se pojavi izvod imenioca:</p>
+        <div class="math-box">
+          \[
+            2x+3=2x+3.
+          \]
+        </div>
+        <p>Zato je</p>
+        <div class="math-box">
+          \[
+            \int \frac{2x+3}{x^2+1}\,dx
+            =\int \frac{2x}{x^2+1}\,dx+3\int \frac{dx}{x^2+1}.
+          \]
+        </div>
+        <p>Prvi integral daje logaritam, drugi arkustangens:</p>
+        <div class="math-box">
+          \[
+            \boxed{
+            \int \frac{2x+3}{x^2+1}\,dx
+            =\ln(x^2+1)+3\operatorname{arctg}x+C.}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Komentar za usmeni</h2>
+      <p>
+        Ovaj deo može da deluje teško jer u knjizi ima mnogo tehničkih teorema. Međutim, ideja je jednostavna:
+        racionalnu funkciju prvo sredimo algebarski, a zatim je rastavimo na razlomke koje znamo da integrišemo.
+      </p>
+      <div class="warning">
+        Najvažnije je ne preskočiti deljenje polinoma kada brojilac nije manjeg stepena od imenioca. Bez toga razlaganje na proste razlomke nije pravilno postavljeno.
+      </div>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak</h2>
+      <p>
+        Integracija racionalnih funkcija svodi se na tri osnovna koraka:
+      </p>
+      <div class="math-box">
+        \[
+          \boxed{
+          \text{deljenje polinoma} \;\longrightarrow\;
+          \text{rastavljanje imenioca} \;\longrightarrow\;
+          \text{prosti razlomci}.}
+        \]
+      </div>
+      <p>
+        Kada se funkcija razloži na proste razlomke, integral se računa pomoću osnovne tablice: polinomi, logaritmi i arkustangens.
+      </p>
+    </section>
+
+    <div class="footer">
+      <strong>Mathbrotherhood</strong> - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>

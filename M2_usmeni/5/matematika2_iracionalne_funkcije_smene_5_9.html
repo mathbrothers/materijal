@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematika 2 — Integracija nekih iracionalnih funkcija</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5f6b7a;
+      --border: #eadfce;
+      --accent: #8b5cf6;
+      --accent2: #0ea5e9;
+      --idea: #f59e0b;
+      --proof: #10b981;
+      --warn: #ef4444;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(1050px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f7efe2 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .label {
+      display: inline-block;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #efe7ff;
+      color: #6d28d9;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.03em;
+    }
+
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1.08rem; }
+
+    p { margin: 0 0 12px; }
+
+    .muted { color: var(--muted); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 7px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      margin: 18px 0;
+    }
+
+    .intro-card { border-left-color: var(--accent2); }
+    .idea-card { border-left-color: var(--idea); }
+    .proof-card { border-left-color: var(--proof); }
+    .warning-card { border-left-color: var(--warn); }
+    .example-card { border-left-color: #ec4899; }
+    .answer-card { border-left-color: #14b8a6; }
+
+    .formula-box {
+      background: #fffdf8;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+
+    .formula-box mjx-container[jax="SVG"] {
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .mini {
+      background: #fffdf8;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    ol, ul { margin-top: 6px; }
+    li { margin: 6px 0; }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="label">Matematika 2 — Neodređeni integral</div>
+      <h1>5.9 Integracija nekih iracionalnih funkcija</h1>
+      <p class="muted">
+        U ovoj lekciji izdvajamo dve standardne smene kojima se određene iracionalne funkcije svode na integrale racionalnih funkcija.
+      </p>
+    </section>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        Kod racionalnih funkcija znamo da, bar teorijski, možemo izvršiti razlaganje na proste razlomke. Kod iracionalnih funkcija cilj je da pogodnom smenom uklonimo koren i dobijemo racionalnu funkciju nove promenljive.
+      </p>
+      <p>
+        Posmatramo dva tipična oblika:
+      </p>
+      <div class="formula-box">
+        \[
+          \int R\left(x,\sqrt{ax+b}\right)\,dx
+        \]
+      </div>
+      <div class="formula-box">
+        \[
+          \int R\left(x,\sqrt[n]{\frac{ax+b}{cx+d}}\right)\,dx
+        \]
+      </div>
+      <p>
+        Ovde je \(R\) racionalna funkcija svojih argumenata, a parametri su takvi da izrazi imaju smisla na intervalu na kome radimo.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Ako se u integralu javlja koren, najprirodnije je da sam koren proglasimo novom promenljivom. Tada se i stara promenljiva \(x\), i diferencijal \(dx\), izražavaju racionalno preko nove promenljive.
+      </p>
+      <p>
+        Posle toga integral više nije iracionalan, nego postaje integral racionalne funkcije.
+      </p>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Prvi slučaj</h2>
+      <h3>Integral oblika \(\displaystyle \int R\left(x,\sqrt{ax+b}\right)\,dx\)</h3>
+      <p>
+        Uvodimo smenu
+      </p>
+      <div class="formula-box">
+        \[
+          \sqrt{ax+b}=t.
+        \]
+      </div>
+      <p>
+        Kvadriranjem dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          ax+b=t^2.
+        \]
+      </div>
+      <p>
+        Ako je \(a\ne 0\), odavde je
+      </p>
+      <div class="formula-box">
+        \[
+          x=\frac{t^2-b}{a}.
+        \]
+      </div>
+      <p>
+        Diferenciranjem dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          dx=\frac{2t}{a}\,dt.
+        \]
+      </div>
+      <p>
+        Prema tome, polazni integral se svodi na
+      </p>
+      <div class="formula-box">
+        \[
+          \int R\left(x,\sqrt{ax+b}\right)\,dx
+          =
+          \int R\left(\frac{t^2-b}{a},t\right)\frac{2t}{a}\,dt.
+        \]
+      </div>
+      <p>
+        Desna strana je integral racionalne funkcije po promenljivoj \(t\).
+      </p>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Drugi slučaj</h2>
+      <h3>Integral oblika \(\displaystyle \int R\left(x,\sqrt[n]{\frac{ax+b}{cx+d}}\right)\,dx\)</h3>
+      <p>
+        Uvodimo smenu
+      </p>
+      <div class="formula-box">
+        \[
+          \sqrt[n]{\frac{ax+b}{cx+d}}=t.
+        \]
+      </div>
+      <p>
+        Tada je
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{ax+b}{cx+d}=t^n.
+        \]
+      </div>
+      <p>
+        Množenjem dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          ax+b=t^n(cx+d).
+        \]
+      </div>
+      <p>
+        Sređivanjem po \(x\):
+      </p>
+      <div class="formula-box">
+        \[
+          ax+b=ct^n x+dt^n,
+        \]
+        \[
+          ax-ct^n x=dt^n-b,
+        \]
+        \[
+          x(a-ct^n)=dt^n-b.
+        \]
+      </div>
+      <p>
+        Zato je, ekvivalentno,
+      </p>
+      <div class="formula-box">
+        \[
+          x=\frac{dt^n-b}{a-ct^n}
+          =
+          \frac{b-dt^n}{ct^n-a}.
+        \]
+      </div>
+      <p>
+        Koristićemo oblik
+      </p>
+      <div class="formula-box">
+        \[
+          x=\frac{b-dt^n}{ct^n-a}.
+        \]
+      </div>
+      <p>
+        Diferenciranjem ovog izraza dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{dx}{dt}
+          =
+          \frac{
+          \left(-dn t^{n-1}\right)\left(ct^n-a\right)
+          -
+          \left(b-dt^n\right)\left(cn t^{n-1}\right)
+          }
+          {\left(ct^n-a\right)^2}.
+        \]
+      </div>
+      <p>
+        Sređivanjem brojioca:
+      </p>
+      <div class="formula-box">
+        \[
+          \frac{dx}{dt}
+          =
+          \frac{
+          n t^{n-1}\left[-d\left(ct^n-a\right)-c\left(b-dt^n\right)\right]
+          }
+          {\left(ct^n-a\right)^2}
+          =
+          \frac{(ad-bc)n t^{n-1}}{\left(ct^n-a\right)^2}.
+        \]
+      </div>
+      <p>
+        Dakle,
+      </p>
+      <div class="formula-box">
+        \[
+          dx=
+          \frac{(ad-bc)n t^{n-1}}{\left(ct^n-a\right)^2}\,dt.
+        \]
+      </div>
+      <p>
+        Prema tome,
+      </p>
+      <div class="formula-box">
+        \[
+          \int R\left(x,\sqrt[n]{\frac{ax+b}{cx+d}}\right)\,dx
+          =
+          \int
+          R\left(\frac{b-dt^n}{ct^n-a},t\right)
+          \frac{(ad-bc)n t^{n-1}}{\left(ct^n-a\right)^2}\,dt.
+        \]
+      </div>
+      <p>
+        I ovde se polazni iracionalni integral svodi na integral racionalne funkcije po promenljivoj \(t\).
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>
+        U ovim formulama ne treba učiti napamet samo krajnji oblik. Mnogo je važnije zapamtiti ideju: koren proglasimo za \(t\), zatim izrazimo \(x\) i \(dx\) preko \(t\).
+      </p>
+      <p>
+        Kod drugog slučaja tehnički deo izgleda duže, ali je suština ista: smena uklanja koren i uvodi racionalan izraz po \(t\).
+      </p>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primer 1</h2>
+      <p>Izračunati integral</p>
+      <div class="formula-box">
+        \[
+          \int \frac{dx}{\sqrt{2x+1}}.
+        \]
+      </div>
+      <p>Uvodimo smenu</p>
+      <div class="formula-box">
+        \[
+          \sqrt{2x+1}=t.
+        \]
+      </div>
+      <p>Tada je \(2x+1=t^2\), pa je</p>
+      <div class="formula-box">
+        \[
+          x=\frac{t^2-1}{2},\qquad dx=t\,dt.
+        \]
+      </div>
+      <p>Zato je</p>
+      <div class="formula-box">
+        \[
+          \int \frac{dx}{\sqrt{2x+1} }
+          =
+          \int \frac{t\,dt}{t}
+          =
+          \int dt
+          =t+C.
+        \]
+      </div>
+      <p>Vraćanjem smene dobijamo</p>
+      <div class="formula-box">
+        \[
+          \boxed{\int \frac{dx}{\sqrt{2x+1}}=\sqrt{2x+1}+C.}
+        \]
+      </div>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primer 2</h2>
+      <p>Izračunati integral</p>
+      <div class="formula-box">
+        \[
+          \int \frac{dx}{x\sqrt{x+1}}.
+        \]
+      </div>
+      <p>Uvodimo smenu</p>
+      <div class="formula-box">
+        \[
+          \sqrt{x+1}=t.
+        \]
+      </div>
+      <p>Tada je</p>
+      <div class="formula-box">
+        \[
+          x=t^2-1,
+          \qquad
+          dx=2t\,dt.
+        \]
+      </div>
+      <p>Integral postaje</p>
+      <div class="formula-box">
+        \[
+          \int \frac{dx}{x\sqrt{x+1}}
+          =
+          \int \frac{2t\,dt}{(t^2-1)t}
+          =
+          \int \frac{2\,dt}{t^2-1}.
+        \]
+      </div>
+      <p>Pošto je \(t^2-1=(t-1)(t+1)\), dobijamo</p>
+      <div class="formula-box">
+        \[
+          \frac{2}{t^2-1}=\frac{1}{t-1}-\frac{1}{t+1}.
+        \]
+      </div>
+      <p>Zato je</p>
+      <div class="formula-box">
+        \[
+          \int \frac{2\,dt}{t^2-1}
+          =
+          \ln|t-1|-\ln|t+1|+C
+          =
+          \ln\left|\frac{t-1}{t+1}\right|+C.
+        \]
+      </div>
+      <p>Vraćanjem smene:</p>
+      <div class="formula-box">
+        \[
+          \boxed{
+          \int \frac{dx}{x\sqrt{x+1}}
+          =
+          \ln\left|\frac{\sqrt{x+1}-1}{\sqrt{x+1}+1}\right|+C.
+          }
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Zaključak</h2>
+      <p>
+        Integrali iracionalnih funkcija često se rešavaju tako što se koreni uklone odgovarajućom smenom. Za usmeni je važno znati osnovnu ideju i umeti izvesti formule za \(x\) i \(dx\).
+      </p>
+      <p>
+        Najvažnije smene iz ove lekcije su:
+      </p>
+      <div class="formula-box">
+        \[
+          \sqrt{ax+b}=t
+        \]
+      </div>
+      <div class="formula-box">
+        \[
+          \sqrt[n]{\frac{ax+b}{cx+d}}=t.
+        \]
+      </div>
+    </section>
+
+    <div class="footer">
+      Mathbrotherhood - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>

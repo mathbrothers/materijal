@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematika 2 — Teorema 5.4.10, metoda parcijalne integracije</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f2e8;
+      --text: #243041;
+      --muted: #667085;
+      --card: #ffffff;
+      --line: #e7dfcf;
+      --accent: #b7791f;
+      --accent-soft: #fff4dc;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --green: #14804a;
+      --green-soft: #ecfdf3;
+      --red: #b42318;
+      --red-soft: #fff1f0;
+      --purple: #6941c6;
+      --purple-soft: #f4f0ff;
+      --shadow: 0 12px 28px rgba(31, 41, 55, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 18px 50px;
+      background:
+        radial-gradient(circle at top left, rgba(183, 121, 31, 0.12), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 28px;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fffaf0, #ffffff);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(183, 121, 31, 0.18);
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8a4f09;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 28px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .theorem-card::before { background: var(--accent); }
+    .intro-card::before { background: var(--blue); }
+    .idea-card::before { background: var(--purple); }
+    .proof-card::before { background: var(--green); }
+    .example-card::before { background: #0f766e; }
+    .warning-card::before { background: var(--red); }
+    .conclusion-card::before { background: #475467; }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    p { margin: 10px 0; }
+
+    .math-box {
+      margin: 16px 0;
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: #fbfaf7;
+      border: 1px solid #efe7d7;
+      overflow-x: auto;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 13px 16px;
+      border-radius: 13px;
+      background: var(--blue-soft);
+      border: 1px solid #dbeafe;
+      color: #1e3a8a;
+    }
+
+    .warning {
+      margin-top: 12px;
+      padding: 13px 16px;
+      border-radius: 13px;
+      background: var(--red-soft);
+      border: 1px solid #ffd5d2;
+      color: #7a271a;
+    }
+
+    ol, ul { padding-left: 24px; }
+
+    li { margin: 8px 0; }
+
+    .example {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .example-title {
+      margin: 0 0 8px;
+      font-weight: 800;
+      color: #334155;
+    }
+
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .footer strong { color: #344054; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { max-width: none; }
+      header, .card { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="label">Matematika 2 · Neodređeni integral</div>
+      <h1>Metoda parcijalne integracije</h1>
+      <p class="subtitle">Teorema 5.4.10 — formula za integral proizvoda u obliku \(\int u\,dv\).</p>
+    </header>
+
+    <section class="card theorem-card">
+      <h2>Teorema</h2>
+      <p>
+        Neka su \(u\) i \(v\) diferencijabilne funkcije i neka funkcija \(u'v\) ima primitivnu funkciju.
+        Tada postoji primitivna funkcija funkcije \(uv'\) i važi formula
+      </p>
+      <div class="math-box">
+        \[
+          \int u(x)\,dv(x)=u(x)v(x)-\int v(x)\,du(x).
+        \]
+      </div>
+      <p>
+        Pošto je \(du(x)=u'(x)\,dx\), a \(dv(x)=v'(x)\,dx\), formula se često piše i kao
+      </p>
+      <div class="math-box">
+        \[
+          \int u(x)v'(x)\,dx=u(x)v(x)-\int v(x)u'(x)\,dx.
+        \]
+      </div>
+    </section>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        Parcijalna integracija je metoda kojom integral proizvoda dve funkcije prebacujemo u drugi integral,
+        koji je često jednostavniji. Ona je integralna verzija formule za izvod proizvoda.
+      </p>
+      <p>
+        Najčešće se koristi kada se pod integralom pojavljuje proizvod funkcija, na primer
+        \(x e^x\), \(x\sin x\), \(\ln x\), \(x\ln x\) i slično.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja dokaza</h2>
+      <p>
+        Polazimo od izvoda proizvoda:
+      </p>
+      <div class="math-box">
+        \[
+          (uv)'=u'v+uv'.
+        \]
+      </div>
+      <p>
+        Iz ove jednakosti izdvojimo član \(uv'\), a zatim obe strane integrišemo.
+      </p>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Dokaz</h2>
+      <p>
+        Po formuli za izvod proizvoda imamo
+      </p>
+      <div class="math-box">
+        \[
+          (u(x)v(x))'=u'(x)v(x)+u(x)v'(x).
+        \]
+      </div>
+      <p>
+        Odavde sledi
+      </p>
+      <div class="math-box">
+        \[
+          u(x)v'(x)=(u(x)v(x))'-u'(x)v(x).
+        \]
+      </div>
+      <p>
+        Sada integrišemo obe strane:
+      </p>
+      <div class="math-box">
+        \[
+          \int u(x)v'(x)\,dx
+          =\int (u(x)v(x))'\,dx-\int u'(x)v(x)\,dx.
+        \]
+      </div>
+      <p>
+        Kako je
+      </p>
+      <div class="math-box">
+        \[
+          \int (u(x)v(x))'\,dx=u(x)v(x),
+        \]
+      </div>
+      <p>
+        dobijamo
+      </p>
+      <div class="math-box">
+        \[
+          \int u(x)v'(x)\,dx=u(x)v(x)-\int v(x)u'(x)\,dx.
+        \]
+      </div>
+      <p>
+        Pošto je \(dv(x)=v'(x)\,dx\) i \(du(x)=u'(x)\,dx\), ovo možemo zapisati kraće:
+      </p>
+      <div class="math-box">
+        \[
+          \boxed{\int u\,dv=uv-\int v\,du}.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Komentar za usmeni</h2>
+      <p>
+        Ovu formulu je najbolje pamtiti kao posledicu izvoda proizvoda. U primeni biramo šta je \(u\), a šta je \(dv\). Zatim računamo \(du\) i \(v\), pa zamenjujemo u formulu.</p>
+      <div class="warning">
+        Najčešća greška je da se zaboravi minus ispred drugog integrala:
+        \[
+          \int u\,dv=uv-\int v\,du.
+        \]
+      </div>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primeri</h2>
+
+      <div class="example">
+        <p class="example-title">Primer 1: \(\int x e^x\,dx\)</p>
+        <p>Uzmimo</p>
+        <div class="math-box">
+          \[
+            u=x,\qquad dv=e^x\,dx.
+          \]
+        </div>
+        <p>Tada je</p>
+        <div class="math-box">
+          \[
+            du=dx,\qquad v=e^x.
+          \]
+        </div>
+        <p>Po formuli parcijalne integracije:</p>
+        <div class="math-box">
+          \[
+            \int x e^x\,dx
+            =xe^x-\int e^x\,dx
+            =xe^x-e^x+C.
+          \]
+        </div>
+        <div class="math-box">
+          \[
+            \boxed{\int x e^x\,dx=e^x(x-1)+C.}
+          \]
+        </div>
+      </div>
+
+      <div class="example">
+        <p class="example-title">Primer 2: \(\int \ln x\,dx\), za \(x>0\)</p>
+        <p>
+          Ovde se \(\ln x\) posmatra kao proizvod \(\ln x\cdot 1\). Uzmimo
+        </p>
+        <div class="math-box">
+          \[
+            u=\ln x,\qquad dv=dx.
+          \]
+        </div>
+        <p>Tada je</p>
+        <div class="math-box">
+          \[
+            du=\frac{1}{x}\,dx,\qquad v=x.
+          \]
+        </div>
+        <p>Zato je</p>
+        <div class="math-box">
+          \[
+            \int \ln x\,dx
+            =x\ln x-\int x\cdot \frac{1}{x}\,dx
+            =x\ln x-\int 1\,dx.
+          \]
+        </div>
+        <div class="math-box">
+          \[
+            \boxed{\int \ln x\,dx=x\ln x-x+C.}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak</h2>
+      <p>
+        Parcijalna integracija se koristi kada integral nije direktno iz tablice, ali podseća na proizvod funkcija.
+        Suština je u formuli
+      </p>
+      <div class="math-box">
+        \[
+          \boxed{\int u\,dv=uv-\int v\,du}.
+        \]
+      </div>
+      <p>
+        Za usmeni je važno znati da formula dolazi iz izvoda proizvoda i umeti da objasnimo šta su \(u\), \(dv\), \(du\) i \(v\).
+      </p>
+    </section>
+
+    <div class="footer">
+      <strong>Mathbrotherhood</strong> - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>

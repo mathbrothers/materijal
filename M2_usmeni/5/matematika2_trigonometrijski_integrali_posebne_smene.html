@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematika 2 — Posebne smene kod trigonometrijskih integrala</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f2e8;
+      --text: #243041;
+      --muted: #667085;
+      --card: #ffffff;
+      --line: #e7dfcf;
+      --accent: #b7791f;
+      --accent-soft: #fff4dc;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --green: #14804a;
+      --green-soft: #ecfdf3;
+      --red: #b42318;
+      --red-soft: #fff1f0;
+      --purple: #6941c6;
+      --purple-soft: #f4f0ff;
+      --shadow: 0 12px 28px rgba(31, 41, 55, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 18px 50px;
+      background:
+        radial-gradient(circle at top left, rgba(183, 121, 31, 0.12), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 28px;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fffaf0, #ffffff);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(183, 121, 31, 0.18);
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8a4f09;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 28px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .intro-card::before { background: var(--blue); }
+    .idea-card::before { background: var(--purple); }
+    .case-card::before { background: var(--green); }
+    .example-card::before { background: #0f766e; }
+    .warning-card::before { background: var(--red); }
+    .link-card::before { background: #0369a1; }
+    .conclusion-card::before { background: #475467; }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 23px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 18px 0 8px;
+      font-size: 18px;
+    }
+
+    p { margin: 10px 0; }
+
+    .formula-box {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+    }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 0 0 1px var(--line);
+    }
+
+    .mini-table th,
+    .mini-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    .mini-table th {
+      background: #fff7e8;
+      color: #7a4a0b;
+      text-align: left;
+    }
+
+    .mini-table tr:last-child td { border-bottom: none; }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .btn-link.secondary { background: #475467; }
+
+    .note {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      border: 1px solid #c7ddff;
+      color: #1849a9;
+      font-weight: 600;
+    }
+
+    .warning {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--red-soft);
+      border: 1px solid #fecdca;
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 26px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <span class="label">Matematika 2 — neodređeni integral</span>
+      <h1>Posebne smene kod trigonometrijskih integrala</h1>
+      <p class="subtitle">
+        Integrali oblika \(\int R(\sin x,\cos x)\,dx\): kada ne moramo odmah da koristimo univerzalnu smenu \(t=\operatorname{tg}\frac{x}{2}\).
+      </p>
+    </header>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        Kod integrala
+      </p>
+      <div class="formula-box">
+        \[
+          \int R(\sin x,\cos x)\,dx,
+        \]
+      </div>
+      <p>
+        gde je \(R(u,v)\) racionalna funkcija svojih argumenata, univerzalna smena
+        \(t=\operatorname{tg}\frac{x}{2}\) uvek svodi integral na racionalni integral po \(t\).
+        Ipak, ako podintegralna funkcija ima posebnu simetriju, često se koristi kraća smena.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Posmatramo kako se funkcija \(R(\sin x,\cos x)\) ponaša kada promenimo znak samo kod
+        \(\sin x\), samo kod \(\cos x\), ili istovremeno kod oba izraza.
+        Ta simetrija nam govori koju smenu treba probati.
+      </p>
+      <table class="mini-table">
+        <thead>
+          <tr>
+            <th>Osobina funkcije</th>
+            <th>Smena</th>
+            <th>Šta dobijamo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Neparna po \(\sin x\)</td>
+            <td>\(t=\cos x\)</td>
+            <td>\(\sin x=\sqrt{1-t^2}\), \(dx=-\dfrac{dt}{\sqrt{1-t^2}}\)</td>
+          </tr>
+          <tr>
+            <td>Neparna po \(\cos x\)</td>
+            <td>\(t=\sin x\)</td>
+            <td>\(\cos x=\sqrt{1-t^2}\), \(dx=\dfrac{dt}{\sqrt{1-t^2}}\)</td>
+          </tr>
+          <tr>
+            <td>Parna pri istovremenoj promeni \(\sin x\mapsto-\sin x\), \(\cos x\mapsto-\cos x\)</td>
+            <td>\(t=\operatorname{tg}x\)</td>
+            <td>koristimo \(\sin^2x\), \(\cos^2x\), \(\sin x\cos x\)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">
+        U knjizi se prva dva slučaja postavljaju preko korena. To je formalniji oblik istog pravila:
+        smena napravi koren iz \(\sin^2x+\cos^2x=1\), a neparnost funkcije obezbedi da se taj koren skrati.
+      </p>
+    </section>
+
+    <section class="card case-card">
+      <h2>1. Funkcija je neparna po \(\sin x\)</h2>
+      <p>
+        To znači da važi
+      </p>
+      <div class="formula-box">
+        \[
+          R(-\sin x,\cos x)=-R(\sin x,
+          \cos x).
+        \]
+      </div>
+      <p>
+        Tada koristimo smenu
+      </p>
+      <div class="formula-box">
+        \[
+          \cos x=t.
+        \]
+      </div>
+      <p>
+        Iz osnovnog trigonometrijskog identiteta dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          \sin x=\sqrt{1-t^2},
+          \qquad
+          dx=-\frac{dt}{\sqrt{1-t^2}}.
+        \]
+      </div>
+      <p>
+        Zbog neparnosti po \(\sin x\), izraz \(R(\sin x,\cos x)\) sadrži neparan uticaj sinusa.
+        Zato se koren koji dolazi iz \(\sin x\) skrati sa korenom iz \(dx\), pa integral prelazi u
+        racionalni integral po \(t\).
+      </p>
+
+      <h3>Primer</h3>
+      <div class="formula-box">
+        \[
+          \int \frac{\sin x}{1+\cos^2 x}\,dx
+        \]
+        \[
+          t=\cos x, \qquad dt=-\sin x\,dx.
+        \]
+        \[
+          \int \frac{\sin x}{1+\cos^2 x}\,dx
+          =-\int \frac{dt}{1+t^2}
+          =-\operatorname{arctg}t+C.
+        \]
+        \[
+          \boxed{\int \frac{\sin x}{1+\cos^2 x}\,dx
+          =-\operatorname{arctg}(\cos x)+C.}
+        \]
+      </div>
+    </section>
+
+    <section class="card case-card">
+      <h2>2. Funkcija je neparna po \(\cos x\)</h2>
+      <p>
+        To znači da važi
+      </p>
+      <div class="formula-box">
+        \[
+          R(\sin x,-\cos x)=-R(\sin x,\cos x).
+        \]
+      </div>
+      <p>
+        Tada koristimo smenu
+      </p>
+      <div class="formula-box">
+        \[
+          \sin x=t.
+        \]
+      </div>
+      <p>
+        Iz osnovnog trigonometrijskog identiteta dobijamo
+      </p>
+      <div class="formula-box">
+        \[
+          \cos x=\sqrt{1-t^2},
+          \qquad
+          dx=\frac{dt}{\sqrt{1-t^2}}.
+        \]
+      </div>
+      <p>
+        Pošto je funkcija neparna po \(\cos x\), koren koji dolazi iz \(\cos x\) skrati se sa
+        korenom u izrazu za \(dx\). Zato opet dobijamo racionalni integral po \(t\).
+      </p>
+
+      <h3>Primer</h3>
+      <div class="formula-box">
+        \[
+          \int \frac{\cos x}{1+\sin^2 x}\,dx
+        \]
+        \[
+          t=\sin x, \qquad dt=\cos x\,dx.
+        \]
+        \[
+          \int \frac{\cos x}{1+\sin^2 x}\,dx
+          =\int \frac{dt}{1+t^2}
+          =\operatorname{arctg}t+C.
+        \]
+        \[
+          \boxed{\int \frac{\cos x}{1+\sin^2 x}\,dx
+          =\operatorname{arctg}(\sin x)+C.}
+        \]
+      </div>
+    </section>
+
+    <section class="card case-card">
+      <h2>3. Funkcija je parna pri istovremenoj promeni znakova</h2>
+      <p>
+        Ovde važi uslov
+      </p>
+      <div class="formula-box">
+        \[
+          R(-\sin x,-\cos x)=R(\sin x,\cos x).
+        \]
+      </div>
+      <p>
+        Tada je korisna smena
+      </p>
+      <div class="formula-box">
+        \[
+          t=\operatorname{tg}x, \qquad dx=\frac{dt}{1+t^2}.
+        \]
+      </div>
+      <p>
+        U računu koristimo formule
+      </p>
+      <div class="formula-box">
+        \[
+          \sin^2x=\frac{t^2}{1+t^2},\qquad
+          \cos^2x=\frac{1}{1+t^2},\qquad
+          \sin x\cos x=\frac{t}{1+t^2}.
+        \]
+      </div>
+      <p>
+        Pošto je funkcija parna pri istovremenoj promeni znakova, u izrazu ostaju samo kombinacije
+        koje se mogu izraziti racionalno preko \(t=\operatorname{tg}x\).
+      </p>
+
+      <h3>Primer</h3>
+      <div class="formula-box">
+        \[
+          \int \frac{dx}{2+\cos^2 x}
+        \]
+        \[
+          t=\operatorname{tg}x,\qquad dx=\frac{dt}{1+t^2},
+          \qquad \cos^2x=\frac{1}{1+t^2}.
+        \]
+        \[
+          \int \frac{dx}{2+\cos^2 x}
+          =\int \frac{\frac{dt}{1+t^2}}{2+\frac{1}{1+t^2}}
+          =\int \frac{dt}{2t^2+3}.
+        \]
+        \[
+          \int \frac{dt}{2t^2+3}
+          =\frac{1}{\sqrt6}\operatorname{arctg}\!\left(t\sqrt{\frac23}\right)+C.
+        \]
+        \[
+          \boxed{\int \frac{dx}{2+\cos^2 x}
+          =\frac{1}{\sqrt6}\operatorname{arctg}\!\left(\sqrt{\frac23}\operatorname{tg}x\right)+C.}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važna napomena o korenu</h2>
+      <p>
+        Kada napišemo, na primer,
+      </p>
+      <div class="formula-box">
+        \[
+          \sin x=\sqrt{1-t^2}
+        \]
+      </div>
+      <p>
+        radimo lokalno, na intervalu na kome je znak odgovarajuće trigonometrijske funkcije fiksiran.
+        Za račun neodređenog integrala to je standardna tehnička stvar: konstanta integracije na kraju
+        pokriva prelazak između intervala. Za učenika je najvažnije da razume zašto se javlja koren i
+        zašto ga neparnost funkcije uklanja.
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Kako učenik da odluči koju smenu da proba?</h2>
+      <p>
+        Kratko pravilo za usmeni i zadatke:
+      </p>
+      <ul>
+        <li>ako je funkcija neparna po \(\sin x\), probaj \(t=\cos x\);</li>
+        <li>ako je funkcija neparna po \(\cos x\), probaj \(t=\sin x\);</li>
+        <li>ako se pojavljuju samo izrazi poput \(\sin^2x\), \(\cos^2x\), \(\sin x\cos x\), probaj \(t=\operatorname{tg}x\);</li>
+        <li>ako ništa od toga ne radi, vrati se na univerzalnu smenu \(t=\operatorname{tg}\frac{x}{2}\).</li>
+      </ul>
+    </section>
+
+    <section class="card link-card">
+      <h2>Veza sa univerzalnom smenom</h2>
+      <p>
+        Ove tri smene su kraće varijante koje se koriste kada podintegralna funkcija ima dodatnu simetriju.
+        Opšti metod ostaje smena \(t=\operatorname{tg}\frac{x}{2}\).
+      </p>
+      <div class="btn-row">
+        <a class="btn-link" href="matematika2_trigonometrijski_integrali_smena_tg_polovine_teorema_5_8_18.html">
+          Otvori teoremu o smeni tg(x/2)
+        </a>
+      </div>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak</h2>
+      <p>
+        Trigonometrijski integrali oblika \(\int R(\sin x,\cos x)\,dx\) mogu se uvek rešavati
+        univerzalnom smenom, ali je često pametnije prvo proveriti simetriju funkcije. Ako je funkcija
+        neparna po sinusu, uzimamo \(t=\cos x\); ako je neparna po kosinusu, uzimamo \(t=\sin x\);
+        a ako je parna pri istovremenoj promeni znakova, uzimamo \(t=\operatorname{tg}x\).
+      </p>
+    </section>
+
+    <footer>
+      Mathbrotherhood - Powered by ChatGPT
+    </footer>
+  </main>
+</body>
+</html>

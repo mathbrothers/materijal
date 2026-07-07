@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teorema 5.1.1 — Primitivne funkcije i konstanta</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --card: #ffffff;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --purple: #8b5cf6;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --gray: #64748b;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 36px 18px 42px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(16,185,129,0.10), transparent 26%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 26px;
+      padding: 28px 30px;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    header .kicker {
+      margin: 0 0 8px;
+      color: #bfdbfe;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.45rem);
+      line-height: 1.15;
+    }
+
+    header p {
+      max-width: 780px;
+      margin: 14px 0 0;
+      color: #d1d5db;
+      font-size: 1.02rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--gray);
+    }
+
+    .theorem-card::before { background: var(--blue); }
+    .intro-card::before { background: var(--purple); }
+    .idea-card::before { background: var(--green); }
+    .proof-card::before { background: var(--orange); }
+    .example-card::before { background: var(--blue); }
+    .warning-card::before { background: var(--red); }
+    .conclusion-card::before { background: var(--gray); }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.32rem;
+      line-height: 1.25;
+    }
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      margin: 10px 0 0 22px;
+      padding: 0;
+    }
+
+    li { margin: 7px 0; }
+
+    .formula-box {
+      margin: 16px 0 8px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      overflow-x: auto;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .mini-title {
+      margin-top: 14px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .example {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+
+    .example:last-child { margin-bottom: 0; }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: #6b7280;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+
+    .muted { color: var(--muted); }
+    strong { color: #111827; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="kicker">Matematika 2 · Usmeni ispit</p>
+      <h1>Teorema 5.1.1 — Primitivne funkcije i konstanta</h1>
+      <p>
+        Ova teorema opisuje kako se iz jedne primitivne funkcije dobijaju druge primitivne funkcije
+        i zašto se dve primitivne funkcije iste funkcije mogu razlikovati samo za konstantu.
+      </p>
+    </header>
+
+    <section class="card theorem-card">
+      <h2>Teorema</h2>
+      <p>
+        Neka je funkcija \(F(x)\) primitivna funkcija funkcije \(f(x)\) na intervalu.
+        Tada je i funkcija
+        \[
+          F(x)+C,
+        \]
+        gde je \(C\) proizvoljna konstanta, takođe primitivna funkcija funkcije \(f(x)\).
+      </p>
+      <p>
+        Ako su \(F_1(x)\) i \(F_2(x)\) dve primitivne funkcije funkcije \(f(x)\) na nekom intervalu,
+        onda je njihova razlika konstantna na tom intervalu:
+        \[
+          F_1(x)-F_2(x)=C.
+        \]
+      </p>
+    </section>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        Prethodna definicija kaže da je \(F\) primitivna funkcija za \(f\) ako važi
+        \[
+          F'(x)=f(x).
+        \]
+        Sada gledamo šta se dešava ako funkciji \(F\) dodamo konstantu.
+      </p>
+      <p>
+        Pošto je izvod konstante jednak nuli, dodavanje konstante ne menja izvod funkcije.
+        Zato sve funkcije oblika \(F(x)+C\) imaju isti izvod kao funkcija \(F(x)\).
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja dokaza</h2>
+      <p>
+        Dokaz ima dva dela.
+      </p>
+      <ol>
+        <li>
+          Prvo pokažemo da dodavanje konstante ne menja izvod:
+          \[
+            (F(x)+C)'=F'(x).
+          \]
+        </li>
+        <li>
+          Zatim, ako dve funkcije imaju isti izvod, posmatramo njihovу razliku.
+          Izvod te razlike je nula, pa je ta razlika konstanta na intervalu.
+        </li>
+      </ol>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Dokaz</h2>
+
+      <p class="mini-title">Prvi deo teoreme</p>
+      <p>
+        Neka je \(F\) primitivna funkcija funkcije \(f\). Po definiciji primitivne funkcije važi
+        \[
+          F'(x)=f(x).
+        \]
+        Posmatrajmo sada funkciju
+        \[
+          G(x)=F(x)+C,
+        \]
+        gde je \(C\) konstanta.
+      </p>
+      <p>
+        Računamo njen izvod:
+        \[
+          G'(x)=(F(x)+C)'=F'(x)+C'=F'(x)+0=F'(x)=f(x).
+        \]
+        Dakle,
+        \[
+          G'(x)=f(x),
+        \]
+        pa je i \(G(x)=F(x)+C\) primitivna funkcija funkcije \(f(x)\).
+      </p>
+
+      <p class="mini-title">Drugi deo teoreme</p>
+      <p>
+        Neka su \(F_1\) i \(F_2\) dve primitivne funkcije funkcije \(f\) na istom intervalu.
+        Tada, po definiciji primitivne funkcije, važi
+        \[
+          F_1'(x)=f(x), \qquad F_2'(x)=f(x).
+        \]
+      </p>
+      <p>
+        Posmatrajmo funkciju
+        \[
+          H(x)=F_1(x)-F_2(x).
+        \]
+        Tada je
+        \[
+          H'(x)=F_1'(x)-F_2'(x)=f(x)-f(x)=0.
+        \]
+      </p>
+      <p>
+        Ako je izvod funkcije jednak nuli na intervalu, funkcija je konstantna na tom intervalu.
+        Zato postoji konstanta \(C\) takva da je
+        \[
+          H(x)=C.
+        \]
+        Pošto je \(H(x)=F_1(x)-F_2(x)\), dobijamo
+        \[
+          F_1(x)-F_2(x)=C.
+        \]
+        Time je teorema dokazana.
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena za usmeni</h2>
+      <p>
+        U drugom delu teoreme važna je reč <strong>interval</strong>. Koristimo standardni stav:
+        ako je \(H'(x)=0\) na intervalu, onda je \(H\) konstantna na tom intervalu.
+      </p>
+      <p>
+        Taj stav se najčešće opravdava Lagranžovom teoremom o srednjoj vrednosti: za bilo koje dve tačke
+        \(x_1\) i \(x_2\) iz intervala postoji tačka \(\xi\) između njih takva da je
+        \[
+          H(x_2)-H(x_1)=H'(\xi)(x_2-x_1)=0.
+        \]
+        Dakle, \(H(x_2)=H(x_1)\), pa je funkcija konstantna.
+      </p>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primeri</h2>
+
+      <div class="example">
+        <span class="tag">Primer 1</span>
+        <p>
+          Neka je
+          \[
+            f(x)=2x.
+          \]
+          Jedna primitivna funkcija je
+          \[
+            F(x)=x^2,
+          \]
+          jer je \((x^2)'=2x\). Po teoremi su i funkcije
+          \[
+            x^2+3, \qquad x^2-7, \qquad x^2+C
+          \]
+          primitivne funkcije funkcije \(2x\).
+        </p>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 2</span>
+        <p>
+          Neka je
+          \[
+            f(x)=\cos x.
+          \]
+          Funkcije
+          \[
+            F_1(x)=\sin x+5, \qquad F_2(x)=\sin x-2
+          \]
+          su dve primitivne funkcije funkcije \(\cos x\), jer obe imaju izvod \(\cos x\).
+          Njihova razlika je
+          \[
+            F_1(x)-F_2(x)=(\sin x+5)-(\sin x-2)=7,
+          \]
+          dakle konstanta.
+        </p>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 3</span>
+        <p>
+          Neka je
+          \[
+            f(x)=e^x.
+          \]
+          Funkcije
+          \[
+            F_1(x)=e^x, \qquad F_2(x)=e^x+10
+          \]
+          jesu dve primitivne funkcije funkcije \(e^x\), jer je
+          \[
+            (e^x)'=e^x, \qquad (e^x+10)'=e^x.
+          \]
+          Njihova razlika je
+          \[
+            F_2(x)-F_1(x)=10.
+          \]
+        </p>
+      </div>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak za usmeni</h2>
+      <p>
+        Ako znamo jednu primitivnu funkciju \(F\) funkcije \(f\), onda dodavanjem proizvoljne konstante
+        dobijamo novu primitivnu funkciju iste funkcije:
+        \[
+          (F(x)+C)'=f(x).
+        \]
+      </p>
+      <p>
+        Obrnuto, dve primitivne funkcije iste funkcije ne mogu se razlikovati ni po čemu osim po konstanti:
+        \[
+          F_1(x)-F_2(x)=C.
+        \]
+      </p>
+      <p>
+        Ovo je razlog zašto se pri neodređenom integralu pojavljuje proizvoljna konstanta.
+      </p>
+    </section>
+
+    <div class="footer">
+      Mathbrotherhood - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Definicija 5.1.2 — Neodređeni integral</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --ink: #1f2937;
+      --muted: #5b6472;
+      --card: #ffffff;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --purple: #8b5cf6;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --gray: #64748b;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 36px 18px 42px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(16,185,129,0.10), transparent 26%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 26px;
+      padding: 28px 30px;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    header .kicker {
+      margin: 0 0 8px;
+      color: #bfdbfe;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3vw, 2.45rem);
+      line-height: 1.15;
+    }
+
+    header p {
+      max-width: 790px;
+      margin: 14px 0 0;
+      color: #d1d5db;
+      font-size: 1.02rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--gray);
+    }
+
+    .definition-card::before { background: var(--blue); }
+    .intro-card::before { background: var(--purple); }
+    .idea-card::before { background: var(--green); }
+    .proof-card::before { background: var(--orange); }
+    .example-card::before { background: var(--blue); }
+    .warning-card::before { background: var(--red); }
+    .conclusion-card::before { background: var(--gray); }
+    .table-card::before { background: var(--green); }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 1.32rem;
+      line-height: 1.25;
+    }
+
+    p { margin: 0 0 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      margin: 10px 0 0 22px;
+      padding: 0;
+    }
+
+    li { margin: 7px 0; }
+
+    .formula-box {
+      margin: 16px 0 8px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      overflow-x: auto;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .mini-title {
+      margin-top: 14px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .example {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+
+    .example:last-child { margin-bottom: 0; }
+
+    .integral-table-wrap {
+      margin-top: 14px;
+      overflow-x: auto;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    table.integral-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+
+    .integral-table th,
+    .integral-table td {
+      padding: 13px 15px;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    .integral-table th {
+      background: #f1f5f9;
+      color: #111827;
+      font-weight: 800;
+    }
+
+    .integral-table tr:last-child td { border-bottom: none; }
+    .integral-table td:first-child { width: 50%; }
+    .muted { color: var(--muted); }
+    strong { color: #111827; }
+
+    .footer {
+      margin-top: 28px;
+      text-align: center;
+      color: #6b7280;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="kicker">Matematika 2 · Usmeni ispit</p>
+      <h1>Definicija 5.1.2 — Neodređeni integral</h1>
+      <p>
+        Neodređeni integral uvodi oznaku za skup svih primitivnih funkcija jedne funkcije.
+        To je prvi korak ka računanju integrala pomoću tablice i pravila integracije.
+      </p>
+    </header>
+
+    <section class="card definition-card">
+      <h2>Definicija</h2>
+      <p>
+        Skup svih primitivnih funkcija funkcije \(f\) naziva se
+        <strong>neodređeni integral</strong> funkcije \(f\) i označava se sa
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(x)\,dx.
+        \]
+      </div>
+      <p>
+        Funkcija \(f\) se naziva <strong>podintegralna funkcija</strong> ili
+        <strong>integrand</strong>, a izraz \(f(x)\,dx\) naziva se
+        <strong>podintegralni izraz</strong>.
+      </p>
+    </section>
+
+    <section class="card intro-card">
+      <h2>O čemu se radi</h2>
+      <p>
+        U prethodnoj definiciji rekli smo da je \(F\) primitivna funkcija funkcije \(f\)
+        ako važi
+      </p>
+      <div class="formula-box">
+        \[
+          F'(x)=f(x).
+        \]
+      </div>
+      <p>
+        Neodređeni integral ne predstavlja jednu funkciju, nego celu familiju funkcija
+        koje imaju isti izvod. Zato pišemo
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(x)\,dx = F(x)+C,
+        \]
+      </div>
+      <p>
+        gde je \(F\) jedna primitivna funkcija funkcije \(f\), a \(C\) proizvoljna konstanta.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Integracija je obrnuta operacija od diferenciranja. Kada tražimo
+        \(\int f(x)\,dx\), mi zapravo tražimo funkciju čiji je izvod jednak \(f(x)\).
+      </p>
+      <p>
+        Najjednostavnija provera integrala radi se deriviranjem: ako je
+      </p>
+      <div class="formula-box">
+        \[
+          \left(F(x)+C\right)'=f(x),
+        \]
+      </div>
+      <p>
+        onda je
+        \[
+          \int f(x)\,dx=F(x)+C.
+        \]
+      </p>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Objašnjenje oznake</h2>
+      <p>
+        Ovo je definicija, pa nema dokaza u klasičnom smislu. Ipak, važno je razumeti
+        zašto se zapis neodređenog integrala povezuje sa primitivnom funkcijom.
+      </p>
+      <p>
+        Ako je \(F\) jedna primitivna funkcija funkcije \(f\), onda važi
+      </p>
+      <div class="formula-box">
+        \[
+          F'(x)=f(x).
+        \]
+      </div>
+      <p>
+        Po prethodnoj teoremi, sve primitivne funkcije funkcije \(f\) imaju oblik
+      </p>
+      <div class="formula-box">
+        \[
+          F(x)+C.
+        \]
+      </div>
+      <p>
+        Zato se skup svih primitivnih funkcija zapisuje kraće kao
+      </p>
+      <div class="formula-box">
+        \[
+          \boxed{\int f(x)\,dx=F(x)+C.}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena za usmeni</h2>
+      <p>
+        Neodređeni integral nije broj, nego skup odnosno familija funkcija.
+        Zato je pogrešno reći samo „integral je \(F(x)\)” bez konstante.
+      </p>
+      <p>
+        U zapisu
+        \[
+          \int f(x)\,dx
+        \]
+        simbol \(dx\) se za sada posmatra kao deo podintegralnog izraza. On pokazuje da se
+        integracija vrši po promenljivoj \(x\).
+      </p>
+    </section>
+
+    <section class="card example-card">
+      <h2>Primeri</h2>
+
+      <div class="example">
+        <span class="tag">Primer 1</span>
+        <p>
+          Pošto je
+          \[
+            (x^2)'=2x,
+          \]
+          važi
+          \[
+            \int 2x\,dx=x^2+C.
+          \]
+        </p>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 2</span>
+        <p>
+          Pošto je
+          \[
+            (\sin x)'=\cos x,
+          \]
+          dobijamo
+          \[
+            \int \cos x\,dx=\sin x+C.
+          \]
+        </p>
+      </div>
+
+      <div class="example">
+        <span class="tag">Primer 3</span>
+        <p>
+          Na intervalu na kome je \(x\neq 0\) važi
+          \[
+            (\ln |x|)'=\frac{1}{x},
+          \]
+          pa je
+          \[
+            \int \frac{1}{x}\,dx=\ln |x|+C.
+          \]
+        </p>
+      </div>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak za usmeni</h2>
+      <p>
+        Neodređeni integral funkcije \(f\) je skup svih funkcija čiji je izvod jednak \(f\).
+        Ako znamo jednu primitivnu funkciju \(F\), onda sve ostale dobijamo dodavanjem
+        proizvoljne konstante:
+      </p>
+      <div class="formula-box">
+        \[
+          \int f(x)\,dx=F(x)+C.
+        \]
+      </div>
+      <p>
+        Za proveru uvek možemo da diferenciramo desnu stranu i dobijemo podintegralnu funkciju.
+      </p>
+    </section>
+
+    <section class="card table-card">
+      <h2>Osnovna tablica integrala</h2>
+      <p>
+        U svim formulama \(C\) je proizvoljna konstanta.
+      </p>
+      <p>
+        Dodate su i formule koje se pojavljuju u knjizi: ako je formula u tablici iz knjige,
+        učenik sme da je koristi bez posebnog izvođenja, osim ako nastavnik izričito traži dokaz.
+      </p>
+
+      <div class="integral-table-wrap">
+        <table class="integral-table">
+          <thead>
+            <tr>
+              <th>Integral</th>
+              <th>Rezultat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\displaystyle \int 0\,dx\)</td>
+              <td>\(\displaystyle C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int 1\,dx\)</td>
+              <td>\(\displaystyle x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int x^\alpha\,dx\)</td>
+              <td>\(\displaystyle \frac{x^{\alpha+1}}{\alpha+1}+C,\quad \alpha\neq -1\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{1}{x}\,dx\)</td>
+              <td>\(\displaystyle \ln |x|+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int e^x\,dx\)</td>
+              <td>\(\displaystyle e^x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int a^x\,dx\)</td>
+              <td>\(\displaystyle \frac{a^x}{\ln a}+C,\quad a&gt;0,\ a\neq 1\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \sin x\,dx\)</td>
+              <td>\(\displaystyle -\cos x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \cos x\,dx\)</td>
+              <td>\(\displaystyle \sin x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{1}{\cos^2 x}\,dx\)</td>
+              <td>\(\displaystyle \operatorname{tg}x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{1}{\sin^2 x}\,dx\)</td>
+              <td>\(\displaystyle -\operatorname{ctg}x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{1}{1+x^2}\,dx\)</td>
+              <td>\(\displaystyle \operatorname{arctg}x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{1}{\sqrt{1-x^2}}\,dx\)</td>
+              <td>\(\displaystyle \arcsin x+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{dx}{\sqrt{x^2-1}}\)</td>
+              <td>\(\displaystyle \ln\left|x+\sqrt{x^2-1}\right|+C,\quad |x|>1\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{dx}{\sqrt{x^2+1}}\)</td>
+              <td>\(\displaystyle \ln\left|x+\sqrt{x^2+1}\right|+C\)</td>
+            </tr>
+            <tr>
+              <td>\(\displaystyle \int \frac{dx}{1-x^2}\)</td>
+              <td>\(\displaystyle \frac12\ln\left|\frac{1+x}{1-x}\right|+C,\quad |x|\neq 1\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="footer">
+      Mathbrotherhood - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>

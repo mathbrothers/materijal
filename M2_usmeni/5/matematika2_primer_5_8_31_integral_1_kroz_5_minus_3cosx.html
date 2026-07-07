@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matematika 2 — Primer 5.8.31, smena tg(x/2)</title>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f2e8;
+      --text: #243041;
+      --muted: #667085;
+      --card: #ffffff;
+      --line: #e7dfcf;
+      --accent: #b7791f;
+      --accent-soft: #fff4dc;
+      --blue: #2563eb;
+      --blue-soft: #eff6ff;
+      --green: #14804a;
+      --green-soft: #ecfdf3;
+      --red: #b42318;
+      --red-soft: #fff1f0;
+      --purple: #6941c6;
+      --purple-soft: #f4f0ff;
+      --shadow: 0 12px 28px rgba(31, 41, 55, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 40px 18px 50px;
+      background:
+        radial-gradient(circle at top left, rgba(183, 121, 31, 0.12), transparent 34%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 28px;
+      padding: 28px 30px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fffaf0, #ffffff);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(183, 121, 31, 0.18);
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #8a4f09;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 24px 28px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .theorem-card::before { background: var(--accent); }
+    .intro-card::before { background: var(--blue); }
+    .idea-card::before { background: var(--purple); }
+    .proof-card::before { background: var(--green); }
+    .example-card::before { background: #0f766e; }
+    .warning-card::before { background: var(--red); }
+    .link-card::before { background: #0369a1; }
+    .conclusion-card::before { background: #475467; }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    p { margin: 10px 0; }
+
+    .math-box {
+      margin: 16px 0;
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: #fbfaf7;
+      border: 1px solid #efe7d7;
+      overflow-x: auto;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 13px 16px;
+      border-radius: 13px;
+      background: var(--blue-soft);
+      border: 1px solid #dbeafe;
+      color: #1e3a8a;
+    }
+
+    .warning {
+      margin-top: 12px;
+      padding: 13px 16px;
+      border-radius: 13px;
+      background: var(--red-soft);
+      border: 1px solid #ffd5d2;
+      color: #7a271a;
+    }
+
+    ol, ul { padding-left: 24px; }
+    li { margin: 8px 0; }
+
+    .example {
+      margin: 16px 0;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .example-title {
+      margin: 0 0 8px;
+      font-weight: 800;
+      color: #334155;
+    }
+
+    .btn-link {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: var(--blue);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 750;
+    }
+
+    .btn-link:hover { background: #1d4ed8; }
+
+    .footer {
+      margin-top: 26px;
+      text-align: center;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .footer strong { color: #344054; }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { max-width: none; }
+      header, .card { box-shadow: none; break-inside: avoid; }
+      .btn-link { border: 1px solid #94a3b8; color: #0f172a; background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="label">Matematika 2 · Primer</div>
+      <h1>Primer 5.8.31</h1>
+      <p class="subtitle">Izračunavanje integrala \(\displaystyle \int \frac{dx}{5-3\cos x}\) smenom \(t=\operatorname{tg}\frac{x}{2}\).</p>
+    </header>
+
+    <section class="card theorem-card">
+      <h2>Zadatak</h2>
+      <p>Izračunati integral</p>
+      <div class="math-box">
+        \[
+          \int \frac{dx}{5-3\cos x}.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Pošto se u imeniocu nalazi \(\cos x\), primenjujemo univerzalnu trigonometrijsku smenu
+      </p>
+      <div class="math-box">
+        \[
+          t=\operatorname{tg}\frac{x}{2},
+          \qquad
+          \cos x=\frac{1-t^2}{1+t^2},
+          \qquad
+          dx=\frac{2\,dt}{1+t^2}.
+        \]
+      </div>
+    </section>
+
+    <section class="card proof-card">
+      <h2>Račun</h2>
+      <p>Uvrstimo formule u integral:</p>
+      <div class="math-box">
+        \[
+        \begin{aligned}
+        \int \frac{dx}{5-3\cos x}
+        &=
+        \int
+        \frac{\frac{2\,dt}{1+t^2}}{5-3\cdot \frac{1-t^2}{1+t^2}} \\
+        &=
+        \int
+        \frac{\frac{2\,dt}{1+t^2}}{\frac{5(1+t^2)-3(1-t^2)}{1+t^2}}.
+        \end{aligned}
+        \]
+      </div>
+      <p>Sredimo imenilac:</p>
+      <div class="math-box">
+        \[
+          5(1+t^2)-3(1-t^2)=5+5t^2-3+3t^2=2+8t^2=2(1+4t^2).
+        \]
+      </div>
+      <p>Zato je</p>
+      <div class="math-box">
+        \[
+        \begin{aligned}
+        \int \frac{dx}{5-3\cos x}
+        &=
+        \int \frac{\frac{2\,dt}{1+t^2}}{\frac{2(1+4t^2)}{1+t^2}} \\
+        &=
+        \int \frac{dt}{1+4t^2}.
+        \end{aligned}
+        \]
+      </div>
+      <p>Pošto je \(1+4t^2=1+(2t)^2\), dobijamo</p>
+      <div class="math-box">
+        \[
+          \int \frac{dt}{1+4t^2}
+          =\frac12\operatorname{arctg}(2t)+C.
+        \]
+      </div>
+      <p>Vraćamo smenu \(t=\operatorname{tg}\frac{x}{2}\):</p>
+      <div class="math-box">
+        \[
+          \boxed{
+          \int \frac{dx}{5-3\cos x}
+          =
+          \frac12\operatorname{arctg}\!\left(2\operatorname{tg}\frac{x}{2}\right)+C
+          }.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Kratka napomena</h2>
+      <p>
+        U ovom primeru se lepo vidi zašto smena radi: izraz sa \(\cos x\) postaje običan racionalan izraz po \(t\), a faktor \(dx\) se tačno skrati sa \(1+t^2\).
+      </p>
+    </section>
+
+    <section class="card link-card">
+      <h2>Povratak na teoremu</h2>
+      <p>
+        Ovaj primer koristi formule iz teoreme o smeni \(t=\operatorname{tg}\frac{x}{2}\).
+      </p>
+      <a class="btn-link" href="matematika2_trigonometrijski_integrali_smena_tg_polovine_teorema_5_8_18.html">Nazad na teoremu 5.8.18</a>
+    </section>
+
+    <section class="card conclusion-card">
+      <h2>Zaključak</h2>
+      <p>
+        Kod integrala ovog tipa najvažnije je uredno zameniti i \(\cos x\) i \(dx\), pa tek onda srediti racionalan izraz po \(t\).
+      </p>
+    </section>
+
+    <div class="footer">
+      <strong>Mathbrotherhood</strong> - Powered by ChatGPT
+    </div>
+  </main>
+</body>
+</html>
