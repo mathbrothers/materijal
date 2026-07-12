@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grupa na skupu Q bez broja 2</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #202938;
+      --muted: #606a7b;
+      --border: #dfe6ef;
+      --task: #5878e8;
+      --idea: #9767e6;
+      --solution: #1f9d69;
+      --warning: #e19a28;
+      --answer: #d64c70;
+      --shadow: 0 10px 28px rgba(30, 44, 78, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(88, 120, 232, 0.09), transparent 31%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.72;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 42px auto;
+    }
+
+    .hero {
+      margin-bottom: 24px;
+      padding: 30px 34px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #17233f, #29426f);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,.82);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 26px 30px 26px 34px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.97);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .task-card { --accent: var(--task); }
+    .idea-card { --accent: var(--idea); }
+    .solution-card { --accent: var(--solution); }
+    .warning-card { --accent: var(--warning); }
+    .answer-card { --accent: var(--answer); }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1.36rem;
+    }
+
+    .card h3 {
+      margin: 24px 0 10px;
+      font-size: 1.13rem;
+    }
+
+    .math-block {
+      margin: 17px 0;
+      padding: 16px 18px;
+      border: 1px solid #e6ebf2;
+      border-radius: 13px;
+      background: #f7f9fc;
+      overflow-x: auto;
+    }
+
+    .checklist {
+      margin: 10px 0 0;
+      padding-left: 22px;
+    }
+
+    .checklist li {
+      margin: 6px 0;
+    }
+
+    .result {
+      padding: 18px;
+      border: 1px solid #f1cbd5;
+      border-radius: 14px;
+      background: #fff7f9;
+      text-align: center;
+      font-size: 1.08rem;
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 18px, 980px);
+        margin: 18px auto;
+      }
+
+      .hero,
+      .card {
+        padding: 22px 20px 22px 25px;
+        border-radius: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <h1>Grupa na skupu \(\mathbb Q\setminus\{2\}\)</h1>
+      <p>Direktna provera aksioma grupe i komutativnosti operacije.</p>
+    </section>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+
+      <p>Neka je</p>
+
+      <div class="math-block">
+        \[
+        S=\mathbb Q\setminus\{2\}
+        \]
+      </div>
+
+      <p>i neka je operacija \(*\) definisana sa</p>
+
+      <div class="math-block">
+        \[
+        x*y=\frac{8-2x-2y+xy}{2},
+        \qquad x,y\in S.
+        \]
+      </div>
+
+      <p>
+        Ispitati da li je \((S,*)\) grupa. Da li je \((S,*)\)
+        Abelova grupa?
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Plan</h2>
+
+      <p>Proveravamo redom:</p>
+
+      <ol class="checklist">
+        <li>zatvorenost operacije na skupu \(S\);</li>
+        <li>asocijativnost direktnim računanjem;</li>
+        <li>neutralni element;</li>
+        <li>inverzni element svakog \(x\in S\);</li>
+        <li>komutativnost.</li>
+      </ol>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <h3>1. Zatvorenost</h3>
+
+      <p>
+        Za \(x,y\in S\) važi \(x,y\in\mathbb Q\), pa je očigledno
+      </p>
+
+      <div class="math-block">
+        \[
+        x*y=\frac{8-2x-2y+xy}{2}\in\mathbb Q.
+        \]
+      </div>
+
+      <p>
+        Ostaje da proverimo da rezultat ne može biti jednak broju \(2\).
+        Pretpostavimo suprotno:
+      </p>
+
+      <div class="math-block">
+        \[
+        \frac{8-2x-2y+xy}{2}=2.
+        \]
+      </div>
+
+      <p>Tada je</p>
+
+      <div class="math-block">
+        \[
+        8-2x-2y+xy=4,
+        \]
+        \[
+        xy-2x-2y+4=0,
+        \]
+        \[
+        (x-2)(y-2)=0.
+        \]
+      </div>
+
+      <p>
+        Odavde bi sledilo \(x=2\) ili \(y=2\), što je nemoguće jer su
+        \(x,y\in S\). Dakle,
+      </p>
+
+      <div class="math-block">
+        \[
+        x*y\neq 2,
+        \]
+      </div>
+
+      <p>pa je \(x*y\in S\). Operacija je zatvorena.</p>
+
+      <h3>2. Asocijativnost — direktno računanje</h3>
+
+      <p>Neka su \(x,y,z\in S\). Najpre računamo \((x*y)*z\):</p>
+
+      <div class="math-block">
+        \[
+        \begin{aligned}
+        (x*y)*z
+        &=
+        \frac{(x*y)z-2(x*y)-2z+8}{2}\\[2mm]
+        &=
+        \frac{
+        z(xy-2x-2y+8)
+        -2(xy-2x-2y+8)
+        -4z+16
+        }{4}\\[2mm]
+        &=
+        \frac{
+        xyz-2xy-2xz-2yz+4x+4y+4z
+        }{4}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Sada računamo \(x*(y*z)\):</p>
+
+      <div class="math-block">
+        \[
+        \begin{aligned}
+        x*(y*z)
+        &=
+        \frac{x(y*z)-2x-2(y*z)+8}{2}\\[2mm]
+        &=
+        \frac{
+        x(yz-2y-2z+8)
+        -4x
+        -2(yz-2y-2z+8)
+        +16
+        }{4}\\[2mm]
+        &=
+        \frac{
+        xyz-2xy-2xz-2yz+4x+4y+4z
+        }{4}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Prema tome,</p>
+
+      <div class="math-block">
+        \[
+        (x*y)*z=x*(y*z),
+        \]
+      </div>
+
+      <p>pa je operacija \(*\) asocijativna.</p>
+
+      <h3>3. Neutralni element</h3>
+
+      <p>
+        Neka je \(e\in S\) neutralni element. Za svaki \(x\in S\)
+        mora važiti
+      </p>
+
+      <div class="math-block">
+        \[
+        x*e=x.
+        \]
+      </div>
+
+      <p>Iz definicije operacije dobijamo</p>
+
+      <div class="math-block">
+        \[
+        \frac{8-2x-2e+xe}{2}=x.
+        \]
+      </div>
+
+      <p>Dalje je</p>
+
+      <div class="math-block">
+        \[
+        8-2x-2e+xe=2x,
+        \]
+        \[
+        e(x-2)=4x-8,
+        \]
+        \[
+        e(x-2)=4(x-2).
+        \]
+      </div>
+
+      <p>
+        Pošto je \(x\neq2\), možemo podeliti sa \(x-2\), pa dobijamo
+      </p>
+
+      <div class="math-block">
+        \[
+        e=4.
+        \]
+      </div>
+
+      <p>
+        Broj \(4\) pripada skupu \(S\). Proverimo sada i drugu stranu:
+      </p>
+
+      <div class="math-block">
+        \[
+        4*x
+        =
+        \frac{8-2\cdot4-2x+4x}{2}
+        =
+        \frac{2x}{2}
+        =
+        x.
+        \]
+      </div>
+
+      <p>Dakle, neutralni element je</p>
+
+      <div class="math-block">
+        \[
+        e=4.
+        \]
+      </div>
+
+      <h3>4. Inverzni element</h3>
+
+      <p>
+        Za dati \(x\in S\) tražimo \(y\in S\) takav da
+      </p>
+
+      <div class="math-block">
+        \[
+        x*y=4,
+        \]
+      </div>
+
+      <p>jer je \(4\) neutralni element. Imamo</p>
+
+      <div class="math-block">
+        \[
+        \frac{8-2x-2y+xy}{2}=4.
+        \]
+      </div>
+
+      <p>Odavde sledi</p>
+
+      <div class="math-block">
+        \[
+        8-2x-2y+xy=8,
+        \]
+        \[
+        xy-2x-2y=0,
+        \]
+        \[
+        y(x-2)=2x.
+        \]
+      </div>
+
+      <p>Pošto je \(x\neq2\), dobijamo</p>
+
+      <div class="math-block">
+        \[
+        y=\frac{2x}{x-2}.
+        \]
+      </div>
+
+      <p>
+        Ovaj broj je racionalan. Takođe ne može biti jednak broju \(2\),
+        jer bi iz
+      </p>
+
+      <div class="math-block">
+        \[
+        \frac{2x}{x-2}=2
+        \]
+      </div>
+
+      <p>sledilo</p>
+
+      <div class="math-block">
+        \[
+        2x=2x-4,
+        \]
+      </div>
+
+      <p>što je nemoguće. Dakle, \(y\in S\).</p>
+
+      <p>Provera druge strane:</p>
+
+      <div class="math-block">
+        \[
+        \begin{aligned}
+        y*x
+        &=
+        \frac{8-2y-2x+yx}{2}\\
+        &=
+        \frac{8-2x-2y+xy}{2}\\
+        &=4.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Prema tome,</p>
+
+      <div class="math-block">
+        \[
+        x^{-1}=\frac{2x}{x-2}.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Komutativnost</h2>
+
+      <p>Za \(x,y\in S\) važi</p>
+
+      <div class="math-block">
+        \[
+        \begin{aligned}
+        x*y
+        &=
+        \frac{8-2x-2y+xy}{2}\\[1mm]
+        &=
+        \frac{8-2y-2x+yx}{2}\\[1mm]
+        &=y*x.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Dakle, operacija \(*\) je komutativna.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+
+      <div class="result">
+        \[
+        \boxed{(S,*)\text{ je Abelova grupa.}}
+        \]
+      </div>
+    </section>
+
+    <footer class="footer">
+      Mathbrotherhood Powered by ChatGPT
+    </footer>
+
+  </main>
+</body>
+</html>
