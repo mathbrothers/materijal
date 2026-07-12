@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grupa na skupu Z × Z</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #202938;
+      --muted: #5c6678;
+      --border: #dfe6ef;
+      --task: #5b7cfa;
+      --idea: #9b6df0;
+      --solution: #22a06b;
+      --warning: #e79b25;
+      --answer: #d94f70;
+      --shadow: 0 10px 28px rgba(29, 43, 76, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(91,124,250,.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.72;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 42px auto;
+    }
+
+    .hero {
+      margin-bottom: 24px;
+      padding: 30px 34px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #17233f, #29426f);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,.82);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 26px 30px 26px 34px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.96);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .task-card { --accent: var(--task); }
+    .idea-card { --accent: var(--idea); }
+    .solution-card { --accent: var(--solution); }
+    .warning-card { --accent: var(--warning); }
+    .answer-card { --accent: var(--answer); }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+    }
+
+    .card h3 {
+      margin: 22px 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-radius: 13px;
+      background: #f7f9fc;
+      border: 1px solid #e7ecf3;
+      overflow-x: auto;
+    }
+
+    .checklist {
+      margin: 12px 0 0;
+      padding-left: 22px;
+    }
+
+    .checklist li {
+      margin: 7px 0;
+    }
+
+    .result {
+      padding: 18px;
+      border-radius: 14px;
+      background: #fff7f9;
+      border: 1px solid #f4ccd6;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 18px, 980px);
+        margin: 18px auto;
+      }
+
+      .hero,
+      .card {
+        padding: 22px 20px 22px 25px;
+        border-radius: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>Grupa na skupu \(\mathbb Z\times\mathbb Z\)</h1>
+      <p>Provera aksioma grupe i komutativnosti operacije.</p>
+    </section>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+
+      <p>Neka je</p>
+
+      <div class="math-block">
+        \[
+        G=\{(a,b)\mid a,b\in\mathbb Z\}
+        \]
+      </div>
+
+      <p>i neka je operacija \(*\) definisana sa</p>
+
+      <div class="math-block">
+        \[
+        (a,b)*(c,d)=\bigl(a+(-1)^b c,\ b+d\bigr).
+        \]
+      </div>
+
+      <p>
+        Ispitati da li je \((G,*)\) grupa i da li je operacija \(*\)
+        komutativna.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+
+      <p>
+        Da bi \((G,*)\) bila grupa, potrebno je proveriti:
+      </p>
+
+      <ol class="checklist">
+        <li>zatvorenost operacije;</li>
+        <li>asocijativnost;</li>
+        <li>postojanje neutralnog elementa;</li>
+        <li>postojanje inverznog elementa za svaki element iz \(G\).</li>
+      </ol>
+
+      <p>
+        Posle toga komutativnost proveravamo poređenjem izraza
+        \((a,b)*(c,d)\) i \((c,d)*(a,b)\).
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <h3>1. Zatvorenost</h3>
+
+      <p>
+        Ako su \(a,b,c,d\in\mathbb Z\), onda je i
+        \((-1)^b\in\{-1,1\}\), pa važi
+      </p>
+
+      <div class="math-block">
+        \[
+        a+(-1)^b c\in\mathbb Z,
+        \qquad
+        b+d\in\mathbb Z.
+        \]
+      </div>
+
+      <p>
+        Zato je \((a,b)*(c,d)\in G\), pa je operacija zatvorena na skupu
+        \(G\).
+      </p>
+
+      <h3>2. Asocijativnost</h3>
+
+      <p>Neka su \((a,b),(c,d),(e,f)\in G\). Sa jedne strane:</p>
+
+      <div class="math-block">
+        \[
+        \begin{aligned}
+        \bigl((a,b)*(c,d)\bigr)*(e,f)
+        &=
+        \bigl(a+(-1)^b c,\ b+d\bigr)*(e,f)\\[2mm]
+        &=
+        \bigl(a+(-1)^b c+(-1)^{b+d}e,\ b+d+f\bigr).
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Sa druge strane:</p>
+
+      <div class="math-block">
+        \[
+        \begin{aligned}
+        (a,b)*\bigl((c,d)*(e,f)\bigr)
+        &=
+        (a,b)*\bigl(c+(-1)^d e,\ d+f\bigr)\\[2mm]
+        &=
+        \bigl(a+(-1)^b\bigl(c+(-1)^d e\bigr),\ b+d+f\bigr)\\[2mm]
+        &=
+        \bigl(a+(-1)^b c+(-1)^{b+d}e,\ b+d+f\bigr).
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Dobijeni uređeni parovi su jednaki, pa je operacija
+        \(*\) asocijativna.
+      </p>
+
+      <h3>3. Neutralni element</h3>
+
+      <p>
+        Neka je \((e,f)\in G\) neutralni element. Tada za svaki
+        \((a,b)\in G\) mora važiti
+      </p>
+
+      <div class="math-block">
+        \[
+        (a,b)*(e,f)=(a,b).
+        \]
+      </div>
+
+      <p>Iz definicije operacije dobijamo</p>
+
+      <div class="math-block">
+        \[
+        \bigl(a+(-1)^b e,\ b+f\bigr)=(a,b).
+        \]
+      </div>
+
+      <p>Poređenjem odgovarajućih koordinata sledi</p>
+
+      <div class="math-block">
+        \[
+        a+(-1)^b e=a
+        \quad\Longrightarrow\quad
+        (-1)^b e=0
+        \quad\Longrightarrow\quad
+        e=0,
+        \]
+        \[
+        b+f=b
+        \quad\Longrightarrow\quad
+        f=0.
+        \]
+      </div>
+
+      <p>Dakle, jedini kandidat za neutralni element je</p>
+
+      <div class="math-block">
+        \[
+        (e,f)=(0,0).
+        \]
+      </div>
+
+      <p>Proverimo sada i drugu stranu:</p>
+
+      <div class="math-block">
+        \[
+        (0,0)*(a,b)
+        =
+        \bigl(0+(-1)^0a,\ 0+b\bigr)
+        =
+        (a,b).
+        \]
+      </div>
+
+      <p>Prema tome, neutralni element je</p>
+
+      <div class="math-block">
+        \[
+        e_G=(0,0).
+        \]
+      </div>
+
+      <h3>4. Inverzni element</h3>
+
+      <p>
+        Za dati element \((a,b)\in G\) tražimo \((x,y)\in G\) takav da
+      </p>
+
+      <div class="math-block">
+        \[
+        (a,b)*(x,y)=(0,0).
+        \]
+      </div>
+
+      <p>Iz definicije operacije dobijamo</p>
+
+      <div class="math-block">
+        \[
+        \bigl(a+(-1)^b x,\ b+y\bigr)=(0,0).
+        \]
+      </div>
+
+      <p>Zato mora važiti</p>
+
+      <div class="math-block">
+        \[
+        b+y=0
+        \quad\Longrightarrow\quad
+        y=-b,
+        \]
+        \[
+        a+(-1)^b x=0
+        \quad\Longrightarrow\quad
+        x=-(-1)^b a.
+        \]
+      </div>
+
+      <p>Dakle, kandidat za inverzni element je</p>
+
+      <div class="math-block">
+        \[
+        (a,b)^{-1}
+        =
+        \bigl(-(-1)^b a,\ -b\bigr).
+        \]
+      </div>
+
+      <p>Provera sa leve strane:</p>
+
+      <div class="math-block">
+        \[
+        \begin{aligned}
+        \bigl(-(-1)^b a,-b\bigr)*(a,b)
+        &=
+        \Bigl(-(-1)^b a+(-1)^{-b}a,\ 0\Bigr)\\
+        &=(0,0),
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        jer je \((-1)^{-b}=(-1)^b\). Prema tome, svaki element ima
+        inverzni element.
+      </p>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Da li je operacija komutativna?</h2>
+
+      <p>Uopšteno važi</p>
+
+      <div class="math-block">
+        \[
+        (a,b)*(c,d)
+        =
+        \bigl(a+(-1)^b c,\ b+d\bigr),
+        \]
+        \[
+        (c,d)*(a,b)
+        =
+        \bigl(c+(-1)^d a,\ b+d\bigr).
+        \]
+      </div>
+
+      <p>
+        Prve koordinate ovih uređenih parova ne moraju biti jednake.
+        Dovoljan je jedan kontraprimer:
+      </p>
+
+      <div class="math-block">
+        \[
+        (0,1)*(1,0)
+        =
+        \bigl(0+(-1)^1\cdot1,\ 1\bigr)
+        =
+        (-1,1),
+        \]
+        \[
+        (1,0)*(0,1)
+        =
+        \bigl(1+(-1)^0\cdot0,\ 1\bigr)
+        =
+        (1,1).
+        \]
+      </div>
+
+      <p>
+        Pošto je \((-1,1)\neq(1,1)\), operacija \(*\) nije komutativna.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+
+      <div class="result">
+        \[
+        \boxed{(G,*)\text{ jeste grupa, ali nije komutativna grupa.}}
+        \]
+      </div>
+    </section>
+
+    <footer class="footer">
+      Mathbrotherhood Powered by ChatGPT
+    </footer>
+  </main>
+</body>
+</html>
