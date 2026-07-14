@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Zadatak 5</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+      overflow-x: auto;
+    }
+
+    .round-table {
+      position: relative;
+      width: 330px;
+      height: 330px;
+      margin: 24px auto;
+    }
+
+    .table-circle {
+      position: absolute;
+      inset: 72px;
+      border-radius: 50%;
+      background: #d5b28a;
+      border: 5px solid #9c724d;
+      box-shadow: inset 0 0 0 8px rgba(255,255,255,0.22);
+    }
+
+    .seat {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 48px;
+      height: 48px;
+      margin: -24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      border: 2px solid #bfd0e3;
+      background: #e8f0f8;
+      color: #315f8e;
+      transform:
+        rotate(var(--angle))
+        translateY(-142px)
+        rotate(calc(-1 * var(--angle)));
+    }
+
+    .empty-seat {
+      background: #fff7e8;
+      border: 2px dashed #d9aa61;
+      color: #9b6b26;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 11px;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .gap-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 18px 0;
+    }
+
+    .person-chip,
+    .gap-chip {
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .person-chip {
+      background: #e8f0f8;
+      border: 1px solid #bfd0e3;
+      color: #315f8e;
+    }
+
+    .gap-chip {
+      background: #fff7e8;
+      border: 1px dashed #d9aa61;
+      color: #9b6b26;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #286657;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+      .round-table {
+        transform: scale(0.82);
+        margin: 5px auto -20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Raspoređivanje oko okruglog stola – Zadatak 5</h1>
+    <div class="subtitle">Kružne permutacije i raspored praznih stolica</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Na koliko načina se \(n\) lica može razmestiti na:
+      </p>
+      <ul>
+        <li>\(n\) stolica,</li>
+        <li>\(n+m\) stolica</li>
+      </ul>
+      <p>
+        razmeštenih oko okruglog stola, ako se smatra da su razmeštanja
+        različita ako i samo ako je međusoban raspored različit, pri čemu se
+        u drugom slučaju uzima u obzir i raspored praznih stolica?
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Najvažnija ideja kod okruglog stola</h2>
+      <p>
+        Kod raspoređivanja u red važna je svaka pozicija. Kod okruglog stola
+        zajedničko okretanje svih osoba ne daje novi raspored.
+      </p>
+
+      <div class="round-table" aria-label="Primer kružnog rasporeda četiri osobe">
+        <div class="table-circle"></div>
+        <div class="seat" style="--angle: 0deg;">A</div>
+        <div class="seat" style="--angle: 90deg;">B</div>
+        <div class="seat" style="--angle: 180deg;">C</div>
+        <div class="seat" style="--angle: 270deg;">D</div>
+      </div>
+
+      <div class="mini-box">
+        Ako svi zajedno pređu za jedno mesto ulevo ili udesno, njihov
+        međusoban raspored ostaje isti. Zato jedan element možemo „zakucati“
+        na fiksno mesto.
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>1. \(n\) lica na \(n\) stolica</h2>
+      <p>
+        Jedno lice fiksiramo, a preostalih \(n-1\) lica raspoređujemo oko njega.
+      </p>
+
+      <div class="math-block">
+        \[
+        (n-1)!
+        \]
+      </div>
+
+      <p>
+        Zato je broj kružnih rasporeda:
+      </p>
+
+      <div class="answer">
+        \[
+        \boxed{(n-1)!}
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>2. \(n\) lica na \(n+m\) stolica</h2>
+      <p>
+        Sada imamo i \(m\) praznih stolica. Njihov raspored je važan, ali su
+        prazne stolice međusobno iste.
+      </p>
+
+      <p>
+        Najprirodnije je da postupimo u dva koraka:
+      </p>
+
+      <ol class="steps">
+        <li>najpre rasporedimo \(n\) osoba oko stola;</li>
+        <li>zatim rasporedimo \(m\) praznih stolica u razmake između osoba.</li>
+      </ol>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Korak 1: raspored osoba</h2>
+      <p>
+        Osobe možemo kružno rasporediti na:
+      </p>
+
+      <div class="math-block">
+        \[
+        (n-1)!
+        \]
+      </div>
+
+      <p>
+        načina.
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Korak 2: prazne stolice raspoređujemo u \(n\) razmaka</h2>
+
+      <div class="gap-row">
+        <span class="person-chip">A</span>
+        <span class="gap-chip">razmak 1</span>
+        <span class="person-chip">B</span>
+        <span class="gap-chip">razmak 2</span>
+        <span class="person-chip">C</span>
+        <span class="gap-chip">\(\cdots\)</span>
+        <span class="person-chip">A</span>
+      </div>
+
+      <p>
+        Između susednih osoba postoji ukupno \(n\) kružnih razmaka. U svaki
+        razmak može doći nula, jedna ili više praznih stolica.
+      </p>
+
+      <p>
+        Ako sa \(x_i\) označimo broj praznih stolica u \(i\)-tom razmaku,
+        treba da rešimo:
+      </p>
+
+      <div class="math-block">
+        \[
+        x_1+x_2+\cdots+x_n=m,
+        \qquad x_i\ge0.
+        \]
+      </div>
+
+      <p>
+        Broj nenegativnih celobrojnih rešenja ove jednačine je:
+      </p>
+
+      <div class="math-block">
+        \[
+        \binom{m+n-1}{n-1}.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Ukupan broj rasporeda</h2>
+      <p>
+        Množimo broj kružnih rasporeda osoba i broj rasporeda praznih stolica:
+      </p>
+
+      <div class="math-block">
+        \[
+        (n-1)!\binom{m+n-1}{n-1}.
+        \]
+      </div>
+
+      <p>
+        Sređivanjem dobijamo:
+      </p>
+
+      <div class="math-block">
+        \[
+        (n-1)!\cdot
+        \frac{(m+n-1)!}{(n-1)!\,m!}
+        =
+        \frac{(m+n-1)!}{m!}.
+        \]
+      </div>
+
+      <div class="answer">
+        \[
+        \boxed{\frac{(m+n-1)!}{m!}}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Brža kontrola rezultata</h2>
+      <p>
+        Možemo posmatrati \(n\) različitih osoba i \(m\) jednakih oznaka
+        „prazno“. Linearnih rasporeda ima
+        \[
+        \frac{(n+m)!}{m!}.
+        \]
+        Pošto zajednička rotacija kroz \(n+m\) mesta ne menja raspored,
+        delimo sa \(n+m\):
+      </p>
+
+      <div class="math-block">
+        \[
+        \frac{1}{n+m}\cdot\frac{(n+m)!}{m!}
+        =
+        \frac{(n+m-1)!}{m!}.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačni odgovori</h2>
+      <div class="answer">
+        \[
+        \boxed{\text{\(n\) lica na \(n\) stolica: }(n-1)!}
+        \]
+        \[
+        \boxed{\text{\(n\) lica na \(n+m\) stolica: }
+        \frac{(n+m-1)!}{m!}}
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
