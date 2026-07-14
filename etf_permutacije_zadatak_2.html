@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Permutacije, zadatak 2</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+      overflow-x: auto;
+    }
+
+    .patterns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(250px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .pattern {
+      padding: 17px 12px;
+      border-radius: 12px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .slots {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-bottom: 9px;
+    }
+
+    .slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 47px;
+      height: 47px;
+      border-radius: 10px;
+      background: #edf2f8;
+      border: 1px solid #d5dfeb;
+      color: #526277;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .fixed-one {
+      background: #e9f2fb;
+      border-color: #b9d1eb;
+      color: #32699d;
+    }
+
+    .fixed-n {
+      background: #f2eafb;
+      border-color: #d7c1ee;
+      color: #7750a4;
+    }
+
+    .pattern-caption {
+      color: #617187;
+      font-size: 0.94rem;
+    }
+
+    .count-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .count-box {
+      padding: 16px 12px;
+      border-radius: 12px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .count-box .big {
+      display: block;
+      margin-bottom: 4px;
+      color: #29415f;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .count-box .small {
+      color: #66758a;
+      font-size: 0.92rem;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 11px;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.42rem;
+      font-weight: 700;
+      color: #286657;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 720px) {
+      .patterns { grid-template-columns: 1fr; }
+      .count-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+      .slot { width: 39px; height: 39px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Permutacije – Zadatak 2</h1>
+    <div class="subtitle">Tačno \(r\) elemenata između brojeva \(1\) i \(n\)</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        U koliko se permutacija skupa
+        \[
+        \{1,2,\ldots,n\}
+        \]
+        između brojeva \(1\) i \(n\) nalazi tačno
+        \[
+        r\le n-2
+        \]
+        drugih brojeva?
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Prvo konkretan primer: \(n=5\), \(r=2\)</h2>
+      <p>
+        Posmatramo permutacije cifara
+        \[
+        1,2,3,4,5
+        \]
+        u kojima se između cifara \(1\) i \(5\) nalaze tačno dve druge cifre.
+      </p>
+
+      <p>
+        Ako su između njih tačno dve cifre, onda su \(1\) i \(5\)
+        udaljeni za tri mesta. Zato postoje samo sledeći oblici:
+      </p>
+
+      <div class="patterns">
+        <div class="pattern">
+          <div class="slots">
+            <span class="slot fixed-one">1</span>
+            <span class="slot">•</span>
+            <span class="slot">•</span>
+            <span class="slot fixed-n">5</span>
+            <span class="slot">•</span>
+          </div>
+          <div class="pattern-caption">\(1\) je pre \(5\)</div>
+        </div>
+
+        <div class="pattern">
+          <div class="slots">
+            <span class="slot fixed-n">5</span>
+            <span class="slot">•</span>
+            <span class="slot">•</span>
+            <span class="slot fixed-one">1</span>
+            <span class="slot">•</span>
+          </div>
+          <div class="pattern-caption">\(5\) je pre \(1\)</div>
+        </div>
+
+        <div class="pattern">
+          <div class="slots">
+            <span class="slot">•</span>
+            <span class="slot fixed-one">1</span>
+            <span class="slot">•</span>
+            <span class="slot">•</span>
+            <span class="slot fixed-n">5</span>
+          </div>
+          <div class="pattern-caption">\(1\) je pre \(5\)</div>
+        </div>
+
+        <div class="pattern">
+          <div class="slots">
+            <span class="slot">•</span>
+            <span class="slot fixed-n">5</span>
+            <span class="slot">•</span>
+            <span class="slot">•</span>
+            <span class="slot fixed-one">1</span>
+          </div>
+          <div class="pattern-caption">\(5\) je pre \(1\)</div>
+        </div>
+      </div>
+
+      <div class="mini-box">
+        Znakovi „•“ predstavljaju preostale cifre \(2,3,4\), koje možemo
+        proizvoljno rasporediti na tri prazna mesta.
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Brojanje u konkretnom primeru</h2>
+
+      <ol class="steps">
+        <li>
+          Par mesta na kojima stoje \(1\) i \(5\) može biti
+          \[
+          (1,4)\quad\text{ili}\quad(2,5),
+          \]
+          dakle imamo <strong>2 mogućnosti</strong>.
+        </li>
+        <li>
+          Na izabrana dva mesta možemo staviti \(1\) pa \(5\), ili \(5\) pa \(1\):
+          <strong>2 mogućnosti</strong>.
+        </li>
+        <li>
+          Preostale cifre \(2,3,4\) raspoređujemo na preostala mesta na
+          \[
+          3!=6
+          \]
+          načina.
+        </li>
+      </ol>
+
+      <div class="math-block">
+        \[
+        2\cdot2\cdot3!=2\cdot2\cdot6=24.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Opšti slučaj</h2>
+      <p>
+        Sada posmatramo skup
+        \[
+        \{1,2,\ldots,n\}.
+        \]
+        Između brojeva \(1\) i \(n\) treba da bude tačno \(r\) drugih brojeva.
+      </p>
+
+      <p>
+        To znači da se njihove pozicije razlikuju za
+        \[
+        r+1.
+        \]
+      </p>
+
+      <div class="math-block">
+        \[
+        \boxed{1\ \underbrace{\bullet\ \bullet\ \cdots\ \bullet}_{r\text{ mesta}}\ n}
+        \]
+      </div>
+
+      <p>
+        Ako je levi od brojeva \(1\) i \(n\) na poziciji \(k\), drugi mora
+        biti na poziciji
+        \[
+        k+r+1.
+        \]
+        Da ta pozicija ne bi prešla \(n\), mora važiti
+        \[
+        k+r+1\le n,
+        \]
+        odnosno
+        \[
+        k\le n-r-1.
+        \]
+      </p>
+
+      <p>
+        Zato levi kraj para može biti na pozicijama
+        \[
+        1,2,\ldots,n-r-1,
+        \]
+        pa par odgovarajućih pozicija biramo na
+        \[
+        n-r-1
+        \]
+        načina.
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Tri nezavisna izbora</h2>
+
+      <div class="count-row">
+        <div class="count-box">
+          <span class="big">\(n-r-1\)</span>
+          <span class="small">izbor para pozicija</span>
+        </div>
+
+        <div class="count-box">
+          <span class="big">\(2\)</span>
+          <span class="small">redosled brojeva \(1\) i \(n\)</span>
+        </div>
+
+        <div class="count-box">
+          <span class="big">\((n-2)!\)</span>
+          <span class="small">raspored ostalih elemenata</span>
+        </div>
+      </div>
+
+      <p>
+        Kada izaberemo mesta za \(1\) i \(n\), na njih možemo staviti:
+      </p>
+
+      <div class="math-block">
+        \[
+        1,\ldots,n
+        \qquad\text{ili}\qquad
+        n,\ldots,1,
+        \]
+      </div>
+
+      <p>
+        što daje faktor \(2\). Preostalih \(n-2\) elemenata možemo proizvoljno
+        rasporediti na preostala mesta, što daje faktor \((n-2)!\).
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Konačno rešenje</h2>
+
+      <div class="math-block">
+        \[
+        (n-r-1)\cdot2\cdot(n-2)!
+        \]
+      </div>
+
+      <div class="answer">
+        \[
+        \boxed{2(n-r-1)(n-2)!}
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Provera na konkretnom primeru</h2>
+      <p>
+        Za \(n=5\) i \(r=2\) opšta formula daje:
+      </p>
+
+      <div class="math-block">
+        \[
+        2(5-2-1)(5-2)!
+        =
+        2\cdot2\cdot3!
+        =
+        24,
+        \]
+      </div>
+
+      <p>
+        što se poklapa sa direktnim brojanjem četiri prikazana oblika.
+      </p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
