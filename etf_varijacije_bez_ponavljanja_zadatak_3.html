@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Varijacije bez ponavljanja, zadatak 3</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+      overflow-x: auto;
+    }
+
+    .tuple {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .tuple-part {
+      padding: 18px 12px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .part-a {
+      background: #e8f1fb;
+      border: 1px solid #bfd4eb;
+      color: #32699d;
+    }
+
+    .part-middle {
+      background: #f7fafc;
+      border: 1px solid #e0e7ef;
+      color: #56667a;
+    }
+
+    .part-b {
+      background: #f2eafb;
+      border: 1px solid #d7c1ee;
+      color: #7750a4;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 12px;
+    }
+
+    .count-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .count-box {
+      padding: 16px 12px;
+      border-radius: 12px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .count-box .big {
+      display: block;
+      margin-bottom: 5px;
+      color: #29415f;
+      font-size: 1.28rem;
+      font-weight: 800;
+    }
+
+    .count-box .small {
+      color: #66758a;
+      font-size: 0.92rem;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #286657;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 720px) {
+      .tuple,
+      .count-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Varijacije bez ponavljanja – Zadatak 3</h1>
+    <div class="subtitle">Uređena \((m+n)\)-torka sa ograničenjima na početku i kraju</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Dati su skupovi
+        \[
+        A=\{a_1,a_2,\ldots,a_m\},
+        \qquad
+        B=\{b_1,b_2,\ldots,b_n\}.
+        \]
+        Na koliko načina se može formirati uređena \((m+n)\)-torka sastavljena
+        od različitih elemenata, ako se na njenih prvih \(p\) mesta nalaze
+        elementi iz skupa \(A\), a na poslednjih \(q\) mesta elementi iz skupa
+        \(B\), pri čemu je \(p\le m,\ q\le n\)?
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Torka ima ukupno \(m+n\) mesta i koristi sve elemente skupova \(A\) i \(B\).
+        Podelićemo je na tri dela:
+      </p>
+
+      <div class="tuple">
+        <div class="tuple-part part-a">
+          prvih \(p\) mesta<br />
+          samo elementi iz \(A\)
+        </div>
+        <div class="tuple-part part-middle">
+          srednjih \(m+n-p-q\) mesta<br />
+          svi preostali elementi
+        </div>
+        <div class="tuple-part part-b">
+          poslednjih \(q\) mesta<br />
+          samo elementi iz \(B\)
+        </div>
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Kratak konkretan primer</h2>
+      <p>
+        Neka je
+        \[
+        m=4,\qquad n=3,\qquad p=2,\qquad q=1.
+        \]
+        Tada torka ima 7 mesta.
+      </p>
+
+      <ol class="steps">
+        <li>
+          Na prva dva mesta treba rasporediti dva različita elementa iz skupa
+          \(A\). To možemo uraditi na
+          \[
+          V_4^2=4\cdot3=12
+          \]
+          načina.
+        </li>
+        <li>
+          Na poslednje mesto biramo jedan element iz skupa \(B\):
+          \[
+          V_3^1=3
+          \]
+          načina.
+        </li>
+        <li>
+          Ostaju još \(7-2-1=4\) elementa, koje raspoređujemo na srednja četiri
+          mesta na
+          \[
+          4!
+          \]
+          načina.
+        </li>
+      </ol>
+
+      <div class="math-block">
+        \[
+        12\cdot3\cdot4!=864.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Opšti slučaj</h2>
+
+      <div class="count-row">
+        <div class="count-box">
+          <span class="big">\(V_m^p\)</span>
+          <span class="small">prvih \(p\) mesta</span>
+        </div>
+
+        <div class="count-box">
+          <span class="big">\(V_n^q\)</span>
+          <span class="small">poslednjih \(q\) mesta</span>
+        </div>
+
+        <div class="count-box">
+          <span class="big">\((m+n-p-q)!\)</span>
+          <span class="small">srednja mesta</span>
+        </div>
+      </div>
+
+      <p>
+        Za prvih \(p\) mesta biramo i uređujemo \(p\) različitih elemenata
+        iz skupa \(A\):
+      </p>
+
+      <div class="math-block">
+        \[
+        V_m^p=\frac{m!}{(m-p)!}.
+        \]
+      </div>
+
+      <p>
+        Za poslednjih \(q\) mesta biramo i uređujemo \(q\) različitih elemenata
+        iz skupa \(B\):
+      </p>
+
+      <div class="math-block">
+        \[
+        V_n^q=\frac{n!}{(n-q)!}.
+        \]
+      </div>
+
+      <p>
+        Nakon toga ostaje tačno
+        \[
+        m+n-p-q
+        \]
+        neiskorišćenih elemenata. Njih možemo proizvoljno rasporediti na
+        preostala srednja mesta:
+      </p>
+
+      <div class="math-block">
+        \[
+        (m+n-p-q)!.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Konačan rezultat</h2>
+
+      <div class="math-block">
+        \[
+        V_m^p\cdot V_n^q\cdot(m+n-p-q)!
+        \]
+      </div>
+
+      <div class="answer">
+        \[
+        \boxed{
+        \frac{m!}{(m-p)!}\,
+        \frac{n!}{(n-q)!}\,
+        (m+n-p-q)!
+        }
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Zašto ovde nema dodatnog biranja?</h2>
+      <p>
+        Kada popunimo prvih \(p\) i poslednjih \(q\) mesta, svi preostali
+        elementi moraju otići u sredinu. Zato ih više ne biramo — samo ih
+        permutujemo, pa dobijamo faktor \((m+n-p-q)!\).
+      </p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
