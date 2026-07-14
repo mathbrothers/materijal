@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Pitalica 1</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: #2f855a; }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .option {
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #f6f8fb;
+      border: 1px solid #e4e9f1;
+      font-weight: 600;
+    }
+
+    .flag {
+      width: min(100%, 520px);
+      margin: 20px auto 4px;
+      border: 3px solid #2d3748;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(45, 55, 72, 0.12);
+    }
+
+    .stripe {
+      height: 42px;
+    }
+
+    .stripe:nth-child(1) { background: #d95c5c; }
+    .stripe:nth-child(2) { background: #5687c7; }
+    .stripe:nth-child(3) { background: #f7f7f3; }
+    .stripe:nth-child(4) { background: #d95c5c; }
+    .stripe:nth-child(5) { background: #5687c7; }
+
+    .steps {
+      margin: 18px 0 0;
+      padding-left: 20px;
+    }
+
+    .steps li {
+      margin-bottom: 10px;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #1f6f4a;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong {
+      color: #1f3553;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .card {
+        padding: 20px 18px 20px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>ETF kombinatorika – Pitalica 1</h1>
+    <div class="subtitle">Osnovni princip prebrojavanja</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Zastava ima <strong>5 horizontalnih pruga</strong>, koje mogu biti
+        crvene, plave ili bele, pri čemu dve susedne pruge ne mogu biti iste boje.
+        Koliko ovakvih različitih zastava postoji?
+      </p>
+
+      <div class="options">
+        <div class="option">a) 49</div>
+        <div class="option">b) 50</div>
+        <div class="option">c) 48</div>
+        <div class="option">d) 20</div>
+        <div class="option">e) nijedan odgovor</div>
+      </div>
+
+      <div class="flag" aria-label="Primer dozvoljene zastave sa pet horizontalnih pruga">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Kako prepoznati ideju?</h2>
+      <p>
+        Zastavu pravimo <strong>prugu po prugu</strong>. Za svaku prugu pitamo:
+        koliko boja možemo da izaberemo?
+      </p>
+      <p>
+        Kada više uzastopnih izbora pravimo jedan za drugim, broj mogućnosti
+        dobijamo njihovim <strong>množenjem</strong>. To je osnovni princip
+        prebrojavanja.
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Analiza izbora</h2>
+      <ol class="steps">
+        <li>
+          Za <strong>prvu prugu</strong> nema nikakvog ograničenja, pa možemo
+          izabrati bilo koju od 3 boje.
+        </li>
+        <li>
+          Za <strong>drugu prugu</strong> ne smemo koristiti boju prve pruge.
+          Zato ostaju 2 mogućnosti.
+        </li>
+        <li>
+          Za <strong>treću prugu</strong> ne smemo koristiti boju druge pruge,
+          ali ponovo ostaju 2 mogućnosti.
+        </li>
+        <li>
+          Isto važi i za četvrtu i petu prugu: svaka ima po 2 moguća izbora.
+        </li>
+      </ol>
+
+      <div class="math-block">
+        \[
+        \underbrace{3}_{\text{prva pruga}}
+        \cdot
+        \underbrace{2}_{\text{druga}}
+        \cdot
+        \underbrace{2}_{\text{treća}}
+        \cdot
+        \underbrace{2}_{\text{četvrta}}
+        \cdot
+        \underbrace{2}_{\text{peta}}
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+      <p>
+        Prvu prugu biramo na 3 načina, a svaku od preostale 4 pruge na po
+        2 načina:
+      </p>
+
+      <div class="math-block">
+        \[
+        3\cdot 2^4
+        =
+        3\cdot 16
+        =
+        48.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važna napomena</h2>
+      <p>
+        Nije tačno da svaka od pet pruga ima po 3 mogućnosti. Posle izbora
+        prve pruge, kod svake naredne jedna boja je zabranjena — upravo ona
+        koju ima prethodna pruga.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="answer">
+        \[
+        \boxed{48}
+        \]
+        Tačan odgovor je <strong>c)</strong>.
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
