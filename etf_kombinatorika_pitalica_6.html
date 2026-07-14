@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Pitalica 6</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .option {
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #f6f8fb;
+      border: 1px solid #e4e9f1;
+      font-weight: 600;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+      overflow-x: auto;
+    }
+
+    .mini-example {
+      margin: 18px 0;
+      padding: 17px 18px;
+      border-radius: 12px;
+      background: #f7f3fc;
+      border: 1px solid #e3d7f2;
+    }
+
+    .tokens {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 15px 0;
+    }
+
+    .token {
+      min-width: 45px;
+      padding: 9px 12px;
+      border-radius: 50px;
+      background: #e8eef7;
+      border: 1px solid #cdd8e7;
+      text-align: center;
+      font-weight: 700;
+      color: #29415f;
+    }
+
+    .choice-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0 5px;
+    }
+
+    .choice {
+      padding: 8px 13px;
+      border-radius: 9px;
+      background: #e8f4ed;
+      border: 1px solid #bfdfcb;
+      color: #2d6848;
+      font-weight: 700;
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .compare-box {
+      padding: 16px;
+      border-radius: 12px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .compare-box h3 {
+      margin: 0 0 8px;
+      color: #29415f;
+      font-size: 1.05rem;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 11px;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #286657;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+      .compare { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>ETF kombinatorika – Pitalica 6</h1>
+    <div class="subtitle">Uvod u kombinacije bez ponavljanja</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Ako je \(A\) broj načina da se iz skupa od 13 kuglica izdvoji
+        podskup od 8 kuglica, onda je:
+      </p>
+
+      <div class="options">
+        <div class="option">a) \(A&lt;2013\)</div>
+        <div class="option">b) \(A=13^8\)</div>
+        <div class="option">c) \(A=8^{13}\)</div>
+        <div class="option">d) \(A&gt;8^{13}\)</div>
+        <div class="option">e) nijedan odgovor</div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Šta su kombinacije?</h2>
+      <p>
+        Kombinacije koristimo kada iz većeg skupa <strong>biramo nekoliko
+        elemenata</strong>, a njihov redosled nam nije važan.
+      </p>
+
+      <div class="mini-example">
+        <strong>Najmanji primer.</strong> Iz skupa
+        \[
+        \{a,b,c\}
+        \]
+        biramo dva elementa.
+        <div class="tokens">
+          <span class="token">a</span>
+          <span class="token">b</span>
+          <span class="token">c</span>
+        </div>
+        Mogući podskupovi su:
+        <div class="choice-list">
+          <span class="choice">\(\{a,b\}\)</span>
+          <span class="choice">\(\{a,c\}\)</span>
+          <span class="choice">\(\{b,c\}\)</span>
+        </div>
+        <p>
+          Ne računamo posebno \(\{b,a\}\), jer je
+          \[
+          \{a,b\}=\{b,a\}.
+          \]
+          Podskup nema „prvog“ i „drugog“ člana.
+        </p>
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Još jedan elementaran primer</h2>
+      <p>
+        Od četiri učenika \(A,B,C,D\) biramo dvoje za ekipu. Moguće ekipe su:
+      </p>
+
+      <div class="choice-list">
+        <span class="choice">AB</span>
+        <span class="choice">AC</span>
+        <span class="choice">AD</span>
+        <span class="choice">BC</span>
+        <span class="choice">BD</span>
+        <span class="choice">CD</span>
+      </div>
+
+      <div class="math-block">
+        \[
+        \binom{4}{2}=6.
+        \]
+      </div>
+
+      <div class="compare">
+        <div class="compare-box">
+          <h3>Kombinacija</h3>
+          <p>
+            Biramo Anu i Borisa za ekipu. Redosled nije važan:
+            <strong>AB i BA predstavljaju istu ekipu.</strong>
+          </p>
+        </div>
+        <div class="compare-box">
+          <h3>Nije kombinacija</h3>
+          <p>
+            Biramo predsednika i potpredsednika. Uloge su različite:
+            <strong>AB i BA nisu isti izbor.</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Formula</h2>
+      <p>
+        Broj načina da od \(n\) različitih elemenata izaberemo \(k\), bez
+        obzira na redosled, jeste:
+      </p>
+
+      <div class="math-block">
+        \[
+        \binom{n}{k}
+        =
+        \frac{n!}{k!(n-k)!}.
+        \]
+      </div>
+
+      <p>
+        Izgovaramo: „\(n\) nad \(k\)“.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Primena na zadatak</h2>
+      <p>
+        Iz 13 kuglica izdvajamo podskup od 8 kuglica. Redosled izabranih
+        kuglica nije važan, pa imamo kombinacije:
+      </p>
+
+      <div class="math-block">
+        \[
+        A=\binom{13}{8}.
+        \]
+      </div>
+
+      <p>
+        Možemo koristiti i simetriju kombinacija:
+      </p>
+
+      <div class="math-block">
+        \[
+        \binom{13}{8}=\binom{13}{5}.
+        \]
+      </div>
+
+      <p>
+        Zaista, izabrati 8 kuglica isto je što i odrediti kojih 5 kuglica
+        nismo izabrali.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Računanje</h2>
+
+      <div class="math-block">
+        \[
+        A
+        =
+        \binom{13}{5}
+        =
+        \frac{13!}{5!\,8!}
+        =
+        \frac{13\cdot12\cdot11\cdot10\cdot9}
+        {5\cdot4\cdot3\cdot2\cdot1}.
+        \]
+      </div>
+
+      <p>
+        Skraćujemo pre množenja:
+      </p>
+
+      <div class="math-block">
+        \[
+        \frac{12\cdot10}{5\cdot4\cdot3\cdot2}=1,
+        \]
+        pa ostaje
+        \[
+        A=13\cdot11\cdot9=1287.
+        \]
+      </div>
+
+      <div class="math-block">
+        \[
+        1287<2013.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Kako da prepoznaš kombinacije?</h2>
+      <p>
+        Ključne reči su: <strong>izabrati</strong>, <strong>izdvojiti</strong>,
+        <strong>formirati podskup</strong> ili <strong>odabrati grupu</strong>.
+        Zatim obavezno proveri: da li promena redosleda daje novi izbor?
+        Ako ne daje, radi se o kombinacijama.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="answer">
+        \[
+        \boxed{A=1287<2013}
+        \]
+        Tačan odgovor je <strong>a)</strong>.
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
