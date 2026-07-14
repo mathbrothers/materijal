@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Pitalica 2</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.16rem;
+    }
+
+    .operation-table {
+      margin: 24px auto 10px;
+      border-collapse: separate;
+      border-spacing: 4px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .operation-table th,
+    .operation-table td {
+      min-width: 74px;
+      height: 58px;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .operation-table th {
+      background: #e7edf6;
+      color: #29415f;
+    }
+
+    .operation-table .corner {
+      background: #dbe5f2;
+      font-size: 1.15rem;
+    }
+
+    .diag {
+      background: #fde8e8;
+      color: #9f3232;
+      border: 2px solid #efb7b7;
+    }
+
+    .free {
+      background: #e7f4ec;
+      color: #296244;
+      border: 2px solid #b8ddc6;
+    }
+
+    .copy {
+      background: #edf1f6;
+      color: #66758a;
+      border: 2px dashed #c8d1dc;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 18px;
+      margin-top: 14px;
+      color: #536176;
+      font-size: 0.95rem;
+    }
+
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      margin-right: 7px;
+      border-radius: 4px;
+      vertical-align: -2px;
+    }
+
+    .legend .l-diag::before { background: #fde8e8; border: 1px solid #efb7b7; }
+    .legend .l-free::before { background: #e7f4ec; border: 1px solid #b8ddc6; }
+    .legend .l-copy::before { background: #edf1f6; border: 1px dashed #c8d1dc; }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 12px;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #286657;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong {
+      color: #1f3553;
+    }
+
+    @media (max-width: 620px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .card {
+        padding: 20px 16px 20px 23px;
+      }
+
+      .operation-table th,
+      .operation-table td {
+        min-width: 54px;
+        height: 50px;
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>ETF kombinatorika – Pitalica 2</h1>
+    <div class="subtitle">Prebrojavanje komutativnih binarnih operacija</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Dat je skup \(A\) od tri elementa. Koliko ima komutativnih binarnih
+        operacija
+        \[
+        *:A^2\to A
+        \]
+        za koje važi
+        \[
+        (\forall x\in A)\qquad x*x\ne x?
+        \]
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Šta je binarna operacija?</h2>
+      <p>
+        Uzmimo
+        \[
+        A=\{a,b,c\}.
+        \]
+        Binarna operacija svakom uređenom paru elemenata iz skupa \(A\)
+        dodeljuje jedan element iz istog skupa.
+      </p>
+
+      <div class="mini-box">
+        Na primer, operacija mora da kaže šta su
+        \(a*a\), \(a*b\), \(b*c\), \(c*a\) i svi ostali parovi.
+        Najlakše je da sve te vrednosti prikažemo pomoću tabele.
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Tabela operacije</h2>
+
+      <table class="operation-table" aria-label="Tabela komutativne binarne operacije">
+        <tr>
+          <th class="corner">*</th>
+          <th>\(a\)</th>
+          <th>\(b\)</th>
+          <th>\(c\)</th>
+        </tr>
+        <tr>
+          <th>\(a\)</th>
+          <td class="diag">\(a*a\)</td>
+          <td class="free">\(a*b\)</td>
+          <td class="free">\(a*c\)</td>
+        </tr>
+        <tr>
+          <th>\(b\)</th>
+          <td class="copy">\(b*a\)</td>
+          <td class="diag">\(b*b\)</td>
+          <td class="free">\(b*c\)</td>
+        </tr>
+        <tr>
+          <th>\(c\)</th>
+          <td class="copy">\(c*a\)</td>
+          <td class="copy">\(c*b\)</td>
+          <td class="diag">\(c*c\)</td>
+        </tr>
+      </table>
+
+      <div class="legend">
+        <span class="l-diag">dijagonalna polja</span>
+        <span class="l-free">slobodni izbori iznad dijagonale</span>
+        <span class="l-copy">određeno komutativnošću</span>
+      </div>
+
+      <p>
+        Pošto je operacija <strong>komutativna</strong>, važi
+        \[
+        a*b=b*a,\qquad a*c=c*a,\qquad b*c=c*b.
+        \]
+        Zato ne biramo svih 9 polja nezavisno. Donja polovina tabele je već
+        određena gornjom polovinom.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Korak 1: dijagonalna polja</h2>
+      <p>
+        Uslov \(x*x\ne x\) odnosi se upravo na dijagonalna polja:
+      </p>
+
+      <ul class="steps">
+        <li>
+          \(a*a\ne a\), pa \(a*a\) može biti \(b\) ili \(c\):
+          <strong>2 mogućnosti</strong>.
+        </li>
+        <li>
+          \(b*b\ne b\), pa \(b*b\) može biti \(a\) ili \(c\):
+          <strong>2 mogućnosti</strong>.
+        </li>
+        <li>
+          \(c*c\ne c\), pa \(c*c\) može biti \(a\) ili \(b\):
+          <strong>2 mogućnosti</strong>.
+        </li>
+      </ul>
+
+      <div class="math-block">
+        \[
+        2\cdot 2\cdot 2=2^3
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Korak 2: polja van dijagonale</h2>
+      <p>
+        Zbog komutativnosti dovoljno je da izaberemo vrednosti za tri
+        neuređena para:
+      </p>
+
+      <div class="math-block">
+        \[
+        \{a,b\},\qquad \{a,c\},\qquad \{b,c\}.
+        \]
+      </div>
+
+      <p>
+        Za svaki od njih rezultat može biti bilo koji od tri elementa
+        skupa \(A\). Zato za svako od ova tri polja imamo po 3 mogućnosti:
+      </p>
+
+      <div class="math-block">
+        \[
+        3\cdot 3\cdot 3=3^3.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Ukupan broj operacija</h2>
+      <p>
+        Izbori na dijagonali i izbori van dijagonale međusobno su nezavisni,
+        pa njihove brojeve množimo:
+      </p>
+
+      <div class="math-block">
+        \[
+        2^3\cdot 3^3
+        =
+        8\cdot 27
+        =
+        216.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Gde se najčešće greši?</h2>
+      <p>
+        Nije dobro odmah napisati \(3^9\), jer komutativnost povezuje
+        simetrična polja tabele. Takođe, na dijagonali nemamo po 3 mogućnosti,
+        već po 2, pošto je vrednost \(x*x=x\) zabranjena.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="answer">
+        \[
+        \boxed{216}
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
