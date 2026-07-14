@@ -184,6 +184,89 @@
       color: #286657;
     }
 
+
+    .all-permutations {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .perm-group {
+      padding: 14px;
+      border-radius: 12px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .perm-group h3 {
+      margin: 0 0 10px;
+      text-align: center;
+      color: #29415f;
+      font-size: 1rem;
+    }
+
+    .perm-number {
+      margin: 7px 0;
+      padding: 7px 9px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      text-align: center;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .thousands { color: #b44b4b; }
+    .hundreds  { color: #3d6fa8; }
+    .tens      { color: #37805b; }
+    .units     { color: #7b5aa6; }
+
+    .place-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 16px;
+      margin: 12px 0 20px;
+      font-size: 0.94rem;
+      color: #5c6c80;
+    }
+
+    .place-legend span {
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .count-table {
+      width: 100%;
+      margin: 20px 0 8px;
+      border-collapse: separate;
+      border-spacing: 5px;
+      text-align: center;
+    }
+
+    .count-table th,
+    .count-table td {
+      padding: 11px 8px;
+      border-radius: 9px;
+    }
+
+    .count-table th {
+      background: #e8eef7;
+      color: #29415f;
+    }
+
+    .count-table td {
+      background: #edf7f1;
+      border: 1px solid #c7e3d1;
+      color: #2d6848;
+      font-weight: 700;
+    }
+
     footer {
       margin-top: 34px;
       padding: 18px;
@@ -197,6 +280,7 @@
     @media (max-width: 650px) {
       body { padding: 20px 10px; }
       .card { padding: 20px 16px 20px 23px; }
+      .all-permutations { grid-template-columns: 1fr 1fr; }
       .position-table { font-size: 0.88rem; }
       .position-table th,
       .position-table td { padding: 9px 5px; }
@@ -252,6 +336,76 @@
       <div class="mini-box">
         Nećemo ispisivati i sabirati svih 24 broja. Iskoristićemo pravilnost
         koja postoji u svim permutacijama.
+      </div>
+    </section>
+
+
+    <section class="card analysis-card">
+      <h2>Seljačka provera: ispišimo svih 24 broja</h2>
+      <p>
+        Pre nego što uvedemo kraći postupak, možemo sasvim konkretno da
+        ispišemo sve permutacije. Grupisaćemo ih prema cifri na mestu hiljada.
+      </p>
+
+      <div class="place-legend">
+        <span><strong class="thousands">crveno</strong> – hiljade</span>
+        <span><strong class="hundreds">plavo</strong> – stotine</span>
+        <span><strong class="tens">zeleno</strong> – desetice</span>
+        <span><strong class="units">ljubičasto</strong> – jedinice</span>
+      </div>
+
+      <div class="all-permutations">
+<div class="perm-group"><h3>Na mestu hiljada je 1</h3><div class="perm-number"><span class="thousands">1</span><span class="hundreds">2</span><span class="tens">3</span><span class="units">4</span></div><div class="perm-number"><span class="thousands">1</span><span class="hundreds">2</span><span class="tens">4</span><span class="units">3</span></div><div class="perm-number"><span class="thousands">1</span><span class="hundreds">3</span><span class="tens">2</span><span class="units">4</span></div><div class="perm-number"><span class="thousands">1</span><span class="hundreds">3</span><span class="tens">4</span><span class="units">2</span></div><div class="perm-number"><span class="thousands">1</span><span class="hundreds">4</span><span class="tens">2</span><span class="units">3</span></div><div class="perm-number"><span class="thousands">1</span><span class="hundreds">4</span><span class="tens">3</span><span class="units">2</span></div></div>
+<div class="perm-group"><h3>Na mestu hiljada je 2</h3><div class="perm-number"><span class="thousands">2</span><span class="hundreds">1</span><span class="tens">3</span><span class="units">4</span></div><div class="perm-number"><span class="thousands">2</span><span class="hundreds">1</span><span class="tens">4</span><span class="units">3</span></div><div class="perm-number"><span class="thousands">2</span><span class="hundreds">3</span><span class="tens">1</span><span class="units">4</span></div><div class="perm-number"><span class="thousands">2</span><span class="hundreds">3</span><span class="tens">4</span><span class="units">1</span></div><div class="perm-number"><span class="thousands">2</span><span class="hundreds">4</span><span class="tens">1</span><span class="units">3</span></div><div class="perm-number"><span class="thousands">2</span><span class="hundreds">4</span><span class="tens">3</span><span class="units">1</span></div></div>
+<div class="perm-group"><h3>Na mestu hiljada je 3</h3><div class="perm-number"><span class="thousands">3</span><span class="hundreds">1</span><span class="tens">2</span><span class="units">4</span></div><div class="perm-number"><span class="thousands">3</span><span class="hundreds">1</span><span class="tens">4</span><span class="units">2</span></div><div class="perm-number"><span class="thousands">3</span><span class="hundreds">2</span><span class="tens">1</span><span class="units">4</span></div><div class="perm-number"><span class="thousands">3</span><span class="hundreds">2</span><span class="tens">4</span><span class="units">1</span></div><div class="perm-number"><span class="thousands">3</span><span class="hundreds">4</span><span class="tens">1</span><span class="units">2</span></div><div class="perm-number"><span class="thousands">3</span><span class="hundreds">4</span><span class="tens">2</span><span class="units">1</span></div></div>
+<div class="perm-group"><h3>Na mestu hiljada je 4</h3><div class="perm-number"><span class="thousands">4</span><span class="hundreds">1</span><span class="tens">2</span><span class="units">3</span></div><div class="perm-number"><span class="thousands">4</span><span class="hundreds">1</span><span class="tens">3</span><span class="units">2</span></div><div class="perm-number"><span class="thousands">4</span><span class="hundreds">2</span><span class="tens">1</span><span class="units">3</span></div><div class="perm-number"><span class="thousands">4</span><span class="hundreds">2</span><span class="tens">3</span><span class="units">1</span></div><div class="perm-number"><span class="thousands">4</span><span class="hundreds">3</span><span class="tens">1</span><span class="units">2</span></div><div class="perm-number"><span class="thousands">4</span><span class="hundreds">3</span><span class="tens">2</span><span class="units">1</span></div></div>
+      </div>
+
+      <p>
+        Sada se bukvalno vidi:
+      </p>
+
+      <ul class="steps">
+        <li>
+          na mestu hiljada imamo 6 kečeva, 6 dvojki, 6 trojki i 6 četvorki;
+        </li>
+        <li>
+          kada pogledamo mesto stotina, opet imamo po 6 pojavljivanja svake cifre;
+        </li>
+        <li>
+          isto važi i za mesto desetica i za mesto jedinica.
+        </li>
+      </ul>
+
+      <table class="count-table">
+        <tr>
+          <th>Pozicija</th>
+          <th>Cifra 1</th>
+          <th>Cifra 2</th>
+          <th>Cifra 3</th>
+          <th>Cifra 4</th>
+        </tr>
+        <tr>
+          <th>Hiljade</th>
+          <td>6</td><td>6</td><td>6</td><td>6</td>
+        </tr>
+        <tr>
+          <th>Stotine</th>
+          <td>6</td><td>6</td><td>6</td><td>6</td>
+        </tr>
+        <tr>
+          <th>Desetice</th>
+          <td>6</td><td>6</td><td>6</td><td>6</td>
+        </tr>
+        <tr>
+          <th>Jedinice</th>
+          <td>6</td><td>6</td><td>6</td><td>6</td>
+        </tr>
+      </table>
+
+      <div class="mini-box">
+        Ovo je ista pravilnost koju kasnije zapisujemo kraće sa \(3!=6\).
+        Ali ovde se prvo vidi sopstvenim očima odakle ta šestica dolazi.
       </div>
     </section>
 
