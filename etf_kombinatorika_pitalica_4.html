@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Pitalica 4</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: #2f855a; }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .digit-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .digit-box {
+      padding: 15px 8px;
+      border-radius: 12px;
+      background: #f6f8fb;
+      border: 1px solid #e1e8f0;
+      text-align: center;
+    }
+
+    .digit-box .place {
+      display: block;
+      margin-bottom: 6px;
+      color: #617187;
+      font-size: 0.92rem;
+    }
+
+    .digit-box .choices {
+      font-weight: 700;
+      color: #1f3553;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+    }
+
+    .steps {
+      margin: 18px 0 0;
+      padding-left: 21px;
+    }
+
+    .steps li {
+      margin-bottom: 10px;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .option {
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #f6f8fb;
+      border: 1px solid #e4e9f1;
+      font-weight: 600;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #1f6f4a;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 700px) {
+      .digit-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 18px 20px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>ETF kombinatorika – Pitalica 4</h1>
+    <div class="subtitle">Isti tip zadatka: broj gradimo cifru po cifru</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Koliko ima četvorocifrenih brojeva kod kojih je
+        <strong>druga cifra veća od 6</strong>, a
+        <strong>treća cifra manja od 2</strong>?
+      </p>
+
+      <div class="options">
+        <div class="option">a) 600</div>
+        <div class="option">b) 540</div>
+        <div class="option">c) 486</div>
+        <div class="option">d) 360</div>
+        <div class="option">e) 270</div>
+        <div class="option">f) nijedan odgovor</div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        Ovo je isti princip kao u prethodnom zadatku. Četvorocifren broj
+        posmatramo kao četiri mesta:
+      </p>
+
+      <div class="math-block">
+        \[
+        \boxed{\_ \ \_ \ \_ \ \_}
+        \]
+      </div>
+
+      <p>
+        Za svaku cifru izbrojimo mogućnosti, a zatim ih pomnožimo.
+      </p>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Broj mogućnosti po mestima</h2>
+
+      <div class="digit-row">
+        <div class="digit-box">
+          <span class="place">1. cifra</span>
+          <span class="choices">9 mogućnosti</span>
+        </div>
+        <div class="digit-box">
+          <span class="place">2. cifra</span>
+          <span class="choices">3 mogućnosti</span>
+        </div>
+        <div class="digit-box">
+          <span class="place">3. cifra</span>
+          <span class="choices">2 mogućnosti</span>
+        </div>
+        <div class="digit-box">
+          <span class="place">4. cifra</span>
+          <span class="choices">10 mogućnosti</span>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <strong>Prva cifra</strong> ne sme biti 0, pa može biti
+          \(1,2,\ldots,9\): ukupno \(9\) mogućnosti.
+        </li>
+        <li>
+          <strong>Druga cifra</strong> mora biti veća od 6, pa može biti
+          \(7,8,9\): ukupno \(3\) mogućnosti.
+        </li>
+        <li>
+          <strong>Treća cifra</strong> mora biti manja od 2, pa može biti
+          \(0\) ili \(1\): ukupno \(2\) mogućnosti.
+        </li>
+        <li>
+          <strong>Četvrta cifra</strong> nema ograničenja, pa može biti bilo koja
+          cifra od 0 do 9: ukupno \(10\) mogućnosti.
+        </li>
+      </ol>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <div class="math-block">
+        \[
+        9\cdot 3\cdot 2\cdot 10
+        =
+        540.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Napomena</h2>
+      <p>
+        Treća cifra sme biti \(0\), jer se nalazi unutar broja. Nula je
+        zabranjena samo na prvom mestu četvorocifrenog broja.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="answer">
+        \[
+        \boxed{540}
+        \]
+        Tačan odgovor je <strong>b)</strong>.
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
