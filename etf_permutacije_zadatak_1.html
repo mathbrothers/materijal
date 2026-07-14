@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Permutacije, zadatak 1</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .task-list {
+      margin: 8px 0 0;
+      padding-left: 24px;
+    }
+
+    .task-list li {
+      margin-bottom: 12px;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+      overflow-x: auto;
+    }
+
+    .permutation-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 18px 0;
+    }
+
+    .number-chip {
+      padding: 8px 13px;
+      border-radius: 9px;
+      background: #eef3f9;
+      border: 1px solid #d7e0ec;
+      color: #29415f;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .position-table {
+      width: 100%;
+      margin: 20px 0 8px;
+      border-collapse: separate;
+      border-spacing: 5px;
+      text-align: center;
+    }
+
+    .position-table th,
+    .position-table td {
+      padding: 13px 10px;
+      border-radius: 10px;
+    }
+
+    .position-table th {
+      background: #e8eef7;
+      color: #29415f;
+    }
+
+    .position-table td {
+      background: #f7fafc;
+      border: 1px solid #e3e9f1;
+    }
+
+    .highlight {
+      background: #e8f4ed !important;
+      border-color: #bddfc9 !important;
+      font-weight: 700;
+      color: #2b6747;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 11px;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #286657;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+      .position-table { font-size: 0.88rem; }
+      .position-table th,
+      .position-table td { padding: 9px 5px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Permutacije – Zadatak 1</h1>
+    <div class="subtitle">Permutacije cifara broja 1234</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <ol class="task-list">
+        <li>
+          Odrediti zbir cifara svih brojeva koji se dobijaju permutacijama
+          cifara broja \(1234\).
+        </li>
+        <li>
+          Odrediti zbir svih brojeva koji se dobijaju permutacijama cifara
+          broja \(1234\).
+        </li>
+      </ol>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Koliko brojeva dobijamo?</h2>
+      <p>
+        Cifre \(1,2,3,4\) su različite. Svaki njihov raspored daje jedan
+        četvorocifren broj, pa je broj svih permutacija:
+      </p>
+
+      <div class="math-block">
+        \[
+        4! = 4\cdot3\cdot2\cdot1 = 24.
+        \]
+      </div>
+
+      <p>
+        Neki od tih brojeva su, na primer:
+      </p>
+
+      <div class="permutation-strip">
+        <span class="number-chip">1234</span>
+        <span class="number-chip">1243</span>
+        <span class="number-chip">1324</span>
+        <span class="number-chip">2134</span>
+        <span class="number-chip">3412</span>
+        <span class="number-chip">4321</span>
+      </div>
+
+      <div class="mini-box">
+        Nećemo ispisivati i sabirati svih 24 broja. Iskoristićemo pravilnost
+        koja postoji u svim permutacijama.
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>1. Zbir cifara svih dobijenih brojeva</h2>
+      <p>
+        Svaki dobijeni broj sadrži iste četiri cifre: \(1,2,3,4\).
+        Zato je zbir cifara svakog pojedinačnog broja:
+      </p>
+
+      <div class="math-block">
+        \[
+        1+2+3+4=10.
+        \]
+      </div>
+
+      <p>
+        Pošto postoji ukupno \(24\) takvih brojeva, ukupan zbir svih njihovih
+        cifara je:
+      </p>
+
+      <div class="math-block">
+        \[
+        24\cdot10=240.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>2. Kako sabrati sve brojeve bez njihovog ispisivanja?</h2>
+      <p>
+        Posmatrajmo samo jedno mesto, na primer mesto hiljada.
+      </p>
+
+      <p>
+        Ako na mestu hiljada fiksiramo cifru \(1\), preostale cifre
+        \(2,3,4\) možemo rasporediti na:
+      </p>
+
+      <div class="math-block">
+        \[
+        3!=6
+        \]
+      </div>
+
+      <p>
+        načina. Zato se cifra \(1\) pojavljuje tačno 6 puta na mestu hiljada.
+        Isto važi i za cifre \(2,3,4\).
+      </p>
+
+      <p>
+        Potpuno isto se događa i na mestu stotina, desetica i jedinica.
+      </p>
+
+      <table class="position-table">
+        <tr>
+          <th>Pozicija</th>
+          <th>Cifra 1</th>
+          <th>Cifra 2</th>
+          <th>Cifra 3</th>
+          <th>Cifra 4</th>
+        </tr>
+        <tr>
+          <th>Hiljade</th>
+          <td class="highlight">6 puta</td>
+          <td class="highlight">6 puta</td>
+          <td class="highlight">6 puta</td>
+          <td class="highlight">6 puta</td>
+        </tr>
+        <tr>
+          <th>Stotine</th>
+          <td>6 puta</td>
+          <td>6 puta</td>
+          <td>6 puta</td>
+          <td>6 puta</td>
+        </tr>
+        <tr>
+          <th>Desetice</th>
+          <td>6 puta</td>
+          <td>6 puta</td>
+          <td>6 puta</td>
+          <td>6 puta</td>
+        </tr>
+        <tr>
+          <th>Jedinice</th>
+          <td>6 puta</td>
+          <td>6 puta</td>
+          <td>6 puta</td>
+          <td>6 puta</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Doprinos svake pozicije</h2>
+      <p>
+        Zbir cifara koje se pojavljuju na mestu hiljada je:
+      </p>
+
+      <div class="math-block">
+        \[
+        6\cdot(1+2+3+4)=6\cdot10=60.
+        \]
+      </div>
+
+      <p>
+        Kako je reč o mestu hiljada, njegov doprinos zbiru brojeva je:
+      </p>
+
+      <div class="math-block">
+        \[
+        60\cdot1000.
+        \]
+      </div>
+
+      <p>
+        Na isti način dobijamo doprinose ostalih pozicija:
+      </p>
+
+      <div class="math-block">
+        \[
+        60\cdot1000+60\cdot100+60\cdot10+60\cdot1.
+        \]
+      </div>
+
+      <div class="math-block">
+        \[
+        60(1000+100+10+1)
+        =
+        60\cdot1111
+        =
+        66660.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Kraći zapis iste ideje</h2>
+
+      <div class="math-block">
+        \[
+        3!\,(1+2+3+4)(1000+100+10+1)
+        \]
+        \[
+        =6\cdot10\cdot1111
+        =66660.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važna razlika između dva pitanja</h2>
+      <p>
+        <strong>Zbir cifara svih brojeva</strong> i
+        <strong>zbir svih brojeva</strong> nisu isto.
+      </p>
+      <p>
+        U prvom pitanju gledamo samo cifre, pa svaki broj daje zbir \(10\).
+        U drugom pitanju važna je pozicija cifre: cifra na mestu hiljada
+        vredi hiljadu puta više nego ista cifra na mestu jedinica.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovori</h2>
+      <div class="answer">
+        \[
+        \boxed{\text{Zbir svih cifara}=240}
+        \]
+        \[
+        \boxed{\text{Zbir svih brojeva}=66660}
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
