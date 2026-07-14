@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Kombinacije bez ponavljanja, zadatak 4</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+      overflow-x: auto;
+    }
+
+    .subset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .subset {
+      padding: 12px 10px;
+      border-radius: 10px;
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      text-align: center;
+      font-weight: 700;
+      color: #29415f;
+    }
+
+    .choice-table {
+      width: 100%;
+      margin: 20px 0;
+      border-collapse: separate;
+      border-spacing: 5px;
+      text-align: center;
+    }
+
+    .choice-table th,
+    .choice-table td {
+      padding: 12px 9px;
+      border-radius: 10px;
+    }
+
+    .choice-table th {
+      background: #e8eef7;
+      color: #29415f;
+    }
+
+    .choice-table td {
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+    }
+
+    .yes {
+      color: #2e7d52;
+      font-weight: 700;
+    }
+
+    .no {
+      color: #aa4949;
+      font-weight: 700;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 11px;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.42rem;
+      font-weight: 700;
+      color: #286657;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+      .choice-table { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Kombinacije bez ponavljanja – Zadatak 4</h1>
+    <div class="subtitle">Broj elemenata partitivnog skupa</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Odrediti broj elemenata partitivnog skupa \(n\)-točlanog skupa.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Šta je partitivni skup?</h2>
+      <p>
+        Partitivni skup skupa \(A\), u oznaci
+        \[
+        \mathcal P(A),
+        \]
+        jeste skup svih podskupova skupa \(A\).
+      </p>
+
+      <div class="mini-box">
+        U partitivni skup ulaze i prazan skup \(\varnothing\), i ceo skup \(A\).
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Najpre mali primer</h2>
+      <p>
+        Neka je
+        \[
+        A=\{a,b,c\}.
+        \]
+        Tada su svi njegovi podskupovi:
+      </p>
+
+      <div class="subset-grid">
+        <div class="subset">\(\varnothing\)</div>
+        <div class="subset">\(\{a\}\)</div>
+        <div class="subset">\(\{b\}\)</div>
+        <div class="subset">\(\{c\}\)</div>
+        <div class="subset">\(\{a,b\}\)</div>
+        <div class="subset">\(\{a,c\}\)</div>
+        <div class="subset">\(\{b,c\}\)</div>
+        <div class="subset">\(\{a,b,c\}\)</div>
+      </div>
+
+      <p>
+        Ukupno ih ima
+        \[
+        8=2^3.
+        \]
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Najjednostavnija logika: svaki element ima dva izbora</h2>
+      <p>
+        Kada pravimo neki podskup, za svaki element početnog skupa odlučujemo:
+      </p>
+
+      <div class="choice-table">
+        <table class="choice-table">
+          <tr>
+            <th>Element</th>
+            <th>Prvi izbor</th>
+            <th>Drugi izbor</th>
+          </tr>
+          <tr>
+            <td>\(a_1\)</td>
+            <td class="yes">ulazi u podskup</td>
+            <td class="no">ne ulazi</td>
+          </tr>
+          <tr>
+            <td>\(a_2\)</td>
+            <td class="yes">ulazi u podskup</td>
+            <td class="no">ne ulazi</td>
+          </tr>
+          <tr>
+            <td>\(\vdots\)</td>
+            <td class="yes">ulazi u podskup</td>
+            <td class="no">ne ulazi</td>
+          </tr>
+          <tr>
+            <td>\(a_n\)</td>
+            <td class="yes">ulazi u podskup</td>
+            <td class="no">ne ulazi</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>
+        Dakle, za svaki od \(n\) elemenata imamo po 2 nezavisne mogućnosti.
+        Po osnovnom principu prebrojavanja:
+      </p>
+
+      <div class="math-block">
+        \[
+        \underbrace{2\cdot2\cdot\ldots\cdot2}_{n\text{ faktora}}
+        =
+        2^n.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Drugo objašnjenje: preko kombinacija</h2>
+      <p>
+        Podskup može imati:
+      </p>
+
+      <ul class="steps">
+        <li>\(0\) elemenata: \(\binom n0\) podskupova;</li>
+        <li>\(1\) element: \(\binom n1\) podskupova;</li>
+        <li>\(2\) elementa: \(\binom n2\) podskupova;</li>
+        <li>\(\ldots\)</li>
+        <li>\(n\) elemenata: \(\binom nn\) podskupova.</li>
+      </ul>
+
+      <p>
+        Zato je ukupan broj svih podskupova:
+      </p>
+
+      <div class="math-block">
+        \[
+        \binom n0+\binom n1+\binom n2+\cdots+\binom nn.
+        \]
+      </div>
+
+      <p>
+        Po binomnoj formuli:
+      </p>
+
+      <div class="math-block">
+        \[
+        (1+1)^n
+        =
+        \binom n0+\binom n1+\cdots+\binom nn
+        =
+        2^n.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Gde učenici često pogreše?</h2>
+      <p>
+        Često zaborave da računaju i prazan skup i ceo skup. Oba su podskupovi,
+        pa zbir ide od
+        \[
+        \binom n0
+        \]
+        do
+        \[
+        \binom nn.
+        \]
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="answer">
+        \[
+        \boxed{|\mathcal P(A)|=2^n}
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
