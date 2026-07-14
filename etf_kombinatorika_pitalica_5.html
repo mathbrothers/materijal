@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETF kombinatorika – Pitalica 5</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      color: #1f3553;
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: #2f855a; }
+
+    .card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .shelf-wrap {
+      margin: 24px auto 8px;
+      max-width: 720px;
+    }
+
+    .shelf {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 5px;
+      padding: 12px 12px 7px;
+      border-bottom: 12px solid #8b5e3c;
+      border-radius: 8px;
+      background: #f8fafc;
+      box-shadow: inset 0 0 0 1px #e4e9f1;
+    }
+
+    .book {
+      width: 48px;
+      height: 112px;
+      border-radius: 5px 5px 2px 2px;
+      border: 2px solid rgba(32, 48, 67, 0.28);
+      box-shadow: inset 5px 0 rgba(255,255,255,0.18);
+    }
+
+    .green { background: #68a66f; }
+    .red { background: #cf6666; }
+    .yellow { background: #e4c85c; }
+    .blue { background: #5d86c7; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 18px;
+      margin-top: 15px;
+      color: #536176;
+      font-size: 0.95rem;
+    }
+
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      margin-right: 7px;
+      border-radius: 3px;
+      vertical-align: -2px;
+    }
+
+    .lg-green::before { background: #68a66f; }
+    .lg-red::before { background: #cf6666; }
+    .lg-yellow::before { background: #e4c85c; }
+    .lg-blue::before { background: #5d86c7; }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 11px;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .answer {
+      text-align: center;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #1f6f4a;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+      .book { width: 30px; height: 90px; }
+      .shelf { gap: 3px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>ETF kombinatorika – Pitalica 5</h1>
+    <div class="subtitle">Permutacije sa ponavljanjem</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>
+        Na koliko različitih načina možemo poslagati na policu 10 knjiga,
+        od kojih su 4 zelene, 3 crvene, 2 žute i 1 plava?
+      </p>
+
+      <div class="shelf-wrap">
+        <div class="shelf" aria-label="Primer rasporeda deset knjiga">
+          <div class="book green"></div>
+          <div class="book red"></div>
+          <div class="book yellow"></div>
+          <div class="book green"></div>
+          <div class="book blue"></div>
+          <div class="book red"></div>
+          <div class="book green"></div>
+          <div class="book yellow"></div>
+          <div class="book red"></div>
+          <div class="book green"></div>
+        </div>
+
+        <div class="legend">
+          <span class="lg-green">4 zelene</span>
+          <span class="lg-red">3 crvene</span>
+          <span class="lg-yellow">2 žute</span>
+          <span class="lg-blue">1 plava</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Kako prepoznati tip zadatka?</h2>
+      <p>
+        Redosled knjiga na polici je važan, pa je reč o
+        <strong>permutacijama</strong>.
+      </p>
+      <p>
+        Međutim, knjige iste boje međusobno se ne razlikuju. Zamena dve zelene
+        knjige ne daje novi raspored. Zato ovo nisu obične permutacije, već
+        <strong>permutacije sa ponavljanjem</strong>.
+      </p>
+
+      <div class="mini-box">
+        Imamo ukupno 10 mesta, ali se pojavljuju grupe jednakih elemenata:
+        4 zelena, 3 crvena, 2 žuta i 1 plava knjiga.
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>Zašto delimo faktorijelima?</h2>
+      <p>
+        Kada bi svih 10 knjiga bilo međusobno različito, mogli bismo ih
+        rasporediti na
+        \[
+        10!
+        \]
+        načina.
+      </p>
+
+      <p>
+        Ali među 4 zelene knjige postoji \(4!\) zamena koje ne menjaju raspored
+        boja. Isto važi za 3 crvene i 2 žute knjige.
+      </p>
+
+      <ul class="steps">
+        <li>zbog 4 jednake zelene knjige delimo sa \(4!\);</li>
+        <li>zbog 3 jednake crvene knjige delimo sa \(3!\);</li>
+        <li>zbog 2 jednake žute knjige delimo sa \(2!\);</li>
+        <li>za jednu plavu knjigu faktor \(1!\) ništa ne menja.</li>
+      </ul>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+      <p>
+        Koristimo formulu za permutacije sa ponavljanjem:
+      </p>
+
+      <div class="math-block">
+        \[
+        P_{10}^{4,3,2,1}
+        =
+        \frac{10!}{4!\,3!\,2!\,1!}.
+        \]
+      </div>
+
+      <div class="math-block">
+        \[
+        \frac{10!}{4!\,3!\,2!\,1!}
+        =
+        \frac{3628800}{24\cdot 6\cdot 2}
+        =
+        \frac{3628800}{288}
+        =
+        12600.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važna napomena</h2>
+      <p>
+        Rezultat \(10!\) bio bi tačan samo kada bi svih 10 knjiga bilo
+        međusobno različito. Ovde razlikujemo samo boje, pa zamena dve knjige
+        iste boje ne stvara novi raspored.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="answer">
+        \[
+        \boxed{12600}
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
