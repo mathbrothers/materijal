@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saobraćajni fakultet – Matematika 3 – Oktobar 2025 – Zadatak 3.2</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243247;
+      --muted: #64748b;
+      --blue: #4f7cac;
+      --green: #5e9b76;
+      --orange: #d99145;
+      --red: #c85c5c;
+      --purple: #8a6bb8;
+      --teal: #4d9488;
+      --white: #ffffff;
+      --shadow: 0 10px 28px rgba(33, 52, 79, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 18px;
+      background:
+        radial-gradient(circle at top left, #eaf1fb 0, transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: #1f3553;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+    }
+
+    .subtitle {
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 22px 0;
+      padding: 24px 26px 24px 30px;
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent, var(--blue));
+    }
+
+    .task-card { --accent: var(--blue); }
+    .idea-card { --accent: var(--purple); }
+    .analysis-card { --accent: var(--orange); }
+    .solution-card { --accent: var(--green); }
+    .warning-card { --accent: var(--red); }
+    .answer-card { --accent: var(--teal); }
+
+    .card h2 {
+      margin: 0 0 12px;
+      color: #263b59;
+      font-size: 1.3rem;
+    }
+
+    .math-block {
+      margin: 18px 0;
+      padding: 18px;
+      overflow-x: auto;
+      border-radius: 12px;
+      background: #f7fafc;
+      text-align: center;
+      font-size: 1.18rem;
+    }
+
+    .formula-box {
+      margin: 18px 0;
+      padding: 17px 18px;
+      border: 1px solid #d7e2ef;
+      border-radius: 12px;
+      background: #eef4fb;
+    }
+
+    .formula-box h3 {
+      margin: 0 0 8px;
+      color: #29415f;
+      font-size: 1.04rem;
+    }
+
+    .mini-box {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 5px solid #8a6bb8;
+      border-radius: 10px;
+      background: #f6f1fb;
+    }
+
+    .steps {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .steps li {
+      margin-bottom: 11px;
+    }
+
+    .answer {
+      text-align: center;
+      color: #286657;
+      font-size: 1.42rem;
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 18px;
+      text-align: center;
+      color: #708090;
+      font-size: 0.95rem;
+    }
+
+    strong { color: #1f3553; }
+
+    @media (max-width: 650px) {
+      body { padding: 20px 10px; }
+      .card { padding: 20px 16px 20px 23px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <h1>Saobraćajni fakultet – Matematika 3</h1>
+    <div class="subtitle">Oktobar 2025 · Zadatak 3.2 · Metoda neodređenih koeficijenata</div>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Rešiti diferencijalnu jednačinu</p>
+
+      <div class="math-block">
+        \[
+        y'''+y''+y'+y=\sin x+\cos x.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Plan rešavanja</h2>
+
+      <p>
+        Ovo je linearna nehomogena diferencijalna jednačina sa konstantnim
+        koeficijentima. Opšte rešenje pišemo u obliku
+      </p>
+
+      <div class="math-block">
+        \[
+        y=y_h+y_p,
+        \]
+      </div>
+
+      <p>gde je:</p>
+
+      <ul class="steps">
+        <li>\(y_h\) opšte rešenje odgovarajuće homogene jednačine;</li>
+        <li>\(y_p\) jedno partikularno rešenje nehomogene jednačine.</li>
+      </ul>
+    </section>
+
+    <section class="card solution-card">
+      <h2>1. Homogena jednačina</h2>
+
+      <div class="math-block">
+        \[
+        y'''+y''+y'+y=0.
+        \]
+      </div>
+
+      <p>Karakteristična jednačina je</p>
+
+      <div class="math-block">
+        \[
+        \lambda^3+\lambda^2+\lambda+1=0.
+        \]
+      </div>
+
+      <p>Grupisanjem:</p>
+
+      <div class="math-block">
+        \[
+        \lambda^2(\lambda+1)+(\lambda+1)=0,
+        \]
+        \[
+        (\lambda+1)(\lambda^2+1)=0.
+        \]
+      </div>
+
+      <p>Koreni su</p>
+
+      <div class="math-block">
+        \[
+        \lambda_1=-1,
+        \qquad
+        \lambda_{2,3}=\pm i.
+        \]
+      </div>
+
+      <p>Zato je</p>
+
+      <div class="math-block">
+        \[
+        y_h=C_1e^{-x}+C_2\cos x+C_3\sin x.
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>2. Izbor oblika za \(y_p\)</h2>
+
+      <p>
+        Pošto je desna strana
+        \[
+        \sin x+\cos x,
+        \]
+        prvi prirodan pokušaj bio bi
+      </p>
+
+      <div class="math-block">
+        \[
+        y_p=A\cos x+B\sin x.
+        \]
+      </div>
+
+      <p>
+        Međutim, \(\cos x\) i \(\sin x\) već se nalaze u homogenom rešenju
+        \(y_h\). Zato bi ovaj pokušaj pripadao homogenom delu i ne bi mogao da
+        proizvede desnu stranu \(\sin x+\cos x\).
+      </p>
+
+      <div class="mini-box">
+        Ovo je <strong>rezonancija</strong>. Kada se predloženi oblik za
+        partikularno rešenje već nalazi u \(y_h\), množimo ceo pokušaj sa \(x\).
+      </div>
+
+      <p>Zato uzimamo</p>
+
+      <div class="math-block">
+        \[
+        \boxed{y_p=x(A\cos x+B\sin x)}.
+        \]
+      </div>
+
+      <div class="formula-box">
+        <h3>Pravilo</h3>
+        Ako je odgovarajući koren karakteristične jednačine jednostruk,
+        množimo pokušaj sa \(x\). Da je koren bio dvostruk, množili bismo sa
+        \(x^2\), i tako dalje.
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>3. Izvodi partikularnog rešenja</h2>
+
+      <p>Za</p>
+
+      <div class="math-block">
+        \[
+        y_p=x(A\cos x+B\sin x)
+        \]
+      </div>
+
+      <p>dobijamo</p>
+
+      <div class="math-block">
+        \[
+        y_p'
+        =
+        A\cos x+B\sin x
+        +x(-A\sin x+B\cos x),
+        \]
+      </div>
+
+      <div class="math-block">
+        \[
+        y_p''
+        =
+        -2A\sin x+2B\cos x
+        -x(A\cos x+B\sin x),
+        \]
+      </div>
+
+      <div class="math-block">
+        \[
+        y_p'''
+        =
+        -3A\cos x-3B\sin x
+        +x(A\sin x-B\cos x).
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>4. Uvrštavanje i određivanje \(A\) i \(B\)</h2>
+
+      <p>Uvrštavanjem u levu stranu jednačine dobijamo</p>
+
+      <div class="math-block">
+        \[
+        y_p'''+y_p''+y_p'+y_p
+        =
+        (-2A-2B)\sin x+(-2A+2B)\cos x.
+        \]
+      </div>
+
+      <p>To mora biti jednako</p>
+
+      <div class="math-block">
+        \[
+        \sin x+\cos x.
+        \]
+      </div>
+
+      <p>Poređenjem koeficijenata uz \(\sin x\) i \(\cos x\):</p>
+
+      <div class="math-block">
+        \[
+        \begin{cases}
+        -2A-2B=1,\\
+        -2A+2B=1.
+        \end{cases}
+        \]
+      </div>
+
+      <p>Sabiranjem jednačina:</p>
+
+      <div class="math-block">
+        \[
+        -4A=2,
+        \qquad
+        A=-\frac12.
+        \]
+      </div>
+
+      <p>Zatim je</p>
+
+      <div class="math-block">
+        \[
+        B=0.
+        \]
+      </div>
+
+      <p>Prema tome,</p>
+
+      <div class="math-block">
+        \[
+        y_p=-\frac{x}{2}\cos x.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Opšte rešenje</h2>
+
+      <div class="answer">
+        \[
+        \boxed{
+        y(x)
+        =
+        C_1e^{-x}
+        +C_2\cos x
+        +C_3\sin x
+        -\frac{x}{2}\cos x
+        }
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Zašto baš množimo sa \(x\)?</h2>
+
+      <p>
+        Operator leve strane poništava svaku funkciju oblika
+        \[
+        A\cos x+B\sin x,
+        \]
+        jer su \(\cos x\) i \(\sin x\) rešenja homogene jednačine.
+      </p>
+
+      <p>
+        Množenjem sa \(x\) izlazimo iz prostora homogenih rešenja i dobijamo
+        oblik koji može da proizvede članove \(\sin x\) i \(\cos x\) na desnoj
+        strani.
+      </p>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
