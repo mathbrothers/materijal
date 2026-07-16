@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Kompleksne jednačine — algebarski oblik</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #243043;
+      --muted: #667085;
+      --task: #4f7cac;
+      --idea: #9b59b6;
+      --analysis: #e9a23b;
+      --solution: #2a9d8f;
+      --warning: #d97706;
+      --answer: #e76f51;
+      --white: #ffffff;
+      --border: #e4eaf2;
+      --shadow: 0 10px 28px rgba(27, 44, 73, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(79, 124, 172, 0.11), transparent 32%),
+        var(--bg);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.72;
+    }
+
+    .container {
+      width: min(1000px, calc(100% - 32px));
+      margin: 40px auto;
+    }
+
+    .hero {
+      padding: 34px 38px;
+      margin-bottom: 26px;
+      color: white;
+      background: linear-gradient(135deg, #274c77, #4f7cac);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.55rem);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      opacity: 0.93;
+      font-size: 1.05rem;
+    }
+
+    .card {
+      margin: 22px 0;
+      padding: 25px 28px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 7px solid;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .task-card { border-left-color: var(--task); }
+    .idea-card { border-left-color: var(--idea); }
+    .analysis-card { border-left-color: var(--analysis); }
+    .solution-card { border-left-color: var(--solution); }
+    .warning-card {
+      border-left-color: var(--warning);
+      background: #fffaf1;
+    }
+    .answer-card {
+      border-left-color: var(--answer);
+      background: #fffaf7;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1.32rem;
+    }
+
+    .part-title {
+      display: inline-block;
+      margin: 6px 0 14px;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: #1f4b6e;
+      background: #eaf2fb;
+    }
+
+    .formula-box {
+      margin: 16px 0;
+      padding: 15px 18px;
+      overflow-x: auto;
+      background: #f7f9fc;
+      border: 1px solid #e2e8f0;
+      border-radius: 13px;
+    }
+
+    .step {
+      margin: 14px 0 30px;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .final-box {
+      margin-top: 16px;
+      padding: 18px;
+      text-align: center;
+      background: white;
+      border: 1px solid #f0d9cf;
+      border-radius: 14px;
+      overflow-x: auto;
+    }
+
+    footer {
+      padding: 24px 8px 12px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 650px) {
+      .container {
+        width: min(100% - 20px, 1000px);
+        margin: 20px auto;
+      }
+
+      .hero,
+      .card {
+        padding: 22px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <section class="hero">
+      <h1>Kompleksne jednačine u algebarskom obliku</h1>
+      <p>Matematika 1 — Saobraćajni fakultet</p>
+    </section>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+
+      <p>Rešiti jednačine</p>
+
+      <div class="formula-box">
+        \[
+        w^2=-2\sqrt2-2\sqrt2\,i
+        \]
+        \[
+        z^4=\left(-2\sqrt3+2i\right)^2
+        \]
+      </div>
+
+      <p>
+        i rešenja prikazati u <strong>algebarskom obliku</strong>, bez korišćenja
+        trigonometrijskih funkcija.
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+
+      <p>
+        Za kvadratnu kompleksnu jednačinu stavimo
+        \[
+        w=x+iy,
+        \]
+        kvadriramo i izjednačimo realni i imaginarni deo.
+      </p>
+
+      <p>
+        Kod druge jednačine najpre koristimo razliku kvadrata:
+      </p>
+
+      <div class="formula-box">
+        \[
+        z^4-a^2=(z^2-a)(z^2+a),
+        \qquad a=-2\sqrt3+2i.
+        \]
+      </div>
+
+      <p>
+        Tako se jednačina četvrtog stepena svodi na dve kvadratne kompleksne
+        jednačine.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <div class="step">
+        <div class="part-title">1. Jednačina za \(w\)</div>
+
+        <p>Neka je</p>
+
+        <div class="formula-box">
+          \[
+          w=x+iy.
+          \]
+        </div>
+
+        <p>Tada je</p>
+
+        <div class="formula-box">
+          \[
+          w^2=(x+iy)^2=x^2-y^2+2xy\,i.
+          \]
+        </div>
+
+        <p>
+          Poređenjem realnog i imaginarnog dela sa
+          \[
+          -2\sqrt2-2\sqrt2\,i
+          \]
+          dobijamo sistem
+        </p>
+
+        <div class="formula-box">
+          \[
+          \begin{cases}
+          x^2-y^2=-2\sqrt2,\\
+          2xy=-2\sqrt2.
+          \end{cases}
+          \]
+        </div>
+
+        <p>Odavde je</p>
+
+        <div class="formula-box">
+          \[
+          xy=-\sqrt2.
+          \]
+        </div>
+
+        <p>
+          Kvadriranjem i sabiranjem realnog i imaginarnog dela dobijamo:
+        </p>
+
+        <div class="formula-box">
+          \[
+          (x^2-y^2)^2+(2xy)^2
+          =
+          \left(-2\sqrt2\right)^2+\left(-2\sqrt2\right)^2.
+          \]
+          \[
+          (x^2+y^2)^2=16.
+          \]
+        </div>
+
+        <p>Pošto je \(x^2+y^2\ge 0\), sledi</p>
+
+        <div class="formula-box">
+          \[
+          x^2+y^2=4.
+          \]
+        </div>
+
+        <p>Sada sabiramo i oduzimamo dobijene jednakosti:</p>
+
+        <div class="formula-box">
+          \[
+          2x^2=(x^2+y^2)+(x^2-y^2)=4-2\sqrt2,
+          \]
+          \[
+          x^2=2-\sqrt2,
+          \]
+          \[
+          2y^2=(x^2+y^2)-(x^2-y^2)=4+2\sqrt2,
+          \]
+          \[
+          y^2=2+\sqrt2.
+          \]
+        </div>
+
+        <p>
+          Kako je \(xy=-\sqrt2<0\), brojevi \(x\) i \(y\) imaju suprotne
+          znakove. Zato su rešenja
+        </p>
+
+        <div class="final-box">
+          \[
+          \boxed{
+          w_1=\sqrt{2-\sqrt2}-i\sqrt{2+\sqrt2}
+          }
+          \]
+          \[
+          \boxed{
+          w_2=-\sqrt{2-\sqrt2}+i\sqrt{2+\sqrt2}
+          }
+          \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="part-title">2. Jednačina za \(z\)</div>
+
+        <p>Označimo</p>
+
+        <div class="formula-box">
+          \[
+          a=-2\sqrt3+2i.
+          \]
+        </div>
+
+        <p>Tada je data jednačina</p>
+
+        <div class="formula-box">
+          \[
+          z^4=a^2.
+          \]
+        </div>
+
+        <p>Koristimo razliku kvadrata:</p>
+
+        <div class="formula-box">
+          \[
+          z^4-a^2=0,
+          \]
+          \[
+          (z^2-a)(z^2+a)=0.
+          \]
+        </div>
+
+        <p>Prema tome, imamo dva slučaja:</p>
+
+        <div class="formula-box">
+          \[
+          z^2=a
+          \qquad\text{ili}\qquad
+          z^2=-a.
+          \]
+        </div>
+
+        <div class="part-title">Prvi slučaj: \(z^2=-2\sqrt3+2i\)</div>
+
+        <p>Neka je \(z=x+iy\). Tada dobijamo sistem</p>
+
+        <div class="formula-box">
+          \[
+          \begin{cases}
+          x^2-y^2=-2\sqrt3,\\
+          2xy=2.
+          \end{cases}
+          \]
+        </div>
+
+        <p>Dakle,</p>
+
+        <div class="formula-box">
+          \[
+          xy=1.
+          \]
+        </div>
+
+        <p>Dalje,</p>
+
+        <div class="formula-box">
+          \[
+          (x^2+y^2)^2
+          =
+          \left(-2\sqrt3\right)^2+2^2
+          =16,
+          \]
+          \[
+          x^2+y^2=4.
+          \]
+        </div>
+
+        <p>Zato je</p>
+
+        <div class="formula-box">
+          \[
+          x^2=\frac{4-2\sqrt3}{2}=2-\sqrt3,
+          \]
+          \[
+          y^2=\frac{4+2\sqrt3}{2}=2+\sqrt3.
+          \]
+        </div>
+
+        <p>Pošto je \(xy>0\), brojevi \(x\) i \(y\) imaju isti znak:</p>
+
+        <div class="formula-box">
+          \[
+          z=\pm\left(\sqrt{2-\sqrt3}
+          +i\sqrt{2+\sqrt3}\right).
+          \]
+        </div>
+
+        <p>
+          Radikale možemo zapisati i u pogodnijem obliku:
+        </p>
+
+        <div class="formula-box">
+          \[
+          \sqrt{2-\sqrt3}=\frac{\sqrt6-\sqrt2}{2},
+          \qquad
+          \sqrt{2+\sqrt3}=\frac{\sqrt6+\sqrt2}{2}.
+          \]
+        </div>
+
+        <div class="part-title">Drugi slučaj: \(z^2=2\sqrt3-2i\)</div>
+
+        <p>Dobijamo sistem</p>
+
+        <div class="formula-box">
+          \[
+          \begin{cases}
+          x^2-y^2=2\sqrt3,\\
+          2xy=-2.
+          \end{cases}
+          \]
+        </div>
+
+        <p>Dakle,</p>
+
+        <div class="formula-box">
+          \[
+          xy=-1,
+          \qquad
+          x^2+y^2=4.
+          \]
+        </div>
+
+        <p>Otuda sledi</p>
+
+        <div class="formula-box">
+          \[
+          x^2=2+\sqrt3,
+          \qquad
+          y^2=2-\sqrt3.
+          \]
+        </div>
+
+        <p>
+          Kako je \(xy<0\), brojevi \(x\) i \(y\) imaju suprotne znakove:
+        </p>
+
+        <div class="formula-box">
+          \[
+          z=\pm\left(\sqrt{2+\sqrt3}
+          -i\sqrt{2-\sqrt3}\right).
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+
+      <p>Rešenja prve jednačine su</p>
+
+      <div class="final-box">
+        \[
+        \boxed{
+        w_{1,2}
+        =
+        \pm\left(
+        \sqrt{2-\sqrt2}
+        -i\sqrt{2+\sqrt2}
+        \right)
+        }
+        \]
+      </div>
+
+      <p class="muted">
+        Znak \(\pm\) množi ceo kompleksan broj.
+      </p>
+
+      <p>Rešenja druge jednačine su</p>
+
+      <div class="final-box">
+        \[
+        \boxed{
+        z_{1,2}
+        =
+        \pm\left(
+        \frac{\sqrt6-\sqrt2}{2}
+        +
+        i\frac{\sqrt6+\sqrt2}{2}
+        \right)
+        }
+        \]
+        \[
+        \boxed{
+        z_{3,4}
+        =
+        \pm\left(
+        \frac{\sqrt6+\sqrt2}{2}
+        -
+        i\frac{\sqrt6-\sqrt2}{2}
+        \right)
+        }
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+
+  </main>
+</body>
+</html>
