@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limes 2 — racionalizacija i osnovni eksponencijalni limes</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg:#f4f7fb;
+      --text:#243043;
+      --muted:#667085;
+      --task:#4f7cac;
+      --idea:#9b59b6;
+      --solution:#2a9d8f;
+      --warning:#d97706;
+      --answer:#e76f51;
+      --white:#ffffff;
+      --border:#e4eaf2;
+      --shadow:0 10px 28px rgba(27,44,73,.09);
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left,rgba(79,124,172,.10),transparent 34%),
+        var(--bg);
+      font-family:"Segoe UI",Arial,sans-serif;
+      line-height:1.72;
+    }
+
+    .container {
+      width:min(960px,calc(100% - 32px));
+      margin:40px auto;
+    }
+
+    .hero {
+      padding:32px 36px;
+      margin-bottom:24px;
+      color:white;
+      background:linear-gradient(135deg,#274c77,#4f7cac);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero h1 {
+      margin:0 0 8px;
+      font-size:clamp(1.7rem,4vw,2.4rem);
+    }
+
+    .hero p {
+      margin:0;
+      opacity:.92;
+    }
+
+    .card {
+      margin:20px 0;
+      padding:24px 28px;
+      background:var(--white);
+      border:1px solid var(--border);
+      border-left:7px solid;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .task-card { border-left-color:var(--task); }
+    .idea-card { border-left-color:var(--idea); }
+    .solution-card { border-left-color:var(--solution); }
+    .warning-card {
+      border-left-color:var(--warning);
+      background:#fffaf1;
+    }
+    .answer-card {
+      border-left-color:var(--answer);
+      background:#fffaf7;
+    }
+
+    .card h2 {
+      margin:0 0 12px;
+      font-size:1.3rem;
+    }
+
+    .formula-box {
+      margin:15px 0;
+      padding:14px 18px;
+      overflow-x:auto;
+      background:#f7f9fc;
+      border:1px solid #e2e8f0;
+      border-radius:13px;
+    }
+
+    .final-box {
+      padding:18px;
+      text-align:center;
+      background:white;
+      border:1px solid #f0d9cf;
+      border-radius:14px;
+    }
+
+    footer {
+      padding:24px 8px 12px;
+      color:var(--muted);
+      text-align:center;
+      font-size:.95rem;
+    }
+
+    @media(max-width:650px) {
+      .container {
+        width:min(100% - 20px,960px);
+        margin:20px auto;
+      }
+
+      .hero,
+      .card {
+        padding:22px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <section class="hero">
+      <h1>Limes bez korišćenja izvoda</h1>
+      <p>Matematika 1 — Saobraćajni fakultet</p>
+    </section>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+
+      <div class="formula-box">
+        \[
+        \lim_{x\to0^+}
+        \frac{e^{x+\sqrt{x}}-1}
+        {\sqrt{x\sqrt{x}+2x}-\sqrt{x\sqrt{x}+x}}.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+
+      <p>
+        Brojilac svodimo na osnovni eksponencijalni limes
+      </p>
+
+      <div class="formula-box">
+        \[
+        \lim_{t\to0}\frac{e^t-1}{t}=1,
+        \]
+      </div>
+
+      <p>
+        dok imenilac racionališemo. Dodatna smena tipa
+        \(t=\frac1{\sqrt{x}}\) nije potrebna — posle racionalizacije se sve
+        prirodno sređuje izdvajanjem \(\sqrt{x}\).
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <p>Racionališemo imenilac:</p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        &\sqrt{x\sqrt{x}+2x}-\sqrt{x\sqrt{x}+x}\\[2mm]
+        &=
+        \frac{(x\sqrt{x}+2x)-(x\sqrt{x}+x)}
+        {\sqrt{x\sqrt{x}+2x}+\sqrt{x\sqrt{x}+x}}\\[2mm]
+        &=
+        \frac{x}
+        {\sqrt{x\sqrt{x}+2x}+\sqrt{x\sqrt{x}+x}}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Zato je</p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        L
+        &=
+        \lim_{x\to0^+}
+        \frac{e^{x+\sqrt{x}}-1}{x}
+        \left(
+        \sqrt{x\sqrt{x}+2x}
+        +
+        \sqrt{x\sqrt{x}+x}
+        \right).
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Iz oba korena izdvajamo \(\sqrt{x}\):</p>
+
+      <div class="formula-box">
+        \[
+        \sqrt{x\sqrt{x}+2x}
+        =
+        \sqrt{x}\sqrt{\sqrt{x}+2},
+        \]
+        \[
+        \sqrt{x\sqrt{x}+x}
+        =
+        \sqrt{x}\sqrt{\sqrt{x}+1}.
+        \]
+      </div>
+
+      <p>Dobijamo</p>
+
+      <div class="formula-box">
+        \[
+        L=
+        \lim_{x\to0^+}
+        \frac{e^{x+\sqrt{x}}-1}{\sqrt{x}}
+        \left(
+        \sqrt{\sqrt{x}+2}
+        +
+        \sqrt{\sqrt{x}+1}
+        \right).
+        \]
+      </div>
+
+      <p>
+        Sada formiramo osnovni eksponencijalni limes tako što množimo i delimo
+        sa \(x+\sqrt{x}\):
+      </p>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        L
+        &=
+        \lim_{x\to0^+}
+        \frac{e^{x+\sqrt{x}}-1}{x+\sqrt{x}}
+        \cdot
+        \frac{x+\sqrt{x}}{\sqrt{x}}
+        \cdot
+        \left(
+        \sqrt{\sqrt{x}+2}
+        +
+        \sqrt{\sqrt{x}+1}
+        \right)\\[2mm]
+        &=
+        \lim_{x\to0^+}
+        \frac{e^{x+\sqrt{x}}-1}{x+\sqrt{x}}
+        \cdot
+        (1+\sqrt{x})
+        \cdot
+        \left(
+        \sqrt{\sqrt{x}+2}
+        +
+        \sqrt{\sqrt{x}+1}
+        \right).
+        \end{aligned}
+        \]
+      </div>
+
+      <p>
+        Ako stavimo \(t=x+\sqrt{x}\), tada \(t\to0\), pa je
+      </p>
+
+      <div class="formula-box">
+        \[
+        \frac{e^{x+\sqrt{x}}-1}{x+\sqrt{x}}
+        =
+        \frac{e^t-1}{t}
+        \longrightarrow 1.
+        \]
+      </div>
+
+      <div class="formula-box">
+        \[
+        L=
+        1\cdot1\cdot(\sqrt2+1)
+        =
+        \sqrt2+1.
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+
+      <div class="final-box">
+        \[
+        \boxed{1+\sqrt2}
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+
+  </main>
+</body>
+</html>
