@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inverzna matrica 2×2 i 3×3</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg-1:#071426;
+      --bg-2:#102b46;
+      --paper:#f7f9fc;
+      --ink:#172033;
+      --muted:#5c677a;
+      --blue:#246bce;
+      --cyan:#35b6d8;
+      --green:#1f9d72;
+      --purple:#845ec2;
+      --orange:#e98b2a;
+      --line:#dce5f0;
+      --shadow:0 18px 45px rgba(0,0,0,.18);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(53,182,216,.18), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(132,94,194,.18), transparent 25%),
+        linear-gradient(145deg,var(--bg-1),var(--bg-2));
+      padding:34px 16px;
+    }
+
+    .page{
+      max-width:900px;
+      margin:0 auto;
+      background:var(--paper);
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.22);
+    }
+
+    .hero{
+      position:relative;
+      padding:34px 38px 30px;
+      color:white;
+      background:
+        linear-gradient(120deg,rgba(36,107,206,.95),rgba(53,182,216,.87)),
+        linear-gradient(145deg,#143b68,#0f2846);
+      overflow:hidden;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-75px;
+      top:-110px;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+    }
+
+    .kicker{
+      display:inline-flex;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.24);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:18px 0 8px;
+      font-size:clamp(28px,5vw,44px);
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+
+    .subtitle{
+      margin:0;
+      color:rgba(255,255,255,.88);
+      font-size:17px;
+    }
+
+    main{padding:30px}
+
+    .card{
+      position:relative;
+      margin:0 0 22px;
+      padding:24px 26px;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 8px 22px rgba(24,47,79,.07);
+      overflow:hidden;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:7px;
+      background:var(--accent,var(--blue));
+    }
+
+    .formula-card{--accent:var(--blue)}
+    .method-card{--accent:var(--green)}
+    .note-card{--accent:var(--orange)}
+    .answer-card{
+      --accent:var(--cyan);
+      background:linear-gradient(145deg,#f0fbff,#f8fdff);
+      border:2px solid #9bdcec;
+    }
+
+    .label{
+      display:inline-block;
+      margin-bottom:10px;
+      color:var(--accent,var(--blue));
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:23px;
+    }
+
+    p{
+      margin:10px 0;
+      line-height:1.7;
+      font-size:17px;
+    }
+
+    .math-box{
+      margin:15px 0;
+      padding:14px 16px;
+      border-radius:14px;
+      background:#f3f7fb;
+      border:1px solid #d9e5f2;
+      overflow-x:auto;
+    }
+
+    .steps{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .step{
+      padding:14px 16px;
+      border-radius:13px;
+      background:#f7fafc;
+      border:1px solid #dbe6ef;
+    }
+
+    .step strong{
+      color:#16688b;
+    }
+
+    footer{
+      padding:22px 30px 28px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    footer strong{color:#274766}
+
+    @media (max-width:650px){
+      .hero{padding:28px 22px}
+      main{padding:20px 14px}
+      .card{padding:21px 18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="kicker">Peđa i Brude design</div>
+      <h1>Inverzna matrica</h1>
+      <p class="subtitle">Formule za matrice reda \(2\times2\) i \(3\times3\)</p>
+    </header>
+
+    <main>
+      <section class="card formula-card">
+        <div class="label">Matrica reda \(2\times2\)</div>
+
+        <div class="math-box">
+          \[
+          A=
+          \begin{bmatrix}
+          a&b\\
+          c&d
+          \end{bmatrix},
+          \qquad
+          \det A=ad-bc.
+          \]
+        </div>
+
+        <p>Ako je \(\det A\neq0\), tada je</p>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          A^{-1}
+          =
+          \frac1{ad-bc}
+          \begin{bmatrix}
+          d&-b\\
+          -c&a
+          \end{bmatrix}
+          }
+          \]
+        </div>
+      </section>
+
+      <section class="card method-card">
+        <div class="label">Matrica reda \(3\times3\)</div>
+        <h2>Postupak preko minora i kofaktora</h2>
+
+        <p>Neka je \(A=[a_{ij}]\) matrica reda \(3\times3\).</p>
+
+        <div class="steps">
+          <div class="step">
+            <strong>1. Minori</strong>
+            <p>
+              Minor \(M_{ij}\) je determinanta koja se dobija kada iz matrice
+              \(A\) izbrišemo \(i\)-tu vrstu i \(j\)-tu kolonu.
+            </p>
+          </div>
+
+          <div class="step">
+            <strong>2. Kofaktori</strong>
+            <div class="math-box">
+              \[
+              A_{ij}=(-1)^{i+j}M_{ij}.
+              \]
+            </div>
+          </div>
+
+          <div class="step">
+            <strong>3. Matrica kofaktora</strong>
+            <div class="math-box">
+              \[
+              K=
+              \begin{bmatrix}
+              A_{11}&A_{12}&A_{13}\\
+              A_{21}&A_{22}&A_{23}\\
+              A_{31}&A_{32}&A_{33}
+              \end{bmatrix}.
+              \]
+            </div>
+          </div>
+
+          <div class="step">
+            <strong>4. Adjungovana matrica</strong>
+            <div class="math-box">
+              \[
+              \operatorname{adj}A=K^T.
+              \]
+            </div>
+          </div>
+
+          <div class="step">
+            <strong>5. Inverzna matrica</strong>
+            <div class="math-box">
+              \[
+              \boxed{
+              A^{-1}=\frac1{\det A}\operatorname{adj}A
+              }
+              \]
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card note-card">
+        <div class="label">Šema znakova kofaktora</div>
+
+        <div class="math-box">
+          \[
+          \begin{bmatrix}
+          +&-&+\\
+          -&+&-\\
+          +&-&+
+          \end{bmatrix}
+          \]
+        </div>
+      </section>
+
+      <section class="card answer-card">
+        <div class="label">Važno</div>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          A^{-1}\text{ postoji ako i samo ako je }\det A\neq0.
+          }
+          \]
+        </div>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          \text{minori}
+          \longrightarrow
+          \text{kofaktori}
+          \longrightarrow
+          \text{transponovanje}
+          \longrightarrow
+          \frac1{\det A}
+          }
+          \]
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>Mathbrotherhood</strong> Powered by ChatGPT
+    </footer>
+  </div>
+</body>
+</html>
