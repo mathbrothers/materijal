@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saobraćajni fakultet – kompleksna jednačina sa determinantom</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg-1:#071426;
+      --bg-2:#102b46;
+      --paper:#f7f9fc;
+      --ink:#172033;
+      --muted:#5c677a;
+      --blue:#246bce;
+      --cyan:#35b6d8;
+      --green:#1f9d72;
+      --orange:#e98b2a;
+      --purple:#845ec2;
+      --line:#dce5f0;
+      --shadow:0 18px 45px rgba(0,0,0,.18);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(53,182,216,.18), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(132,94,194,.18), transparent 25%),
+        linear-gradient(145deg,var(--bg-1),var(--bg-2));
+      padding:34px 16px;
+    }
+
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      background:var(--paper);
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.22);
+    }
+
+    .hero{
+      position:relative;
+      padding:34px 38px 30px;
+      color:white;
+      background:
+        linear-gradient(120deg,rgba(36,107,206,.95),rgba(53,182,216,.87)),
+        linear-gradient(145deg,#143b68,#0f2846);
+      overflow:hidden;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-75px;
+      top:-110px;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.24);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:18px 0 8px;
+      font-size:clamp(28px,5vw,46px);
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+
+    .subtitle{
+      margin:0;
+      color:rgba(255,255,255,.88);
+      font-size:17px;
+      max-width:760px;
+    }
+
+    main{
+      padding:30px;
+    }
+
+    .card{
+      position:relative;
+      margin:0 0 22px;
+      padding:24px 26px;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 8px 22px rgba(24,47,79,.07);
+      overflow:hidden;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:7px;
+      background:var(--accent,var(--blue));
+    }
+
+    .task-card{--accent:var(--blue)}
+    .idea-card{--accent:var(--purple)}
+    .solution-card{--accent:var(--green)}
+    .note-card{--accent:var(--orange)}
+    .answer-card{
+      --accent:var(--cyan);
+      background:linear-gradient(145deg,#f0fbff,#f8fdff);
+      border:2px solid #9bdcec;
+    }
+
+    .label{
+      display:inline-block;
+      margin-bottom:10px;
+      color:var(--accent,var(--blue));
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:23px;
+    }
+
+    p{
+      margin:10px 0;
+      line-height:1.7;
+      font-size:17px;
+    }
+
+    .math-box{
+      margin:16px 0;
+      padding:14px 16px;
+      border-radius:14px;
+      background:#f3f7fb;
+      border:1px solid #d9e5f2;
+      overflow-x:auto;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:12px;
+      margin:18px 0;
+      align-items:flex-start;
+    }
+
+    .step-number{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      color:white;
+      font-weight:900;
+      background:linear-gradient(145deg,var(--blue),var(--cyan));
+      box-shadow:0 6px 14px rgba(36,107,206,.22);
+    }
+
+    .step-content p:first-child{margin-top:5px}
+
+    .highlight{
+      font-weight:800;
+      color:#0c5d7c;
+    }
+
+    .answer-grid{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .root{
+      padding:13px 15px;
+      border-radius:13px;
+      background:white;
+      border:1px solid #cbeaf2;
+      overflow-x:auto;
+    }
+
+    footer{
+      padding:22px 30px 28px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    footer strong{color:#274766}
+
+    @media (max-width:650px){
+      .hero{padding:28px 22px}
+      main{padding:20px 14px}
+      .card{padding:21px 18px}
+      .step{grid-template-columns:36px 1fr}
+      .step-number{width:34px;height:34px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="kicker">Peđa i Brude design</div>
+      <h1>Kompleksna jednačina sa determinantom</h1>
+      <p class="subtitle">Saobraćajni fakultet — ispitni rokovi</p>
+    </header>
+
+    <main>
+      <section class="card task-card">
+        <div class="label">Zadatak</div>
+        <h2>Rešiti jednačinu</h2>
+        <div class="math-box">
+          \[
+          \begin{vmatrix}
+          z+3 & 3 & 2\\
+          z+2 & z+3 & 1\\
+          0 & z+2 & z+2
+          \end{vmatrix}
+          =-1-\sqrt3\,i.
+          \]
+        </div>
+      </section>
+
+      <section class="card idea-card">
+        <div class="label">Ideja</div>
+        <h2>Prvo sređujemo determinantu</h2>
+        <p>
+          Determinantu razvijamo po <strong>prvoj vrsti</strong>. Čitav izraz će se
+          vrlo lepo svesti na jedan potpuni kub.
+        </p>
+      </section>
+
+      <section class="card solution-card">
+        <div class="label">Rešenje</div>
+        <h2>Korak po korak</h2>
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <p>Razvijamo determinantu po prvoj vrsti:</p>
+            <div class="math-box">
+              \[
+              \begin{aligned}
+              D
+              &=(z+3)
+              \begin{vmatrix}
+              z+3 & 1\\
+              z+2 & z+2
+              \end{vmatrix}
+              -3
+              \begin{vmatrix}
+              z+2 & 1\\
+              0 & z+2
+              \end{vmatrix}
+              +2
+              \begin{vmatrix}
+              z+2 & z+3\\
+              0 & z+2
+              \end{vmatrix}.
+              \end{aligned}
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <p>Računamo determinante drugog reda:</p>
+            <div class="math-box">
+              \[
+              \begin{aligned}
+              D
+              &=(z+3)\big((z+3)(z+2)-(z+2)\big)\\
+              &\quad -3(z+2)^2+2(z+2)^2.
+              \end{aligned}
+              \]
+            </div>
+
+            <p>U prvoj zagradi izdvajamo \(z+2\):</p>
+            <div class="math-box">
+              \[
+              (z+3)(z+2)-(z+2)
+              =(z+2)\big((z+3)-1\big)
+              =(z+2)^2.
+              \]
+            </div>
+
+            <p>Zato je</p>
+            <div class="math-box">
+              \[
+              \begin{aligned}
+              D
+              &=(z+3)(z+2)^2-3(z+2)^2+2(z+2)^2\\
+              &=(z+2)^2\big((z+3)-3+2\big)\\
+              &=(z+2)^3.
+              \end{aligned}
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <p>Polazna jednačina postaje</p>
+            <div class="math-box">
+              \[
+              (z+2)^3=-1-\sqrt3\,i.
+              \]
+            </div>
+
+            <p>Desnu stranu zapisujemo u trigonometrijskom obliku.</p>
+
+            <p>
+              Moduo se lako računa:
+            </p>
+            <div class="math-box">
+              \[
+              r=|-1-\sqrt3\,i|
+              =\sqrt{(-1)^2+(-\sqrt3)^2}
+              =\sqrt{1+3}=2.
+              \]
+            </div>
+
+            <p>
+              Argument se vidi sa trigonometrijskog kruga. Kompleksnom broju
+              \(-1-\sqrt3\,i\) odgovara tačka
+              \[
+              (-1,-\sqrt3),
+              \]
+              koja se nalazi u trećem kvadrantu. Ugao možemo uzeti kao
+              \[
+              \varphi=-\frac{2\pi}{3}
+              \]
+              (isto bi bilo i \(\varphi=\frac{4\pi}{3}\)).
+            </p>
+
+            <p>Zaista,</p>
+            <div class="math-box">
+              \[
+              \cos\left(-\frac{2\pi}{3}\right)=-\frac12,
+              \qquad
+              \sin\left(-\frac{2\pi}{3}\right)=-\frac{\sqrt3}{2},
+              \]
+              pa je
+              \[
+              2\left(
+              \cos\left(-\frac{2\pi}{3}\right)
+              +i\sin\left(-\frac{2\pi}{3}\right)
+              \right)
+              =-1-\sqrt3\,i.
+              \]
+            </div>
+
+            <p>Zato je</p>
+            <div class="math-box">
+              \[
+              -1-\sqrt3\,i
+              =2\left(
+              \cos\left(-\frac{2\pi}{3}\right)
+              +i\sin\left(-\frac{2\pi}{3}\right)
+              \right).
+              \]
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <p>Neka je \(w=z+2\). Tada važi</p>
+            <div class="math-box">
+              \[
+              w^3=
+              2\left(
+              \cos\left(-\frac{2\pi}{3}\right)
+              +i\sin\left(-\frac{2\pi}{3}\right)
+              \right).
+              \]
+            </div>
+
+            <p>Kubni koreni su</p>
+            <div class="math-box">
+              \[
+              w_k=\sqrt[3]{2}\left[
+              \cos\left(-\frac{2\pi}{9}+\frac{2k\pi}{3}\right)
+              +i\sin\left(-\frac{2\pi}{9}+\frac{2k\pi}{3}\right)
+              \right],
+              \qquad k=0,1,2.
+              \]
+            </div>
+
+            <p>Pošto je \(z=w-2\), dobijamo sva rešenja.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card note-card">
+        <div class="label">Napomena</div>
+        <p>
+          U ovom zadatku je glavni trik da se determinanta prepozna kao
+          <span class="highlight">\((z+2)^3\)</span>. Posle toga se rešava obična
+          binomna jednačina trećeg stepena u kompleksnom skupu.
+        </p>
+      </section>
+
+      <section class="card answer-card">
+        <div class="label">Odgovor</div>
+        <h2>Sva tri rešenja</h2>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          z_k=-2+\sqrt[3]{2}\left[
+          \cos\left(-\frac{2\pi}{9}+\frac{2k\pi}{3}\right)
+          +i\sin\left(-\frac{2\pi}{9}+\frac{2k\pi}{3}\right)
+          \right],
+          \quad k=0,1,2
+          }
+          \]
+        </div>
+
+        <div class="answer-grid">
+          <div class="root">
+            \[
+            z_1=-2+\sqrt[3]{2}
+            \left(
+            \cos\left(-\frac{2\pi}{9}\right)
+            +i\sin\left(-\frac{2\pi}{9}\right)
+            \right)
+            \]
+          </div>
+
+          <div class="root">
+            \[
+            z_2=-2+\sqrt[3]{2}
+            \left(
+            \cos\left(\frac{4\pi}{9}\right)
+            +i\sin\left(\frac{4\pi}{9}\right)
+            \right)
+            \]
+          </div>
+
+          <div class="root">
+            \[
+            z_3=-2+\sqrt[3]{2}
+            \left(
+            \cos\left(\frac{10\pi}{9}\right)
+            +i\sin\left(\frac{10\pi}{9}\right)
+            \right)
+            \]
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>Mathbrotherhood</strong> Powered by ChatGPT
+    </footer>
+  </div>
+</body>
+</html>
