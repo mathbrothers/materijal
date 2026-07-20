@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rešenje zadatka</title>
+    <style>
+        body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+        h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+        .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+        .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+        .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+        .zadatak-section h2 { color: #1565c0; }
+        .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+        .ideja-section h2 { color: #e65100; }
+        .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+        .resenje-section h2 { color: #2e7d32; }
+        .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+        .odgovor-section h2 { color: #7b1fa2; }
+        .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+        .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+        .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+    </style>
+    <script>
+        window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <div class="section-box zadatak-section">
+        <h2>Zadatak</h2>
+        <p>Rešiti jednačinu \( AXB^{-1} + 3B^{-1} = B^T \) ako su date matrice:</p>
+        \[
+        A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}, \quad B = \begin{bmatrix} -1 & 5 \\ 6 & -2 \end{bmatrix}.
+        \]
+    </div>
+
+    <div class="section-box ideja-section">
+        <h2>Ideja</h2>
+        <p>Potrebno je izolovati nepoznatu matricu \(X\). Prvo ćemo transformisati jednačinu tako što ćemo izvući zajednički faktor \(B^{-1}\) na desnoj strani, a zatim množiti sa \(B\) zdesna da bismo se oslobodili inverzne matrice. Nakon toga, oduzećemo \(3I\) i pomnožiti sa \(A^{-1}\) sleva da bismo dobili konačan izraz za \(X\).</p>
+    </div>
+
+    <div class="section-box resenje-section">
+        <h2>Rešenje</h2>
+        <p><strong>Korak 1:</strong> Transformacija jednačine</p>
+        <p>Počinjemo sa datom jednačinom:</p>
+        \[
+        AXB^{-1} + 3B^{-1} = B^T
+        \]
+        <p>Izvlačimo zajednički faktor \(B^{-1}\) na desnoj strani (mora se voditi računa o redosledu množenja matrica):</p>
+        \[
+        (AX + 3I)B^{-1} = B^T
+        \]
+        <p>Množimo obe strane jednačine sa \(B\) zdesna:</p>
+        \[
+        (AX + 3I)B^{-1}B = B^T B
+        \]
+        <p>Kako je \(B^{-1}B = I\) (jedinična matrica), dobijamo:</p>
+        \[
+        AX + 3I = B^T B
+        \]
+        <p>Oduzimamo \(3I\) sa obe strane:</p>
+        \[
+        AX = B^T B - 3I
+        \]
+        <p>Množimo sa \(A^{-1}\) sleva:</p>
+        \[
+        A^{-1}AX = A^{-1}(B^T B - 3I)
+        \]
+        \[
+        X = A^{-1}(B^T B - 3I)
+        \]
+        
+        <p><strong>Korak 2:</strong> Izračunavanje \(B^T\) i \(B^T B\)</p>
+        <p>Transponovana matrica \(B^T\):</p>
+        \[
+        B^T = \begin{bmatrix} -1 & 6 \\ 5 & -2 \end{bmatrix}
+        \]
+        <p>Množenje \(B^T B\):</p>
+        \[
+        B^T B = \begin{bmatrix} -1 & 6 \\ 5 & -2 \end{bmatrix} \begin{bmatrix} -1 & 5 \\ 6 & -2 \end{bmatrix}
+        \]
+        \[
+        = \begin{bmatrix} (-1)(-1) + 6 \cdot 6 & (-1) \cdot 5 + 6(-2) \\ 5(-1) + (-2) \cdot 6 & 5 \cdot 5 + (-2)(-2) \end{bmatrix}
+        \]
+        \[
+        = \begin{bmatrix} 1 + 36 & -5 - 12 \\ -5 - 12 & 25 + 4 \end{bmatrix} = \begin{bmatrix} 37 & -17 \\ -17 & 29 \end{bmatrix}
+        \]
+        
+        <p><strong>Korak 3:</strong> Izračunavanje \(B^T B - 3I\)</p>
+        \[
+        B^T B - 3I = \begin{bmatrix} 37 & -17 \\ -17 & 29 \end{bmatrix} - \begin{bmatrix} 3 & 0 \\ 0 & 3 \end{bmatrix} = \begin{bmatrix} 34 & -17 \\ -17 & 26 \end{bmatrix}
+        \]
+        
+        <p><strong>Korak 4:</strong> Izračunavanje \(A^{-1}\)</p>
+        <p>Determinanta matrice \(A\):</p>
+        \[
+        \det(A) = \begin{vmatrix} 1 & 2 \\ 3 & 4 \end{vmatrix} = 1 \cdot 4 - 2 \cdot 3 = 4 - 6 = -2
+        \]
+        <p>Inverzna matrica:</p>
+        \[
+        A^{-1} = \frac{1}{-2} \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix}
+        \]
+        
+        <p><strong>Korak 5:</strong> Konačno množenje</p>
+        \[
+        X = A^{-1}(B^T B - 3I) = \frac{1}{-2} \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix} \begin{bmatrix} 34 & -17 \\ -17 & 26 \end{bmatrix}
+        \]
+        <p>Množimo matrice:</p>
+        \[
+        \begin{bmatrix} 4 & -2 \\ -3 & 1 \end{bmatrix} \begin{bmatrix} 34 & -17 \\ -17 & 26 \end{bmatrix} = \begin{bmatrix} 4 \cdot 34 + (-2)(-17) & 4(-17) + (-2) \cdot 26 \\ -3 \cdot 34 + 1(-17) & -3(-17) + 1 \cdot 26 \end{bmatrix}
+        \]
+        \[
+        = \begin{bmatrix} 136 + 34 & -68 - 52 \\ -102 - 17 & 51 + 26 \end{bmatrix} = \begin{bmatrix} 170 & -120 \\ -119 & 77 \end{bmatrix}
+        \]
+        <p>Množimo sa \(-\frac{1}{2}\):</p>
+        \[
+        X = -\frac{1}{2} \begin{bmatrix} 170 & -120 \\ -119 & 77 \end{bmatrix} = \begin{bmatrix} -85 & 60 \\ \frac{119}{2} & -\frac{77}{2} \end{bmatrix}
+        \]
+    </div>
+
+    <div class="section-box odgovor-section">
+        <h2>Odgovor</h2>
+        <div class="boxed">
+            \[
+            X = \begin{bmatrix} -85 & 60 \\ \frac{119}{2} & -\frac{77}{2} \end{bmatrix}
+            \]
+        </div>
+    </div>
+
+    <div class="potpis">Mathbrotherhood Powered by Qwen3.7-Plus</div>
+
+</body>
+</html>
