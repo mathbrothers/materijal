@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saobraćajni fakultet – sistem sa parametrom, Kramerovo pravilo</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg-1:#071426;
+      --bg-2:#102b46;
+      --paper:#f7f9fc;
+      --ink:#172033;
+      --muted:#5c677a;
+      --blue:#246bce;
+      --cyan:#35b6d8;
+      --green:#1f9d72;
+      --orange:#e98b2a;
+      --purple:#845ec2;
+      --red:#d9534f;
+      --line:#dce5f0;
+      --shadow:0 18px 45px rgba(0,0,0,.18);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(53,182,216,.18), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(132,94,194,.18), transparent 25%),
+        linear-gradient(145deg,var(--bg-1),var(--bg-2));
+      padding:34px 16px;
+    }
+
+    .page{
+      max-width:1000px;
+      margin:0 auto;
+      background:var(--paper);
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.22);
+    }
+
+    .hero{
+      position:relative;
+      padding:34px 38px 30px;
+      color:white;
+      background:
+        linear-gradient(120deg,rgba(36,107,206,.95),rgba(53,182,216,.87)),
+        linear-gradient(145deg,#143b68,#0f2846);
+      overflow:hidden;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-75px;
+      top:-110px;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+    }
+
+    .kicker{
+      display:inline-flex;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.24);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:18px 0 8px;
+      font-size:clamp(28px,5vw,45px);
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+
+    .subtitle{
+      margin:0;
+      color:rgba(255,255,255,.88);
+      font-size:17px;
+    }
+
+    main{padding:30px}
+
+    .card{
+      position:relative;
+      margin:0 0 22px;
+      padding:24px 26px;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 8px 22px rgba(24,47,79,.07);
+      overflow:hidden;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:7px;
+      background:var(--accent,var(--blue));
+    }
+
+    .task-card{--accent:var(--blue)}
+    .idea-card{--accent:var(--purple)}
+    .solution-card{--accent:var(--green)}
+    .case-card{--accent:var(--orange)}
+    .warning-card{--accent:var(--red)}
+    .answer-card{
+      --accent:var(--cyan);
+      background:linear-gradient(145deg,#f0fbff,#f8fdff);
+      border:2px solid #9bdcec;
+    }
+
+    .label{
+      display:inline-block;
+      margin-bottom:10px;
+      color:var(--accent,var(--blue));
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:23px;
+    }
+
+    h3{
+      margin:20px 0 10px;
+      font-size:19px;
+      color:#244867;
+    }
+
+    p{
+      margin:10px 0;
+      line-height:1.7;
+      font-size:17px;
+    }
+
+    .math-box{
+      margin:15px 0;
+      padding:14px 16px;
+      border-radius:14px;
+      background:#f3f7fb;
+      border:1px solid #d9e5f2;
+      overflow-x:auto;
+    }
+
+    .sarrus{
+      background:#f8fbfe;
+      border-left:4px solid #7eb5e8;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:12px;
+      margin:18px 0;
+      align-items:flex-start;
+    }
+
+    .step-number{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      color:white;
+      font-weight:900;
+      background:linear-gradient(145deg,var(--blue),var(--cyan));
+      box-shadow:0 6px 14px rgba(36,107,206,.22);
+    }
+
+    .step-content p:first-child{margin-top:5px}
+
+    .mini-rule{
+      padding:13px 16px;
+      border-radius:13px;
+      background:#fff8ef;
+      border:1px solid #f2d1a8;
+      font-weight:700;
+    }
+
+    .case-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:16px;
+    }
+
+    .case-box{
+      padding:17px;
+      border-radius:14px;
+      background:#f7fafc;
+      border:1px solid #d9e5ef;
+    }
+
+    .case-box h3{margin-top:0}
+
+    .final-line{
+      font-size:18px;
+      font-weight:800;
+      color:#145d78;
+    }
+
+    footer{
+      padding:22px 30px 28px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    footer strong{color:#274766}
+
+    @media (max-width:700px){
+      .hero{padding:28px 22px}
+      main{padding:20px 14px}
+      .card{padding:21px 18px}
+      .case-grid{grid-template-columns:1fr}
+      .step{grid-template-columns:36px 1fr}
+      .step-number{width:34px;height:34px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="kicker">Peđa i Brude design</div>
+      <h1>Sistem jednačina sa parametrom</h1>
+      <p class="subtitle">Čist Kramer — determinante računamo Sarusovim pravilom</p>
+    </header>
+
+    <main>
+      <section class="card task-card">
+        <div class="label">Zadatak</div>
+        <h2>Rešiti sistem u zavisnosti od realnog parametra \(a\)</h2>
+        <div class="math-box">
+          \[
+          \begin{cases}
+          x-(a-1)y-z=0,\\
+          x+y+(a-1)z=2-a,\\
+          (a-1)x-y+z=-1.
+          \end{cases}
+          \]
+        </div>
+      </section>
+
+      <section class="card idea-card">
+        <div class="label">Plan rada</div>
+        <h2>Ne mislimo mnogo — primenjujemo Kramerovo pravilo</h2>
+        <p>
+          Radi lakšeg pisanja koristimo
+          \[
+          -(a-1)=1-a.
+          \]
+          Najpre računamo glavnu determinantu \(\Delta\), a zatim
+          \(\Delta_x,\Delta_y,\Delta_z\).
+        </p>
+
+        <div class="mini-rule">
+          Ako je \(\Delta\neq0\), sistem ima jedinstveno rešenje:
+          \[
+          x=\frac{\Delta_x}{\Delta},\qquad
+          y=\frac{\Delta_y}{\Delta},\qquad
+          z=\frac{\Delta_z}{\Delta}.
+          \]
+        </div>
+      </section>
+
+      <section class="card solution-card">
+        <div class="label">Glavna determinanta</div>
+        <h2>Računamo \(\Delta\) Sarusovim pravilom</h2>
+
+        <div class="math-box">
+          \[
+          \Delta=
+          \begin{vmatrix}
+          1&1-a&-1\\
+          1&1&a-1\\
+          a-1&-1&1
+          \end{vmatrix}.
+          \]
+        </div>
+
+        <div class="math-box sarrus">
+          \[
+          \begin{aligned}
+          \Delta
+          &=1\cdot1\cdot1
+          +(1-a)(a-1)(a-1)
+          +(-1)\cdot1\cdot(-1)\\
+          &\quad-\Big[
+          (-1)\cdot1\cdot(a-1)
+          +1\cdot(a-1)\cdot(-1)
+          +(1-a)\cdot1\cdot1
+          \Big].
+          \end{aligned}
+          \]
+        </div>
+
+        <p>Sređujemo:</p>
+
+        <div class="math-box">
+          \[
+          \begin{aligned}
+          \Delta
+          &=2-(a-1)^3+3(a-1)\\
+          &=-a^2(a-3).
+          \end{aligned}
+          \]
+        </div>
+
+        <p class="final-line">
+          Dakle,
+          \[
+          \Delta\neq0\iff a\neq0\ \text{i}\ a\neq3.
+          \]
+        </p>
+      </section>
+
+      <section class="card solution-card">
+        <div class="label">Pomoćne determinante</div>
+        <h2>Računamo \(\Delta_x,\Delta_y,\Delta_z\)</h2>
+
+        <h3>1. Determinanta \(\Delta_x\)</h3>
+
+        <div class="math-box">
+          \[
+          \Delta_x=
+          \begin{vmatrix}
+          0&1-a&-1\\
+          2-a&1&a-1\\
+          -1&-1&1
+          \end{vmatrix}.
+          \]
+        </div>
+
+        <div class="math-box sarrus">
+          \[
+          \begin{aligned}
+          \Delta_x
+          &=0\cdot1\cdot1
+          +(1-a)(a-1)(-1)
+          +(-1)(2-a)(-1)\\
+          &\quad-\Big[
+          (-1)\cdot1\cdot(-1)
+          +0\cdot(a-1)\cdot(-1)
+          +(1-a)(2-a)\cdot1
+          \Big]\\
+          &=0.
+          \end{aligned}
+          \]
+        </div>
+
+        <h3>2. Determinanta \(\Delta_y\)</h3>
+
+        <div class="math-box">
+          \[
+          \Delta_y=
+          \begin{vmatrix}
+          1&0&-1\\
+          1&2-a&a-1\\
+          a-1&-1&1
+          \end{vmatrix}.
+          \]
+        </div>
+
+        <div class="math-box sarrus">
+          \[
+          \begin{aligned}
+          \Delta_y
+          &=1(2-a)\cdot1
+          +0\cdot(a-1)(a-1)
+          +(-1)\cdot1\cdot(-1)\\
+          &\quad-\Big[
+          (-1)(2-a)(a-1)
+          +1\cdot(a-1)(-1)
+          +0\cdot1\cdot1
+          \Big]\\
+          &=-a(a-3).
+          \end{aligned}
+          \]
+        </div>
+
+        <h3>3. Determinanta \(\Delta_z\)</h3>
+
+        <div class="math-box">
+          \[
+          \Delta_z=
+          \begin{vmatrix}
+          1&1-a&0\\
+          1&1&2-a\\
+          a-1&-1&-1
+          \end{vmatrix}.
+          \]
+        </div>
+
+        <div class="math-box sarrus">
+          \[
+          \begin{aligned}
+          \Delta_z
+          &=1\cdot1\cdot(-1)
+          +(1-a)(2-a)(a-1)
+          +0\cdot1\cdot(-1)\\
+          &\quad-\Big[
+          0\cdot1\cdot(a-1)
+          +1\cdot(2-a)(-1)
+          +(1-a)\cdot1\cdot(-1)
+          \Big]\\
+          &=a(a-1)(a-3).
+          \end{aligned}
+          \]
+        </div>
+      </section>
+
+      <section class="card solution-card">
+        <div class="label">Kramerovo pravilo</div>
+        <h2>Slučaj \(a\neq0,\ a\neq3\)</h2>
+
+        <p>Pošto je tada \(\Delta\neq0\), sistem ima jedinstveno rešenje:</p>
+
+        <div class="math-box">
+          \[
+          x=\frac{\Delta_x}{\Delta}
+          =\frac{0}{-a^2(a-3)}=0,
+          \]
+          \[
+          y=\frac{\Delta_y}{\Delta}
+          =\frac{-a(a-3)}{-a^2(a-3)}
+          =\frac1a,
+          \]
+          \[
+          z=\frac{\Delta_z}{\Delta}
+          =\frac{a(a-1)(a-3)}{-a^2(a-3)}
+          =-\frac{a-1}{a}
+          =\frac{1-a}{a}.
+          \]
+        </div>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          (x,y,z)=
+          \left(0,\frac1a,\frac{1-a}{a}\right),
+          \qquad a\neq0,\ a\neq3
+          }
+          \]
+        </div>
+      </section>
+
+      <section class="card case-card">
+        <div class="label">Posebni slučajevi</div>
+        <h2>Šta se dešava kada je \(\Delta=0\)?</h2>
+
+        <div class="case-grid">
+          <div class="case-box">
+            <h3>Slučaj \(a=0\)</h3>
+            <p>Prve dve jednačine postaju</p>
+            <div class="math-box">
+              \[
+              x+y-z=0,
+              \]
+              \[
+              x+y-z=2.
+              \]
+            </div>
+            <p>
+              Leve strane su iste, a desne različite. To je kontradikcija.
+            </p>
+            <div class="math-box">
+              \[
+              \boxed{\text{Za }a=0\text{ sistem nema rešenja.}}
+              \]
+            </div>
+          </div>
+
+          <div class="case-box">
+            <h3>Slučaj \(a=3\)</h3>
+            <p>Sistem postaje</p>
+            <div class="math-box">
+              \[
+              \begin{cases}
+              x-2y-z=0,\\
+              x+y+2z=-1,\\
+              2x-y+z=-1.
+              \end{cases}
+              \]
+            </div>
+
+            <p>Stavimo \(z=t\). Iz prve dve jednačine dobijamo</p>
+
+            <div class="math-box">
+              \[
+              y=-\frac13-t,\qquad
+              x=-\frac23-t.
+              \]
+            </div>
+
+            <div class="math-box">
+              \[
+              \boxed{
+              (x,y,z)=
+              \left(-\frac23-t,-\frac13-t,t\right),
+              \qquad t\in\mathbb R
+              }
+              \]
+            </div>
+
+            <p>Sistem ima beskonačno mnogo rešenja.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card answer-card">
+        <div class="label">Konačan odgovor</div>
+        <h2>Diskusija sistema u zavisnosti od parametra \(a\)</h2>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          \begin{array}{ll}
+          a\neq0,\ a\neq3:
+          &
+          (x,y,z)=
+          \left(0,\dfrac1a,\dfrac{1-a}{a}\right),
+          \\[10pt]
+          a=0:
+          &
+          \text{sistem nema rešenja},
+          \\[6pt]
+          a=3:
+          &
+          (x,y,z)=
+          \left(-\dfrac23-t,-\dfrac13-t,t\right),
+          \quad t\in\mathbb R.
+          \end{array}
+          }
+          \]
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>Mathbrotherhood</strong> Powered by ChatGPT
+    </footer>
+  </div>
+</body>
+</html>
