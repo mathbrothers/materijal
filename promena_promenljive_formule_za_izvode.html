@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promena nezavisne promenljive — formule za izvode</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg:#f4f7fb;
+      --text:#243043;
+      --task:#4f7cac;
+      --solution:#2a9d8f;
+      --answer:#e76f51;
+      --white:#ffffff;
+      --border:#e4eaf2;
+      --shadow:0 10px 28px rgba(27,44,73,.09);
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      color:var(--text);
+      background:var(--bg);
+      font-family:"Segoe UI",Arial,sans-serif;
+      line-height:1.65;
+    }
+
+    .container {
+      width:min(900px,calc(100% - 32px));
+      margin:36px auto;
+    }
+
+    .hero {
+      padding:28px 34px;
+      margin-bottom:20px;
+      color:white;
+      background:linear-gradient(135deg,#274c77,#4f7cac);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero h1 {
+      margin:0;
+      font-size:clamp(1.6rem,4vw,2.25rem);
+    }
+
+    .card {
+      margin:18px 0;
+      padding:22px 26px;
+      background:var(--white);
+      border:1px solid var(--border);
+      border-left:7px solid;
+      border-radius:17px;
+      box-shadow:var(--shadow);
+    }
+
+    .task-card { border-left-color:var(--task); }
+    .solution-card { border-left-color:var(--solution); }
+    .answer-card {
+      border-left-color:var(--answer);
+      background:#fffaf7;
+    }
+
+    .card h2 {
+      margin:0 0 10px;
+      font-size:1.25rem;
+    }
+
+    .formula-box {
+      margin:12px 0;
+      padding:12px 16px;
+      overflow-x:auto;
+      background:#f7f9fc;
+      border:1px solid #e2e8f0;
+      border-radius:12px;
+    }
+
+    .final-box {
+      padding:16px;
+      text-align:center;
+      background:white;
+      border:1px solid #f0d9cf;
+      border-radius:13px;
+      overflow-x:auto;
+    }
+
+    footer {
+      padding:20px 8px 8px;
+      text-align:center;
+      color:#667085;
+      font-size:.94rem;
+    }
+
+    @media(max-width:650px) {
+      .container {
+        width:min(100% - 20px,900px);
+        margin:18px auto;
+      }
+
+      .hero,
+      .card {
+        padding:20px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <section class="hero">
+      <h1>Promena nezavisne promenljive</h1>
+    </section>
+
+    <section class="card task-card">
+      <h2>Polazna smena</h2>
+
+      <div class="formula-box">
+        \[
+        x=\varphi(t),\qquad y(x)=Y(t),\qquad \varphi'(t)\ne0.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Prvi izvod</h2>
+
+      <div class="formula-box">
+        \[
+        y'=\frac{dy}{dx}
+        =\frac{\dfrac{dY}{dt}}{\dfrac{dx}{dt}}
+        =\boxed{\frac{Y'}{\varphi'}}.
+        \]
+      </div>
+
+      <h2>Drugi izvod</h2>
+
+      <div class="formula-box">
+        \[
+        \begin{aligned}
+        y''
+        &=\frac{d}{dx}\left(\frac{Y'}{\varphi'}\right)
+        =\frac1{\varphi'}\frac{d}{dt}\left(\frac{Y'}{\varphi'}\right)\\[2mm]
+        &=\frac1{\varphi'}
+        \cdot
+        \frac{Y''\varphi'-Y'\varphi''}{(\varphi')^2}\\[2mm]
+        &=\boxed{
+        \frac{Y''\varphi'-Y'\varphi''}{(\varphi')^3}
+        }.
+        \end{aligned}
+        \]
+      </div>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Primena na Ojlerovu smenu</h2>
+
+      <div class="formula-box">
+        \[
+        t=\ln x
+        \quad\Longleftrightarrow\quad
+        x=e^t=\varphi(t),
+        \]
+        \[
+        \varphi'=e^t=x,\qquad \varphi''=e^t=x.
+        \]
+      </div>
+
+      <div class="final-box">
+        \[
+        \boxed{y'=\frac{Y'}{x}},
+        \qquad
+        \boxed{y''=\frac{Y''-Y'}{x^2}}.
+        \]
+        \[
+        \boxed{xy'=Y'},
+        \qquad
+        \boxed{x^2y''=Y''-Y'}.
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+
+  </main>
+</body>
+</html>
