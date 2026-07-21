@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saobraćajni fakultet – ispitivanje funkcije</title>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--bg1:#071426;--bg2:#102b46;--paper:#f7f9fc;--ink:#172033;--blue:#246bce;--cyan:#35b6d8;--green:#1f9d72;--purple:#845ec2;--orange:#e98b2a;--red:#d9534f;--line:#dce5f0}
+*{box-sizing:border-box}body{margin:0;padding:34px 16px;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 10%,rgba(53,182,216,.18),transparent 28%),radial-gradient(circle at 90% 15%,rgba(132,94,194,.18),transparent 25%),linear-gradient(145deg,var(--bg1),var(--bg2))}
+.page{max-width:1020px;margin:auto;background:var(--paper);border-radius:26px;overflow:hidden;box-shadow:0 18px 45px rgba(0,0,0,.18)}
+.hero{padding:34px 38px 30px;color:#fff;background:linear-gradient(120deg,rgba(36,107,206,.95),rgba(53,182,216,.87))}
+.kicker{display:inline-block;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+h1{margin:18px 0 8px;font-size:clamp(28px,5vw,44px)}.subtitle{margin:0;color:rgba(255,255,255,.88);font-size:17px}
+main{padding:30px}.card{position:relative;margin:0 0 22px;padding:24px 26px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 22px rgba(24,47,79,.07);overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--accent,var(--blue))}
+.task{--accent:var(--blue)}.idea{--accent:var(--purple)}.analysis{--accent:var(--green)}.graph{--accent:var(--red)}.answer{--accent:var(--cyan);background:linear-gradient(145deg,#f0fbff,#f8fdff);border:2px solid #9bdcec}
+.label{display:inline-block;margin-bottom:10px;color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}h2{margin:0 0 14px;font-size:23px}p{margin:10px 0;line-height:1.7;font-size:17px}.math{margin:15px 0;padding:14px 16px;border-radius:14px;background:#f3f7fb;border:1px solid #d9e5f2;overflow-x:auto}
+.table-wrap{overflow-x:auto;margin:18px 0}table{width:100%;min-width:700px;border-collapse:collapse;text-align:center;background:#fff}th,td{padding:12px 10px;border:1px solid #cfdbe7}th{background:#eaf3fb;color:#244867}.plus{color:#14835c;font-weight:900}.minus{color:#c74747;font-weight:900}.zero{color:#1c67b2;font-weight:900}
+.graph-wrap{margin:18px auto;max-width:780px;padding:12px;border-radius:16px;background:#fbfdff;border:1px solid #dbe6ef;overflow-x:auto}.graph-wrap > svg{
+  width:100%;
+  height:auto;
+  min-width:680px;
+  display:block;
+}
+
+mjx-container[jax="SVG"]{
+  max-width:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+}
+
+mjx-container[display="true"]{
+  margin:.8em 0 !important;
+}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:14px}.box{padding:15px;border-radius:13px;background:#f7fafc;border:1px solid #dbe6ef}
+footer{padding:22px 30px 28px;text-align:center;color:#5c677a;font-size:14px}footer strong{color:#274766}
+@media(max-width:760px){.hero{padding:28px 22px}main{padding:20px 14px}.card{padding:21px 18px}.summary{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="hero">
+<div class="kicker">Peđa i Brude design</div>
+<h1>Ispitivanje funkcije</h1>
+<p class="subtitle">Saobraćajni fakultet — zadatak 6</p>
+</header>
+<main>
+
+<section class="card task">
+<div class="label">Zadatak</div>
+<h2>Ispitati funkciju i skicirati njen grafik</h2>
+<div class="math">\[
+f(x)=\frac{x^2}{\sqrt{x^2+1}}.
+\]</div>
+</section>
+
+<section class="card idea">
+<div class="label">Plan rada</div>
+<h2>Idemo školski, redom</h2>
+<p>Domen, parnost, nule i znak, asimptote, monotonost, ekstremi, konveksnost, konkavnost i prevojne tačke.</p>
+</section>
+
+<section class="card analysis">
+<div class="label">1. Osnovne osobine</div>
+<h2>Domen, parnost, nule i znak</h2>
+
+<p>Pošto je \(x^2+1>0\) za svaki realan broj, koren je uvek definisan i imenilac nije nula:</p>
+<div class="math">\[
+\boxed{D_f=\mathbb R}.
+\]</div>
+
+<p>Proveravamo parnost:</p>
+<div class="math">\[
+f(-x)=\frac{(-x)^2}{\sqrt{(-x)^2+1}}
+=\frac{x^2}{\sqrt{x^2+1}}=f(x).
+\]</div>
+<p>Funkcija je <strong>parna</strong>, pa je grafik simetričan u odnosu na \(y\)-osu.</p>
+
+<p>Nula funkcije:</p>
+<div class="math">\[
+f(x)=0\iff x^2=0\iff x=0.
+\]</div>
+
+<p>Kako je \(x^2\ge0\), a imenilac pozitivan, važi</p>
+<div class="math">\[
+\boxed{f(x)>0\text{ za }x\ne0,\qquad f(0)=0.}
+\]</div>
+</section>
+
+<section class="card analysis">
+<div class="label">2. Asimptote</div>
+<h2>Kosa asimptota \(y=kx+n\)</h2>
+
+<p>Koeficijente kose asimptote računamo po formulama</p>
+
+<div class="math">
+\[
+k=\lim_{x\to\pm\infty}\frac{f(x)}{x},
+\qquad
+n=\lim_{x\to\pm\infty}\bigl(f(x)-kx\bigr).
+\]
+</div>
+
+<h3>Za \(x\to+\infty\)</h3>
+
+<p>Najpre računamo koeficijent pravca:</p>
+
+<div class="math">
+\[
+\begin{aligned}
+k_+
+&=\lim_{x\to+\infty}\frac{f(x)}{x}\\[4pt]
+&=\lim_{x\to+\infty}
+\frac{x^2}{x\sqrt{x^2+1}}\\[4pt]
+&=\lim_{x\to+\infty}
+\frac{x}{\sqrt{x^2+1}}\\[4pt]
+&=\lim_{x\to+\infty}
+\frac{1}{\sqrt{1+\frac1{x^2}}}
+=1.
+\end{aligned}
+\]
+</div>
+
+<p>Sada računamo \(n_+\):</p>
+
+<div class="math">
+\[
+\begin{aligned}
+n_+
+&=\lim_{x\to+\infty}\bigl(f(x)-k_+x\bigr)\\[4pt]
+&=\lim_{x\to+\infty}
+\left(
+\frac{x^2}{\sqrt{x^2+1}}-x
+\right).
+\end{aligned}
+\]
+</div>
+
+<p>Racionalizujemo:</p>
+
+<div class="math">
+\[
+\begin{aligned}
+\frac{x^2}{\sqrt{x^2+1}}-x
+&=
+\frac{x\left(x-\sqrt{x^2+1}\right)}
+{\sqrt{x^2+1}}\\[4pt]
+&=
+\frac{-x}
+{\sqrt{x^2+1}\left(x+\sqrt{x^2+1}\right)}
+\longrightarrow0.
+\end{aligned}
+\]
+</div>
+
+<div class="math">
+\[
+k_+=1,\qquad n_+=0,
+\]
+\[
+\boxed{y=x}.
+\]
+</div>
+
+<h3>Za \(x\to-\infty\)</h3>
+
+<p>Ponovo računamo \(k\) i \(n\):</p>
+
+<div class="math">
+\[
+\begin{aligned}
+k_-
+&=\lim_{x\to-\infty}\frac{f(x)}{x}\\[4pt]
+&=\lim_{x\to-\infty}
+\frac{x}{\sqrt{x^2+1}}\\[4pt]
+&=\lim_{x\to-\infty}
+\frac{x}{|x|\sqrt{1+\frac1{x^2}}}\\[4pt]
+&=-1.
+\end{aligned}
+\]
+</div>
+
+<p>Pošto je \(k_-=-1\), imamo</p>
+
+<div class="math">
+\[
+\begin{aligned}
+n_-
+&=\lim_{x\to-\infty}\bigl(f(x)-k_-x\bigr)\\[4pt]
+&=\lim_{x\to-\infty}
+\left(
+\frac{x^2}{\sqrt{x^2+1}}+x
+\right).
+\end{aligned}
+\]
+</div>
+
+<p>Racionalizujemo:</p>
+
+<div class="math">
+\[
+\begin{aligned}
+\frac{x^2}{\sqrt{x^2+1}}+x
+&=
+\frac{x\left(x+\sqrt{x^2+1}\right)}
+{\sqrt{x^2+1}}\\[4pt]
+&=
+\frac{x}
+{\sqrt{x^2+1}\left(\sqrt{x^2+1}-x\right)}
+\longrightarrow0.
+\end{aligned}
+\]
+</div>
+
+<div class="math">
+\[
+k_-=-1,\qquad n_-=0,
+\]
+\[
+\boxed{y=-x}.
+\]
+</div>
+
+<p>Vertikalnih asimptota nema, jer je funkcija definisana za svaki \(x\in\mathbb R\).</p>
+</section>
+
+<section class="card analysis">
+<div class="label">3. Prvi izvod</div>
+<h2>Monotonost i ekstremi</h2>
+
+<div class="math">\[
+f(x)=x^2(x^2+1)^{-\frac12}.
+\]</div>
+
+<div class="math">\[
+\begin{aligned}
+f'(x)
+&=2x(x^2+1)^{-\frac12}
+-x^2\cdot\frac12(x^2+1)^{-\frac32}\cdot2x\\
+&=\frac{2x(x^2+1)-x^3}{(x^2+1)^{3/2}}\\
+&=\boxed{\frac{x(x^2+2)}{(x^2+1)^{3/2}}}.
+\end{aligned}
+\]</div>
+
+<p>Imenilac je pozitivan i \(x^2+2>0\), pa znak izvoda zavisi samo od \(x\).</p>
+
+<div class="table-wrap">
+<table>
+<tr><th>\(x\)</th><th>\(( -\infty,0)\)</th><th>\(0\)</th><th>\((0,\infty)\)</th></tr>
+<tr><th>\(f'(x)\)</th><td class="minus">−</td><td class="zero">0</td><td class="plus">+</td></tr>
+<tr><th>\(f(x)\)</th><td>opada</td><td>minimum</td><td>raste</td></tr>
+</table>
+</div>
+
+<div class="math">\[
+\boxed{f\text{ opada na }(-\infty,0)}
+\]
+\[
+\boxed{f\text{ raste na }(0,\infty)}
+\]</div>
+
+<div class="math">\[
+f(0)=0,
+\qquad
+\boxed{\text{minimum je u tački }(0,0)}.
+\]</div>
+</section>
+
+<section class="card analysis">
+<div class="label">4. Drugi izvod</div>
+<h2>Konveksnost, konkavnost i prevojne tačke</h2>
+
+<div class="math">\[
+\boxed{
+f''(x)=\frac{2-x^2}{(x^2+1)^{5/2}}
+}.
+\]</div>
+
+<p>Imenilac je pozitivan, pa znak drugog izvoda zavisi od \(2-x^2\):</p>
+<div class="math">\[
+2-x^2=0\iff x=\pm\sqrt2.
+\]</div>
+
+<div class="table-wrap">
+<table>
+<tr><th>\(x\)</th><th>\(( -\infty,-\sqrt2)\)</th><th>\(-\sqrt2\)</th><th>\((-\sqrt2,\sqrt2)\)</th><th>\(\sqrt2\)</th><th>\((\sqrt2,\infty)\)</th></tr>
+<tr><th>\(f''(x)\)</th><td class="minus">−</td><td class="zero">0</td><td class="plus">+</td><td class="zero">0</td><td class="minus">−</td></tr>
+<tr><th>oblik</th><td>konkavna</td><td>prevoj</td><td>konveksna</td><td>prevoj</td><td>konkavna</td></tr>
+</table>
+</div>
+
+<div class="math">\[
+\boxed{f\text{ je konveksna na }(-\sqrt2,\sqrt2)}
+\]
+\[
+\boxed{f\text{ je konkavna na }(-\infty,-\sqrt2)\cup(\sqrt2,\infty)}
+\]</div>
+
+<p>Ordinata prevojnih tačaka:</p>
+<div class="math">\[
+f(\pm\sqrt2)=\frac2{\sqrt3}.
+\]</div>
+
+<div class="math">\[
+\boxed{
+P_1\left(-\sqrt2,\frac2{\sqrt3}\right),
+\qquad
+P_2\left(\sqrt2,\frac2{\sqrt3}\right)
+}.
+\]</div>
+</section>
+
+<section class="card graph">
+<div class="label">Skica grafika</div>
+<h2>Grafik funkcije</h2>
+<div class="graph-wrap">
+<svg viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#425466"/></marker>
+</defs>
+<rect width="760" height="470" rx="14" fill="#fbfdff"/>
+<g stroke="#e7edf4">
+<line x1="80" y1="70" x2="80" y2="410"/><line x1="155" y1="70" x2="155" y2="410"/><line x1="230" y1="70" x2="230" y2="410"/><line x1="305" y1="70" x2="305" y2="410"/><line x1="380" y1="70" x2="380" y2="410"/><line x1="455" y1="70" x2="455" y2="410"/><line x1="530" y1="70" x2="530" y2="410"/><line x1="605" y1="70" x2="605" y2="410"/><line x1="680" y1="70" x2="680" y2="410"/>
+<line x1="55" y1="110" x2="705" y2="110"/><line x1="55" y1="185" x2="705" y2="185"/><line x1="55" y1="260" x2="705" y2="260"/><line x1="55" y1="335" x2="705" y2="335"/><line x1="55" y1="410" x2="705" y2="410"/>
+</g>
+<line x1="55" y1="410" x2="710" y2="410" stroke="#425466" stroke-width="2" marker-end="url(#a)"/>
+<line x1="380" y1="435" x2="380" y2="62" stroke="#425466" stroke-width="2" marker-end="url(#a)"/>
+<text x="715" y="416" font-size="18" fill="#425466">x</text><text x="388" y="60" font-size="18" fill="#425466">y</text>
+<line x1="80" y1="110" x2="380" y2="410" stroke="#d58a3a" stroke-width="2" stroke-dasharray="9 8"/>
+<line x1="380" y1="410" x2="680" y2="110" stroke="#d58a3a" stroke-width="2" stroke-dasharray="9 8"/>
+<text x="105" y="125" font-size="16" fill="#b66b20">y=-x</text><text x="622" y="125" font-size="16" fill="#b66b20">y=x</text>
+<path d="M80 126 C120 163,165 207,210 250 C255 293,300 345,340 386 C355 401,367 408,380 410 C393 408,405 401,420 386 C460 345,505 293,550 250 C595 207,640 163,680 126" fill="none" stroke="#246bce" stroke-width="5" stroke-linecap="round"/>
+<circle cx="380" cy="410" r="6" fill="#1f9d72"/><text x="390" y="432" font-size="15" fill="#1f6c50">(0,0)</text>
+<circle cx="274" cy="323" r="5" fill="#d9534f"/><circle cx="486" cy="323" r="5" fill="#d9534f"/>
+<text x="185" y="310" font-size="14" fill="#a63c38">prevoj</text><text x="500" y="310" font-size="14" fill="#a63c38">prevoj</text>
+</svg>
+</div>
+<p>Grafik je simetričan u odnosu na \(y\)-osu, ima minimum u koordinatnom početku i približava se pravama \(y=-x\) i \(y=x\).</p>
+</section>
+
+<section class="card answer">
+<div class="label">Konačan pregled</div>
+<div class="summary">
+<div class="box">\[D_f=\mathbb R,\qquad f(-x)=f(x)\]</div>
+<div class="box">\[f(x)\ge0,\qquad f(x)=0\iff x=0\]</div>
+<div class="box">\[f'(x)=\frac{x(x^2+2)}{(x^2+1)^{3/2}}\]</div>
+<div class="box">\[\min f=f(0)=0\]</div>
+<div class="box">\[f''(x)=\frac{2-x^2}{(x^2+1)^{5/2}}\]</div>
+<div class="box">\[P_{1,2}=\left(\pm\sqrt2,\frac2{\sqrt3}\right)\]</div>
+</div>
+<div class="math">\[
+\boxed{\text{Kose asimptote su }y=-x\text{ i }y=x.}
+\]</div>
+<div class="math">\[
+\boxed{V_f=[0,\infty).}
+\]</div>
+</section>
+
+</main>
+<footer><strong>Mathbrotherhood</strong> Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
