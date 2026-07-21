@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saobraćajni fakultet – sistem sa parametrom, 4 jednačine i 3 nepoznate</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg-1:#071426;
+      --bg-2:#102b46;
+      --paper:#f7f9fc;
+      --ink:#172033;
+      --muted:#5c677a;
+      --blue:#246bce;
+      --cyan:#35b6d8;
+      --green:#1f9d72;
+      --purple:#845ec2;
+      --orange:#e98b2a;
+      --red:#d9534f;
+      --line:#dce5f0;
+      --shadow:0 18px 45px rgba(0,0,0,.18);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(53,182,216,.18), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(132,94,194,.18), transparent 25%),
+        linear-gradient(145deg,var(--bg-1),var(--bg-2));
+      padding:34px 16px;
+    }
+
+    .page{
+      max-width:980px;
+      margin:0 auto;
+      background:var(--paper);
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.22);
+    }
+
+    .hero{
+      position:relative;
+      padding:34px 38px 30px;
+      color:white;
+      background:
+        linear-gradient(120deg,rgba(36,107,206,.95),rgba(53,182,216,.87)),
+        linear-gradient(145deg,#143b68,#0f2846);
+      overflow:hidden;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:240px;
+      height:240px;
+      right:-75px;
+      top:-110px;
+      border-radius:50%;
+      background:rgba(255,255,255,.12);
+    }
+
+    .kicker{
+      display:inline-flex;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.24);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:18px 0 8px;
+      font-size:clamp(28px,5vw,44px);
+      line-height:1.06;
+      letter-spacing:-.03em;
+    }
+
+    .subtitle{
+      margin:0;
+      color:rgba(255,255,255,.88);
+      font-size:17px;
+      max-width:760px;
+    }
+
+    main{padding:30px}
+
+    .card{
+      position:relative;
+      margin:0 0 22px;
+      padding:24px 26px;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 8px 22px rgba(24,47,79,.07);
+      overflow:hidden;
+    }
+
+    .card:before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:7px;
+      background:var(--accent,var(--blue));
+    }
+
+    .task-card{--accent:var(--blue)}
+    .idea-card{--accent:var(--purple)}
+    .solution-card{--accent:var(--green)}
+    .case-card{--accent:var(--orange)}
+    .warning-card{--accent:var(--red)}
+    .answer-card{
+      --accent:var(--cyan);
+      background:linear-gradient(145deg,#f0fbff,#f8fdff);
+      border:2px solid #9bdcec;
+    }
+
+    .label{
+      display:inline-block;
+      margin-bottom:10px;
+      color:var(--accent,var(--blue));
+      font-size:13px;
+      font-weight:900;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:23px;
+    }
+
+    h3{
+      margin:20px 0 10px;
+      font-size:19px;
+      color:#244867;
+    }
+
+    p{
+      margin:10px 0;
+      line-height:1.7;
+      font-size:17px;
+    }
+
+    .math-box{
+      margin:15px 0;
+      padding:14px 16px;
+      border-radius:14px;
+      background:#f3f7fb;
+      border:1px solid #d9e5f2;
+      overflow-x:auto;
+    }
+
+    .key-box{
+      margin:16px 0;
+      padding:16px 18px;
+      border-radius:14px;
+      background:#fff8ef;
+      border:1px solid #efd3af;
+      overflow-x:auto;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:12px;
+      margin:18px 0;
+      align-items:flex-start;
+    }
+
+    .step-number{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      color:white;
+      font-weight:900;
+      background:linear-gradient(145deg,var(--blue),var(--cyan));
+      box-shadow:0 6px 14px rgba(36,107,206,.22);
+    }
+
+    .step-content p:first-child{margin-top:5px}
+
+    .case-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:16px;
+    }
+
+    .case-box{
+      padding:18px;
+      border-radius:14px;
+      background:#f7fafc;
+      border:1px solid #d9e5ef;
+    }
+
+    .case-box h3{margin-top:0}
+
+    .highlight{
+      font-weight:800;
+      color:#145d78;
+    }
+
+    footer{
+      padding:22px 30px 28px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    footer strong{color:#274766}
+
+    mjx-container[jax="SVG"]{
+      max-width:100%;
+      overflow-x:auto;
+      overflow-y:hidden;
+    }
+
+    mjx-container[display="true"]{
+      margin:.8em 0 !important;
+    }
+
+    @media (max-width:760px){
+      .hero{padding:28px 22px}
+      main{padding:20px 14px}
+      .card{padding:21px 18px}
+      .case-grid{grid-template-columns:1fr}
+      .step{grid-template-columns:36px 1fr}
+      .step-number{width:34px;height:34px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="kicker">Peđa i Brude design</div>
+      <h1>Sistem sa parametrom</h1>
+      <p class="subtitle">Četiri jednačine, tri nepoznate — prvo tražimo zavisnost između jednačina</p>
+    </header>
+
+    <main>
+      <section class="card task-card">
+        <div class="label">Zadatak</div>
+        <h2>Rešiti sistem u zavisnosti od realnog parametra \(a\)</h2>
+
+        <div class="math-box">
+          \[
+          \begin{cases}
+          x+2y+z=-1,\\
+          x+y+(a-1)z=1,\\
+          x+2y+az=-a,\\
+          -ax-2ay-az=a^2.
+          \end{cases}
+          \]
+        </div>
+      </section>
+
+      <section class="card idea-card">
+        <div class="label">Glavna fora</div>
+        <h2>Upoređujemo prvu i četvrtu jednačinu</h2>
+
+        <p>
+          Leva strana četvrte jednačine jednaka je \(-a\) puta levoj strani prve:
+        </p>
+
+        <div class="key-box">
+          \[
+          -ax-2ay-az=-a(x+2y+z).
+          \]
+        </div>
+
+        <p>
+          Iz prve jednačine je
+        </p>
+
+        <div class="math-box">
+          \[
+          x+2y+z=-1.
+          \]
+        </div>
+
+        <p>Zato četvrta leva strana mora biti</p>
+
+        <div class="math-box">
+          \[
+          -a(x+2y+z)=-a(-1)=a.
+          \]
+        </div>
+
+        <p>
+          Međutim, četvrta jednačina zahteva da ista leva strana bude \(a^2\).
+          Prema tome, sistem može biti saglasan samo ako
+        </p>
+
+        <div class="math-box">
+          \[
+          a=a^2
+          \iff
+          a(a-1)=0.
+          \]
+        </div>
+
+        <div class="math-box">
+          \[
+          \boxed{a=0\quad\text{ili}\quad a=1.}
+          \]
+        </div>
+      </section>
+
+      <section class="card case-card">
+        <div class="label">Posebni slučajevi</div>
+        <h2>Razmatramo dozvoljene vrednosti parametra</h2>
+
+        <div class="case-grid">
+          <div class="case-box">
+            <h3>1. Slučaj \(a=0\)</h3>
+
+            <p>Sistem postaje</p>
+
+            <div class="math-box">
+              \[
+              \begin{cases}
+              x+2y+z=-1,\\
+              x+y-z=1,\\
+              x+2y=0,\\
+              0=0.
+              \end{cases}
+              \]
+            </div>
+
+            <p>Iz treće jednačine je</p>
+
+            <div class="math-box">
+              \[
+              x+2y=0.
+              \]
+            </div>
+
+            <p>Poređenjem sa prvom dobijamo</p>
+
+            <div class="math-box">
+              \[
+              z=-1.
+              \]
+            </div>
+
+            <p>Druga jednačina tada daje</p>
+
+            <div class="math-box">
+              \[
+              x+y-(-1)=1
+              \iff
+              x+y=0.
+              \]
+            </div>
+
+            <p>Iz sistema</p>
+
+            <div class="math-box">
+              \[
+              \begin{cases}
+              x+2y=0,\\
+              x+y=0
+              \end{cases}
+              \]
+            </div>
+
+            <p>dobijamo</p>
+
+            <div class="math-box">
+              \[
+              y=0,\qquad x=0.
+              \]
+            </div>
+
+            <div class="math-box">
+              \[
+              \boxed{(x,y,z)=(0,0,-1)}.
+              \]
+            </div>
+          </div>
+
+          <div class="case-box">
+            <h3>2. Slučaj \(a=1\)</h3>
+
+            <p>Sistem postaje</p>
+
+            <div class="math-box">
+              \[
+              \begin{cases}
+              x+2y+z=-1,\\
+              x+y=1,\\
+              x+2y+z=-1,\\
+              -x-2y-z=1.
+              \end{cases}
+              \]
+            </div>
+
+            <p>
+              Treća jednačina je ista kao prva, a četvrta je prva pomnožena sa
+              \(-1\). Ostaju dve nezavisne jednačine:
+            </p>
+
+            <div class="math-box">
+              \[
+              \begin{cases}
+              x+2y+z=-1,\\
+              x+y=1.
+              \end{cases}
+              \]
+            </div>
+
+            <p>Stavimo</p>
+
+            <div class="math-box">
+              \[
+              y=t.
+              \]
+            </div>
+
+            <p>Iz druge jednačine je</p>
+
+            <div class="math-box">
+              \[
+              x=1-t.
+              \]
+            </div>
+
+            <p>Iz prve dobijamo</p>
+
+            <div class="math-box">
+              \[
+              1-t+2t+z=-1,
+              \]
+              \[
+              z=-2-t.
+              \]
+            </div>
+
+            <div class="math-box">
+              \[
+              \boxed{
+              (x,y,z)=(1-t,t,-2-t),
+              \qquad t\in\mathbb R
+              }.
+              \]
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card warning-card">
+        <div class="label">Šta se dešava za ostale vrednosti</div>
+
+        <p>
+          Ako je \(a\neq0\) i \(a\neq1\), prva i četvrta jednačina međusobno su
+          protivurečne. Zato tada sistem nema rešenja.
+        </p>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          a\neq0,\ a\neq1
+          \quad\Longrightarrow\quad
+          \text{sistem nema rešenja}.
+          }
+          \]
+        </div>
+      </section>
+
+      <section class="card answer-card">
+        <div class="label">Konačan odgovor</div>
+
+        <div class="math-box">
+          \[
+          \boxed{
+          \begin{array}{ll}
+          a=0:
+          &
+          (x,y,z)=(0,0,-1),
+          \\[8pt]
+          a=1:
+          &
+          (x,y,z)=(1-t,t,-2-t),\quad t\in\mathbb R,
+          \\[8pt]
+          a\neq0,\ a\neq1:
+          &
+          \text{sistem nema rešenja}.
+          \end{array}
+          }
+          \]
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>Mathbrotherhood</strong> Powered by ChatGPT
+    </footer>
+  </div>
+</body>
+</html>
