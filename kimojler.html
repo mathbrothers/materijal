@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Zadatak — Cauchy-Eulerova diferencijalna jednačina</title>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+    h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+    .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+    .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+    .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+    .zadatak-section h2 { color: #1565c0; }
+    .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+    .ideja-section h2 { color: #e65100; }
+    .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+    .resenje-section h2 { color: #2e7d32; }
+    .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+    .odgovor-section h2 { color: #7b1fa2; }
+    .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+    .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+    .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+
+<h1>Zadatak</h1>
+
+<div class="section-box zadatak-section">
+  <h2>Zadatak</h2>
+  <p>Rešiti diferencijalnu jednačinu</p>
+  <p style="text-align: center;">\[ (x+3)^2 y'' + 3(x+3) y' + y = \frac{\ln\bigl((x+3)^2\bigr)}{2(x+3)\bigl(\ln(x+3)\bigr)^3}, \qquad x > -2. \]</p>
+</div>
+
+<div class="section-box ideja-section">
+  <h2>Ideja</h2>
+  <p>Ovo je <strong>Koshi-Ojlerova</strong> (Cauchy-Eulerova) diferencijalna jednačina oblika</p>
+  <p style="text-align: center;">\[ a(x+3)^2 y'' + b(x+3) y' + c y = f(x), \]</p>
+  <p>gde su \( a=1 \), \( b=3 \), \( c=1 \). Standardna smena je \( x+3 = e^t \), odnosno \( t = \ln(x+3) \). Uslov \( x > -2 \) osigurava da je \( x+3 > 1 \), pa je \( t > 0 \) i logaritam je dobro definisan.</p>
+  <p>Uz ovu smenu važe formule:</p>
+  <p style="text-align: center;">\[ (x+3)y' = \frac{dy}{dt} = \dot{y}, \qquad (x+3)^2 y'' = \frac{d^2y}{dt^2} - \frac{dy}{dt} = \ddot{y} - \dot{y}. \]</p>
+  <p>Desna strana se uprošćava koristeći \( \ln\bigl((x+3)^2\bigr) = 2\ln(x+3) = 2t \).</p>
+</div>
+
+<div class="section-box resenje-section">
+  <h2>Rešenje</h2>
+
+  <h3 style="color: #2e7d32;">1. Transformacija jednačine</h3>
+
+  <p>Uvrštavanjem smene \( x+3 = e^t \) u levu stranu:</p>
+  <p style="text-align: center;">\[ (\ddot{y} - \dot{y}) + 3\dot{y} + y = \ddot{y} + 2\dot{y} + y. \]</p>
+
+  <p>Desna strana postaje:</p>
+  <p style="text-align: center;">\[ \frac{2t}{2e^t \cdot t^3} = \frac{t}{e^t \cdot t^3} = \frac{1}{e^t \cdot t^2} = e^{-t} t^{-2}. \]</p>
+
+  <p>Dakle, transformisana jednačina glasi:</p>
+  <p style="text-align: center;">\[ \ddot{y} + 2\dot{y} + y = \frac{e^{-t}}{t^2}. \]</p>
+
+  <h3 style="color: #2e7d32;">2. Homogeno rešenje</h3>
+
+  <p>Karakteristična jednačina:</p>
+  <p style="text-align: center;">\[ r^2 + 2r + 1 = 0 \Rightarrow (r+1)^2 = 0 \Rightarrow r_{1,2} = -1. \]</p>
+
+  <p>Imamo dvostruki realan koren, pa je homogeno rešenje:</p>
+  <p style="text-align: center;">\[ y_h(t) = (C_1 + C_2 t) e^{-t}. \]</p>
+
+  <h3 style="color: #2e7d32;">3. Partikularno rešenje (metoda varijacije konstanti)</h3>
+
+  <p>Fundamentalna rešenja su \( y_1 = e^{-t} \) i \( y_2 = t e^{-t} \). Wronskijan:</p>
+  <p style="text-align: center;">\[ W = \begin{vmatrix} e^{-t} & t e^{-t} \\ -e^{-t} & e^{-t} - t e^{-t} \end{vmatrix} = e^{-t}(e^{-t}-te^{-t}) + e^{-t} \cdot t e^{-t} = e^{-2t} - t e^{-2t} + t e^{-2t} = e^{-2t}. \]</p>
+
+  <p>Po formuli varijacije konstanti:</p>
+  <p style="text-align: center;">\[ C_1'(t) = -\frac{y_2 \cdot f(t)}{W} = -\frac{t e^{-t} \cdot e^{-t} t^{-2}}{e^{-2t}} = -\frac{t e^{-2t} \cdot t^{-2}}{e^{-2t}} = -\frac{1}{t}, \]</p>
+  <p style="text-align: center;">\[ C_2'(t) = \frac{y_1 \cdot f(t)}{W} = \frac{e^{-t} \cdot e^{-t} t^{-2}}{e^{-2t}} = \frac{e^{-2t} \cdot t^{-2}}{e^{-2t}} = \frac{1}{t^2}. \]</p>
+
+  <p>Integriranjem:</p>
+  <p style="text-align: center;">\[ C_1(t) = -\ln|t| = -\ln t \quad (\text{za } t > 0), \]</p>
+  <p style="text-align: center;">\[ C_2(t) = -\frac{1}{t}. \]</p>
+
+  <p>Partikularno rešenje:</p>
+  <p style="text-align: center;">\[ y_p(t) = C_1(t) y_1 + C_2(t) y_2 = (-\ln t) e^{-t} + \left(-\frac{1}{t}\right) t e^{-t} = -e^{-t}\ln t - e^{-t} = -e^{-t}(\ln t + 1). \]</p>
+
+  <h3 style="color: #2e7d32;">4. Opšte rešenje po \( t \)</h3>
+
+  <p style="text-align: center;">\[ y(t) = y_h(t) + y_p(t) = (C_1 + C_2 t) e^{-t} - e^{-t}(\ln t + 1) = e^{-t}\bigl(C_1 + C_2 t - \ln t - 1\bigr). \]</p>
+
+  <h3 style="color: #2e7d32;">5. Vraćanje na promenljivu \( x \)</h3>
+
+  <p>Kako je \( t = \ln(x+3) \) i \( e^{-t} = \frac{1}{x+3} \):</p>
+  <p style="text-align: center;">\[ y(x) = \frac{1}{x+3}\left(C_1 + C_2 \ln(x+3) - \ln\bigl(\ln(x+3)\bigr) - 1\right). \]</p>
+
+  <p>Konstante \( C_1 \) i \( C_2 \) su proizvoljne realne konstante. Možemo ih preimenovati: neka je \( A = C_1 - 1 \) i \( B = C_2 \). Tada:</p>
+  <p style="text-align: center;">\[ y(x) = \frac{1}{x+3}\left(A + B \ln(x+3) - \ln\bigl(\ln(x+3)\bigr)\right). \]</p>
+</div>
+
+<div class="section-box odgovor-section">
+  <h2>Odgovor</h2>
+  <p style="text-align: center;">
+    <span class="boxed">
+      \( y(x) = \dfrac{1}{x+3}\left(C_1 + C_2 \ln(x+3) - \ln\bigl(\ln(x+3)\bigr)\right) \)
+    </span>
+  </p>
+  <p style="text-align: center; margin-top: 10px;">
+    <span class="boxed">
+      \( C_1, C_2 \in \mathbb{R} \)
+    </span>
+  </p>
+</div>
+
+<p class="potpis">Mathbrotherhood Powered by Qwen3.7-Plus</p>
+
+</body>
+</html>
