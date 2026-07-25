@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Zadatak 4 — Linijski integrali</title>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+    h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+    .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+    .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+    .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+    .zadatak-section h2 { color: #1565c0; }
+    .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+    .ideja-section h2 { color: #e65100; }
+    .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+    .resenje-section h2 { color: #2e7d32; }
+    .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+    .odgovor-section h2 { color: #7b1fa2; }
+    .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+    .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+    .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+
+<h1>Zadatak 4 (5 poena)</h1>
+
+<div class="section-box zadatak-section">
+  <h2>Zadatak</h2>
+  <p><strong>a)</strong> Kriva \( K \) u \( \mathbb{R}^2 \) je kružnica oko koordinatnog početka poluprečnika \( \frac{5}{3} \), obilazena jednom u smeru suprotnom od kazaljke na satu. Izračunati</p>
+  <p style="text-align: center;">\[ \int_K 4 \, ds. \]</p>
+  <p><strong>b)</strong> Neka je \( f: \mathbb{R}^3 \to \mathbb{R} \) data sa</p>
+  <p style="text-align: center;">\[ f\begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = x_1 e^{x_2 - x_3}. \]</p>
+  <p>Neka je kriva \( \widetilde{K} \) parametrizovana sa</p>
+  <p style="text-align: center;">\[ C: [-1, 3] \to \mathbb{R}^3, \quad t \mapsto \begin{pmatrix} t \\ -2t \\ 3-t \end{pmatrix}. \]</p>
+  <p>Izračunati</p>
+  <p style="text-align: center;">\[ \int_{\widetilde{K}} \nabla f(x) \cdot dx. \]</p>
+</div>
+
+<div class="section-box ideja-section">
+  <h2>Ideja</h2>
+  <p><strong>a)</strong> Integral \( \int_K 4 \, ds \) je <strong>linijski integral prve vrste</strong> (po dužini luka). On predstavlja proizvod konstante 4 i dužine krive \( K \). Kružnica poluprečnika \( r = \frac{5}{3} \) ima obim \( 2\pi r \).</p>
+  <p><strong>b)</strong> Integral \( \int_{\widetilde{K}} \nabla f \cdot dx \) je <strong>linijski integral drugog vrste</strong> gradijenta skalarne funkcije. Po <strong>osnovnoj teoremi analize</strong> (teorema o potencijalu), ovaj integral zavisi samo od krajnjih tačaka krive:</p>
+  <p style="text-align: center;">\[ \int_{\widetilde{K}} \nabla f \cdot dx = f(\text{kraj}) - f(\text{početak}). \]</p>
+</div>
+
+<div class="section-box resenje-section">
+  <h2>Rešenje</h2>
+
+  <h3 style="color: #2e7d32;">Deo a) — Linijski integral prve vrste</h3>
+
+  <p>Kriva \( K \) je kružnica poluprečnika \( r = \frac{5}{3} \). Dužina (obim) kružnice je:</p>
+  <p style="text-align: center;">\[ L = 2\pi r = 2\pi \cdot \frac{5}{3} = \frac{10\pi}{3}. \]</p>
+
+  <p>Linijski integral prve vrste konstante po krivoj jednak je proizvodu konstante i dužine krive:</p>
+  <p style="text-align: center;">\[ \int_K 4 \, ds = 4 \cdot L = 4 \cdot \frac{10\pi}{3} = \frac{40\pi}{3}. \]</p>
+
+  <h3 style="color: #2e7d32;">Deo b) — Linijski integral gradijenta</h3>
+
+  <p>Parametrizacija krive je:</p>
+  <p style="text-align: center;">\[ x(t) = \begin{pmatrix} t \\ -2t \\ 3-t \end{pmatrix}, \quad t \in [-1, 3]. \]</p>
+
+  <p><strong>Početna tačka</strong> (za \( t = -1 \)):</p>
+  <p style="text-align: center;">\[ x(-1) = \begin{pmatrix} -1 \\ 2 \\ 4 \end{pmatrix}. \]</p>
+
+  <p><strong>Krajnja tačka</strong> (za \( t = 3 \)):</p>
+  <p style="text-align: center;">\[ x(3) = \begin{pmatrix} 3 \\ -6 \\ 0 \end{pmatrix}. \]</p>
+
+  <p>Po osnovnoj teoremi analize:</p>
+  <p style="text-align: center;">\[ \int_{\widetilde{K}} \nabla f \cdot dx = f(x(3)) - f(x(-1)). \]</p>
+
+  <p>Izračunavamo \( f \) u krajnjim tačkama:</p>
+  <p style="text-align: center;">\[ f\begin{pmatrix} 3 \\ -6 \\ 0 \end{pmatrix} = 3 \cdot e^{-6 - 0} = 3e^{-6}, \]</p>
+  <p style="text-align: center;">\[ f\begin{pmatrix} -1 \\ 2 \\ 4 \end{pmatrix} = (-1) \cdot e^{2 - 4} = -e^{-2}. \]</p>
+
+  <p>Dakle:</p>
+  <p style="text-align: center;">\[ \int_{\widetilde{K}} \nabla f \cdot dx = 3e^{-6} - (-e^{-2}) = 3e^{-6} + e^{-2} = e^{-2}(1 + 3e^{-4}). \]</p>
+</div>
+
+<div class="section-box odgovor-section">
+  <h2>Odgovor</h2>
+  <p style="text-align: center;">
+    <span class="boxed">
+      a) \( \displaystyle\int_K 4 \, ds = \dfrac{40\pi}{3} \)
+    </span>
+  </p>
+  <p style="text-align: center; margin-top: 10px;">
+    <span class="boxed">
+      b) \( \displaystyle\int_{\widetilde{K}} \nabla f \cdot dx = 3e^{-6} + e^{-2} = e^{-2}(1 + 3e^{-4}) \)
+    </span>
+  </p>
+</div>
+
+<p class="potpis">Mathbrotherhood Powered by Kimi K3</p>
+
+</body>
+</html>
