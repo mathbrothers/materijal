@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kupa i cilindar — zapremina i površina</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --text: #1f2937;
+      --muted: #5f6b7a;
+      --card: #ffffff;
+      --border: #dce4ee;
+      --task: #2563eb;
+      --idea: #8b5cf6;
+      --analysis: #0891b2;
+      --solution: #16a34a;
+      --warning: #f59e0b;
+      --answer: #dc2626;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.68;
+    }
+
+    .page {
+      width: min(1040px, calc(100% - 28px));
+      margin: 34px auto;
+    }
+
+    .hero {
+      padding: 30px 34px;
+      margin-bottom: 24px;
+      border-radius: 24px;
+      color: white;
+      background: linear-gradient(135deg, #173b72, #2563eb 55%, #5b7fe8);
+      box-shadow: 0 18px 42px rgba(24, 61, 115, .22);
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.18;
+    }
+
+    .hero p {
+      margin: 0;
+      opacity: .93;
+      font-size: 1.05rem;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 26px 23px 30px;
+      margin: 18px 0;
+      box-shadow: 0 10px 28px rgba(31, 41, 55, .07);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--accent);
+    }
+
+    .task-card { --accent: var(--task); }
+    .idea-card { --accent: var(--idea); }
+    .analysis-card { --accent: var(--analysis); }
+    .solution-card { --accent: var(--solution); }
+    .warning-card { --accent: var(--warning); }
+    .answer-card {
+      --accent: var(--answer);
+      border: 2px solid rgba(220,38,38,.28);
+      background: #fffafa;
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1.28rem;
+      color: #182333;
+    }
+
+    .card h3 {
+      margin: 20px 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .equation-box {
+      margin: 16px 0;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #f7f9fc;
+      border: 1px solid #e3e9f1;
+      overflow-x: auto;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .diagram {
+      padding: 10px;
+      border-radius: 16px;
+      background: #fbfcfe;
+      border: 1px solid #e4eaf2;
+    }
+
+    .diagram svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: #174ea6;
+    }
+
+    .final {
+      text-align: center;
+      font-size: 1.22rem;
+      font-weight: 700;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 19px 10px 8px;
+      text-align: center;
+      color: #697586;
+      font-size: .92rem;
+    }
+
+    @media (max-width: 780px) {
+      .page { width: min(100% - 18px, 1040px); margin: 18px auto; }
+      .hero { padding: 24px 22px; border-radius: 18px; }
+      .card { padding: 21px 18px 20px 24px; }
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="hero">
+      <h1>Kupa i cilindar</h1>
+      <p>Zapremina ograničenog tela i površina dela kupe</p>
+    </header>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>Date su površi</p>
+      \[
+        S_1:\quad z^2=x^2+y^2-4x-4y+8,
+      \]
+      \[
+        S_2:\quad x^2+y^2=2x+2y.
+      \]
+      <p>
+        Izračunati zapreminu tela \(T\) ograničenog datim površima i
+        površinu dela površi \(S_1\) koja pripada telu \(T\).
+      </p>
+    </section>
+
+    <section class="card idea-card">
+      <h2>1. Prepoznavanje površi</h2>
+
+      <div class="two-col">
+        <div>
+          <p>Prvu jednačinu sređujemo dopunjavanjem do kvadrata:</p>
+
+          \[
+          \begin{aligned}
+          z^2
+          &=x^2-4x+4+y^2-4y+4\\
+          &=(x-2)^2+(y-2)^2.
+          \end{aligned}
+          \]
+
+          <p>
+            Dakle, \(S_1\) je <span class="highlight">dvostruka prava kružna kupa</span>
+            sa vrhom u tački \((2,2,0)\) i osom paralelnom \(z\)-osi.
+          </p>
+
+          <p>Drugu jednačinu sređujemo:</p>
+
+          \[
+          (x-1)^2+(y-1)^2=2.
+          \]
+
+          <p>
+            Površ \(S_2\) je <span class="highlight">vertikalni kružni cilindar</span>
+            poluprečnika \(\sqrt2\), čija je osa prava
+            \(x=1,\ y=1\).
+          </p>
+        </div>
+
+        <div class="diagram">
+          <svg viewBox="0 0 430 340" role="img"
+               aria-label="Projekcija cilindra na xy-ravan u koordinatama u=x-2, v=y-2">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8"
+                      refX="6" refY="3.5" orient="auto">
+                <polygon points="0 0, 7 3.5, 0 7" fill="#52606d"/>
+              </marker>
+            </defs>
+
+            <line x1="35" y1="150" x2="395" y2="150"
+                  stroke="#52606d" stroke-width="2" marker-end="url(#arrow)"/>
+            <line x1="245" y1="305" x2="245" y2="25"
+                  stroke="#52606d" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <circle cx="160" cy="235" r="120"
+                    fill="rgba(37,99,235,.10)"
+                    stroke="#2563eb" stroke-width="3"/>
+
+            <circle cx="245" cy="150" r="5" fill="#dc2626"/>
+            <circle cx="160" cy="235" r="5" fill="#2563eb"/>
+
+            <line x1="245" y1="150" x2="160" y2="235"
+                  stroke="#8b5cf6" stroke-width="2" stroke-dasharray="7 6"/>
+
+            <text x="400" y="143" font-size="18" fill="#263445">u</text>
+            <text x="254" y="29" font-size="18" fill="#263445">v</text>
+
+            <text x="253" y="142" font-size="16" fill="#b91c1c">O=(0,0)</text>
+            <text x="62" y="258" font-size="16" fill="#174ea6">C=(-1,-1)</text>
+            <text x="175" y="184" font-size="16" fill="#6d28d9">\(\sqrt2\)</text>
+
+            <text x="58" y="320" font-size="15" fill="#5f6b7a">
+              Krug je tangentno naslonjen na vrh kupe O.
+            </text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>2. Koji deo prostora daje ograničeno telo?</h2>
+      <p>
+        Cilindar ograničava projekciju tela u \(xy\)-ravni. Da bi telo bilo
+        ograničeno i u pravcu \(z\)-ose, uzima se deo
+        <strong>između gornje i donje polovine kupe</strong>:
+      </p>
+
+      \[
+        z^2\le (x-2)^2+(y-2)^2.
+      \]
+
+      <p>Zato je telo</p>
+
+      \[
+      T=\left\{
+      \begin{array}{l}
+      (x-1)^2+(y-1)^2\le 2,\\[2mm]
+      -\sqrt{(x-2)^2+(y-2)^2}\le z
+      \le\sqrt{(x-2)^2+(y-2)^2}.
+      \end{array}
+      \right.
+      \]
+    </section>
+
+    <section class="card analysis-card">
+      <h2>3. Pogodne polarne koordinate</h2>
+
+      <p>
+        Pošto je kupa centrirana oko prave \(x=2,\ y=2\), uvodimo
+      </p>
+
+      \[
+        x-2=r\cos\varphi,\qquad
+        y-2=r\sin\varphi.
+      \]
+
+      <p>Tada je</p>
+
+      \[
+        z=\pm r,\qquad dx\,dy=r\,dr\,d\varphi.
+      \]
+
+      <p>Jednačina cilindra postaje</p>
+
+      \[
+      \begin{aligned}
+      (x-1)^2+(y-1)^2&\le2,\\
+      (r\cos\varphi+1)^2+(r\sin\varphi+1)^2&\le2,
+      \end{aligned}
+      \]
+
+      pa dobijamo
+
+      \[
+        r^2+2r(\cos\varphi+\sin\varphi)\le0.
+      \]
+
+      <p>Pošto je \(r\ge0\), sledi</p>
+
+      \[
+        0\le r\le -2(\cos\varphi+\sin\varphi).
+      \]
+
+      <p>
+        Desna strana mora biti nenegativna, pa je
+      </p>
+
+      \[
+        \frac{3\pi}{4}\le\varphi\le\frac{7\pi}{4}.
+      \]
+    </section>
+
+    <section class="card solution-card">
+      <h2>4. Zapremina tela</h2>
+
+      <p>
+        Za svaku tačku projekcije na \(xy\)-ravan, promenljiva \(z\) ide od
+        \(-r\) do \(r\). Visina tela je zato
+      </p>
+
+      \[
+        r-(-r)=2r.
+      \]
+
+      <p>Zapremina je</p>
+
+      \[
+      \begin{aligned}
+      V
+      &=\int_{3\pi/4}^{7\pi/4}
+        \int_0^{-2(\cos\varphi+\sin\varphi)}
+        2r\cdot r\,dr\,d\varphi\\[2mm]
+      &=\frac{2}{3}
+        \int_{3\pi/4}^{7\pi/4}
+        \left[-2(\cos\varphi+\sin\varphi)\right]^3d\varphi.
+      \end{aligned}
+      \]
+
+      <p>Koristimo</p>
+
+      \[
+        \cos\varphi+\sin\varphi
+        =\sqrt2\cos\left(\varphi-\frac{\pi}{4}\right).
+      \]
+
+      Uvedimo smenu
+
+      \[
+        t=\varphi-\frac{\pi}{4}.
+      \]
+
+      Tada \(t\in\left[\frac{\pi}{2},\frac{3\pi}{2}\right]\), pa je
+
+      \[
+      \begin{aligned}
+      V
+      &=\frac{2}{3}
+        \int_{\pi/2}^{3\pi/2}
+        \left(-2\sqrt2\cos t\right)^3dt\\[2mm]
+      &=-\frac{32\sqrt2}{3}
+        \int_{\pi/2}^{3\pi/2}\cos^3t\,dt.
+      \end{aligned}
+      \]
+
+      Kako je
+
+      \[
+        \int_{\pi/2}^{3\pi/2}\cos^3t\,dt=-\frac43,
+      \]
+
+      konačno dobijamo
+
+      \[
+        \boxed{V=\frac{128\sqrt2}{9}}.
+      \]
+    </section>
+
+    <section class="card solution-card">
+      <h2>5. Površina dela kupe \(S_1\)</h2>
+
+      <p>Gornja polovina kupe je graf funkcije</p>
+
+      \[
+        z=f(x,y)=\sqrt{(x-2)^2+(y-2)^2}.
+      \]
+
+      Za \(r=\sqrt{(x-2)^2+(y-2)^2}\) važi
+
+      \[
+        f_x=\frac{x-2}{r},
+        \qquad
+        f_y=\frac{y-2}{r}.
+      \]
+
+      Zato je
+
+      \[
+      1+f_x^2+f_y^2
+      =
+      1+\frac{(x-2)^2+(y-2)^2}{r^2}
+      =2.
+      \]
+
+      <p>Element površine jedne polovine kupe je</p>
+
+      \[
+        dS=\sqrt2\,dx\,dy.
+      \]
+
+      <p>
+        Projekcija na \(xy\)-ravan je disk cilindra
+      </p>
+
+      \[
+        D:\quad (x-1)^2+(y-1)^2\le2,
+      \]
+
+      čija je površina
+
+      \[
+        P(D)=\pi(\sqrt2)^2=2\pi.
+      \]
+
+      <p>Površina gornje polovine kupe unutar cilindra iznosi</p>
+
+      \[
+        P_{\text{gornja}}
+        =\sqrt2\,P(D)
+        =2\pi\sqrt2.
+      \]
+
+      <p>
+        Donja polovina ima istu površinu, pa je ukupna površina dela površi
+        \(S_1\) koja pripada telu \(T\)
+      </p>
+
+      \[
+        \boxed{P_{S_1}=4\pi\sqrt2}.
+      \]
+
+      <p class="small">
+        Vrh kupe je jedna tačka i ne utiče na vrednost površine.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+
+      <div class="final">
+        \[
+          \boxed{\displaystyle
+          V(T)=\frac{128\sqrt2}{9}}
+        \]
+        \[
+          \boxed{\displaystyle
+          P\bigl(S_1\cap\partial T\bigr)=4\pi\sqrt2}
+        \]
+      </div>
+    </section>
+
+    <footer class="footer">
+      Mathbrotherhood &nbsp;•&nbsp; Powered by ChatGPT
+    </footer>
+
+  </main>
+</body>
+</html>
