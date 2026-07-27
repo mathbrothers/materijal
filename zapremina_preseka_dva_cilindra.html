@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zapremina preseka dva cilindra — konačna verzija</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --text:#1f2937;
+      --muted:#64748b;
+      --blue:#2563eb;
+      --green:#16a34a;
+      --orange:#ea580c;
+      --purple:#7c3aed;
+      --red:#dc2626;
+      --border:#e2e8f0;
+      --white:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left,#dbeafe 0,transparent 28%),
+        linear-gradient(180deg,#f8fafc 0%,var(--bg) 100%);
+      line-height:1.65;
+    }
+
+    .container{
+      width:min(980px,92%);
+      margin:40px auto;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#1d4ed8,#4f46e5);
+      color:white;
+      border-radius:24px;
+      padding:34px 36px;
+      box-shadow:0 18px 45px rgba(37,99,235,.22);
+      margin-bottom:26px;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(28px,4vw,43px);
+      line-height:1.15;
+    }
+
+    .hero p{
+      margin:0;
+      opacity:.92;
+      font-size:17px;
+    }
+
+    .card{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-left:7px solid var(--blue);
+      border-radius:18px;
+      padding:25px 28px;
+      margin:20px 0;
+      box-shadow:0 12px 32px rgba(15,23,42,.07);
+    }
+
+    .task-card{border-left-color:var(--purple)}
+    .idea-card{border-left-color:var(--orange)}
+    .analysis-card{border-left-color:var(--blue)}
+    .solution-card{border-left-color:var(--green)}
+    .warning-card{
+      border-left-color:var(--red);
+      background:#fffafa;
+    }
+    .answer-card{
+      border-left-color:var(--green);
+      background:linear-gradient(135deg,#f0fdf4,#ecfeff);
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:23px;
+    }
+
+    h3{
+      margin:22px 0 8px;
+      font-size:18px;
+    }
+
+    .formula{
+      overflow-x:auto;
+      padding:7px 0;
+    }
+
+    .final{
+      text-align:center;
+      font-size:22px;
+      font-weight:700;
+    }
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      padding:20px 0 10px;
+    }
+
+    @media (max-width:640px){
+      .hero,.card{padding:22px 20px}
+      .container{width:min(94%,980px);margin:20px auto}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <section class="hero">
+      <h1>Zapremina preseka dva cilindra</h1>
+      <p>Dvojni integral preko osnove u \(xy\)-ravni i polarna smena.</p>
+    </section>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+
+      <p>Izračunati zapreminu tela ograničenog površima</p>
+
+      <div class="formula">
+        \[
+        S_1:\ x^2+z^2=4,
+        \qquad
+        S_2:\ x^2+y^2=4.
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>1. Površ \(S_1\) izražavamo preko \(z\)</h2>
+
+      <p>Iz jednačine</p>
+
+      <div class="formula">
+        \[
+        x^2+z^2=4
+        \]
+      </div>
+
+      <p>dobijamo</p>
+
+      <div class="formula">
+        \[
+        z=\pm\sqrt{4-x^2}.
+        \]
+      </div>
+
+      <p>Zato za svaku tačku \((x,y)\) u osnovi važi</p>
+
+      <div class="formula">
+        \[
+        -\sqrt{4-x^2}
+        \le z\le
+        \sqrt{4-x^2}.
+        \]
+      </div>
+
+      <p>Visina tela iznad tačke \((x,y)\) je</p>
+
+      <div class="formula">
+        \[
+        \begin{aligned}
+        h(x,y)
+        &=
+        z_{\mathrm{gornje}}-z_{\mathrm{donje}}\\
+        &=
+        \sqrt{4-x^2}
+        -
+        \left(-\sqrt{4-x^2}\right)\\
+        &=
+        2\sqrt{4-x^2}.
+        \end{aligned}
+        \]
+      </div>
+    </section>
+
+    <section class="card analysis-card">
+      <h2>2. Osnova tela</h2>
+
+      <p>Osnovu u \(xy\)-ravni određuje površ \(S_2\):</p>
+
+      <div class="formula">
+        \[
+        D:\ x^2+y^2\le4.
+        \]
+      </div>
+
+      <p>
+        Dakle, \(D\) je krug poluprečnika \(2\), pa je
+      </p>
+
+      <div class="formula">
+        \[
+        V=
+        \iint_D
+        2\sqrt{4-x^2}\,dx\,dy.
+        \]
+      </div>
+    </section>
+
+    <section class="card solution-card">
+      <h2>3. Polarna smena u osnovi</h2>
+
+      <p>Uvodimo polarne koordinate</p>
+
+      <div class="formula">
+        \[
+        x=r\cos\varphi,
+        \qquad
+        y=r\sin\varphi,
+        \qquad
+        dx\,dy=r\,dr\,d\varphi.
+        \]
+      </div>
+
+      <p>Pošto je \(D:\ x^2+y^2\le4\), granice su</p>
+
+      <div class="formula">
+        \[
+        0\le r\le2,
+        \qquad
+        0\le\varphi\le2\pi.
+        \]
+      </div>
+
+      <p>Zato je</p>
+
+      <div class="formula">
+        \[
+        V=
+        \int_0^{2\pi}
+        \int_0^2
+        2\sqrt{4-r^2\cos^2\varphi}\;r\,dr\,d\varphi.
+        \]
+      </div>
+
+      <p>
+        Integrand zavisi od \(\cos^2\varphi\), pa je isti u sva četiri
+        kvadranta. Prema tome,
+      </p>
+
+      <div class="formula">
+        \[
+        V=
+        8
+        \int_0^{\pi/2}
+        \int_0^2
+        \sqrt{4-r^2\cos^2\varphi}\;r\,dr\,d\varphi.
+        \]
+      </div>
+
+      <h3>Unutrašnji integral po \(r\)</h3>
+
+      <p>Za fiksirano \(\varphi\) uvodimo smenu</p>
+
+      <div class="formula">
+        \[
+        u=4-r^2\cos^2\varphi,
+        \qquad
+        du=-2r\cos^2\varphi\,dr.
+        \]
+      </div>
+
+      <div class="formula">
+        \[
+        r\,dr=-\frac{du}{2\cos^2\varphi}.
+        \]
+      </div>
+
+      <p>Granice se menjaju na sledeći način:</p>
+
+      <div class="formula">
+        \[
+        r=0\Longrightarrow u=4,
+        \]
+        \[
+        r=2\Longrightarrow
+        u=4-4\cos^2\varphi
+        =4\sin^2\varphi.
+        \]
+      </div>
+
+      <p>Zato je</p>
+
+      <div class="formula">
+        \[
+        \begin{aligned}
+        \int_0^2
+        \sqrt{4-r^2\cos^2\varphi}\;r\,dr
+        &=
+        \frac{1}{2\cos^2\varphi}
+        \int_{4\sin^2\varphi}^{4}
+        u^{1/2}\,du\\[2mm]
+        &=
+        \frac{1}{2\cos^2\varphi}
+        \left[
+        \frac{2}{3}u^{3/2}
+        \right]_{4\sin^2\varphi}^{4}\\[2mm]
+        &=
+        \frac{8}{3}
+        \frac{1-\sin^3\varphi}{\cos^2\varphi}.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Prema tome,</p>
+
+      <div class="formula">
+        \[
+        V=
+        \frac{64}{3}
+        \int_0^{\pi/2}
+        \frac{1-\sin^3\varphi}{\cos^2\varphi}\,d\varphi.
+        \]
+      </div>
+
+      <h3>4. Sređivanje završnog integrala</h3>
+
+      <p>Najpre faktorišemo:</p>
+
+      <div class="formula">
+        \[
+        1-\sin^3\varphi
+        =
+        (1-\sin\varphi)
+        (1+\sin\varphi+\sin^2\varphi),
+        \]
+        \[
+        \cos^2\varphi
+        =
+        (1-\sin\varphi)(1+\sin\varphi).
+        \]
+      </div>
+
+      <p>Zato je</p>
+
+      <div class="formula">
+        \[
+        \frac{1-\sin^3\varphi}{\cos^2\varphi}
+        =
+        \frac{1+\sin\varphi+\sin^2\varphi}
+        {1+\sin\varphi}.
+        \]
+      </div>
+
+      <p>Sada prirodno rastavljamo:</p>
+
+      <div class="formula">
+        \[
+        \frac{1+\sin\varphi+\sin^2\varphi}
+        {1+\sin\varphi}
+        =
+        1+
+        \frac{\sin^2\varphi}{1+\sin\varphi}.
+        \]
+      </div>
+
+      <p>
+        U drugom članu koristimo
+      </p>
+
+      <div class="formula">
+        \[
+        \sin^2\varphi
+        =
+        (1+\sin\varphi)(\sin\varphi-1)+1.
+        \]
+      </div>
+
+      <p>Odavde sledi</p>
+
+      <div class="formula">
+        \[
+        \frac{\sin^2\varphi}{1+\sin\varphi}
+        =
+        \sin\varphi-1+
+        \frac{1}{1+\sin\varphi}.
+        \]
+      </div>
+
+      <p>Prema tome,</p>
+
+      <div class="formula">
+        \[
+        1+
+        \frac{\sin^2\varphi}{1+\sin\varphi}
+        =
+        \sin\varphi+
+        \frac{1}{1+\sin\varphi}.
+        \]
+      </div>
+
+      <p>Zato se završni integral svodi na</p>
+
+      <div class="formula">
+        \[
+        \int_0^{\pi/2}
+        \frac{1-\sin^3\varphi}{\cos^2\varphi}\,d\varphi
+        =
+        \int_0^{\pi/2}\sin\varphi\,d\varphi
+        +
+        \int_0^{\pi/2}
+        \frac{d\varphi}{1+\sin\varphi}.
+        \]
+      </div>
+
+      <h3>Prvi integral</h3>
+
+      <div class="formula">
+        \[
+        \int_0^{\pi/2}\sin\varphi\,d\varphi
+        =
+        \left[-\cos\varphi\right]_0^{\pi/2}
+        =
+        1.
+        \]
+      </div>
+
+      <h3>Drugi integral — smena \(t=\tan\dfrac{\varphi}{2}\)</h3>
+
+      <p>Koristimo univerzalnu trigonometrijsku smenu</p>
+
+      <div class="formula">
+        \[
+        t=\tan\frac{\varphi}{2},
+        \qquad
+        \sin\varphi=\frac{2t}{1+t^2},
+        \qquad
+        d\varphi=\frac{2\,dt}{1+t^2}.
+        \]
+      </div>
+
+      <p>Granice postaju</p>
+
+      <div class="formula">
+        \[
+        \varphi=0\Longrightarrow t=0,
+        \qquad
+        \varphi=\frac{\pi}{2}\Longrightarrow t=1.
+        \]
+      </div>
+
+      <p>Zato je</p>
+
+      <div class="formula">
+        \[
+        \begin{aligned}
+        \int_0^{\pi/2}
+        \frac{d\varphi}{1+\sin\varphi}
+        &=
+        \int_0^1
+        \frac{\dfrac{2\,dt}{1+t^2}}
+        {1+\dfrac{2t}{1+t^2}}\\[2mm]
+        &=
+        \int_0^1
+        \frac{2\,dt}{1+t^2+2t}\\[2mm]
+        &=
+        \int_0^1
+        \frac{2\,dt}{(1+t)^2}\\[2mm]
+        &=
+        \left[
+        -\frac{2}{1+t}
+        \right]_0^1\\[2mm]
+        &=
+        -1+2\\[2mm]
+        &=
+        1.
+        \end{aligned}
+        \]
+      </div>
+
+      <p>Dakle,</p>
+
+      <div class="formula">
+        \[
+        \int_0^{\pi/2}
+        \frac{1-\sin^3\varphi}{\cos^2\varphi}\,d\varphi
+        =
+        1+1=2.
+        \]
+      </div>
+
+      <p>Na kraju,</p>
+
+      <div class="formula">
+        \[
+        V=
+        \frac{64}{3}\cdot2
+        =
+        \frac{128}{3}.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važna napomena</h2>
+
+      <p>Izraz ne treba odmah rastaviti kao</p>
+
+      <div class="formula">
+        \[
+        \frac{1-\sin^3\varphi}{\cos^2\varphi}
+        =
+        \frac{1}{\cos^2\varphi}
+        -
+        \frac{\sin^3\varphi}{\cos^2\varphi},
+        \]
+      </div>
+
+      <p>
+        jer oba dobijena nesvojstvena integrala pojedinačno divergiraju na
+        gornjoj granici. Najpre treba faktorisati i skratiti ceo izraz, pa ga
+        tek onda rastaviti na konvergentne integrale.
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+
+      <div class="formula final">
+        \[
+        \boxed{V=\frac{128}{3}}
+        \]
+      </div>
+    </section>
+
+    <footer>
+      Mathbrotherhood Powered by ChatGPT
+    </footer>
+
+  </main>
+</body>
+</html>
