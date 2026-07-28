@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <title>Zadatak — Zapremina tela ograničenog cilindrima (dvojni integral)</title>
+  <script>
+    window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+    h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+    .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+    .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+    .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+    .zadatak-section h2 { color: #1565c0; }
+    .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+    .ideja-section h2 { color: #e65100; }
+    .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+    .resenje-section h2 { color: #2e7d32; }
+    .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+    .odgovor-section h2 { color: #7b1fa2; }
+    .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+    .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+    .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+
+<h1>Zadatak</h1>
+
+<div class="section-box zadatak-section">
+  <h2>Zadatak</h2>
+  <p>Izračunati zapreminu tela ograničenog površima</p>
+  <p style="text-align: center;">\[ S_1: x^2 + z^2 = 4, \qquad S_2: x^2 + y^2 = 4. \]</p>
+</div>
+
+<div class="section-box ideja-section">
+  <h2>Ideja</h2>
+  <p>Zapreminu računamo kao <strong>dvojni integral</strong> po osnovi u \( xy \)-ravni, gde je visina tela data funkcijom \( z = \sqrt{4-x^2} \) (gornja polovina cilindra \( S_1 \)).</p>
+  <p>Oblast integracije \( D \) je četvrtina kruga poluprečnika 2 u prvom kvadrantu:</p>
+  <p style="text-align: center;">\[ D = \left\{ (x,y) : 0 \leq x \leq 2,\; 0 \leq y \leq \sqrt{4-x^2} \right\}. \]</p>
+  <p>Zbog simetrije, zapremina celog tela je 8 puta zapremina iznad oblasti \( D \) (4 kvadranta po \( xy \)-ravni, puta 2 polovine po \( z \)-osi). Međutim, u ovom pristupu računamo direktno dvojni integral po \( D \) sa visinom \( z = \sqrt{4-x^2} \), a zatim množimo sa 8.</p>
+</div>
+
+<div class="section-box resenje-section">
+  <h2>Rešenje</h2>
+
+  <h3 style="color: #2e7d32;">1. Postavljanje dvojnog integrala</h3>
+
+  <p>Zapremina iznad oblasti \( D \) u prvom kvadrantu:</p>
+  <p style="text-align: center;">\[ V_1 = \iint_D z \, dx\, dy = \int_0^2 \int_0^{\sqrt{4-x^2}} \sqrt{4-x^2} \, dy\, dx. \]</p>
+
+  <h3 style="color: #2e7d32;">2. Integracija po y</h3>
+
+  <p>Pošto \( \sqrt{4-x^2} \) ne zavisi od \( y \):</p>
+  <p style="text-align: center;">\[ \int_0^{\sqrt{4-x^2}} \sqrt{4-x^2} \, dy = \sqrt{4-x^2} \cdot \sqrt{4-x^2} = 4 - x^2. \]</p>
+
+  <h3 style="color: #2e7d32;">3. Integracija po x</h3>
+
+  <p style="text-align: center;">\[ V_1 = \int_0^2 (4-x^2) \, dx = \left[ 4x - \frac{x^3}{3} \right]_0^2 \]</p>
+  <p style="text-align: center;">\[ V_1 = 8 - \frac{8}{3} = \frac{16}{3}. \]</p>
+
+  <h3 style="color: #2e7d32;">4. Ukupna zapremina</h3>
+
+  <p>Oblast \( D \) pokriva samo prvi kvadrant \( xy \)-ravni. Telo je simetrično u svim 4 kvadrantima \( xy \)-ravni, i za svaki od njih imamo gornju i donju polovinu po \( z \)-osi. Dakle, ukupna zapremina je:</p>
+  <p style="text-align: center;">\[ V = 8 \cdot V_1 = 8 \cdot \frac{16}{3} = \frac{128}{3}. \]</p>
+</div>
+
+<div class="section-box odgovor-section">
+  <h2>Odgovor</h2>
+  <p style="text-align: center;">
+    <span class="boxed">
+      \( V = \dfrac{128}{3} \)
+    </span>
+  </p>
+</div>
+
+<p class="potpis">Mathbrotherhood Powered by Kimi K3</p>
+
+</body>
+</html>
