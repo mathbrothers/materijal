@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konvergencija reda u zavisnosti od parametra p</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root{
+      --bg:#f3f6fb;
+      --text:#1f2937;
+      --muted:#5f6b7a;
+      --border:#dce3ee;
+      --blue:#4267b2;
+      --green:#2d8a62;
+      --orange:#d97706;
+      --red:#c2414b;
+      --violet:#7857b8;
+      --shadow:0 12px 30px rgba(31,41,55,.09);
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#eef3fa 0%,#f8fafc 100%);
+      color:var(--text);
+      font-family:Inter,Segoe UI,Arial,sans-serif;
+      line-height:1.72;
+    }
+
+    .page{
+      width:min(1040px,92%);
+      margin:38px auto;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#243b67,#4267b2);
+      color:white;
+      border-radius:22px;
+      padding:34px 38px;
+      box-shadow:var(--shadow);
+      margin-bottom:24px;
+    }
+
+    .hero .eyebrow{
+      margin:0 0 8px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.78rem;
+      opacity:.78;
+      font-weight:700;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(1.85rem,4vw,3rem);
+      line-height:1.18;
+    }
+
+    .hero p{
+      margin:14px 0 0;
+      opacity:.9;
+      font-size:1.04rem;
+    }
+
+    .card{
+      position:relative;
+      background:white;
+      border:1px solid var(--border);
+      border-left:7px solid var(--accent);
+      border-radius:17px;
+      padding:26px 30px;
+      margin:20px 0;
+      box-shadow:var(--shadow);
+    }
+
+    .task-card{--accent:var(--blue)}
+    .idea-card{--accent:var(--violet)}
+    .solution-card{--accent:var(--green)}
+    .warning-card{--accent:var(--orange)}
+    .answer-card{--accent:var(--red)}
+
+    h2{
+      margin:0 0 14px;
+      font-size:1.42rem;
+      color:#24324a;
+    }
+
+    p{margin:10px 0}
+
+    .math-box{
+      overflow-x:auto;
+      padding:12px 8px;
+      margin:12px 0;
+      background:#f8fafc;
+      border:1px solid #e5eaf2;
+      border-radius:12px;
+    }
+
+    .step{
+      display:flex;
+      gap:13px;
+      align-items:flex-start;
+      margin:16px 0;
+    }
+
+    .step-number{
+      flex:0 0 34px;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:#e8f1ec;
+      color:#21684a;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      margin-top:2px;
+    }
+
+    .step-content{flex:1}
+
+    .highlight{
+      font-weight:700;
+      color:#244e8d;
+    }
+
+    .cases{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .case{
+      border:1px solid #dfe6ef;
+      border-radius:13px;
+      padding:16px;
+      background:#fbfcfe;
+    }
+
+    .case strong{
+      display:block;
+      margin-bottom:6px;
+      color:#24324a;
+    }
+
+    .final{
+      text-align:center;
+      font-size:1.25rem;
+      font-weight:800;
+      padding:10px 0 2px;
+    }
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      padding:22px 0 8px;
+    }
+
+    @media (max-width:760px){
+      .page{width:min(95%,1040px); margin:20px auto}
+      .hero{padding:27px 23px}
+      .card{padding:22px 20px}
+      .cases{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <section class="hero">
+      <p class="eyebrow">Matematika 3 · Konvergencija redova</p>
+      <h1>Red sa parametrom \(p\)</h1>
+      <p>Košijev koreni kriterijum i Stirlingova formula rešavaju zadatak praktično u jednom potezu.</p>
+    </section>
+
+    <section class="card task-card">
+      <h2>Zadatak</h2>
+      <p>U zavisnosti od parametra \(p\in\mathbb R\) ispitati konvergenciju reda</p>
+      <div class="math-box">
+        \[
+        \sum_{n=1}^{\infty}
+        \left(\frac{e}{n+1}\right)^{n^2}
+        \left(\frac{n!\sin\frac1n}{n^p}\right)^n .
+        \]
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2>Ideja</h2>
+      <p>
+        U opštem članu pojavljuju se stepeni \(n^2\) i \(n\), pa je prirodan izbor
+        <span class="highlight">Košijev koreni kriterijum</span>.
+        Posle vađenja \(n\)-tog korena ostaje izraz sa \(n!\), na koji odmah primenjujemo
+        Stirlingovu formulu.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2>Rešenje</h2>
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <p>Označimo opšti član reda sa</p>
+          <div class="math-box">
+            \[
+            a_n=
+            \left(\frac{e}{n+1}\right)^{n^2}
+            \left(\frac{n!\sin\frac1n}{n^p}\right)^n>0.
+            \]
+          </div>
+          <p>Njegov \(n\)-ti koren je</p>
+          <div class="math-box">
+            \[
+            \sqrt[n]{a_n}
+            =
+            \left(\frac{e}{n+1}\right)^n
+            \frac{n!\sin\frac1n}{n^p}.
+            \]
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <p>Koristimo Stirlingovu formulu i osnovnu asimptotsku relaciju:</p>
+          <div class="math-box">
+            \[
+            n!\sim \sqrt{2\pi n}\left(\frac ne\right)^n,
+            \qquad
+            \sin\frac1n\sim\frac1n.
+            \]
+          </div>
+
+          <p>Zato važi</p>
+          <div class="math-box">
+            \[
+            \begin{aligned}
+            \sqrt[n]{a_n}
+            &\sim
+            \left(\frac{e}{n+1}\right)^n
+            \sqrt{2\pi n}\left(\frac ne\right)^n
+            \frac{1/n}{n^p}\\[4pt]
+            &=
+            \sqrt{2\pi n}
+            \left(\frac{n}{n+1}\right)^n
+            \frac1{n^{p+1}}.
+            \end{aligned}
+            \]
+          </div>
+
+          <p>Pošto je</p>
+          <div class="math-box">
+            \[
+            \left(\frac{n}{n+1}\right)^n
+            =
+            \left(1+\frac1n\right)^{-n}
+            \longrightarrow e^{-1},
+            \]
+          </div>
+          <p>dobijamo ključnu asimptotiku</p>
+          <div class="math-box">
+            \[
+            \boxed{
+            \sqrt[n]{a_n}
+            \sim
+            \frac{\sqrt{2\pi}}{e}\,
+            n^{-p-\frac12}
+            }.
+            \]
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <p>Sada razlikujemo tri slučaja.</p>
+
+          <div class="cases">
+            <div class="case">
+              <strong>\(p>-\frac12\)</strong>
+              \[
+              -p-\frac12<0
+              \]
+              pa je
+              \[
+              \sqrt[n]{a_n}\to0<1.
+              \]
+              Red konvergira.
+            </div>
+
+            <div class="case">
+              <strong>\(p<-\frac12\)</strong>
+              \[
+              -p-\frac12>0
+              \]
+              pa je
+              \[
+              \sqrt[n]{a_n}\to+\infty.
+              \]
+              Čak ni \(a_n\not\to0\), pa red divergira.
+            </div>
+
+            <div class="case">
+              <strong>\(p=-\frac12\)</strong>
+              \[
+              \sqrt[n]{a_n}\to
+              \frac{\sqrt{2\pi}}{e}.
+              \]
+              Kako je
+              \[
+              \frac{\sqrt{2\pi}}e\approx0.922<1,
+              \]
+              red konvergira.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>Važan granični slučaj</h2>
+      <p>
+        Sam stepen \(n^{-p-\frac12}\) za \(p=-\frac12\) daje \(1\), ali se ne sme izgubiti
+        konstanta \(\frac{\sqrt{2\pi}}e\). Upravo zato koreni kriterijum i u graničnom
+        slučaju daje odluku: konstanta je strogo manja od \(1\).
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2>Odgovor</h2>
+      <div class="final">
+        \[
+        \boxed{
+        \text{Red konvergira za }p\ge -\frac12,
+        \qquad
+        \text{a divergira za }p<-\frac12.
+        }
+        \]
+      </div>
+    </section>
+
+    <footer>Mathbrotherhood Powered by ChatGPT</footer>
+  </main>
+</body>
+</html>
