@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Zadatak 24 – Oblast definisanosti – presek skupova</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --accent: #3498db;
+    --accent2: #2ecc71;
+    --accent3: #e74c3c;
+    --accent4: #9b59b6;
+    --shadow: rgba(0,0,0,0.08);
+  }
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    max-width: 800px;
+    width: 100%;
+  }
+  .section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .section::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    border-radius: 16px 0 0 16px;
+  }
+  .section-zadatak::before { background: linear-gradient(180deg, var(--accent), var(--accent2)); }
+  .section-ideja::before { background: linear-gradient(180deg, var(--accent2), var(--accent4)); }
+  .section-resenje::before { background: linear-gradient(180deg, var(--accent4), var(--accent3)); }
+  .section-odgovor::before { background: linear-gradient(180deg, var(--accent3), #f39c12); }
+  h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: var(--text);
+  }
+  .math-block {
+    font-size: 1.15rem;
+    margin: 12px 0;
+    line-height: 1.8;
+  }
+  .answer-box {
+    background: linear-gradient(135deg, #fff9e6, #fff3cd);
+    border: 2px solid #f39c12;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #856404;
+  }
+  .signature {
+    text-align: center;
+    margin-top: 32px;
+    font-size: 0.95rem;
+    color: #7f8c8d;
+    font-style: italic;
+  }
+  .subtask {
+    margin: 18px 0;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+  }
+  .subtask-label {
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .note {
+    background: #e8f4fd;
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+  .warning {
+    background: #fde8e8;
+    border-left: 4px solid var(--accent3);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 1rem;
+  }
+  svg.numline {
+    display: block;
+    margin: 16px auto;
+    background: #fafbfc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ZADATAK -->
+  <div class="section section-zadatak">
+    <h2>Zadatak</h2>
+    <p class="math-block">
+      Odrediti oblast definisanosti funkcija:
+    </p>
+    <p class="math-block">
+      a) \( y=\dfrac{x}{\sqrt{x-3}}+\sqrt{x+1} \); &nbsp;&nbsp;&nbsp;&nbsp;
+      b) \( y=2x-\sqrt{x^{2}-4x} \);
+    </p>
+    <p class="math-block">
+      v) \( y=\sqrt{x-2}+\sqrt{12+x-x^{2}} \); &nbsp;&nbsp;&nbsp;&nbsp;
+      g) \( y=\sqrt{x-3}+\sqrt[4]{5-x} \);
+    </p>
+    <p class="math-block">
+      d) \( y=x+\sqrt[3]{x+7} \); &nbsp;&nbsp;&nbsp;&nbsp;
+      đ) \( y=2-x^{2}+\sqrt[5]{x^{2}-9} \).
+    </p>
+  </div>
+
+  <!-- IDEJA -->
+  <div class="section section-ideja">
+    <h2>Ideja</h2>
+    <p class="math-block">
+      Domen funkcije sa više članova je <strong>presek</strong> domena svakog člona pojedinačno.
+      Za svaki uslov nacrtamo realnu osu, obeležimo interval koji zadovoljava taj uslov,
+      a zatim na trećoj osi označimo presek — zajednički deo.
+      <strong>Pun krug</strong> označava da tačka pripada skupu, <strong>prazan krug</strong> da ne pripada.
+    </p>
+  </div>
+
+  <!-- REŠENJE -->
+  <div class="section section-resenje">
+    <h2>Rešenje</h2>
+
+    <div class="subtask">
+      <div class="subtask-label">a) \( y=\dfrac{x}{\sqrt{x-3}}+\sqrt{x+1} \)</div>
+      <p class="math-block">
+        Uslov 1 (koren u imeniocu, strogi): \( x-3\gt 0 \Rightarrow x\gt 3 \).
+      </p>
+      <p class="math-block">
+        Uslov 2 (koren u brojiocu): \( x+1\geq 0 \Rightarrow x\geq -1 \).
+      </p>
+      <svg class="numline" width="600" height="130" viewBox="0 0 600 130">
+        <!-- Osa 1: x > 3 -->
+        <text x="10" y="22" font-size="13" fill="#7f8c8d">x-3&gt;0</text>
+        <line x1="50" y1="30" x2="550" y2="30" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="250" cy="30" r="5" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+        <line x1="250" y1="30" x2="550" y2="30" stroke="#3498db" stroke-width="4"/>
+        <text x="250" y="48" font-size="12" fill="#2c3e50" text-anchor="middle">3</text>
+        <!-- Osa 2: x >= -1 -->
+        <text x="10" y="62" font-size="13" fill="#7f8c8d">x+1≥0</text>
+        <line x1="50" y1="70" x2="550" y2="70" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="130" cy="70" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <line x1="130" y1="70" x2="550" y2="70" stroke="#3498db" stroke-width="4"/>
+        <text x="130" y="88" font-size="12" fill="#2c3e50" text-anchor="middle">-1</text>
+        <!-- Osa 3: presek -->
+        <text x="10" y="102" font-size="13" fill="#7f8c8d" font-weight="bold">presek</text>
+        <line x1="50" y1="110" x2="550" y2="110" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="250" cy="110" r="5" fill="#fff" stroke="#e74c3c" stroke-width="2"/>
+        <line x1="250" y1="110" x2="550" y2="110" stroke="#2ecc71" stroke-width="4"/>
+        <text x="250" y="128" font-size="12" fill="#2ecc71" text-anchor="middle" font-weight="bold">3</text>
+      </svg>
+      <p class="math-block">
+        \[
+        D=(3,+\infty)
+        \]
+      </p>
+    </div>
+
+    <div class="subtask">
+      <div class="subtask-label">b) \( y=2x-\sqrt{x^{2}-4x} \)</div>
+      <p class="math-block">
+        Uslov: \( x^{2}-4x\geq 0 \Rightarrow x(x-4)\geq 0 \).
+      </p>
+      <p class="math-block">
+        Parabola \( x^{2}-4x \) je okrenuta <strong>na gore</strong>, nule \( x=0 \) i \( x=4 \).
+        Nenegativna je <strong>van</strong> intervala između nula: \( (-\infty,0]\cup[4,+\infty) \).
+      </p>
+      <svg class="numline" width="600" height="70" viewBox="0 0 600 70">
+        <text x="10" y="18" font-size="13" fill="#7f8c8d">x²-4x≥0</text>
+        <line x1="50" y1="30" x2="550" y2="30" stroke="#2c3e50" stroke-width="1.5"/>
+        <line x1="50" y1="30" x2="170" y2="30" stroke="#3498db" stroke-width="4"/>
+        <circle cx="170" cy="30" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <line x1="410" y1="30" x2="550" y2="30" stroke="#3498db" stroke-width="4"/>
+        <circle cx="410" cy="30" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <text x="170" y="48" font-size="12" fill="#2c3e50" text-anchor="middle">0</text>
+        <text x="410" y="48" font-size="12" fill="#2c3e50" text-anchor="middle">4</text>
+      </svg>
+      <p class="math-block">
+        \[
+        D=(-\infty,0]\cup[4,+\infty)
+        \]
+      </p>
+    </div>
+
+    <div class="subtask">
+      <div class="subtask-label">v) \( y=\sqrt{x-2}+\sqrt{12+x-x^{2}} \)</div>
+      <p class="math-block">
+        Uslov 1: \( x-2\geq 0 \Rightarrow x\geq 2 \).
+      </p>
+      <p class="math-block">
+        Uslov 2: \( 12+x-x^{2}\geq 0 \Rightarrow x^{2}-x-12\leq 0 \).
+        Parabola \( x^{2}-x-12 \) okrenuta <strong>na gore</strong>, nule \( x=-3 \) i \( x=4 \).
+        \( \leq 0 \) unutar intervala: \( [-3,4] \).
+      </p>
+      <svg class="numline" width="600" height="130" viewBox="0 0 600 130">
+        <!-- Osa 1: x >= 2 -->
+        <text x="10" y="22" font-size="13" fill="#7f8c8d">x-2≥0</text>
+        <line x1="50" y1="30" x2="550" y2="30" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="250" cy="30" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <line x1="250" y1="30" x2="550" y2="30" stroke="#3498db" stroke-width="4"/>
+        <text x="250" y="48" font-size="12" fill="#2c3e50" text-anchor="middle">2</text>
+        <!-- Osa 2: -3 <= x <= 4 -->
+        <text x="10" y="62" font-size="13" fill="#7f8c8d">12+x-x²≥0</text>
+        <line x1="50" y1="70" x2="550" y2="70" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="110" cy="70" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <line x1="110" y1="70" x2="410" y2="70" stroke="#3498db" stroke-width="4"/>
+        <circle cx="410" cy="70" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <text x="110" y="88" font-size="12" fill="#2c3e50" text-anchor="middle">-3</text>
+        <text x="410" y="88" font-size="12" fill="#2c3e50" text-anchor="middle">4</text>
+        <!-- Osa 3: presek -->
+        <text x="10" y="102" font-size="13" fill="#7f8c8d" font-weight="bold">presek</text>
+        <line x1="50" y1="110" x2="550" y2="110" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="250" cy="110" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <line x1="250" y1="110" x2="410" y2="110" stroke="#2ecc71" stroke-width="4"/>
+        <circle cx="410" cy="110" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <text x="250" y="128" font-size="12" fill="#2ecc71" text-anchor="middle" font-weight="bold">2</text>
+        <text x="410" y="128" font-size="12" fill="#2ecc71" text-anchor="middle" font-weight="bold">4</text>
+      </svg>
+      <p class="math-block">
+        \[
+        D=[2,4]
+        \]
+      </p>
+    </div>
+
+    <div class="subtask">
+      <div class="subtask-label">g) \( y=\sqrt{x-3}+\sqrt[4]{5-x} \)</div>
+      <p class="math-block">
+        Uslov 1 (kvadratni koren): \( x-3\geq 0 \Rightarrow x\geq 3 \).
+      </p>
+      <p class="math-block">
+        Uslov 2 (četvrti koren, kao kvadratni): \( 5-x\geq 0 \Rightarrow x\leq 5 \).
+      </p>
+      <svg class="numline" width="600" height="130" viewBox="0 0 600 130">
+        <!-- Osa 1: x >= 3 -->
+        <text x="10" y="22" font-size="13" fill="#7f8c8d">x-3≥0</text>
+        <line x1="50" y1="30" x2="550" y2="30" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="250" cy="30" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <line x1="250" y1="30" x2="550" y2="30" stroke="#3498db" stroke-width="4"/>
+        <text x="250" y="48" font-size="12" fill="#2c3e50" text-anchor="middle">3</text>
+        <!-- Osa 2: x <= 5 -->
+        <text x="10" y="62" font-size="13" fill="#7f8c8d">5-x≥0</text>
+        <line x1="50" y1="70" x2="550" y2="70" stroke="#2c3e50" stroke-width="1.5"/>
+        <line x1="50" y1="70" x2="330" y2="70" stroke="#3498db" stroke-width="4"/>
+        <circle cx="330" cy="70" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <text x="330" y="88" font-size="12" fill="#2c3e50" text-anchor="middle">5</text>
+        <!-- Osa 3: presek -->
+        <text x="10" y="102" font-size="13" fill="#7f8c8d" font-weight="bold">presek</text>
+        <line x1="50" y1="110" x2="550" y2="110" stroke="#2c3e50" stroke-width="1.5"/>
+        <circle cx="250" cy="110" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <line x1="250" y1="110" x2="330" y2="110" stroke="#2ecc71" stroke-width="4"/>
+        <circle cx="330" cy="110" r="5" fill="#3498db" stroke="#3498db" stroke-width="2"/>
+        <text x="250" y="128" font-size="12" fill="#2ecc71" text-anchor="middle" font-weight="bold">3</text>
+        <text x="330" y="128" font-size="12" fill="#2ecc71" text-anchor="middle" font-weight="bold">5</text>
+      </svg>
+      <p class="math-block">
+        \[
+        D=[3,5]
+        \]
+      </p>
+    </div>
+
+    <div class="subtask">
+      <div class="subtask-label">d) \( y=x+\sqrt[3]{x+7} \)</div>
+      <p class="math-block">
+        \( x \) je definisano na \( \mathbb{R} \). Kubni koren \( \sqrt[3]{x+7} \) postoji za svaki realan broj.
+      </p>
+      <p class="math-block">
+        \[
+        D=\mathbb{R}
+        \]
+      </p>
+    </div>
+
+    <div class="subtask">
+      <div class="subtask-label">đ) \( y=2-x^{2}+\sqrt[5]{x^{2}-9} \)</div>
+      <p class="math-block">
+        \( 2-x^{2} \) je polinom. Peti koren \( \sqrt[5]{x^{2}-9} \) postoji za svaki realan broj.
+      </p>
+      <p class="math-block">
+        \[
+        D=\mathbb{R}
+        \]
+      </p>
+    </div>
+  </div>
+
+  <!-- ODGOVOR -->
+  <div class="section section-odgovor">
+    <h2>Odgovor</h2>
+    <div class="answer-box">
+      a) \( D=(3,+\infty) \) &nbsp;&nbsp;|&nbsp;&nbsp;
+      b) \( D=(-\infty,0]\cup[4,+\infty) \) <br><br>
+      v) \( D=[2,4] \) &nbsp;&nbsp;|&nbsp;&nbsp;
+      g) \( D=[3,5] \) <br><br>
+      d) \( D=\mathbb{R} \) &nbsp;&nbsp;|&nbsp;&nbsp;
+      đ) \( D=\mathbb{R} \)
+    </div>
+  </div>
+
+  <div class="signature">Mathbrotherhood Powered by Kimi K3</div>
+
+</div>
+</body>
+</html>
