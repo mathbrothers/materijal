@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kramerova metoda – sistem sa parametrom a</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f6fb;
+    color:#1f2937;
+    line-height:1.65;
+  }
+  .page{max-width:980px;margin:38px auto;padding:0 18px 50px}
+  h1{font-size:2rem;margin:0 0 8px;color:#172554}
+  .subtitle{color:#64748b;margin-bottom:26px}
+  .card{
+    background:#fff;
+    border-radius:14px;
+    padding:22px 26px;
+    margin:18px 0;
+    box-shadow:0 8px 24px rgba(15,23,42,.08);
+    border-left:6px solid #94a3b8;
+  }
+  .task-card{border-left-color:#3b82f6}
+  .idea-card{border-left-color:#8b5cf6}
+  .solution-card{border-left-color:#10b981}
+  .analysis-card{border-left-color:#f59e0b}
+  .warning-card{border-left-color:#ef4444}
+  .answer-card{border-left-color:#0f766e;background:#f0fdfa}
+  h2{font-size:1.2rem;margin:0 0 12px;color:#0f172a}
+  .mathbox{overflow-x:auto;padding:2px 0}
+  .case{margin:14px 0;padding:14px 16px;background:#f8fafc;border-radius:10px}
+  .final{
+    margin-top:12px;
+    border:2px solid #0f766e;
+    border-radius:12px;
+    padding:16px 18px;
+    background:white;
+  }
+  footer{text-align:center;color:#64748b;margin-top:34px;font-size:.92rem}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Sistem linearnih jednačina sa parametrom</h1>
+  <div class="subtitle">Rešenje Kramerovom metodom</div>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>U zavisnosti od realnog parametra \(a\), rešiti sistem</p>
+    <div class="mathbox">
+    \[
+    \begin{cases}
+    x+a y+2z=4,\\
+    x+y+(a+1)z=a+3,\\
+    ax+y+2z=a.
+    \end{cases}
+    \]
+    </div>
+  </section>
+
+  <section class="card idea-card">
+    <h2>Ideja</h2>
+    <p>Najpre računamo glavnu determinantu \(\Delta\). Ako je \(\Delta\neq0\), sistem ima jedinstveno rešenje i primenjujemo Kramerove formule. Vrednosti parametra za koje je \(\Delta=0\) proveravamo posebno.</p>
+  </section>
+
+  <section class="card solution-card">
+    <h2>1. Glavna determinanta</h2>
+    <div class="mathbox">
+    \[
+    \Delta=
+    \begin{vmatrix}
+    1&a&2\\
+    1&1&a+1\\
+    a&1&2
+    \end{vmatrix}.
+    \]
+    <p>Primenimo \(R_2\leftarrow R_2-R_1\) i \(R_3\leftarrow R_3-aR_1\):</p>
+    \[
+    \Delta=
+    \begin{vmatrix}
+    1&a&2\\
+    0&1-a&a-1\\
+    0&1-a^2&2-2a
+    \end{vmatrix}.
+    \]
+    <p>Iz druge i treće vrste izdvajamo faktor \(1-a\):</p>
+    \[
+    \Delta=(1-a)^2
+    \begin{vmatrix}
+    1&a&2\\
+    0&1&-1\\
+    0&a+1&2
+    \end{vmatrix}
+    =(1-a)^2(a+3).
+    \]
+    Zato je
+    \[
+    \boxed{\Delta=(a-1)^2(a+3)}.
+    \]
+    </div>
+    <p>Prema tome, \(\Delta\neq0\) za</p>
+    \[
+    a\neq1,\qquad a\neq-3.
+    \]
+  </section>
+
+  <section class="card solution-card">
+    <h2>2. Kramerove determinante</h2>
+
+    <div class="mathbox">
+    \[
+    \Delta_x=
+    \begin{vmatrix}
+    4&a&2\\
+    a+3&1&a+1\\
+    a&1&2
+    \end{vmatrix}
+    =(a-1)(a^2-10).
+    \]
+
+    \[
+    \Delta_y=
+    \begin{vmatrix}
+    1&4&2\\
+    1&a+3&a+1\\
+    a&a&2
+    \end{vmatrix}
+    =(a-1)(a+2).
+    \]
+
+    \[
+    \Delta_z=
+    \begin{vmatrix}
+    1&a&4\\
+    1&1&a+3\\
+    a&1&a
+    \end{vmatrix}
+    =(a-1)(a^2+3a-1).
+    \]
+    </div>
+  </section>
+
+  <section class="card analysis-card">
+    <h2>3. Slučaj \(a\neq1,-3\)</h2>
+    <p>Tada je \(\Delta\neq0\), pa sistem ima jedinstveno rešenje:</p>
+    <div class="mathbox">
+    \[
+    x=\frac{\Delta_x}{\Delta}
+    =\frac{(a-1)(a^2-10)}{(a-1)^2(a+3)}
+    =\boxed{\frac{a^2-10}{(a-1)(a+3)}},
+    \]
+    \[
+    y=\frac{\Delta_y}{\Delta}
+    =\frac{(a-1)(a+2)}{(a-1)^2(a+3)}
+    =\boxed{\frac{a+2}{(a-1)(a+3)}},
+    \]
+    \[
+    z=\frac{\Delta_z}{\Delta}
+    =\frac{(a-1)(a^2+3a-1)}{(a-1)^2(a+3)}
+    =\boxed{\frac{a^2+3a-1}{(a-1)(a+3)}}.
+    \]
+    </div>
+  </section>
+
+  <section class="card warning-card">
+    <h2>4. Posebni slučajevi</h2>
+
+    <div class="case">
+      <strong>Slučaj \(a=-3\).</strong>
+      <p>Imamo \(\Delta=0\), ali</p>
+      \[
+      \Delta_x=(-3-1)(9-10)=4\neq0.
+      \]
+      <p>Zato je sistem <strong>nedosledan</strong>, odnosno nema rešenja.</p>
+    </div>
+
+    <div class="case">
+      <strong>Slučaj \(a=1\).</strong>
+      <p>Tada su \(\Delta=\Delta_x=\Delta_y=\Delta_z=0\), pa Kramerove determinante same nisu dovoljne za zaključak. Vratimo \(a=1\) u početni sistem:</p>
+      \[
+      \begin{cases}
+      x+y+2z=4,\\
+      x+y+2z=4,\\
+      x+y+2z=1.
+      \end{cases}
+      \]
+      <p>Prva i treća jednačina su očigledno protivrečne. Zato i za \(a=1\) sistem <strong>nema rešenja</strong>.</p>
+    </div>
+  </section>
+
+  <section class="card answer-card">
+    <h2>Odgovor</h2>
+    <div class="final">
+      <p><strong>Za \(a\neq1,-3\)</strong> sistem ima jedinstveno rešenje</p>
+      \[
+      \boxed{
+      (x,y,z)=\left(
+      \frac{a^2-10}{(a-1)(a+3)},
+      \frac{a+2}{(a-1)(a+3)},
+      \frac{a^2+3a-1}{(a-1)(a+3)}
+      \right)}.
+      \]
+      <p><strong>Za \(a=1\) ili \(a=-3\)</strong> sistem nema rešenja.</p>
+    </div>
+  </section>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
