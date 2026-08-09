@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematička Analiza - Rešenje</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        .card {
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #ccc;
+        }
+        .card-header {
+            padding: 12px 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: white;
+        }
+        .card-content {
+            padding: 20px;
+            background-color: white;
+        }
+        .zadatak { border-color: #2196f3; }
+        .zadatak .card-header { background: linear-gradient(to right, #e3f2fd, #bbdefb); color: #1565c0; }
+        
+        .ideja { border-color: #ff9800; }
+        .ideja .card-header { background: linear-gradient(to right, #fff3e0, #ffe0b2); color: #e65100; }
+        
+        .resenje { border-color: #4caf50; }
+        .resenje .card-header { background: linear-gradient(to right, #e8f5e9, #c8e6c9); color: #2e7d32; }
+        
+        .odgovor { border-color: #9c27b0; }
+        .odgovor .card-header { background: linear-gradient(to right, #f3e5f5, #e1bee7); color: #7b1fa2; }
+        
+        .boxed {
+            border: 2px solid #7b1fa2;
+            padding: 15px;
+            background-color: #fdfaff;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+        .potpis {
+            text-align: right;
+            font-style: italic;
+            color: #888;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card zadatak">
+        <div class="card-header">Zadatak</div>
+        <div class="card-content">
+            U zavisnosti od parametra \( p \in \mathbb{R} \) ispitati konvergenciju reda:
+            \[ \sum_{n=1}^{\infty} \left( \frac{e}{n+1} \right)^{n^2} \left( \frac{n! \sin \frac{1}{n}}{n^p} \right)^n \]
+        </div>
+    </div>
+
+    <div class="card ideja">
+        <div class="card-header">Ideja</div>
+        <div class="card-content">
+            Problem rešavamo primenom <strong>D'Alembert-Cauchy koren-testa</strong>. Ključ je u asimptotskom ponašenju članova kako \( n \to \infty \). Koristićemo Stirlingovu formulu za \( n! \) kako bismo eliminisali eksponencijalne članove koji se krate, čime dobijamo precizan limit koji zavisi od parametra \( p \).
+        </div>
+    </div>
+
+    <div class="card resenje">
+        <div class="card-header">Rešenje</div>
+        <div class="card-content">
+            Definišimo opšti član niza \( a_n \):
+            \[ a_n = \left( \frac{e}{n+1} \right)^{n^2} \cdot \frac{(n!)^n \cdot (\sin \frac{1}{n})^n}{n^{pn}} \]
+            Primenjujemo koren-test, posmatrajući \( L = \lim_{n \to \infty} \sqrt[n]{a_n} \):
+            \[ \sqrt[n]{a_n} = \left( \frac{e}{n+1} \right)^n \cdot n! \cdot \sin \frac{1}{n} \cdot \frac{1}{n^p} \]
+            Izraz možemo zapisati kao:
+            \[ \sqrt[n]{a_n} = \frac{e^n}{(n+1)^n} \cdot n! \cdot \frac{\sin \frac{1}{n}}{n^p} \]
+            Koristimo Stirlingovu aproksimaciju \( n! \sim \sqrt{2\pi n} \left( \frac{n}{e} \right)^n \) i razvoj za sinus \( \sin \frac{1}{n} \sim \frac{1}{n} \):
+            \[ \sqrt[n]{a_n} \sim \frac{e^n}{(n+1)^n} \cdot \left( \sqrt{2\pi n} \frac{n^n}{e^n} \right) \cdot \frac{1}{n} \cdot \frac{1}{n^p} \]
+            Sada pojednostavljujemo:
+            \[ \sqrt[n]{a_n} \sim \frac{e^n}{n^n(1 + \frac{1}{n})^n} \cdot \frac{\sqrt{2\pi n} \cdot n^n}{e^n \cdot n \cdot n^p} \]
+            Znamo da \( (1 + \frac{1}{n})^n \to e \), pa imamo:
+            \[ \sqrt[n]{a_n} \sim \frac{1}{e} \cdot \frac{\sqrt{2\pi} \cdot \sqrt{n} \cdot n^n}{n \cdot n^p \cdot n^n} = \frac{\sqrt{2\pi}}{e} \cdot \frac{n^{1/2}}{n^{p+1}} = \frac{\sqrt{2\pi}}{e} \cdot \frac{1}{n^{p + 1/2}} \]
+            Sada analiziramo limit \( L = \lim_{n \to \infty} \sqrt[n]{a_n} \):
+            \[ L = \lim_{n \to \infty} \frac{\sqrt{2\pi}}{e} \cdot \frac{1}{n^{p + 1/2}} \]
+            <ol>
+                <li>Ako je \( p + \frac{1}{2} > 0 \), odnosno \( p > -\frac{1}{2} \), onda je \( L = 0 < 1 \). Serija <strong>konvergira</strong>.</li>
+                <li>Ako je \( p + \frac{1}{2} < 0 \), odnosno \( p < -\frac{1}{2} \), onda je \( L = \infty \). Serija <strong>divergira</strong>.</li>
+                <li>Ako je \( p = -\frac{1}{2} \), onda je \( L = \frac{\sqrt{2\pi}}{e} \). Pošto je \( \frac{\sqrt{2\pi}}{e} \approx \frac{2.506}{2.718} < 1 \), serija <strong>konvergira</strong>.</li>
+            </ol>
+            Dakle, serija konvergira za \( p \geq -\frac{1}{2} \).
+        </div>
+    </div>
+
+    <div class="card odgovor">
+        <div class="card-header">Odgovor</div>
+        <div class="card-content">
+            Serija konvergira za \( p \in [-\frac{1}{2}, \infty) \), tj. \( p \geq -\frac{1}{2} \).
+            <div class="boxed">
+                \[ p \geq -\frac{1}{2} \]
+            </div>
+        </div>
+    </div>
+    <div class="potpis">Mathbrotherhood Powered by Gemma 4 2B A4B Qat</div>
+</div>
+
+</body>
+</html>
