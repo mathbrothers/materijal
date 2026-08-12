@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Limes – svođenje na tablične limite</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f6f8;
+    color:#1f2937;
+    line-height:1.65;
+  }
+  .container{
+    max-width:980px;
+    margin:0 auto;
+    padding:36px 20px 24px;
+  }
+  h1{
+    margin:0 0 24px;
+    text-align:center;
+    font-size:30px;
+    color:#172033;
+  }
+  .card{
+    background:#fff;
+    border-radius:16px;
+    padding:24px 26px;
+    margin:18px 0;
+    box-shadow:0 8px 24px rgba(15,23,42,.08);
+    border-left:7px solid #cbd5e1;
+  }
+  .task-card{border-left-color:#60a5fa}
+  .idea-card{border-left-color:#f59e0b}
+  .solution-card{border-left-color:#34d399}
+  .answer-card{border-left-color:#8b5cf6}
+  .label{
+    font-size:13px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    margin-bottom:10px;
+    color:#475569;
+  }
+  .math{
+    overflow-x:auto;
+    padding:4px 0;
+  }
+  .step{
+    margin:14px 0;
+  }
+  .answer{
+    text-align:center;
+    font-size:24px;
+    font-weight:700;
+  }
+  .small{
+    color:#475569;
+    font-size:15px;
+  }
+  footer{
+    text-align:center;
+    margin-top:28px;
+    color:#64748b;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Limes – svođenje na tablične limite</h1>
+
+  <div class="card task-card">
+    <div class="label">Zadatak</div>
+    <div class="math">
+      \[
+      \lim_{x\to 0}
+      \frac{e^{3x^2}-\sqrt[3]{\cos x}}
+           {\ln(1+2\sin^2x)}.
+      \]
+    </div>
+  </div>
+
+  <div class="card idea-card">
+    <div class="label">Ideja</div>
+    <p>
+      U brojilac ubacujemo \(-1+1\), tako da dobijemo dva izraza koja se direktno
+      mogu svesti na osnovne tablične limite:
+    </p>
+    <div class="math">
+      \[
+      e^{3x^2}-\sqrt[3]{\cos x}
+      =
+      \bigl(e^{3x^2}-1\bigr)
+      +
+      \bigl(1-\sqrt[3]{\cos x}\bigr).
+      \]
+    </div>
+  </div>
+
+  <div class="card solution-card">
+    <div class="label">Rešenje</div>
+
+    <p class="step">Za drugi sabirak racionalizujemo kubni koren:</p>
+    <div class="math">
+      \[
+      1-\sqrt[3]{\cos x}
+      =
+      \frac{1-\cos x}
+      {1+\sqrt[3]{\cos x}+\sqrt[3]{\cos^2x}}.
+      \]
+    </div>
+
+    <p class="step">Sada ceo izraz podelimo sa \(x^2\):</p>
+    <div class="math">
+      \[
+      \lim_{x\to0}
+      \frac{
+      \dfrac{e^{3x^2}-1}{x^2}
+      +
+      \dfrac{1-\cos x}
+      {x^2\left(1+\sqrt[3]{\cos x}+\sqrt[3]{\cos^2x}\right)}
+      }
+      {
+      \dfrac{\ln(1+2\sin^2x)}{x^2}
+      }.
+      \]
+    </div>
+
+    <p class="step">Svaki deo svodimo na tablični oblik:</p>
+    <div class="math">
+      \[
+      \frac{e^{3x^2}-1}{x^2}
+      =
+      3\cdot
+      \frac{e^{3x^2}-1}{3x^2}
+      \longrightarrow 3,
+      \]
+      \[
+      \frac{1-\cos x}
+      {x^2\left(1+\sqrt[3]{\cos x}+\sqrt[3]{\cos^2x}\right)}
+      \longrightarrow
+      \frac{\frac12}{3}
+      =
+      \frac16,
+      \]
+      jer
+      \[
+      \frac{1-\cos x}{x^2}\longrightarrow\frac12.
+      \]
+    </div>
+
+    <p class="step">Za imenilac:</p>
+    <div class="math">
+      \[
+      \frac{\ln(1+2\sin^2x)}{x^2}
+      =
+      \frac{\ln(1+2\sin^2x)}{2\sin^2x}
+      \cdot
+      2\left(\frac{\sin x}{x}\right)^2
+      \longrightarrow
+      1\cdot2\cdot1=2.
+      \]
+    </div>
+
+    <p class="step">Prema tome:</p>
+    <div class="math">
+      \[
+      \lim_{x\to0}
+      \frac{e^{3x^2}-\sqrt[3]{\cos x}}
+           {\ln(1+2\sin^2x)}
+      =
+      \frac{3+\frac16}{2}
+      =
+      \frac{\frac{19}{6}}{2}.
+      \]
+    </div>
+  </div>
+
+  <div class="card answer-card">
+    <div class="label">Odgovor</div>
+    <div class="answer">
+      \[
+      \boxed{\frac{19}{12}}
+      \]
+    </div>
+  </div>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
