@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Limes – svođenje na tablične limite</title>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#1f2937;line-height:1.65}
+.container{max-width:980px;margin:auto;padding:36px 20px 24px}
+h1{text-align:center;color:#172033;font-size:30px;margin:0 0 24px}
+.card{background:white;border-radius:16px;padding:24px 26px;margin:18px 0;box-shadow:0 8px 24px rgba(15,23,42,.08);border-left:7px solid #cbd5e1}
+.task-card{border-left-color:#60a5fa}.idea-card{border-left-color:#f59e0b}.solution-card{border-left-color:#34d399}.answer-card{border-left-color:#8b5cf6}
+.label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;color:#475569}
+.math{overflow-x:auto}.answer{text-align:center;font-size:24px;font-weight:700}
+footer{text-align:center;margin-top:28px;color:#64748b;font-size:14px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Limes – potpuno školski preko tabličnih limita</h1>
+
+<div class="card task-card">
+<div class="label">Zadatak</div>
+\[
+\lim_{x\to0}\frac{\sqrt[7]{\cos 2x}-1}{\ln(1-\sin 2x^2)}.
+\]
+</div>
+
+<div class="card idea-card">
+<div class="label">Ideja</div>
+<p>Koristimo osnovne tablične limite:</p>
+\[
+\lim_{t\to0}\frac{(1+t)^\alpha-1}{t}=\alpha,
+\qquad
+\lim_{t\to0}\frac{1-\cos t}{t^2}=\frac12,
+\]
+\[
+\lim_{t\to0}\frac{\sin t}{t}=1,
+\qquad
+\lim_{t\to0}\frac{\ln(1+t)}{t}=1.
+\]
+</div>
+
+<div class="card solution-card">
+<div class="label">Rešenje</div>
+
+<p>Najpre brojilac zapišemo u obliku pogodnom za prvi tablični limit:</p>
+\[
+\sqrt[7]{\cos2x}-1
+=(\cos2x)^{1/7}-1
+=\left(1+(\cos2x-1)\right)^{1/7}-1.
+\]
+
+<p>Rastavimo ceo izraz:</p>
+\[
+\frac{\sqrt[7]{\cos2x}-1}{\ln(1-\sin2x^2)}
+=
+\frac{\sqrt[7]{\cos2x}-1}{\cos2x-1}
+\cdot
+\frac{\cos2x-1}{x^2}
+\cdot
+\frac{x^2}{-\sin2x^2}
+\cdot
+\frac{-\sin2x^2}{\ln(1-\sin2x^2)}.
+\]
+
+<p><b>Prvi faktor:</b></p>
+\[
+\frac{\sqrt[7]{\cos2x}-1}{\cos2x-1}
+=
+\frac{\left(1+(\cos2x-1)\right)^{1/7}-1}{\cos2x-1}
+\longrightarrow \frac17.
+\]
+
+<p><b>Drugi faktor:</b></p>
+\[
+\frac{\cos2x-1}{x^2}
+=
+-\frac{1-\cos2x}{x^2}
+=
+-4\frac{1-\cos2x}{(2x)^2}
+\longrightarrow
+-4\cdot\frac12=-2.
+\]
+
+<p><b>Treći faktor:</b></p>
+\[
+\frac{x^2}{-\sin2x^2}
+=
+-\frac12\frac{2x^2}{\sin2x^2}
+\longrightarrow-\frac12.
+\]
+
+<p><b>Četvrti faktor:</b></p>
+<p>Stavimo \(t=-\sin2x^2\). Tada \(t\to0\), pa</p>
+\[
+\frac{-\sin2x^2}{\ln(1-\sin2x^2)}
+=
+\frac{t}{\ln(1+t)}
+\longrightarrow1.
+\]
+
+<p>Prema tome,</p>
+\[
+L=
+\frac17\cdot(-2)\cdot\left(-\frac12\right)\cdot1
+=
+\frac17.
+\]
+</div>
+
+<div class="card answer-card">
+<div class="label">Odgovor</div>
+<div class="answer">
+\[
+\boxed{\frac17}
+\]
+</div>
+</div>
+
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
