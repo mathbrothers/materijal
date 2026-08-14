@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diferencijalna jednačina L(y)=0 i L(y)=e^x</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<style>
+  :root{
+    --bg:#f4f6f8;
+    --text:#1f2937;
+    --muted:#64748b;
+    --card:#ffffff;
+    --shadow:0 8px 24px rgba(15,23,42,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    line-height:1.65;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:34px 18px 50px}
+  h1{font-size:2rem;line-height:1.2;margin:0 0 10px}
+  h2{font-size:1.25rem;margin:0 0 12px}
+  p{margin:8px 0}
+  .lead{color:var(--muted);margin-bottom:22px}
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:22px 24px;
+    margin:18px 0;
+    border-left:6px solid #cbd5e1;
+  }
+  .task-card{border-left-color:#64748b}
+  .idea-card{border-left-color:#60a5fa}
+  .analysis-card{border-left-color:#a78bfa}
+  .solution-card{border-left-color:#34d399}
+  .warning-card{border-left-color:#f59e0b}
+  .answer-card{border-left-color:#22c55e}
+  .formula{
+    overflow-x:auto;
+    padding:2px 0;
+  }
+  .step{
+    margin:12px 0;
+    padding:12px 14px;
+    background:#f8fafc;
+    border-radius:10px;
+  }
+  .tag{
+    display:inline-block;
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    color:#475569;
+    margin-bottom:5px;
+  }
+  footer{
+    text-align:center;
+    color:#64748b;
+    margin-top:30px;
+    font-size:.92rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Diferencijalna jednačina sa operatorom \(L\)</h1>
+  <p class="lead">Traženje dva rešenja oblika \(y_p=e^x/x^a\), zatim homogeno i nehomogeno rešenje.</p>
+
+  <section class="card task-card">
+    <div class="tag">Zadatak</div>
+    <div class="formula">
+      \[
+      L(y)=x^2y''+(4x-2x^2)y'+(x^2-4x+2)y.
+      \]
+    </div>
+    <p>Pokazati da jednačina \(L(y)=0\) ima dva linearno nezavisna rešenja oblika</p>
+    <div class="formula">
+      \[
+      y_p=\frac{e^x}{x^a},
+      \]
+    </div>
+    <p>pa rešiti \(L(y)=0\). Zatim rešiti i</p>
+    <div class="formula">
+      \[
+      L(y)=e^x.
+      \]
+    </div>
+  </section>
+
+  <section class="card idea-card">
+    <div class="tag">Ideja</div>
+    <p>Ovo <strong>liči na tip „poznato jedno rešenje“</strong>, ali je ovde još jednostavnije: zadatak nam unapred daje familiju kandidata</p>
+    <div class="formula">
+      \[
+      y=\frac{e^x}{x^a}=e^x x^{-a},
+      \]
+    </div>
+    <p>i treba samo odrediti vrednosti parametra \(a\) za koje je \(L(y)=0\). Dobićemo odmah dva nezavisna rešenja, pa nema potrebe za redukcijom reda.</p>
+  </section>
+
+  <section class="card solution-card">
+    <div class="tag">1. Homogena jednačina</div>
+    <p>Uzmimo</p>
+    <div class="formula">
+      \[
+      y=e^x x^{-a}.
+      \]
+    </div>
+
+    <p>Najbrže je da izračunamo izvode preko odnosa sa samom funkcijom:</p>
+    <div class="formula">
+      \[
+      y'=y\left(1-\frac{a}{x}\right),
+      \]
+      \[
+      y''=y\left[\left(1-\frac{a}{x}\right)^2+\frac{a}{x^2}\right]
+      =y\left(1-\frac{2a}{x}+\frac{a(a+1)}{x^2}\right).
+      \]
+    </div>
+
+    <p>Uvrstimo u \(L(y)\):</p>
+    <div class="formula">
+      \[
+      \begin{aligned}
+      L(y)
+      &=x^2y\left(1-\frac{2a}{x}+\frac{a(a+1)}{x^2}\right)
+      +(4x-2x^2)y\left(1-\frac{a}{x}\right)\\
+      &\qquad +(x^2-4x+2)y.
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Izdvojimo \(y\):</p>
+    <div class="formula">
+      \[
+      \begin{aligned}
+      L(y)
+      &=y\Big[x^2-2ax+a(a+1)+4x-2x^2-4a+2ax+x^2-4x+2\Big]\\
+      &=y\big(a^2-3a+2\big)\\
+      &=y(a-1)(a-2).
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Za homogenu jednačinu \(L(y)=0\), pošto \(y\neq0\), mora važiti</p>
+    <div class="formula">
+      \[
+      (a-1)(a-2)=0.
+      \]
+    </div>
+    <p>Prema tome:</p>
+    <div class="formula">
+      \[
+      a_1=1,\qquad a_2=2.
+      \]
+    </div>
+
+    <p>Dva rešenja su zato</p>
+    <div class="formula">
+      \[
+      y_1=\frac{e^x}{x},\qquad
+      y_2=\frac{e^x}{x^2}.
+      \]
+    </div>
+
+    <p>Ona su linearno nezavisna, jer je</p>
+    <div class="formula">
+      \[
+      \frac{y_1}{y_2}=x,
+      \]
+    </div>
+    <p>što nije konstanta.</p>
+
+    <div class="step">
+      Zato je opšte rešenje homogene jednačine
+      <div class="formula">
+        \[
+        \boxed{y_h=C_1\frac{e^x}{x}+C_2\frac{e^x}{x^2}}.
+        \]
+      </div>
+    </div>
+  </section>
+
+  <section class="card analysis-card">
+    <div class="tag">2. Jednačina \(L(y)=e^x\)</div>
+    <p>Pošto se u oba homogena rešenja pojavljuje faktor \(e^x\), prirodna smena je</p>
+    <div class="formula">
+      \[
+      y=e^x u(x).
+      \]
+    </div>
+
+    <p>Tada je</p>
+    <div class="formula">
+      \[
+      y'=e^x(u+u'),
+      \qquad
+      y''=e^x(u+2u'+u'').
+      \]
+    </div>
+
+    <p>Uvrštavanjem u operator dobijamo</p>
+    <div class="formula">
+      \[
+      \begin{aligned}
+      L(y)
+      &=e^x\Big[x^2(u+2u'+u'')+(4x-2x^2)(u+u')+(x^2-4x+2)u\Big]\\
+      &=e^x\Big(x^2u''+4xu'+2u\Big).
+      \end{aligned}
+      \]
+    </div>
+
+    <p>Jednačina \(L(y)=e^x\) se zato svodi na</p>
+    <div class="formula">
+      \[
+      x^2u''+4xu'+2u=1.
+      \]
+    </div>
+
+    <p>Za partikularno rešenje desna strana je konstanta, pa probamo</p>
+    <div class="formula">
+      \[
+      u_p=A.
+      \]
+    </div>
+    <p>Tada su \(u_p'=u_p''=0\), pa</p>
+    <div class="formula">
+      \[
+      2A=1,
+      \qquad
+      A=\frac12.
+      \]
+    </div>
+
+    <p>Otuda je</p>
+    <div class="formula">
+      \[
+      y_p=e^x u_p=\frac{e^x}{2}.
+      \]
+    </div>
+  </section>
+
+  <section class="card answer-card">
+    <div class="tag">Odgovor</div>
+    <p>Homogena jednačina:</p>
+    <div class="formula">
+      \[
+      \boxed{L(y)=0\quad\Longrightarrow\quad
+      y=C_1\frac{e^x}{x}+C_2\frac{e^x}{x^2}}.
+      \]
+    </div>
+
+    <p>Nehomogena jednačina:</p>
+    <div class="formula">
+      \[
+      \boxed{L(y)=e^x\quad\Longrightarrow\quad
+      y=C_1\frac{e^x}{x}+C_2\frac{e^x}{x^2}+\frac{e^x}{2}}.
+      \]
+    </div>
+  </section>
+
+  <section class="card warning-card">
+    <div class="tag">Napomena</div>
+    <p>Rešenja sa \(1/x\) i \(1/x^2\) posmatramo na intervalima na kojima je \(x\neq0\), tj. posebno na \((-\infty,0)\) ili \((0,\infty)\).</p>
+  </section>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
