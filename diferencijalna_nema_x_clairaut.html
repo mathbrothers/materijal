@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diferencijalna jednačina – nema x → Clairaut</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --blue:#5b8def;
+    --green:#5fbf8f;
+    --amber:#e4b95f;
+    --red:#df7a7a;
+    --violet:#9b7bd8;
+    --shadow:0 10px 28px rgba(31,41,55,.08);
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.68;
+  }
+
+  .page{
+    max-width:980px;
+    margin:40px auto;
+    padding:0 20px 40px;
+  }
+
+  h1{
+    margin:0 0 8px;
+    font-size:2rem;
+    line-height:1.25;
+  }
+
+  .subtitle{
+    color:var(--muted);
+    margin-bottom:28px;
+  }
+
+  .card{
+    background:#fff;
+    border-radius:18px;
+    padding:22px 24px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+    border-left:7px solid;
+  }
+
+  .task-card{border-color:var(--blue)}
+  .idea-card{border-color:var(--violet)}
+  .analysis-card{border-color:var(--amber)}
+  .solution-card{border-color:var(--green)}
+  .warning-card{border-color:var(--red)}
+  .answer-card{border-color:#4f9d78}
+
+  .card h2{
+    margin:0 0 12px;
+    font-size:1.15rem;
+  }
+
+  .step{
+    font-weight:700;
+    margin-top:20px;
+  }
+
+  .mini{
+    color:var(--muted);
+    font-size:.95rem;
+  }
+
+  .answer{
+    text-align:center;
+    font-size:1.05rem;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--muted);
+    margin-top:28px;
+    font-size:.9rem;
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <h1>Diferencijalna jednačina – tip „nema \(x\)”</h1>
+  <div class="subtitle">Redukcija reda i Clairautova jednačina</div>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>Rešiti diferencijalnu jednačinu</p>
+    \[
+    (y')^3-yy'y''-(y'')^2=0.
+    \]
+  </section>
+
+  <section class="card idea-card">
+    <h2>Ideja</h2>
+    <p>
+      Promenljiva \(x\) se u jednačini ne pojavljuje eksplicitno, pa je ovo
+      standardni tip <b>„nema \(x\)”</b>.
+    </p>
+    <p>Uvodimo smenu</p>
+    \[
+    \boxed{y'=p(y)},
+    \]
+    pa važi
+    \[
+    y''=\frac{dp}{dx}
+        =\frac{dp}{dy}\frac{dy}{dx}
+        =p\frac{dp}{dy}.
+    \]
+  </section>
+
+  <section class="card solution-card">
+    <h2>1. Redukcija reda</h2>
+
+    <p>Uvrštavanjem</p>
+    \[
+    y'=p,\qquad y''=p\frac{dp}{dy}
+    \]
+    dobijamo
+    \[
+    p^3
+    -yp\left(p\frac{dp}{dy}\right)
+    -\left(p\frac{dp}{dy}\right)^2=0.
+    \]
+
+    <p>Izvlačimo \(p^2\):</p>
+    \[
+    p^2\left[
+      p-y\frac{dp}{dy}
+      -\left(\frac{dp}{dy}\right)^2
+    \right]=0.
+    \]
+
+    <p>Odavde imamo dva slučaja.</p>
+  </section>
+
+  <section class="card warning-card">
+    <h2>Slučaj \(p=0\)</h2>
+    \[
+    p=0\quad\Longrightarrow\quad y'=0,
+    \]
+    pa su sva konstantna rešenja
+    \[
+    \boxed{y(x)\equiv C_0}.
+    \]
+  </section>
+
+  <section class="card analysis-card">
+    <h2>Slučaj \(p\neq0\)</h2>
+
+    <p>Tada mora važiti</p>
+    \[
+    p-y\frac{dp}{dy}
+    -\left(\frac{dp}{dy}\right)^2=0,
+    \]
+    odnosno
+    \[
+    \boxed{
+    p=y\frac{dp}{dy}
+      +\left(\frac{dp}{dy}\right)^2
+    }.
+    \]
+
+    <p>
+      Ovo je <b>Clairautova jednačina</b> za funkciju \(p=p(y)\).
+    </p>
+
+    <p>Označimo</p>
+    \[
+    q=\frac{dp}{dy}.
+    \]
+    Tada je
+    \[
+    \boxed{p=yq+q^2}.
+    \]
+  </section>
+
+  <section class="card solution-card">
+    <h2>2. Rešavanje Clairautove jednačine</h2>
+
+    <p>Diferenciramo po \(y\):</p>
+    \[
+    \frac{dp}{dy}
+      =q+y\frac{dq}{dy}+2q\frac{dq}{dy}.
+    \]
+
+    <p>Pošto je \(\frac{dp}{dy}=q\), dobijamo</p>
+    \[
+    q=q+(y+2q)\frac{dq}{dy},
+    \]
+    pa
+    \[
+    \boxed{
+    (y+2q)\frac{dq}{dy}=0
+    }.
+    \]
+
+    <p>Dakle, opet imamo dva slučaja.</p>
+
+    <div class="step">A) \(\displaystyle \frac{dq}{dy}=0\)</div>
+
+    \[
+    q=C.
+    \]
+
+    <p>Iz Clairautove jednačine</p>
+    \[
+    p=yq+q^2
+    \]
+    sledi
+    \[
+    \boxed{p=Cy+C^2}.
+    \]
+
+    <p>Vraćamo \(p=y'\):</p>
+    \[
+    y'=Cy+C^2.
+    \]
+
+    <p>Za \(C\neq0\):</p>
+    \[
+    y'-Cy=C^2.
+    \]
+
+    <p>Rešenje ove linearne jednačine je</p>
+    \[
+    \boxed{
+    y=C_1e^{Cx}-C
+    }.
+    \]
+
+    <p class="mini">
+      Za \(C=0\) dobijamo \(y'=0\), odnosno konstantna rešenja, koja smo već izdvojili.
+    </p>
+  </section>
+
+  <section class="card solution-card">
+    <h2>3. Singularna grana Clairautove jednačine</h2>
+
+    <p>Druga mogućnost je</p>
+    \[
+    y+2q=0,
+    \]
+    pa je
+    \[
+    q=-\frac y2.
+    \]
+
+    <p>Uvrštavamo u</p>
+    \[
+    p=yq+q^2:
+    \]
+    \[
+    p
+    =y\left(-\frac y2\right)
+     +\left(-\frac y2\right)^2
+    =-\frac{y^2}{2}+\frac{y^2}{4}.
+    \]
+
+    <p>Dakle</p>
+    \[
+    \boxed{
+    p=-\frac{y^2}{4}
+    }.
+    \]
+
+    <p>Pošto je \(p=y'\), dobijamo</p>
+    \[
+    \frac{dy}{dx}=-\frac{y^2}{4}.
+    \]
+
+    <p>Razdvajamo promenljive:</p>
+    \[
+    \frac{dy}{y^2}=-\frac14\,dx.
+    \]
+
+    <p>Integrisanjem:</p>
+    \[
+    -\frac1y=-\frac x4+C,
+    \]
+    odnosno
+    \[
+    \frac1y=\frac x4+C_1.
+    \]
+
+    <p>Zato je singularna familija</p>
+    \[
+    \boxed{
+    y=\frac{4}{x+C_2}
+    }.
+    \]
+  </section>
+
+  <section class="card answer-card">
+    <h2>Odgovor</h2>
+
+    <div class="answer">
+      <p>Opšta dvoparametarska familija rešenja je</p>
+      \[
+      \boxed{
+      y=C_1e^{Cx}-C
+      }.
+      \]
+
+      <p>Konstantna rešenja su sadržana u slučaju \(C=0\):</p>
+      \[
+      \boxed{y\equiv C_1}.
+      \]
+
+      <p>Pored toga postoji i singularna familija</p>
+      \[
+      \boxed{
+      y=\frac{4}{x+C_2}
+      }.
+      \]
+    </div>
+  </section>
+
+  <footer>
+    Mathbrotherhood Powered by ChatGPT
+  </footer>
+
+</div>
+</body>
+</html>
