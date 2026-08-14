@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diferencijalna jednačina – tip „nema x“</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --blue:#5b8def;
+    --green:#5fbf8f;
+    --amber:#e4b95f;
+    --red:#df7a7a;
+    --violet:#9b7bd8;
+    --shadow:0 10px 28px rgba(31,41,55,.08);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.68;
+  }
+
+  .page{
+    max-width:980px;
+    margin:40px auto;
+    padding:0 20px 40px;
+  }
+
+  h1{
+    margin:0 0 8px;
+    font-size:2rem;
+    line-height:1.25;
+  }
+
+  .subtitle{
+    color:var(--muted);
+    margin-bottom:28px;
+  }
+
+  .card{
+    background:#fff;
+    border-radius:18px;
+    padding:22px 24px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+    border-left:7px solid;
+  }
+
+  .task-card{border-color:var(--blue)}
+  .idea-card{border-color:var(--violet)}
+  .analysis-card{border-color:var(--amber)}
+  .solution-card{border-color:var(--green)}
+  .warning-card{border-color:var(--red)}
+  .answer-card{border-color:#4f9d78}
+
+  .card h2{
+    margin:0 0 12px;
+    font-size:1.15rem;
+  }
+
+  .step{
+    font-weight:700;
+    margin-top:18px;
+  }
+
+  .boxed{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:10px 14px;
+    margin:14px 0;
+  }
+
+  .answer{
+    text-align:center;
+    font-size:1.05rem;
+  }
+
+  .small{
+    color:var(--muted);
+    font-size:.95rem;
+  }
+
+  footer{
+    text-align:center;
+    color:var(--muted);
+    margin-top:28px;
+    font-size:.9rem;
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <h1>Diferencijalna jednačina – tip „nema \(x\)”</h1>
+  <div class="subtitle">Redukcija reda smenom \(y'=p(y)\)</div>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>Rešiti diferencijalnu jednačinu</p>
+    \[
+    y^2(y')^3=y^3y'y''+3(y')^2y.
+    \]
+  </section>
+
+  <section class="card idea-card">
+    <h2>Ideja</h2>
+    <p>
+      U jednačini se promenljiva \(x\) ne pojavljuje eksplicitno.
+      Zato primenjujemo standardnu smenu za tip <b>„nema \(x\)”</b>:
+    </p>
+    \[
+    \boxed{y'=p(y)}
+    \]
+    pa je
+    \[
+    y''=\frac{dp}{dx}
+        =\frac{dp}{dy}\frac{dy}{dx}
+        =p\frac{dp}{dy}.
+    \]
+  </section>
+
+  <section class="card warning-card">
+    <h2>Pre deljenja</h2>
+    <p>
+      Pošto će se u računu pojaviti deljenje sa \(p\), najpre proveravamo slučaj
+      \(p=0\).
+    </p>
+    \[
+    p=0 \quad\Longrightarrow\quad y'=0,
+    \]
+    pa dobijamo konstantna rešenja
+    \[
+    \boxed{y(x)\equiv C_0}.
+    \]
+    <p class="small">
+      U nastavku posmatramo nekonstantna rešenja, pa je lokalno \(p\neq0\).
+    </p>
+  </section>
+
+  <section class="card solution-card">
+    <h2>Rešenje</h2>
+
+    <div class="step">1. Smena \(y'=p(y)\)</div>
+
+    <p>Uvrštavamo</p>
+    \[
+    y'=p,\qquad y''=p\frac{dp}{dy}.
+    \]
+
+    <p>Jednačina postaje</p>
+    \[
+    y^2p^3
+    =
+    y^3p\left(p\frac{dp}{dy}\right)+3p^2y,
+    \]
+    odnosno
+    \[
+    y^2p^3
+    =
+    y^3p^2\frac{dp}{dy}+3yp^2.
+    \]
+
+    <p>Za \(p\neq0\) delimo sa \(p^2\):</p>
+    \[
+    y^2p=y^3\frac{dp}{dy}+3y.
+    \]
+
+    <p>Na intervalu na kome je \(y\neq0\), deljenjem sa \(y\) dobijamo</p>
+    \[
+    yp=y^2\frac{dp}{dy}+3.
+    \]
+
+    <p>Prebacivanjem u standardni linearni oblik:</p>
+    \[
+    \boxed{
+    \frac{dp}{dy}-\frac1y\,p=-\frac3{y^2}
+    }.
+    \]
+
+    <div class="step">2. Linearna jednačina po \(p(y)\)</div>
+
+    <p>Integracioni faktor je</p>
+    \[
+    \mu(y)=e^{\int-\frac1y\,dy}=\frac1y.
+    \]
+
+    <p>Množenjem sa \(\frac1y\):</p>
+    \[
+    \frac1y\frac{dp}{dy}-\frac{p}{y^2}
+    =
+    -\frac3{y^3}.
+    \]
+
+    <p>Leva strana je izvod količnika:</p>
+    \[
+    \left(\frac{p}{y}\right)'
+    =
+    -\frac3{y^3}.
+    \]
+
+    <p>Integrisanjem po \(y\):</p>
+    \[
+    \frac{p}{y}
+    =
+    \frac{3}{2y^2}+\lambda,
+    \]
+    pa je
+    \[
+    \boxed{
+    p(y)=\lambda y+\frac{3}{2y}
+    }.
+    \]
+
+    <p>Vraćamo \(p=y'\):</p>
+    \[
+    \frac{dy}{dx}
+    =
+    \lambda y+\frac{3}{2y}.
+    \]
+
+    <div class="step">3. Druga redukcija: \(z=y^2\)</div>
+
+    <p>Množimo prethodnu jednačinu sa \(2y\):</p>
+    \[
+    2yy'=2\lambda y^2+3.
+    \]
+
+    <p>Pošto je</p>
+    \[
+    (y^2)'=2yy',
+    \]
+    uvodimo
+    \[
+    z=y^2.
+    \]
+
+    <p>Tada dobijamo linearnu jednačinu</p>
+    \[
+    \boxed{z'=2\lambda z+3}.
+    \]
+  </section>
+
+  <section class="card analysis-card">
+    <h2>Dva slučaja</h2>
+
+    <p><b>1) \(\lambda\neq0\)</b></p>
+
+    \[
+    z'-2\lambda z=3.
+    \]
+
+    <p>Rešenje je</p>
+    \[
+    z=C_1e^{2\lambda x}-\frac{3}{2\lambda}.
+    \]
+
+    <p>Kako je \(z=y^2\), sledi</p>
+    \[
+    y^2=C_1e^{2\lambda x}-\frac{3}{2\lambda},
+    \]
+    odnosno
+    \[
+    \boxed{
+    y=\pm\sqrt{
+    C_1e^{2\lambda x}-\frac{3}{2\lambda}
+    }}.
+    \]
+
+    <p><b>2) \(\lambda=0\)</b></p>
+
+    <p>Tada je</p>
+    \[
+    z'=3,
+    \]
+    pa
+    \[
+    z=3x+C_1.
+    \]
+
+    <p>Dakle</p>
+    \[
+    \boxed{
+    y=\pm\sqrt{3x+C_1}
+    }.
+    \]
+  </section>
+
+  <section class="card warning-card">
+    <h2>Napomena o domenu</h2>
+    <p>
+      Nekonstantna rešenja se posmatraju na intervalima na kojima su izrazi pod
+      korenom pozitivni i gde je \(y\neq0\), što je upravo oblast na kojoj je
+      prethodna redukcija regularna.
+    </p>
+  </section>
+
+  <section class="card answer-card">
+    <h2>Odgovor</h2>
+    <div class="answer">
+      <p>Konstantna rešenja:</p>
+      \[
+      \boxed{y(x)\equiv C_0}.
+      \]
+
+      <p>Nekonstantna rešenja:</p>
+      \[
+      \boxed{
+      y=\pm\sqrt{
+      C_1e^{2\lambda x}-\frac{3}{2\lambda}
+      }},
+      \qquad \lambda\neq0,
+      \]
+      i za \(\lambda=0\)
+      \[
+      \boxed{
+      y=\pm\sqrt{3x+C_1}
+      }.
+      \]
+    </div>
+  </section>
+
+  <footer>
+    Mathbrotherhood Powered by ChatGPT
+  </footer>
+
+</div>
+</body>
+</html>
