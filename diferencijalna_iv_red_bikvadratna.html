@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diferencijalna jednačina IV reda</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --blue:#5b8def;
+    --green:#5fbf8f;
+    --amber:#e4b95f;
+    --violet:#9b7bd8;
+    --shadow:0 10px 28px rgba(31,41,55,.08);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.68;
+  }
+  .page{
+    max-width:980px;
+    margin:40px auto;
+    padding:0 20px 40px;
+  }
+  h1{
+    margin:0 0 8px;
+    font-size:2rem;
+  }
+  .subtitle{
+    color:var(--muted);
+    margin-bottom:28px;
+  }
+  .card{
+    background:white;
+    border-radius:18px;
+    padding:22px 24px;
+    margin:18px 0;
+    box-shadow:var(--shadow);
+    border-left:7px solid;
+  }
+  .task-card{border-color:var(--blue)}
+  .idea-card{border-color:var(--violet)}
+  .solution-card{border-color:var(--green)}
+  .analysis-card{border-color:var(--amber)}
+  .answer-card{border-color:#4f9d78}
+  .card h2{
+    margin:0 0 12px;
+    font-size:1.15rem;
+  }
+  .answer{
+    text-align:center;
+    font-size:1.05rem;
+  }
+  footer{
+    text-align:center;
+    color:var(--muted);
+    margin-top:28px;
+    font-size:.9rem;
+  }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <h1>Linearna diferencijalna jednačina IV reda</h1>
+  <div class="subtitle">Bikvadratna karakteristična jednačina</div>
+
+  <section class="card task-card">
+    <h2>Zadatak</h2>
+    <p>Rešiti diferencijalnu jednačinu</p>
+    \[
+    y^{(4)}+3y''+16y=0.
+    \]
+  </section>
+
+  <section class="card idea-card">
+    <h2>Ideja</h2>
+    <p>Karakteristična jednačina je</p>
+    \[
+    r^4+3r^2+16=0.
+    \]
+    <p>
+      Pošto se pojavljuju samo parni stepeni promenljive \(r\),
+      uvodimo smenu
+    </p>
+    \[
+    \boxed{t=r^2}.
+    \]
+  </section>
+
+  <section class="card solution-card">
+    <h2>Rešenje karakteristične jednačine</h2>
+
+    <p>Smenom \(t=r^2\) dobijamo</p>
+    \[
+    t^2+3t+16=0.
+    \]
+
+    <p>Diskriminanta je</p>
+    \[
+    \Delta=9-64=-55,
+    \]
+    pa su
+    \[
+    t_{1,2}=\frac{-3\pm i\sqrt{55}}{2}.
+    \]
+
+    <p>Treba sada rešiti</p>
+    \[
+    r^2=-\frac32\pm i\frac{\sqrt{55}}2.
+    \]
+
+    <p>Uzmimo najpre</p>
+    \[
+    r^2=-\frac32+i\frac{\sqrt{55}}2.
+    \]
+
+    <p>Neka je</p>
+    \[
+    r=a+ib.
+    \]
+
+    <p>Tada</p>
+    \[
+    (a+ib)^2=(a^2-b^2)+2abi,
+    \]
+    pa poređenjem realnog i imaginarnog dela dobijamo
+    \[
+    a^2-b^2=-\frac32,
+    \qquad
+    2ab=\frac{\sqrt{55}}2.
+    \]
+
+    <p>Modul broja \(r^2\) je</p>
+    \[
+    |r^2|
+    =
+    \sqrt{
+      \left(-\frac32\right)^2+
+      \left(\frac{\sqrt{55}}2\right)^2
+    }
+    =4.
+    \]
+
+    <p>Zato je</p>
+    \[
+    a^2+b^2=4.
+    \]
+
+    <p>Sada rešavamo sistem</p>
+    \[
+    a^2-b^2=-\frac32,
+    \qquad
+    a^2+b^2=4.
+    \]
+
+    <p>Sabiranjem:</p>
+    \[
+    2a^2=\frac52,
+    \]
+    pa
+    \[
+    a^2=\frac54,
+    \qquad
+    a=\frac{\sqrt5}{2}.
+    \]
+
+    <p>Zatim</p>
+    \[
+    b^2=4-\frac54=\frac{11}{4},
+    \]
+    pa
+    \[
+    b=\frac{\sqrt{11}}2.
+    \]
+  </section>
+
+  <section class="card analysis-card">
+    <h2>Karakteristični koreni</h2>
+
+    <p>Dobijamo četiri korena:</p>
+    \[
+    r_{1,2}
+    =
+    \frac{\sqrt5}{2}
+    \pm
+    i\frac{\sqrt{11}}2,
+    \]
+    \[
+    r_{3,4}
+    =
+    -\frac{\sqrt5}{2}
+    \pm
+    i\frac{\sqrt{11}}2.
+    \]
+  </section>
+
+  <section class="card answer-card">
+    <h2>Odgovor</h2>
+
+    <div class="answer">
+      \[
+      \boxed{
+      \begin{aligned}
+      y={}&
+      e^{\frac{\sqrt5}{2}x}
+      \left(
+        C_1\cos\frac{\sqrt{11}}2x
+        +
+        C_2\sin\frac{\sqrt{11}}2x
+      \right)
+      \\[2mm]
+      &+
+      e^{-\frac{\sqrt5}{2}x}
+      \left(
+        C_3\cos\frac{\sqrt{11}}2x
+        +
+        C_4\sin\frac{\sqrt{11}}2x
+      \right).
+      \end{aligned}
+      }
+      \]
+    </div>
+  </section>
+
+  <footer>
+    Mathbrotherhood Powered by ChatGPT
+  </footer>
+
+</div>
+</body>
+</html>
