@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FON 2026 — Zadatak 6</title>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']], displayMath: [['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --orange: #f59e0b;
+      --purple: #8b5cf6;
+      --red: #ef4444;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.10), transparent 32rem),
+        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.10), transparent 28rem),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    .page {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0 28px;
+    }
+
+    header {
+      margin-bottom: 24px;
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .card {
+      position: relative;
+      margin: 18px 0;
+      padding: 22px 24px 22px 28px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 7px;
+      background: var(--blue);
+    }
+
+    .task-card::before { background: var(--blue); }
+    .idea-card::before { background: var(--purple); }
+    .solution-card::before { background: var(--green); }
+    .warning-card::before { background: var(--orange); }
+    .answer-card::before { background: var(--red); }
+
+    .card-title {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    p { margin: 10px 0; }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px 16px;
+      margin-top: 14px;
+      color: #374151;
+    }
+
+    .math-block {
+      margin: 14px 0;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f9fafb;
+      border: 1px solid #eef2f7;
+      overflow-x: auto;
+    }
+
+    .sign-table-wrap {
+      margin-top: 16px;
+      overflow-x: auto;
+    }
+
+    table.sign-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      font-size: 0.98rem;
+    }
+
+    .sign-table th,
+    .sign-table td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .sign-table th {
+      background: #f9fafb;
+      font-weight: 800;
+    }
+
+    .sign-table td:first-child,
+    .sign-table th:first-child {
+      text-align: left;
+      font-weight: 800;
+    }
+
+    .take { color: #047857; font-weight: 800; }
+    .no-take { color: #b91c1c; font-weight: 800; }
+
+    .highlight {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      color: #047857;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="eyebrow">FON 2026 · jun · zadatak 6</p>
+      <h1>Racionalna nejednačina i broj celobrojnih rešenja</h1>
+      <p class="subtitle">Rastavimo na činioce, napravimo tablicu znakova i na kraju prebrojimo cele brojeve.</p>
+    </header>
+
+    <section class="card task-card">
+      <h2 class="card-title">Zadatak</h2>
+      <p>
+        Broj svih celobrojnih rešenja nejednačine
+        \[
+          \frac{(x-3)(x^2-8x+15)}{x+2}\le 0
+        \]
+        jednak je:
+      </p>
+      <div class="options">
+        <div>A) \(3\)</div>
+        <div>B) \(5\)</div>
+        <div>C) \(2\)</div>
+        <div>D) \(7\)</div>
+        <div>E) \(1\)</div>
+        <div>N) Ne znam</div>
+      </div>
+    </section>
+
+    <section class="card idea-card">
+      <h2 class="card-title">Ideja</h2>
+      <p>
+        Kod racionalne nejednačine prvo sve rastavimo na činioce. Nule brojioca mogu da uđu u rešenje
+        jer je nejednačina tipa \(\le 0\), ali nula imenioca nikada ne sme da uđe u rešenje.
+      </p>
+    </section>
+
+    <section class="card solution-card">
+      <h2 class="card-title">Rešenje</h2>
+      <p>Rastavimo kvadratni trinom:</p>
+      <div class="math-block">
+        \[
+          x^2-8x+15=(x-3)(x-5).
+        \]
+      </div>
+
+      <p>Zato je data nejednačina:</p>
+      <div class="math-block">
+        \[
+          \frac{(x-3)(x^2-8x+15)}{x+2}\le 0
+          \quad\Longleftrightarrow\quad
+          \frac{(x-3)^2(x-5)}{x+2}\le 0.
+        \]
+      </div>
+
+      <p>Kritične tačke su:</p>
+      <div class="math-block">
+        \[
+          x=-2,\qquad x=3,\qquad x=5.
+        \]
+      </div>
+
+      <p>
+        Tačka \(x=-2\) ne sme da se uzme, jer poništava imenilac. Tačke \(x=3\) i \(x=5\)
+        smeju da se uzmu, jer poništavaju brojilac.
+      </p>
+
+      <div class="sign-table-wrap">
+        <table class="sign-table">
+          <thead>
+            <tr>
+              <th>Oblast / tačka</th>
+              <th>\((-\infty,-2)\)</th>
+              <th>\(-2\)</th>
+              <th>\((-2,3)\)</th>
+              <th>\(3\)</th>
+              <th>\((3,5)\)</th>
+              <th>\(5\)</th>
+              <th>\((5,\infty)\)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\((x-3)^2\)</td>
+              <td>+</td>
+              <td>+</td>
+              <td>+</td>
+              <td>0</td>
+              <td>+</td>
+              <td>+</td>
+              <td>+</td>
+            </tr>
+            <tr>
+              <td>\(x-5\)</td>
+              <td>−</td>
+              <td>−</td>
+              <td>−</td>
+              <td>−</td>
+              <td>−</td>
+              <td>0</td>
+              <td>+</td>
+            </tr>
+            <tr>
+              <td>\(x+2\)</td>
+              <td>−</td>
+              <td>0</td>
+              <td>+</td>
+              <td>+</td>
+              <td>+</td>
+              <td>+</td>
+              <td>+</td>
+            </tr>
+            <tr>
+              <td>znak razlomka</td>
+              <td>+</td>
+              <td>ne postoji</td>
+              <td>−</td>
+              <td>0</td>
+              <td>−</td>
+              <td>0</td>
+              <td>+</td>
+            </tr>
+            <tr>
+              <td>uzima se?</td>
+              <td class="no-take">ne</td>
+              <td class="no-take">ne</td>
+              <td class="take">da</td>
+              <td class="take">da</td>
+              <td class="take">da</td>
+              <td class="take">da</td>
+              <td class="no-take">ne</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Iz tablice se vidi da je skup rešenja:</p>
+      <div class="math-block">
+        \[
+          x\in(-2,5].
+        \]
+      </div>
+
+      <p>Sada prebrojimo celobrojna rešenja:</p>
+      <div class="math-block">
+        \[
+          x\in\{-1,0,1,2,3,4,5\}.
+        \]
+      </div>
+      <p>Ukupno ih ima:</p>
+      <div class="math-block">
+        \[
+          7.
+        \]
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2 class="card-title">Napomena</h2>
+      <p>
+        Faktor \((x-3)^2\) ne menja znak pri prolasku kroz \(3\), jer je kvadrat uvek nenegativan.
+        Ipak, sama tačka \(x=3\) ulazi u rešenje, jer tada ceo razlomak ima vrednost \(0\).
+      </p>
+    </section>
+
+    <section class="card answer-card">
+      <h2 class="card-title">Odgovor</h2>
+      <p>
+        \[
+          \boxed{7}
+        \]
+      </p>
+      <p>Tačan odgovor je <span class="highlight">D) \(7\)</span>.</p>
+    </section>
+
+    <footer>
+      Mathbrotherhood Powered by ChatGPT
+    </footer>
+  </main>
+</body>
+</html>
