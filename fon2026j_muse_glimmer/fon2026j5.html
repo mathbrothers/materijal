@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Rešenje zadatka</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+  h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+  .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+  .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+  .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+  .zadatak-section h2 { color: #1565c0; }
+  .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+  .ideja-section h2 { color: #e65100; }
+  .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+  .resenje-section h2 { color: #2e7d32; }
+  .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+  .odgovor-section h2 { color: #7b1fa2; }
+  .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+  .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+  .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="section-box zadatak-section">
+<h2>Zadatak</h2>
+<p>Ako je \( f\!\left(\dfrac{1-x}{1+x}\right)=\dfrac1x \) za \(x\notin\{-1,0\}\) i ako je \(f^{-1}\) inverzna funkcija funkcije \(f\), onda je vrednost \(f(2)\cdot f^{-1}(2)\) jednaka:</p>
+<p>A) \(-3\); &nbsp;&nbsp; B) \(-1\); &nbsp;&nbsp; C) \(9\); &nbsp;&nbsp; D) \(1\); &nbsp;&nbsp; E) \(3\); &nbsp;&nbsp; N) Ne znam.</p>
+</div>
+
+<div class="section-box ideja-section">
+<h2>Ideja</h2>
+<p>Uvesti supstituciju \(t=\dfrac{1-x}{1+x}\) i izraziti \(x\) preko \(t\). Time se dobija eksplicitni oblik \(f(t)\). Inverzna funkcija se nalazi rešavanjem \(f(y)=w\) po \(y\).</p>
+</div>
+
+<div class="section-box resenje-section">
+<h2>Rešenje</h2>
+<p>Neka je \(t=\dfrac{1-x}{1+x}\). Onda</p>
+\[
+t(1+x)=1-x\;\Longrightarrow\;t+tx=1-x\;\Longrightarrow\;x(t+1)=1-t
+\]
+\[
+x=\frac{1-t}{1+t},\qquad f(t)=\frac1x=\frac{1+t}{\,1-t\,}
+\]
+<p>Dakle \(f(u)=\dfrac{1+u}{1-u}\).</p>
+\[
+f(2)=\frac{1+2}{1-2}=\frac{3}{-1}=-3
+\]
+<p>Za inverznu vrednost rešavamo \(f(y)=2\):</p>
+\[
+\frac{1+y}{1-y}=2\;\Longrightarrow\;1+y=2-2y\;\Longrightarrow\;3y=1\;\Longrightarrow\;y=\frac13
+\]
+\[
+f^{-1}(2)=\frac13
+\]
+\[
+f(2)\cdot f^{-1}(2)=-3\cdot\frac13=-1
+\]
+</div>
+
+<div class="section-box odgovor-section">
+<h2>Odgovor</h2>
+<p>Konačan proizvod je</p>
+<div class="boxed">\(-1\)</div>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Muse Glimmer</div>
+
+</body>
+</html>
