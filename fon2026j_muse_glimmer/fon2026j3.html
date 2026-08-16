@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Rešenje zadatka</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+  h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+  .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+  .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+  .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+  .zadatak-section h2 { color: #1565c0; }
+  .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+  .ideja-section h2 { color: #e65100; }
+  .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+  .resenje-section h2 { color: #2e7d32; }
+  .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+  .odgovor-section h2 { color: #7b1fa2; }
+  .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+  .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+  .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="section-box zadatak-section">
+<h2>Zadatak</h2>
+<p>Ako je \( z = \dfrac{i^{2025}+i^{2026}}{i^{2021}+i^{2024}} \), gde je \( i^{2}=-1 \), onda je \( z^{2} \) jednako:</p>
+<p>A) 2; &nbsp;&nbsp; B) \(-2i\); &nbsp;&nbsp; C) \(2i\); &nbsp;&nbsp; D) \(-2\); &nbsp;&nbsp; E) \(-1\); &nbsp;&nbsp; N) Ne znam.</p>
+</div>
+
+<div class="section-box ideja-section">
+<h2>Ideja</h2>
+<p>Imaginarnom jedinicom \(i\) upravlja periodičnost \(i^{k+4}=i^{k}\). Svi veliki eksponenti se svode modulo \(4\) na jedan od \(i^{0},i^{1},i^{2},i^{3}\). Nakon redukcije brojnik i imenilac postaju jednostavni kompleksni brojevi i \(z^{2}\) se izračunava direktno.</p>
+</div>
+
+<div class="section-box resenje-section">
+<h2>Rešenje</h2>
+<p>\[
+i^{2025}=i^{4\cdot506+1}=i^{1}=i,\qquad i^{2026}=i^{4\cdot506+2}=i^{2}=-1
+\]</p>
+<p>\[
+i^{2021}=i^{4\cdot505+1}=i^{1}=i,\qquad i^{2024}=i^{4\cdot506}=i^{0}=1
+\]</p>
+<p>Brojnik i imenilac:</p>
+\[
+z=\frac{i-1}{\,i+1\,}
+\]
+<p>Kvadriranje:</p>
+\[
+z^{2}= \frac{(i-1)^{2}}{(i+1)^{2}}=\frac{i^{2}-2i+1}{i^{2}+2i+1}
+     =\frac{-1-2i+1}{-1+2i+1}
+     =\frac{-2i}{2i}=-1.
+\]
+</div>
+
+<div class="section-box odgovor-section">
+<h2>Odgovor</h2>
+<p>Konačan rezultat je</p>
+<div class="boxed">\(-1\)</div>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Muse Glimmer</div>
+
+</body>
+</html>
