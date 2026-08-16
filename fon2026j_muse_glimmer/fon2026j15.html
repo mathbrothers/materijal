@@ -1,0 +1,170 @@
+```html
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zadatak 15 - Pravougli trougao</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+  h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+  .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+  .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+  .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+  .zadatak-section h2 { color: #1565c0; }
+  .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+  .ideja-section h2 { color: #e65100; }
+  .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+  .resenje-section h2 { color: #2e7d32; }
+  .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+  .odgovor-section h2 { color: #7b1fa2; }
+  .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+  .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+  .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="section-box zadatak-section">
+<h2>Zadatak</h2>
+<p>
+Dužina hipotenuze pravouglog trougla \(ABC\) jednaka je \(40\text{ cm}\). Simetrala hipotenuze seče hipotenuzu u tački \(S\), a dužu katetu u tački \(M\). Ako je dužina duži \(SM\) jednaka \(15\text{ cm}\), onda je zbir dužina kateta trougla \(ABC\) jednak:
+</p>
+<p>
+A) \(56\text{ cm}\); &nbsp; B) \(54\text{ cm}\); &nbsp; C) \(52\text{ cm}\); &nbsp; D) \(48\text{ cm}\); &nbsp; E) \(50\text{ cm}\); &nbsp; N) Ne znam.
+</p>
+</div>
+
+<div class="section-box ideja-section">
+<h2>Ideja</h2>
+<p>
+Neka je prav ugao u temenu \(C\), hipotenuza \(AB = c = 40\text{ cm}\), katete \(BC = a\) i \(AC = b\), pri čemu je \(b > a\) duža kateta. Tačka \(S\) je središte hipotenuze, pa je \(AS = SB = 20\text{ cm}\) i \(SM \perp AB\).
+</p>
+<p>
+Ključna ideja, bez analitičke geometrije, je sličnost trouglova:
+</p>
+<p>
+Trougao \(ASM\) je pravougli u \(S\), trougao \(ACB\) je pravougli u \(C\), i imaju zajednički oštar ugao u temenu \(A\). Dakle:
+</p>
+\[ \triangle ASM \sim \triangle ACB \quad \text{(po UU)} \]
+<p>
+Iz ove sličnosti dobijamo proporciju koja direktno povezuje katete \(a,b\) sa poznatim dužima \(AS\) i \(SM\), a zatim primenjujemo Pitagorinu teoremu na trougao \(ABC\).
+</p>
+</div>
+
+<div class="section-box resenje-section">
+<h2>Rešenje</h2>
+<p>
+Neka je \(AB = 40\), \(AS = 20\), \(SM = 15\). Neka je \(M \in AC\).
+</p>
+<p>
+U trouglovima \(ASM\) i \(ACB\):</p>
+<ul>
+<li>\(\angle ASM = 90^{\circ}\) jer je \(SM\) simetrala hipotenuze,</li>
+<li>\(\angle ACB = 90^{\circ}\) po uslovu zadatka,</li>
+<li>\(\angle SAM = \angle CAB\) - zajednički ugao.</li>
+</ul>
+<p>Stoga važi sličnost:</p>
+\[ \triangle ASM \sim \triangle ACB \]
+<p>
+Iz sličnosti sledi odnos odgovarajućih stranica:</p>
+\[ \frac{AS}{AC} = \frac{SM}{BC} = \frac{AM}{AB} \]
+<p>
+Odnosno, sa oznakama \(AC = b\), \(BC = a\):</p>
+\[ \frac{20}{b} = \frac{15}{a} \]
+<p>
+Odavde je:</p>
+\[ 20a = 15b \implies a = \frac{3}{4}b \]
+\[ \frac{b}{a} = \frac{4}{3} \]
+<p>
+Sada primenjujemo Pitagorinu teoremu na trougao \(ABC\):</p>
+\[ a^{2} + b^{2} = c^{2} \]
+\[ \left(\frac{3}{4}b\right)^{2} + b^{2} = 40^{2} \]
+\[ \frac{9}{16}b^{2} + b^{2} = 1600 \]
+\[ \frac{25}{16}b^{2} = 1600 \]
+\[ b^{2} = 1600 \cdot \frac{16}{25} = 64 \cdot 16 = 1024 \]
+\[ b = 32\text{ cm} \]
+<p>
+Tada je kraća kateta:</p>
+\[ a = \frac{3}{4}b = \frac{3}{4}\cdot 32 = 24\text{ cm} \]
+<p>
+Provera položaja tačke \(M\):</p>
+\[ AM = AB \cdot \frac{AS}{AC} = 40 \cdot \frac{20}{32} = 25\text{ cm} < 32\text{ cm} = AC \]
+<p>
+Dakle tačka \(M\) zaista leži na duži \(AC\), a \(AC\) je duža kateta kao što je traženo u zadatku.</p>
+<p>
+Zbir kateta je:</p>
+\[ a + b = 24 + 32 = 56\text{ cm} \]
+</div>
+
+<div class="section-box odgovor-section">
+<h2>Odgovor</h2>
+<p>
+Zbir dužina kateta pravouglog trougla \(ABC\) iznosi:</p>
+<p>
+<span class="boxed">\(a + b = 56\text{ cm}\) - odgovor pod A)</span>
+</p>
+</div>
+
+<svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" style="background:#ffffff; border-radius:8px; border:1px solid #c8e6c9; display:block; margin: 20px auto;">
+  <!-- Definicije -->
+  <defs>
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6" fill="none" stroke="#666" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Trougao ABC - osnova -->
+  <!-- C(80,320) prav ugao, A(80,64) gore, B(272,320) desno -->
+  <polygon points="80,64 272,320 80,320" fill="#e8f5e9" fill-opacity="0.5" stroke="#2e7d32" stroke-width="2.5" stroke-linejoin="round"/>
+  
+  <!-- Hipotenuza AB -->
+  <line x1="80" y1="64" x2="272" y2="320" stroke="#1565c0" stroke-width="2.5"/>
+  
+  <!-- Simetrala SM - upravna na AB u S -->
+  <!-- S(176,192) sredina AB, M(80,264) na AC -->
+  <line x1="80" y1="264" x2="176" y2="192" stroke="#e65100" stroke-width="2.5" stroke-dasharray="8 5"/>
+  
+  <!-- Oznaka pravog ugla u C -->
+  <path d="M 80 300 L 100 300 L 100 320" fill="none" stroke="#2e7d32" stroke-width="1.8"/>
+  
+  <!-- Oznaka pravog ugla u S (SM ⟂ AB) -->
+  <g transform="translate(176,192) rotate(53.13)">
+    <path d="M -12 0 L -12 -12 L 0 -12" fill="none" stroke="#e65100" stroke-width="1.8"/>
+  </g>
+
+  <!-- Tačke -->
+  <circle cx="80" cy="64" r="5" fill="#1565c0" stroke="white" stroke-width="2"/>
+  <circle cx="272" cy="320" r="5" fill="#1565c0" stroke="white" stroke-width="2"/>
+  <circle cx="80" cy="320" r="5" fill="#2e7d32" stroke="white" stroke-width="2"/>
+  <circle cx="176" cy="192" r="5" fill="#e65100" stroke="white" stroke-width="2"/>
+  <circle cx="80" cy="264" r="5" fill="#e65100" stroke="white" stroke-width="2"/>
+
+  <!-- Labeli -->
+  <text x="62" y="58" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#1565c0">A</text>
+  <text x="285" y="325" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#1565c0">B</text>
+  <text x="62" y="340" font-family="Georgia, serif" font-size="18" font-weight="bold" fill="#2e7d32">C</text>
+  <text x="186" y="185" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#e65100">S</text>
+  <text x="52" y="268" font-family="Georgia, serif" font-size="16" font-weight="bold" fill="#e65100">M</text>
+
+  <!-- Dimenzije -->
+  <!-- AS = 20cm -->
+  <text x="105" y="125" font-family="Georgia, serif" font-size="13" fill="#1565c0" transform="rotate(53.13 105 125)">AS = 20</text>
+  <!-- SM = 15cm -->
+  <text x="105" y="240" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#e65100">SM = 15</text>
+  <!-- AB = 40cm -->
+  <text x="300" y="180" font-family="Georgia, serif" font-size="13" fill="#1565c0" transform="rotate(53.13 300 180)">AB = 40 cm</text>
+  <!-- a = 24, b = 32 -->
+  <text x="165" y="340" font-family="Georgia, serif" font-size="13" fill="#2e7d32">a = 24 cm</text>
+  <text x="35" y="190" font-family="Georgia, serif" font-size="13" fill="#2e7d32">b = 32 cm</text>
+</svg>
+
+<div class="potpis">Mathbrotherhood Powered by Meta Spark</div>
+
+</body>
+</html>
+```
