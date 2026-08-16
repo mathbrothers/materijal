@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Rešenje zadatka</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+  h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+  .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+  .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+  .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+  .zadatak-section h2 { color: #1565c0; }
+  .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+  .ideja-section h2 { color: #e65100; }
+  .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+  .resenje-section h2 { color: #2e7d32; }
+  .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+  .odgovor-section h2 { color: #7b1fa2; }
+  .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+  .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="section-box zadatak-section">
+<h2>Zadatak</h2>
+<p>Proizvod svih realnih rešenja jednačine \(\sqrt{2x+8}-\sqrt{x+2}=2\) jednak je:</p>
+<p>A) \(-28\); &nbsp;&nbsp; B) \(-4\); &nbsp;&nbsp; C) \(28\); &nbsp;&nbsp; D) \(-14\); &nbsp;&nbsp; E) \(14\); &nbsp;&nbsp; N) Ne znam.</p>
+</div>
+
+<div class="section-box ideja-section">
+<h2>Ideja</h2>
+<p>Domena \(x\ge-2\). Uvesti \(b=\sqrt{x+2}\ge0\), tada je \(\sqrt{2x+8}=\sqrt{2(b^{2}+2)}\). Jednačina se svodi na kvadratnu jednačinu za \(b\) bez gubitka rešenja uz proveru.</p>
+</div>
+
+<div class="section-box resenje-section">
+<h2>Rešenje</h2>
+<p>Neka je \(b=\sqrt{x+2}\ge0\), \(x=b^{2}-2\). Tada</p>
+\[
+\sqrt{2x+8}=\sqrt{2b^{2}+4}
+\]
+\[
+\sqrt{2b^{2}+4}-b=2
+\]
+\[
+\sqrt{2b^{2}+4}=b+2
+\]
+\[
+2b^{2}+4=b^{2}+4b+4\;\Longrightarrow\;b^{2}-4b=0
+\]
+\[
+b(b-4)=0
+\]
+\[
+b=0\;\Longrightarrow\;x=-2
+\]
+\[
+b=4\;\Longrightarrow\;x+2=16\;\Longrightarrow\;x=14
+\]
+Obe vrednosti zadovoljavaju domenu i originalnu jednačinu.
+\[
+P=(-2)\cdot14=-28
+\]
+</div>
+
+<div class="section-box odgovor-section">
+<h2>Odgovor</h2>
+<div class="boxed">\(-28\)</div>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Muse Glimmer</div>
+
+</body>
+</html>
