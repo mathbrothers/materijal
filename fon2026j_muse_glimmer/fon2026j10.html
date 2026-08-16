@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Rešenje zadatka</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+  h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+  .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+  .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+  .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+  .zadatak-section h2 { color: #1565c0; }
+  .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+  .ideja-section h2 { color: #e65100; }
+  .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+  .resenje-section h2 { color: #2e7d32; }
+  .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+  .odgovor-section h2 { color: #7b1fa2; }
+  .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+  .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="section-box zadatak-section">
+<h2>Zadatak</h2>
+<p>Razlika \(d\) aritmetičke progresije \(a_{1},a_{2},\dots\) je ceo broj, a zbir prvih deset članova te progresije jednak je \(155\). Količnik \(q\) geometrijske progresije \(b_{1},b_{2},\dots\) je takođe ceo broj, a zbir prva dva člana te progresije jednak je \(9\). Ako je \(a_{1}=q\) i \(b_{1}=d\), onda \(b_{4}\) iznosi:</p>
+<p>A) 24; &nbsp;&nbsp; B) 96; &nbsp;&nbsp; C) 48; &nbsp;&nbsp; D) 54; &nbsp;&nbsp; E) 64; &nbsp;&nbsp; N) Ne znam.</p>
+</div>
+
+<div class="section-box ideja-section">
+<h2>Ideja</h2>
+<p>Iz zbira aritmetičke progresije dobija se linearna veza \(2a_{1}+9d=31\). Iz geometrijske progresije \(b_{1}(1+q)=9\) uz \(b_{1}=d\) i \(a_{1}=q\). Rešiti sistem celobrojnih jednačina.</p>
+</div>
+
+<div class="section-box resenje-section">
+<h2>Rešenje</h2>
+\[
+S_{10}=\frac{10}{2}\bigl(2a_{1}+9d\bigr)=155\;\Longrightarrow\;2a_{1}+9d=31
+\]
+\[
+a_{1}=q,\qquad b_{1}=d,\qquad b_{1}+b_{2}=d(1+q)=9
+\]
+\[
+2q+9d=31,\qquad d(1+q)=9
+\]
+\[
+q=\frac{9}{d}-1
+\]
+\[
+2\left(\frac{9}{d}-1\right)+9d=31\;\Longrightarrow\;\frac{18}{d}-2+9d=31
+\]
+\[
+9d^{2}-33d+18=0\;\Longrightarrow\;3d^{2}-11d+6=0
+\]
+\[
+(3d-2)(d-3)=0\;\Longrightarrow\;d=3
+\]
+\[
+q=\frac{9}{3}-1=2
+\]
+\[
+b_{4}=b_{1}q^{3}=d\,q^{3}=3\cdot2^{3}=24
+\]
+</div>
+
+<div class="section-box odgovor-section">
+<h2>Odgovor</h2>
+<div class="boxed">24</div>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Muse Glimmer</div>
+
+</body>
+</html>
