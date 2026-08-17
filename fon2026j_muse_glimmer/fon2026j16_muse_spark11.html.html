@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zadatak 16 - Prizma, lopta i kupa</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+  h1 { font-size: 1.3em; border-bottom: 2px solid #333; padding-bottom: 4px; }
+  .section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+  .section-box h2 { margin-top: 0; border: none; padding-left: 0; }
+  .zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+  .zadatak-section h2 { color: #1565c0; }
+  .ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+  .ideja-section h2 { color: #e65100; }
+  .resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+  .resenje-section h2 { color: #2e7d32; }
+  .odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+  .odgovor-section h2 { color: #7b1fa2; }
+  .boxed { border: 2px solid #43a047; background-color: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+  .potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+  .oznaka-fajla { font-family: monospace; color: #888; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="section-box zadatak-section">
+<h2>Zadatak</h2>
+<p>
+Data je prava pravilna šestostrana prizma čija je dužina visine jednaka dužini ivice osnove. Prvo je oko date prizme opisana lopta, a zatim je u datu prizmu upisana kupa, tako da osnova kupe dodiruje ivice jedne osnove prizme, a teme kupe je centar upisane kružnice druge osnove. Odnos zapremina opisane lopte i upisane kupe jednak je:
+</p>
+<p>
+A) \(15\sqrt{5}:8\); &nbsp; B) \(4\sqrt{3}:1\); &nbsp; C) \(10\sqrt{5}:6\); &nbsp; D) \(10\sqrt{5}:3\); &nbsp; E) \(4:\sqrt{3}\); &nbsp; N) Ne znam.
+</p>
+</div>
+
+<div class="section-box ideja-section">
+<h2>Ideja</h2>
+<p>
+Neka je ivica osnove \(a\) i visina prizme \(H = a\).
+</p>
+<p>
+1. <strong>Opisana lopta:</strong> Centar lopte je centar prizme. Poluprečnik \(R\) je rastojanje od centra prizme do bilo kog temena osnove. Kod pravilnog šestougla poluprečnik opisane kružnice osnove je \(R_6 = a\), a rastojanje od centra prizme do ravni osnove je \(H/2 = a/2\). Pitagorina teorema daje \(R\).
+</p>
+<p>
+2. <strong>Upisana kupa:</strong> Rečenica "osnova kupe dodiruje ivice jedne osnove prizme" znači da je osnova kupe upisana kružnica pravilnog šestougla. Njen poluprečnik je \(r = a\sqrt{3}/2\). Visina kupe je jednaka visini prizme, jer je teme u centru druge osnove: \(H_k = a\).
+</p>
+<p>
+Odnos zapremina se dobija direktno iz formula \(V_L = \frac{4}{3}\pi R^3\) i \(V_K = \frac{1}{3}\pi r^2 H_k\), pri čemu se \(a\) skrati.
+</p>
+</div>
+
+<div class="section-box resenje-section">
+<h2>Rešenje</h2>
+<p>
+Neka je \(a\) ivica osnove, \(H = a\) visina prizme.
+</p>
+<p><strong>1. Poluprečnik opisane lopte:</strong></p>
+<p>
+Pravilan šestougao stranice \(a\) se sastoji od 6 jednakostraničnih trouglova, pa je rastojanje od centra šestougla do temena:</p>
+\[ R_6 = a \]
+<p>Centar lopte \(O\) je na polovini visine prizme. U pravouglom trouglu čije su katete \(R_6\) i \(H/2\), hipotenuza je \(R\):</p>
+\[ R^2 = R_6^2 + \left(\frac{H}{2}\right)^2 = a^2 + \left(\frac{a}{2}\right)^2 = a^2 + \frac{a^2}{4} = \frac{5a^2}{4} \]
+\[ R = \frac{a\sqrt{5}}{2} \]
+<p>Zapremina lopte:</p>
+\[ V_L = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi \left(\frac{a\sqrt{5}}{2}\right)^3 = \frac{4}{3}\pi \cdot \frac{a^3 \cdot 5\sqrt{5}}{8} = \frac{5\sqrt{5}}{6}\pi a^3 \]
+<p><strong>2. Poluprečnik i zapremina upisane kupe:</strong></p>
+<p>Apotema pravilnog šestougla (poluprečnik upisane kružnice) je visina jednakostraničnog trougla stranice \(a\):</p>
+\[ r = \frac{a\sqrt{3}}{2} \]
+<p>
+Ovo je poluprečnik osnove kupe, jer kružnica dodiruje sve ivice osnove. Visina kupe je:</p>
+\[ H_k = H = a \]
+<p>Zapremina kupe:</p>
+\[ V_K = \frac{1}{3}\pi r^2 H_k = \frac{1}{3}\pi \left(\frac{a\sqrt{3}}{2}\right)^2 \cdot a = \frac{1}{3}\pi \cdot \frac{3a^2}{4} \cdot a = \frac{1}{4}\pi a^3 \]
+<p><strong>3. Odnos zapremina:</strong></p>
+\[ \frac{V_L}{V_K} = \frac{\frac{5\sqrt{5}}{6}\pi a^3}{\frac{1}{4}\pi a^3} = \frac{5\sqrt{5}}{6} \cdot 4 = \frac{20\sqrt{5}}{6} = \frac{10\sqrt{5}}{3} \]
+<p>Odnos je nezavisan od \(a\), što je i očekivano.</p>
+</div>
+
+<div class="section-box odgovor-section">
+<h2>Odgovor</h2>
+<p>
+Odnos zapremine opisane lopte prema zapremini upisane kupe je:</p>
+<p>
+<span class="boxed">\(V_L : V_K = 10\sqrt{5} : 3\) - odgovor pod D)</span>
+</p>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Meta Spark</div>
+
+</body>
+</html>
