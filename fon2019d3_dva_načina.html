@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Procenti – prodaja knjiga</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']]
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 40px 20px;
+        background: #f4f6f8;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #24303a;
+        line-height: 1.7;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        text-align: center;
+        color: #17324d;
+        margin-bottom: 35px;
+    }
+
+    h2 {
+        margin-top: 0;
+        color: #183b56;
+    }
+
+    h3 {
+        color: #244b68;
+        margin-top: 25px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 14px;
+        padding: 24px 28px;
+        margin-bottom: 24px;
+        box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+    }
+
+    .task-card {
+        border-left: 7px solid #6c7ae0;
+    }
+
+    .idea-card {
+        border-left: 7px solid #f2b84b;
+    }
+
+    .solution-card {
+        border-left: 7px solid #4caf72;
+    }
+
+    .warning-card {
+        border-left: 7px solid #e07a5f;
+    }
+
+    .answer-card {
+        border-left: 7px solid #7b61c9;
+        background: #faf9ff;
+    }
+
+    .formula-box {
+        background: #f7f9fb;
+        padding: 12px 18px;
+        border-radius: 10px;
+        margin: 16px 0;
+        overflow-x: auto;
+    }
+
+    .result {
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 35px;
+        color: #77838f;
+        font-size: 0.9rem;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Procenti – prodaja knjiga</h1>
+
+<div class="card task-card">
+
+<h2>Zadatak</h2>
+
+<p>
+Broj prodatih knjiga na sajmu prvog dana jednak je \(80\%\) broja
+prodatih knjiga drugog dana, odnosno \(75\%\) broja prodatih knjiga
+trećeg dana.
+</p>
+
+<p>
+Ako je za sva tri dana ukupan broj prodatih knjiga \(430\), odrediti
+broj knjiga prodatih drugog dana.
+</p>
+
+</div>
+
+
+<div class="card idea-card">
+
+<h2>Ideja</h2>
+
+<p>
+Zadatak ćemo rešiti na dva načina:
+</p>
+
+<ol>
+    <li>preko razlomaka,</li>
+    <li>preko decimalnog zapisa procenata.</li>
+</ol>
+
+<p>
+U oba slučaja označićemo broj knjiga prodatih prvog dana sa \(x\).
+</p>
+
+</div>
+
+
+<div class="card solution-card">
+
+<h2>1. način – preko razlomaka</h2>
+
+<p>
+Neka je prvog dana prodato
+</p>
+
+\[
+x
+\]
+
+<p>
+knjiga.
+</p>
+
+<h3>Drugi dan</h3>
+
+<p>
+Po uslovu zadatka, broj knjiga prodatih prvog dana jednak je
+\(80\%\) broja knjiga prodatih drugog dana.
+</p>
+
+<p>
+Kako je
+</p>
+
+\[
+80\%=\frac{80}{100}=\frac45,
+\]
+
+<p>
+dobijamo</p>
+
+\[
+x=\frac45y,
+\]
+
+<p>
+gde je \(y\) broj knjiga prodatih drugog dana.
+</p>
+
+<p>
+Odavde je</p>
+
+\[
+y=\frac54x.
+\]
+
+<h3>Treći dan</h3>
+
+<p>
+Prvog dana prodato je \(75\%\) broja knjiga prodatih trećeg dana.
+Kako je
+</p>
+
+\[
+75\%=\frac{75}{100}=\frac34,
+\]
+
+<p>
+imamo</p>
+
+\[
+x=\frac34z,
+\]
+
+<p>
+odakle je</p>
+
+\[
+z=\frac43x.
+\]
+
+<h3>Ukupan broj knjiga</h3>
+
+<p>
+Za sva tri dana prodato je ukupno \(430\) knjiga:
+</p>
+
+\[
+x+y+z=430.
+\]
+
+<p>
+Zamenjujemo izraze za \(y\) i \(z\):
+</p>
+
+\[
+x+\frac54x+\frac43x=430.
+\]
+
+<p>
+Svodimo na zajednički imenilac \(12\):
+</p>
+
+\[
+\frac{12x}{12}
++
+\frac{15x}{12}
++
+\frac{16x}{12}
+=430.
+\]
+
+\[
+\frac{43x}{12}=430.
+\]
+
+<p>
+Odavde:
+</p>
+
+\[
+x=430\cdot\frac{12}{43}.
+\]
+
+\[
+x=120.
+\]
+
+<p>
+Prvog dana prodato je \(120\) knjiga.
+</p>
+
+<p>
+Drugog dana je prodato:
+</p>
+
+\[
+y=\frac54x
+\]
+
+\[
+y=\frac54\cdot120
+\]
+
+\[
+\boxed{y=150}.
+\]
+
+</div>
+
+
+<div class="card solution-card">
+
+<h2>2. način – preko decimalnog zapisa</h2>
+
+<p>
+Ponovo neka je prvog dana prodato \(x\) knjiga.
+</p>
+
+<h3>Drugi dan</h3>
+
+<p>
+Pošto je prvi dan \(80\%\) drugog dana, a
+</p>
+
+\[
+80\%=0.8,
+\]
+
+<p>
+imamo</p>
+
+\[
+x=0.8y.
+\]
+
+<p>
+Odavde je</p>
+
+\[
+y=\frac{x}{0.8}.
+\]
+
+<p>
+Pošto je</p>
+
+\[
+\frac{1}{0.8}=1.25,
+\]
+
+<p>
+dobijamo</p>
+
+\[
+y=1.25x.
+\]
+
+<h3>Treći dan</h3>
+
+<p>
+Prvi dan predstavlja \(75\%\) trećeg dana, pa je
+</p>
+
+\[
+x=0.75z.
+\]
+
+<p>
+Odavde</p>
+
+\[
+z=\frac{x}{0.75}.
+\]
+
+<p>
+Kako je</p>
+
+\[
+\frac{1}{0.75}=\frac43,
+\]
+
+<p>
+dobijamo</p>
+
+\[
+z=\frac43x.
+\]
+
+<h3>Ukupan broj knjiga</h3>
+
+<p>
+Važi</p>
+
+\[
+x+y+z=430.
+\]
+
+<p>
+Zamenjujemo:
+</p>
+
+\[
+x+1.25x+\frac43x=430.
+\]
+
+<p>
+Decimalni broj možemo zapisati kao</p>
+
+\[
+1.25=\frac54,
+\]
+
+<p>
+pa dobijamo</p>
+
+\[
+x+\frac54x+\frac43x=430.
+\]
+
+<p>
+Odavde, kao i u prvom postupku, sledi</p>
+
+\[
+\frac{43}{12}x=430,
+\]
+
+\[
+x=120.
+\]
+
+<p>
+Sada drugi dan možemo izračunati direktno decimalnim zapisom:
+</p>
+
+\[
+y=1.25x
+\]
+
+\[
+y=1.25\cdot120
+\]
+
+\[
+\boxed{y=150}.
+\]
+
+</div>
+
+
+<div class="card warning-card">
+
+<h2>Važno</h2>
+
+<p>
+Treba pažljivo čitati smer procenta.
+</p>
+
+<p>
+Rečenica
+</p>
+
+\[
+\text{„prvi dan je }80\%\text{ drugog dana“}
+\]
+
+<p>
+znači
+</p>
+
+\[
+x=0.8y,
+\]
+
+<p>
+a ne</p>
+
+\[
+y=0.8x.
+\]
+
+<p>
+Zato je broj prodatih knjiga drugog dana veći od broja prodatih
+knjiga prvog dana.
+</p>
+
+</div>
+
+
+<div class="card answer-card">
+
+<h2>Odgovor</h2>
+
+<div class="result">
+
+\[
+\boxed{150}
+\]
+
+<p>
+Tačan odgovor je <strong>C)</strong>.
+</p>
+
+</div>
+
+</div>
+
+
+<footer>
+Mathbrotherhood &nbsp; | &nbsp; Powered by ChatGPT
+</footer>
+
+</div>
+
+</body>
+</html>
