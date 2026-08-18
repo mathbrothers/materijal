@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dvojni integral – oblast ograničena krivama</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+    color:#222;
+    line-height:1.7;
+    margin:0;
+    padding:30px;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:22px 26px;
+    margin-bottom:22px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.task-card{
+    border-left:7px solid #607d8b;
+}
+
+.idea-card{
+    border-left:7px solid #ffb74d;
+}
+
+.analysis-card{
+    border-left:7px solid #64b5f6;
+}
+
+.solution-card{
+    border-left:7px solid #81c784;
+}
+
+.answer-card{
+    border-left:7px solid #ab47bc;
+    background:#faf7ff;
+}
+
+.warning-card{
+    border-left:7px solid #ef5350;
+}
+
+h2{
+    margin-top:0;
+    font-size:1.25rem;
+}
+
+.math-step{
+    margin:18px 0;
+}
+
+.final{
+    border:2px solid #7e57c2;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+    font-size:1.2rem;
+    background:white;
+}
+
+footer{
+    text-align:center;
+    margin-top:35px;
+    color:#777;
+    font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Dvojni integral</h1>
+
+<div class="card task-card">
+<h2>Zadatak</h2>
+
+<p>Izračunati</p>
+
+\[
+\iint_D xy\,dx\,dy,
+\]
+
+<p>gde je oblast \(D\) ograničena krivama</p>
+
+\[
+y=x,\qquad y=\sqrt{6-x},\qquad y=0.
+\]
+
+</div>
+
+
+<div class="card analysis-card">
+<h2>1. Određivanje oblasti \(D\)</h2>
+
+<p>Najpre određujemo presečne tačke graničnih krivih.</p>
+
+<p><strong>Prava \(y=x\) i osa \(y=0\):</strong></p>
+
+\[
+x=0,
+\]
+
+<p>pa dobijamo tačku</p>
+
+\[
+A(0,0).
+\]
+
+<p><strong>Kriva \(y=\sqrt{6-x}\) i osa \(y=0\):</strong></p>
+
+\[
+\sqrt{6-x}=0
+\]
+
+\[
+6-x=0
+\]
+
+\[
+x=6.
+\]
+
+<p>Dakle, druga tačka je</p>
+
+\[
+B(6,0).
+\]
+
+<p><strong>Presek prave i krive:</strong></p>
+
+\[
+x=\sqrt{6-x}.
+\]
+
+<p>Pošto je desna strana nenegativna, mora biti \(x\geq0\). Kvadriranjem dobijamo</p>
+
+\[
+x^2=6-x,
+\]
+
+odnosno
+
+\[
+x^2+x-6=0.
+\]
+
+Faktorizacijom:
+
+\[
+(x-2)(x+3)=0.
+\]
+
+Od mogućih vrednosti
+
+\[
+x=2,\qquad x=-3,
+\]
+
+uzima se samo
+
+\[
+x=2.
+\]
+
+Tada je
+
+\[
+y=2.
+\]
+
+<p>Treća tačka je zato</p>
+
+\[
+C(2,2).
+\]
+
+</div>
+
+
+<div class="card idea-card">
+<h2>2. Ideja – biramo redosled \(dx\,dy\)</h2>
+
+<p>
+Pošto je integral već zapisan u obliku \(dx\,dy\), posmatramo horizontalnu
+duž kroz oblast.
+</p>
+
+<p>Pravu</p>
+
+\[
+y=x
+\]
+
+<p>pišemo kao</p>
+
+\[
+x=y.
+\]
+
+<p>Iz jednačine krive</p>
+
+\[
+y=\sqrt{6-x}
+\]
+
+<p>dobijamo</p>
+
+\[
+y^2=6-x,
+\]
+
+odnosno
+
+\[
+x=6-y^2.
+\]
+
+<p>
+Za fiksirano \(y\), promenljiva \(x\) ide:
+</p>
+
+\[
+\boxed{y\leq x\leq 6-y^2}.
+\]
+
+<p>Najniža vrednost za \(y\) je \(0\), a najviša je \(2\), pa je</p>
+
+\[
+\boxed{0\leq y\leq2}.
+\]
+
+<p>Prema tome, oblast možemo zapisati kao</p>
+
+\[
+D=
+\left\{
+(x,y)\;:\;
+0\leq y\leq2,\quad
+y\leq x\leq6-y^2
+\right\}.
+\]
+
+</div>
+
+
+<div class="card solution-card">
+<h2>3. Postavljanje i računanje integrala</h2>
+
+<p>Dvojni integral postaje</p>
+
+\[
+\iint_D xy\,dx\,dy
+=
+\int_0^2
+\int_y^{\,6-y^2}
+xy\,dx\,dy.
+\]
+
+<p>Prvo integrišemo po \(x\). Pošto je \(y\) tada konstanta:</p>
+
+\[
+\int xy\,dx
+=
+y\int x\,dx
+=
+\frac{yx^2}{2}.
+\]
+
+Zato je
+
+\[
+\int_0^2
+\left[
+\frac{yx^2}{2}
+\right]_{x=y}^{x=6-y^2}
+dy.
+\]
+
+Dakle,
+
+\[
+=
+\frac12
+\int_0^2
+y\left[(6-y^2)^2-y^2\right]dy.
+\]
+
+Razvijamo kvadrat:
+
+\[
+(6-y^2)^2
+=
+36-12y^2+y^4.
+\]
+
+Prema tome,
+
+\[
+=
+\frac12
+\int_0^2
+y\left(36-13y^2+y^4\right)dy.
+\]
+
+Odnosno,
+
+\[
+=
+\int_0^2
+\left(
+18y-\frac{13}{2}y^3+\frac12 y^5
+\right)dy.
+\]
+
+Integracijom dobijamo
+
+\[
+=
+\left[
+9y^2-\frac{13}{8}y^4+\frac1{12}y^6
+\right]_0^2.
+\]
+
+Uvrštavanjem \(y=2\):
+
+\[
+=
+9\cdot4
+-\frac{13}{8}\cdot16
++\frac1{12}\cdot64.
+\]
+
+\[
+=
+36-26+\frac{16}{3}.
+\]
+
+\[
+=
+10+\frac{16}{3}
+=
+\frac{46}{3}.
+\]
+
+</div>
+
+
+<div class="card answer-card">
+<h2>Odgovor</h2>
+
+<div class="final">
+
+\[
+\boxed{
+\iint_D xy\,dx\,dy=\frac{46}{3}
+}
+\]
+
+</div>
+</div>
+
+
+<div class="card warning-card">
+<h2>Napomena</h2>
+
+<p>
+Ovde je redosled \(dx\,dy\) posebno zgodan zato što se cela oblast opisuje
+jednim integralom:
+</p>
+
+\[
+0\leq y\leq2,
+\qquad
+y\leq x\leq6-y^2.
+\]
+
+<p>
+Ako bismo prvo integrisali po \(y\), oblast bi morala da se podeli na dva dela,
+jer je gornja granica \(y=x\) za \(0\leq x\leq2\), a
+\(y=\sqrt{6-x}\) za \(2\leq x\leq6\).
+</p>
+
+</div>
+
+
+<footer>
+Mathbrotherhood Powered by ChatGPT
+</footer>
+
+</div>
+
+</body>
+</html>

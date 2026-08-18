@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dvojni integral – redosled dy dx</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<style>
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6f8;
+    color:#222;
+    line-height:1.7;
+    margin:0;
+    padding:30px;
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    padding:22px 26px;
+    margin-bottom:22px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.task-card{ border-left:7px solid #607d8b; }
+.idea-card{ border-left:7px solid #ffb74d; }
+.analysis-card{ border-left:7px solid #64b5f6; }
+.solution-card{ border-left:7px solid #81c784; }
+.answer-card{
+    border-left:7px solid #ab47bc;
+    background:#faf7ff;
+}
+.warning-card{ border-left:7px solid #ef5350; }
+
+h2{
+    margin-top:0;
+    font-size:1.25rem;
+}
+
+.final{
+    border:2px solid #7e57c2;
+    border-radius:10px;
+    padding:15px;
+    text-align:center;
+    font-size:1.2rem;
+    background:white;
+}
+
+footer{
+    text-align:center;
+    margin-top:35px;
+    color:#777;
+    font-size:0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Dvojni integral – prvo po \(y\), zatim po \(x\)</h1>
+
+
+<div class="card task-card">
+<h2>Zadatak</h2>
+
+<p>Izračunati</p>
+
+\[
+\iint_D xy\,dx\,dy,
+\]
+
+<p>gde je oblast \(D\) ograničena krivama</p>
+
+\[
+y=x,\qquad y=\sqrt{6-x},\qquad y=0.
+\]
+
+<p>
+Sada ćemo integral postaviti tako da je
+<strong>spoljašnja promenljiva \(x\)</strong>, a
+<strong>unutrašnja promenljiva \(y\)</strong>.
+</p>
+
+</div>
+
+
+<div class="card analysis-card">
+<h2>1. Granice oblasti</h2>
+
+<p>Granične krive se seku u tačkama</p>
+
+\[
+A(0,0),\qquad B(2,2),\qquad C(6,0).
+\]
+
+<p>
+Posebno je važna tačka
+</p>
+
+\[
+\boxed{(2,2)},
+\]
+
+<p>
+jer se upravo kod \(x=2\) menja gornja granica za \(y\).
+</p>
+
+</div>
+
+
+<div class="card idea-card">
+<h2>2. Zašto moramo podeliti oblast?</h2>
+
+<p>
+Sada posmatramo <strong>vertikalne duži</strong> kroz oblast.
+</p>
+
+<p>
+Donja granica je u oba dela ista:
+</p>
+
+\[
+y=0.
+\]
+
+<p>
+Međutim, gornja granica nije ista na celom intervalu \(0\leq x\leq6\).
+</p>
+
+<p>Za</p>
+
+\[
+0\leq x\leq2
+\]
+
+<p>gornju granicu predstavlja prava</p>
+
+\[
+y=x.
+\]
+
+<p>Dakle:</p>
+
+\[
+0\leq y\leq x.
+\]
+
+<p>Za</p>
+
+\[
+2\leq x\leq6
+\]
+
+<p>gornju granicu predstavlja kriva</p>
+
+\[
+y=\sqrt{6-x}.
+\]
+
+<p>Dakle:</p>
+
+\[
+0\leq y\leq\sqrt{6-x}.
+\]
+
+<p>
+Zato oblast moramo podeliti na dva dela:
+</p>
+
+\[
+D=D_1\cup D_2.
+\]
+
+</div>
+
+
+<div class="card solution-card">
+<h2>3. Postavljanje integrala</h2>
+
+<p>Dobijamo</p>
+
+\[
+\iint_D xy\,dA
+=
+\int_0^2\int_0^x xy\,dy\,dx
++
+\int_2^6\int_0^{\sqrt{6-x}}xy\,dy\,dx.
+\]
+
+<p>
+Računamo svaki integral posebno.
+</p>
+
+<h3>Prvi deo</h3>
+
+\[
+I_1=
+\int_0^2\int_0^x xy\,dy\,dx.
+\]
+
+<p>Pošto se prvo integriše po \(y\), \(x\) posmatramo kao konstantu:</p>
+
+\[
+\int xy\,dy
+=
+x\frac{y^2}{2}.
+\]
+
+Zato je
+
+\[
+I_1
+=
+\int_0^2
+\left[
+\frac{xy^2}{2}
+\right]_{0}^{x}
+dx.
+\]
+
+\[
+I_1
+=
+\int_0^2
+\frac{x^3}{2}\,dx.
+\]
+
+\[
+I_1
+=
+\frac12
+\left[
+\frac{x^4}{4}
+\right]_0^2.
+\]
+
+\[
+I_1
+=
+\frac18\cdot16
+=
+\boxed{2}.
+\]
+
+<h3>Drugi deo</h3>
+
+\[
+I_2=
+\int_2^6
+\int_0^{\sqrt{6-x}}
+xy\,dy\,dx.
+\]
+
+Ponovo:
+
+\[
+\int xy\,dy
+=
+\frac{xy^2}{2}.
+\]
+
+Prema tome,
+
+\[
+I_2
+=
+\int_2^6
+\left[
+\frac{xy^2}{2}
+\right]_{0}^{\sqrt{6-x}}
+dx.
+\]
+
+Pošto je
+
+\[
+\left(\sqrt{6-x}\right)^2=6-x,
+\]
+
+dobijamo
+
+\[
+I_2
+=
+\frac12
+\int_2^6
+x(6-x)\,dx.
+\]
+
+\[
+I_2
+=
+\frac12
+\int_2^6
+(6x-x^2)\,dx.
+\]
+
+\[
+I_2
+=
+\frac12
+\left[
+3x^2-\frac{x^3}{3}
+\right]_2^6.
+\]
+
+Za \(x=6\):
+
+\[
+3\cdot36-\frac{216}{3}
+=
+108-72
+=
+36.
+\]
+
+Za \(x=2\):
+
+\[
+3\cdot4-\frac{8}{3}
+=
+12-\frac83
+=
+\frac{28}{3}.
+\]
+
+Zato je
+
+\[
+I_2
+=
+\frac12
+\left(
+36-\frac{28}{3}
+\right).
+\]
+
+\[
+I_2
+=
+\frac12\cdot\frac{80}{3}
+=
+\boxed{\frac{40}{3}}.
+\]
+
+</div>
+
+
+<div class="card answer-card">
+<h2>4. Konačan rezultat</h2>
+
+\[
+\iint_D xy\,dA
+=
+I_1+I_2.
+\]
+
+\[
+=
+2+\frac{40}{3}
+=
+\frac{6}{3}+\frac{40}{3}.
+\]
+
+<div class="final">
+
+\[
+\boxed{
+\iint_D xy\,dA
+=
+\frac{46}{3}
+}
+\]
+
+</div>
+
+</div>
+
+
+<div class="card warning-card">
+<h2>Važna napomena – poređenje dva redosleda</h2>
+
+<p>
+Ako je <strong>spolja \(dy\), a unutra \(dx\)</strong>, cela oblast može
+da se opiše jednim integralom:
+</p>
+
+\[
+\int_0^2
+\int_y^{6-y^2}
+xy\,dx\,dy.
+\]
+
+<p>
+Ako je <strong>spolja \(dx\), a unutra \(dy\)</strong>, vertikalna duž
+menja gornju granicu kod \(x=2\), pa oblast mora da se podeli:
+</p>
+
+\[
+\boxed{
+\int_0^2\int_0^x xy\,dy\,dx
++
+\int_2^6\int_0^{\sqrt{6-x}}xy\,dy\,dx
+}
+\]
+
+<p>
+Dakle, oba redosleda daju isti rezultat, ali je u ovom zadatku
+redosled \(dx\,dy\) jednostavniji jer ne zahteva podelu oblasti.
+</p>
+
+</div>
+
+
+<footer>
+Mathbrotherhood Powered by ChatGPT
+</footer>
+
+</div>
+
+</body>
+</html>
