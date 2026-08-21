@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Zajednička raspodela – bacanje novčića</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']]
+      }
+    };
+  </script>
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #f4f6f8;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #202124;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #263238;
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #263238;
+    }
+
+    h3 {
+      color: #37474f;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 26px 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .task-card {
+      border-left: 7px solid #90caf9;
+    }
+
+    .idea-card {
+      border-left: 7px solid #ffd54f;
+    }
+
+    .analysis-card {
+      border-left: 7px solid #ce93d8;
+    }
+
+    .solution-card {
+      border-left: 7px solid #81c784;
+    }
+
+    .answer-card {
+      border-left: 7px solid #ffab91;
+      background: #fffaf8;
+    }
+
+    .math-center {
+      text-align: center;
+      font-size: 1.12em;
+      margin: 18px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 22px 0;
+      text-align: center;
+    }
+
+    th, td {
+      border: 1px solid #cfd8dc;
+      padding: 11px 8px;
+    }
+
+    th {
+      background: #eceff1;
+      font-weight: bold;
+    }
+
+    .highlight {
+      background: #fffde7;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Zajednička raspodela slučajnih promenljivih</h1>
+
+
+  <!-- ZADATAK -->
+
+  <div class="card task-card">
+
+    <h2>Zadatak</h2>
+
+    <p>
+      Novčić se baca 3 puta. Ukoliko sva tri puta padne ista strana
+      (pismo ili grb), izvodi se još jedno bacanje.
+    </p>
+
+    <p>Odrediti:</p>
+
+    <p>
+      a) prostor elementarnih ishoda i zakon raspodele slučajne promenljive
+      \((X,Y)\), gde je \(X\) broj palih grbova, a \(Y\) broj bacanja;
+    </p>
+
+    <p>
+      b) marginalne raspodele;
+    </p>
+
+    <p>
+      c) ispitati nezavisnost slučajnih promenljivih \(X\) i \(Y\).
+    </p>
+
+  </div>
+
+
+  <!-- IDEJA -->
+
+  <div class="card idea-card">
+
+    <h2>Ideja</h2>
+
+    <p>
+      Označimo sa \(G\) grb, a sa \(P\) pismo.
+    </p>
+
+    <p>
+      Ako u prva tri bacanja ne padnu tri iste strane,
+      eksperiment se završava nakon trećeg bacanja.
+    </p>
+
+    <p>
+      Četvrto bacanje izvodimo samo ako su prva tri ishoda
+      \(GGG\) ili \(PPP\).
+    </p>
+
+    <p>
+      Pošto broj mogućih ishoda nije veliki, najjednostavnije je
+      da ih sve ispišemo i za svaki odredimo odgovarajuću vrednost
+      para \((X,Y)\).
+    </p>
+
+  </div>
+
+
+  <!-- PROSTOR ISHODA -->
+
+  <div class="card analysis-card">
+
+    <h2>a) Prostor elementarnih ishoda</h2>
+
+    <div class="math-center">
+      \(\Omega=
+      \{GGP,\;GPG,\;PGG,\;GPP,\;PGP,\;PPG,\;
+      GGGG,\;GGGP,\;PPPG,\;PPPP\}.\)
+    </div>
+
+    <p>
+      Važno je primetiti da svi ovi elementarni ishodi
+      <strong>nisu jednako verovatni</strong>.
+    </p>
+
+    <p>
+      Ishodi kod kojih se eksperiment završava posle tri bacanja
+      imaju verovatnoću
+    </p>
+
+    <div class="math-center">
+      \(\dfrac{1}{2^3}=\dfrac18,\)
+    </div>
+
+    <p>
+      dok ishodi kod kojih se izvodi i četvrto bacanje imaju verovatnoću
+    </p>
+
+    <div class="math-center">
+      \(\dfrac{1}{2^4}=\dfrac1{16}.\)
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Ishod</th>
+          <th>\(X\) – broj grbova</th>
+          <th>\(Y\) – broj bacanja</th>
+          <th>\((X,Y)\)</th>
+          <th>Verovatnoća</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>\(GGP\)</td>
+          <td>2</td>
+          <td>3</td>
+          <td>\((2,3)\)</td>
+          <td>\(\frac18\)</td>
+        </tr>
+
+        <tr>
+          <td>\(GPG\)</td>
+          <td>2</td>
+          <td>3</td>
+          <td>\((2,3)\)</td>
+          <td>\(\frac18\)</td>
+        </tr>
+
+        <tr>
+          <td>\(PGG\)</td>
+          <td>2</td>
+          <td>3</td>
+          <td>\((2,3)\)</td>
+          <td>\(\frac18\)</td>
+        </tr>
+
+        <tr>
+          <td>\(GPP\)</td>
+          <td>1</td>
+          <td>3</td>
+          <td>\((1,3)\)</td>
+          <td>\(\frac18\)</td>
+        </tr>
+
+        <tr>
+          <td>\(PGP\)</td>
+          <td>1</td>
+          <td>3</td>
+          <td>\((1,3)\)</td>
+          <td>\(\frac18\)</td>
+        </tr>
+
+        <tr>
+          <td>\(PPG\)</td>
+          <td>1</td>
+          <td>3</td>
+          <td>\((1,3)\)</td>
+          <td>\(\frac18\)</td>
+        </tr>
+
+        <tr>
+          <td>\(GGGG\)</td>
+          <td>4</td>
+          <td>4</td>
+          <td>\((4,4)\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+
+        <tr>
+          <td>\(GGGP\)</td>
+          <td>3</td>
+          <td>4</td>
+          <td>\((3,4)\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+
+        <tr>
+          <td>\(PPPG\)</td>
+          <td>1</td>
+          <td>4</td>
+          <td>\((1,4)\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+
+        <tr>
+          <td>\(PPPP\)</td>
+          <td>0</td>
+          <td>4</td>
+          <td>\((0,4)\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <!-- ZAJEDNIČKA RASPODELA -->
+
+  <div class="card solution-card">
+
+    <h2>Zakon raspodele slučajne promenljive \((X,Y)\)</h2>
+
+    <p>
+      Sada sabiramo verovatnoće svih elementarnih ishoda
+      koji daju isti par \((X,Y)\).
+    </p>
+
+    <div class="math-center">
+      \(P(X=1,Y=3)=3\cdot\dfrac18=\dfrac38,\)
+    </div>
+
+    <div class="math-center">
+      \(P(X=2,Y=3)=3\cdot\dfrac18=\dfrac38.\)
+    </div>
+
+    <p>
+      Za \(Y=4\) svaki mogući par odgovara tačno jednom
+      elementarnom ishodu, pa je
+    </p>
+
+    <div class="math-center">
+      \(P(0,4)=P(1,4)=P(3,4)=P(4,4)=\dfrac1{16}.\)
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>\(X\backslash Y\)</th>
+          <th>\(3\)</th>
+          <th>\(4\)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th>\(0\)</th>
+          <td>\(0\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+
+        <tr>
+          <th>\(1\)</th>
+          <td>\(\frac38\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+
+        <tr>
+          <th>\(2\)</th>
+          <td>\(\frac38\)</td>
+          <td>\(0\)</td>
+        </tr>
+
+        <tr>
+          <th>\(3\)</th>
+          <td>\(0\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+
+        <tr>
+          <th>\(4\)</th>
+          <td>\(0\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Provera:</p>
+
+    <div class="math-center">
+      \(\dfrac38+\dfrac38+
+      4\cdot\dfrac1{16}=1.\)
+    </div>
+
+  </div>
+
+
+  <!-- MARGINALNA X -->
+
+  <div class="card solution-card">
+
+    <h2>b) Marginalne raspodele</h2>
+
+    <h3>Marginalna raspodela promenljive \(X\)</h3>
+
+    <p>
+      Sabiramo verovatnoće po vrstama zajedničke raspodele.
+    </p>
+
+    <div class="math-center">
+      \(P(X=0)=\dfrac1{16},\)
+    </div>
+
+    <div class="math-center">
+      \(P(X=1)=\dfrac38+\dfrac1{16}
+      =\dfrac7{16},\)
+    </div>
+
+    <div class="math-center">
+      \(P(X=2)=\dfrac38=\dfrac6{16},\)
+    </div>
+
+    <div class="math-center">
+      \(P(X=3)=\dfrac1{16},\qquad
+      P(X=4)=\dfrac1{16}.\)
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>\(x\)</th>
+          <th>0</th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th>\(P(X=x)\)</th>
+          <td>\(\frac1{16}\)</td>
+          <td>\(\frac7{16}\)</td>
+          <td>\(\frac6{16}\)</td>
+          <td>\(\frac1{16}\)</td>
+          <td>\(\frac1{16}\)</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <h3>Marginalna raspodela promenljive \(Y\)</h3>
+
+    <p>
+      Tri bacanja imamo ako u prva tri bacanja nisu pala tri ista znaka:
+    </p>
+
+    <div class="math-center">
+      \(P(Y=3)=\dfrac38+\dfrac38=\dfrac34.\)
+    </div>
+
+    <p>
+      Četvrto bacanje izvodimo ako su prva tri ishoda
+      \(GGG\) ili \(PPP\):
+    </p>
+
+    <div class="math-center">
+      \(P(Y=4)=4\cdot\dfrac1{16}=\dfrac14.\)
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>\(y\)</th>
+          <th>3</th>
+          <th>4</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th>\(P(Y=y)\)</th>
+          <td>\(\frac34\)</td>
+          <td>\(\frac14\)</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <!-- NEZAVISNOST -->
+
+  <div class="card analysis-card">
+
+    <h2>c) Nezavisnost slučajnih promenljivih \(X\) i \(Y\)</h2>
+
+    <p>
+      Za nezavisnost bi moralo da važi
+    </p>
+
+    <div class="math-center">
+      \(P(X=x,Y=y)=P(X=x)\,P(Y=y)\)
+    </div>
+
+    <p>
+      za sve moguće vrednosti \(x\) i \(y\).
+    </p>
+
+    <p>
+      Dovoljno je pronaći jedan par za koji ova jednakost ne važi.
+      Uzmimo \(X=0\) i \(Y=4\).
+    </p>
+
+    <p>Iz zajedničke raspodele imamo</p>
+
+    <div class="math-center">
+      \(P(X=0,Y=4)=\dfrac1{16}.\)
+    </div>
+
+    <p>Sa druge strane, iz marginalnih raspodela:</p>
+
+    <div class="math-center">
+      \(P(X=0)P(Y=4)
+      =\dfrac1{16}\cdot\dfrac14
+      =\dfrac1{64}.\)
+    </div>
+
+    <p>
+      Pošto je
+    </p>
+
+    <div class="math-center">
+      \(\dfrac1{16}\neq\dfrac1{64},\)
+    </div>
+
+    <p>
+      slučajne promenljive \(X\) i \(Y\) nisu nezavisne.
+    </p>
+
+  </div>
+
+
+  <!-- ODGOVOR -->
+
+  <div class="card answer-card">
+
+    <h2>Odgovor</h2>
+
+    <p>
+      Zajednička raspodela određena je verovatnoćama
+    </p>
+
+    <div class="math-center">
+      \(P(1,3)=P(2,3)=\dfrac38,\)
+    </div>
+
+    <div class="math-center">
+      \(P(0,4)=P(1,4)=P(3,4)=P(4,4)=\dfrac1{16}.\)
+    </div>
+
+    <p style="text-align:center;">
+      Slučajne promenljive \(X\) i \(Y\)
+      <strong>nisu nezavisne</strong>.
+    </p>
+
+  </div>
+
+
+  <div class="footer">
+    Mathbrotherhood Powered by ChatGPT
+  </div>
+
+</div>
+
+</body>
+</html>
