@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zadatak 1 - Kuglice normalna</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] } };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  body { font-family: Georgia, serif; max-width: 780px; margin: 40px auto; padding: 0 20px; line-height: 1.7; color: #222; background: #fafafa; }
+.section-box { border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+.section-box h2 { margin-top: 0; }
+.zadatak-section { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-left: 5px solid #2196f3; }
+.zadatak-section h2 { color: #1565c0; }
+.ideja-section { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left: 5px solid #ff9800; }
+.ideja-section h2 { color: #e65100; }
+.resenje-section { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-left: 5px solid #4caf50; }
+.resenje-section h2 { color: #2e7d32; }
+.odgovor-section { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-left: 5px solid #9c27b0; }
+.odgovor-section h2 { color: #7b1fa2; }
+.boxed { border: 2px solid #43a047; background: #fff; color: #1b5e20; padding: 8px 20px; display: inline-block; border-radius: 8px; font-weight: bold; font-size: 1.1em; }
+.potpis { margin-top: 40px; font-style: italic; color: #666; text-align: right; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<div class="section-box zadatak-section">
+<h2>Zadatak 1</h2>
+<p>
+Neka fabrika proizvodi kuglice nominalnog prečnika \(m=5\text{mm}\). Usled neprecizne izrade njen prečnik je slučajna promenljiva \(X\) sa normalnom raspodelom, matematičkim očekivanjem \(m\) i odstupanjem \(0.05\text{mm}\). Pri kontroli se odbacuju sve kuglice čiji prečnik odstupa od nominalnog za više od \(0.1\text{mm}\). Koliki je procenat kuglica koji će biti odbačen?
+</p>
+<p style="text-align:right">(15 poena)</p>
+</div>
+
+<div class="section-box ideja-section">
+<h2>Ideja</h2>
+<p>
+\(X\sim \mathcal{N}(m=5,\sigma=0.05)\). Odbacivanje: \(|X-m| \gt 0.1\). Standardizujemo \(Z=(X-m)/\sigma\sim \mathcal{N}(0,1)\).
+</p>
+<p>
+\(0.1\text{mm}=2\sigma\). Tražimo repove van \(2\sigma\): \(P(|Z| \gt 2)=2(1-\Phi(2))\).
+</p>
+</div>
+
+<div class="section-box resenje-section">
+<h2>Rešenje</h2>
+
+<svg width="500" height="280" viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" style="background:#fff; border-radius:8px; border:1px solid #c8e6c9; display:block; margin:15px auto;">
+  <text x="250" y="20" text-anchor="middle" font-family="Georgia" font-size="13" font-weight="bold">N(5, 0.05) - odbacivanje |X-5| > 0.1 = 2σ</text>
+  <!-- osa -->
+  <line x1="30" y1="200" x2="470" y2="200" stroke="#222" stroke-width="1"/>
+  <!-- zvono -->
+  <path d="M 30 200 C 80 200, 120 50, 250 45 C 380 50, 420 200, 470 200" fill="#e3f2fd" stroke="#1565c0" stroke-width="2" fill-opacity="0.6"/>
+  <!-- granice -->
+  <line x1="150" y1="200" x2="150" y2="60" stroke="#c62828" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="350" y1="200" x2="350" y2="60" stroke="#c62828" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <line x1="250" y1="200" x2="250" y2="45" stroke="#2e7d32" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+  <text x="250" y="220" text-anchor="middle" font-size="11" font-weight="bold" fill="#2e7d32">m=5</text>
+  <text x="150" y="220" text-anchor="middle" font-size="11" fill="#c62828">4.9 = m-0.1</text>
+  <text x="350" y="220" text-anchor="middle" font-size="11" fill="#c62828">5.1 = m+0.1</text>
+
+  <text x="90" y="160" font-size="11" fill="#c62828">odbacuje se 2.28%</text>
+  <text x="370" y="160" font-size="11" fill="#c62828">odbacuje se 2.28%</text>
+  <text x="250" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">prihvata se 95.44%</text>
+  <text x="250" y="245" text-anchor="middle" font-size="10" fill="#666">σ=0.05, 0.1 = 2σ, Z = (X-m)/σ, |Z|>2</text>
+</svg>
+
+<p><strong>Standardizacija:</strong></p>
+\[
+Z=\frac{X-m}{\sigma}=\frac{X-5}{0.05}\sim \mathcal{N}(0,1)
+\]
+\[
+P(|X-5| \gt 0.1)=P\left(\left|\frac{X-5}{0.05}\right| \gt \frac{0.1}{0.05}\right)=P(|Z| \gt 2)
+\]
+
+<p><strong>Repovi normalne:</strong></p>
+\[
+P(|Z| \gt 2)=P(Z \lt -2)+P(Z \gt 2)=2\cdot P(Z \gt 2)=2(1-\Phi(2))
+\]
+\[
+\Phi(2)\approx0.97725
+\]
+\[
+P(Z \gt 2)=1-0.97725=0.02275
+\]
+\[
+P(|Z| \gt 2)=2\cdot0.02275=0.0455
+\]
+
+<p>Tablično: \(\Phi(2)=0.9772\) daje \(4.56\%\).</p>
+
+</div>
+
+<div class="section-box odgovor-section">
+<h2>Odgovor</h2>
+<p><span class="boxed">Odbacuje se \(P=2(1-\Phi(2))\approx0.0456 = 4.56\%\) kuglica</span></p>
+<p>Prihvata se oko \(95.44\%\). Ako se traži po 3-sigma pravilu, za \(3\sigma=0.15\) bi bilo \(0.27\%\) škarta, ali ovde je granica \(2\sigma\).</p>
+</div>
+
+<div class="potpis">Mathbrotherhood Powered by Meta Spark</div>
+
+</body>
+</html>
