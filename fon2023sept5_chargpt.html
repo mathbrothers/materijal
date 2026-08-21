@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Uslovna verovatnoća – kuglice u šeširu</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']]
+      }
+    };
+  </script>
+
+  <script defer
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #f4f6f8;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #202124;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #263238;
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #263238;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 26px 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .task-card {
+      border-left: 7px solid #90caf9;
+    }
+
+    .idea-card {
+      border-left: 7px solid #ffd54f;
+    }
+
+    .analysis-card {
+      border-left: 7px solid #ce93d8;
+    }
+
+    .solution-card {
+      border-left: 7px solid #81c784;
+    }
+
+    .answer-card {
+      border-left: 7px solid #ffab91;
+      background: #fffaf8;
+    }
+
+    .math-center {
+      text-align: center;
+      font-size: 1.12em;
+      margin: 18px 0;
+    }
+
+    .figure-wrap {
+      margin: 28px 0 18px;
+      text-align: center;
+    }
+
+    svg {
+      max-width: 100%;
+      height: auto;
+      background: #ffffff;
+      border: 1px solid #d7dde3;
+      border-radius: 12px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #546e7a;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>Uslovna verovatnoća – kuglice u šeširu</h1>
+
+
+  <!-- ZADATAK -->
+
+  <div class="card task-card">
+
+    <h2>Zadatak</h2>
+
+    <p>
+      U šeširu se nalaze 4 bele kuglice.
+      Tri puta se na slučajan način izvlači jedna kuglica
+      i umesto nje se u šešir ubacuje jedna crna.
+    </p>
+
+    <p>
+      Potom je na slučajan način izvučena jedna kuglica
+      i videlo se da je bela.
+    </p>
+
+    <p>
+      Koliko iznosi verovatnoća da su se u šeširu
+      nakon opisanih zamena nalazile tačno dve crne kuglice?
+    </p>
+
+  </div>
+
+
+  <!-- IDEJA -->
+
+  <div class="card idea-card">
+
+    <h2>Ideja</h2>
+
+    <p>
+      Stanje šešira označavaćemo sa \((B,C)\), gde je
+      \(B\) broj belih, a \(C\) broj crnih kuglica.
+    </p>
+
+    <p>
+      Na početku je stanje
+    </p>
+
+    <div class="math-center">
+      \((4,0).\)
+    </div>
+
+    <p>
+      Kada se izvuče bela kuglica, ona se zamenjuje crnom,
+      pa se broj belih smanjuje za 1, a broj crnih povećava za 1.
+    </p>
+
+    <p>
+      Kada se izvuče crna kuglica, ona se ponovo zamenjuje crnom,
+      pa se stanje šešira ne menja.
+    </p>
+
+    <p>
+      Zato možemo jednostavno da napravimo stablo mogućih stanja
+      posle tri zamene.
+    </p>
+
+  </div>
+
+
+  <!-- STABLO -->
+
+  <div class="card analysis-card">
+
+    <h2>Stablo mogućih stanja</h2>
+
+    <div class="figure-wrap">
+
+      <svg viewBox="0 0 980 510"
+           xmlns="http://www.w3.org/2000/svg"
+           aria-label="Stablo mogućih stanja kuglica">
+
+        <!-- NASLOVI KOLONA -->
+
+        <text x="100" y="38"
+              text-anchor="middle"
+              font-size="17"
+              font-weight="bold"
+              fill="#37474f">
+          početak
+        </text>
+
+        <text x="300" y="38"
+              text-anchor="middle"
+              font-size="17"
+              font-weight="bold"
+              fill="#37474f">
+          1. zamena
+        </text>
+
+        <text x="550" y="38"
+              text-anchor="middle"
+              font-size="17"
+              font-weight="bold"
+              fill="#37474f">
+          2. zamena
+        </text>
+
+        <text x="820" y="38"
+              text-anchor="middle"
+              font-size="17"
+              font-weight="bold"
+              fill="#37474f">
+          3. zamena
+        </text>
+
+
+        <!-- GRANE -->
+
+        <!-- početak -> prva zamena -->
+        <line x1="145" y1="255"
+              x2="255" y2="255"
+              stroke="#78909c"
+              stroke-width="3"/>
+
+        <!-- prva -> druga -->
+        <line x1="345" y1="255"
+              x2="505" y2="155"
+              stroke="#78909c"
+              stroke-width="3"/>
+
+        <line x1="345" y1="255"
+              x2="505" y2="355"
+              stroke="#78909c"
+              stroke-width="3"/>
+
+        <!-- druga gornja -> treća -->
+        <line x1="595" y1="155"
+              x2="775" y2="90"
+              stroke="#78909c"
+              stroke-width="3"/>
+
+        <line x1="595" y1="155"
+              x2="775" y2="205"
+              stroke="#78909c"
+              stroke-width="3"/>
+
+        <!-- druga donja -> treća -->
+        <line x1="595" y1="355"
+              x2="775" y2="315"
+              stroke="#78909c"
+              stroke-width="3"/>
+
+        <line x1="595" y1="355"
+              x2="775" y2="430"
+              stroke="#78909c"
+              stroke-width="3"/>
+
+
+        <!-- POČETNO STANJE -->
+
+        <rect x="55" y="225"
+              width="90" height="60"
+              rx="12"
+              fill="#e3f2fd"
+              stroke="#64b5f6"
+              stroke-width="2.5"/>
+
+        <text x="100" y="263"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (4,0)
+        </text>
+
+
+        <!-- POSLE 1. ZAMENE -->
+
+        <rect x="255" y="225"
+              width="90" height="60"
+              rx="12"
+              fill="#e8f5e9"
+              stroke="#81c784"
+              stroke-width="2.5"/>
+
+        <text x="300" y="263"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (3,1)
+        </text>
+
+
+        <!-- POSLE 2. ZAMENE -->
+
+        <rect x="505" y="125"
+              width="90" height="60"
+              rx="12"
+              fill="#fff8e1"
+              stroke="#ffd54f"
+              stroke-width="2.5"/>
+
+        <text x="550" y="163"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (2,2)
+        </text>
+
+
+        <rect x="505" y="325"
+              width="90" height="60"
+              rx="12"
+              fill="#e8f5e9"
+              stroke="#81c784"
+              stroke-width="2.5"/>
+
+        <text x="550" y="363"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (3,1)
+        </text>
+
+
+        <!-- POSLE 3. ZAMENE -->
+
+        <rect x="775" y="60"
+              width="90" height="60"
+              rx="12"
+              fill="#fce4ec"
+              stroke="#f48fb1"
+              stroke-width="2.5"/>
+
+        <text x="820" y="98"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (1,3)
+        </text>
+
+
+        <rect x="775" y="175"
+              width="90" height="60"
+              rx="12"
+              fill="#fff8e1"
+              stroke="#ffd54f"
+              stroke-width="2.5"/>
+
+        <text x="820" y="213"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (2,2)
+        </text>
+
+
+        <rect x="775" y="285"
+              width="90" height="60"
+              rx="12"
+              fill="#fff8e1"
+              stroke="#ffd54f"
+              stroke-width="2.5"/>
+
+        <text x="820" y="323"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (2,2)
+        </text>
+
+
+        <rect x="775" y="400"
+              width="90" height="60"
+              rx="12"
+              fill="#e8f5e9"
+              stroke="#81c784"
+              stroke-width="2.5"/>
+
+        <text x="820" y="438"
+              text-anchor="middle"
+              font-size="23"
+              font-weight="bold"
+              fill="#263238">
+          (3,1)
+        </text>
+
+      </svg>
+
+      <div class="caption">
+        Stanje \((B,C)\): broj belih i broj crnih kuglica.
+      </div>
+
+    </div>
+
+    <p>
+      Posle prve zamene stanje je sigurno \((3,1)\),
+      jer je prva izvučena kuglica sigurno bela.
+    </p>
+
+    <p>
+      Posle tri zamene moguća su samo tri različita stanja:
+    </p>
+
+    <div class="math-center">
+      \((3,1),\qquad (2,2),\qquad (1,3).\)
+    </div>
+
+  </div>
+
+
+  <!-- VEROVATNOĆE STANJA -->
+
+  <div class="card solution-card">
+
+    <h2>Verovatnoće konačnih stanja</h2>
+
+    <p>
+      Da nakon tri zamene ostane stanje \((3,1)\),
+      posle prve zamene oba naredna puta mora biti izvučena crna kuglica.
+    </p>
+
+    <div class="math-center">
+      \(P(3,1)
+      =\dfrac14\cdot\dfrac14
+      =\dfrac1{16}.\)
+    </div>
+
+    <p>
+      Stanje \((2,2)\) možemo dobiti na dva načina.
+    </p>
+
+    <p>
+      Prvi način: pri drugom izvlačenju izvučemo belu,
+      a pri trećem crnu:
+    </p>
+
+    <div class="math-center">
+      \(\dfrac34\cdot\dfrac24=\dfrac6{16}.\)
+    </div>
+
+    <p>
+      Drugi način: pri drugom izvlačenju izvučemo crnu,
+      a pri trećem belu:
+    </p>
+
+    <div class="math-center">
+      \(\dfrac14\cdot\dfrac34=\dfrac3{16}.\)
+    </div>
+
+    <p>
+      Zato je
+    </p>
+
+    <div class="math-center">
+      \(P(2,2)
+      =\dfrac6{16}+\dfrac3{16}
+      =\dfrac9{16}.\)
+    </div>
+
+    <p>
+      Stanje \((1,3)\) nastaje ako se pri drugom i trećem
+      izvlačenju izvuku bele kuglice:
+    </p>
+
+    <div class="math-center">
+      \(P(1,3)
+      =\dfrac34\cdot\dfrac24
+      =\dfrac6{16}.\)
+    </div>
+
+    <p>
+      Provera:
+    </p>
+
+    <div class="math-center">
+      \(\dfrac1{16}+\dfrac9{16}+\dfrac6{16}=1.\)
+    </div>
+
+  </div>
+
+
+  <!-- USLOVNA VEROVATNOĆA -->
+
+  <div class="card solution-card">
+
+    <h2>Podatak da je zatim izvučena bela kuglica</h2>
+
+    <p>
+      Označimo sa \(W\) događaj da je nakon tri zamene
+      izvučena bela kuglica.
+    </p>
+
+    <p>
+      Ako je konačno stanje \((3,1)\), verovatnoća da izvučemo belu je
+    </p>
+
+    <div class="math-center">
+      \(P(W\mid(3,1))=\dfrac34.\)
+    </div>
+
+    <p>
+      Ako je konačno stanje \((2,2)\), verovatnoća je
+    </p>
+
+    <div class="math-center">
+      \(P(W\mid(2,2))=\dfrac24=\dfrac12.\)
+    </div>
+
+    <p>
+      Ako je konačno stanje \((1,3)\), verovatnoća je
+    </p>
+
+    <div class="math-center">
+      \(P(W\mid(1,3))=\dfrac14.\)
+    </div>
+
+    <p>
+      Po formuli potpune verovatnoće:
+    </p>
+
+    <div class="math-center">
+      \(P(W)
+      =
+      \dfrac1{16}\cdot\dfrac34
+      +
+      \dfrac9{16}\cdot\dfrac12
+      +
+      \dfrac6{16}\cdot\dfrac14.\)
+    </div>
+
+    <div class="math-center">
+      \(P(W)
+      =
+      \dfrac3{64}
+      +
+      \dfrac{18}{64}
+      +
+      \dfrac6{64}
+      =
+      \dfrac{27}{64}.\)
+    </div>
+
+  </div>
+
+
+  <!-- BAJES -->
+
+  <div class="card solution-card">
+
+    <h2>Bajesova formula</h2>
+
+    <p>
+      Tražimo verovatnoću da je nakon tri zamene bilo
+      tačno dve crne kuglice, odnosno da je stanje bilo \((2,2)\),
+      pod uslovom da je zatim izvučena bela kuglica.
+    </p>
+
+    <div class="math-center">
+      \(P((2,2)\mid W)
+      =
+      \dfrac{P(2,2)\,P(W\mid(2,2))}
+      {P(W)}.\)
+    </div>
+
+    <div class="math-center">
+      \(P((2,2)\mid W)
+      =
+      \dfrac{
+      \dfrac9{16}\cdot\dfrac12
+      }{
+      \dfrac{27}{64}
+      }.\)
+    </div>
+
+    <div class="math-center">
+      \(P((2,2)\mid W)
+      =
+      \dfrac{18}{27}
+      =
+      \dfrac23.\)
+    </div>
+
+  </div>
+
+
+  <!-- ODGOVOR -->
+
+  <div class="card answer-card">
+
+    <h2>Odgovor</h2>
+
+    <div class="math-center">
+      \(\boxed{P=\dfrac23}\)
+    </div>
+
+    <p style="text-align:center;">
+      Verovatnoća da su se nakon tri zamene u šeširu nalazile
+      tačno dve crne kuglice, ako je zatim izvučena bela kuglica,
+      iznosi <strong>\(\dfrac23\)</strong>.
+    </p>
+
+  </div>
+
+
+  <div class="footer">
+    Mathbrotherhood Powered by ChatGPT
+  </div>
+
+</div>
+
+</body>
+</html>
