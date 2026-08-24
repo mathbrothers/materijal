@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integral – smena t = tg x</title>
+
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f6f8;
+      color:#222;
+      max-width:900px;
+      margin:40px auto;
+      padding:20px;
+      line-height:1.7;
+    }
+
+    .card{
+      background:white;
+      border-radius:14px;
+      padding:24px 30px;
+      margin-bottom:22px;
+      box-shadow:0 4px 14px rgba(0,0,0,.08);
+    }
+
+    .task-card{border-left:6px solid #7aa7d9;}
+    .idea-card{border-left:6px solid #e5b567;}
+    .solution-card{border-left:6px solid #7fbf9b;}
+    .answer-card{border-left:6px solid #b88ac7;}
+
+    h1,h2{
+      margin-top:0;
+    }
+
+    .footer{
+      text-align:center;
+      margin-top:35px;
+      color:#777;
+      font-size:14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card task-card">
+  <h2>Zadatak</h2>
+
+  <p>Izračunati integral</p>
+
+  \[
+  I=\int \frac{\cos x}{\sin^3x+\cos^3x}\,dx
+  \]
+
+  <p>koristeći smenu</p>
+
+  \[
+  t=\tan x.
+  \]
+</div>
+
+
+<div class="card idea-card">
+  <h2>Smena \(t=\tan x\)</h2>
+
+  <p>Koristimo formule</p>
+
+  \[
+  \sin x=\frac{t}{\sqrt{1+t^2}},
+  \qquad
+  \cos x=\frac{1}{\sqrt{1+t^2}},
+  \]
+
+  i
+
+  \[
+  dx=\frac{dt}{1+t^2}.
+  \]
+
+  <p>Odavde je</p>
+
+  \[
+  \cos x\,dx
+  =
+  \frac{1}{\sqrt{1+t^2}}
+  \cdot
+  \frac{dt}{1+t^2}
+  =
+  \frac{dt}{(1+t^2)^{3/2}}.
+  \]
+
+  <p>Sa druge strane,</p>
+
+  \[
+  \sin^3x+\cos^3x
+  =
+  \frac{t^3}{(1+t^2)^{3/2}}
+  +
+  \frac{1}{(1+t^2)^{3/2}},
+  \]
+
+  pa je
+
+  \[
+  \sin^3x+\cos^3x
+  =
+  \frac{t^3+1}{(1+t^2)^{3/2}}.
+  \]
+</div>
+
+
+<div class="card solution-card">
+  <h2>Rešenje</h2>
+
+  <p>Integral prelazi u</p>
+
+  \[
+  I=
+  \int
+  \frac{
+  \dfrac{dt}{(1+t^2)^{3/2}}
+  }{
+  \dfrac{t^3+1}{(1+t^2)^{3/2}}
+  }.
+  \]
+
+  <p>Faktori \((1+t^2)^{3/2}\) se skraćuju:</p>
+
+  \[
+  I=\int\frac{dt}{t^3+1}.
+  \]
+
+  <p>Rastavimo imenilac:</p>
+
+  \[
+  t^3+1=(t+1)(t^2-t+1).
+  \]
+
+  <p>Parcijalni razlomci:</p>
+
+  \[
+  \frac{1}{(t+1)(t^2-t+1)}
+  =
+  \frac{A}{t+1}
+  +
+  \frac{Bt+C}{t^2-t+1}.
+  \]
+
+  Dobijamo
+
+  \[
+  1=A(t^2-t+1)+(Bt+C)(t+1).
+  \]
+
+  Poređenjem koeficijenata:
+
+  \[
+  A=\frac13,\qquad
+  B=-\frac13,\qquad
+  C=\frac23.
+  \]
+
+  Zato
+
+  \[
+  \frac1{t^3+1}
+  =
+  \frac{1}{3(t+1)}
+  +
+  \frac{-t+2}{3(t^2-t+1)}.
+  \]
+
+  Dakle,
+
+  \[
+  I=
+  \frac13\int\frac{dt}{t+1}
+  +
+  \frac13\int
+  \frac{-t+2}{t^2-t+1}\,dt.
+  \]
+
+  U brojocu drugog integrala napišemo
+
+  \[
+  -t+2
+  =
+  -\frac12(2t-1)+\frac32.
+  \]
+
+  Prema tome,
+
+  \[
+  I=
+  \frac13\ln|t+1|
+  -
+  \frac16\int
+  \frac{2t-1}{t^2-t+1}\,dt
+  +
+  \frac12\int
+  \frac{dt}{t^2-t+1}.
+  \]
+
+  Prvi od ova dva integrala daje
+
+  \[
+  -\frac16\ln(t^2-t+1).
+  \]
+
+  Za poslednji integral kompletiramo kvadrat:
+
+  \[
+  t^2-t+1
+  =
+  \left(t-\frac12\right)^2+\frac34.
+  \]
+
+  Zato
+
+  \[
+  \int\frac{dt}{t^2-t+1}
+  =
+  \frac{2}{\sqrt3}
+  \arctan\frac{2t-1}{\sqrt3}.
+  \]
+
+  Konačno,
+
+  \[
+  I=
+  \frac13\ln|t+1|
+  -
+  \frac16\ln(t^2-t+1)
+  +
+  \frac1{\sqrt3}
+  \arctan\frac{2t-1}{\sqrt3}
+  +C.
+  \]
+
+  Vraćamo
+
+  \[
+  t=\tan x.
+  \]
+</div>
+
+
+<div class="card answer-card">
+  <h2>Odgovor</h2>
+
+  \[
+  \boxed{
+  \int
+  \frac{\cos x}{\sin^3x+\cos^3x}\,dx
+  =
+  \frac13\ln|\tan x+1|
+  -
+  \frac16\ln(\tan^2x-\tan x+1)
+  +
+  \frac1{\sqrt3}
+  \arctan\!\left(
+  \frac{2\tan x-1}{\sqrt3}
+  \right)
+  +C
+  }
+  \]
+</div>
+
+
+<div class="footer">
+  Mathbrotherhood Powered by ChatGPT
+</div>
+
+</body>
+</html>
