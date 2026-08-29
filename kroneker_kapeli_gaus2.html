@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Diskusija sistema – Gaussova metoda</title>
+
+<script>
+window.MathJax = {
+    tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']]
+    },
+    svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+    *{
+        box-sizing:border-box;
+    }
+
+    body{
+        margin:0;
+        background:#f4f6f8;
+        font-family:Arial, Helvetica, sans-serif;
+        color:#222;
+        line-height:1.65;
+    }
+
+    .container{
+        max-width:1050px;
+        margin:35px auto;
+        padding:0 18px 40px;
+    }
+
+    h1{
+        text-align:center;
+        margin-bottom:8px;
+        font-size:30px;
+    }
+
+    .subtitle{
+        text-align:center;
+        color:#666;
+        margin-bottom:30px;
+    }
+
+    .card{
+        background:white;
+        border-radius:12px;
+        padding:22px 26px;
+        margin:20px 0;
+        box-shadow:0 4px 14px rgba(0,0,0,0.07);
+        border-left:6px solid #e6c84f;
+    }
+
+    .idea{
+        border-left-color:#65a9d7;
+    }
+
+    .solution{
+        border-left-color:#72b784;
+    }
+
+    .discussion{
+        border-left-color:#d99560;
+    }
+
+    .answer{
+        border-left-color:#8e79c6;
+    }
+
+    h2{
+        margin-top:0;
+        font-size:22px;
+    }
+
+    h3{
+        margin-top:24px;
+        font-size:19px;
+    }
+
+    .math{
+        overflow-x:auto;
+        padding:5px 0;
+    }
+
+    .important{
+        background:#fff8d9;
+        padding:12px 16px;
+        border-radius:8px;
+        margin:15px 0;
+    }
+
+    .case{
+        background:#f8fafb;
+        border:1px solid #e0e4e7;
+        border-radius:9px;
+        padding:15px 18px;
+        margin:16px 0;
+    }
+
+    table{
+        width:100%;
+        border-collapse:collapse;
+        margin-top:15px;
+    }
+
+    th,td{
+        border:1px solid #ddd;
+        padding:11px 12px;
+        text-align:center;
+    }
+
+    th{
+        background:#f0f2f4;
+    }
+
+    .final-box{
+        border:2px solid #333;
+        border-radius:10px;
+        padding:18px;
+        background:#fafafa;
+        margin-top:18px;
+    }
+
+    footer{
+        margin-top:35px;
+        text-align:center;
+        color:#777;
+        font-size:14px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Diskusija i rešavanje sistema</h1>
+    <div class="subtitle">Gaussova metoda — parametri \(a,b\in\mathbb R\)</div>
+
+
+    <div class="card">
+        <h2>Zadatak</h2>
+
+        <p>U zavisnosti od realnih parametara \(a\) i \(b\) diskutovati i rešiti sistem:</p>
+
+        <div class="math">
+        \[
+        \begin{cases}
+        -2x-(a+10)y+(a+18)z+2(a+13)t=a+4,\\[2mm]
+        3x+(ab+2a+15)y-(2a+27)z+
+        (2ab-4a-39)t=-ab-2a-6,\\[2mm]
+        -x-(a+5)y+(a+9)z+(2a+13)t=a+2.
+        \end{cases}
+        \]
+        </div>
+    </div>
+
+
+    <div class="card idea">
+        <h2>Ideja</h2>
+
+        <p>
+            Imamo <b>3 jednačine i 4 nepoznate</b>, pa sistem ne može imati
+            jedinstveno rešenje. Ako je saglasan, imaće najmanje jednu slobodnu
+            nepoznatu.
+        </p>
+
+        <p>
+            Kod Gaussove metode je važno da na početku <b>ne delimo izrazom koji
+            sadrži parametar</b>. Prvo ćemo eliminisati \(x\), a tek kada se
+            pojavi faktor \(a\), izvršiti diskusiju.
+        </p>
+    </div>
+
+
+    <div class="card solution">
+        <h2>Rešenje</h2>
+
+        <p>Proširena matrica sistema je</p>
+
+        <div class="math">
+        \[
+        \left[
+        \begin{array}{cccc|c}
+        -2&-(a+10)&a+18&2a+26&a+4\\
+        3&ab+2a+15&-2a-27&2ab-4a-39&-ab-2a-6\\
+        -1&-(a+5)&a+9&2a+13&a+2
+        \end{array}
+        \right].
+        \]
+        </div>
+
+        <p>
+            Treća vrsta je zgodna za eliminaciju \(x\). Izvršimo
+        </p>
+
+        <div class="math">
+        \[
+        R_1\longleftarrow R_1-2R_3,
+        \qquad
+        R_2\longleftarrow R_2+3R_3.
+        \]
+        </div>
+
+        <p>Dobijamo:</p>
+
+        <div class="math">
+        \[
+        \left[
+        \begin{array}{cccc|c}
+        0&a&-a&-2a&-a\\
+        0&a(b-1)&a&2a(b+1)&a(1-b)\\
+        -1&-(a+5)&a+9&2a+13&a+2
+        \end{array}
+        \right].
+        \]
+        </div>
+
+        <p>Radi preglednosti zamenimo redosled vrsta:</p>
+
+        <div class="math">
+        \[
+        \boxed{
+        \left[
+        \begin{array}{cccc|c}
+        -1&-(a+5)&a+9&2a+13&a+2\\
+        0&a&-a&-2a&-a\\
+        0&a(b-1)&a&2a(b+1)&a(1-b)
+        \end{array}
+        \right]
+        }
+        \]
+        </div>
+
+        <div class="important">
+            Ovde se pojavljuje prvi ključni faktor — \(a\).
+            Zato sada moramo razdvojiti slučajeve
+            \(a=0\) i \(a\neq0\).
+        </div>
+    </div>
+
+
+    <div class="card discussion">
+        <h2>Diskusija</h2>
+
+        <div class="case">
+            <h3>1. slučaj: \(a=0\)</h3>
+
+            <p>Poslednje dve vrste postaju nulte:</p>
+
+            <div class="math">
+            \[
+            \left[
+            \begin{array}{cccc|c}
+            -1&-5&9&13&2\\
+            0&0&0&0&0\\
+            0&0&0&0&0
+            \end{array}
+            \right].
+            \]
+            </div>
+
+            <p>Dakle, ostaje samo jedna nezavisna jednačina</p>
+
+            <div class="math">
+            \[
+            -x-5y+9z+13t=2.
+            \]
+            </div>
+
+            <p>
+                Imamo tri slobodne nepoznate. Stavimo
+            </p>
+
+            <div class="math">
+            \[
+            y=\lambda,\qquad
+            z=\mu,\qquad
+            t=\nu.
+            \]
+            </div>
+
+            <p>Tada je</p>
+
+            <div class="math">
+            \[
+            x=-2-5\lambda+9\mu+13\nu.
+            \]
+            </div>
+
+            <div class="final-box">
+            \[
+            \boxed{
+            (x,y,z,t)=
+            \left(
+            -2-5\lambda+9\mu+13\nu,\,
+            \lambda,\,
+            \mu,\,
+            \nu
+            \right)
+            }
+            \]
+            \[
+            \lambda,\mu,\nu\in\mathbb R.
+            \]
+            </div>
+
+            <p>
+                Ovde vrednost parametra \(b\) uopšte nije važna, jer se svi
+                članovi sa \(b\) poništavaju kada je \(a=0\).
+            </p>
+
+            <p>
+                \[
+                r(A)=r(A^\ast)=1.
+                \]
+            </p>
+        </div>
+
+
+        <div class="case">
+            <h3>2. slučaj: \(a\neq0\)</h3>
+
+            <p>
+                Sada smemo da podelimo drugu i treću vrstu sa \(a\).
+                Dobijamo
+            </p>
+
+            <div class="math">
+            \[
+            \left[
+            \begin{array}{cccc|c}
+            -1&-(a+5)&a+9&2a+13&a+2\\
+            0&1&-1&-2&-1\\
+            0&b-1&1&2(b+1)&1-b
+            \end{array}
+            \right].
+            \]
+            </div>
+
+            <p>Eliminišimo \(y\) iz treće vrste:</p>
+
+            <div class="math">
+            \[
+            R_3\longleftarrow R_3-(b-1)R_2.
+            \]
+            </div>
+
+            <p>Dobijamo vrlo jednostavan oblik:</p>
+
+            <div class="math">
+            \[
+            \boxed{
+            \left[
+            \begin{array}{cccc|c}
+            -1&-(a+5)&a+9&2a+13&a+2\\
+            0&1&-1&-2&-1\\
+            0&0&b&4b&0
+            \end{array}
+            \right]
+            }
+            \]
+            </div>
+
+            <p>
+                Sada se pojavljuje drugi ključni faktor — \(b\).
+            </p>
+        </div>
+
+
+        <div class="case">
+            <h3>2a. \(a\neq0,\quad b=0\)</h3>
+
+            <p>Treća vrsta je nulta, pa ostaju dve nezavisne jednačine:</p>
+
+            <div class="math">
+            \[
+            \begin{cases}
+            -x-(a+5)y+(a+9)z+(2a+13)t=a+2,\\
+            y-z-2t=-1.
+            \end{cases}
+            \]
+            </div>
+
+            <p>Iz druge jednačine:</p>
+
+            <div class="math">
+            \[
+            y=z+2t-1.
+            \]
+            </div>
+
+            <p>
+                Pošto su \(z\) i \(t\) slobodne nepoznate, stavimo
+            </p>
+
+            <div class="math">
+            \[
+            z=\lambda,\qquad t=\mu.
+            \]
+            </div>
+
+            <p>Tada je</p>
+
+            <div class="math">
+            \[
+            y=\lambda+2\mu-1.
+            \]
+            </div>
+
+            <p>Uvrštavanjem u prvu jednačinu:</p>
+
+            <div class="math">
+            \[
+            -x-(a+5)(z+2t-1)+(a+9)z+(2a+13)t=a+2.
+            \]
+            </div>
+
+            <p>Sređivanjem:</p>
+
+            <div class="math">
+            \[
+            -x+4z+3t=-3,
+            \]
+            </div>
+
+            odnosno
+
+            <div class="math">
+            \[
+            x=3+4z+3t.
+            \]
+            </div>
+
+            Zato je
+
+            <div class="final-box">
+            \[
+            \boxed{
+            (x,y,z,t)=
+            \left(
+            3+4\lambda+3\mu,\,
+            \lambda+2\mu-1,\,
+            \lambda,\,
+            \mu
+            \right)
+            }
+            \]
+            \[
+            \lambda,\mu\in\mathbb R.
+            \]
+
+            \[
+            r(A)=r(A^\ast)=2.
+            \]
+            </div>
+        </div>
+
+
+        <div class="case">
+            <h3>2b. \(a\neq0,\quad b\neq0\)</h3>
+
+            <p>Sada smemo i treću vrstu podeliti sa \(b\):</p>
+
+            <div class="math">
+            \[
+            z+4t=0.
+            \]
+            </div>
+
+            Dakle,
+
+            <div class="math">
+            \[
+            z=-4t.
+            \]
+            </div>
+
+            <p>Iz druge vrste:</p>
+
+            <div class="math">
+            \[
+            y-z-2t=-1.
+            \]
+            </div>
+
+            Pošto je \(z=-4t\),
+
+            <div class="math">
+            \[
+            y+4t-2t=-1,
+            \]
+            </div>
+
+            pa je
+
+            <div class="math">
+            \[
+            y=-1-2t.
+            \]
+            </div>
+
+            <p>
+                Jedina slobodna nepoznata je \(t\). Stavimo
+            </p>
+
+            <div class="math">
+            \[
+            t=\lambda.
+            \]
+            </div>
+
+            Tada
+
+            <div class="math">
+            \[
+            z=-4\lambda,\qquad
+            y=-1-2\lambda.
+            \]
+            </div>
+
+            <p>Iz prve jednačine:</p>
+
+            <div class="math">
+            \[
+            -x-(a+5)(-1-2\lambda)
+            +(a+9)(-4\lambda)
+            +(2a+13)\lambda
+            =a+2.
+            \]
+            </div>
+
+            Sređivanjem dobijamo
+
+            <div class="math">
+            \[
+            -x-13\lambda=-3,
+            \]
+            </div>
+
+            pa je
+
+            <div class="math">
+            \[
+            x=3-13\lambda.
+            \]
+            </div>
+
+            Prema tome,
+
+            <div class="final-box">
+            \[
+            \boxed{
+            (x,y,z,t)=
+            \left(
+            3-13\lambda,\,
+            -1-2\lambda,\,
+            -4\lambda,\,
+            \lambda
+            \right)
+            }
+            \]
+            \[
+            \lambda\in\mathbb R.
+            \]
+
+            \[
+            r(A)=r(A^\ast)=3.
+            \]
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card answer">
+        <h2>Konačna diskusija</h2>
+
+        <table>
+            <tr>
+                <th>Uslov</th>
+                <th>Rang</th>
+                <th>Broj slobodnih nepoznatih</th>
+                <th>Broj rešenja</th>
+            </tr>
+
+            <tr>
+                <td>\(a=0\)</td>
+                <td>\(1\)</td>
+                <td>\(3\)</td>
+                <td>beskonačno mnogo</td>
+            </tr>
+
+            <tr>
+                <td>\(a\neq0,\ b=0\)</td>
+                <td>\(2\)</td>
+                <td>\(2\)</td>
+                <td>beskonačno mnogo</td>
+            </tr>
+
+            <tr>
+                <td>\(a\neq0,\ b\neq0\)</td>
+                <td>\(3\)</td>
+                <td>\(1\)</td>
+                <td>beskonačno mnogo</td>
+            </tr>
+        </table>
+
+        <div class="important">
+            <b>Zaključak:</b> sistem je saglasan za svako
+            \(a,b\in\mathbb R\). Ne postoji slučaj u kome sistem nema rešenje,
+            niti slučaj sa jedinstvenim rešenjem. Za sve vrednosti parametara
+            sistem ima beskonačno mnogo rešenja.
+        </div>
+
+        <div class="final-box">
+        \[
+        \boxed{
+        \begin{array}{ll}
+        a=0:
+        &
+        (x,y,z,t)=
+        (-2-5\lambda+9\mu+13\nu,\lambda,\mu,\nu),
+        \\[3mm]
+
+        a\neq0,\ b=0:
+        &
+        (x,y,z,t)=
+        (3+4\lambda+3\mu,\lambda+2\mu-1,\lambda,\mu),
+        \\[3mm]
+
+        a\neq0,\ b\neq0:
+        &
+        (x,y,z,t)=
+        (3-13\lambda,-1-2\lambda,-4\lambda,\lambda).
+        \end{array}
+        }
+        \]
+        </div>
+    </div>
+
+
+    <footer>
+        Mathbrotherhood &nbsp;•&nbsp; Powered by ChatGPT
+    </footer>
+
+</div>
+
+</body>
+</html>
