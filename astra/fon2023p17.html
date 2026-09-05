@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prizma upisana u sferu — maksimalna površina</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 650px; margin: 12px auto; }
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+.choice { display: inline-block; margin-top: 8px; padding: 5px 11px; border-radius: 8px; background: #eef7f1; color: #2f6f4d; font-weight: 700; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Pravilna četvorostrana prizma upisana u sferu — maksimalna površina</h1>
+
+<section class="card">
+<h2>Zadatak</h2>
+<p>Maksimalna površina pravilne četvorostrane prizme upisane u sferu poluprečnika \(R\) jednaka je:</p>
+<p>A) \(4\sqrt2R^2\), &nbsp; B) \(12R^2\), &nbsp; C) \(8R^2\), &nbsp; D) \(6\sqrt2R^2\), &nbsp; E) \(4\sqrt3R^2\).</p>
+</section>
+
+<section class="card idea">
+<h2>Ideja</h2>
+<p>Neka je \(a\) stranica kvadratne osnove, a \(h\) visina prizme.</p>
+<p>Posmatramo presek ravni koja prolazi kroz osu prizme i jednu dijagonalu kvadratne osnove. U tom preseku dobijamo pravougaonik stranica \(a\sqrt2\) i \(h\), upisan u veliki krug sfere.</p>
+<p>Dijagonala tog pravougaonika jednaka je prečniku sfere, odnosno \(2R\).</p>
+</section>
+
+<section class="card">
+<h2>Ključni presek</h2>
+<div class="figure">
+<svg viewBox="0 0 680 470" role="img" aria-label="Pravougaoni presek prizme upisan u veliki krug sfere.">
+  <circle cx="340" cy="235" r="195" fill="#f7fbff" stroke="#b9c7db" stroke-width="3"/>
+  <rect x="185" y="115" width="310" height="240" rx="2" fill="#edf5ff" fill-opacity="0.9" stroke="#355074" stroke-width="3"/>
+  <line x1="185" y1="355" x2="495" y2="115" stroke="#c88754" stroke-width="3"/>
+  <circle cx="340" cy="235" r="5" fill="#355074"/>
+  <line x1="340" y1="235" x2="495" y2="115" stroke="#7b8ca5" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="502" y="238" font-size="20" fill="#355074">h</text>
+  <text x="305" y="387" font-size="20" fill="#355074">a√2</text>
+  <text x="285" y="205" font-size="20" fill="#aa6d3b">2R</text>
+  <text x="410" y="172" font-size="19" fill="#6f7c90">R</text>
+  <text x="349" y="230" font-size="18" fill="#355074">O</text>
+</svg>
+</div>
+<p class="caption">Dijagonala pravougaonog preseka je prečnik velikog kruga sfere.</p>
+</section>
+
+<section class="card solution">
+<h2>1. Veza između \(a\), \(h\) i \(R\)</h2>
+<p>Po Pitagorinoj teoremi za dijagonalu pravougaonog preseka:</p>
+\[
+(a\sqrt2)^2+h^2=(2R)^2.
+\]
+<p>Odnosno,</p>
+\[
+\boxed{2a^2+h^2=4R^2}.
+\]
+</section>
+
+<section class="card solution">
+<h2>2. Površina prizme</h2>
+<p>Ukupna površina prizme jednaka je zbiru dve kvadratne osnove i četiri bočne strane:</p>
+\[
+P=2a^2+4ah.
+\]
+<p>Tražimo najveću moguću vrednost ovog izraza uz uslov</p>
+\[
+2a^2+h^2=4R^2.
+\]
+</section>
+
+<section class="card solution">
+<h2>3. Maksimum bez izvoda</h2>
+<p>Iz uslova za sferu imamo</p>
+\[
+8R^2=2(2a^2+h^2)=4a^2+2h^2.
+\]
+<p>Uporedimo to sa površinom prizme:</p>
+\[
+\begin{aligned}
+8R^2-P
+&=4a^2+2h^2-(2a^2+4ah)\\
+&=2a^2-4ah+2h^2\\
+&=2(a-h)^2\\
+&\ge 0.
+\end{aligned}
+\]
+<p>Zato je</p>
+\[
+P\le 8R^2.
+\]
+<p>Jednakost se postiže kada je</p>
+\[
+a=h.
+\]
+<p>Tada iz uslova \(2a^2+h^2=4R^2\) dobijamo \(3a^2=4R^2\), pa takva prizma zaista postoji.</p>
+</section>
+
+<section class="card note">
+<h2>Napomena</h2>
+<p>Ovo je lep primer gde optimizacija ne zahteva izvod. Cela ideja se svodi na geometrijski uslov upisivanja u sferu i očiglednu nejednakost</p>
+\[
+(a-h)^2\ge0.
+\]
+<p>Maksimum se postiže kada su visina prizme i stranica kvadratne osnove jednake.</p>
+</section>
+
+<section class="card answer">
+<h2>Odgovor</h2>
+<div class="result">
+\[
+\boxed{P_{\max}=8R^2}
+\]
+<span class="choice">Tačan odgovor je C).</span>
+</div>
+</section>
+
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
