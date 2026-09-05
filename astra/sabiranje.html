@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<title>Komutativnost sabiranja</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<p>Pedja, ne radi se o učenju da je \(2+3\) isto što i \(3+2\), već o otkrivanju da je to već istina u samoj strukturi brojanja. Komutativnost nije konvencija, već posledica toga šta broj jeste.</p>
+
+<p><strong>1. Konkretni nivo - invarijantnost broja.</strong></p>
+<p>Neka učenik ima dva skupa: \(A\) sa 2 predmeta i \(B\) sa 3 predmeta. \(2+3\) je kardinalnost disjunktne unije \(A\sqcup B\). Redosled kojim ih posmatramo ne menja kardinalnost. Vizuelno: 2 crvene tačke pored 3 plave tačke je isti skup od 5 tačaka kao 3 plave pored 2 crvene.</p>
+
+<p><strong>2. Operativni nivo - brojanje kao proces.</strong></p>
+<p>Definisanje sabiranja preko naslednika: \(m+0=m\) i \(m+S(n)=S(m+n)\). Tada:</p>
+\[
+2+3 = 2+S(2)=S(2+2)=S(S(2+1))=S(S(S(2)))=5
+\]
+\[
+3+2 = 3+S(1)=S(3+1)=S(S(3))=S(S(S(2)))=5
+\]
+Ist identitet se dobija jer je naslednik \(S\) injektivan i indukcija pokazuje \(m+n=n+m\) za sve \(m,n\in\mathbb N\). Učenik to doživljava kao "brojanje dalje je nezavisno od toga odakle krećeš".
+
+<p><strong>3. Filozofski nivo.</strong></p>
+<p>Matematika je otkriće, ne izum. Komutativnost sabiranja je apsolutna istina o zbiru kardinalnosti, a ne dogovor o zapisu. \(2+3=3+2\) je samo instanca opšteg teorema da je \(+ : \mathbb N\times\mathbb N\to\mathbb N\) komutativna operacija.</p>
+
+<p>Za maturce je dovoljno reći: broj je veličina, a veličina je nezavisna od redosleda sabiranja. Zapis \(2+3\) i \(3+2\) su dva različita načina da se opiše isti objekt - skup od pet elemenata.</p>
+</body>
+</html>
