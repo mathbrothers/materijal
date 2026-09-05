@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jednakokraki trapez — tangenta i simetrala ugla</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Jednakokraki trapez — tangenta i simetrala spoljašnjeg ugla</h1>
+<section class="card">
+<h2>Zadatak</h2>
+<p>U jednakokrakom trapezu \(ABCD\), dužine osnovica \(AB\) i \(CD\) su, redom, \(2\,\mathrm{cm}\) i \(1\,\mathrm{cm}\). Ako je simetrala spoljašnjeg ugla kod temena \(C\) ujedno i tangenta na kružnicu opisanu oko trapeza \(ABCD\), odrediti površinu trougla \(ABC\).</p>
+</section>
+<section class="card idea">
+<h2>Ideja</h2>
+<p>Koristimo <strong>teoremu o uglu između tangente i tetive</strong>: taj ugao jednak je periferijskom uglu nad odgovarajućim lukom.</p>
+<p>Iz uslova o simetrali pokazaćemo da dijagonala \(AC\) polovi ugao \(DAB\). Zatim će paralelnost osnovica dati jednakokraki trougao \(ACD\), pa ćemo saznati dužinu kraka trapeza.</p>
+</section>
+<section class="card">
+<h2>Skica</h2>
+<div class="figure">
+<svg viewBox="100 45 490 465" role="img" aria-label="Jednakokraki trapez ABCD upisan u kružnicu, tangenta CT, produžetak BCE i visine DH i CK.">
+<circle cx="340" cy="320" r="160" fill="none" stroke="#bdc9dd" stroke-width="2"/>
+<path d="M180 320 L500 320 L420 181.436 L260 181.436 Z" fill="#edf5ff" fill-opacity="0.85" stroke="#344b70" stroke-width="3"/>
+<line x1="180" y1="320" x2="420" y2="181.436" stroke="#5a79b5" stroke-width="2.5"/>
+<path d="M260 181.436 V320 M420 181.436 V320" fill="none" stroke="#77998d" stroke-width="1.8" stroke-dasharray="6 5"/>
+<path d="M260 307 H273 V320 M420 307 H433 V320" fill="none" stroke="#77998d" stroke-width="1.5"/>
+<line x1="420" y1="181.436" x2="359" y2="75.781" stroke="#8a94a5" stroke-width="2" stroke-dasharray="6 5"/>
+<line x1="248" y1="82.132" x2="553" y2="258.225" stroke="#ca9360" stroke-width="2.5"/>
+<path d="M384 181.436 A36 36 0 0 1 388.823 163.436" fill="none" stroke="#ca9360" stroke-width="2"/>
+<path d="M381.895 159.436 A44 44 0 0 1 398 143.331" fill="none" stroke="#ca9360" stroke-width="2"/>
+<g fill="#344b70"><circle cx="180" cy="320" r="4"/><circle cx="500" cy="320" r="4"/><circle cx="420" cy="181.436" r="4"/><circle cx="260" cy="181.436" r="4"/></g>
+<g font-family="Arial, sans-serif" font-size="19" fill="#243247">
+<text x="157" y="337">A</text><text x="508" y="337">B</text><text x="431" y="176">C</text><text x="238" y="176">D</text><text x="252" y="345">H</text><text x="413" y="345">K</text><text x="229" y="80" fill="#aa713c">T</text><text x="351" y="67">E</text><text x="322" y="169">1 cm</text><text x="319" y="374">2 cm</text><text x="430" y="261" fill="#527e6e">h</text>
+</g>
+</svg>
+</div>
+<p class="caption">\(B,C,E\) su kolinearne tačke, a poluprava \(CT\) polovi spoljašnji ugao \(DCE\).</p>
+</section>
+<section class="card solution">
+<h2>1. Uslov o tangenti pretvaramo u jednakost uglova</h2>
+<p>Produžimo krak \(BC\) preko temena \(C\) do tačke \(E\). Pošto je \(CT\) simetrala spoljašnjeg ugla, važi</p>
+\[\angle DCT=\angle TCE.\]
+<p>Primenimo teoremu o uglu između tangente i tetive. Za tetivu \(CD\) dobijamo</p>
+\[\angle DCT=\angle DAC.\]
+<p>Za tetivu \(CB\) odgovarajući ugao između tangente i tetive jednak je uglu \(\angle CAB\). Taj ugao je unakrsan uglu \(\angle TCE\), pa je</p>
+\[\angle TCE=\angle CAB.\]
+<p>Prema tome,</p>
+\[\boxed{\angle DAC=\angle CAB.}\]
+<p>Dakle, <strong>dijagonala \(AC\) polovi ugao \(DAB\)</strong>.</p>
+</section>
+<section class="card solution">
+<h2>2. Određujemo dužinu kraka trapeza</h2>
+<p>Kako je \(AB\parallel CD\), uglovi sa transverzalom \(AC\) su jednaki:</p>
+\[\angle CAB=\angle ACD.\]
+<p>Spajanjem sa prethodnom jednakošću dobijamo</p>
+\[\angle DAC=\angle ACD.\]
+<p>Zato je trougao \(ACD\) jednakokrak. Naspram jednakih uglova nalaze se jednake stranice:</p>
+\[AD=CD=1\,\mathrm{cm}.\]
+<p>Pošto je i trapez jednakokrak, sledi</p>
+\[\boxed{AD=BC=1\,\mathrm{cm}.}\]
+</section>
+<section class="card solution">
+<h2>3. Računamo visinu trapeza</h2>
+<p>Spustimo normale \(DH\) i \(CK\) na osnovicu \(AB\). Četvorougao \(HKCD\) je pravougaonik, pa je</p>
+\[HK=CD=1\,\mathrm{cm}.\]
+<p>Pravougli trouglovi \(AHD\) i \(BKC\) imaju jednake hipotenuze \(AD=BC\) i jednake katete \(DH=CK\), pa su podudarni. Zato je \(AH=KB\), odnosno</p>
+\[AH=KB=\frac{AB-CD}{2}=\frac{2-1}{2}=\frac12\,\mathrm{cm}.\]
+<p>Sada iz Pitagorine teoreme u trouglu \(AHD\):</p>
+\[DH^2=AD^2-AH^2=1^2-\left(\frac12\right)^2=\frac34.\]
+\[\boxed{h=DH=\frac{\sqrt3}{2}\,\mathrm{cm}.}\]
+</section>
+<section class="card solution">
+<h2>4. Površina trougla \(ABC\)</h2>
+<p>Trougao \(ABC\) ima osnovicu \(AB=2\,\mathrm{cm}\), a njegova odgovarajuća visina je \(CK=h\). Zato je</p>
+\[P_{ABC}=\frac{AB\cdot CK}{2}=\frac{2\cdot\frac{\sqrt3}{2}}{2}=\frac{\sqrt3}{2}\,\mathrm{cm}^2.\]
+</section>
+<section class="card note">
+<h2>Napomena</h2>
+<p>Ključ zadatka je prelaz: <strong>simetrala spoljašnjeg ugla i tangenta daju jednake uglove uz dijagonalu \(AC\)</strong>. Posle toga dovoljni su paralelnost osnovica, svojstva jednakokrakog trougla i Pitagorina teorema. Ceo postupak je čisto planimetrijski.</p>
+</section>
+<section class="card answer">
+<h2>Odgovor</h2>
+<div class="result">\[\boxed{P_{ABC}=\frac{\sqrt3}{2}\,\mathrm{cm}^2}\]<strong>Tačan odgovor je E).</strong></div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
