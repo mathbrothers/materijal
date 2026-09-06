@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2005p5 — Domen četvrtog korena</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Domen funkcije sa četvrtim korenom i parametrom</h1>
+<p class="caption">FON 2005 · fon2005p5 · zadatak 5</p>
+<section class="card"><h2>Zadatak</h2>
+<p>Oblast definisanosti funkcije</p>
+\[f(x)=\sqrt[4]{(a+3)x^2-2(a+1)x+3a+3}\]
+<p>je skup \(\mathbb R\) ako i samo ako \(a\) pripada skupu:</p>
+<div class="options"><span>A) \((-\infty,-4]\);</span><span>B) \((-\infty,-4]\cup[-1,+\infty)\);</span><span>C) \((-3,-1]\);</span><span>D) \((-3,+\infty)\);</span><span>E) \([-1,+\infty)\).</span></div>
+</section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Četvrti koren je realan kada je izraz pod korenom nenegativan. Da bi domen bio ceo skup \(\mathbb R\), zahtevamo</p>
+\[(a+3)x^2-2(a+1)x+3a+3\ge0
+\qquad\text{za svako }x\in\mathbb R.\]
+<p>Pošto koeficijent uz \(x^2\) zavisi od parametra, prvo razlikujemo slučajeve \(a<-3\), \(a=-3\) i \(a>-3\).</p>
+</section>
+<section class="card solution"><h2>1. Slučaj \(a<-3\)</h2>
+<p>Tada je \(a+3<0\), pa je parabola okrenuta nadole. Za dovoljno velike apsolutne vrednosti broja \(x\), izraz pod korenom postaje negativan.</p>
+<p>Zato u ovom slučaju domen ne može biti \(\mathbb R\).</p>
+</section>
+<section class="card solution"><h2>2. Slučaj \(a=-3\)</h2>
+<p>Kvadratni član nestaje. Izraz pod korenom je</p>
+\[0\cdot x^2-2(-2)x+3(-3)+3=4x-6.\]
+<p>On nije nenegativan za svako \(x\): na primer, za \(x=0\) iznosi \(-6\). Dakle, ni \(a=-3\) ne odgovara.</p>
+</section>
+<section class="card solution"><h2>3. Slučaj \(a>-3\): uslov za diskriminantu</h2>
+<p>Sada je vodeći koeficijent \(a+3>0\). Kvadratni trinom je nenegativan za svako realno \(x\) ako i samo ako je \(\Delta\le0\).</p>
+<p>Računamo diskriminantu:</p>
+\[\begin{aligned}
+\Delta&=[-2(a+1)]^2-4(a+3)(3a+3)\\
+&=4(a+1)^2-12(a+3)(a+1)\\
+&=4(a+1)\bigl[(a+1)-3(a+3)\bigr]\\
+&=4(a+1)(-2a-8)\\
+&=-8(a+1)(a+4).
+\end{aligned}\]
+<p>Zato je</p>
+\[\Delta\le0
+\iff -8(a+1)(a+4)\le0
+\iff (a+1)(a+4)\ge0.\]
+<p>Pri deljenju negativnim brojem \(-8\) promenili smo smer nejednakosti.</p>
+<div class="table-wrap"><table aria-label="Tablica znakova izraza (a+1)(a+4)">
+<thead><tr><th>Izraz</th><th>\((-\infty,-4)\)</th><th>\(-4\)</th><th>\((-4,-1)\)</th><th>\(-1\)</th><th>\((-1,+\infty)\)</th></tr></thead>
+<tbody><tr><th>\(a+4\)</th><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>\(a+1\)</th><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr>
+<tr><th>\((a+1)(a+4)\)</th><td class="positive">+</td><td>0</td><td>−</td><td>0</td><td class="positive">+</td></tr></tbody></table></div>
+<p>Iz tablice dobijamo</p>
+\[a\in(-\infty,-4]\cup[-1,+\infty).\]
+<p>Međutim, ovaj slučaj razmatramo pod uslovom \(a>-3\), pa je konačno:</p>
+\[\bigl((-\infty,-4]\cup[-1,+\infty)\bigr)\cap(-3,+\infty)
+=[-1,+\infty).\]
+</section>
+<section class="card solution"><h2>4. Provera dobijenog skupa</h2>
+<p>Izraz pod korenom možemo zapisati i ovako:</p>
+\[(a+3)x^2-2(a+1)x+3a+3
+=(a+1)\bigl((x-1)^2+2\bigr)+2x^2.\]
+<p>Za \(a\ge-1\) oba sabirka na desnoj strani su nenegativna za svako \(x\). Time direktno potvrđujemo dobijeni skup.</p>
+<p>Posebno, za graničnu vrednost \(a=-1\) dobijamo \(f(x)=\sqrt[4]{2x^2}\), što je definisano za sve realne brojeve. Zato se \(-1\) uključuje.</p>
+</section>
+<section class="card note"><h2>Napomena — kraći put</h2>
+<p>Uslov da funkcija bude definisana za svako \(x\) mora važiti i za \(x=0\). Tada je izraz pod korenom \(3(a+1)\), pa nužno sledi \(a\ge-1\). Prethodno rastavljanje na nenegativne sabirke pokazuje da je taj uslov i dovoljan.</p>
+<p>Ako radimo preko diskriminante, ne smemo zaboraviti znak vodećeg koeficijenta. Sam uslov \(\Delta\le0\) dao bi i nedozvoljene vrednosti \(a\le-4\), odnosno ponuđeni odgovor B).</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+<div class="result">\[\boxed{a\in[-1,+\infty)}\]<strong>Tačan odgovor je E).</strong></div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
