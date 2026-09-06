@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2007d10 — Maksimum preko temena parabole</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Maksimum kvadratne funkcije preko temena</h1><p class="caption">FON 2007 · fon2007d10 · zadatak 10</p>
+<section class="card"><h2>Zadatak</h2><p>Grafik funkcije</p>
+\[f(x)=-x^2+ax+5,\qquad x\in\mathbb R,\]
+<p>sadrži tačku \((2,5)\). Maksimalna vrednost date funkcije jednaka je:</p>
+<div class="options"><span>A) \(4\);</span><span>B) \(6\);</span><span>C) \(2\);</span><span>D) \(0\);</span><span>E) \(-2\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Uslov da grafik sadrži tačku \((2,5)\) znači \(f(2)=5\). Tako određujemo parametar \(a\), a zatim maksimum nalazimo kao <strong>ordinatu temena parabole</strong>.</p></section>
+<section class="card solution"><h2>1. Određujemo parametar</h2>
+<p>Uvrstimo \(x=2\) i \(f(2)=5\):</p>
+\[-2^2+2a+5=5\iff -4+2a=0\iff a=2.\]
+<p>Funkcija je zato</p>\[f(x)=-x^2+2x+5.\]</section>
+<section class="card solution"><h2>2. Određujemo teme parabole</h2>
+<p>Za kvadratnu funkciju \(Ax^2+Bx+C\), gde je \(A\ne0\), apscisa temena je</p>
+\[x_T=-\frac{B}{2A}.\]
+<p>Ovde je \(A=-1\), \(B=2\) i \(C=5\). Zato:</p>
+\[x_T=-\frac{2}{2\cdot(-1)}=1.\]
+<p>Ordinatu temena dobijamo uvrštavanjem:</p>
+\[y_T=f(1)=-1^2+2\cdot1+5=6.\]
+<p>Dakle, teme je \(T(1,6)\). Kako je \(A=-1&lt;0\), parabola je okrenuta nadole, pa je teme njena <strong>najviša tačka</strong>.</p></section>
+<section class="card"><h2>Skica</h2>
+<div class="figure" style="max-width:440px"><svg viewBox="35 15 330 435" role="img" aria-label="Parabola y=-x²+2x+5 sa temenom T(1,6) i tačkom P(2,5). Ose su u istoj razmeri.">
+<path d="M50 300H350 M160 435V25" fill="none" stroke="#7d899b" stroke-width="1.5"/>
+<path d="M343 295L350 300L343 305 M155 32L160 25L165 32" fill="none" stroke="#7d899b" stroke-width="1.5"/>
+<path d="M200 300V60H160 M240 300V100H160" fill="none" stroke="#a4b2c6" stroke-dasharray="5 5"/>
+<path d="M80 420 Q200 -300 320 420" fill="none" stroke="#527cac" stroke-width="3"/>
+<circle cx="200" cy="60" r="4.5" fill="#b07c3b"/><circle cx="240" cy="100" r="4.5" fill="#527cac"/><circle cx="160" cy="100" r="3.5" fill="#527cac"/>
+<g fill="#243247" font-family="Arial,sans-serif" font-size="15">
+<text x="208" y="49">T(1,6)</text><text x="250" y="100">P(2,5)</text><text x="145" y="319">0</text>
+<text x="196" y="320">1</text><text x="236" y="320">2</text><text x="142" y="66">6</text><text x="142" y="105">5</text><text x="344" y="322">x</text><text x="173" y="31">y</text></g>
+</svg></div><p class="caption">Maksimum je visina temena: \(6\). Dostiže se za \(x=1\).</p></section>
+<section class="card solution"><h2>3. Provera dopunom do kvadrata</h2>
+\[f(x)=-x^2+2x+5=-(x^2-2x+1)+6=6-(x-1)^2.\]
+<p>Pošto je \((x-1)^2\ge0\), važi \(f(x)\le6\) za svako \(x\). Jednakost se dostiže upravo za \(x=1\), što potvrđuje rezultat dobijen preko temena.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Razlikujemo <strong>gde se maksimum dostiže</strong> (\(x=1\)) i <strong>kolika je maksimalna vrednost</strong> (\(f(1)=6\)). Zadatak traži ovu drugu vrednost.</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{\max_{x\in\mathbb R}f(x)=6\quad\text{za }x=1}\]<strong>Tačan odgovor je B).</strong></div></section><footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
