@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2009s18 — Racionalna nejednačina sa linearnim brojiocem</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Racionalna nejednačina sa linearnim brojiocem</h1><p class="caption">FON · fon2009s18</p>
+<section class="card "><h2>Zadatak</h2><p>Skup svih rešenja nejednačine</p>\[\frac{x^2-3x+1}{x^2-1}&gt;1\]<p>je:</p><div class="options"><span>A) \((-\infty,-2)\);</span><span>B) \(\left(\frac23,1\right)\);</span><span>C) \((-\infty,-1)\cup\left(\frac23,1\right)\);</span><span>D) \((-\infty,-1)\);</span><span>E) \(\left[\frac23,1\right)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Prebacujemo jedinicu na levu stranu. Kvadratni članovi u brojiocu se poništavaju, pa znak zavisi od jednog linearnog činioca i dva činioca imenioca.</p></section>
+<section class="card solution"><h2>1. Domen i sređivanje</h2>\[x^2-1=(x-1)(x+1),\qquad x\ne-1,\quad x\ne1.\]
+\[\frac{x^2-3x+1}{x^2-1}-1&gt;0
+\iff\frac{x^2-3x+1-(x^2-1)}{x^2-1}&gt;0.\]
+<p>Dakle,</p>\[\frac{2-3x}{(x-1)(x+1)}&gt;0.\]
+<p>Nula brojioca je \(x=\frac23\).</p></section>
+<section class="card solution"><h2>2. Tablica znakova</h2><p>Kritične tačke su \(-1,\frac23,1\).</p><div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,-1)\)</th><th>\(-1\)</th><th>\((-1,\frac{2}{3})\)</th><th>\(\frac{2}{3}\)</th><th>\((\frac{2}{3},1)\)</th><th>\(1\)</th><th>\((1,+\infty)\)</th></tr></thead><tbody><tr><th>\(2-3x\)</th><td>+</td><td>+</td><td>+</td><td>0</td><td>−</td><td>−</td><td>−</td></tr><tr><th>\((x-1)(x+1)\)</th><td>+</td><td>0</td><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr><tr><th>Razlomak</th><td>+</td><td>Nije definisano</td><td>−</td><td>0</td><td>+</td><td>Nije definisano</td><td>−</td></tr><tr><th>Uzima se?</th><td class="positive">Da</td><td>Ne</td><td>Ne</td><td>Ne</td><td class="positive">Da</td><td>Ne</td><td>Ne</td></tr></tbody></table></div><p>Biramo pozitivne intervale. Nijedna kritična tačka ne ulazi:</p>\[S=(-\infty,-1)\cup\left(\frac23,1\right).\]</section>
+<section class="card solution"><h2>3. Provera nule brojioca</h2><p>Za \(x=\frac23\) početni brojilac i imenilac jednaki su \(-\frac59\), pa je razlomak \(1\). Zbog stroge nejednakosti ta vrednost nije rešenje.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Brojilac \(2-3x\) je pozitivan levo od \(\frac23\), a negativan desno od te tačke. Negativni koeficijent uz \(x\) određuje ovaj redosled znakova.</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{S=(-\infty,-1)\cup\left(\frac23,1\right)}\]<strong>Tačan odgovor je C).</strong></div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
