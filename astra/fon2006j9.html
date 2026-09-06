@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2006j9 — Racionalna nejednačina</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Racionalna nejednačina — tablica znakova</h1><p class="caption">FON 2006 · fon2006j9 · zadatak 9</p>
+<section class="card"><h2>Zadatak</h2><p>Odrediti skup svih rešenja nejednačine:</p>\[\frac{5x-4}{x^2-3x-4}\ge-1.\]
+<div class="options"><span>A) \(\varnothing\);</span><span>B) \((4,+\infty)\);</span><span>C) \((-\infty,-4]\cup(-1,2]\cup(4,+\infty)\);</span><span>D) \((-4,-1)\cup(2,4)\);</span><span>E) \((-4,-1)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Najpre zapisujemo domen, zatim sve prebacujemo na levu stranu i svodimo na jedan razlomak. Znak određujemo pomoću nula brojioca i imenioca.</p></section>
+<section class="card solution"><h2>1. Domen i svođenje na jedan razlomak</h2>
+\[x^2-3x-4=(x+1)(x-4),\qquad x\ne-1,\quad x\ne4.\]
+\[\frac{5x-4}{x^2-3x-4}+1\ge0
+\iff\frac{5x-4+x^2-3x-4}{x^2-3x-4}\ge0.\]
+<p>Rastavljamo i brojilac:</p>\[x^2+2x-8=(x+4)(x-2).\]
+<p>Dakle, rešavamo</p>\[\frac{(x+4)(x-2)}{(x+1)(x-4)}\ge0.\]</section>
+<section class="card solution"><h2>2. Tablica znakova</h2>
+<p>Kritične tačke, poređane po veličini, jesu \(-4,-1,2,4\).</p>
+<div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,-4)\)</th><th>\((-4,-1)\)</th><th>\((-1,2)\)</th><th>\((2,4)\)</th><th>\((4,+\infty)\)</th></tr></thead><tbody>
+<tr><th>\((x+4)(x-2)\)</th><td>+</td><td>−</td><td>−</td><td>+</td><td>+</td></tr>
+<tr><th>\((x+1)(x-4)\)</th><td>+</td><td>+</td><td>−</td><td>−</td><td>+</td></tr>
+<tr><th>Razlomak</th><td class="positive">+</td><td>−</td><td class="positive">+</td><td>−</td><td class="positive">+</td></tr>
+<tr><th>Uzima se?</th><td>Da</td><td>Ne</td><td>Da</td><td>Ne</td><td>Da</td></tr></tbody></table></div>
+<p>Nule brojioca \(-4\) i \(2\) <strong>uključujemo</strong> jer je dozvoljena jednakost. Nule imenioca \(-1\) i \(4\) <strong>isključujemo</strong> jer izraz nije definisan.</p></section>
+<section class="card solution"><h2>3. Skup rešenja i provera granica</h2>
+\[S=(-\infty,-4]\cup(-1,2]\cup(4,+\infty).\]
+<p>Proverimo uključene granice u početnoj nejednačini:</p>
+\[x=-4:\quad\frac{-24}{24}=-1;\qquad x=2:\quad\frac6{-6}=-1.\]
+<p>Obe granice zadovoljavaju jednakost, kako i treba.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Ne množimo početnu nejednačinu imeniteljem bez poznavanja njegovog znaka. Tablica znakova omogućava da sve slučajeve obuhvatimo jednim postupkom.</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{S=(-\infty,-4]\cup(-1,2]\cup(4,+\infty)}\]<strong>Tačan odgovor je C).</strong></div></section><footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
