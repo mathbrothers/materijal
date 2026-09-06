@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2007j9 — Domen sa parametrom</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Domen racionalne funkcije sa parametrom</h1><p class="caption">FON 2007 · fon2007j9 · zadatak 9</p>
+<section class="card"><h2>Zadatak</h2><p>Funkcija</p>\[f(x)=\frac1{mx^2+(m-8)x+1}\]
+<p>je definisana za sve realne vrednosti argumenta \(x\) ako i samo ako:</p>
+<div class="options"><span>A) \(m\in(1,8)\);</span><span>B) \(m\in(1,16)\);</span><span>C) \(m\in(4,8)\);</span><span>D) \(m\in(4,16)\);</span><span>E) \(m\in(8,16)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Imenilac ne sme biti nula ni za jedan realan broj \(x\). Ako je kvadratni, to znači da nema realnih nula, odnosno da je diskriminanta strogo negativna. Posebno proveravamo \(m=0\), kada nestaje kvadratni član.</p></section>
+<section class="card solution"><h2>1. Slučaj \(m=0\)</h2>
+<p>Tada je imenilac</p>\[-8x+1.\]
+<p>Za \(x=\frac18\) on je nula, pa funkcija nije definisana za svaki realan broj. Zato <strong>\(m=0\) ne odgovara</strong>.</p></section>
+<section class="card solution"><h2>2. Slučaj \(m\ne0\)</h2>
+<p>Imenilac je kvadratni trinom. Zahtev da nema realnih nula ekvivalentan je uslovu</p>\[\Delta&lt;0.\]
+<p>Računamo:</p>
+\[\Delta=(m-8)^2-4m=m^2-20m+64=(m-4)(m-16).\]
+<p>Prema tome,</p>\[(m-4)(m-16)&lt;0.\]
+<div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,4)\)</th><th>\(4\)</th><th>\((4,16)\)</th><th>\(16\)</th><th>\((16,+\infty)\)</th></tr></thead><tbody>
+<tr><th>\(m-4\)</th><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>\(m-16\)</th><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr>
+<tr><th>Proizvod</th><td>+</td><td>0</td><td class="positive">−</td><td>0</td><td>+</td></tr></tbody></table></div>
+<p>Proizvod je negativan između nula, pa je</p>\[m\in(4,16).\]
+<p>Sve vrednosti iz ovog intervala već zadovoljavaju \(m\ne0\).</p></section>
+<section class="card solution"><h2>3. Zašto granice ne ulaze?</h2>
+<p>Za \(m=4\) imenilac postaje</p>\[4x^2-4x+1=(2x-1)^2,\]
+<p>pa je nula za \(x=\frac12\). Za \(m=16\) dobijamo</p>\[16x^2+8x+1=(4x+1)^2,\]
+<p>što je nula za \(x=-\frac14\). Obe granične vrednosti parametra moraju biti isključene.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Ovde je potrebno \(\Delta&lt;0\), a ne \(\Delta\le0\). Čak i jedna dvostruka nula imenioca znači da funkcija nije definisana na celom skupu \(\mathbb R\).</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{m\in(4,16)}\]<strong>Tačan odgovor je D).</strong></div></section><footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
