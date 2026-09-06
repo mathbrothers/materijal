@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2005j11 — Zbir celobrojnih rešenja</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Zbir celobrojnih rešenja racionalne nejednačine</h1>
+<p class="caption">FON 2005 · fon2005j11 · zadatak 11</p>
+<section class="card"><h2>Zadatak</h2>
+<p>Zbir svih celobrojnih rešenja nejednačine</p>
+\[\frac{x-2}{x^2+x-6}\ge\frac{x-1}{x^2-6x+5}\]
+<p>je:</p><div class="options"><span>A) \(9\);</span><span>B) \(4\);</span><span>C) \(12\);</span><span>D) \(1\);</span><span>E) \(7\);</span><span>N) Ne znam.</span></div>
+</section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Rastavljamo imenioce na činioce i zapisujemo domen <strong>pre skraćivanja</strong>. Posle skraćivanja sve prebacujemo na levu stranu i rešavamo pomoću tablice znakova.</p>
+</section>
+<section class="card solution"><h2>1. Rastavljanje imenilaca i domen</h2>
+\[x^2+x-6=(x+3)(x-2),\qquad
+x^2-6x+5=(x-1)(x-5).\]
+<p>Početni imenitelji ne smeju biti nula:</p>
+\[x\ne-3,\quad x\ne2,\quad x\ne1,\quad x\ne5.\]
+<p>Dakle,</p>\[D=\mathbb R\setminus\{-3,1,2,5\}.\]
+</section>
+<section class="card solution"><h2>2. Skraćivanje i svođenje na jedan razlomak</h2>
+<p>Za \(x\in D\) dozvoljeno je skraćivanje:</p>
+\[\frac{x-2}{(x+3)(x-2)}\ge
+\frac{x-1}{(x-1)(x-5)}
+\iff \frac1{x+3}\ge\frac1{x-5}.\]
+<p>Prebacujemo sve na levu stranu:</p>
+\[\frac1{x+3}-\frac1{x-5}\ge0
+\iff \frac{x-5-(x+3)}{(x+3)(x-5)}\ge0.\]
+<p>Dobijamo</p>
+\[\frac{-8}{(x+3)(x-5)}\ge0.\]
+</section>
+<section class="card solution"><h2>3. Tablica znakova</h2>
+<p>Brojilac je stalno negativan i nikada nije nula. Razlomak je zato nenegativan samo kada je imenilac negativan.</p>
+<div class="table-wrap"><table aria-label="Tablica znakova racionalnog izraza">
+<thead><tr><th>Izraz</th><th>\((-\infty,-3)\)</th><th>\(-3\)</th><th>\((-3,5)\)</th><th>\(5\)</th><th>\((5,+\infty)\)</th></tr></thead>
+<tbody><tr><th>\(-8\)</th><td>−</td><td>−</td><td>−</td><td>−</td><td>−</td></tr>
+<tr><th>\(x+3\)</th><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>\(x-5\)</th><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr>
+<tr><th>\((x+3)(x-5)\)</th><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td></tr>
+<tr><th>\(\dfrac{-8}{(x+3)(x-5)}\)</th><td>−</td><td>Nije definisano</td><td class="positive">+</td><td>Nije definisano</td><td>−</td></tr></tbody></table></div>
+<p>Tablica se odnosi na <strong>skraćeni izraz</strong>. Ona daje \(x\in(-3,5)\), ali iz početnog domena moramo isključiti i \(1\) i \(2\). Zato je skup rešenja početne nejednačine</p>
+\[S=(-3,1)\cup(1,2)\cup(2,5).\]
+</section>
+<section class="card solution"><h2>4. Celobrojna rešenja i njihov zbir</h2>
+<p>Celi brojevi u intervalu \((-3,5)\) su \(-2,-1,0,1,2,3,4\). Kada isključimo nedozvoljene vrednosti \(1\) i \(2\), ostaju</p>
+\[S\cap\mathbb Z=\{-2,-1,0,3,4\}.\]
+<p>Njihov zbir je</p>
+\[-2-1+0+3+4=4.\]
+<p>Provera: za svaki od ovih brojeva početni imenitelji su nenula, a razlika leve i desne strane jednaka je \(-8/((x+3)(x-5))>0\), jer je \(x+3>0\) i \(x-5<0\).</p>
+</section>
+<section class="card note"><h2>Napomena</h2>
+<p>Skraćivanje ne proširuje početni domen: \(x=1\) i \(x=2\) ostaju zabranjeni. Ako ih greškom uračunamo, dobićemo zbir \(7\), odnosno ponuđeni odgovor E).</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+<div class="result">\[\boxed{-2-1+0+3+4=4}\]<strong>Tačan odgovor je B).</strong></div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
