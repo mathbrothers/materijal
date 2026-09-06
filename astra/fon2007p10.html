@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2007p10 — Zajedničke tačke parabola</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Dve zajedničke tačke parabola</h1><p class="caption">FON 2007 · fon2007p10 · zadatak 10</p>
+<section class="card"><h2>Zadatak</h2><p>Parabole</p>
+\[y=x^2-(a+2)x-4\qquad\text{i}\qquad y=2x^2-x+a\]
+<p>imaju tačno dve zajedničke tačke ako i samo ako:</p>
+<div class="options"><span>A) \(a\in(-\infty,-4)\cup(6,+\infty)\);</span><span>B) \(a\in(-\infty,-3)\cup(5,+\infty)\);</span><span>C) \(a\in(-\infty,-2)\cup(4,+\infty)\);</span><span>D) \(a\in(-\infty,-1)\cup(3,+\infty)\);</span><span>E) \(a\in(-\infty,0)\cup(2,+\infty)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>U zajedničkoj tački obe parabole imaju isto \(x\) i isto \(y\). Izjednačavamo njihove izraze za \(y\). Tačno dve zajedničke tačke dobijamo kada nastala kvadratna jednačina ima dva različita realna rešenja, odnosno kada je \(\Delta&gt;0\).</p></section>
+<section class="card solution"><h2>1. Jednačina zajedničkih tačaka</h2>
+\[x^2-(a+2)x-4=2x^2-x+a.\]
+<p>Prebacujemo sve na desnu stranu:</p>
+\[0=2x^2-x+a-x^2+(a+2)x+4.\]
+<p>Sređivanjem dobijamo</p>\[x^2+(a+1)x+a+4=0.\]
+<p>Vodeći koeficijent je uvek \(1\), pa je ovo kvadratna jednačina za svaku vrednost parametra. Svako njeno realno rešenje \(x\) određuje tačno jedno zajedničko \(y\).</p></section>
+<section class="card solution"><h2>2. Uslov za dva različita realna rešenja</h2>
+\[\Delta=(a+1)^2-4(a+4)=a^2-2a-15=(a+3)(a-5).\]
+<p>Zahtevamo:</p>\[(a+3)(a-5)&gt;0.\]
+<div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,-3)\)</th><th>\(-3\)</th><th>\((-3,5)\)</th><th>\(5\)</th><th>\((5,+\infty)\)</th></tr></thead><tbody>
+<tr><th>\(a+3\)</th><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr>
+<tr><th>\(a-5\)</th><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr>
+<tr><th>Proizvod</th><td class="positive">+</td><td>0</td><td>−</td><td>0</td><td class="positive">+</td></tr></tbody></table></div>
+<p>Proizvod je pozitivan izvan intervala između nula:</p>
+\[a&lt;-3\quad\text{ili}\quad a&gt;5.\]</section>
+<section class="card solution"><h2>3. Provera graničnih vrednosti</h2>
+<p>Za \(a=-3\) jednačina zajedničkih tačaka je</p>
+\[x^2-2x+1=(x-1)^2=0.\]
+<p>Postoji samo jedna zajednička tačka, jer je jedino rešenje \(x=1\). Za \(a=5\) dobijamo</p>
+\[x^2+6x+9=(x+3)^2=0,\]
+<p>pa ponovo postoji samo jedna zajednička tačka, ovog puta za \(x=-3\). Zato granice ne ulaze u odgovor.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Diskriminantu računamo za <strong>jednačinu dobijenu izjednačavanjem parabola</strong>, jer ona opisuje njihove zajedničke tačke. Nule pojedinačnih funkcija opisuju njihove preseke sa \(x\)-osom i nisu predmet ovog zadatka.</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{a\in(-\infty,-3)\cup(5,+\infty)}\]<strong>Tačan odgovor je B).</strong></div></section><footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
