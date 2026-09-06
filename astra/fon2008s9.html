@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2008s9 — Parabole bez zajedničkih tačaka</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Parabole bez zajedničkih tačaka</h1><p class="caption">FON · fon2008s9</p>
+<section class="card "><h2>Zadatak</h2><p>Parabole</p>\[y=x^2-(a+3)x-4,\qquad y=2x^2-x+a+1,\qquad a\in\mathbb R,\]<p>nemaju zajedničkih tačaka ako i samo ako:</p><div class="options"><span>A) \(a\in(-1,1)\);</span><span>B) \(a\in(-2,2)\);</span><span>C) \(a\in(-3,3)\);</span><span>D) \(a\in(-4,4)\);</span><span>E) \(a\in(-5,5)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Zajedničke tačke dobijamo izjednačavanjem izraza za \(y\). Da ih ne bude, nastala kvadratna jednačina ne sme imati realna rešenja: zahtevamo \(\Delta&lt;0\).</p></section>
+<section class="card solution"><h2>1. Jednačina zajedničkih tačaka</h2>\[x^2-(a+3)x-4=2x^2-x+a+1.\]
+<p>Prebacivanjem na desnu stranu i sređivanjem:</p>
+\[0=2x^2-x+a+1-x^2+(a+3)x+4,\]
+\[x^2+(a+2)x+a+5=0.\]
+<p>Vodeći koeficijent je \(1\), pa je jednačina kvadratna za svako \(a\).</p></section>
+<section class="card solution"><h2>2. Uslov za diskriminantu</h2>\[\Delta=(a+2)^2-4(a+5)=a^2-16=(a-4)(a+4).\]
+<p>Tražimo</p>\[(a-4)(a+4)&lt;0.\]<div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,-4)\)</th><th>\(-4\)</th><th>\((-4,4)\)</th><th>\(4\)</th><th>\((4,+\infty)\)</th></tr></thead><tbody><tr><th>\(a+4\)</th><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr><tr><th>\(a-4\)</th><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr><tr><th>Proizvod</th><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td></tr><tr><th>Uzima se?</th><td>Ne</td><td>Ne</td><td class="positive">Da</td><td>Ne</td><td>Ne</td></tr></tbody></table></div><p>Prema tablici:</p>\[a\in(-4,4).\]</section>
+<section class="card solution"><h2>3. Provera granica</h2><p>Za \(a=-4\) jednačina je \((x-1)^2=0\), a za \(a=4\) ona je \((x+3)^2=0\). U oba slučaja parabole imaju jednu zajedničku tačku, pa granice ne ulaze.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Uslov \(\Delta=0\) znači jednu zajedničku tačku. Zato je za odsustvo zajedničkih tačaka neophodna stroga nejednakost \(\Delta&lt;0\).</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{a\in(-4,4)}\]<strong>Tačan odgovor je D).</strong></div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
