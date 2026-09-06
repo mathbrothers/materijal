@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2009j11 — Zbir celobrojnih rešenja — izdvojena tačka</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Zbir celobrojnih rešenja — izdvojena tačka</h1><p class="caption">FON · fon2009j11</p>
+<section class="card "><h2>Zadatak</h2><p>Zbir svih celobrojnih rešenja nejednačine</p>\[\frac{2x^2-1}{x^2-4x-5}\le1\]<p>je:</p><div class="options"><span>A) \(2\);</span><span>B) \(4\);</span><span>C) \(6\);</span><span>D) \(8\);</span><span>E) \(10\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Posle prebacivanja jedinice, u brojiocu se pojavljuje kvadrat. Njegovu nulu posebno proveravamo: ona može biti rešenje čak i izvan intervala na kome je razlomak negativan.</p></section>
+<section class="card solution"><h2>1. Domen i svođenje na nulu</h2>\[x^2-4x-5=(x+1)(x-5),\qquad x\ne-1,\quad x\ne5.\]
+\[\frac{2x^2-1}{x^2-4x-5}-1\le0
+\iff\frac{2x^2-1-(x^2-4x-5)}{x^2-4x-5}\le0.\]
+<p>Brojilac je \(x^2+4x+4=(x+2)^2\), pa je</p>\[\frac{(x+2)^2}{(x+1)(x-5)}\le0.\]</section>
+<section class="card solution"><h2>2. Tablica znakova</h2><p>Kritične tačke su \(-2,-1,5\). Kvadrat \((x+2)^2\) je nula za \(x=-2\), a pozitivan za sve ostale vrednosti.</p><div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,-2)\)</th><th>\(-2\)</th><th>\((-2,-1)\)</th><th>\(-1\)</th><th>\((-1,5)\)</th><th>\(5\)</th><th>\((5,+\infty)\)</th></tr></thead><tbody><tr><th>\((x+2)^2\)</th><td>+</td><td>0</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td></tr><tr><th>\((x+1)(x-5)\)</th><td>+</td><td>+</td><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td></tr><tr><th>Razlomak</th><td>+</td><td>0</td><td>+</td><td>Nije definisano</td><td>−</td><td>Nije definisano</td><td>+</td></tr><tr><th>Uzima se?</th><td>Ne</td><td class="positive">Da</td><td>Ne</td><td>Ne</td><td class="positive">Da</td><td>Ne</td><td>Ne</td></tr></tbody></table></div><p>Dobijamo negativan razlomak za \(-1&lt;x&lt;5\), ali i nulu za \(x=-2\). Zato je</p>\[S=\{-2\}\cup(-1,5).\]</section>
+<section class="card solution"><h2>3. Celobrojna rešenja, zbir i provera</h2>\[S\cap\mathbb Z=\{-2,0,1,2,3,4\}.\]
+\[-2+0+1+2+3+4=8.\]
+<p>Provera izdvojene tačke u početnoj nejednačini:</p>\[x=-2:\quad\frac{2\cdot4-1}{4+8-5}=\frac77=1.\]
+<p>Za ostale izdvojene cele brojeve važi \(-1&lt;x&lt;5\), pa je razlika leve strane i jedinice negativna. Svi zadovoljavaju početnu nejednačinu.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Ne delimo sa \((x+2)^2\) pre provere njegove nule. Time bismo izgubili rešenje \(x=-2\) i dobili pogrešan zbir \(10\), odnosno ponuđeni odgovor E).</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{\text{Zbir}=8}\]<strong>Tačan odgovor je D).</strong></div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
