@@ -37,21 +37,33 @@ footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
 <main>
 <h1>Teme parabole na x-osi</h1><p class="caption">FON · fon2009d16</p>
 <section class="card "><h2>Zadatak</h2><p>Zbir svih vrednosti realnog parametra \(a\) za koje teme parabole</p>\[y=x^2+(a+1)x+a^2-1\]<p>pripada \(x\)-osi je:</p><div class="options"><span>A) \(\frac23\);</span><span>B) \(\frac53\);</span><span>C) \(-1\);</span><span>D) \(-\frac53\);</span><span>E) \(-\frac23\);</span><span>N) Ne znam.</span></div></section>
-<section class="card idea"><h2>Ideja</h2><p>Tačka pripada \(x\)-osi ako joj je ordinata jednaka nuli. Određujemo koordinate temena i postavljamo uslov \(y_T=0\).</p></section>
-<section class="card solution"><h2>1. Apscisa temena</h2><p>Za kvadratnu funkciju \(Ax^2+Bx+C\) važi \(x_T=-\frac{B}{2A}\). Ovde je \(A=1\), \(B=a+1\), pa:</p>\[x_T=-\frac{a+1}{2}.\]</section>
-<section class="card solution"><h2>2. Ordinata temena</h2><p>Uvrstimo \(x_T\) u funkciju:</p>
-\[\begin{aligned}
-y_T&=\left(-\frac{a+1}{2}\right)^2+(a+1)\left(-\frac{a+1}{2}\right)+a^2-1\\
-&=\frac{(a+1)^2}{4}-\frac{(a+1)^2}{2}+a^2-1\\
-&=a^2-1-\frac{(a+1)^2}{4}\\
-&=\frac{4a^2-4-(a^2+2a+1)}4\\
-&=\frac{3a^2-2a-5}{4}.
-\end{aligned}\]</section>
-<section class="card solution"><h2>3. Uslov da teme pripada x-osi</h2>\[y_T=0\iff3a^2-2a-5=0.\]
-<p>Rastavljanjem:</p>\[(3a-5)(a+1)=0.\]
-<p>Dakle:</p>\[a_1=\frac53,\qquad a_2=-1.\]
-<p>Traženi zbir je</p>\[a_1+a_2=\frac53-1=\frac23.\]</section>
-<section class="card solution"><h2>4. Provera obe vrednosti</h2><p>Za \(a=-1\) parabola je \(y=x^2\), sa temenom \((0,0)\). Za \(a=\frac53\) dobijamo</p>\[y=x^2+\frac83x+\frac{16}{9}=\left(x+\frac43\right)^2,\]<p>pa je teme \(\left(-\frac43,0\right)\). Obe tačke zaista pripadaju \(x\)-osi.</p></section>
-<section class="card note"><h2>Napomena</h2><p>Isti uslov može se zapisati kao \(\Delta=0\): parabola tada dodiruje \(x\)-osu u temenu. Preko koordinate \(y_T\) direktno vidimo zašto taj uslov važi.</p></section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Ako teme parabole pripada \(x\)-osi, parabola dodiruje tu osu u temenu. Jednačina \(y=0\) tada ima dvostruku realnu nulu, pa je uslov <strong>\(D=0\)</strong>.</p></section>
+<section class="card solution"><h2>1. Postavljamo uslov \(D=0\)</h2>
+<p>Za kvadratni trinom po \(x\) koeficijenti su \(A=1\), \(B=a+1\) i \(C=a^2-1\). Zato je</p>
+\[D=(a+1)^2-4(a^2-1).\]
+<p>Uslov da teme bude na \(x\)-osi daje:</p>
+\[(a+1)^2-4(a^2-1)=0\]
+\[\iff a^2+2a+1-4a^2+4=0\]
+\[\iff 3a^2-2a-5=0.\]
+</section>
+<section class="card solution"><h2>2. Određujemo vrednosti parametra</h2>
+<p>Primenjujemo formulu za rešenja kvadratne jednačine po \(a\):</p>
+\[a_{1,2}=\frac{2\pm\sqrt{(-2)^2-4\cdot3\cdot(-5)}}{2\cdot3}
+=\frac{2\pm\sqrt{64}}6=\frac{2\pm8}{6}.\]
+<p>Dakle,</p>
+\[a_1=\frac{2+8}{6}=\frac53,\qquad
+a_2=\frac{2-8}{6}=-1.\]
+<p>Njihov zbir je</p>
+\[a_1+a_2=\frac53+(-1)=\frac53-\frac33=\frac23.\]
+</section>
+<section class="card solution"><h2>3. Provera</h2>
+<p>Za \(a=-1\) dobijamo \(y=x^2\), sa temenom \((0,0)\). Za \(a=\frac53\) dobijamo</p>
+\[y=x^2+\frac83x+\frac{16}{9}=\left(x+\frac43\right)^2,\]
+<p>pa je teme \(\left(-\frac43,0\right)\). U oba slučaja teme pripada \(x\)-osi.</p>
+</section>
+<section class="card note"><h2>Napomena</h2>
+<p>Uslov \(D=0\) odnosi se na kvadratnu jednačinu <strong>po \(x\)</strong>. Iz tog uslova dobijamo novu jednačinu <strong>po parametru \(a\)</strong>, čija rešenja zatim izračunavamo i sabiramo.</p>
+</section>
 <section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{a_1+a_2=\frac23}\]<strong>Tačan odgovor je A).</strong></div></section>
 <footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
