@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2004j10 — Dvostruka nejednakost sa parametrom</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Dvostruka nejednakost sa parametrom</h1>
+<p class="caption">FON 2004 · fon2004j10 · zadatak 10</p>
+<section class="card"><h2>Zadatak</h2>
+<p>Skup svih vrednosti realnog parametra \(a\) za koje nejednakosti</p>
+\[\frac12\le\frac{x^2+ax+3}{x^2+4x+5}\le\frac32\]
+<p>važe za svaki realan broj \(x\), je:</p>
+<div class="options"><span>A) prazan;</span><span>B) jednočlan;</span><span>C) dvočlan;</span><span>D) tročlan;</span><span>E) interval;</span><span>N) Ne znam.</span></div>
+</section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Imenilac je uvek pozitivan, pa dvostruku nejednakost razdvajamo na dva uslova. Svaki se svodi na to da jedan kvadratni trinom bude nenegativan za svako \(x\).</p>
+<p>Za kvadratni trinom sa <strong>pozitivnim vodećim koeficijentom</strong> to važi ako i samo ako je diskriminanta \(\Delta\le0\).</p>
+</section>
+<section class="card solution"><h2>1. Znak imenioca</h2>
+\[x^2+4x+5=(x+2)^2+1>0\qquad(x\in\mathbb R).\]
+<p>Izraz je definisan za sve realne brojeve. Množenje imeniocem ne menja smer nejednakosti.</p>
+</section>
+<section class="card solution"><h2>2. Leva nejednakost</h2>
+\[\frac12\le\frac{x^2+ax+3}{x^2+4x+5}
+\iff x^2+4x+5\le2x^2+2ax+6.\]
+<p>Prebacivanjem svih članova na desnu stranu dobijamo</p>
+\[x^2+(2a-4)x+1\ge0\qquad\text{za svako }x\in\mathbb R.\]
+<p>Vodeći koeficijent je \(1>0\), pa zahtevamo:</p>
+\[\Delta_1=(2a-4)^2-4\le0
+\iff (a-2)^2\le1
+\iff 1\le a\le3.\]
+</section>
+<section class="card solution"><h2>3. Desna nejednakost</h2>
+\[\frac{x^2+ax+3}{x^2+4x+5}\le\frac32
+\iff 2x^2+2ax+6\le3x^2+12x+15.\]
+<p>Odavde je</p>
+\[x^2+(12-2a)x+9\ge0\qquad\text{za svako }x\in\mathbb R.\]
+<p>Ponovo je vodeći koeficijent pozitivan, pa:</p>
+\[\Delta_2=(12-2a)^2-36\le0
+\iff (a-6)^2\le9
+\iff 3\le a\le9.\]
+</section>
+<section class="card solution"><h2>4. Presek uslova i provera</h2>
+<p>Obe nejednakosti moraju važiti istovremeno:</p>
+\[a\in[1,3]\cap[3,9]=\{3\}.\]
+<p>Za \(a=3\) dobijeni trinomi postaju potpuni kvadrati:</p>
+\[x^2+2x+1=(x+1)^2\ge0,\qquad
+x^2+6x+9=(x+3)^2\ge0.\]
+<p>Time je potvrđeno da obe početne nejednakosti važe za svako realno \(x\). Leva jednakost se dostiže za \(x=-1\), a desna za \(x=-3\).</p>
+</section>
+<section class="card note"><h2>Napomena</h2>
+<p>Uslov je \(\Delta\le0\), a ne \(\Delta<0\), jer je jednakost dozvoljena. Dobijene intervale <strong>presecamo</strong>: ista vrednost parametra mora zadovoljiti oba zahteva.</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+<div class="result">\[\boxed{a\in\{3\}}\]<strong>Skup je jednočlan — tačan odgovor je B).</strong></div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
