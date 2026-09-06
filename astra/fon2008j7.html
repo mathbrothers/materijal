@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2008j7 — Racionalna nejednačina — svođenje na nulu</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Racionalna nejednačina — svođenje na nulu</h1><p class="caption">FON · fon2008j7</p>
+<section class="card "><h2>Zadatak</h2><p>Skup svih rešenja nejednačine</p>\[\frac{3x^2-17x+18}{x^2-5x+4}\le2\]<p>je:</p><div class="options"><span>A) \((1,2]\);</span><span>B) \((4,5]\);</span><span>C) \((1,2]\cup(4,5]\);</span><span>D) \([2,3)\);</span><span>E) \((1,2]\cup[5,+\infty)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Odredimo domen, prebacimo dvojku na levu stranu i rastavimo brojilac i imenilac. Tablica znakova obuhvata i sve kritične tačke.</p></section>
+<section class="card solution"><h2>1. Domen i sređivanje</h2><p>Imenilac rastavljamo:</p>\[x^2-5x+4=(x-1)(x-4),\qquad x\ne1,\quad x\ne4.\]
+\[\frac{3x^2-17x+18}{x^2-5x+4}-2\le0
+\iff\frac{3x^2-17x+18-2(x^2-5x+4)}{x^2-5x+4}\le0.\]
+<p>Sređivanjem dobijamo:</p>\[\frac{x^2-7x+10}{x^2-5x+4}\le0
+\iff\frac{(x-2)(x-5)}{(x-1)(x-4)}\le0.\]</section>
+<section class="card solution"><h2>2. Tablica znakova</h2><p>Kritične tačke su \(1,2,4,5\).</p><div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,1)\)</th><th>\(1\)</th><th>\((1,2)\)</th><th>\(2\)</th><th>\((2,4)\)</th><th>\(4\)</th><th>\((4,5)\)</th><th>\(5\)</th><th>\((5,+\infty)\)</th></tr></thead><tbody><tr><th>\((x-2)(x-5)\)</th><td>+</td><td>+</td><td>+</td><td>0</td><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr><tr><th>\((x-1)(x-4)\)</th><td>+</td><td>0</td><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr><tr><th>Razlomak</th><td>+</td><td>Nije definisano</td><td>−</td><td>0</td><td>+</td><td>Nije definisano</td><td>−</td><td>0</td><td>+</td></tr><tr><th>Uzima se?</th><td>Ne</td><td>Ne</td><td class="positive">Da</td><td class="positive">Da</td><td>Ne</td><td>Ne</td><td class="positive">Da</td><td class="positive">Da</td><td>Ne</td></tr></tbody></table></div><p>Uključujemo nule brojioca \(2\) i \(5\), a isključujemo nule imenioca \(1\) i \(4\). Zato je</p>\[S=(1,2]\cup(4,5].\]</section>
+<section class="card solution"><h2>3. Provera uključenih granica</h2>\[x=2:\quad\frac{-4}{-2}=2;\qquad x=5:\quad\frac8{4}=2.\]<p>Obe tačke zadovoljavaju početnu nejednačinu sa jednakošću.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Imenilac menja znak, pa ne množimo njime bez razmatranja slučajeva. Svođenje na nulu omogućava jedinstvenu tablicu znakova.</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{S=(1,2]\cup(4,5]}\]<strong>Tačan odgovor je C).</strong></div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
