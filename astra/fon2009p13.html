@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2009p13 — Celobrojno rešenje i ponuđeni interval</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Celobrojno rešenje i ponuđeni interval</h1><p class="caption">FON · fon2009p13</p>
+<section class="card "><h2>Zadatak</h2><p>Celobrojno rešenje nejednačine</p>\[\frac{x+7}{x^2-2x-3}&gt;1\]<p>pripada intervalu:</p><div class="options"><span>A) \((-\infty,-2)\);</span><span>B) \((-2,-1)\);</span><span>C) \((-1,3)\);</span><span>D) \((3,5)\);</span><span>E) \((5,+\infty)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Najpre nalazimo skup realnih rešenja. Zatim proveravamo koji od dobijenih intervala sadrži ceo broj.</p></section>
+<section class="card solution"><h2>1. Domen i svođenje na nulu</h2>\[x^2-2x-3=(x+1)(x-3),\qquad x\ne-1,\quad x\ne3.\]
+\[\frac{x+7}{x^2-2x-3}-1&gt;0
+\iff\frac{x+7-(x^2-2x-3)}{x^2-2x-3}&gt;0.\]
+<p>Brojilac rastavljamo:</p>\[-x^2+3x+10=-(x-5)(x+2)=(5-x)(x+2).\]
+<p>Rešavamo:</p>\[\frac{(5-x)(x+2)}{(x+1)(x-3)}&gt;0.\]</section>
+<section class="card solution"><h2>2. Tablica znakova</h2><p>Kritične tačke su \(-2,-1,3,5\).</p><div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,-2)\)</th><th>\(-2\)</th><th>\((-2,-1)\)</th><th>\(-1\)</th><th>\((-1,3)\)</th><th>\(3\)</th><th>\((3,5)\)</th><th>\(5\)</th><th>\((5,+\infty)\)</th></tr></thead><tbody><tr><th>\((5-x)(x+2)\)</th><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>0</td><td>−</td></tr><tr><th>\((x+1)(x-3)\)</th><td>+</td><td>+</td><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr><tr><th>Razlomak</th><td>−</td><td>0</td><td>+</td><td>Nije definisano</td><td>−</td><td>Nije definisano</td><td>+</td><td>0</td><td>−</td></tr><tr><th>Uzima se?</th><td>Ne</td><td>Ne</td><td class="positive">Da</td><td>Ne</td><td>Ne</td><td>Ne</td><td class="positive">Da</td><td>Ne</td><td>Ne</td></tr></tbody></table></div><p>Stroga nejednakost isključuje nule brojioca, a domen isključuje nule imenioca:</p>\[S=(-2,-1)\cup(3,5).\]</section>
+<section class="card solution"><h2>3. Izdvajanje celobrojnog rešenja</h2><p>Između \(-2\) i \(-1\) nema celih brojeva. U intervalu \((3,5)\) jedini ceo broj je \(4\). Proverimo:</p>\[\frac{4+7}{4^2-2\cdot4-3}=\frac{11}{5}&gt;1.\]<p>Dakle, jedino celobrojno rešenje je \(x=4\), a ono pripada intervalu \((3,5)\).</p></section>
+<section class="card note"><h2>Napomena</h2><p>Interval može sadržati realna rešenja, a da u njemu nema nijednog celog broja. To se ovde događa sa intervalom \((-2,-1)\).</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{x=4\in(3,5)}\]<strong>Tačan odgovor je D).</strong></div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
