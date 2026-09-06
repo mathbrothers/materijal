@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2009d16 — Teme parabole na x-osi</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Teme parabole na x-osi</h1><p class="caption">FON · fon2009d16</p>
+<section class="card "><h2>Zadatak</h2><p>Zbir svih vrednosti realnog parametra \(a\) za koje teme parabole</p>\[y=x^2+(a+1)x+a^2-1\]<p>pripada \(x\)-osi je:</p><div class="options"><span>A) \(\frac23\);</span><span>B) \(\frac53\);</span><span>C) \(-1\);</span><span>D) \(-\frac53\);</span><span>E) \(-\frac23\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Tačka pripada \(x\)-osi ako joj je ordinata jednaka nuli. Određujemo koordinate temena i postavljamo uslov \(y_T=0\).</p></section>
+<section class="card solution"><h2>1. Apscisa temena</h2><p>Za kvadratnu funkciju \(Ax^2+Bx+C\) važi \(x_T=-\frac{B}{2A}\). Ovde je \(A=1\), \(B=a+1\), pa:</p>\[x_T=-\frac{a+1}{2}.\]</section>
+<section class="card solution"><h2>2. Ordinata temena</h2><p>Uvrstimo \(x_T\) u funkciju:</p>
+\[\begin{aligned}
+y_T&=\left(-\frac{a+1}{2}\right)^2+(a+1)\left(-\frac{a+1}{2}\right)+a^2-1\\
+&=\frac{(a+1)^2}{4}-\frac{(a+1)^2}{2}+a^2-1\\
+&=a^2-1-\frac{(a+1)^2}{4}\\
+&=\frac{4a^2-4-(a^2+2a+1)}4\\
+&=\frac{3a^2-2a-5}{4}.
+\end{aligned}\]</section>
+<section class="card solution"><h2>3. Uslov da teme pripada x-osi</h2>\[y_T=0\iff3a^2-2a-5=0.\]
+<p>Rastavljanjem:</p>\[(3a-5)(a+1)=0.\]
+<p>Dakle:</p>\[a_1=\frac53,\qquad a_2=-1.\]
+<p>Traženi zbir je</p>\[a_1+a_2=\frac53-1=\frac23.\]</section>
+<section class="card solution"><h2>4. Provera obe vrednosti</h2><p>Za \(a=-1\) parabola je \(y=x^2\), sa temenom \((0,0)\). Za \(a=\frac53\) dobijamo</p>\[y=x^2+\frac83x+\frac{16}{9}=\left(x+\frac43\right)^2,\]<p>pa je teme \(\left(-\frac43,0\right)\). Obe tačke zaista pripadaju \(x\)-osi.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Isti uslov može se zapisati kao \(\Delta=0\): parabola tada dodiruje \(x\)-osu u temenu. Preko koordinate \(y_T\) direktno vidimo zašto taj uslov važi.</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{a_1+a_2=\frac23}\]<strong>Tačan odgovor je A).</strong></div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
