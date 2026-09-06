@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fon2008d9 — Uslov da parabole nemaju zajedničkih tačaka</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Uslov da parabole nemaju zajedničkih tačaka</h1><p class="caption">FON · fon2008d9</p>
+<section class="card "><h2>Zadatak</h2><p>Skup svih vrednosti parametra \(m\) za koje parabole</p>\[y=x^2+mx-3,\qquad y=2x^2-m\]<p>nemaju zajedničkih tačaka je:</p><div class="options"><span>A) \((-2,6)\);</span><span>B) \([-2,6]\);</span><span>C) \((-6,2)\);</span><span>D) \([-6,2]\);</span><span>E) \((-\infty,-2)\cup(6,+\infty)\);</span><span>N) Ne znam.</span></div></section>
+<section class="card idea"><h2>Ideja</h2><p>Izjednačavanjem dobijamo kvadratnu jednačinu po \(x\). Parabole nemaju zajedničkih tačaka tačno kada ta jednačina nema realnih rešenja.</p></section>
+<section class="card solution"><h2>1. Izjednačavanje parabola</h2>\[x^2+mx-3=2x^2-m
+\iff x^2-mx+3-m=0.\]
+<p>Koeficijent uz \(x^2\) jednak je \(1\), nezavisno od parametra.</p></section>
+<section class="card solution"><h2>2. Diskriminanta i tablica znakova</h2>\[\Delta=(-m)^2-4(3-m)=m^2+4m-12=(m+6)(m-2).\]
+<p>Uslov je</p>\[(m+6)(m-2)&lt;0.\]<div class="table-wrap"><table><thead><tr><th>Izraz</th><th>\((-\infty,-6)\)</th><th>\(-6\)</th><th>\((-6,2)\)</th><th>\(2\)</th><th>\((2,+\infty)\)</th></tr></thead><tbody><tr><th>\(m+6\)</th><td>−</td><td>0</td><td>+</td><td>+</td><td>+</td></tr><tr><th>\(m-2\)</th><td>−</td><td>−</td><td>−</td><td>0</td><td>+</td></tr><tr><th>Proizvod</th><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td></tr><tr><th>Uzima se?</th><td>Ne</td><td>Ne</td><td class="positive">Da</td><td>Ne</td><td>Ne</td></tr></tbody></table></div><p>Odavde:</p>\[m\in(-6,2).\]</section>
+<section class="card solution"><h2>3. Provera graničnih slučajeva</h2><p>Za \(m=-6\) nastaje \((x+3)^2=0\), a za \(m=2\) nastaje \((x-1)^2=0\). U svakom graničnom slučaju postoji jedna zajednička tačka, pa se \(-6\) i \(2\) isključuju.</p></section>
+<section class="card note"><h2>Napomena</h2><p>Pri sređivanju jednačine obratimo pažnju na slobodan član \(3-m\). Njegov znak utiče na ceo dalji račun diskriminante.</p></section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">\[\boxed{m\in(-6,2)}\]<strong>Tačan odgovor je C).</strong></div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></main></body></html>
