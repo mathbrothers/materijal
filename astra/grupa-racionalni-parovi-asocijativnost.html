@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Grupa racionalnih parova — detaljna provera asocijativnosti</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f9;color:#243247;font-family:Arial,sans-serif;line-height:1.75}
+main{max-width:960px;margin:35px auto;padding:0 18px}h1{font-size:27px;line-height:1.35}h2{margin-top:0;font-size:21px}h3{font-size:18px}
+.card{background:white;border-left:6px solid #b8c9ec;border-radius:12px;padding:23px 27px;margin:20px 0;box-shadow:0 4px 16px #2637500b}
+.idea{border-color:#edcf8f}.solution{border-color:#a5d5c4}.note{border-color:#cbb8e5}.answer{border-color:#88c6a0}
+.result{border:2px solid #83bc9b;background:#f0faf4;border-radius:10px;padding:15px;text-align:center}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:.2em 0}
+table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #e1e7ef}th{background:#f3f6fa}
+footer{text-align:center;color:#788295;font-size:14px;padding:20px}
+@media(max-width:600px){.card{padding:19px 16px}h1{font-size:23px}}
+</style>
+</head>
+<body><main>
+<h1>Da li racionalni parovi obrazuju grupu?</h1>
+<section class="card"><h2>Zadatak</h2>
+<p>Dat je skup</p>
+\[
+G=\{(a,b)\mid a,b\in\mathbb Q,\ b\ne0\}
+\]
+<p>i operacija</p>
+\[
+(a,b)*(c,d)=(a+b^2c,\;bd).
+\]
+<p>Da li je \((G,*)\) grupa? Da li je \((G,*)\) Abelova grupa?</p>
+</section>
+<section class="card idea"><h2>Ideja i redosled provere</h2>
+<p>Za grupu proveravamo zatvorenost, asocijativnost, postojanje neutralnog elementa i postojanje inverza za svaki element. Zatim proveravamo komutativnost, koja je dodatni uslov da grupa bude Abelova.</p>
+<p><strong>Kako čitamo pravilo operacije?</strong> Ako su dva para \((u,v)\) i \((s,t)\), onda je</p>
+\[
+\boxed{(u,v)*(s,t)=(u+v^2s,\;vt).}
+\]
+<p>Prva komponenta rezultata dobija se tako što prvoj komponenti levog para dodamo <strong>kvadrat druge komponente levog para</strong> pomnožen prvom komponentom desnog para. Druga komponenta rezultata je proizvod drugih komponenti.</p>
+</section>
+<section class="card solution"><h2>1. Zatvorenost</h2>
+<p>Neka su \((a,b),(c,d)\in G\). Tada su \(a,b,c,d\) racionalni brojevi, a \(b\ne0\) i \(d\ne0\).</p>
+\[
+a+b^2c\in\mathbb Q,\qquad bd\in\mathbb Q,\qquad bd\ne0.
+\]
+<p>Dakle, rezultat ponovo pripada skupu \(G\):</p>
+\[
+\boxed{(a,b)*(c,d)\in G.}
+\]
+<p>Operacija je zatvorena na \(G\).</p>
+</section>
+<section class="card solution"><h2>2. Asocijativnost — detaljno</h2>
+<p>Uzmimo <strong>tri proizvoljna elementa</strong> \((a,b),(c,d),(p,q)\in G\). Treba dokazati</p>
+\[
+\bigl((a,b)*(c,d)\bigr)*(p,q)
+=(a,b)*\bigl((c,d)*(p,q)\bigr).
+\]
+<p>Redosled parova ostaje isti; menjamo samo grupisanje, odnosno položaj zagrada.</p>
+<h3>Leva strana: prvo množimo prva dva para</h3>
+\[
+(a,b)*(c,d)=(a+b^2c,\;bd).
+\]
+<p>Sada dobijeni par množimo parom \((p,q)\):</p>
+\[
+\bigl((a,b)*(c,d)\bigr)*(p,q)
+=(a+b^2c,\;bd)*(p,q).
+\]
+<p>Pri ovoj primeni pravila, <strong>druga komponenta levog para jeste \(bd\)</strong>. Zato u prvoj komponenti rezultata kvadriramo ceo proizvod \(bd\):</p>
+\[
+\begin{aligned}
+(a+b^2c,\;bd)*(p,q)
+&=\bigl((a+b^2c)+(bd)^2p,\;(bd)q\bigr)\\
+&=\bigl(a+b^2c+b^2d^2p,\;bdq\bigr).
+\end{aligned}
+\]
+<div class="result">
+\[
+L=\bigl(a+b^2c+b^2d^2p,\;bdq\bigr).
+\]
+</div>
+<h3>Desna strana: prvo množimo poslednja dva para</h3>
+\[
+(c,d)*(p,q)=(c+d^2p,\;dq).
+\]
+<p>Sada par \((a,b)\) množimo dobijenim parom:</p>
+\[
+(a,b)*\bigl((c,d)*(p,q)\bigr)
+=(a,b)*(c+d^2p,\;dq).
+\]
+<p>Druga komponenta levog para sada je \(b\), a prva komponenta desnog para je <strong>ceo izraz \(c+d^2p\)</strong>. Zato \(b^2\) množi ceo taj izraz:</p>
+\[
+\begin{aligned}
+(a,b)*(c+d^2p,\;dq)
+&=\bigl(a+b^2(c+d^2p),\;b(dq)\bigr)\\
+&=\bigl(a+b^2c+b^2d^2p,\;bdq\bigr).
+\end{aligned}
+\]
+<div class="result">
+\[
+D=\bigl(a+b^2c+b^2d^2p,\;bdq\bigr).
+\]
+</div>
+<h3>Poređenje</h3>
+<p>Prve komponente su jednake, a druge komponente su jednake. Zato su jednaki i uređeni parovi:</p>
+\[
+\boxed{
+\bigl((a,b)*(c,d)\bigr)*(p,q)
+=(a,b)*\bigl((c,d)*(p,q)\bigr).
+}
+\]
+<p>Pošto su tri elementa bila proizvoljna, <strong>operacija je asocijativna na celom skupu \(G\)</strong>.</p>
+</section>
+<section class="card note"><h2>Na šta pazimo kod asocijativnosti?</h2>
+<p>Na levoj strani pojavljuje se \((bd)^2p=b^2d^2p\), a na desnoj strani \(b^2(c+d^2p)=b^2c+b^2d^2p\). Upravo ti koraci dovode obe strane na isti izraz.</p>
+<p>Račun sa nekoliko konkretnih parova ne bi dokazao asocijativnost za sve elemente. Zato smo koristili proizvoljne parove i proverili jednakost obe komponente.</p>
+</section>
+<section class="card solution"><h2>3. Neutralni element</h2>
+<p>Tražimo \(E=(u,v)\in G\) tako da za svaki \((a,b)\in G\) važi</p>
+\[
+(a,b)*E=E*(a,b)=(a,b).
+\]
+<p>Najpre iz uslova za desni neutralni element dobijamo</p>
+\[
+(a,b)*(u,v)=(a+b^2u,\;bv)=(a,b),
+\]
+<p>pa poređenjem komponenti sledi</p>
+\[
+\begin{cases}
+b^2u=0,\\
+bv=b.
+\end{cases}
+\]
+<p>Pošto je \(b\ne0\), dobijamo \(u=0\) i \(v=1\). Kandidat je \(E=(0,1)\), koji pripada skupu \(G\).</p>
+<p><strong>Proveravamo obe strane:</strong></p>
+\[
+\begin{aligned}
+(a,b)*(0,1)&=(a+b^2\cdot0,\;b\cdot1)=(a,b),\\
+(0,1)*(a,b)&=(0+1^2a,\;1\cdot b)=(a,b).
+\end{aligned}
+\]
+\[
+\boxed{E=(0,1).}
+\]
+</section>
+<section class="card solution"><h2>4. Inverzni element</h2>
+<p>Za proizvoljan \((a,b)\in G\) tražimo par \((u,v)\in G\) takav da je</p>
+\[
+(a,b)*(u,v)=(0,1).
+\]
+<p>Prema definiciji operacije:</p>
+\[
+(a+b^2u,\;bv)=(0,1)
+\quad\Longleftrightarrow\quad
+\begin{cases}
+a+b^2u=0,\\
+bv=1.
+\end{cases}
+\]
+<p>Kako je \(b\ne0\), rešenje je</p>
+\[
+u=-\frac{a}{b^2},\qquad v=\frac1b.
+\]
+<p>Obe komponente su racionalne, a \(\frac1b\ne0\), pa ovaj par pripada skupu \(G\).</p>
+<p><strong>Proveravamo proizvod u oba redosleda:</strong></p>
+\[
+\begin{aligned}
+(a,b)*\left(-\frac{a}{b^2},\frac1b\right)
+&=\left(a+b^2\left(-\frac{a}{b^2}\right),\;b\frac1b\right)\\
+&=(a-a,\;1)=(0,1),
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\left(-\frac{a}{b^2},\frac1b\right)*(a,b)
+&=\left(-\frac{a}{b^2}+\left(\frac1b\right)^2a,\;\frac1b\,b\right)\\
+&=\left(-\frac{a}{b^2}+\frac{a}{b^2},\;1\right)=(0,1).
+\end{aligned}
+\]
+\[
+\boxed{(a,b)^{-1}=\left(-\frac{a}{b^2},\frac1b\right).}
+\]
+<p>Svi uslovi za grupu su ispunjeni, pa je <strong>\((G,*)\) grupa</strong>.</p>
+</section>
+<section class="card solution"><h2>5. Komutativnost — da li je grupa Abelova?</h2>
+<p>Uporedimo:</p>
+\[
+(a,b)*(c,d)=(a+b^2c,\;bd),
+\]
+\[
+(c,d)*(a,b)=(c+d^2a,\;db).
+\]
+<p>Druge komponente su uvek jednake, ali prve ne moraju biti. Da bismo pokazali da operacija nije komutativna, dovoljno je naći <strong>jedan kontraprimer</strong>.</p>
+<p>Uzmimo \((0,2)\) i \((1,1)\). Oba para pripadaju skupu \(G\), ali</p>
+\[
+(0,2)*(1,1)=(0+2^2\cdot1,\;2\cdot1)=(4,2),
+\]
+\[
+(1,1)*(0,2)=(1+1^2\cdot0,\;1\cdot2)=(1,2).
+\]
+<p>Kako je \((4,2)\ne(1,2)\), operacija nije komutativna. Zato <strong>grupa nije Abelova</strong>.</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+<table>
+<thead><tr><th>Svojstvo</th><th>Rezultat</th></tr></thead>
+<tbody>
+<tr><td>Zatvorenost</td><td>Važi.</td></tr>
+<tr><td>Asocijativnost</td><td>Važi.</td></tr>
+<tr><td>Neutralni element</td><td>\((0,1)\)</td></tr>
+<tr><td>Inverz elementa \((a,b)\)</td><td>\(\left(-\frac{a}{b^2},\frac1b\right)\)</td></tr>
+<tr><td>Komutativnost</td><td>Ne važi.</td></tr>
+</tbody></table>
+<div class="result" style="margin-top:20px">
+\[
+\boxed{(G,*)\text{ je grupa, ali nije Abelova grupa.}}
+\]
+</div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main></body></html>
