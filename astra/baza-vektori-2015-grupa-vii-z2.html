@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baza vektorskog prostora — grupa VII, zadatak 2</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 960px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; }
+.meta { color: #69758a; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Baza vektorskog prostora i koordinate vektora</h1>
+<p class="meta">Grupa VII · 28. 11. 2015. · Zadatak 2</p>
+<section class="card">
+<h2>Zadatak</h2>
+<p>U vektorskom prostoru \(V=\mathbb R^4\) dati su vektori</p>
+\[
+\begin{aligned}
+\vec e_1&=(-2,-2,-1,1),\\
+\vec e_2&=(0,3,\lambda,1),\qquad \lambda\in\mathbb R,\\
+\vec e_3&=(1,1,-1,0),\\
+\vec e_4&=(1,0,-2,1).
+\end{aligned}
+\]
+<p><strong>a)</strong> Odrediti sve vrednosti parametra \(\lambda\) za koje dati vektori čine bazu prostora \(V\).</p>
+<p><strong>b)</strong> Za \(\lambda=-1\) ispitati da li dati vektori čine bazu prostora \(V\). Ukoliko čine, odrediti koordinate vektora \(\vec v=(-8,-7,4,-2)\) u toj bazi; u suprotnom predstaviti \(\vec e_1\) kao linearnu kombinaciju preostala tri vektora.</p>
+</section>
+<section class="card idea">
+<h2>Ideja</h2>
+<p>Prostor \(\mathbb R^4\) ima dimenziju \(4\). Zato četiri data vektora čine bazu <strong>ako i samo ako su linearno nezavisni</strong>, odnosno ako je determinanta matrice sastavljene od njih različita od nule.</p>
+<p>Vektore ćemo upisati kao <strong>kolone</strong> matrice \(A\). Kada utvrdimo da baza postoji, koordinate tražimo iz jednakosti</p>
+\[
+\vec v=x_1\vec e_1+x_2\vec e_2+x_3\vec e_3+x_4\vec e_4.
+\]
+<p>Brojevi \(x_1,x_2,x_3,x_4\), u ovom redosledu, jesu koordinate vektora u uređenoj bazi \(\mathcal B=(\vec e_1,\vec e_2,\vec e_3,\vec e_4)\).</p>
+</section>
+<section class="card solution">
+<h2>a) Za koje vrednosti parametra postoji baza?</h2>
+\[
+D=\det A=
+\begin{vmatrix}
+-2&0&1&1\\
+-2&3&1&0\\
+-1&\lambda&-1&-2\\
+1&1&0&1
+\end{vmatrix}.
+\]
+<p>Zamenimo prvu i četvrtu vrstu. <strong>Pri zameni dve vrste determinanta menja znak.</strong> Zatim primenimo</p>
+\[
+R_2\leftarrow R_2+2R_1,\qquad
+R_3\leftarrow R_3+R_1,\qquad
+R_4\leftarrow R_4+2R_1.
+\]
+<p>Dodavanje umnoška jedne vrste drugoj ne menja determinantu, pa dobijamo</p>
+\[
+D=-
+\begin{vmatrix}
+1&1&0&1\\
+0&5&1&2\\
+0&\lambda+1&-1&-1\\
+0&2&1&3
+\end{vmatrix}
+=-
+\begin{vmatrix}
+5&1&2\\
+\lambda+1&-1&-1\\
+2&1&3
+\end{vmatrix}.
+\]
+<p>U determinanti trećeg reda oduzmemo treću vrstu od prve:</p>
+\[
+D=-
+\begin{vmatrix}
+3&0&-1\\
+\lambda+1&-1&-1\\
+2&1&3
+\end{vmatrix}.
+\]
+<p>Razvijamo po prvoj vrsti, čiji su kofaktorski znaci \(+,-,+\):</p>
+\[
+\begin{aligned}
+D
+&=-\left[
+3\begin{vmatrix}-1&-1\\1&3\end{vmatrix}
+-\begin{vmatrix}\lambda+1&-1\\2&1\end{vmatrix}
+\right]\\
+&=-\left[3(-3+1)-(\lambda+1+2)\right]\\
+&=-[-6-\lambda-3]=\lambda+9.
+\end{aligned}
+\]
+<div class="result">
+\[
+\boxed{\text{Vektori čine bazu }\mathbb R^4
+\iff \lambda\ne-9.}
+\]
+</div>
+<p>Za \(\lambda=-9\) determinanta je nula, pa su vektori linearno zavisni i ne čine bazu.</p>
+</section>
+<section class="card solution">
+<h2>b) Koordinate vektora za \(\lambda=-1\)</h2>
+<p>Za zadatu vrednost parametra važi</p>
+\[
+D(-1)=-1+9=8\ne0.
+\]
+<p>Dakle, <strong>dati vektori čine bazu</strong>. Rešavamo deo zadatka koji traži koordinate vektora \(\vec v\).</p>
+<p>Uvrštavanjem \(\lambda=-1\) i poređenjem odgovarajućih komponenti u linearnoj kombinaciji dobijamo sistem:</p>
+\[
+\begin{cases}
+-2x_1+x_3+x_4=-8,\\
+-2x_1+3x_2+x_3=-7,\\
+-x_1-x_2-x_3-2x_4=4,\\
+x_1+x_2+x_4=-2.
+\end{cases}
+\]
+<p><strong>Eliminišemo \(x_1\).</strong> Poslednju jednačinu uzmemo kao prvu. Njen dvostruki iznos dodamo prvobitnoj drugoj i prvobitnoj prvoj jednačini, a nju samu dodamo prvobitnoj trećoj:</p>
+\[
+\begin{cases}
+x_1+x_2+x_4=-2,\\
+5x_2+x_3+2x_4=-11,\\
+-x_3-x_4=2,\\
+2x_2+x_3+3x_4=-12.
+\end{cases}
+\]
+<p>Iz treće jednačine sledi \(x_3=-2-x_4\). Zamenom u drugu i četvrtu dobijamo</p>
+\[
+\begin{cases}
+5x_2+x_4=-9,\\
+2x_2+2x_4=-10,
+\end{cases}
+\qquad\Longleftrightarrow\qquad
+\begin{cases}
+5x_2+x_4=-9,\\
+x_2+x_4=-5.
+\end{cases}
+\]
+<p>Oduzimanjem druge jednačine od prve:</p>
+\[
+4x_2=-4\quad\Longrightarrow\quad x_2=-1.
+\]
+<p>Sada se vraćamo unazad:</p>
+\[
+\begin{aligned}
+x_4&=-5-x_2=-4,\\
+x_3&=-2-x_4=2,\\
+x_1&=-2-x_2-x_4=3.
+\end{aligned}
+\]
+</section>
+<section class="card note">
+<h2>Provera</h2>
+<p>Vraćamo dobijene koeficijente u linearnu kombinaciju:</p>
+\[
+\begin{aligned}
+3\vec e_1-\vec e_2+2\vec e_3-4\vec e_4
+&=(-6,-6,-3,3)+(0,-3,1,-1)\\
+&\quad +(2,2,-2,0)+(-4,0,8,-4)\\
+&=(-8,-7,4,-2)=\vec v.
+\end{aligned}
+\]
+<p><strong>Napomena:</strong> koordinatni zapis \((3,-1,2,-4)\) odnosi se na bazu \(\mathcal B\), dok je \((-8,-7,4,-2)\) zapis istog vektora u standardnoj bazi. Grana „u suprotnom” iz teksta zadatka ovde se ne primenjuje, jer za \(\lambda=-1\) baza postoji.</p>
+</section>
+<section class="card answer">
+<h2>Odgovor</h2>
+<div class="result">
+<p><strong>a)</strong> \(\boxed{\lambda\in\mathbb R\setminus\{-9\}}\).</p>
+<p><strong>b)</strong> Za \(\lambda=-1\) vektori čine bazu i važi</p>
+\[
+\boxed{[\vec v]_{\mathcal B}=(3,-1,2,-4)}
+\]
+\[
+\boxed{\vec v=3\vec e_1-\vec e_2+2\vec e_3-4\vec e_4.}
+\]
+</div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
