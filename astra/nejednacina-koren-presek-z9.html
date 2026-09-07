@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nejednačina sa korenom — grafički presek skupova</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f9;color:#243247;font-family:Arial,sans-serif;line-height:1.75}
+main{max-width:960px;margin:35px auto;padding:0 18px}h1{font-size:27px;line-height:1.35}h2{margin-top:0;font-size:21px}
+.card{background:white;border-left:6px solid #b8c9ec;border-radius:12px;padding:23px 27px;margin:20px 0;box-shadow:0 4px 16px #2637500b}
+.idea{border-color:#edcf8f}.solution{border-color:#a5d5c4}.note{border-color:#cbb8e5}.answer{border-color:#88c6a0}
+.result{border:2px solid #83bc9b;background:#f0faf4;border-radius:10px;text-align:center;padding:15px}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:.2em 0}
+.figure{overflow-x:auto}.figure>svg{display:block;width:100%;min-width:660px;height:auto}
+.caption{color:#69758a;font-size:14px}footer{text-align:center;color:#788295;font-size:14px;padding:20px}
+@media(max-width:600px){.card{padding:19px 16px}h1{font-size:23px}}
+</style>
+</head>
+<body><main>
+<h1>Nejednačina sa korenom — presek dva skupa</h1>
+<section class="card"><h2>Zadatak 9</h2>
+<p>Odrediti broj celobrojnih rešenja nejednačine</p>
+\[
+(3x^2-7x-6)\sqrt{x^2-5x+6}&lt;0.
+\]
+<p>Ponuđeni odgovori: A) \(2\); B) \(3\); C) \(1\); D) \(4\); E) \(0\); N) Ne znam.</p>
+</section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Kvadratni koren je nenegativan. Da bi proizvod bio <strong>strogo negativan</strong>, koren mora biti <strong>pozitivan</strong>, a činilac ispred njega <strong>negativan</strong>.</p>
+<p>Ako je koren jednak nuli, ceo proizvod je nula, što ne zadovoljava nejednačinu. Zato odmah postavljamo dva istovremena uslova:</p>
+\[
+\boxed{
+\begin{cases}
+x^2-5x+6&gt;0,\\
+3x^2-7x-6&lt;0.
+\end{cases}}
+\]
+<p>Rešavamo svaki uslov posebno, a zatim tražimo <strong>presek dobijenih skupova</strong>.</p>
+</section>
+<section class="card solution"><h2>1. Izraz pod korenom mora biti pozitivan</h2>
+\[
+x^2-5x+6&gt;0
+\iff (x-2)(x-3)&gt;0.
+\]
+<p>Proizvod je pozitivan kada su oba činioca istog znaka: za \(x&lt;2\) oba su negativna, a za \(x&gt;3\) oba su pozitivna.</p>
+\[
+\boxed{S_1=(-\infty,2)\cup(3,+\infty).}
+\]
+</section>
+<section class="card solution"><h2>2. Činilac ispred korena mora biti negativan</h2>
+\[
+3x^2-7x-6&lt;0
+\iff (3x+2)(x-3)&lt;0.
+\]
+<p>Nule su \(-\frac23\) i \(3\). Između njih prvi činilac je pozitivan, a drugi negativan, pa je proizvod negativan. Izvan tog intervala činioci imaju isti znak.</p>
+\[
+\boxed{S_2=\left(-\frac23,3\right).}
+\]
+</section>
+<section class="card"><h2>3. Grafički presek skupova</h2>
+<p>Na prve dve brojevne prave označavamo skupove \(S_1\) i \(S_2\). Na trećoj zadržavamo samo brojeve koji pripadaju <strong>i prvom i drugom skupu</strong>.</p>
+<div class="figure">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 405" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">Presek intervala na tri poravnate brojevne prave</title>
+<desc id="svg-desc">S1 sadrži brojeve manje od 2 i veće od 3. S2 je otvoreni interval od minus dve trećine do 3. Njihov presek je otvoreni interval od minus dve trećine do 2. U njemu su celobrojne tačke 0 i 1.</desc>
+<rect x="240" y="40" width="240" height="310" rx="8" fill="#eaf7ef"/>
+<g stroke="#c7cfda" stroke-width="1.4" stroke-dasharray="4 5">
+<path d="M240 44V347"/><path d="M480 44V347"/><path d="M570 44V347"/>
+</g>
+<g fill="#243247" font-family="Arial,sans-serif" font-size="18">
+<text x="15" y="37" fill="#386ab6">S₁: izraz pod korenom &gt; 0</text>
+<text x="15" y="151" fill="#a46926">S₂: činilac ispred korena &lt; 0</text>
+<text x="15" y="267" fill="#268052" font-weight="bold">S₁ ∩ S₂: zajednički deo</text>
+</g>
+<g stroke="#9da9b8" stroke-width="2" fill="#9da9b8">
+<path d="M120 75H748 M120 190H748 M120 305H748"/>
+<path d="M750 75l-9 -4v8z M750 190l-9 -4v8z M750 305l-9 -4v8z"/>
+</g>
+<g fill="none" stroke-width="6">
+<path d="M120 75H480 M570 75H742" stroke="#386ab6"/>
+<path d="M240 190H570" stroke="#a46926"/>
+<path d="M240 305H480" stroke="#268052"/>
+</g>
+<g fill="#386ab6">
+<path d="M113 75l13 -7v14z"/><path d="M750 75l-13 -7v14z"/>
+</g>
+<g fill="white" stroke-width="3">
+<circle cx="480" cy="75" r="6" stroke="#386ab6"/><circle cx="570" cy="75" r="6" stroke="#386ab6"/>
+<circle cx="240" cy="190" r="6" stroke="#a46926"/><circle cx="570" cy="190" r="6" stroke="#a46926"/>
+<circle cx="240" cy="305" r="6" stroke="#268052"/><circle cx="480" cy="305" r="6" stroke="#268052"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="17" text-anchor="middle" fill="#536074">
+<text x="240" y="106">−2/3</text><text x="480" y="106">2</text><text x="570" y="106">3</text>
+<text x="240" y="221">−2/3</text><text x="480" y="221">2</text><text x="570" y="221">3</text>
+<text x="240" y="337">−2/3</text><text x="480" y="337">2</text><text x="570" y="337">3</text>
+</g>
+<g fill="#268052" font-family="Arial,sans-serif" font-size="18" text-anchor="middle" font-weight="bold">
+<circle cx="300" cy="305" r="5"/><circle cx="390" cy="305" r="5"/>
+<text x="300" y="337">0</text><text x="390" y="337">1</text>
+<text x="410" y="383">Celobrojna rešenja: 0 i 1</text>
+</g>
+</svg>
+</div>
+<p class="caption">Sve tri prave imaju istu razmeru i poravnate granične tačke. Prazni kružići označavaju isključene krajeve; pune zelene tačke označavaju celobrojna rešenja.</p>
+\[
+\begin{aligned}
+S_1\cap S_2
+&=\bigl((-\infty,2)\cup(3,+\infty)\bigr)
+\cap\left(-\frac23,3\right)\\
+&=\boxed{\left(-\frac23,2\right)}.
+\end{aligned}
+\]
+<p>Deo \(x&gt;3\) iz prvog skupa nema zajedničkih tačaka sa drugim skupom, jer se drugi skup završava kod \(3\). Ostaje samo \(-\frac23&lt;x&lt;2\).</p>
+</section>
+<section class="card note"><h2>4. Brojimo celobrojna rešenja i proveravamo</h2>
+<p>Jedini celi brojevi u dobijenom otvorenom intervalu su \(0\) i \(1\).</p>
+\[
+\begin{aligned}
+x=0:&\quad (3\cdot0^2-7\cdot0-6)\sqrt{0^2-5\cdot0+6}
+=-6\sqrt6&lt;0,\\
+x=1:&\quad (3-7-6)\sqrt{1-5+6}
+=-10\sqrt2&lt;0.
+\end{aligned}
+\]
+<p>Broj \(2\) ne pripada skupu rešenja: za njega je koren nula, pa je i proizvod nula.</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">
+\[
+S=\left(-\frac23,2\right),\qquad S\cap\mathbb Z=\{0,1\}.
+\]
+<p>Broj celobrojnih rešenja je <strong>2 — odgovor A).</strong></p>
+</div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main></body></html>
