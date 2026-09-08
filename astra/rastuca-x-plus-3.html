@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zašto je y = x + 3 rastuća — dokaz po definiciji</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f5f9;color:#243247;font-family:Arial,sans-serif;line-height:1.75}
+main{max-width:880px;margin:35px auto;padding:0 18px}
+h1{font-size:28px;line-height:1.35}h2{margin-top:0;font-size:21px}
+.card{background:white;border-left:6px solid #b8c9ec;border-radius:12px;padding:23px 27px;margin:20px 0;box-shadow:0 4px 16px #2637500b}
+.idea{border-color:#edcf8f}.solution{border-color:#a5d5c4}.note{border-color:#cbb8e5}.answer{border-color:#88c6a0}
+.result{border:2px solid #83bc9b;background:#f0faf4;border-radius:10px;text-align:center;padding:15px;font-size:19px}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:.2em 0}
+footer{text-align:center;color:#788295;font-size:14px;padding:20px}
+@media(max-width:600px){.card{padding:19px 16px}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<main>
+<h1>Zašto je \(y=x+3\) rastuća funkcija?</h1>
+<section class="card">
+<h2>Zadatak</h2>
+<p>Po definiciji dokazati da je funkcija \(f(x)=x+3\) strogo rastuća na \(\mathbb R\).</p>
+</section>
+<section class="card idea">
+<h2>Šta znači „rastuća po definiciji”?</h2>
+<p>Funkcija je <strong>strogo rastuća</strong> ako za bilo koja dva broja iz njenog domena važi:</p>
+\[
+x_1<x_2\quad\Longrightarrow\quad f(x_1)<f(x_2).
+\]
+<p>Rečima: <strong>manjem broju \(x\) odgovara manja vrednost funkcije.</strong></p>
+<p>Oznake \(x_1\) i \(x_2\) predstavljaju dva broja koja poredimo. Indeksi \(1\) i \(2\) samo ih razlikuju — ne znače da su ti brojevi obavezno \(1\) i \(2\).</p>
+</section>
+<section class="card solution">
+<h2>Dokaz, korak po korak</h2>
+<p><strong>1.</strong> Uzmimo bilo koja dva realna broja \(x_1\) i \(x_2\) takva da je</p>
+\[x_1<x_2.\]
+<p><strong>2.</strong> Dodajmo broj \(3\) na obe strane. Dodavanje istog broja na obe strane <strong>ne menja smer nejednakosti</strong>, pa dobijamo</p>
+\[x_1+3<x_2+3.\]
+<p><strong>3.</strong> Pošto je pravilo funkcije \(f(x)=x+3\), imamo</p>
+\[f(x_1)=x_1+3,\qquad f(x_2)=x_2+3.\]
+<p>Zato je prethodna nejednakost upravo</p>
+\[f(x_1)<f(x_2).\]
+<p>To je baš ono što definicija traži. Pošto smo uzeli <strong>bilo koja</strong> dva realna broja sa \(x_1<x_2\), dokaz važi na celom skupu \(\mathbb R\).</p>
+</section>
+<section class="card note">
+<h2>Kritična tačka: šta pretpostavljamo, a šta dokazujemo?</h2>
+<p><strong>Polazimo od</strong> \(x_1<x_2\), a <strong>dokazujemo</strong> \(f(x_1)<f(x_2)\). Ne pretpostavljamo unapred da je funkcija rastuća.</p>
+<p>Na primer, za \(x_1=1\) i \(x_2=4\) dobijamo \(f(1)=4<f(4)=7\). To ilustruje rast, ali <strong>jedan primer nije dokaz</strong>. Zato u dokazu koristimo proizvoljne brojeve \(x_1\) i \(x_2\).</p>
+</section>
+<section class="card answer">
+<h2>Kratak zapis za svesku</h2>
+<p>Neka su \(x_1,x_2\in\mathbb R\) proizvoljni i neka je \(x_1<x_2\). Tada</p>
+\[
+x_1<x_2
+\ \Longrightarrow\
+x_1+3<x_2+3
+\ \Longrightarrow\
+f(x_1)<f(x_2).
+\]
+<div class="result">Dakle, po definiciji, funkcija \(f(x)=x+3\) je <strong>strogo rastuća na \(\mathbb R\)</strong>.</div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
