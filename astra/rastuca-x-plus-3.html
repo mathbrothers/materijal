@@ -35,7 +35,7 @@ footer{text-align:center;color:#788295;font-size:14px;padding:20px}
 <h2>Šta znači „rastuća po definiciji”?</h2>
 <p>Funkcija je <strong>strogo rastuća</strong> ako za bilo koja dva broja iz njenog domena važi:</p>
 \[
-x_1<x_2\quad\Longrightarrow\quad f(x_1)<f(x_2).
+x_1\lt x_2\quad\Longrightarrow\quad f(x_1)\lt f(x_2).
 \]
 <p>Rečima: <strong>manjem broju \(x\) odgovara manja vrednost funkcije.</strong></p>
 <p>Oznake \(x_1\) i \(x_2\) predstavljaju dva broja koja poredimo. Indeksi \(1\) i \(2\) samo ih razlikuju — ne znače da su ti brojevi obavezno \(1\) i \(2\).</p>
@@ -43,29 +43,29 @@ x_1<x_2\quad\Longrightarrow\quad f(x_1)<f(x_2).
 <section class="card solution">
 <h2>Dokaz, korak po korak</h2>
 <p><strong>1.</strong> Uzmimo bilo koja dva realna broja \(x_1\) i \(x_2\) takva da je</p>
-\[x_1<x_2.\]
+\[x_1\lt x_2.\]
 <p><strong>2.</strong> Dodajmo broj \(3\) na obe strane. Dodavanje istog broja na obe strane <strong>ne menja smer nejednakosti</strong>, pa dobijamo</p>
-\[x_1+3<x_2+3.\]
+\[x_1+3\lt x_2+3.\]
 <p><strong>3.</strong> Pošto je pravilo funkcije \(f(x)=x+3\), imamo</p>
 \[f(x_1)=x_1+3,\qquad f(x_2)=x_2+3.\]
 <p>Zato je prethodna nejednakost upravo</p>
-\[f(x_1)<f(x_2).\]
-<p>To je baš ono što definicija traži. Pošto smo uzeli <strong>bilo koja</strong> dva realna broja sa \(x_1<x_2\), dokaz važi na celom skupu \(\mathbb R\).</p>
+\[f(x_1)\lt f(x_2).\]
+<p>To je baš ono što definicija traži. Pošto smo uzeli <strong>bilo koja</strong> dva realna broja sa \(x_1\lt x_2\), dokaz važi na celom skupu \(\mathbb R\).</p>
 </section>
 <section class="card note">
 <h2>Kritična tačka: šta pretpostavljamo, a šta dokazujemo?</h2>
-<p><strong>Polazimo od</strong> \(x_1<x_2\), a <strong>dokazujemo</strong> \(f(x_1)<f(x_2)\). Ne pretpostavljamo unapred da je funkcija rastuća.</p>
-<p>Na primer, za \(x_1=1\) i \(x_2=4\) dobijamo \(f(1)=4<f(4)=7\). To ilustruje rast, ali <strong>jedan primer nije dokaz</strong>. Zato u dokazu koristimo proizvoljne brojeve \(x_1\) i \(x_2\).</p>
+<p><strong>Polazimo od</strong> \(x_1\lt x_2\), a <strong>dokazujemo</strong> \(f(x_1)\lt f(x_2)\). Ne pretpostavljamo unapred da je funkcija rastuća.</p>
+<p>Na primer, za \(x_1=1\) i \(x_2=4\) dobijamo \(f(1)=4\lt f(4)=7\). To ilustruje rast, ali <strong>jedan primer nije dokaz</strong>. Zato u dokazu koristimo proizvoljne brojeve \(x_1\) i \(x_2\).</p>
 </section>
 <section class="card answer">
 <h2>Kratak zapis za svesku</h2>
-<p>Neka su \(x_1,x_2\in\mathbb R\) proizvoljni i neka je \(x_1<x_2\). Tada</p>
+<p>Neka su \(x_1,x_2\in\mathbb R\) proizvoljni i neka je \(x_1\lt x_2\). Tada</p>
 \[
-x_1<x_2
+x_1\lt x_2
 \ \Longrightarrow\
-x_1+3<x_2+3
+x_1+3\lt x_2+3
 \ \Longrightarrow\
-f(x_1)<f(x_2).
+f(x_1)\lt f(x_2).
 \]
 <div class="result">Dakle, po definiciji, funkcija \(f(x)=x+3\) je <strong>strogo rastuća na \(\mathbb R\)</strong>.</div>
 </section>
