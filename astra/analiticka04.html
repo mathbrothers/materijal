@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analitička geometrija — paralelne ravni i ekvidistantna ravan</title>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--shadow:0 10px 30px rgba(16,24,40,.08);--r:18px}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}.wrap{width:min(980px,92%);margin:36px auto 48px}h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0 0 8px}.lead{color:var(--muted);margin:0 0 26px}.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px 26px;margin:18px 0;border-left:8px solid #d6ddeb}.task{border-left-color:#f3cd63}.idea{border-left-color:#9dc8ff}.analysis{border-left-color:#b8e3c6}.solution{border-left-color:#c7b5ff}.note{border-left-color:#ffb6b6}.answer{border-left-color:#79d6b5}h2{font-size:22px;margin:0 0 12px}h3{margin:22px 0 8px;font-size:19px}.box{margin-top:16px;border:2px solid #172033;border-radius:14px;padding:15px 18px;background:#fbfcfe;font-weight:600}.small{color:var(--muted);font-size:15px}footer{text-align:center;color:#7b8495;margin-top:34px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Paralelne ravni i ekvidistantna ravan</h1>
+<p class="lead">Međusobni položaj ravni, rastojanje i ravan jednako udaljena od date ravni i tačke.</p>
+
+<section class="card task">
+<h2>Zadatak</h2>
+<p>Date su ravni</p>
+\[
+\alpha:\;2x-3y+z+7=0,
+\]
+\[
+\beta:\;4x-6y+2z+1=0,
+\]
+<p>kao i tačka</p>
+\[
+A(4,-7,3).
+\]
+<p>a) Ispitati međusobni položaj ravni \(\alpha\) i \(\beta\). Odrediti ugao između njih ako se seku, odnosno rastojanje između njih ako su paralelne.</p>
+<p>b) Odrediti ravan koja je na jednakom rastojanju od ravni \(\alpha\) kao i od tačke \(A\).</p>
+</section>
+
+<section class="card idea">
+<h2>Ideja</h2>
+<p>Normalni vektori ravni su</p>
+\[
+\vec n_\alpha=(2,-3,1),\qquad \vec n_\beta=(4,-6,2).
+\]
+<p>Pošto je</p>
+\[
+\vec n_\beta=2\vec n_\alpha,
+\]
+<p>ravni su ili paralelne ili se poklapaju. Zato treba proveriti i slobodne članove.</p>
+</section>
+
+<section class="card solution">
+<h2>a) Međusobni položaj i rastojanje ravni</h2>
+<p>Pomnožimo jednačinu ravni \(\alpha\) sa 2:</p>
+\[
+4x-6y+2z+14=0.
+\]
+<p>Ravan \(\beta\) je</p>
+\[
+4x-6y+2z+1=0.
+\]
+<p>Leve strane imaju iste koeficijente uz \(x,y,z\), ali slobodni članovi nisu isti, pa ravni nisu iste.</p>
+<div class="box">
+\[
+\boxed{\alpha\parallel\beta,\qquad \alpha\neq\beta.}
+\]
+</div>
+<p>Da bismo izračunali rastojanje, zapišimo obe ravni sa istim koeficijentima uz promenljive:</p>
+\[
+\alpha:\;4x-6y+2z+14=0,
+\]
+\[
+\beta:\;4x-6y+2z+1=0.
+\]
+<p>Za dve paralelne ravni \(Ax+By+Cz+D_1=0\) i \(Ax+By+Cz+D_2=0\) važi</p>
+\[
+d=\frac{|D_1-D_2|}{\sqrt{A^2+B^2+C^2}}.
+\]
+<p>Zato je</p>
+\[
+d(\alpha,\beta)=\frac{|14-1|}{\sqrt{4^2+(-6)^2+2^2}}
+=\frac{13}{\sqrt{56}}
+=\frac{13}{2\sqrt{14}}.
+\]
+<div class="box">
+\[
+\boxed{d(\alpha,\beta)=\frac{13}{2\sqrt{14}}.}
+\]
+</div>
+</section>
+
+<section class="card analysis">
+<h2>b) Ravan jednako udaljena od ravni \(\alpha\) i tačke \(A\)</h2>
+<p>Da bi rastojanje između dve ravni bilo definisano, tražena ravan mora biti paralelna sa ravni \(\alpha\). Zato je pišemo u obliku</p>
+\[
+\gamma:\;2x-3y+z+D=0.
+\]
+<p>Rastojanje ravni \(\gamma\) od ravni \(\alpha\) iznosi</p>
+\[
+d(\gamma,\alpha)=\frac{|D-7|}{\sqrt{2^2+(-3)^2+1^2}}
+=\frac{|D-7|}{\sqrt{14}}.
+\]
+<p>Rastojanje tačke \(A(4,-7,3)\) od ravni \(\gamma\) je</p>
+\[
+d(A,\gamma)=\frac{|2\cdot4-3(-7)+3+D|}{\sqrt{14}}.
+\]
+<p>U brojniku dobijamo</p>
+\[
+8+21+3+D=D+32,
+\]
+<p>pa je</p>
+\[
+d(A,\gamma)=\frac{|D+32|}{\sqrt{14}}.
+\]
+<p>Po uslovu zadatka ova rastojanja moraju biti jednaka:</p>
+\[
+\frac{|D-7|}{\sqrt{14}}=\frac{|D+32|}{\sqrt{14}}.
+\]
+<p>Odnosno</p>
+\[
+|D-7|=|D+32|.
+\]
+<p>Geometrijski, broj \(D\) mora biti jednako udaljen od brojeva \(7\) i \(-32\), pa je njihov aritmetički prosek:</p>
+\[
+D=\frac{7+(-32)}2=-\frac{25}{2}.
+\]
+<p>Prema tome</p>
+\[
+\gamma:\;2x-3y+z-\frac{25}{2}=0.
+\]
+<p>Množenjem sa 2 dobijamo celobrojni oblik:</p>
+\[
+\boxed{\gamma:\;4x-6y+2z-25=0.}
+\]
+</section>
+
+<section class="card note">
+<h2>Kritična tačka</h2>
+<p>Nije dovoljno samo primetiti da su normalni vektori ravni \(\alpha\) i \(\beta\) proporcionalni. To pokazuje da su ravni ili paralelne ili identične. Tek poređenjem slobodnih članova zaključujemo da se ovde radi o dve različite paralelne ravni.</p>
+<p>U delu b) tražena ravan je zapravo „srednja“ ravan između tačke \(A\) i ravni \(\alpha\): njeno rastojanje od \(\alpha\) jednako je rastojanju tačke \(A\) od nje.</p>
+</section>
+
+<section class="card answer">
+<h2>Odgovor</h2>
+<div class="box">
+\[
+\boxed{\alpha\parallel\beta,\qquad d(\alpha,\beta)=\frac{13}{2\sqrt{14}}}
+\]
+\[
+\boxed{\gamma:\;4x-6y+2z-25=0}
+\]
+</div>
+</section>
+
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
