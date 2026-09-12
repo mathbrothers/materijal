@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analitička geometrija — simetrična tačka, prava i ravan</title>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--shadow:0 10px 30px rgba(16,24,40,.08);--r:18px}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}.wrap{width:min(980px,92%);margin:36px auto 48px}h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0 0 8px}.lead{color:var(--muted);margin:0 0 26px}.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px 26px;margin:18px 0;border-left:8px solid #d6ddeb}.task{border-left-color:#f3cd63}.idea{border-left-color:#9dc8ff}.analysis{border-left-color:#b8e3c6}.solution{border-left-color:#c7b5ff}.note{border-left-color:#ffb6b6}.answer{border-left-color:#79d6b5}h2{font-size:22px;margin:0 0 12px}h3{margin:22px 0 8px;font-size:19px}.box{margin-top:16px;border:2px solid #172033;border-radius:14px;padding:15px 18px;background:#fbfcfe;font-weight:600}.critical{margin:16px 0;padding:14px 16px;border-radius:12px;background:#fff8e7;border:1px solid #f0d28c}.small{color:var(--muted);font-size:15px}footer{text-align:center;color:#7b8495;margin-top:34px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Simetrična tačka, prava i ravan</h1>
+<p class="lead">Analitička geometrija u prostoru — zadatak 2.</p>
+
+<section class="card task">
+<h2>Zadatak</h2>
+<p><strong>a)</strong> Odrediti koordinate tačke koja je simetrična tački \(A(3,-1,1)\) u odnosu na ravan koja sadrži tačke</p>
+\[
+P(-4,-1,0),\qquad Q(2,1,-5),\qquad R(-2,-1,-1).
+\]
+<p><strong>b)</strong> Ispitati međusobni položaj prave \(a\) koja sadrži tačke \(A\) i \(P\) i ravni</p>
+\[
+\alpha:x+2y-7z+1=0,
+\]
+<p>a zatim odrediti jednačinu ravni koja sadrži pravu \(a\) i normalna je na ravan \(\alpha\).</p>
+</section>
+
+<section class="card solution">
+<h2>a) Tačka simetrična tački \(A\) u odnosu na ravan \(PQR\)</h2>
+<h3>1. Jednačina ravni kroz \(P,Q,R\)</h3>
+<p>Formiramo dva vektora koja pripadaju ravni:</p>
+\[
+\overrightarrow{PQ}=Q-P=(6,2,-5),
+\]
+\[
+\overrightarrow{PR}=R-P=(2,0,-1).
+\]
+<p>Normalni vektor ravni dobijamo vektorskim proizvodom:</p>
+\[
+\vec n=\overrightarrow{PQ}\times\overrightarrow{PR}
+=(-2,-4,-4)\sim(1,2,2).
+\]
+<p>Zato ravan kroz tačku \(P(-4,-1,0)\) ima jednačinu</p>
+\[
+1(x+4)+2(y+1)+2z=0,
+\]
+odnosno
+\[
+\boxed{\pi:x+2y+2z+6=0}.
+\]
+<div class="critical"><strong>Kritična tačka.</strong> Provera: sve tri tačke \(P,Q,R\) zadovoljavaju jednačinu \(x+2y+2z+6=0\).</div>
+
+<h3>2. Podnožje normale iz tačke \(A\)</h3>
+<p>Za ravan</p>
+\[
+x+2y+2z+6=0
+\]
+<p>normalni vektor je \(\vec n=(1,2,2)\). Podnožje normale iz tačke \(A(3,-1,1)\) označimo sa \(H\).</p>
+<p>Koristimo formulu</p>
+\[
+H=A-\frac{Ax_A+By_A+Cz_A+D}{A^2+B^2+C^2}(A,B,C).
+\]
+<p>Ovde je</p>
+\[
+3+2(-1)+2\cdot1+6=9,
+\]
+\[
+1^2+2^2+2^2=9.
+\]
+<p>Prema tome,</p>
+\[
+H=(3,-1,1)-(1,2,2)=(2,-3,-1).
+\]
+
+<h3>3. Simetrična tačka</h3>
+<p>Tačka \(H\) je sredina duži \(AA'\), pa važi</p>
+\[
+A'=2H-A.
+\]
+<p>Zato je</p>
+\[
+A'=2(2,-3,-1)-(3,-1,1)=(1,-5,-3).
+\]
+<div class="box">
+\[
+\boxed{A'(1,-5,-3)}
+\]
+</div>
+</section>
+
+<section class="card solution">
+<h2>b) Položaj prave \(a\) i ravni \(\alpha\)</h2>
+<p>Prava \(a\) prolazi kroz tačke \(A(3,-1,1)\) i \(P(-4,-1,0)\). Jedan njen vektor pravca je</p>
+\[
+\vec v=A-P=(7,0,1).
+\]
+<p>Normalni vektor ravni \(\alpha\) je</p>
+\[
+\vec n_\alpha=(1,2,-7).
+\]
+<p>Računamo skalarni proizvod:</p>
+\[
+\vec v\cdot\vec n_\alpha=7\cdot1+0\cdot2+1\cdot(-7)=0.
+\]
+<p>Dakle, pravac prave je normalan na normalu ravni, pa je prava ili paralelna ravni ili pripada ravni.</p>
+<p>Proverimo tačku \(A\):</p>
+\[
+3+2(-1)-7\cdot1+1=-5\neq0.
+\]
+<p>Zato tačka \(A\) ne pripada ravni \(\alpha\), pa prava \(a\) ne može ležati u toj ravni.</p>
+<div class="box">
+\[
+\boxed{a\parallel\alpha,\qquad a\not\subset\alpha}
+\]
+</div>
+<div class="critical"><strong>Kritična tačka.</strong> Uslov \(\vec v\cdot\vec n_\alpha=0\) sam po sebi nije dovoljan da zaključimo da prava pripada ravni. Zato obavezno proveravamo jednu tačku prave.</div>
+</section>
+
+<section class="card solution">
+<h2>Ravan kroz pravu \(a\), normalna na \(\alpha\)</h2>
+<p>Tražena ravan \(\beta\) sadrži pravac prave \(a\), pa njen normalni vektor mora biti normalan na \(\vec v\).</p>
+<p>Pošto je \(\beta\perp\alpha\), njen normalni vektor mora biti normalan i na \(\vec n_\alpha\).</p>
+<p>Zato možemo uzeti</p>
+\[
+\vec n_\beta=\vec v\times\vec n_\alpha.
+\]
+<p>Dobijamo</p>
+\[
+\vec n_\beta=
+\begin{vmatrix}
+\vec i&\vec j&\vec k\\
+7&0&1\\
+1&2&-7
+\end{vmatrix}
+=(-2,50,14)\sim(-1,25,7).
+\]
+<p>Ravan \(\beta\) prolazi kroz tačku \(A(3,-1,1)\), pa je</p>
+\[
+-(x-3)+25(y+1)+7(z-1)=0.
+\]
+<p>Sređivanjem:</p>
+\[
+-x+25y+7z+21=0.
+\]
+<p>Možemo pomnožiti celu jednačinu sa \(-1\):</p>
+\[
+\boxed{\beta:x-25y-7z-21=0}.
+\]
+<div class="critical"><strong>Provera.</strong> Tačke \(A\) i \(P\) zadovoljavaju jednačinu ravni \(\beta\), a \((1,-25,-7)\cdot(1,2,-7)=0\), pa je zaista \(\beta\perp\alpha\).</div>
+</section>
+
+<section class="card answer">
+<h2>Odgovor</h2>
+<div class="box">
+\[
+\boxed{A'(1,-5,-3)}
+\]
+\[
+\boxed{a\parallel\alpha,\qquad a\not\subset\alpha}
+\]
+\[
+\boxed{\beta:x-25y-7z-21=0}
+\]
+</div>
+</section>
+
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
