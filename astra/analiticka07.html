@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analitička geometrija 07</title>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+body{margin:0;background:#f5f7fb;color:#172033;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.65}.wrap{width:min(980px,92%);margin:36px auto 48px}.card{background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(16,24,40,.08);padding:24px 26px;margin:18px 0;border-left:8px solid #d6ddeb}.task{border-left-color:#f3cd63}.idea{border-left-color:#9dc8ff}.solution{border-left-color:#c7b5ff}.note{border-left-color:#ffb6b6}.answer{border-left-color:#79d6b5}h1{font-size:38px;line-height:1.15;margin:0 0 8px}h2{font-size:22px;margin:0 0 12px}h3{font-size:19px;margin:22px 0 8px}.lead{color:#667085;margin:0 0 26px}.box{margin-top:16px;border:2px solid #172033;border-radius:14px;padding:15px 18px;background:#fbfcfe;font-weight:600}footer{text-align:center;color:#7b8495;margin-top:34px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Ravan kroz pravu i tačku</h1>
+<p class="lead">Određivanje ravni, međusobni položaj ravni i oštar ugao između njih.</p>
+
+<section class="card task">
+<h2>Zadatak</h2>
+<p>Data je prava</p>
+\[
+p:\;\frac{x+2}{2}=\frac{y+1}{2}=\frac{z}{-1},
+\]
+<p>tačka \(S(0,-1,2)\) i ravan</p>
+\[
+\alpha:\;x-2y+3z+7=0.
+\]
+<p>a) Odrediti ravan \(\pi\) koja sadrži pravu \(p\) i tačku \(S\).</p>
+<p>b) Ispitati međusobni položaj ravni \(\pi\) i \(\alpha\). Ako se seku, odrediti oštar ugao između njih; ako su paralelne, odrediti njihovo rastojanje.</p>
+</section>
+
+<section class="card idea">
+<h2>Ideja</h2>
+<p>Iz jednačine prave očitavamo jednu tačku i vektor pravca:</p>
+\[
+P_0=(-2,-1,0),\qquad \vec v=(2,2,-1).
+\]
+<p>Pošto ravan \(\pi\) treba da sadrži i tačku \(S\), u toj ravni je i vektor</p>
+\[
+\overrightarrow{P_0S}=S-P_0=(2,0,2).
+\]
+<p>Normalni vektor ravni \(\pi\) dobijamo vektorskim proizvodom ova dva vektora.</p>
+</section>
+
+<section class="card solution">
+<h2>a) Jednačina ravni \(\pi\)</h2>
+<p>Računamo:</p>
+\[
+\vec n_\pi=\vec v\times \overrightarrow{P_0S}
+=
+\begin{vmatrix}
+\vec i&\vec j&\vec k\\
+2&2&-1\\
+2&0&2
+\end{vmatrix}
+=(4,-6,-4).
+\]
+<p>Možemo skratiti sa 2:</p>
+\[
+\vec n_\pi=(2,-3,-2).
+\]
+<p>Ravan prolazi kroz \(P_0=(-2,-1,0)\), pa:</p>
+\[
+2(x+2)-3(y+1)-2z=0.
+\]
+<p>Sređivanjem:</p>
+\[
+\boxed{\pi:\;2x-3y-2z+1=0}.
+\]
+</section>
+
+<section class="card note">
+<h2>Kritična provera</h2>
+<p>Proverimo da li tačka \(S(0,-1,2)\) zaista pripada dobijenoj ravni:</p>
+\[
+2\cdot0-3(-1)-2\cdot2+1=3-4+1=0.
+\]
+<p>Pripada. Takođe, normalni vektor \((2,-3,-2)\) je normalan na vektor pravca prave:</p>
+\[
+(2,-3,-2)\cdot(2,2,-1)=4-6+2=0.
+\]
+</section>
+
+<section class="card solution">
+<h2>b) Međusobni položaj ravni \(\pi\) i \(\alpha\)</h2>
+<p>Normalni vektori su</p>
+\[
+\vec n_\pi=(2,-3,-2),\qquad \vec n_\alpha=(1,-2,3).
+\]
+<p>Pošto nisu proporcionalni, ravni nisu paralelne. Dakle, one se seku po jednoj pravoj.</p>
+
+<h3>Oštar ugao između ravni</h3>
+<p>Za ugao \(\varphi\) između ravni važi</p>
+\[
+\cos\varphi=
+\frac{|\vec n_\pi\cdot\vec n_\alpha|}
+{|\vec n_\pi|\,|\vec n_\alpha|}.
+\]
+<p>Skalarni proizvod je</p>
+\[
+\vec n_\pi\cdot\vec n_\alpha
+=2\cdot1+(-3)(-2)+(-2)\cdot3
+=2+6-6=2.
+\]
+<p>Dužine normalnih vektora su</p>
+\[
+|\vec n_\pi|=\sqrt{2^2+(-3)^2+(-2)^2}=\sqrt{17},
+\]
+\[
+|\vec n_\alpha|=\sqrt{1^2+(-2)^2+3^2}=\sqrt{14}.
+\]
+<p>Zato je</p>
+\[
+\cos\varphi=\frac{2}{\sqrt{17}\sqrt{14}}=\frac{2}{\sqrt{238}}.
+\]
+<p>Odakle</p>
+\[
+\boxed{\varphi=\arccos\frac{2}{\sqrt{238}}\approx82.55^\circ}.
+\]
+</section>
+
+<section class="card answer">
+<h2>Odgovor</h2>
+<div class="box">
+\[
+\boxed{\pi:\;2x-3y-2z+1=0}
+\]
+\[
+\boxed{\pi\text{ i }\alpha\text{ se seku}}
+\]
+\[
+\boxed{\varphi=\arccos\frac{2}{\sqrt{238}}\approx82.55^\circ}
+\]
+</div>
+</section>
+
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
