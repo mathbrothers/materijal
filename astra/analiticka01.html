@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analitička geometrija — prava i ravan</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    displayMath: [['\\[','\\]']]
+  },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#172033;
+    --muted:#667085;
+    --shadow:0 10px 30px rgba(16,24,40,.08);
+    --r:18px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+  }
+  .wrap{
+    width:min(980px,92%);
+    margin:36px auto 48px;
+  }
+  h1{
+    font-size:clamp(28px,4vw,42px);
+    line-height:1.15;
+    margin:0 0 8px;
+  }
+  .lead{
+    color:var(--muted);
+    margin:0 0 26px;
+  }
+  .card{
+    background:var(--card);
+    border-radius:var(--r);
+    box-shadow:var(--shadow);
+    padding:24px 26px;
+    margin:18px 0;
+    border-left:8px solid #d6ddeb;
+  }
+  .task{border-left-color:#f3cd63}
+  .idea{border-left-color:#9dc8ff}
+  .analysis{border-left-color:#b8e3c6}
+  .solution{border-left-color:#c7b5ff}
+  .note{border-left-color:#ffb6b6}
+  .answer{border-left-color:#79d6b5}
+  h2{
+    font-size:22px;
+    margin:0 0 12px;
+  }
+  h3{
+    margin:22px 0 8px;
+    font-size:19px;
+  }
+  .box{
+    margin-top:16px;
+    border:2px solid #172033;
+    border-radius:14px;
+    padding:15px 18px;
+    background:#fbfcfe;
+    font-weight:600;
+  }
+  .small{color:var(--muted); font-size:15px}
+  code{
+    background:#eef2f7;
+    border-radius:6px;
+    padding:2px 6px;
+  }
+  footer{
+    text-align:center;
+    color:#7b8495;
+    margin-top:34px;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Prava i ravan u prostoru</h1>
+  <p class="lead">Presek, ugao prave i ravni, normalna ravan i ortogonalna projekcija prave.</p>
+
+  <section class="card task">
+    <h2>Zadatak</h2>
+    <p>Date su ravan</p>
+    \[
+      \alpha:\;x+y-z+1=0
+    \]
+    <p>i prava</p>
+    \[
+      p:\;\frac{x-1}{0}=\frac{y}{2}=\frac{z+1}{1}.
+    \]
+    <p>Odrediti:</p>
+    <p>
+      a) presek prave \(p\) i ravni \(\alpha\);<br>
+      b) meru ugla između prave \(p\) i ravni \(\alpha\);<br>
+      v) jednačinu ravni \(\beta\) koja sadrži pravu \(p\) i normalna je na ravan \(\alpha\);<br>
+      g) jednačinu projekcije prave \(p\) na ravan \(\alpha\).
+    </p>
+  </section>
+
+  <section class="card idea">
+    <h2>Ideja</h2>
+    <p>Pošto se u simetričnom zapisu prave u prvom imeniocu pojavljuje nula, koordinata \(x\) je konstantna:</p>
+    \[
+      x=1.
+    \]
+    <p>Uvedimo parametar</p>
+    \[
+      \frac{y}{2}=\frac{z+1}{1}=t.
+    \]
+    <p>Tada prava \(p\) ima parametarski oblik</p>
+    \[
+      p:\quad
+      \begin{cases}
+      x=1,\\
+      y=2t,\\
+      z=t-1,
+      \end{cases}
+      \qquad t\in\mathbb R.
+    \]
+    <p>Jedna njena tačka i vektor pravca su zato</p>
+    \[
+      P_0=(1,0,-1),\qquad \vec v=(0,2,1).
+    \]
+    <p>Normalni vektor ravni \(\alpha\) je</p>
+    \[
+      \vec n_\alpha=(1,1,-1).
+    \]
+  </section>
+
+  <section class="card solution">
+    <h2>a) Presek prave \(p\) i ravni \(\alpha\)</h2>
+    <p>Tačku prave ubacujemo u jednačinu ravni:</p>
+    \[
+      1+2t-(t-1)+1=0.
+    \]
+    <p>Sređivanjem dobijamo</p>
+    \[
+      t+3=0,
+    \]
+    pa je
+    \[
+      t=-3.
+    \]
+    <p>Odgovarajuća tačka prave je</p>
+    \[
+      x=1,\qquad y=2(-3)=-6,\qquad z=-3-1=-4.
+    \]
+    <div class="box">
+      \[
+        p\cap\alpha=A(1,-6,-4).
+      \]
+    </div>
+  </section>
+
+  <section class="card solution">
+    <h2>b) Ugao između prave \(p\) i ravni \(\alpha\)</h2>
+    <p>Neka je \(\varphi\) ugao između prave i ravni. Tada važi</p>
+    \[
+      \sin\varphi=
+      \frac{|\vec v\cdot\vec n_\alpha|}
+      {|\vec v|\,|\vec n_\alpha|}.
+    \]
+    <p>Računamo:</p>
+    \[
+      \vec v\cdot\vec n_\alpha
+      =0\cdot1+2\cdot1+1\cdot(-1)=1,
+    \]
+    \[
+      |\vec v|=\sqrt{0^2+2^2+1^2}=\sqrt5,
+      \qquad
+      |\vec n_\alpha|=\sqrt{1^2+1^2+(-1)^2}=\sqrt3.
+    \]
+    <p>Zato je</p>
+    \[
+      \sin\varphi=\frac1{\sqrt{15}}.
+    \]
+    <div class="box">
+      \[
+        \boxed{\varphi=\arcsin\frac1{\sqrt{15}}}
+      \]
+    </div>
+  </section>
+
+  <section class="card solution">
+    <h2>v) Ravan \(\beta\) sadrži \(p\) i normalna je na \(\alpha\)</h2>
+    <p>Pošto ravan \(\beta\) sadrži pravu \(p\), njen normalni vektor mora biti normalan na \(\vec v\).</p>
+    <p>Pošto su ravni \(\alpha\) i \(\beta\) međusobno normalne, njihovi normalni vektori takođe moraju biti međusobno normalni.</p>
+    <p>Zato za normalni vektor ravni \(\beta\) možemo uzeti vektorski proizvod</p>
+    \[
+      \vec n_\beta=\vec v\times\vec n_\alpha.
+    \]
+    <p>Dobijamo</p>
+    \[
+      \vec n_\beta=
+      \begin{vmatrix}
+      \vec i&\vec j&\vec k\\
+      0&2&1\\
+      1&1&-1
+      \end{vmatrix}
+      =(-3,1,-2).
+    \]
+    <p>Ravan \(\beta\) prolazi kroz tačku \(P_0=(1,0,-1)\), pa je</p>
+    \[
+      -3(x-1)+1(y-0)-2(z+1)=0.
+    \]
+    <p>Sređivanjem:</p>
+    \[
+      -3x+y-2z+1=0.
+    \]
+    <div class="box">
+      \[
+        \boxed{\beta:\;-3x+y-2z+1=0}
+      \]
+    </div>
+  </section>
+
+  <section class="card analysis">
+    <h2>g) Projekcija prave \(p\) na ravan \(\alpha\)</h2>
+    <p>Ovde možemo iskoristiti prethodni deo.</p>
+    <p>Ravan \(\beta\) sadrži pravu \(p\) i normalna je na ravan \(\alpha\). Zato se ortogonalna projekcija prave \(p\) na \(\alpha\) nalazi upravo u preseku ravni</p>
+    \[
+      \alpha\cap\beta.
+    \]
+    <p>Projektovana prava prolazi kroz tačku</p>
+    \[
+      A=(1,-6,-4),
+    \]
+    <p>jer tačka \(A\) već pripada ravni \(\alpha\), pa se pri ortogonalnom projektovanju ne pomera.</p>
+
+    <p>Vektor pravca projekcije dobijamo kao vektorski proizvod normalnih vektora ravni \(\alpha\) i \(\beta\):</p>
+    \[
+      \vec s=\vec n_\alpha\times\vec n_\beta.
+    \]
+    \[
+      \vec s=
+      \begin{vmatrix}
+      \vec i&\vec j&\vec k\\
+      1&1&-1\\
+      -3&1&-2
+      \end{vmatrix}
+      =(-1,5,4).
+    \]
+    <p>Prema tome, jednačina projektovane prave je</p>
+    \[
+      q:\quad
+      \begin{cases}
+      x=1-\lambda,\\
+      y=-6+5\lambda,\\
+      z=-4+4\lambda,
+      \end{cases}
+      \qquad \lambda\in\mathbb R.
+    \]
+    <p>U simetričnom obliku:</p>
+    \[
+      \boxed{
+      \frac{x-1}{-1}
+      =
+      \frac{y+6}{5}
+      =
+      \frac{z+4}{4}
+      }.
+    \]
+  </section>
+
+  <section class="card note">
+    <h2>Napomena</h2>
+    <p>Projekciju smo mogli dobiti i direktnim projektovanjem vektora pravca \(\vec v\) na ravan \(\alpha\):</p>
+    \[
+      \vec v_{\alpha}
+      =
+      \vec v-
+      \frac{\vec v\cdot\vec n_\alpha}{|\vec n_\alpha|^2}\vec n_\alpha
+      =
+      (0,2,1)-\frac13(1,1,-1).
+    \]
+    <p>Odavde</p>
+    \[
+      \vec v_\alpha=
+      \left(-\frac13,\frac53,\frac43\right)
+      \sim(-1,5,4),
+    \]
+    <p>što daje isti vektor pravca.</p>
+  </section>
+
+  <section class="card answer">
+    <h2>Odgovor</h2>
+    <div class="box">
+      \[
+      \begin{aligned}
+      \text{a)}\;&A=(1,-6,-4),\\[2mm]
+      \text{b)}\;&\varphi=\arcsin\frac1{\sqrt{15}},\\[2mm]
+      \text{v)}\;&\beta:\;-3x+y-2z+1=0,\\[2mm]
+      \text{g)}\;&
+      \frac{x-1}{-1}
+      =
+      \frac{y+6}{5}
+      =
+      \frac{z+4}{4}.
+      \end{aligned}
+      \]
+    </div>
+  </section>
+
+  <footer>Mathbrotherhood Powered by ChatGPT</footer>
+
+</div>
+</body>
+</html>
