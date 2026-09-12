@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analitička geometrija — uglovi između ravni</title>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--shadow:0 10px 30px rgba(16,24,40,.08);--r:18px}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}.wrap{width:min(980px,92%);margin:36px auto 48px}h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:0 0 8px}.lead{color:var(--muted);margin:0 0 26px}.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:24px 26px;margin:18px 0;border-left:8px solid #d6ddeb}.task{border-left-color:#f3cd63}.idea{border-left-color:#9dc8ff}.analysis{border-left-color:#b8e3c6}.solution{border-left-color:#c7b5ff}.note{border-left-color:#ffb6b6}.answer{border-left-color:#79d6b5}h2{font-size:22px;margin:0 0 12px}h3{margin:22px 0 8px;font-size:19px}.box{margin-top:16px;border:2px solid #172033;border-radius:14px;padding:15px 18px;background:#fbfcfe;font-weight:600}.small{color:var(--muted);font-size:15px}footer{text-align:center;color:#7b8495;margin-top:34px;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Uglovi između ravni i rastojanje ravni od koordinatnog početka</h1>
+<p class="lead">Određivanje parametara iz uslova o uglovima između ravni.</p>
+
+<section class="card task">
+<h2>Zadatak</h2>
+<p>Date su ravni</p>
+\[
+\alpha:x+y-1=0,\qquad \beta:z-1=0,
+\]
+<p>i</p>
+\[
+\pi:ax+by+z-5=0.
+\]
+<p>a) Odrediti vrednosti realnih parametara \(a\) i \(b\), \(a,b&gt;0\), tako da ravan \(\pi\) i sa \(\alpha\) i sa \(\beta\) gradi oštar ugao mere \(\pi/4\).</p>
+<p>b) Odrediti rastojanje ravni \(\alpha\) od koordinatnog početka.</p>
+</section>
+
+<section class="card idea">
+<h2>Ideja</h2>
+<p>Za ugao između dve ravni koristimo ugao između njihovih normalnih vektora.</p>
+\[
+\vec n_\alpha=(1,1,0),\qquad
+\vec n_\beta=(0,0,1),\qquad
+\vec n_\pi=(a,b,1).
+\]
+<p>Ako je \(\varphi\) oštar ugao između ravni, onda</p>
+\[
+\cos\varphi=\frac{|\vec n_1\cdot\vec n_2|}{|\vec n_1|\,|\vec n_2|}.
+\]
+<p>Ovde je u oba slučaja</p>
+\[
+\varphi=\frac\pi4,
+\qquad
+\cos\frac\pi4=\frac1{\sqrt2}.
+\]
+</section>
+
+<section class="card solution">
+<h2>a) Uslov ugla između \(\pi\) i \(\beta\)</h2>
+<p>Najpre posmatramo ravni \(\pi\) i \(\beta\).</p>
+\[
+\vec n_\pi\cdot\vec n_\beta
+=(a,b,1)\cdot(0,0,1)=1.
+\]
+<p>Dalje,</p>
+\[
+|\vec n_\pi|=\sqrt{a^2+b^2+1},
+\qquad
+|\vec n_\beta|=1.
+\]
+<p>Zato važi</p>
+\[
+\frac1{\sqrt{a^2+b^2+1}}=\frac1{\sqrt2}.
+\]
+<p>Kvadriranjem dobijamo</p>
+\[
+a^2+b^2+1=2,
+\]
+pa je
+\[
+\boxed{a^2+b^2=1}. \tag{1}
+\]
+</section>
+
+<section class="card solution">
+<h2>Uslov ugla između \(\pi\) i \(\alpha\)</h2>
+<p>Sada posmatramo ravni \(\pi\) i \(\alpha\).</p>
+\[
+\vec n_\pi\cdot\vec n_\alpha
+=(a,b,1)\cdot(1,1,0)=a+b.
+\]
+<p>Kako je \(a,b&gt;0\), imamo \(a+b&gt;0\), pa apsolutna vrednost nije potrebna.</p>
+<p>Takođe, iz (1) sledi</p>
+\[
+|\vec n_\pi|=\sqrt{a^2+b^2+1}=\sqrt2,
+\]
+а
+\[
+|\vec n_\alpha|=\sqrt{1^2+1^2}=\sqrt2.
+\]
+<p>Zato je</p>
+\[
+\frac{a+b}{\sqrt2\cdot\sqrt2}=\frac1{\sqrt2},
+\]
+odnosno
+\[
+\frac{a+b}{2}=\frac1{\sqrt2}.
+\]
+<p>Odavde</p>
+\[
+\boxed{a+b=\sqrt2}. \tag{2}
+\]
+</section>
+
+<section class="card analysis">
+<h2>Kritična tačka — određivanje \(a\) i \(b\)</h2>
+<p>Imamo sistem</p>
+\[
+\begin{cases}
+a^2+b^2=1,\\
+a+b=\sqrt2.
+\end{cases}
+\]
+<p>Kvadriramo drugu jednačinu:</p>
+\[
+(a+b)^2=2.
+\]
+<p>Dakle,</p>
+\[
+a^2+2ab+b^2=2.
+\]
+<p>Pošto je \(a^2+b^2=1\), sledi</p>
+\[
+1+2ab=2,
+\]
+pa je
+\[
+ab=\frac12.
+\]
+<p>Sada</p>
+\[
+(a-b)^2=a^2+b^2-2ab=1-1=0,
+\]
+pa mora biti</p>
+\[
+a=b.
+\]
+<p>Iz \(a+b=\sqrt2\) dobijamo</p>
+\[
+2a=\sqrt2,
+\qquad
+\boxed{a=b=\frac1{\sqrt2}=\frac{\sqrt2}{2}}.
+\]
+</section>
+
+<section class="card note">
+<h2>Napomena</h2>
+<p>U opštoj formuli za ugao između ravni stoji apsolutna vrednost skalarnog proizvoda. Da nije zadat uslov \(a,b&gt;0\), pojavila bi se i negativna mogućnost. Uslov pozitivnosti ovde izdvaja jedino</p>
+\[
+a=b=\frac{\sqrt2}{2}.
+\]
+</section>
+
+<section class="card solution">
+<h2>b) Rastojanje ravni \(\alpha\) od koordinatnog početka</h2>
+<p>Ravan je</p>
+\[
+\alpha:x+y-1=0.
+\]
+<p>Za tačku \(O(0,0,0)\), rastojanje od ravni \(Ax+By+Cz+D=0\) je</p>
+\[
+d=\frac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}.
+\]
+<p>Zato</p>
+\[
+d(O,\alpha)=\frac{|0+0-1|}{\sqrt{1^2+1^2}}
+=\frac1{\sqrt2}.
+\]
+<p>Racionalisanjem:</p>
+\[
+\boxed{d(O,\alpha)=\frac{\sqrt2}{2}}.
+\]
+</section>
+
+<section class="card answer">
+<h2>Odgovor</h2>
+<div class="box">
+\[
+\boxed{a=b=\frac{\sqrt2}{2}}
+\]
+\[
+\boxed{d(O,\alpha)=\frac{\sqrt2}{2}}
+\]
+</div>
+</section>
+
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</div>
+</body>
+</html>
