@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2 + √3 i recipročna vrednost — objašnjenje korak po korak</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f3f5f9;color:#243247;font-family:Arial,sans-serif;line-height:1.75}
+main{max-width:880px;margin:35px auto;padding:0 18px}
+h1{font-size:28px;line-height:1.35}h2{margin-top:0;font-size:21px}
+.card{background:white;border-left:6px solid #b8c9ec;border-radius:12px;padding:23px 27px;margin:20px 0;box-shadow:0 4px 16px #2637500b}
+.idea{border-color:#edcf8f}.solution{border-color:#a5d5c4}.note{border-color:#cbb8e5}.answer{border-color:#88c6a0}
+.result{border:2px solid #83bc9b;background:#f0faf4;border-radius:10px;text-align:center;padding:15px;font-size:19px}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:.2em 0}
+footer{text-align:center;color:#788295;font-size:14px;padding:20px}
+@media(max-width:600px){.card{padding:19px 16px}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<main>
+<h1>Kako od \(2+\sqrt3\) dobijamo \((2-\sqrt3)^{-1}\)?</h1>
+<section class="card"><h2>Zadatak</h2>
+<p>Objasnimo zašto isti broj možemo zapisati na dva načina:</p>
+\[2+\sqrt3=(2-\sqrt3)^{-1}.\]
+</section>
+<section class="card idea"><h2>Ideja: šta znači eksponent −1?</h2>
+<p>Eksponent \(-1\) znači <strong>recipročnu vrednost</strong>:</p>
+\[a^{-1}=\frac1a,\qquad a\ne0.\]
+<p>Na primer, \(5^{-1}=\frac15\). Kada imamo zagradu, uzimamo recipročnu vrednost <strong>celog izraza u zagradi</strong>:</p>
+\[(2-\sqrt3)^{-1}=\frac1{2-\sqrt3}.\]
+<p>Zato treba da pokažemo da je \(2+\sqrt3\) jednako tom razlomku.</p>
+</section>
+<section class="card solution"><h2>Objašnjenje, korak po korak</h2>
+<p><strong>1. Pomnožimo izraze sa suprotnim znakom između članova.</strong></p>
+<p>Koristimo obrazac za razliku kvadrata:</p>
+\[(a+b)(a-b)=a^2-b^2.\]
+<p>Ovde je \(a=2\), a \(b=\sqrt3\), pa dobijamo:</p>
+\[(2+\sqrt3)(2-\sqrt3)=2^2-(\sqrt3)^2=4-3=1.\]
+<p>Ako ti obrazac još nije blizak, isto možeš videti množenjem svakog člana:</p>
+\[\begin{aligned}
+(2+\sqrt3)(2-\sqrt3)
+&=4-2\sqrt3+2\sqrt3-3\\
+&=4-3=1.
+\end{aligned}\]
+<p>Srednji članovi \(-2\sqrt3\) i \(+2\sqrt3\) se poništavaju.</p>
+<p><strong>2. Proizvod je 1 — brojevi su međusobno recipročni.</strong></p>
+<p>Baš kao što iz \(5\cdot\frac15=1\) vidimo da su \(5\) i \(\frac15\) recipročni, ovde su recipročni \(2+\sqrt3\) i \(2-\sqrt3\).</p>
+<p>Jednakost proizvoda možemo podeliti sa \(2-\sqrt3\). To smemo jer je \(\sqrt3&lt;2\), pa je \(2-\sqrt3&gt;0\):</p>
+\[\frac{(2+\sqrt3)(2-\sqrt3)}{2-\sqrt3}=\frac1{2-\sqrt3}.\]
+<p>Posle skraćivanja dobijamo:</p>
+\[2+\sqrt3=\frac1{2-\sqrt3}.\]
+<p><strong>3. Razlomak zapišemo pomoću eksponenta −1.</strong></p>
+<div class="result">\[\boxed{2+\sqrt3=\frac1{2-\sqrt3}=(2-\sqrt3)^{-1}.}\]</div>
+</section>
+<section class="card note"><h2>Kritična tačka: ne menjamo samo znak</h2>
+<p>Eksponent \(-1\) <strong>ne znači „stavi minus ispred broja”</strong>: \(5^{-1}=\frac15\), a ne \(-5\).</p>
+<p>Takođe, ne možemo kod svakog zbira samo promeniti plus u minus i dodati eksponent \(-1\). Ovde postupak uspeva zato što je <strong>proizvod baš 1</strong>, odnosno \(2^2-(\sqrt3)^2=1\).</p>
+</section>
+<section class="card answer"><h2>Kratak zapis za svesku</h2>
+\[(2+\sqrt3)(2-\sqrt3)=4-3=1.\]
+<p>Pošto je \(2-\sqrt3\ne0\), deljenjem dobijamo:</p>
+\[\boxed{2+\sqrt3=\frac1{2-\sqrt3}=(2-\sqrt3)^{-1}.}\]
+<p><strong>Za pamćenje:</strong> dva broja čiji je proizvod 1 jesu međusobno recipročne vrednosti.</p>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
