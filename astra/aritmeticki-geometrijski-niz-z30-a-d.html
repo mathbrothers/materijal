@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zadatak 30 — Rešenje pomoću a i d</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Aritmetički i geometrijski niz</h1>
+<p class="caption">Zadatak 30 · verzija sa \(a\) i \(d\)</p>
+<section class="card"><h2>Zadatak</h2>
+<p>Četiri broja čine aritmetički niz. Ako se od svakog broja oduzme redom 2, 7, 9 i 5, dobijeni brojevi obrazuju geometrijski niz. Odredi te brojeve.</p></section>
+<section class="card idea"><h2>1. Zapisujemo dati aritmetički niz</h2>
+<p>Neka je prvi član \(a\), a razlika \(d\). Tada su traženi brojevi:</p>
+\[\boxed{a,\quad a+d,\quad a+2d,\quad a+3d.}\]
+<p>Kada oduzmemo redom 2, 7, 9 i 5, dobijamo:</p>
+\[a-2,\quad a+d-7,\quad a+2d-9,\quad a+3d-5.\]
+<p>Ova četiri broja treba da čine geometrijski niz.</p></section>
+<section class="card solution"><h2>2. Postavljamo dve jednačine</h2>
+<p>Za tri uzastopna člana geometrijskog niza <strong>kvadrat srednjeg jednak je proizvodu krajnjih</strong>. Primenom na prva tri i na poslednja tri člana dobijamo:</p>
+\[\begin{cases}
+(a+d-7)^2=(a-2)(a+2d-9),\\
+(a+2d-9)^2=(a+d-7)(a+3d-5).
+\end{cases}\]
+<p>Ovo su neophodni uslovi. Na kraju ćemo proveriti svaki dobijeni kandidat, jer kod nultih članova ove jednakosti same po sebi nisu dovoljne.</p></section>
+<section class="card solution"><h2>3. Sređujemo prvu jednačinu</h2>
+\[(a+d-7)^2=(a-2)(a+2d-9)\]
+\[a^2+2ad+d^2-14a-14d+49=a^2+2ad-11a-4d+18.\]
+<p>Poništimo \(a^2\) i \(2ad\), pa prebacimo sve na levu stranu:</p>
+\[\boxed{d^2-10d-3a+31=0.}\tag{1}\]
+</section>
+<section class="card solution"><h2>4. Sređujemo drugu jednačinu</h2>
+\[(a+2d-9)^2=(a+d-7)(a+3d-5)\]
+\[a^2+4ad+4d^2-18a-36d+81=a^2+4ad+3d^2-12a-26d+35.\]
+<p>Posle poništavanja i sređivanja:</p>
+\[\boxed{d^2-10d-6a+46=0.}\tag{2}\]
+</section>
+<section class="card solution"><h2>5. Određujemo \(a\) i \(d\)</h2>
+<p>Oduzmemo jednačinu (1) od jednačine (2). Članovi sa \(d\) se poništavaju:</p>
+\[-3a+15=0\quad\Longrightarrow\quad\boxed{a=5.}\]
+<p>Uvrstimo \(a=5\) u jednačinu (1):</p>
+\[d^2-10d-15+31=0,\]
+\[d^2-10d+16=0,\]
+\[(d-2)(d-8)=0.\]
+<p>Dobili smo dva kandidata:</p>
+\[\boxed{d=2\quad\text{ili}\quad d=8.}\]
+</section>
+<section class="card note"><h2>6. Provera oba kandidata</h2>
+<p><strong>Ako je \(d=2\)</strong>, početni niz je:</p>
+\[5,\quad7,\quad9,\quad11.\]
+<p>Nakon oduzimanja dobijamo:</p>
+\[3,\quad0,\quad0,\quad6.\]
+<p>Ovo <strong>nije geometrijski niz</strong>: iz \(0=3q\) sledilo bi \(q=0\), ali bi tada i poslednji član morao da bude \(0\), a ne \(6\). Zato <strong>odbacujemo \(d=2\)</strong>.</p>
+<p><strong>Ako je \(d=8\)</strong>, početni niz je:</p>
+\[5,\quad13,\quad21,\quad29.\]
+<p>Nakon oduzimanja dobijamo:</p>
+\[3,\quad6,\quad12,\quad24.\]
+<p>To jeste geometrijski niz, jer se svaki sledeći član dobija množenjem prethodnog sa 2:</p>
+\[\frac63=\frac{12}6=\frac{24}{12}=2.\]
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+<div class="result">\[\boxed{a=5,\qquad d=8}\]\[\boxed{5,\quad13,\quad21,\quad29}\]</div>
+<p>Razlika početnog aritmetičkog niza je 8, a količnik dobijenog geometrijskog niza je 2.</p>
+</section>
+<section class="card note"><h2>Zašto je provera važna?</h2>
+<p>Četvorka \(3,0,0,6\) zadovoljava obe jednakosti „kvadrat srednjeg = proizvod krajnjih”, jer je \(0^2=3\cdot0\) i \(0^2=0\cdot6\). Ipak, nema zajednički količnik. Zato te dve jednakosti koristimo za pronalaženje kandidata, a zatim proveravamo da li postoji jedan broj \(q\) kojim množimo svaki član da dobijemo sledeći.</p>
+<p><a href="aritmeticki-geometrijski-niz-z30.html">Pogledaj i rešenje koje polazi od geometrijskog niza.</a></p></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
