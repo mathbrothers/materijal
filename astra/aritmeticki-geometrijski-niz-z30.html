@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zadatak 30 — Aritmetički i geometrijski niz</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f9; color: #243247; font-family: Arial, sans-serif; line-height: 1.75; }
+main { max-width: 920px; margin: 35px auto; padding: 0 18px; }
+h1 { font-size: 27px; line-height: 1.35; }
+h2 { margin-top: 0; font-size: 21px; }
+.card { background: white; border-left: 6px solid #b8c9ec; border-radius: 12px; padding: 23px 27px; margin: 20px 0; box-shadow: 0 4px 16px #2637500b; }
+.idea { border-color: #edcf8f; }
+.solution { border-color: #a5d5c4; }
+.note { border-color: #cbb8e5; }
+.answer { border-color: #88c6a0; }
+.result { border: 2px solid #83bc9b; background: #f0faf4; border-radius: 10px; text-align: center; padding: 15px; font-size: 20px; }
+.figure { max-width: 660px; margin: 10px auto; }
+/* Pravilo važi samo za geometrijsku skicu, ne za MathJax SVG formule. */
+.figure > svg { width: 100%; height: auto; display: block; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 0.2em 0; }
+.caption { text-align: center; color: #69758a; font-size: 14px; }
+footer { text-align: center; color: #788295; font-size: 14px; padding: 20px; }
+@media (max-width: 600px) { .card { padding: 19px 16px; } h1 { font-size: 23px; } }
+.options{display:flex;flex-wrap:wrap;gap:12px 28px}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:center}th,td{padding:10px;border:1px solid #dce3ed}th{background:#f0f4fa}.positive{background:#eff9f2}@media print{.card{break-inside:avoid;box-shadow:none}body{background:white}}
+</style>
+</head>
+<body>
+<main>
+<h1>Aritmetički i geometrijski niz</h1>
+<p class="caption">Zadatak 30 · detaljno rešenje</p>
+<section class="card"><h2>Zadatak</h2>
+<p>Četiri broja čine aritmetički niz. Ako se od svakog broja oduzme redom 2, 7, 9 i 5, dobijeni brojevi obrazuju geometrijski niz. Odredi te brojeve.</p></section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Pođimo od <strong>dobijenog geometrijskog niza</strong> i označimo njegove članove sa \(b,bq,bq^2,bq^3\). Vraćanjem oduzetih brojeva dobijamo početni niz:</p>
+\[b+2,\quad bq+7,\quad bq^2+9,\quad bq^3+5.\]
+<p>Za tri uzastopna člana aritmetičkog niza važi: <strong>zbir krajnjih jednak je dvostrukom srednjem</strong>. To primenjujemo dva puta.</p></section>
+<section class="card solution"><h2>1. Prva tri člana</h2>
+\[(b+2)+(bq^2+9)=2(bq+7).\]
+<p>Sređivanjem dobijamo:</p>
+\[b+bq^2-2bq=14-11=3,\]
+\[b(q^2-2q+1)=3,\]
+\[\boxed{b(q-1)^2=3.}\]
+<p>Odavde sledi da su \(b\ne0\) i \(q\ne1\).</p></section>
+<section class="card solution"><h2>2. Poslednja tri člana</h2>
+\[(bq+7)+(bq^3+5)=2(bq^2+9).\]
+<p>Ponovo sređujemo:</p>
+\[bq+bq^3-2bq^2=18-12=6,\]
+\[\boxed{bq(q-1)^2=6.}\]
+</section>
+<section class="card solution"><h2>3. Određujemo \(q\) i \(b\)</h2>
+<p>Drugu jednakost delimo prvom. Deljenje je dozvoljeno jer je \(b(q-1)^2=3\ne0\):</p>
+\[q=\frac{6}{3}=2.\]
+<p>Vraćamo \(q=2\) u prvu jednakost:</p>
+\[b(2-1)^2=3\quad\Longrightarrow\quad b=3.\]
+<p>Dobijeni geometrijski niz je, dakle,</p>
+\[3,\quad6,\quad12,\quad24.\]
+<p>Dodajemo redom 2, 7, 9 i 5 da bismo vratili početne brojeve:</p>
+\[3+2=5,\quad6+7=13,\quad12+9=21,\quad24+5=29.\]
+</section>
+<section class="card answer"><h2>Odgovor i provera</h2>
+<div class="result">\[\boxed{5,\quad13,\quad21,\quad29}\]</div>
+<p><strong>Aritmetički niz:</strong> razlika susednih članova svuda je 8:</p>
+\[13-5=21-13=29-21=8.\]
+<div class="table-wrap"><table><thead><tr><th>Početni broj</th><th>Oduzimamo</th><th>Dobijamo</th></tr></thead><tbody>
+<tr><td>5</td><td>2</td><td>3</td></tr>
+<tr><td>13</td><td>7</td><td>6</td></tr>
+<tr><td>21</td><td>9</td><td>12</td></tr>
+<tr><td>29</td><td>5</td><td>24</td></tr>
+</tbody></table></div>
+<p><strong>Geometrijski niz:</strong> količnik susednih članova svuda je 2:</p>
+\[\frac63=\frac{12}6=\frac{24}{12}=2.\]
+<p>Oba uslova su ispunjena. Rešenje je jedinstveno jer uslovi nužno daju \(q=2\), a zatim \(b=3\).</p></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main>
+</body>
+</html>
