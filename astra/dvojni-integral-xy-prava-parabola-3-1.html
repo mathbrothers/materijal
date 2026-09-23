@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3.1. Dvojni integral xy — prava i parabola</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f9;color:#243247;font-family:Arial,sans-serif;line-height:1.75}
+main{max-width:960px;margin:35px auto;padding:0 18px}h1{font-size:27px;line-height:1.35}h2{margin-top:0;font-size:21px}h3{font-size:18px}
+.card{background:white;border-left:6px solid #b8c9ec;border-radius:12px;padding:23px 27px;margin:20px 0;box-shadow:0 4px 16px #2637500b}
+.idea{border-color:#edcf8f}.solution{border-color:#a5d5c4}.note{border-color:#cbb8e5}.answer{border-color:#88c6a0}
+.result{border:2px solid #83bc9b;background:#f0faf4;border-radius:10px;padding:15px;text-align:center}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:.3em 0}
+table{width:100%;border-collapse:collapse}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #e1e7ef}th{background:#f3f6fa}.table-wrap{overflow-x:auto}
+footer{text-align:center;color:#788295;font-size:14px;padding:20px}
+@media(max-width:600px){.card{padding:19px 16px}h1{font-size:23px}th,td{padding:9px 8px}}
+@media print{body{background:white}main{max-width:none;margin:0}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body><main>
+<h1>3.1. Dvojni integral nad oblašću između prave i parabole</h1>
+<section class="card"><h2>Zadatak</h2>
+<p>Izračunati</p>
+\[
+I=\iint_D xy\,dx\,dy,
+\]
+<p>gde je oblast \(D\) ograničena linijama</p>
+\[
+y=x,\qquad y=\sqrt{6-x},\qquad y=0.
+\]
+</section>
+<section class="card idea"><h2>1. Presečne tačke i izbor redosleda integracije</h2>
+<p>Prava \(y=x\) seče \(x\)-osu u tački \(O(0,0)\), a kriva \(y=\sqrt{6-x}\) u tački \(B(6,0)\).</p>
+<p>Za presek prave i krive rešavamo</p>
+\[
+x=\sqrt{6-x}.
+\]
+<p>Pošto je desna strana nenegativna, mora biti \(x\ge0\). Kvadriranjem dobijamo</p>
+\[
+x^2+x-6=0
+\quad\Longleftrightarrow\quad
+(x-2)(x+3)=0.
+\]
+<p>Rešenje \(x=-3\) ne zadovoljava početnu jednačinu. Zato je treća presečna tačka \(A(2,2)\).</p>
+<p>Krivu zapisujemo kao</p>
+\[
+x=6-y^2,\qquad y\ge0.
+\]
+<p><strong>Najjednostavnije je da prvo integrišemo po \(x\).</strong> Za fiksirano \(y\) leva granica je prava \(x=y\), a desna granica parabola \(x=6-y^2\).</p>
+<div class="result">
+\[
+\boxed{D=\{(x,y):0\le y\le2,\quad y\le x\le6-y^2\}.}
+\]
+</div>
+</section>
+<section class="card solution"><h2>2. Postavljanje dvojnog integrala</h2>
+\[
+\boxed{I=\int_0^2\left(\int_y^{6-y^2}xy\,dx\right)dy.}
+\]
+<p>U unutrašnjem integralu \(y\) tretiramo kao konstantu:</p>
+\[
+\begin{aligned}
+\int_y^{6-y^2}xy\,dx
+&=y\left[\frac{x^2}{2}\right]_y^{6-y^2}\\[2mm]
+&=\frac y2\left((6-y^2)^2-y^2\right).
+\end{aligned}
+\]
+</section>
+<section class="card solution"><h2>3. Računanje spoljašnjeg integrala</h2>
+<p>Najpre sređujemo izraz u zagradi:</p>
+\[
+(6-y^2)^2-y^2
+=36-12y^2+y^4-y^2
+=36-13y^2+y^4.
+\]
+<p>Zato je</p>
+\[
+\begin{aligned}
+I
+&=\frac12\int_0^2y(36-13y^2+y^4)\,dy\\[2mm]
+&=\frac12\int_0^2(36y-13y^3+y^5)\,dy\\[2mm]
+&=\frac12\left[18y^2-\frac{13y^4}{4}+\frac{y^6}{6}\right]_0^2\\[2mm]
+&=\frac12\left(72-52+\frac{64}{6}\right)\\[2mm]
+&=10+\frac{16}{3}=\frac{46}{3}.
+\end{aligned}
+\]
+</section>
+<section class="card note"><h2>Provera: ako prvo integrišemo po \(y\)</h2>
+<p>Tada se gornja granica menja pri \(x=2\), pa oblast delimo na dva dela:</p>
+\[
+I=\int_0^2\left(\int_0^xxy\,dy\right)dx
++\int_2^6\left(\int_0^{\sqrt{6-x}}xy\,dy\right)dx.
+\]
+\[
+\begin{aligned}
+I
+&=\frac12\int_0^2x^3\,dx+\frac12\int_2^6x(6-x)\,dx\\[2mm]
+&=\left[\frac{x^4}{8}\right]_0^2+
+\left[\frac{3x^2}{2}-\frac{x^3}{6}\right]_2^6\\[2mm]
+&=2+\left(18-\frac{14}{3}\right)
+=\frac{46}{3}.
+\end{aligned}
+\]
+<p>Oba redosleda daju isti rezultat, ali prvi ne zahteva podelu oblasti.</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2><div class="result">
+\[
+\boxed{\displaystyle\iint_Dxy\,dx\,dy=\frac{46}{3}.}
+\]
+</div></section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main></body></html>
