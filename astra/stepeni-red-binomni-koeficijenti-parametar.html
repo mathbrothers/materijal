@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stepeni red sa binomnim koeficijentima — konvergencija</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f9;color:#243247;font-family:Arial,sans-serif;line-height:1.75}
+main{max-width:960px;margin:35px auto;padding:0 18px}h1{font-size:27px;line-height:1.35}h2{margin-top:0;font-size:21px}h3{font-size:18px}
+.card{background:white;border-left:6px solid #b8c9ec;border-radius:12px;padding:23px 27px;margin:20px 0;box-shadow:0 4px 16px #2637500b}
+.idea{border-color:#edcf8f}.solution{border-color:#a5d5c4}.note{border-color:#cbb8e5}.answer{border-color:#88c6a0}
+.result{border:2px solid #83bc9b;background:#f0faf4;border-radius:10px;padding:15px;text-align:center}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;padding:.3em 0}
+table{width:100%;border-collapse:collapse}th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #e1e7ef}th{background:#f3f6fa}.table-wrap{overflow-x:auto}
+footer{text-align:center;color:#788295;font-size:14px;padding:20px}
+@media(max-width:600px){.card{padding:19px 16px}h1{font-size:23px}th,td{padding:9px 8px}}
+@media print{body{background:white}main{max-width:none;margin:0}.card{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body><main>
+<h1>Stepeni red sa binomnim koeficijentima</h1>
+<section class="card"><h2>Zadatak</h2>
+<p>Ispitati konvergenciju reda u zavisnosti od realnog parametra \(p\) i od \(x\in\mathbb R\):</p>
+\[
+\boxed{\displaystyle\sum_{n=1}^{\infty}n\left|\binom{-\frac12}{n}\binom{\frac12}{n}\right|^p x^n.}
+\]
+<p>Crte označavaju apsolutnu vrednost celog proizvoda binomnih koeficijenata.</p>
+</section>
+<section class="card idea"><h2>Ideja rešenja</h2>
+<p>Prvo količničkim kriterijumom određujemo poluprečnik konvergencije. Zatim posebno ispitujemo \(x=1\) i \(x=-1\). Na krajevima intervala koristićemo poređenje sa stepenim brojem \(n\), a za alternirajući red i Lajbnicov kriterijum.</p>
+<p>Uvedimo oznake</p>
+\[
+b_n=\left|\binom{-\frac12}{n}\binom{\frac12}{n}\right|,\qquad a_n=n b_n^p>0.
+\]
+<p>Posmatrani red je, dakle, \(\sum_{n=1}^{\infty}a_nx^n\).</p>
+</section>
+<section class="card solution"><h2>1. Šta znače binomni koeficijenti?</h2>
+<p>Za realan broj \(\alpha\) i prirodan broj \(n\ge1\) važi</p>
+\[
+\binom{\alpha}{n}=\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}.
+\]
+<p>U našem slučaju:</p>
+\[
+\binom{-\frac12}{n}=(-1)^n\frac{\binom{2n}{n}}{4^n},
+\]
+\[
+\binom{\frac12}{n}=(-1)^{n-1}\frac{\binom{2n}{n}}{4^n(2n-1)}.
+\]
+<p>Proizvod ima znak \((-1)^n(-1)^{n-1}=-1\), pa apsolutna vrednost daje</p>
+\[
+\boxed{b_n=\frac{\binom{2n}{n}^{\!2}}{16^n(2n-1)}>0.}
+\]
+<p>Zato je \(b_n^p\) definisano za svaki realan \(p\). Početni članovi reda su</p>
+\[
+\left(\frac14\right)^p x+2\left(\frac{3}{64}\right)^p x^2+3\left(\frac{5}{256}\right)^p x^3+\cdots.
+\]
+</section>
+<section class="card solution"><h2>2. Poluprečnik konvergencije</h2>
+<p>Koristimo odnos susednih binomnih koeficijenata:</p>
+\[
+\frac{\binom{\alpha}{n+1}}{\binom{\alpha}{n}}=\frac{\alpha-n}{n+1}.
+\]
+<p>Za \(n\ge1\) sledi</p>
+\[
+\begin{aligned}
+\frac{b_{n+1}}{b_n}
+&=\left|\frac{-\frac12-n}{n+1}\cdot\frac{\frac12-n}{n+1}\right|\\[2mm]
+&=\frac{(n+\frac12)(n-\frac12)}{(n+1)^2}
+=\frac{n^2-\frac14}{(n+1)^2}.
+\end{aligned}
+\]
+<p>Prema tome,</p>
+\[
+\frac{a_{n+1}}{a_n}
+=\frac{n+1}{n}\left(\frac{n^2-\frac14}{(n+1)^2}\right)^p
+\longrightarrow1.
+\]
+<p>Za \(x\ne0\), količnički kriterijum daje</p>
+\[
+\lim_{n\to\infty}\left|\frac{a_{n+1}x^{n+1}}{a_nx^n}\right|=|x|.
+\]
+<p>Red zato <strong>apsolutno konvergira za \(|x|<1\)</strong> i <strong>divergira za \(|x|>1\)</strong>. Za \(x=0\) svi članovi su nula. Poluprečnik konvergencije je</p>
+<div class="result">\[\boxed{R=1\quad\text{za svaki }p\in\mathbb R.}\]</div>
+<p>Za \(x=\pm1\) količnički kriterijum daje graničnu vrednost 1 i ne odlučuje o konvergenciji.</p>
+</section>
+<section class="card solution"><h2>3. Ponašanje koeficijenta \(a_n\) za veliko \(n\)</h2>
+<p>Stirlingova formula glasi</p>
+\[
+n!\sim\sqrt{2\pi n}\left(\frac ne\right)^n.
+\]
+<p>Oznaka \(u_n\sim v_n\) znači da \(u_n/v_n\to1\). Iz ove formule dobijamo</p>
+\[
+\begin{aligned}
+\binom{2n}{n}=\frac{(2n)!}{(n!)^2}
+&\sim\frac{\sqrt{4\pi n}\,(2n/e)^{2n}}{2\pi n\,(n/e)^{2n}}\\[2mm]
+&=\frac{4^n}{\sqrt{\pi n}}.
+\end{aligned}
+\]
+<p>Otuda je</p>
+\[
+b_n=\frac{\binom{2n}{n}^{\!2}}{16^n(2n-1)}
+\sim\frac{1}{\pi n(2n-1)}\sim\frac{1}{2\pi n^2}.
+\]
+<p>Za svaki fiksiran realan \(p\) sledi ključna procena:</p>
+<div class="result">
+\[
+\boxed{a_n=n b_n^p\sim\frac{1}{(2\pi)^p}\,n^{1-2p}
+=\frac{1}{(2\pi)^p}\frac{1}{n^{2p-1}}.}
+\]
+</div>
+</section>
+<section class="card solution"><h2>4. Desni kraj: \(x=1\)</h2>
+<p>Dobijamo red sa pozitivnim članovima \(\sum a_n\). Graničnim poređenjem:</p>
+\[
+\lim_{n\to\infty}\frac{a_n}{1/n^{2p-1}}=\frac{1}{(2\pi)^p}>0.
+\]
+<p>Zato se ponaša kao red</p>
+\[
+\sum_{n=1}^{\infty}\frac{1}{n^{2p-1}},
+\]
+<p>koji konvergira ako i samo ako je \(2p-1>1\), odnosno \(p>1\).</p>
+<div class="result">\[\boxed{x=1:\quad\text{red konvergira ako i samo ako }p>1.}\]</div>
+<p>Posebno, za \(p=1\) je \(a_n\sim1/(2\pi n)\), pa red divergira kao harmonijski red.</p>
+</section>
+<section class="card solution"><h2>5. Levi kraj: \(x=-1\)</h2>
+<p>Sada dobijamo alternirajući red</p>
+\[
+\sum_{n=1}^{\infty}(-1)^n a_n.
+\]
+<h3>Neophodan uslov: član reda mora težiti nuli</h3>
+<p>Iz \(a_n\sim(2\pi)^{-p}n^{1-2p}\) sledi:</p>
+\[
+a_n\longrightarrow0\quad\Longleftrightarrow\quad p>\frac12.
+\]
+<p>Za \(p=\frac12\) važi \(a_n\to1/\sqrt{2\pi}\ne0\), a za \(p<\frac12\) je \(a_n\to+\infty\). U oba slučaja red divergira.</p>
+<h3>Monotonost za \(p>\frac12\)</h3>
+<p>Da primenimo Lajbnicov kriterijum, proveravamo i da \(a_n\) opada:</p>
+\[
+\begin{aligned}
+\frac{a_{n+1}}{a_n}
+&=\frac{n+1}{n}\left(\frac{n^2-\frac14}{(n+1)^2}\right)^p\\[2mm]
+&=\left(1+\frac1n\right)^{1-2p}
+\left(1-\frac{1}{4n^2}\right)^p<1.
+\end{aligned}
+\]
+<p>Za \(p>\frac12\) prvi faktor je manji od 1 jer mu je eksponent negativan. Drugi faktor je takođe manji od 1 jer je njegova osnova između 0 i 1, a \(p>0\). Dakle, \(a_n\) opada i teži nuli.</p>
+<p>Po Lajbnicovom kriterijumu:</p>
+<div class="result">\[\boxed{x=-1:\quad\text{red konvergira ako i samo ako }p>\frac12.}\]</div>
+<h3>Apsolutna ili uslovna konvergencija?</h3>
+<p>Red apsolutnih vrednosti je \(\sum a_n\), isti kao za \(x=1\). Zato pri \(x=-1\):</p>
+\[
+\begin{cases}
+\text{apsolutna konvergencija},&p>1,\\[1mm]
+\text{uslovna konvergencija},&\frac12<p\le1,\\[1mm]
+\text{divergencija},&p\le\frac12.
+\end{cases}
+\]
+</section>
+<section class="card answer"><h2>6. Konačan odgovor</h2>
+<div class="result">
+\[
+\boxed{
+I_p=\begin{cases}
+(-1,1),&p\le\frac12,\\[2mm]
+[-1,1),&\frac12<p\le1,\\[2mm]
+[-1,1],&p>1.
+\end{cases}}
+\]
+</div>
+<p>Unutar \((-1,1)\) konvergencija je uvek apsolutna; izvan \([-1,1]\) red uvek divergira.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Parametar</th><th>\(x=-1\)</th><th>\(x=1\)</th></tr></thead>
+<tbody>
+<tr><td>\(p\le\frac12\)</td><td>Divergira</td><td>Divergira</td></tr>
+<tr><td>\(\frac12<p\le1\)</td><td>Uslovno konvergira</td><td>Divergira</td></tr>
+<tr><td>\(p>1\)</td><td>Apsolutno konvergira</td><td>Apsolutno konvergira</td></tr>
+</tbody></table></div>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</main></body></html>
