@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kupa i dva cilindra — zapremina pomoću dvojnog integrala</title>
+<title>Kupa i dva cilindra — zapremina i površina pomoću dvojnih integrala</title>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 <style>
@@ -19,7 +19,7 @@ footer{text-align:center;color:#788295;font-size:14px;padding:20px}
 </style>
 </head>
 <body><main>
-<h1>Kupa i dva cilindra — zapremina</h1>
+<h1>Kupa i dva cilindra — zapremina i površina</h1>
 <section class="card"><h2>Zadatak</h2>
 <p>Date su površi</p>
 \[
@@ -140,6 +140,91 @@ V&=2V_1+V_2\\[2mm]
 \boxed{V=\frac{64+4\pi}{9}-4\sqrt3.}
 \]
 </div>
+</section>
+<section class="card idea"><h2>7. Površina dela kupe — formula</h2>
+<p>Računamo površinu dela \(S_1\) koji pripada granici tela. Gornja grana kupe je</p>
+\[
+z=f(x,y)=\sqrt{x^2+y^2}.
+\]
+<p>Za nju važi</p>
+\[
+f_x=\frac{x}{\sqrt{x^2+y^2}},\qquad f_y=\frac{y}{\sqrt{x^2+y^2}},
+\]
+\[
+\sqrt{1+f_x^2+f_y^2}
+=\sqrt{1+\frac{x^2+y^2}{x^2+y^2}}=\sqrt2.
+\]
+<p>Teme kupe je jedna tačka i ne utiče na površinu. Donja grana ima istu površinu kao gornja, pa je</p>
+\[
+P(S_1)=2\iint_D\sqrt2\,dx\,dy.
+\]
+<p>U polarnim koordinatama \(dx\,dy=\rho\,d\rho\,d\varphi\), pa za obe grane zajedno koristimo izraz</p>
+\[
+2\sqrt2\,\rho\,d\rho\,d\varphi.
+\]
+</section>
+<section class="card solution"><h2>8. Površina kao zbir dva doprinosa</h2>
+<p>Koristimo iste oblasti \(D_1\) i \(D_2\) kao kod zapremine. Neka \(P_1\) označava površinu obe grane kupe nad \(D_1\), a \(P_2\) površinu obe grane nad \(D_2\). Zbog simetrije u odnosu na \(y\)-osu:</p>
+\[
+P(S_1)=2P_1+P_2.
+\]
+<div class="result">
+\[
+\boxed{
+P(S_1)=2\int_0^{\pi/6}\!\int_0^{2\sin\varphi}2\sqrt2\,\rho\,d\rho\,d\varphi
++\int_{\pi/6}^{5\pi/6}\!\int_0^1 2\sqrt2\,\rho\,d\rho\,d\varphi.
+}
+\]
+</div>
+<p><strong>Spoljašnji faktor 2</strong> uz prvi integral uračunava simetrični deo u drugom kvadrantu. <strong>Faktor 2 u izrazu \(2\sqrt2\,\rho\)</strong> uračunava obe grane kupe.</p>
+</section>
+<section class="card solution"><h2>9. Prvi doprinos: \(2P_1\)</h2>
+\[
+\begin{aligned}
+2P_1
+&=2\int_0^{\pi/6}\!\int_0^{2\sin\varphi}2\sqrt2\,\rho\,d\rho\,d\varphi\\[2mm]
+&=4\sqrt2\int_0^{\pi/6}\left[\frac{\rho^2}{2}\right]_0^{2\sin\varphi}d\varphi\\[2mm]
+&=8\sqrt2\int_0^{\pi/6}\sin^2\varphi\,d\varphi.
+\end{aligned}
+\]
+<p>Koristimo formulu \(\sin^2\varphi=\frac{1-\cos2\varphi}{2}\):</p>
+\[
+\begin{aligned}
+\int_0^{\pi/6}\sin^2\varphi\,d\varphi
+&=\left[\frac{\varphi}{2}-\frac{\sin2\varphi}{4}\right]_0^{\pi/6}\\[2mm]
+&=\frac{\pi}{12}-\frac{\sqrt3}{8}.
+\end{aligned}
+\]
+<p>Dakle,</p>
+\[
+\boxed{2P_1=8\sqrt2\left(\frac{\pi}{12}-\frac{\sqrt3}{8}\right)=\frac{2\pi\sqrt2}{3}-\sqrt6.}
+\]
+</section>
+<section class="card solution"><h2>10. Drugi doprinos: \(P_2\)</h2>
+\[
+\begin{aligned}
+P_2
+&=\int_{\pi/6}^{5\pi/6}\!\int_0^1 2\sqrt2\,\rho\,d\rho\,d\varphi\\[2mm]
+&=2\sqrt2\int_{\pi/6}^{5\pi/6}\left[\frac{\rho^2}{2}\right]_0^1d\varphi\\[2mm]
+&=\sqrt2\int_{\pi/6}^{5\pi/6}d\varphi\\[2mm]
+&=\sqrt2\left(\frac{5\pi}{6}-\frac{\pi}{6}\right)\\[2mm]
+&=\frac{2\pi\sqrt2}{3}.
+\end{aligned}
+\]
+</section>
+<section class="card answer"><h2>11. Konačna površina dela kupe</h2>
+\[
+\begin{aligned}
+P(S_1)&=2P_1+P_2\\[2mm]
+&=\frac{2\pi\sqrt2}{3}-\sqrt6+\frac{2\pi\sqrt2}{3}.
+\end{aligned}
+\]
+<div class="result">
+\[
+\boxed{P(S_1)=\frac{4\pi\sqrt2}{3}-\sqrt6.}
+\]
+</div>
+<p>Ovo je površina obe grane kupe koje pripadaju granici tela; cilindrični delovi granice nisu uključeni u \(P(S_1)\).</p>
 </section>
 <footer>Mathbrotherhood Powered by ChatGPT</footer>
 </main></body></html>
