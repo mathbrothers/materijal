@@ -14,10 +14,26 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg
 </head>
 <body><main>
 <button onclick="window.print()">Štampaj / sačuvaj PDF</button>
-<h1>Brojni izraz: dva primera</h1>
+<h1>Provera ponuđenih odgovora pomoću dva brojna primera</h1>
 <section class="card problem">
 <h2>Zadatak</h2>
-<p>Izračunati vrednost izraza sa slike, prvo za \(a=5\), a zatim za \(a=-5\). Zamenom dobijamo sledeća dva <strong>brojna izraza</strong>:</p>
+<p><strong>1.</strong> Ako je</p>
+<div class="math">\[M=\left(\left((a^4-1)\cdot(a^2-1)^{-1}+2a\right)^{\frac12}-1\right)^{-1},\]</div>
+<p>\(D=\mathbb R\setminus\{-2,-1,0,1\}\) i \(a\in D\), onda je tačno tvrđenje:</p>
+<div class="math">\[\text{A)}\quad M=-\frac1{a+2},\quad a\in(-\infty,-1)\cap D;\]</div>
+<div class="math">\[\text{B)}\quad M=-\frac1a,\quad a\in(-\infty,1)\cap D;\]</div>
+<div class="math">\[\text{C)}\quad M=a,\quad a\in(-1,+\infty)\cap D;\]</div>
+<div class="math">\[\text{D)}\quad M=\frac1{a-2},\quad a>2;\]</div>
+<div class="math">\[\text{E)}\quad M=\frac1a,\quad a\in\mathbb R\cap D;\]</div>
+<p><strong>N)</strong> Ne znam.</p>
+</section>
+<section class="card solution">
+<h2>Rešenje</h2>
+<h3>Zašto biramo baš 5 i −5?</h3>
+<p>Umesto da odmah sređujemo izraz sa slovom, prvo zamenjujemo \(a\) konkretnim brojevima. <strong>Oba broja pripadaju skupu \(D\)</strong>, pa su dozvoljena. Broj \(5\) je desno od \(-1\), a broj \(-5\) levo od \(-1\), pa njima proveravamo različite uslove ponuđenih odgovora.</p>
+<p>Brojevi su zgodni za računanje: njihovi kvadrati i četvrti stepeni su isti, dok je \(2\cdot5=10\), a \(2\cdot(-5)=-10\). Pod korenom ćemo zato dobiti \(36\) i \(16\).</p>
+<p class="note"><strong>Kako proveravamo odgovor?</strong> Najpre gledamo da li izabrani broj ispunjava njegov uslov. Ako ga ispunjava, proveravamo i vrednost formule. Jedno nepoklapanje odbacuje odgovor; jedno poklapanje samo po sebi ne dokazuje da formula važi za sve dozvoljene brojeve.</p>
+<p>Zamenom dobijamo sledeća dva <strong>brojna izraza</strong>:</p>
 <h3>1. Za \(a=5\)</h3>
 <div class="math">\[
 M_1=\left(\left((5^4-1)\cdot(5^2-1)^{-1}+2\cdot5\right)^{\frac12}-1\right)^{-1}.
@@ -26,9 +42,6 @@ M_1=\left(\left((5^4-1)\cdot(5^2-1)^{-1}+2\cdot5\right)^{\frac12}-1\right)^{-1}.
 <div class="math">\[
 M_2=\left(\left(((-5)^4-1)\cdot((-5)^2-1)^{-1}+2\cdot(-5)\right)^{\frac12}-1\right)^{-1}.
 \]</div>
-</section>
-<section class="card solution">
-<h2>Rešenje</h2>
 <p>Računamo iznutra ka spolja. Eksponent \(-1\) označava <strong>recipročnu vrednost</strong>, a eksponent \(\frac12\) označava <strong>kvadratni koren</strong>:</p>
 <div class="math">\[b^{-1}=\frac1b\quad(b\ne0),\qquad c^{\frac12}=\sqrt c\quad(c\ge0).\]</div>
 <h3>1. Brojni izraz za \(a=5\)</h3>
@@ -66,11 +79,39 @@ M_2&=\left(\left(624\cdot24^{-1}-10\right)^{\frac12}-1\right)^{-1}\\
 &=(4-1)^{-1}=\frac13.
 \end{aligned}\]</div>
 <p class="note"><strong>Pazi:</strong> \(\sqrt{16}=4\), a ne \(-4\) niti \(\pm4\). Oznaka kvadratnog korena predstavlja nenegativan broj. Takođe, \(3^{-1}=\frac13\), a ne \(-3\).</p>
+<h3>Šta dobijamo proverom ponuđenih odgovora?</h3>
+<h4>Za \(a=5\) znamo da je \(M=\frac15\)</h4>
+<ul>
+<li><strong>A)</strong> Uslov \(a<-1\) nije ispunjen. Ovaj odgovor ne proveravamo brojem 5.</li>
+<li><strong>B)</strong> Uslov \(a<1\) nije ispunjen. Ni ovaj odgovor ne proveravamo brojem 5.</li>
+<li><strong>C)</strong> Uslov \(a>-1\) jeste ispunjen, ali formula daje \(M=5\ne\frac15\). <strong>C) otpada.</strong></li>
+<li><strong>D)</strong> Uslov \(a>2\) jeste ispunjen, ali formula daje \(M=\frac1{5-2}=\frac13\ne\frac15\). <strong>D) otpada.</strong></li>
+<li><strong>E)</strong> Broj 5 pripada \(D\), a formula daje \(M=\frac15\). Za ovaj broj se poklapa, pa ga moramo proveriti i za \(-5\).</li>
+</ul>
+<h4>Za \(a=-5\) znamo da je \(M=\frac13\)</h4>
+<ul>
+<li><strong>A)</strong> Uslov \(-5<-1\) jeste ispunjen i formula daje \(M=-\frac1{-5+2}=\frac13\). <strong>I uslov i vrednost odgovaraju.</strong></li>
+<li><strong>B)</strong> Uslov \(-5<1\) jeste ispunjen, ali formula daje \(M=-\frac1{-5}=\frac15\ne\frac13\). <strong>B) otpada.</strong></li>
+<li><strong>C)</strong> i <strong>D)</strong> nemaju ispunjene uslove za \(-5\); već su odbačeni proverom za 5.</li>
+<li><strong>E)</strong> Broj \(-5\) pripada \(D\), ali formula daje \(M=\frac1{-5}=-\frac15\ne\frac13\). <strong>E) otpada.</strong></li>
+</ul>
+<p><strong>Posle obe provere jedino A) ostaje kao tačan odgovor.</strong> Za \(-5\) u njemu su ispunjena oba zahteva: broj pripada navedenom intervalu i formula daje tačnu vrednost. Broj 5 je van tog intervala, pa ne predstavlja protivprimer za A).</p>
+<h3>Kratka potvrda da A) važi na celom navedenom intervalu</h3>
+<p>Pošto su \(a=\pm1\) isključeni iz \(D\), smemo da skratimo:</p>
+<div class="math">\[\frac{a^4-1}{a^2-1}+2a=a^2+1+2a=(a+1)^2.\]</div>
+<p>Otuda je</p>
+<div class="math">\[M=\frac1{\sqrt{(a+1)^2}-1}=\frac1{|a+1|-1}.\]</div>
+<p>Za \(a<-1\) važi \(|a+1|=-(a+1)\), pa</p>
+<div class="math">\[M=\frac1{-a-1-1}=-\frac1{a+2}.\]</div>
+<p>Broj \(-2\), koji bi poništio imenilac, isključen je iz \(D\). Time je A) potvrđeno za sve \(a\in(-\infty,-1)\cap D\).</p>
 </section>
 <section class="card answer">
 <h2>Rezultat</h2>
 <div class="result"><div class="math">\[\boxed{a=5\ \Longrightarrow\ M=\frac15}\]</div></div>
 <div class="result"><div class="math">\[\boxed{a=-5\ \Longrightarrow\ M=\frac13}\]</div></div>
+<p>Provera za 5 odbacuje C) i D), a provera za −5 odbacuje B) i E). Jedini tačan ponuđeni odgovor je:</p>
+<div class="result"><div class="math">\[\boxed{\text{A)}\quad M=-\frac1{a+2},\quad a\in(-\infty,-1)\cap D.}\]</div></div>
+<p><strong>Zaključak:</strong> oba brojna primera saglasna su sa odgovorom A), uz poštovanje njegovog uslova. Ne tvrdimo da njegova formula važi za 5: za taj broj uslov \(a<-1\) nije ispunjen.</p>
 </section>
 <footer>Mathbrotherhood Powered by ChatGPT</footer>
 </main></body></html>
