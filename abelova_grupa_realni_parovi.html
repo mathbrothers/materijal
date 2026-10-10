@@ -34,6 +34,95 @@
       \]
     </div>
     <p class="question">Da li je \((A,\ast)\) Abelova grupa?</p>
+
+    <h2>Rešenje</h2>
+    <p><strong>Da, \((A,\ast)\) je Abelova grupa.</strong> Proverimo zatvorenost, asocijativnost, neutralni element, inverzne elemente i komutativnost.</p>
+
+    <h3>1. Zatvorenost</h3>
+    <p>Uslov \(a^2+b^2\ne0\) znači da \((a,b)\ne(0,0)\). Za svaki \((a,b)\in A\) zato važi \(a^2+3b^2&gt;0\).</p>
+    <p>Neka su \((a,b),(c,d)\in A\). Koordinate njihovog proizvoda su realne i važi:</p>
+    <div class="formula">\[
+      (ac-3bd)^2+3(ad+bc)^2
+      =(a^2+3b^2)(c^2+3d^2)&gt;0.
+    \]</div>
+    <p>Dakle, koordinate proizvoda ne mogu obe biti nula, pa \((a,b)\ast(c,d)\in A\).</p>
+
+    <h3>2. Asocijativnost</h3>
+    <p>Za proizvoljne \((a,b),(c,d),(e,f)\in A\), računanjem obe strane dobijamo:</p>
+    <div class="formula">\[
+    \begin{aligned}
+      ((a,b)\ast(c,d))\ast(e,f)
+      &amp;=((ac-3bd)e-3(ad+bc)f,\\
+      &amp;\qquad (ac-3bd)f+(ad+bc)e)\\
+      &amp;=(ace-3bde-3adf-3bcf,\\
+      &amp;\qquad acf-3bdf+ade+bce).
+    \end{aligned}
+    \]</div>
+    <div class="formula">\[
+    \begin{aligned}
+      (a,b)\ast((c,d)\ast(e,f))
+      &amp;=(a(ce-3df)-3b(cf+de),\\
+      &amp;\qquad a(cf+de)+b(ce-3df))\\
+      &amp;=(ace-3adf-3bcf-3bde,\\
+      &amp;\qquad acf+ade+bce-3bdf).
+    \end{aligned}
+    \]</div>
+    <p>Odgovarajuće koordinate su jednake, pa je operacija asocijativna.</p>
+
+    <h3>3. Neutralni element</h3>
+    <p>Par \(E=(1,0)\) pripada skupu \(A\) i za svaki \((a,b)\in A\) važi:</p>
+    <div class="formula">\[
+      (a,b)\ast(1,0)=(a,b)=(1,0)\ast(a,b).
+    \]</div>
+    <p>Zato je \(E=(1,0)\) neutralni element.</p>
+
+    <h3>4. Inverzni element</h3>
+    <p>Za \((a,b)\in A\) tražimo \((x,y)\) takav da \((a,b)\ast(x,y)=(1,0)\), odnosno:</p>
+    <div class="formula">\[
+      ax-3by=1,\qquad ay+bx=0.
+    \]</div>
+    <p>Pošto je \(a^2+3b^2&gt;0\), dobijamo:</p>
+    <div class="formula">\[
+      (a,b)^{-1}
+      =\left(\frac{a}{a^2+3b^2},-\frac{b}{a^2+3b^2}\right).
+    \]</div>
+    <p>Ovaj par pripada skupu \(A\), jer</p>
+    <div class="formula">\[
+      x^2+y^2=\frac{a^2+b^2}{(a^2+3b^2)^2}&gt;0.
+    \]</div>
+    <p>Direktna provera daje:</p>
+    <div class="formula">\[
+      (a,b)\ast(x,y)
+      =\left(\frac{a^2+3b^2}{a^2+3b^2},
+      \frac{-ab+ba}{a^2+3b^2}\right)=(1,0).
+    \]</div>
+    <p>I obrnutim redosledom dobijamo \((x,y)\ast(a,b)=(1,0)\).</p>
+
+    <h3>5. Komutativnost</h3>
+    <div class="formula">\[
+      (a,b)\ast(c,d)
+      =(ac-3bd,ad+bc)
+      =(ca-3db,cb+da)
+      =(c,d)\ast(a,b).
+    \]</div>
+    <p>Operacija je komutativna, pa je grupa Abelova.</p>
+    <div class="question">
+      <strong>Zaključak:</strong> \((A,\ast)\) je Abelova grupa, sa neutralnim elementom \((1,0)\) i inverznim elementom
+      \[
+        (a,b)^{-1}
+        =\left(\frac{a}{a^2+3b^2},-\frac{b}{a^2+3b^2}\right).
+      \]
+    </div>
+
+    <h3>Veza sa kompleksnim brojevima</h3>
+    <p>Preslikavanje \(\varphi(a,b)=a+i\sqrt3\,b\) je bijekcija iz \(A\) u \(\mathbb C\setminus\{0\}\) i važi:</p>
+    <div class="formula">\[
+      (a+i\sqrt3\,b)(c+i\sqrt3\,d)
+      =(ac-3bd)+i\sqrt3(ad+bc)
+      =\varphi((a,b)\ast(c,d)).
+    \]</div>
+    <p>To znači da je ova grupa izomorfna grupi nenultih kompleksnih brojeva pri množenju, što daje i kraći dokaz.</p>
+
   </main>
 </body>
 </html>
