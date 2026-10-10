@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zadatak 2 — Abelova grupa</title>
+  <script>
+    window.MathJax = {tex: {inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']]}};
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    * {box-sizing: border-box;}
+    body {margin: 0; padding: 32px 16px; background: #f5f7fa; color: #243247; font: 18px/1.7 "Segoe UI", sans-serif;}
+    main {max-width: 850px; margin: auto; padding: clamp(20px, 5vw, 44px); background: white; border-radius: 14px; box-shadow: 0 8px 30px #24324712;}
+    h1 {margin-top: 0; font-size: 1.6rem;}
+    .formula {overflow-x: auto; padding: 6px 0;}
+    .question {margin-top: 28px; padding: 16px 20px; border-left: 4px solid #2980b9; background: #edf6fd;}
+    @media print {body {background: white; padding: 0;} main {box-shadow: none;}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Zadatak 2</h1>
+    <p>Neka je</p>
+    <div class="formula">
+      \[
+        A=\left\{(a,b)\mid a,b\in\mathbb{R},\ a^2+b^2\ne 0\right\}
+      \]
+    </div>
+    <p>i neka je operacija \(\ast\) definisana sa</p>
+    <div class="formula">
+      \[
+        (a,b)\ast(c,d)=(ac-3bd,\ ad+bc).
+      \]
+    </div>
+    <p class="question">Da li je \((A,\ast)\) Abelova grupa?</p>
+  </main>
+</body>
+</html>
