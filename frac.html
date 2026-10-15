@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razlaganje razlomka</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #2d3748;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2.5rem;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            color: #1a365d;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .step {
+            background: #f7fafc;
+            border-left: 4px solid #4299e1;
+            border-radius: 0 8px 8px 0;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1rem;
+            color: #2b6cb0;
+            margin-bottom: 0.6rem;
+        }
+
+        .step p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .formula {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .note {
+            background: #ebf8ff;
+            border: 1px solid #bee3f8;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            color: #2c5282;
+        }
+
+        .note strong {
+            color: #1a365d;
+        }
+
+        .result {
+            background: linear-gradient(135deg, #c6f6d5, #e6fffa);
+            border: 2px solid #48bb78;
+            border-radius: 10px;
+            padding: 1.3rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .result .label {
+            font-weight: 700;
+            color: #276749;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .checkmark {
+            color: #38a169;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Razlaganje razlomka</h1>
+        <p class="subtitle">Kako iz \(\dfrac{a+b}{ab}\) dobijamo \(\dfrac{1}{a}+\dfrac{1}{b}\)</p>
+
+        <!-- KORAK 1 -->
+        <div class="step">
+            <h3>📐 Korak 1 – Razdvojiti razlomak</h3>
+            <p>Brojioc je <em>zbir</em>, a imenilac je isti za oba člana. Razlomak se razlaže na:</p>
+            <div class="formula">
+                $$\frac{a+b}{ab} \;=\; \frac{a}{ab} \;+\; \frac{b}{ab}$$
+            </div>
+            <div class="note">
+                <strong>Svojstvo:</strong> \(\dfrac{x+y}{z} = \dfrac{x}{z} + \dfrac{y}{z}\)
+            </div>
+        </div>
+
+        <!-- KORAK 2 -->
+        <div class="step">
+            <h3>✂️ Korak 2 – Skratiti svaki razlomak</h3>
+            <p><strong>Prvi razlomak</strong> – skraćujemo \(a\):</p>
+            <div class="formula">
+                $$\frac{a}{ab} = \frac{\cancel{a}}{\cancel{a}\, b} = \frac{1}{b}$$
+            </div>
+            <p><strong>Drugi razlomak</strong> – skraćujemo \(b\):</p>
+            <div class="formula">
+                $$\frac{b}{ab} = \frac{\cancel{b}}{a\, \cancel{b}} = \frac{1}{a}$$
+            </div>
+        </div>
+
+        <!-- REZULTAT -->
+        <div class="result">
+            <div class="label">Rezultat</div>
+            <div class="formula" style="margin: 0.5rem 0 0;">
+                $$\boxed{\;\frac{a+b}{ab} \;=\; \frac{1}{a} \;+\; \frac{1}{b}\;}$$
+            </div>
+        </div>
+
+        <!-- PROVERA -->
+        <div class="step" style="margin-top: 1.5rem; border-left-color: #48bb78;">
+            <h3 style="color: #276749;">✅ Provera (suprotan smer)</h3>
+            <p>Krenemo od \(\dfrac{1}{a}+\dfrac{1}{b}\) i nađemo zajednički imenilac \(ab\):</p>
+            <div class="formula">
+                $$\frac{1}{a} + \frac{1}{b} = \frac{b}{ab} + \frac{a}{ab} = \frac{a+b}{ab} \;\; \checkmark$$
+            </div>
+        </div>
+    </div>
+</body>
+</html>
