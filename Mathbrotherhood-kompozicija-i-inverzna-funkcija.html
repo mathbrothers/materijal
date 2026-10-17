@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kompozicija i inverzna funkcija | Mathbrotherhood</title>
+  <script>
+    window.MathJax = {tex: {inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']]}, options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}};
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    :root {color-scheme: light; --ink:#243345; --muted:#617084; --bg:#f3f5f8; --mint:#b9e4d4; --blue:#bdd8f5; --peach:#f7cfb8; --lavender:#d5caf0;}
+    * {box-sizing:border-box}
+    body {margin:0; background:var(--bg); color:var(--ink); font-family: "Segoe UI", Arial, sans-serif; font-size:17px; line-height:1.7}
+    main {width:min(920px, calc(100% - 32px)); margin:48px auto 24px}
+    header {padding:0 8px 24px}
+    .brand {font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#46786c}
+    h1 {font-size:clamp(30px, 5vw, 44px); line-height:1.15; letter-spacing:-.035em; margin:16px 0}
+    .lead {color:var(--muted); max-width:680px; margin:0}
+    .card {background:white; border:1px solid #e5e9ef; border-left:7px solid var(--accent, var(--mint)); border-radius:16px; padding:26px 30px; margin:18px 0; box-shadow:0 5px 20px #27344405; break-inside:avoid}
+    .mint {--accent:var(--mint)} .blue {--accent:var(--blue)} .peach {--accent:var(--peach)} .lavender {--accent:var(--lavender)}
+    .eyebrow {color:var(--muted); font-size:12px; font-weight:800; letter-spacing:.1em; text-transform:uppercase}
+    h2 {font-size:24px; line-height:1.3; margin:6px 0 16px}
+    h3 {font-size:18px; margin:20px 0 8px}
+    p {margin:10px 0}
+    .equation {background:#f7f9fc; border-radius:10px; padding:8px 16px; margin:14px 0; overflow-x:auto}
+    .answer {background:#f0f8f4; border-radius:10px; padding:12px 18px; margin:16px 0 10px; font-weight:600}
+    .check {font-size:15px; color:#526578}
+    .note {font-size:15px; color:var(--muted)}
+    ol {padding-left:24px; margin:12px 0} li {padding-left:5px; margin:9px 0}
+    .flow {text-align:center; font-size:20px; padding:10px 0}
+    table {width:100%; border-collapse:collapse; font-size:16px} th,td {padding:13px 12px; text-align:left; border-bottom:1px solid #e6ebf1} th {background:#f7f9fc} .table-wrap {overflow-x:auto}
+    footer {text-align:center; color:var(--muted); font-size:12px; padding:26px 16px 36px; letter-spacing:.04em} footer strong {display:block; font-size:16px; letter-spacing:.02em; color:var(--ink)}
+    @media(max-width:600px) {main {margin-top:26px} .card {padding:21px 18px} h2 {font-size:21px} body {font-size:16px} .equation {padding:7px 10px}}
+    @media print {body {background:white; font-size:11pt} main {width:100%; margin:0} header {padding-bottom:10px} h1 {font-size:26pt} h2 {font-size:17pt} .card {box-shadow:none; margin:12px 0; padding:16px 20px} footer {padding:12px} .note.internet {display:none} @page {size:A4; margin:16mm}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">Mathbrotherhood · Mali tutorijal</div>
+    <h1>Kompozicija i<br>inverzna funkcija</h1>
+    <p class="lead">Dve funkcije su poznate, a treću tražimo. Ključ je da pratimo redosled i pažljivo zamenjujemo argument.</p>
+  </header>
+
+  <section class="card mint">
+    <div class="eyebrow">Za početak</div>
+    <h2>Šta znači \(f(g(x))=h(x)\)?</h2>
+    <p><strong>Prvo primenjujemo \(g\), a zatim \(f\).</strong> Rezultat funkcije \(g\) postaje ulaz u funkciju \(f\).</p>
+    <div class="flow">\(x \xrightarrow{\;g\;} g(x) \xrightarrow{\;f\;} f(g(x))=h(x)\)</div>
+    <p>Ako je \(f(x)=2x+3\), onda je \(f(\square)=2\cdot\square+3\). Zato:</p>
+    <div class="equation">\[f(g(x))=2\,g(x)+3.\]</div>
+    <p class="note"><strong>Pazi:</strong> \(f(g(x))\) nije proizvod \(f(x)\cdot g(x)\). Takođe, redosled je važan: \(f(g(x))\) i \(g(f(x))\) uglavnom nisu jednaki.</p>
+    <p class="note">U nastavku radimo sa funkcijama oblika \(ax+b\), za realne brojeve. Za jednoznačno određivanje nepoznate funkcije u sva tri slučaja pretpostavljamo da su koeficijenti uz \(x\) različiti od nule.</p>
+  </section>
+
+  <section class="card blue">
+    <div class="eyebrow">Slučaj 01 · Poznate su f i g</div>
+    <h2>Tražimo \(h(x)\): direktna zamena</h2>
+    <p><strong>Dato:</strong> \(f(x)=2x+3\) i \(g(x)=3x-1\).</p>
+    <ol>
+      <li>U izrazu za \(f\), umesto svakog \(x\) upišemo <strong>ceo izraz</strong> \(g(x)\):
+        <div class="equation">\[h(x)=f(g(x))=2(3x-1)+3.\]</div>
+      </li>
+      <li>Oslobodimo se zagrade i sredimo izraz:
+        <div class="equation">\[h(x)=6x-2+3=6x+1.\]</div>
+      </li>
+    </ol>
+    <div class="answer">Rešenje: \(\boxed{h(x)=6x+1}\).</div>
+    <p class="check">Provera za \(x=1\): \(g(1)=2\), zatim \(f(2)=7\), a i \(h(1)=7\). Ovo je brza kontrola; izvođenje iznad važi za svako \(x\).</p>
+  </section>
+
+  <section class="card peach">
+    <div class="eyebrow">Slučaj 02 · Poznate su f i h</div>
+    <h2>Tražimo \(g(x)\): rešavamo jednačinu</h2>
+    <p><strong>Dato:</strong> \(f(x)=2x+3\) i \(h(x)=6x+1\).</p>
+    <ol>
+      <li>Pošto \(f\) udvostručuje svoj ulaz i dodaje 3, važi:
+        <div class="equation">\[2g(x)+3=6x+1.\]</div>
+      </li>
+      <li>Tretiramo \(g(x)\) kao nepoznatu: prvo oduzmemo 3, pa podelimo sa 2.
+        <div class="equation">\[2g(x)=6x-2\]\[g(x)=\frac{6x-2}{2}=3x-1.\]</div>
+      </li>
+    </ol>
+    <div class="answer">Rešenje: \(\boxed{g(x)=3x-1}\).</div>
+    <p class="check">Provera: \(f(g(x))=2(3x-1)+3=6x+1=h(x)\).</p>
+  </section>
+
+  <section class="card lavender">
+    <div class="eyebrow">Slučaj 03 · Poznate su g i h</div>
+    <h2>Tražimo \(f(x)\): uvedemo novi argument</h2>
+    <p><strong>Dato:</strong> \(g(x)=3x-1\) i \(h(x)=6x+1\). Dakle:</p>
+    <div class="equation">\[f(3x-1)=6x+1.\]</div>
+    <ol>
+      <li>Označimo <strong>ceo argument</strong> funkcije \(f\) slovom \(t\), pa izrazimo \(x\):
+        <div class="equation">\[t=3x-1 \quad\Rightarrow\quad x=\frac{t+1}{3}.\]</div>
+      </li>
+      <li>Na desnoj strani zamenimo \(x\) tim izrazom:
+        <div class="equation">\[f(t)=6\cdot\frac{t+1}{3}+1=2(t+1)+1=2t+3.\]</div>
+      </li>
+      <li>Slovo argumenta možemo preimenovati: iz \(f(t)=2t+3\) dobijamo \(f(x)=2x+3\).</li>
+    </ol>
+    <div class="answer">Rešenje: \(\boxed{f(x)=2x+3}\).</div>
+    <p class="check">Provera: \(f(3x-1)=2(3x-1)+3=6x+1=h(x)\).</p>
+    <p class="note"><strong>Tipična greška:</strong> iz \(f(3x-1)=6x+1\) ne smemo samo napisati \(f(x)=6x+1\). Promena argumenta zahteva i odgovarajuću zamenu na desnoj strani.</p>
+  </section>
+
+  <section class="card mint">
+    <div class="eyebrow">Obrnuti smer</div>
+    <h2>Kako se računa inverzna linearna funkcija?</h2>
+    <p>Inverzna funkcija \(f^{-1}\) vraća izlaz funkcije \(f\) na početni ulaz. Ako je \(f(x)=ax+b\), gde je \(a\ne0\), ona prvo oduzima \(b\), a zatim deli sa \(a\).</p>
+    <ol>
+      <li>Napišemo \(y=ax+b\).</li>
+      <li>Izrazimo \(x\): \(y-b=ax\), pa \(x=\dfrac{y-b}{a}\).</li>
+      <li>Dobijeni izraz zapisujemo kao inverznu funkciju, koristeći \(x\) za njen argument:</li>
+    </ol>
+    <div class="equation">\[\boxed{f^{-1}(x)=\frac{x-b}{a}},\qquad a\ne0.\]</div>
+    <h3>Primer: \(f(x)=2x+3\)</h3>
+    <div class="equation">\[y=2x+3\quad\Rightarrow\quad x=\frac{y-3}{2}\quad\Rightarrow\quad \boxed{f^{-1}(x)=\frac{x-3}{2}}.\]</div>
+    <p>Na primer, \(f(4)=11\), a \(f^{-1}(11)=4\).</p>
+    <p class="check">Provera u oba smera:</p>
+    <div class="equation">\[f^{-1}(f(x))=\frac{(2x+3)-3}{2}=x,\]\[f(f^{-1}(x))=2\cdot\frac{x-3}{2}+3=x.\]</div>
+    <p class="note"><strong>Zapamti:</strong> \(f^{-1}(x)\) nije \(\dfrac{1}{f(x)}\). Ako je \(a=0\), funkcija je konstantna i nema inverznu funkciju na \(\mathbb{R}\), jer različiti ulazi imaju isti izlaz.</p>
+  </section>
+
+  <section class="card blue">
+    <div class="eyebrow">Podsetnik</div>
+    <h2>Koji postupak biramo?</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Poznato</th><th scope="col">Tražimo</th><th scope="col">Postupak / formula</th></tr></thead>
+        <tbody>
+          <tr><td>\(f,\ g\)</td><td>\(h\)</td><td>Direktna zamena: \(h(x)=f(g(x))\).</td></tr>
+          <tr><td>\(f,\ h\)</td><td>\(g\)</td><td>Izolujemo \(g(x)\): \(g(x)=f^{-1}(h(x))\).</td></tr>
+          <tr><td>\(g,\ h\)</td><td>\(f\)</td><td>Uvedemo \(t=g(x)\): \(f(x)=h(g^{-1}(x))\).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Formule sa inverznom funkcijom važe kada odgovarajuća inverzna funkcija postoji. U primerima smo namerno koristili iste tri funkcije da se jasno vidi razlika između postupaka.</p>
+  </section>
+  <p class="note internet">Za prikaz matematičkih formula potrebna je internet veza prilikom učitavanja MathJax-a. Sav tekst i dizajn nalaze se u ovom HTML fajlu.</p>
+</main>
+<footer><strong>Mathbrotherhood</strong>Powered by ChatGPT</footer>
+</body>
+</html>
