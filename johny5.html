@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Johny 5 — inverzna funkcija | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{font-family:Georgia,serif;background:#fafafa;color:#243043;max-width:890px;margin:30px auto;padding:0 18px;line-height:1.72}h1{color:#17324f;font-size:1.8rem}h2{font-size:1.2rem;margin:0 0 12px}.card{border-left:6px solid;padding:18px 24px;margin:20px 0;border-radius:12px;overflow-x:auto}.task{background:#eaf5ff;border-color:#2682c3}.idea{background:#edf0ff;border-color:#5969ba}.solution{background:#e9f8ed;border-color:#2c9c64}.answer{background:#d9f2e2;border-color:#147642}.note{background:#fff3dc;border-color:#db9a21}.signs{border-collapse:collapse;width:100%;text-align:center;font-family:Georgia,serif}.signs td,.signs th{padding:9px 5px;border:1px solid #b8c7b6}.signs th{background:#d6e9dc}footer{margin:30px 0;color:#64748b;text-align:center;font-size:.9rem}@media(max-width:600px){.card{padding:14px 12px}.signs{font-size:.8rem}}
+</style></head>
+<body>
+<h1>Određivanje inverzne funkcije — Johny 5</h1>
+<section class="card task"><h2>Zadatak</h2>
+<p>Odrediti inverznu funkciju funkcije</p>
+\[f(x)=\frac{3^x-3^{-x}}{4}.\]
+</section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Najpre proverimo da inverzna funkcija postoji. Zatim u jednakosti \(y=f(x)\) uvedemo smenu \(t=3^x&gt;0\). Pošto je \(3^{-x}=\frac1t\), dobijamo kvadratnu jednačinu po \(t\). Biramo pozitivno rešenje i logaritmujemo sa osnovom \(3\).</p></section>
+<section class="card solution"><h2>Rešenje</h2>
+<p><strong>1. Domen i postojanje inverzne funkcije:</strong></p>
+<p>Oba eksponencijalna izraza definisana su za svaki realan broj, pa je \(D_f=\mathbb R\).</p>
+<p>Ako je \(a&lt;b\), onda je \(3^a&lt;3^b\) i \(3^{-a}&gt;3^{-b}\). Zato je:</p>
+\[3^a-3^{-a}&lt;3^b-3^{-b}\quad\Longrightarrow\quad f(a)&lt;f(b).\]
+<p>Dakle, \(f\) je strogo rastuća i injektivna. Funkcija je neprekidna, a važi:</p>
+\[\lim_{x\to-\infty}f(x)=-\infty,\qquad
+\lim_{x\to+\infty}f(x)=+\infty.\]
+<p>Zato je njen skup vrednosti \(\mathbb R\), pa postoji inverzna funkcija \(f^{-1}:\mathbb R\to\mathbb R\).</p>
+<p><strong>2. Smena i kvadratna jednačina:</strong></p>
+\[y=\frac{3^x-3^{-x}}4.\]
+<p>Uvedemo \(t=3^x&gt;0\), odakle je \(3^{-x}=\frac1t\). Sledi:</p>
+\[\begin{aligned}
+4y&=t-\frac1t\\
+4yt&=t^2-1\\
+t^2-4yt-1&=0.
+\end{aligned}\]
+<p>Množenje sa \(t\) je dozvoljeno jer je \(t&gt;0\). Rešenja kvadratne jednačine su:</p>
+\[t_{1,2}=\frac{4y\pm\sqrt{16y^2+4}}2
+=2y\pm\sqrt{4y^2+1}.\]
+<p><strong>3. Izbor odgovarajućeg rešenja:</strong></p>
+<p>Za svaki realan \(y\) važi:</p>
+\[\sqrt{4y^2+1}&gt;\sqrt{4y^2}=2|y|.\]
+<p>Zato je:</p>
+\[2y+\sqrt{4y^2+1}&gt;0,\qquad
+2y-\sqrt{4y^2+1}&lt;0.\]
+<p>Pošto je \(t=3^x&gt;0\), negativno rešenje odbacujemo:</p>
+\[3^x=2y+\sqrt{4y^2+1}.\]
+<p><strong>4. Logaritmovanje:</strong></p>
+\[x=\log_3\left(2y+\sqrt{4y^2+1}\right).\]
+<p>Zamenom oznake \(y\) oznakom \(x\) dobijamo:</p>
+\[\boxed{f^{-1}(x)=\log_3\left(2x+\sqrt{4x^2+1}\right)}.\]
+<p>Argument logaritma je pozitivan za svaki realan \(x\), pa je:</p>
+\[D_{f^{-1}}=\mathbb R.\]
+<p><strong>5. Provera:</strong></p>
+<p>Neka je \(A=2x+\sqrt{4x^2+1}&gt;0\). Pošto je</p>
+\[\left(\sqrt{4x^2+1}+2x\right)
+\left(\sqrt{4x^2+1}-2x\right)=1,\]
+<p>dobijamo \(\frac1A=\sqrt{4x^2+1}-2x\). Zato:</p>
+\[\begin{aligned}
+f\left(f^{-1}(x)\right)
+&=\frac{3^{\log_3 A}-3^{-\log_3 A}}4\\
+&=\frac{A-\frac1A}4\\
+&=\frac{2x+\sqrt{4x^2+1}-\left(\sqrt{4x^2+1}-2x\right)}4\\
+&=x.
+\end{aligned}\]
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+\[\boxed{f^{-1}(x)=\log_3\left(2x+\sqrt{4x^2+1}\right),\qquad x\in\mathbb R.}\]
+<p>Domen i skup vrednosti inverzne funkcije su \(\mathbb R\).</p>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</body></html>
