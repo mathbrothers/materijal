@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Johny 1 — domen funkcije | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{font-family:Georgia,serif;background:#fafafa;color:#243043;max-width:890px;margin:30px auto;padding:0 18px;line-height:1.72}h1{color:#17324f;font-size:1.8rem}h2{font-size:1.2rem;margin:0 0 12px}.card{border-left:6px solid;padding:18px 24px;margin:20px 0;border-radius:12px;overflow-x:auto}.task{background:#eaf5ff;border-color:#2682c3}.idea{background:#edf0ff;border-color:#5969ba}.solution{background:#e9f8ed;border-color:#2c9c64}.answer{background:#d9f2e2;border-color:#147642}.note{background:#fff3dc;border-color:#db9a21}.signs{border-collapse:collapse;width:100%;text-align:center;font-family:Georgia,serif}.signs td,.signs th{padding:9px 5px;border:1px solid #b8c7b6}.signs th{background:#d6e9dc}footer{margin:30px 0;color:#64748b;text-align:center;font-size:.9rem}@media(max-width:600px){.card{padding:14px 12px}.signs{font-size:.8rem}}
+</style></head>
+<body>
+<h1>Određivanje oblasti definisanosti — Johny 1</h1>
+<section class="card task"><h2>Zadatak</h2><p>Odrediti domen funkcije</p>\[y=\arcsin(4x^2+2x-1)+\sqrt{\frac{9-x^2}{4-x^2}}.\]</section>
+<section class="card idea"><h2>Ideja</h2><p>Argument funkcije \(\arcsin\) mora pripadati intervalu \([-1,1]\). Izraz pod korenom mora biti nenegativan, a imenilac različit od nule. Na kraju uzimamo presek dobijenih skupova.</p></section>
+<section class="card solution"><h2>Rešenje</h2>
+<p><strong>1. Uslov za arkus sinus:</strong></p>
+\[-1\le 4x^2+2x-1\le1.\]
+<p>Leva nejednakost daje:</p>
+\[4x^2+2x\ge0\iff 2x(2x+1)\ge0\iff x\in(-\infty,-\tfrac12]\cup[0,\infty).\]
+<p>Desna nejednakost daje:</p>
+\[4x^2+2x-2\le0\iff 2(2x-1)(x+1)\le0\iff x\in[-1,\tfrac12].\]
+<p>Presekom dobijamo:</p>
+\[D_1=[-1,-\tfrac12]\cup[0,\tfrac12].\]
+<p><strong>2. Uslov za koren:</strong></p>
+\[\frac{9-x^2}{4-x^2}\ge0,\qquad x\ne-2,\;x\ne2.\]
+<p>Kritične tačke su \(-3,-2,2,3\). Tabela znakova:</p>
+<table class="signs"><tr><th>Interval</th><th>\((-\infty,-3)\)</th><th>\((-3,-2)\)</th><th>\((-2,2)\)</th><th>\((2,3)\)</th><th>\((3,\infty)\)</th></tr>
+<tr><td>\(9-x^2\)</td><td>−</td><td>+</td><td>+</td><td>+</td><td>−</td></tr>
+<tr><td>\(4-x^2\)</td><td>−</td><td>−</td><td>+</td><td>−</td><td>−</td></tr>
+<tr><td><strong>Količnik</strong></td><td>+</td><td>−</td><td>+</td><td>−</td><td>+</td></tr></table>
+<p>Tačke \(-3\) i \(3\) uključujemo jer daju nulu brojioca; \(-2\) i \(2\) isključujemo jer je tu imenilac nula.</p>
+\[D_2=(-\infty,-3]\cup(-2,2)\cup[3,\infty).\]
+<p><strong>3. Presek uslova:</strong></p>
+\[D_f=D_1\cap D_2.\]
+<p>Pošto se ceo \(D_1\) nalazi u \((-2,2)\), drugi uslov ne donosi dodatna ograničenja.</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{D_f=[-1,-\tfrac12]\cup[0,\tfrac12]}\]</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>
