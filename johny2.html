@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Johny 2 — domen funkcije | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{font-family:Georgia,serif;background:#fafafa;color:#243043;max-width:890px;margin:30px auto;padding:0 18px;line-height:1.72}h1{color:#17324f;font-size:1.8rem}h2{font-size:1.2rem;margin:0 0 12px}.card{border-left:6px solid;padding:18px 24px;margin:20px 0;border-radius:12px;overflow-x:auto}.task{background:#eaf5ff;border-color:#2682c3}.idea{background:#edf0ff;border-color:#5969ba}.solution{background:#e9f8ed;border-color:#2c9c64}.answer{background:#d9f2e2;border-color:#147642}.note{background:#fff3dc;border-color:#db9a21}.signs{border-collapse:collapse;width:100%;text-align:center;font-family:Georgia,serif}.signs td,.signs th{padding:9px 5px;border:1px solid #b8c7b6}.signs th{background:#d6e9dc}footer{margin:30px 0;color:#64748b;text-align:center;font-size:.9rem}@media(max-width:600px){.card{padding:14px 12px}.signs{font-size:.8rem}}
+</style></head>
+<body>
+<h1>Određivanje oblasti definisanosti — Johny 2</h1>
+<section class="card task"><h2>Zadatak</h2><p>Odrediti domen funkcije</p>
+\[y=\arcsin\left(\frac{x+1}{2x+1}\right)+\sqrt{4-x^2}.\]</section>
+<section class="card idea"><h2>Ideja</h2><p>Argument funkcije \(\arcsin\) mora pripadati intervalu \([-1,1]\), razlomak mora biti definisan, a izraz pod kvadratnim korenom nenegativan. Sva tri uslova moraju važiti istovremeno:</p>
+\[\left|\frac{x+1}{2x+1}\right|\le1,\qquad x\ne-\frac12,\qquad 4-x^2\ge0.\]</section>
+<section class="card solution"><h2>Rešenje</h2>
+<p><strong>1. Imenilac mora biti različit od nule:</strong></p>
+\[2x+1\ne0\iff x\ne-\frac12.\]
+<p><strong>2. Uslov za arkus sinus:</strong></p>
+\[-1\le\frac{x+1}{2x+1}\le1
+\iff\left|\frac{x+1}{2x+1}\right|\le1.\]
+<p>Pošto su apsolutne vrednosti nenegativne, možemo kvadrirati obe strane. Za \(x\ne-\frac12\) važi \((2x+1)^2&gt;0\), pa množenje tim kvadratom ne menja smer nejednakosti:</p>
+\[\frac{(x+1)^2}{(2x+1)^2}\le1
+\iff (x+1)^2\le(2x+1)^2.\]
+<p>Sređivanjem dobijamo:</p>
+\[\begin{aligned}
+x^2+2x+1&\le4x^2+4x+1\\
+0&\le3x^2+2x\\
+x(3x+2)&\ge0.
+\end{aligned}\]
+<p>Nule činilaca su \(x=-\frac23\) i \(x=0\). Proizvod je nenegativan kada su oba činioca istog znaka ili kada je jedan jednak nuli:</p>
+<table class="signs"><caption>Tabela znakova proizvoda</caption>
+<thead><tr><th scope="col">Interval</th><th scope="col">\((-\infty,-\frac23)\)</th><th scope="col">\((-\frac23,0)\)</th><th scope="col">\((0,\infty)\)</th></tr></thead>
+<tbody><tr><th scope="row">\(x\)</th><td>−</td><td>−</td><td>+</td></tr>
+<tr><th scope="row">\(3x+2\)</th><td>−</td><td>+</td><td>+</td></tr>
+<tr><th scope="row">\(x(3x+2)\)</th><td>+</td><td>−</td><td>+</td></tr></tbody></table>
+\[x\le-\frac23\quad\text{ili}\quad x\ge0.\]
+<p>Tačka \(-\frac12\) već je izvan ovog skupa, pa je uslov za imenilac ispunjen na celom dobijenom skupu. Zato je:</p>
+\[D_1=\left(-\infty,-\frac23\right]\cup[0,\infty).\]
+<p><strong>3. Uslov za kvadratni koren:</strong></p>
+\[4-x^2\ge0\iff x^2\le4\iff -2\le x\le2.\]
+\[D_2=[-2,2].\]
+<p><strong>4. Presek svih uslova:</strong></p>
+\[\begin{aligned}
+D_f&=D_1\cap D_2\\
+&=\left(\left(-\infty,-\frac23\right]\cup[0,\infty)\right)\cap[-2,2]\\
+&=\left[-2,-\frac23\right]\cup[0,2].
+\end{aligned}\]
+<p>Sva četiri kraja intervala su uključena: u \(-2\) i \(2\) koren je nula, a u \(-\frac23\) i \(0\) argument arkus sinusa je redom \(-1\) i \(1\). Ni u jednoj od ovih tačaka imenilac nije nula.</p>
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+\[\boxed{D_f=\left[-2,-\frac23\right]\cup[0,2]}\]</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</body></html>
