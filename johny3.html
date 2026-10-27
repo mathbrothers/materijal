@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Johny 3 — inverzna funkcija | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+*{box-sizing:border-box}body{font-family:Georgia,serif;background:#fafafa;color:#243043;max-width:890px;margin:30px auto;padding:0 18px;line-height:1.72}h1{color:#17324f;font-size:1.8rem}h2{font-size:1.2rem;margin:0 0 12px}.card{border-left:6px solid;padding:18px 24px;margin:20px 0;border-radius:12px;overflow-x:auto}.task{background:#eaf5ff;border-color:#2682c3}.idea{background:#edf0ff;border-color:#5969ba}.solution{background:#e9f8ed;border-color:#2c9c64}.answer{background:#d9f2e2;border-color:#147642}.note{background:#fff3dc;border-color:#db9a21}.signs{border-collapse:collapse;width:100%;text-align:center;font-family:Georgia,serif}.signs td,.signs th{padding:9px 5px;border:1px solid #b8c7b6}.signs th{background:#d6e9dc}footer{margin:30px 0;color:#64748b;text-align:center;font-size:.9rem}@media(max-width:600px){.card{padding:14px 12px}.signs{font-size:.8rem}}
+</style></head>
+<body>
+<h1>Određivanje inverzne funkcije — Johny 3</h1>
+<section class="card task"><h2>Zadatak</h2>
+<p>Data je funkcija preko jednakosti</p>
+\[f\left(\frac{2x+2}{x+3}\right)=\frac{4x+1}{2x-3}.\]
+<p>Odrediti \(f^{-1}(x)\).</p></section>
+<section class="card idea"><h2>Ideja</h2>
+<p>Uvedemo smenu \(t=\frac{2x+2}{x+3}\), izrazimo \(x\) preko \(t\) i uvrstimo u desnu stranu. Tako dobijamo formulu za \(f(t)\). Zatim iz jednakosti \(y=f(t)\) izrazimo \(t\) preko \(y\), čime dobijamo inverznu funkciju.</p></section>
+<section class="card solution"><h2>Rešenje</h2>
+<p><strong>1. Smena i ograničenja:</strong></p>
+<p>Početna jednakost zahteva \(x\ne-3\) i \(x\ne\frac32\). Stavimo:</p>
+\[t=\frac{2x+2}{x+3}.\]
+\[\begin{aligned}
+t(x+3)&=2x+2\\
+tx+3t&=2x+2\\
+x(t-2)&=2-3t\\
+x&=\frac{2-3t}{t-2},\qquad t\ne2.
+\end{aligned}\]
+<p>Vrednost \(t=2\) nije dostižna: jednačina \(2x+2=2(x+3)\) dala bi \(2=6\). Isključenoj vrednosti \(x=\frac32\) odgovara:</p>
+\[t=\frac{2\cdot\frac32+2}{\frac32+3}=\frac{10}{9}.\]
+<p>Zato početna jednakost određuje \(f\) na skupu \(\mathbb R\setminus\{2,\frac{10}{9}\}\).</p>
+<p><strong>2. Određivanje formule za \(f\):</strong></p>
+\[\begin{aligned}
+f(t)&=\frac{4\cdot\frac{2-3t}{t-2}+1}{2\cdot\frac{2-3t}{t-2}-3}\\
+&=\frac{\frac{8-12t+t-2}{t-2}}{\frac{4-6t-3t+6}{t-2}}\\
+&=\frac{6-11t}{10-9t}\\
+&=\frac{11t-6}{9t-10}.
+\end{aligned}\]
+<p><strong>3. Određivanje inverzne funkcije:</strong></p>
+\[y=\frac{11t-6}{9t-10}.\]
+\[\begin{aligned}
+y(9t-10)&=11t-6\\
+9yt-10y&=11t-6\\
+t(9y-11)&=10y-6\\
+t&=\frac{10y-6}{9y-11},\qquad y\ne\frac{11}{9}.
+\end{aligned}\]
+<p>Zamenom oznake \(y\) oznakom \(x\) dobijamo:</p>
+\[\boxed{f^{-1}(x)=\frac{10x-6}{9x-11}}.\]
+<p>Dobijena jednačina za svaki dozvoljeni \(y\) daje jedinstveno \(t\), pa je \(f\) injektivna. Uz nasleđeno ograničenje \(t\ne2\), isključujemo i vrednost:</p>
+\[f(2)=\frac{22-6}{18-10}=2.\]
+<p>Dakle, ako zadržimo tačno skup određen početnom smenom:</p>
+\[D_f=\mathbb R\setminus\left\{2,\frac{10}{9}\right\},
+\qquad D_{f^{-1}}=\mathbb R\setminus\left\{2,\frac{11}{9}\right\}.\]
+<p><strong>4. Provera kompozicije:</strong></p>
+\[
+f\left(\frac{10x-6}{9x-11}\right)
+=\frac{11(10x-6)-6(9x-11)}{9(10x-6)-10(9x-11)}
+=\frac{56x}{56}=x.
+\]
+</section>
+<section class="card answer"><h2>Odgovor</h2>
+\[\boxed{f^{-1}(x)=\frac{10x-6}{9x-11}}\]
+<p>Za funkciju određenu početnom smenom važi \(x\in\mathbb R\setminus\{2,\frac{11}{9}\}\).</p>
+<p>Ako se \(f(t)=\frac{11t-6}{9t-10}\) posmatra na svom maksimalnom prirodnom domenu, ona je proširena i u \(t=2\); tada je domen inverzne funkcije \(\mathbb R\setminus\{\frac{11}{9}\}\), uz istu formulu.</p>
+</section>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</body></html>
