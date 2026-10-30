@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Četiri prenosioca binarnog signala: detaljno rešenje uslovne verovatnoće, sa rezultatom 13/41.">
+<title>Četiri prenosioca signala | Mathbrotherhood</title>
+<script>
+window.MathJax = {tex: {inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']]}, options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+<style>
+:root{color-scheme:light;--ink:#183047;--muted:#52677a;--teal:#086c65;--line:#dbe5e9}
+*{box-sizing:border-box}body{margin:0;background:#f3f6f7;color:var(--ink);font:17px/1.75 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:900px;margin:auto;padding:52px 22px 24px}header{margin-bottom:32px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:750;color:var(--teal)}
+h1{font-size:clamp(2rem,5vw,3rem);line-height:1.16;letter-spacing:-.035em;margin:14px 0}
+.subtitle{color:var(--muted);margin:0;max-width:650px}
+nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}nav a{color:var(--teal);font-size:14px;padding:5px 14px;border:1px solid var(--line);border-radius:30px;text-decoration:none;background:white}
+a:hover{background:#e8f5f1}a:focus-visible{outline:3px solid #087a72;outline-offset:3px}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:28px 32px;margin:18px 0;box-shadow:0 6px 22px #18304705;scroll-margin-top:20px}
+h2{font-size:23px;line-height:1.3;margin:0 0 18px;display:flex;align-items:center;gap:12px}
+.number{font-size:12px;letter-spacing:.06em;color:var(--teal);background:#e7f4ef;padding:6px 9px;border-radius:7px}
+h3{font-size:18px;margin:25px 0 8px}p{margin:12px 0}.formula{overflow-x:auto;padding:6px 4px}
+.note{border-left:3px solid var(--teal);padding:10px 16px;background:#f0f8f5;border-radius:0 8px 8px 0}
+.chain{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:18px 8px;margin:20px 0;background:#f4f7fa;border-radius:12px;font-size:14px;font-weight:650}.chain span{padding:4px 8px}
+.answer{background:#eaf7f1;border-color:#b8dbca}.answer .formula{font-size:1.3em}
+footer{text-align:center;font-size:13px;color:var(--muted);padding:22px 16px 40px}
+@media(max-width:560px){main{padding:30px 14px 16px}.card{padding:23px 18px}body{font-size:16px}.formula{font-size:.9em}}
+@media print{body{background:white;font-size:12pt}main{max-width:none;padding:0}nav{display:none}.card{box-shadow:none;break-inside:avoid;padding:16px}footer{padding:12px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">Mathbrotherhood · Verovatnoća</div>
+<h1>Četiri prenosioca<br>jednog signala</h1>
+<p class="subtitle">Kako tačna poruka na kraju lanca menja verovatnoću da je prvi prenos bio tačan?</p>
+<nav aria-label="Sadržaj"><a href="#zadatak">Zadatak</a><a href="#ideja">Ideja</a><a href="#resenje">Rešenje</a><a href="#odgovor">Odgovor</a></nav>
+</header>
+<section class="card" id="zadatak" aria-labelledby="zadatak-naslov">
+<h2 id="zadatak-naslov"><span class="number">01</span> Zadatak</h2>
+<p>Četiri osobe uzastopno prenose binarnu informaciju („da” ili „ne”). Prva dobija originalnu informaciju i prenosi je drugoj, druga trećoj, treća četvrtoj, a četvrta je prenosi dalje.</p>
+<p>Svaka osoba, nezavisno od ostalih, prenosi primljeni signal tačno sa verovatnoćom \(\frac13\), a obrće ga sa verovatnoćom \(\frac23\).</p>
+<p><strong>Ako je signal koji četvrta osoba prenese dalje jednak originalnom signalu, kolika je verovatnoća da je prvi prenos bio tačan?</strong></p>
+<div class="chain" aria-label="Lanac četiri prenosa"><span>Original</span> → <span>1.</span> → <span>2.</span> → <span>3.</span> → <span>4.</span> → <span>Konačni signal</span></div>
+<p class="note">Uslov se odnosi na jednakost <strong>konačnog i originalnog signala</strong>. Četvrta osoba može obrnuti primljeni signal i tako ispraviti raniju grešku.</p>
+</section>
+<section class="card" id="ideja" aria-labelledby="ideja-naslov">
+<h2 id="ideja-naslov"><span class="number">02</span> Ideja</h2>
+<p>Jedno obrtanje menja signal, a dva obrtanja ga vraćaju na početnu vrednost. Zato je konačni signal jednak originalnom ako i samo ako se dogodio <strong>paran broj obrtanja</strong>: 0, 2 ili 4.</p>
+<p>Označimo događaje:</p>
+<ul><li>\(A\): prvi prenos je tačan;</li><li>\(B\): signal posle sva četiri prenosa jednak je originalnom.</li></ul>
+<p>Tražimo uslovnu verovatnoću:</p>
+<div class="formula">\[P(A\mid B)=\frac{P(A\cap B)}{P(B)}.\]</div>
+</section>
+<section class="card" id="resenje" aria-labelledby="resenje-naslov">
+<h2 id="resenje-naslov"><span class="number">03</span> Rešenje</h2>
+<h3>1. Verovatnoća da je konačni signal tačan</h3>
+<p>Stavimo \(p=\frac13\) i \(q=\frac23\). Zbog nezavisnosti prenosa, verovatnoća tačno \(k\) obrtanja među četiri prenosa iznosi \(\binom4k q^k p^{4-k}\). Sabiramo slučajeve sa 0, 2 i 4 obrtanja:</p>
+<div class="formula">\[
+\begin{aligned}
+P(B)&=p^4+\binom42q^2p^2+q^4\\
+&=\frac1{81}+6\cdot\frac4{81}+\frac{16}{81}\\
+&=\frac{41}{81}.
+\end{aligned}
+\]</div>
+<h3>2. Prvi prenos je tačan i konačni signal je tačan</h3>
+<p>Ako je prvi prenos tačan, među preostala tri prenosa mora biti 0 ili 2 obrtanja. Prvi prenos je nezavisan od preostalih, pa:</p>
+<div class="formula">\[
+\begin{aligned}
+P(A\cap B)&=p\left(p^3+\binom32q^2p\right)\\
+&=\frac13\left(\frac1{27}+3\cdot\frac4{27}\right)\\
+&=\frac{13}{81}.
+\end{aligned}
+\]</div>
+<h3>3. Uslovna verovatnoća</h3>
+<div class="formula">\[
+P(A\mid B)=\frac{13/81}{41/81}=\frac{13}{41}.
+\]</div>
+<p class="note"><strong>Provera:</strong> svih 16 mogućih obrazaca tačnih i obrnutih prenosa daje isti rezultat. Obrazac sa \(k\) obrtanja ima verovatnoću \(2^k/81\); zbir za \(B\) je \(41/81\), a za \(A\cap B\) je \(13/81\). Obrasci nisu jednako verovatni.</p>
+</section>
+<section class="card answer" id="odgovor" aria-labelledby="odgovor-naslov">
+<h2 id="odgovor-naslov"><span class="number">04</span> Odgovor</h2>
+<div class="formula">\[\boxed{P(A\mid B)=\frac{13}{41}\approx31{,}71\%}\]</div>
+<p>Pod uslovom da je konačni signal jednak originalnom, verovatnoća da je prva osoba tačno prenela informaciju iznosi <strong>13/41</strong>.</p>
+</section>
+<noscript><p>Za prikaz matematičkih formula uključite JavaScript. Konačan rezultat je 13/41, odnosno približno 31,71%.</p></noscript>
+</main>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</body>
+</html>
