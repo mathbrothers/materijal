@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zadatak 6 · FON2023J15 | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:18px/1.75 Georgia,serif;background:#f5f7fb;color:#203148;max-width:1020px;margin:30px auto;padding:0 20px}h1,h2,h3,nav,.eyebrow{font-family:system-ui,sans-serif}h1{font-size:2rem;line-height:1.2;color:#153451}h2{font-size:1.3rem;margin-top:0}h3{font-size:1.05rem;margin-top:24px}.card{border-left:6px solid;padding:22px 26px;margin:22px 0;border-radius:12px;overflow-x:auto}.task{background:#e8f3ff;border-color:#2780ba}.idea{background:#edf0ff;border-color:#6373bc}.solution{background:#edf8f0;border-color:#33996a}.answer{background:#daf1e3;border-color:#187d50}.check{background:#fff7e4;border-color:#d59c2e}.note{background:#fff1ec;border-color:#d77d5c}nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:20px 0}a{color:#155fa4}p{margin:12px 0}.eyebrow{font-size:.85rem;letter-spacing:.08em;color:#51677e;text-transform:uppercase}footer{text-align:center;font-size:.9rem;color:#52677d;margin:36px 0}.options{font-size:.95rem}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}.tile{background:white;border:1px solid #d4deea;border-radius:12px;padding:18px}.tile a{font:600 1.05rem system-ui}.tile p{font-size:.95rem}.pill{display:inline-block;background:#d9f0e3;color:#175337;border-radius:8px;padding:4px 10px;font-family:system-ui}.all-task{border-top:3px solid #c3d2e1;margin-top:65px;padding-top:25px}mjx-container{max-width:100%}@media(max-width:600px){body{font-size:16px;padding:0 12px}.card{padding:16px 14px}h1{font-size:1.55rem}}@media print{body{max-width:none;background:white;font-size:11pt}.card{break-inside:avoid;border-radius:0}nav,.no-print{display:none}a{color:inherit;text-decoration:none}.all-task{break-before:page}}</style></head><body><nav><a href="index.html">← Indeks</a><a href="sva-resenja.html">Sva rešenja na jednoj strani</a><a href="original.pdf">Izvorni PDF</a></nav><p class="eyebrow">Zadatak 6 / 12 · FON2023J15</p><h1>6. Deljenje uz promenu smera nejednakosti</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti razliku najvećeg i najmanjeg rešenja nejednačine</p>\[x\sqrt{x^2+x-6}\ge2x^2-4x.\]<p class="options">A) \(\frac{14}{3}\); B) \(\frac23\); C) \(\frac{11}{3}\); D) \(\frac53\); E) \(\frac83\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Domen se deli na dva intervala različitog znaka broja \(x\). Na negativnom intervalu nejednačina nije moguća; na pozitivnom delimo sa \(x\) i tek zatim kvadriramo dve nenegativne strane.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>\[x^2+x-6=(x+3)(x-2)\ge0.\]
+\[D=(-\infty,-3]\cup[2,+\infty).\]
+<h3>2. Negativni deo domena: \(x\le-3\)</h3>
+<p>Pošto je \(x&lt;0\), deljenje početne nejednačine sa \(x\) menja smer:</p>
+\[\sqrt{x^2+x-6}\le2x-4.\]
+<p>Leva strana je nenegativna, a desna je za \(x\le-3\) najviše \(-10\). To je nemoguće. Na ovom delu domena nema rešenja.</p>
+<h3>3. Pozitivni deo domena: \(x\ge2\)</h3>
+<p>Sada je \(x&gt;0\), pa deljenjem smer ostaje isti:</p>
+\[\sqrt{x^2+x-6}\ge2x-4.\]
+<p>Desna strana je nenegativna jer je \(x\ge2\). Zato smemo ekvivalentno kvadrirati:</p>
+\[\begin{aligned}
+x^2+x-6&amp;\ge(2x-4)^2\\
+x^2+x-6&amp;\ge4x^2-16x+16\\
+3x^2-17x+22&amp;\le0\\
+(3x-11)(x-2)&amp;\le0.
+\end{aligned}\]
+<p>Nule su \(2\) i \(\frac{11}{3}\). Proizvod je nepozitivan između njih, sa uključenim krajevima:</p>
+\[S=\left[2,\frac{11}{3}\right].\]
+<h3>4. Tražena razlika</h3>\[x_{\max}-x_{\min}=\frac{11}{3}-2=\frac53.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\left[2,\frac{11}{3}\right],\qquad\text{razlika}=\frac53,\quad\text{odgovor D}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Oba kraja zaista daju jednakost u originalu:</p>
+\[x=2:\quad2\sqrt0=0=8-8.\]
+\[x=\frac{11}{3}:\quad x^2+x-6=\frac{100}{9},\quad x\sqrt{x^2+x-6}=\frac{110}{9}.\]
+\[2x^2-4x=\frac{242}{9}-\frac{132}{9}=\frac{110}{9}.\]</section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Pri deljenju sa negativnim \(x\) smer se menja. Kvadriranje pre analize znakova može lažno uključiti ceo deo negativnog domena.</p></section>
+<nav><a href="zadatak-05.html">← Prethodni zadatak</a><a href="zadatak-07.html">Sledeći zadatak →</a></nav><footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>

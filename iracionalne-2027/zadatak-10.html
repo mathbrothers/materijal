@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zadatak 10 · FON2019J9 | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:18px/1.75 Georgia,serif;background:#f5f7fb;color:#203148;max-width:1020px;margin:30px auto;padding:0 20px}h1,h2,h3,nav,.eyebrow{font-family:system-ui,sans-serif}h1{font-size:2rem;line-height:1.2;color:#153451}h2{font-size:1.3rem;margin-top:0}h3{font-size:1.05rem;margin-top:24px}.card{border-left:6px solid;padding:22px 26px;margin:22px 0;border-radius:12px;overflow-x:auto}.task{background:#e8f3ff;border-color:#2780ba}.idea{background:#edf0ff;border-color:#6373bc}.solution{background:#edf8f0;border-color:#33996a}.answer{background:#daf1e3;border-color:#187d50}.check{background:#fff7e4;border-color:#d59c2e}.note{background:#fff1ec;border-color:#d77d5c}nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:20px 0}a{color:#155fa4}p{margin:12px 0}.eyebrow{font-size:.85rem;letter-spacing:.08em;color:#51677e;text-transform:uppercase}footer{text-align:center;font-size:.9rem;color:#52677d;margin:36px 0}.options{font-size:.95rem}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}.tile{background:white;border:1px solid #d4deea;border-radius:12px;padding:18px}.tile a{font:600 1.05rem system-ui}.tile p{font-size:.95rem}.pill{display:inline-block;background:#d9f0e3;color:#175337;border-radius:8px;padding:4px 10px;font-family:system-ui}.all-task{border-top:3px solid #c3d2e1;margin-top:65px;padding-top:25px}mjx-container{max-width:100%}@media(max-width:600px){body{font-size:16px;padding:0 12px}.card{padding:16px 14px}h1{font-size:1.55rem}}@media print{body{max-width:none;background:white;font-size:11pt}.card{break-inside:avoid;border-radius:0}nav,.no-print{display:none}a{color:inherit;text-decoration:none}.all-task{break-before:page}}</style></head><body><nav><a href="index.html">← Indeks</a><a href="sva-resenja.html">Sva rešenja na jednoj strani</a><a href="original.pdf">Izvorni PDF</a></nav><p class="eyebrow">Zadatak 10 / 12 · FON2019J9</p><h1>10. Kubni koreni i izbor celobrojnih rešenja</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti proizvod svih celobrojnih rešenja jednačine</p>\[\sqrt[3]{x+5}+\sqrt[3]{x+6}=\sqrt[3]{2x+11}.\]<p class="options">A) \(30\); B) \(165\); C) \(-30\); D) \(-165\); E) \(-11\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Uvedimo oznake za tri kubna korena. Zbir kubova prva dva jednak je kubu trećeg. Formula za kub zbira zato daje proizvod jednak nuli.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen i oznake</h3>
+<p>Kubni koren postoji za svaki realan broj, pa je \(D=\mathbb R\). Neka je</p>
+\[a=\sqrt[3]{x+5},\qquad b=\sqrt[3]{x+6},\qquad c=\sqrt[3]{2x+11}.\]
+<p>Uvek važi</p>\[a^3+b^3=(x+5)+(x+6)=2x+11=c^3.\]
+<p>Početna jednačina je \(a+b=c\).</p>
+<h3>2. Kubiranje i faktorisanje</h3>
+<p>Kubiranje je ekvivalentno na realnim brojevima jer je funkcija \(u\mapsto u^3\) strogo rastuća:</p>
+\[\begin{aligned}
+a+b=c&amp;\iff(a+b)^3=c^3\\
+&amp;\iff a^3+b^3+3ab(a+b)=c^3\\
+&amp;\iff3ab(a+b)=0.
+\end{aligned}\]
+<p>Pošto je \(a^3+b^3=c^3\) identitet, dobijeni uslov je i neophodan i dovoljan. Sledi:</p>
+\[a=0\quad\text{ili}\quad b=0\quad\text{ili}\quad a+b=0.\]
+<h3>3. Tri slučaja</h3>
+\[a=0\iff x+5=0\iff x=-5.\]
+\[b=0\iff x+6=0\iff x=-6.\]
+<p>Ako je \(a+b=0\), tada je \(a=-b\), pa kubiranjem dobijamo</p>
+\[x+5=-(x+6)\iff2x+11=0\iff x=-\frac{11}{2}.\]
+<p>Obrnuto, za \(x=-\frac{11}{2}\) potkorene veličine su \(-\frac12\) i \(\frac12\), pa se njihovi kubni koreni poništavaju.</p>
+<h3>4. Biramo samo celobrojna rešenja</h3>
+\[S=\left\{-6,-\frac{11}{2},-5\right\},\qquad S\cap\mathbb Z=\{-6,-5\}.\]
+\[P=(-6)(-5)=30.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{\text{Celobrojna rešenja su }-6,-5;\qquad P=30,\quad\text{odgovor A}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=-6:\quad\sqrt[3]{-1}+\sqrt[3]{0}=-1=\sqrt[3]{-1}.\]
+\[x=-5:\quad\sqrt[3]{0}+\sqrt[3]{1}=1=\sqrt[3]{1}.\]
+\[x=-\frac{11}{2}:\quad\sqrt[3]{-\frac12}+\sqrt[3]{\frac12}=0=\sqrt[3]{0}.\]
+<p>Treće rešenje je realno, ali nije celobrojno i ne ulazi u traženi proizvod.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Ne zaboraviti slučaj \(a+b=0\), ali ne množiti necelobrojno rešenje kada se traži proizvod samo celobrojnih.</p></section>
+<nav><a href="zadatak-09.html">← Prethodni zadatak</a><a href="zadatak-11.html">Sledeći zadatak →</a></nav><footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>

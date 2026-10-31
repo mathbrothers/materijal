@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zadatak 5 · FON2026D11 | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:18px/1.75 Georgia,serif;background:#f5f7fb;color:#203148;max-width:1020px;margin:30px auto;padding:0 20px}h1,h2,h3,nav,.eyebrow{font-family:system-ui,sans-serif}h1{font-size:2rem;line-height:1.2;color:#153451}h2{font-size:1.3rem;margin-top:0}h3{font-size:1.05rem;margin-top:24px}.card{border-left:6px solid;padding:22px 26px;margin:22px 0;border-radius:12px;overflow-x:auto}.task{background:#e8f3ff;border-color:#2780ba}.idea{background:#edf0ff;border-color:#6373bc}.solution{background:#edf8f0;border-color:#33996a}.answer{background:#daf1e3;border-color:#187d50}.check{background:#fff7e4;border-color:#d59c2e}.note{background:#fff1ec;border-color:#d77d5c}nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:20px 0}a{color:#155fa4}p{margin:12px 0}.eyebrow{font-size:.85rem;letter-spacing:.08em;color:#51677e;text-transform:uppercase}footer{text-align:center;font-size:.9rem;color:#52677d;margin:36px 0}.options{font-size:.95rem}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}.tile{background:white;border:1px solid #d4deea;border-radius:12px;padding:18px}.tile a{font:600 1.05rem system-ui}.tile p{font-size:.95rem}.pill{display:inline-block;background:#d9f0e3;color:#175337;border-radius:8px;padding:4px 10px;font-family:system-ui}.all-task{border-top:3px solid #c3d2e1;margin-top:65px;padding-top:25px}mjx-container{max-width:100%}@media(max-width:600px){body{font-size:16px;padding:0 12px}.card{padding:16px 14px}h1{font-size:1.55rem}}@media print{body{max-width:none;background:white;font-size:11pt}.card{break-inside:avoid;border-radius:0}nav,.no-print{display:none}a{color:inherit;text-decoration:none}.all-task{break-before:page}}</style></head><body><nav><a href="index.html">← Indeks</a><a href="sva-resenja.html">Sva rešenja na jednoj strani</a><a href="original.pdf">Izvorni PDF</a></nav><p class="eyebrow">Zadatak 5 / 12 · FON2026D11</p><h1>5. Negativna leva strana nejednačine</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti broj svih celobrojnih rešenja nejednačine</p>\[x+5&lt;\sqrt{x+47}.\]<p class="options">A) \(46\); B) \(14\); C) \(48\); D) \(7\); E) \(49\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Razdvojimo slučajeve \(x+5&lt;0\) i \(x+5\ge0\). U prvom slučaju nejednačina automatski važi na domenu; tek u drugom smemo ekvivalentno kvadrirati.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>\[x+47\ge0\iff x\ge-47.\]
+<h3>2. Slučaj \(x&lt;-5\)</h3>
+<p>Tada je \(x+5&lt;0\), dok je koren nenegativan. Svaki takav broj iz domena zadovoljava strogu nejednačinu:</p>
+\[S_1=[-47,-5).\]
+<h3>3. Slučaj \(x\ge-5\)</h3>
+<p>Obe strane su nenegativne. Kvadriranje zato čuva ekvivalentnost i smer:</p>
+\[\begin{aligned}
+(x+5)^2&amp;&lt;x+47\\
+x^2+10x+25&amp;&lt;x+47\\
+x^2+9x-22&amp;&lt;0\\
+(x+11)(x-2)&amp;&lt;0.
+\end{aligned}\]
+<p>Proizvod je negativan između nula, pa je \(-11&lt;x&lt;2\). U ovom slučaju dodatno važi \(x\ge-5\), otuda</p>
+\[S_2=[-5,2).\]
+<h3>4. Unija i brojanje celih brojeva</h3>
+\[S=S_1\cup S_2=[-47,2).\]
+<p>Celobrojna rešenja su svi brojevi od \(-47\) do \(1\), uključujući oba:</p>
+\[S\cap\mathbb Z=\{-47,-46,\ldots,0,1\},\qquad N=1-(-47)+1=49.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=[-47,2),\qquad N=49,\quad\text{odgovor E}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Proverimo granične tačke:</p>
+\[x=-47:\quad-42&lt;0\quad\checkmark;\qquad x=-5:\quad0&lt;\sqrt{42}\quad\checkmark.\]
+\[x=1:\quad6&lt;\sqrt{48}\quad\checkmark\quad(36&lt;48).\]
+\[x=2:\quad7&lt;7\quad\text{nije tačno}.\]
+<p>Tačka \(-47\) je uključena, a \(2\) isključena.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Kvadriranjem odmah na početku izgubili bismo mnoga negativna rešenja. Negativan broj je manji od nenegativnog korena bez poređenja njihovih kvadrata.</p></section>
+<nav><a href="zadatak-04.html">← Prethodni zadatak</a><a href="zadatak-06.html">Sledeći zadatak →</a></nav><footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>

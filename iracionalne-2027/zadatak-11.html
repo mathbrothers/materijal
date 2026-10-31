@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zadatak 11 · FON2023P7 | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:18px/1.75 Georgia,serif;background:#f5f7fb;color:#203148;max-width:1020px;margin:30px auto;padding:0 20px}h1,h2,h3,nav,.eyebrow{font-family:system-ui,sans-serif}h1{font-size:2rem;line-height:1.2;color:#153451}h2{font-size:1.3rem;margin-top:0}h3{font-size:1.05rem;margin-top:24px}.card{border-left:6px solid;padding:22px 26px;margin:22px 0;border-radius:12px;overflow-x:auto}.task{background:#e8f3ff;border-color:#2780ba}.idea{background:#edf0ff;border-color:#6373bc}.solution{background:#edf8f0;border-color:#33996a}.answer{background:#daf1e3;border-color:#187d50}.check{background:#fff7e4;border-color:#d59c2e}.note{background:#fff1ec;border-color:#d77d5c}nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:20px 0}a{color:#155fa4}p{margin:12px 0}.eyebrow{font-size:.85rem;letter-spacing:.08em;color:#51677e;text-transform:uppercase}footer{text-align:center;font-size:.9rem;color:#52677d;margin:36px 0}.options{font-size:.95rem}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}.tile{background:white;border:1px solid #d4deea;border-radius:12px;padding:18px}.tile a{font:600 1.05rem system-ui}.tile p{font-size:.95rem}.pill{display:inline-block;background:#d9f0e3;color:#175337;border-radius:8px;padding:4px 10px;font-family:system-ui}.all-task{border-top:3px solid #c3d2e1;margin-top:65px;padding-top:25px}mjx-container{max-width:100%}@media(max-width:600px){body{font-size:16px;padding:0 12px}.card{padding:16px 14px}h1{font-size:1.55rem}}@media print{body{max-width:none;background:white;font-size:11pt}.card{break-inside:avoid;border-radius:0}nav,.no-print{display:none}a{color:inherit;text-decoration:none}.all-task{break-before:page}}</style></head><body><nav><a href="index.html">← Indeks</a><a href="sva-resenja.html">Sva rešenja na jednoj strani</a><a href="original.pdf">Izvorni PDF</a></nav><p class="eyebrow">Zadatak 11 / 12 · FON2023P7</p><h1>11. Prepoznavanje potpunih kvadrata</h1><section class="card task"><h2>Zadatak</h2><p>Rešenje jednačine</p>\[\sqrt{x+2+2\sqrt{x+1}}+\sqrt{x+10+6\sqrt{x+1}}=14\]<p>pripada kom intervalu?</p><p class="options">A) \([5,10)\); B) \([15,20)\); C) \([0,5)\); D) \([20,25)\); E) \([10,15)\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Smena \(t=\sqrt{x+1}\) pretvara potkorene izraze u potpune kvadrate \((t+1)^2\) i \((t+3)^2\). Pošto je \(t\ge0\), apsolutne vrednosti možemo odmah otvoriti.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen i smena</h3>
+<p>Unutrašnji koren zahteva \(x\ge-1\). Uvodimo</p>
+\[t=\sqrt{x+1}\ge0,\qquad x=t^2-1.\]
+<h3>2. Prvi spoljašnji koren</h3>
+\[x+2+2\sqrt{x+1}=t^2-1+2+2t=t^2+2t+1=(t+1)^2.\]
+\[\sqrt{x+2+2\sqrt{x+1}}=\sqrt{(t+1)^2}=|t+1|=t+1.\]
+<h3>3. Drugi spoljašnji koren</h3>
+\[x+10+6\sqrt{x+1}=t^2-1+10+6t=t^2+6t+9=(t+3)^2.\]
+\[\sqrt{x+10+6\sqrt{x+1}}=|t+3|=t+3.\]
+<p>Ovi potpuni kvadrati su nenegativni, pa spoljašnji koreni ne dodaju nove uslove domenu.</p>
+<h3>4. Linearna jednačina i povratak smene</h3>
+\[(t+1)+(t+3)=14\iff2t+4=14\iff t=5.\]
+<p>Dobijeno \(t=5\) ispunjava uslov \(t\ge0\). Zato je</p>
+\[\sqrt{x+1}=5\iff x+1=25\iff x=24.\]
+<p>Broj \(24\) pripada intervalu \([20,25)\).</p></section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{x=24\in[20,25),\qquad\text{odgovor D}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=24:\quad\sqrt{x+1}=5.\]
+\[\sqrt{24+2+2\cdot5}+\sqrt{24+10+6\cdot5}=\sqrt{36}+\sqrt{64}=6+8=14.\]
+<p>Smena je jednoznačna za \(x\ge-1\), a linearna jednačina po \(t\) ima samo jedno rešenje, pa je i \(x=24\) jedino rešenje.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Uopšteno važi \(\sqrt{u^2}=|u|\), a ne uvek \(u\). Ovde su \(t+1\) i \(t+3\) pozitivni jer je \(t\ge0\).</p></section>
+<nav><a href="zadatak-10.html">← Prethodni zadatak</a><a href="zadatak-12.html">Sledeći zadatak →</a></nav><footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>

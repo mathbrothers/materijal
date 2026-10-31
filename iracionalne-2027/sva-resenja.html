@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Svih 12 detaljnih rešenja — Iracionalne 2027 | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:18px/1.75 Georgia,serif;background:#f5f7fb;color:#203148;max-width:1020px;margin:30px auto;padding:0 20px}h1,h2,h3,nav,.eyebrow{font-family:system-ui,sans-serif}h1{font-size:2rem;line-height:1.2;color:#153451}h2{font-size:1.3rem;margin-top:0}h3{font-size:1.05rem;margin-top:24px}.card{border-left:6px solid;padding:22px 26px;margin:22px 0;border-radius:12px;overflow-x:auto}.task{background:#e8f3ff;border-color:#2780ba}.idea{background:#edf0ff;border-color:#6373bc}.solution{background:#edf8f0;border-color:#33996a}.answer{background:#daf1e3;border-color:#187d50}.check{background:#fff7e4;border-color:#d59c2e}.note{background:#fff1ec;border-color:#d77d5c}nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:20px 0}a{color:#155fa4}p{margin:12px 0}.eyebrow{font-size:.85rem;letter-spacing:.08em;color:#51677e;text-transform:uppercase}footer{text-align:center;font-size:.9rem;color:#52677d;margin:36px 0}.options{font-size:.95rem}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}.tile{background:white;border:1px solid #d4deea;border-radius:12px;padding:18px}.tile a{font:600 1.05rem system-ui}.tile p{font-size:.95rem}.pill{display:inline-block;background:#d9f0e3;color:#175337;border-radius:8px;padding:4px 10px;font-family:system-ui}.all-task{border-top:3px solid #c3d2e1;margin-top:65px;padding-top:25px}mjx-container{max-width:100%}@media(max-width:600px){body{font-size:16px;padding:0 12px}.card{padding:16px 14px}h1{font-size:1.55rem}}@media print{body{max-width:none;background:white;font-size:11pt}.card{break-inside:avoid;border-radius:0}nav,.no-print{display:none}a{color:inherit;text-decoration:none}.all-task{break-before:page}}</style></head><body><p class="eyebrow">Mathbrotherhood · Zbirka sa detaljnim postupkom</p><h1>Iracionalne jednačine i nejednačine — svih 12 rešenja</h1><nav><a href="index.html">Indeks i pojedinačne kartice</a><a href="original.pdf">Izvorni PDF</a><button onclick="window.print()">Štampaj / sačuvaj PDF</button></nav><p>Redosled odgovara okvirima u izvornom PDF-u. U svakom rešenju navedeni su domen, opravdanje transformacija i direktna provera.</p><ol><li><a href="#zadatak-1">FON2009J5 — Kvadriranje i lažni koren</a></li><li><a href="#zadatak-2">FON2026P10 — Proizvod i rešenje koje se ne sme izgubiti</a></li><li><a href="#zadatak-3">FON2026J11 — Smena koja izbegava drugo kvadriranje</a></li><li><a href="#zadatak-4">FON2014P11 — Domen svodi jednačinu na jednu tačku</a></li><li><a href="#zadatak-5">FON2026D11 — Negativna leva strana nejednačine</a></li><li><a href="#zadatak-6">FON2023J15 — Deljenje uz promenu smera nejednakosti</a></li><li><a href="#zadatak-7">FON2001J1 — Nule proizvoda i obavezna provera domena</a></li><li><a href="#zadatak-8">FON2013D9 — Stroga nejednačina i nule korena</a></li><li><a href="#zadatak-9">FON2007J3 — Nule korena koje treba sačuvati</a></li><li><a href="#zadatak-10">FON2019J9 — Kubni koreni i izbor celobrojnih rešenja</a></li><li><a href="#zadatak-11">FON2023P7 — Prepoznavanje potpunih kvadrata</a></li><li><a href="#zadatak-12">FON2022J15 — Apsolutna vrednost i zbir kvadrata rešenja</a></li></ol><article class="all-task" id="zadatak-1"><p class="eyebrow">FON2009J5</p><h1>1. Kvadriranje i lažni koren</h1><section class="card task"><h2>Zadatak</h2><p>Sva realna rešenja jednačine</p>\[\sqrt{x^2-5x+10}=8-2x\]<p>pripadaju kom od ponuđenih skupova?</p><p class="options">A) \(\{1,2,3\}\); B) \(\{1,2,4\}\); C) \(\{1,2,5\}\); D) \(\{1,2,6\}\); E) \(\{2,4,6\}\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Pre kvadriranja moramo obezbediti da desna strana bude nenegativna. Kvadriranje bez tog uslova može dodati rešenje koje početna jednačina nema.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen i uslov za desnu stranu</h3>
+\[x^2-5x+10=\left(x-\frac52\right)^2+\frac{15}{4}&gt;0\quad (x\in\mathbb R).\]
+<p>Koren postoji za svaki realan broj. Pošto je njegova vrednost nenegativna, mora važiti</p>
+\[8-2x\ge0\iff x\le4.\]
+<h3>2. Kvadriranje</h3><p>Uz uslov \(x\le4\), obe strane su nenegativne, pa je kvadriranje ekvivalentno početnoj jednačini:</p>
+\[\begin{aligned}
+x^2-5x+10&amp;=(8-2x)^2\\
+x^2-5x+10&amp;=64-32x+4x^2\\
+0&amp;=3x^2-27x+54\\
+0&amp;=3(x^2-9x+18)=3(x-3)(x-6).
+\end{aligned}\]
+<p>Kandidati su \(x=3\) i \(x=6\). Uslov \(x\le4\) ispunjava samo \(x=3\).</p>
+<h3>3. Izbor ponuđenog skupa</h3><p>Skup svih rešenja je \(S=\{3\}\). Traži se ponuđeni skup koji sadrži sva rešenja, a ne skup koji mora biti jednak skupu rešenja. Samo skup pod A sadrži broj \(3\).</p></section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\{3\},\qquad \text{odgovor A: }\{1,2,3\}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=3:\quad \sqrt{9-15+10}=2=8-6.\]
+\[x=6:\quad \sqrt{36-30+10}=4\ne-4=8-12.\]
+<p>Drugi kandidat je zaista lažni koren nastao kvadriranjem.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Ne biramo skup koji sadrži oba korena kvadrirane jednačine: \(6\) ne rešava originalnu jednačinu.</p></section>
+</article><article class="all-task" id="zadatak-2"><p class="eyebrow">FON2026P10</p><h1>2. Proizvod i rešenje koje se ne sme izgubiti</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti zbir svih rešenja jednačine</p>\[(x-2)\sqrt{x^2-2x+10}=2x^2-3x-2.\]<p class="options">A) \(2\); B) \(3\); C) \(-1\); D) \(1\); E) \(-3\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Desnu stranu rastavimo tako da izdvojimo činilac \(x-2\). Zatim primenimo pravilo da je proizvod nula. Deljenjem sa \(x-2\) bez posebnog slučaja izgubili bismo jedno rešenje.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>\[x^2-2x+10=(x-1)^2+9&gt;0,\qquad D=\mathbb R.\]
+<h3>2. Faktorisanje bez deljenja</h3>
+\[2x^2-3x-2=(x-2)(2x+1).\]
+\[(x-2)\left(\sqrt{x^2-2x+10}-(2x+1)\right)=0.\]
+<p>Dakle, postoje dva slučaja:</p>\[x=2\quad\text{ili}\quad\sqrt{x^2-2x+10}=2x+1.\]
+<h3>3. Rešavanje druge jednačine</h3>
+<p>Neophodno je \(2x+1\ge0\), odnosno \(x\ge-\frac12\). Uz taj uslov smemo kvadrirati:</p>
+\[\begin{aligned}
+x^2-2x+10&amp;=(2x+1)^2\\
+x^2-2x+10&amp;=4x^2+4x+1\\
+0&amp;=3x^2+6x-9=3(x+3)(x-1).
+\end{aligned}\]
+<p>Kandidati su \(-3\) i \(1\). Broj \(-3\) ne ispunjava \(x\ge-\frac12\); ostaje \(x=1\).</p>
+<h3>4. Skupljanje oba slučaja</h3>\[S=\{1,2\},\qquad 1+2=3.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\{1,2\},\qquad \text{zbir}=3,\quad \text{odgovor B}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Direktno u početnoj jednačini:</p>
+\[x=1:\quad (-1)\sqrt9=-3=2-3-2.\]
+\[x=2:\quad 0\cdot\sqrt{10}=0=8-6-2.\]
+\[x=-3:\quad (-5)\sqrt{25}=-25\ne25=18+9-2.\]</section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Ne deliti odmah sa \(x-2\): time se gubi važeće rešenje \(x=2\).</p></section>
+</article><article class="all-task" id="zadatak-3"><p class="eyebrow">FON2026J11</p><h1>3. Smena koja izbegava drugo kvadriranje</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti proizvod svih realnih rešenja jednačine</p>\[\sqrt{2x+8}-\sqrt{x+2}=2.\]<p class="options">A) \(-28\); B) \(-4\); C) \(28\); D) \(-14\); E) \(14\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Izdvojimo jedan koren, jednom kvadriramo i zatim uvedemo \(t=\sqrt{x+2}\ge0\). Dobićemo jednostavnu jednačinu \(t^2=4t\).</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>\[2x+8\ge0,\quad x+2\ge0\quad\Longrightarrow\quad x\ge-2.\]
+<h3>2. Izdvajanje korena i kvadriranje</h3>
+\[\sqrt{2x+8}=2+\sqrt{x+2}.\]
+<p>Obe strane su nenegativne na domenu, pa je sledeći korak ekvivalentan:</p>
+\[\begin{aligned}
+2x+8&amp;=4+4\sqrt{x+2}+x+2\\
+x+2&amp;=4\sqrt{x+2}.
+\end{aligned}\]
+<h3>3. Smena</h3>\[t=\sqrt{x+2}\ge0,\qquad x+2=t^2.\]
+\[t^2=4t\iff t(t-4)=0\iff t=0\ \text{ili}\ t=4.\]
+<p>Vraćamo smenu:</p>
+\[t=0\Rightarrow x=-2,\qquad t=4\Rightarrow x+2=16\Rightarrow x=14.\]
+<p>Oba broja su u domenu, pa je</p>\[S=\{-2,14\},\qquad (-2)\cdot14=-28.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\{-2,14\},\qquad \text{proizvod}=-28,\quad \text{odgovor A}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=-2:\quad\sqrt4-\sqrt0=2.\]
+\[x=14:\quad\sqrt{36}-\sqrt{16}=6-4=2.\]</section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Ne deliti jednačinu \(t^2=4t\) sa \(t\), jer je \(t=0\) dozvoljeno i daje rešenje \(x=-2\).</p></section>
+</article><article class="all-task" id="zadatak-4"><p class="eyebrow">FON2014P11</p><h1>4. Domen svodi jednačinu na jednu tačku</h1><section class="card task"><h2>Zadatak</h2><p>Realno rešenje jednačine</p>\[\sqrt{x^2-4x}+\sqrt{8+2x-x^2}=\sqrt{x}-2\]<p>pripada kom intervalu?</p><p class="options">A) \((4,6]\); B) \((6,+\infty)\); C) \((2,4]\); D) \((-\infty,0]\); E) \((0,2]\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Zbir korena levo je nenegativan, pa i desna strana mora biti nenegativna. Taj uslov i domen drugog korena već prisiljavaju \(x=4\). Nema potrebe za višestrukim kvadriranjem.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Uslovi za sva tri korena</h3>
+\[x^2-4x=x(x-4)\ge0\iff x\le0\ \text{ili}\ x\ge4.\]
+\[8+2x-x^2=-(x-4)(x+2)\ge0\iff -2\le x\le4.\]
+\[x\ge0.\]
+<p>Presek ova tri uslova je</p>
+\[D=\bigl(( -\infty,0]\cup[4,+\infty)\bigr)\cap[-2,4]\cap[0,+\infty)=\{0,4\}.\]
+<h3>2. Znak desne strane</h3>
+<p>Na levoj strani je zbir nenegativnih brojeva. Zato mora važiti</p>
+\[\sqrt{x}-2\ge0\iff\sqrt{x}\ge2\iff x\ge4.\]
+<p>Od tačaka domena ovaj uslov ispunjava jedino \(x=4\).</p>
+<h3>3. Provera i izbor intervala</h3>
+\[x=4:\quad\sqrt{16-16}+\sqrt{8+8-16}=\sqrt4-2\iff0+0=0.\]
+<p>Broj \(4\) pripada intervalu \((2,4]\); u ponuđeni interval \((4,6]\) ne pripada jer je njegov levi kraj isključen.</p></section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{x=4\in(2,4],\qquad \text{odgovor C}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Druga tačka domena nije rešenje:</p>\[x=0:\quad\sqrt0+\sqrt8=2\sqrt2\ne-2=\sqrt0-2.\]
+<p>Pošto domen ima samo dve tačke i obe su ispitane, nema drugih rešenja.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Proveriti znak desne strane pre kvadriranja i pažljivo čitati otvorene i zatvorene krajeve ponuđenih intervala.</p></section>
+</article><article class="all-task" id="zadatak-5"><p class="eyebrow">FON2026D11</p><h1>5. Negativna leva strana nejednačine</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti broj svih celobrojnih rešenja nejednačine</p>\[x+5&lt;\sqrt{x+47}.\]<p class="options">A) \(46\); B) \(14\); C) \(48\); D) \(7\); E) \(49\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Razdvojimo slučajeve \(x+5&lt;0\) i \(x+5\ge0\). U prvom slučaju nejednačina automatski važi na domenu; tek u drugom smemo ekvivalentno kvadrirati.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>\[x+47\ge0\iff x\ge-47.\]
+<h3>2. Slučaj \(x&lt;-5\)</h3>
+<p>Tada je \(x+5&lt;0\), dok je koren nenegativan. Svaki takav broj iz domena zadovoljava strogu nejednačinu:</p>
+\[S_1=[-47,-5).\]
+<h3>3. Slučaj \(x\ge-5\)</h3>
+<p>Obe strane su nenegativne. Kvadriranje zato čuva ekvivalentnost i smer:</p>
+\[\begin{aligned}
+(x+5)^2&amp;&lt;x+47\\
+x^2+10x+25&amp;&lt;x+47\\
+x^2+9x-22&amp;&lt;0\\
+(x+11)(x-2)&amp;&lt;0.
+\end{aligned}\]
+<p>Proizvod je negativan između nula, pa je \(-11&lt;x&lt;2\). U ovom slučaju dodatno važi \(x\ge-5\), otuda</p>
+\[S_2=[-5,2).\]
+<h3>4. Unija i brojanje celih brojeva</h3>
+\[S=S_1\cup S_2=[-47,2).\]
+<p>Celobrojna rešenja su svi brojevi od \(-47\) do \(1\), uključujući oba:</p>
+\[S\cap\mathbb Z=\{-47,-46,\ldots,0,1\},\qquad N=1-(-47)+1=49.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=[-47,2),\qquad N=49,\quad\text{odgovor E}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Proverimo granične tačke:</p>
+\[x=-47:\quad-42&lt;0\quad\checkmark;\qquad x=-5:\quad0&lt;\sqrt{42}\quad\checkmark.\]
+\[x=1:\quad6&lt;\sqrt{48}\quad\checkmark\quad(36&lt;48).\]
+\[x=2:\quad7&lt;7\quad\text{nije tačno}.\]
+<p>Tačka \(-47\) je uključena, a \(2\) isključena.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Kvadriranjem odmah na početku izgubili bismo mnoga negativna rešenja. Negativan broj je manji od nenegativnog korena bez poređenja njihovih kvadrata.</p></section>
+</article><article class="all-task" id="zadatak-6"><p class="eyebrow">FON2023J15</p><h1>6. Deljenje uz promenu smera nejednakosti</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti razliku najvećeg i najmanjeg rešenja nejednačine</p>\[x\sqrt{x^2+x-6}\ge2x^2-4x.\]<p class="options">A) \(\frac{14}{3}\); B) \(\frac23\); C) \(\frac{11}{3}\); D) \(\frac53\); E) \(\frac83\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Domen se deli na dva intervala različitog znaka broja \(x\). Na negativnom intervalu nejednačina nije moguća; na pozitivnom delimo sa \(x\) i tek zatim kvadriramo dve nenegativne strane.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>\[x^2+x-6=(x+3)(x-2)\ge0.\]
+\[D=(-\infty,-3]\cup[2,+\infty).\]
+<h3>2. Negativni deo domena: \(x\le-3\)</h3>
+<p>Pošto je \(x&lt;0\), deljenje početne nejednačine sa \(x\) menja smer:</p>
+\[\sqrt{x^2+x-6}\le2x-4.\]
+<p>Leva strana je nenegativna, a desna je za \(x\le-3\) najviše \(-10\). To je nemoguće. Na ovom delu domena nema rešenja.</p>
+<h3>3. Pozitivni deo domena: \(x\ge2\)</h3>
+<p>Sada je \(x&gt;0\), pa deljenjem smer ostaje isti:</p>
+\[\sqrt{x^2+x-6}\ge2x-4.\]
+<p>Desna strana je nenegativna jer je \(x\ge2\). Zato smemo ekvivalentno kvadrirati:</p>
+\[\begin{aligned}
+x^2+x-6&amp;\ge(2x-4)^2\\
+x^2+x-6&amp;\ge4x^2-16x+16\\
+3x^2-17x+22&amp;\le0\\
+(3x-11)(x-2)&amp;\le0.
+\end{aligned}\]
+<p>Nule su \(2\) i \(\frac{11}{3}\). Proizvod je nepozitivan između njih, sa uključenim krajevima:</p>
+\[S=\left[2,\frac{11}{3}\right].\]
+<h3>4. Tražena razlika</h3>\[x_{\max}-x_{\min}=\frac{11}{3}-2=\frac53.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\left[2,\frac{11}{3}\right],\qquad\text{razlika}=\frac53,\quad\text{odgovor D}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Oba kraja zaista daju jednakost u originalu:</p>
+\[x=2:\quad2\sqrt0=0=8-8.\]
+\[x=\frac{11}{3}:\quad x^2+x-6=\frac{100}{9},\quad x\sqrt{x^2+x-6}=\frac{110}{9}.\]
+\[2x^2-4x=\frac{242}{9}-\frac{132}{9}=\frac{110}{9}.\]</section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Pri deljenju sa negativnim \(x\) smer se menja. Kvadriranje pre analize znakova može lažno uključiti ceo deo negativnog domena.</p></section>
+</article><article class="all-task" id="zadatak-7"><p class="eyebrow">FON2001J1</p><h1>7. Nule proizvoda i obavezna provera domena</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti broj realnih rešenja jednačine</p>\[(x^2-2x-3)\sqrt{x^2-7x+6}=0.\]<p class="options">A) \(0\); B) \(1\); C) \(2\); D) \(3\); E) \(4\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Proizvod je nula kada je bar jedan činilac nula, ali taj iskaz primenjujemo samo tamo gde je ceo izraz definisan. Nula polinoma izvan domena korena nije rešenje.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen korena</h3>
+\[x^2-7x+6=(x-1)(x-6)\ge0\iff x\le1\ \text{ili}\ x\ge6.\]
+\[D=(-\infty,1]\cup[6,+\infty).\]
+<h3>2. Nule prvog činioca</h3>
+\[x^2-2x-3=(x-3)(x+1)=0\iff x=3\ \text{ili}\ x=-1.\]
+<p>Broj \(-1\) pripada domenu. Broj \(3\) ne pripada, jer je \(3^2-7\cdot3+6=-6&lt;0\). Zato prvi činilac daje samo \(x=-1\).</p>
+<h3>3. Nule drugog činioca</h3>
+\[\sqrt{x^2-7x+6}=0\iff x^2-7x+6=0\iff x=1\ \text{ili}\ x=6.\]
+<p>Oba broja su na granici domena i dozvoljena su. Kada je koren nula, proizvod je nula bez obzira na vrednost prvog činioca.</p>
+<h3>4. Brojanje različitih rešenja</h3>\[S=\{-1,1,6\},\qquad |S|=3.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\{-1,1,6\},\qquad N=3,\quad\text{odgovor D}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=-1:\quad(1+2-3)\sqrt{1+7+6}=0.\]
+\[x=1:\quad(1-2-3)\sqrt{1-7+6}=(-4)\cdot0=0.\]
+\[x=6:\quad(36-12-3)\sqrt{36-42+6}=21\cdot0=0.\]</section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Izraz \(0\cdot\sqrt{-6}\) nije definisan u realnim brojevima. Zato \(x=3\) ne postaje rešenje samo zato što je prvi činilac nula.</p></section>
+</article><article class="all-task" id="zadatak-8"><p class="eyebrow">FON2013D9</p><h1>8. Stroga nejednačina i nule korena</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti broj celobrojnih rešenja nejednačine</p>\[(3x^2-7x-6)\sqrt{x^2-5x+6}&lt;0.\]<p class="options">A) \(2\); B) \(3\); C) \(1\); D) \(4\); E) \(0\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Kvadratni koren nije negativan. Da bi proizvod bio strogo negativan, koren mora biti strogo pozitivan, a polinom negativan. Nule korena ovde se isključuju.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen i tačke u kojima je koren nula</h3>
+\[x^2-5x+6=(x-2)(x-3)\ge0.\]
+\[D=(-\infty,2]\cup[3,+\infty).\]
+<p>U \(x=2\) i \(x=3\) koren je nula, pa je ceo proizvod nula i ne zadovoljava \(&lt;0\). Zato za tražena rešenja mora važiti</p>
+\[x\in(-\infty,2)\cup(3,+\infty).\]
+<h3>2. Negativnost polinoma</h3>
+\[3x^2-7x-6=(3x+2)(x-3).\]
+<p>Nule su \(-\frac23\) i \(3\). Proizvod činilaca je negativan između njih:</p>
+\[(3x+2)(x-3)&lt;0\iff -\frac23&lt;x&lt;3.\]
+<h3>3. Presek uslova</h3>
+\[S=\left(-\frac23,3\right)\cap\bigl(( -\infty,2)\cup(3,+\infty)\bigr)=\left(-\frac23,2\right).\]
+<p>Jedini celi brojevi u ovom intervalu su \(0\) i \(1\), pa je broj celobrojnih rešenja \(2\).</p></section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\left(-\frac23,2\right),\quad S\cap\mathbb Z=\{0,1\},\quad\text{odgovor A}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=0:\quad(-6)\sqrt6&lt;0.\]
+\[x=1:\quad(-10)\sqrt2&lt;0.\]
+\[x=2:\quad(-8)\cdot0=0\not&lt;0.\]
+<p>Broj \(2\) zato ne sme biti uračunat.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Kod stroge nejednačine \(&lt;0\), tačke u kojima je koren nula nisu rešenja. Ne sme se deliti korenom pre nego što se izdvoje njegove nule.</p></section>
+</article><article class="all-task" id="zadatak-9"><p class="eyebrow">FON2007J3</p><h1>9. Nule korena koje treba sačuvati</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti broj celobrojnih rešenja nejednačine</p>\[(x^2+x-6)\sqrt{6+5x-x^2}\ge0.\]<p class="options">A) \(3\); B) \(6\); C) \(7\); D) \(4\); E) \(8\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Za razliku od prethodnog zadatka, ovde je jednakost dozvoljena. Zato tačke u kojima je koren nula treba sačuvati, čak i ako je polinom u njima negativan.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>
+\[6+5x-x^2=(6-x)(x+1)\ge0\iff -1\le x\le6.\]
+\[D=[-1,6].\]
+<h3>2. Krajevi domena</h3>
+<p>U \(x=-1\) i \(x=6\) koren je nula, pa je ceo proizvod nula. Oba broja zadovoljavaju nejednačinu.</p>
+<h3>3. Unutrašnjost domena</h3>
+<p>Za \(-1&lt;x&lt;6\) koren je strogo pozitivan. Tada deljenje korenom ne menja smer:</p>
+\[x^2+x-6\ge0\iff(x+3)(x-2)\ge0.\]
+<p>Na intervalu \((-1,6)\) činilac \(x+3\) je pozitivan, pa proizvod ima znak činioca \(x-2\). Zato:</p>
+\[x\ge2,\qquad S_{\mathrm{unutra}}=[2,6).\]
+<h3>4. Spajanje sa krajevima i brojanje</h3>
+\[S=\{-1\}\cup[2,6].\]
+\[S\cap\mathbb Z=\{-1,2,3,4,5,6\},\qquad N=6.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S=\{-1\}\cup[2,6],\qquad N=6,\quad\text{odgovor B}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=-1:\quad(1-1-6)\sqrt{6-5-1}=(-6)\cdot0=0.\]
+\[x=2:\quad(4+2-6)\sqrt{6+10-4}=0.\]
+\[x=6:\quad(36+6-6)\sqrt{6+30-36}=0.\]
+<p>Za \(2&lt;x&lt;6\) oba činioca su pozitivna, a za \(-1&lt;x&lt;2\) prvi je negativan i koren pozitivan.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Deljenjem korenom bez izdvajanja njegovih nula izgubilo bi se izolovano rešenje \(x=-1\).</p></section>
+</article><article class="all-task" id="zadatak-10"><p class="eyebrow">FON2019J9</p><h1>10. Kubni koreni i izbor celobrojnih rešenja</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti proizvod svih celobrojnih rešenja jednačine</p>\[\sqrt[3]{x+5}+\sqrt[3]{x+6}=\sqrt[3]{2x+11}.\]<p class="options">A) \(30\); B) \(165\); C) \(-30\); D) \(-165\); E) \(-11\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Uvedimo oznake za tri kubna korena. Zbir kubova prva dva jednak je kubu trećeg. Formula za kub zbira zato daje proizvod jednak nuli.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen i oznake</h3>
+<p>Kubni koren postoji za svaki realan broj, pa je \(D=\mathbb R\). Neka je</p>
+\[a=\sqrt[3]{x+5},\qquad b=\sqrt[3]{x+6},\qquad c=\sqrt[3]{2x+11}.\]
+<p>Uvek važi</p>\[a^3+b^3=(x+5)+(x+6)=2x+11=c^3.\]
+<p>Početna jednačina je \(a+b=c\).</p>
+<h3>2. Kubiranje i faktorisanje</h3>
+<p>Kubiranje je ekvivalentno na realnim brojevima jer je funkcija \(u\mapsto u^3\) strogo rastuća:</p>
+\[\begin{aligned}
+a+b=c&amp;\iff(a+b)^3=c^3\\
+&amp;\iff a^3+b^3+3ab(a+b)=c^3\\
+&amp;\iff3ab(a+b)=0.
+\end{aligned}\]
+<p>Pošto je \(a^3+b^3=c^3\) identitet, dobijeni uslov je i neophodan i dovoljan. Sledi:</p>
+\[a=0\quad\text{ili}\quad b=0\quad\text{ili}\quad a+b=0.\]
+<h3>3. Tri slučaja</h3>
+\[a=0\iff x+5=0\iff x=-5.\]
+\[b=0\iff x+6=0\iff x=-6.\]
+<p>Ako je \(a+b=0\), tada je \(a=-b\), pa kubiranjem dobijamo</p>
+\[x+5=-(x+6)\iff2x+11=0\iff x=-\frac{11}{2}.\]
+<p>Obrnuto, za \(x=-\frac{11}{2}\) potkorene veličine su \(-\frac12\) i \(\frac12\), pa se njihovi kubni koreni poništavaju.</p>
+<h3>4. Biramo samo celobrojna rešenja</h3>
+\[S=\left\{-6,-\frac{11}{2},-5\right\},\qquad S\cap\mathbb Z=\{-6,-5\}.\]
+\[P=(-6)(-5)=30.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{\text{Celobrojna rešenja su }-6,-5;\qquad P=30,\quad\text{odgovor A}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=-6:\quad\sqrt[3]{-1}+\sqrt[3]{0}=-1=\sqrt[3]{-1}.\]
+\[x=-5:\quad\sqrt[3]{0}+\sqrt[3]{1}=1=\sqrt[3]{1}.\]
+\[x=-\frac{11}{2}:\quad\sqrt[3]{-\frac12}+\sqrt[3]{\frac12}=0=\sqrt[3]{0}.\]
+<p>Treće rešenje je realno, ali nije celobrojno i ne ulazi u traženi proizvod.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Ne zaboraviti slučaj \(a+b=0\), ali ne množiti necelobrojno rešenje kada se traži proizvod samo celobrojnih.</p></section>
+</article><article class="all-task" id="zadatak-11"><p class="eyebrow">FON2023P7</p><h1>11. Prepoznavanje potpunih kvadrata</h1><section class="card task"><h2>Zadatak</h2><p>Rešenje jednačine</p>\[\sqrt{x+2+2\sqrt{x+1}}+\sqrt{x+10+6\sqrt{x+1}}=14\]<p>pripada kom intervalu?</p><p class="options">A) \([5,10)\); B) \([15,20)\); C) \([0,5)\); D) \([20,25)\); E) \([10,15)\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Smena \(t=\sqrt{x+1}\) pretvara potkorene izraze u potpune kvadrate \((t+1)^2\) i \((t+3)^2\). Pošto je \(t\ge0\), apsolutne vrednosti možemo odmah otvoriti.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen i smena</h3>
+<p>Unutrašnji koren zahteva \(x\ge-1\). Uvodimo</p>
+\[t=\sqrt{x+1}\ge0,\qquad x=t^2-1.\]
+<h3>2. Prvi spoljašnji koren</h3>
+\[x+2+2\sqrt{x+1}=t^2-1+2+2t=t^2+2t+1=(t+1)^2.\]
+\[\sqrt{x+2+2\sqrt{x+1}}=\sqrt{(t+1)^2}=|t+1|=t+1.\]
+<h3>3. Drugi spoljašnji koren</h3>
+\[x+10+6\sqrt{x+1}=t^2-1+10+6t=t^2+6t+9=(t+3)^2.\]
+\[\sqrt{x+10+6\sqrt{x+1}}=|t+3|=t+3.\]
+<p>Ovi potpuni kvadrati su nenegativni, pa spoljašnji koreni ne dodaju nove uslove domenu.</p>
+<h3>4. Linearna jednačina i povratak smene</h3>
+\[(t+1)+(t+3)=14\iff2t+4=14\iff t=5.\]
+<p>Dobijeno \(t=5\) ispunjava uslov \(t\ge0\). Zato je</p>
+\[\sqrt{x+1}=5\iff x+1=25\iff x=24.\]
+<p>Broj \(24\) pripada intervalu \([20,25)\).</p></section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{x=24\in[20,25),\qquad\text{odgovor D}.}\]</section>
+<section class="card check"><h2>Provera</h2>\[x=24:\quad\sqrt{x+1}=5.\]
+\[\sqrt{24+2+2\cdot5}+\sqrt{24+10+6\cdot5}=\sqrt{36}+\sqrt{64}=6+8=14.\]
+<p>Smena je jednoznačna za \(x\ge-1\), a linearna jednačina po \(t\) ima samo jedno rešenje, pa je i \(x=24\) jedino rešenje.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Uopšteno važi \(\sqrt{u^2}=|u|\), a ne uvek \(u\). Ovde su \(t+1\) i \(t+3\) pozitivni jer je \(t\ge0\).</p></section>
+</article><article class="all-task" id="zadatak-12"><p class="eyebrow">FON2022J15</p><h1>12. Apsolutna vrednost i zbir kvadrata rešenja</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti zbir kvadrata svih celobrojnih rešenja nejednačine</p>\[\sqrt{4x^2-4x+1}+2\sqrt{-2x^2+10x-8}\le4x-3.\]<p class="options">A) \(30\); B) \(21\); C) \(17\); D) \(10\); E) \(26\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Prvi koren je \(|2x-1|\). Domen drugog korena daje \(x\in[1,4]\), pa znamo da je \(|2x-1|=2x-1\). Posle sređivanja kvadriramo dve nenegativne strane.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>
+\[4x^2-4x+1=(2x-1)^2\ge0\quad\text{za svaki }x.\]
+\[-2x^2+10x-8=-2(x-1)(x-4)\ge0\iff(x-1)(x-4)\le0.\]
+\[D=[1,4].\]
+<h3>2. Otvaranje apsolutne vrednosti</h3>
+<p>Na domenu je \(2x-1\ge1&gt;0\), pa</p>
+\[\sqrt{4x^2-4x+1}=|2x-1|=2x-1.\]
+<p>Početna nejednačina zato postaje</p>
+\[\begin{aligned}
+2x-1+2\sqrt{-2x^2+10x-8}&amp;\le4x-3\\
+2\sqrt{-2x^2+10x-8}&amp;\le2x-2\\
+\sqrt{-2x^2+10x-8}&amp;\le x-1.
+\end{aligned}\]
+<h3>3. Ekvivalentno kvadriranje</h3>
+<p>Na celom domenu je \(x-1\ge0\), pa su obe strane nenegativne:</p>
+\[\begin{aligned}
+-2x^2+10x-8&amp;\le(x-1)^2\\
+-2x^2+10x-8&amp;\le x^2-2x+1\\
+0&amp;\le3x^2-12x+9\\
+0&amp;\le3(x-1)(x-3).
+\end{aligned}\]
+<p>Proizvod je nenegativan za \(x\le1\) ili \(x\ge3\). Uzimamo presek sa domenom:</p>
+\[S=\bigl(( -\infty,1]\cup[3,+\infty)\bigr)\cap[1,4]=\{1\}\cup[3,4].\]
+<h3>4. Celi brojevi i traženi zbir</h3>
+\[S\cap\mathbb Z=\{1,3,4\},\qquad1^2+3^2+4^2=1+9+16=26.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S\cap\mathbb Z=\{1,3,4\},\qquad\text{zbir kvadrata}=26,\quad\text{odgovor E}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Direktna provera celobrojnih kandidata iz domena:</p>
+\[x=1:\quad1+0\le1\quad\checkmark.\]
+\[x=2:\quad3+2\sqrt4=7\not\le5\quad\text{nije rešenje}.\]
+\[x=3:\quad5+2\sqrt4=9\le9\quad\checkmark.\]
+\[x=4:\quad7+0\le13\quad\checkmark.\]
+<p>U domenu nema drugih celih brojeva, pa je brojanje potpuno.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Traži se zbir kvadrata, ne zbir rešenja. Takođe, izolovana tačka \(x=1\) mora ostati u skupu rešenja.</p></section>
+</article><footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>

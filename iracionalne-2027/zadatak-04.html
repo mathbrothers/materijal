@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zadatak 4 · FON2014P11 | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:18px/1.75 Georgia,serif;background:#f5f7fb;color:#203148;max-width:1020px;margin:30px auto;padding:0 20px}h1,h2,h3,nav,.eyebrow{font-family:system-ui,sans-serif}h1{font-size:2rem;line-height:1.2;color:#153451}h2{font-size:1.3rem;margin-top:0}h3{font-size:1.05rem;margin-top:24px}.card{border-left:6px solid;padding:22px 26px;margin:22px 0;border-radius:12px;overflow-x:auto}.task{background:#e8f3ff;border-color:#2780ba}.idea{background:#edf0ff;border-color:#6373bc}.solution{background:#edf8f0;border-color:#33996a}.answer{background:#daf1e3;border-color:#187d50}.check{background:#fff7e4;border-color:#d59c2e}.note{background:#fff1ec;border-color:#d77d5c}nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:20px 0}a{color:#155fa4}p{margin:12px 0}.eyebrow{font-size:.85rem;letter-spacing:.08em;color:#51677e;text-transform:uppercase}footer{text-align:center;font-size:.9rem;color:#52677d;margin:36px 0}.options{font-size:.95rem}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}.tile{background:white;border:1px solid #d4deea;border-radius:12px;padding:18px}.tile a{font:600 1.05rem system-ui}.tile p{font-size:.95rem}.pill{display:inline-block;background:#d9f0e3;color:#175337;border-radius:8px;padding:4px 10px;font-family:system-ui}.all-task{border-top:3px solid #c3d2e1;margin-top:65px;padding-top:25px}mjx-container{max-width:100%}@media(max-width:600px){body{font-size:16px;padding:0 12px}.card{padding:16px 14px}h1{font-size:1.55rem}}@media print{body{max-width:none;background:white;font-size:11pt}.card{break-inside:avoid;border-radius:0}nav,.no-print{display:none}a{color:inherit;text-decoration:none}.all-task{break-before:page}}</style></head><body><nav><a href="index.html">← Indeks</a><a href="sva-resenja.html">Sva rešenja na jednoj strani</a><a href="original.pdf">Izvorni PDF</a></nav><p class="eyebrow">Zadatak 4 / 12 · FON2014P11</p><h1>4. Domen svodi jednačinu na jednu tačku</h1><section class="card task"><h2>Zadatak</h2><p>Realno rešenje jednačine</p>\[\sqrt{x^2-4x}+\sqrt{8+2x-x^2}=\sqrt{x}-2\]<p>pripada kom intervalu?</p><p class="options">A) \((4,6]\); B) \((6,+\infty)\); C) \((2,4]\); D) \((-\infty,0]\); E) \((0,2]\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Zbir korena levo je nenegativan, pa i desna strana mora biti nenegativna. Taj uslov i domen drugog korena već prisiljavaju \(x=4\). Nema potrebe za višestrukim kvadriranjem.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Uslovi za sva tri korena</h3>
+\[x^2-4x=x(x-4)\ge0\iff x\le0\ \text{ili}\ x\ge4.\]
+\[8+2x-x^2=-(x-4)(x+2)\ge0\iff -2\le x\le4.\]
+\[x\ge0.\]
+<p>Presek ova tri uslova je</p>
+\[D=\bigl(( -\infty,0]\cup[4,+\infty)\bigr)\cap[-2,4]\cap[0,+\infty)=\{0,4\}.\]
+<h3>2. Znak desne strane</h3>
+<p>Na levoj strani je zbir nenegativnih brojeva. Zato mora važiti</p>
+\[\sqrt{x}-2\ge0\iff\sqrt{x}\ge2\iff x\ge4.\]
+<p>Od tačaka domena ovaj uslov ispunjava jedino \(x=4\).</p>
+<h3>3. Provera i izbor intervala</h3>
+\[x=4:\quad\sqrt{16-16}+\sqrt{8+8-16}=\sqrt4-2\iff0+0=0.\]
+<p>Broj \(4\) pripada intervalu \((2,4]\); u ponuđeni interval \((4,6]\) ne pripada jer je njegov levi kraj isključen.</p></section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{x=4\in(2,4],\qquad \text{odgovor C}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Druga tačka domena nije rešenje:</p>\[x=0:\quad\sqrt0+\sqrt8=2\sqrt2\ne-2=\sqrt0-2.\]
+<p>Pošto domen ima samo dve tačke i obe su ispitane, nema drugih rešenja.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Proveriti znak desne strane pre kvadriranja i pažljivo čitati otvorene i zatvorene krajeve ponuđenih intervala.</p></section>
+<nav><a href="zadatak-03.html">← Prethodni zadatak</a><a href="zadatak-05.html">Sledeći zadatak →</a></nav><footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>

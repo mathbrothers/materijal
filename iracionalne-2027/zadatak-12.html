@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="sr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zadatak 12 · FON2022J15 | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:18px/1.75 Georgia,serif;background:#f5f7fb;color:#203148;max-width:1020px;margin:30px auto;padding:0 20px}h1,h2,h3,nav,.eyebrow{font-family:system-ui,sans-serif}h1{font-size:2rem;line-height:1.2;color:#153451}h2{font-size:1.3rem;margin-top:0}h3{font-size:1.05rem;margin-top:24px}.card{border-left:6px solid;padding:22px 26px;margin:22px 0;border-radius:12px;overflow-x:auto}.task{background:#e8f3ff;border-color:#2780ba}.idea{background:#edf0ff;border-color:#6373bc}.solution{background:#edf8f0;border-color:#33996a}.answer{background:#daf1e3;border-color:#187d50}.check{background:#fff7e4;border-color:#d59c2e}.note{background:#fff1ec;border-color:#d77d5c}nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;margin:20px 0}a{color:#155fa4}p{margin:12px 0}.eyebrow{font-size:.85rem;letter-spacing:.08em;color:#51677e;text-transform:uppercase}footer{text-align:center;font-size:.9rem;color:#52677d;margin:36px 0}.options{font-size:.95rem}.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:15px}.tile{background:white;border:1px solid #d4deea;border-radius:12px;padding:18px}.tile a{font:600 1.05rem system-ui}.tile p{font-size:.95rem}.pill{display:inline-block;background:#d9f0e3;color:#175337;border-radius:8px;padding:4px 10px;font-family:system-ui}.all-task{border-top:3px solid #c3d2e1;margin-top:65px;padding-top:25px}mjx-container{max-width:100%}@media(max-width:600px){body{font-size:16px;padding:0 12px}.card{padding:16px 14px}h1{font-size:1.55rem}}@media print{body{max-width:none;background:white;font-size:11pt}.card{break-inside:avoid;border-radius:0}nav,.no-print{display:none}a{color:inherit;text-decoration:none}.all-task{break-before:page}}</style></head><body><nav><a href="index.html">← Indeks</a><a href="sva-resenja.html">Sva rešenja na jednoj strani</a><a href="original.pdf">Izvorni PDF</a></nav><p class="eyebrow">Zadatak 12 / 12 · FON2022J15</p><h1>12. Apsolutna vrednost i zbir kvadrata rešenja</h1><section class="card task"><h2>Zadatak</h2><p>Odrediti zbir kvadrata svih celobrojnih rešenja nejednačine</p>\[\sqrt{4x^2-4x+1}+2\sqrt{-2x^2+10x-8}\le4x-3.\]<p class="options">A) \(30\); B) \(21\); C) \(17\); D) \(10\); E) \(26\). N) Ne znam.</p></section>
+<section class="card idea"><h2>Ideja</h2><p>Prvi koren je \(|2x-1|\). Domen drugog korena daje \(x\in[1,4]\), pa znamo da je \(|2x-1|=2x-1\). Posle sređivanja kvadriramo dve nenegativne strane.</p></section>
+<section class="card solution"><h2>Rešenje</h2><h3>1. Domen</h3>
+\[4x^2-4x+1=(2x-1)^2\ge0\quad\text{za svaki }x.\]
+\[-2x^2+10x-8=-2(x-1)(x-4)\ge0\iff(x-1)(x-4)\le0.\]
+\[D=[1,4].\]
+<h3>2. Otvaranje apsolutne vrednosti</h3>
+<p>Na domenu je \(2x-1\ge1&gt;0\), pa</p>
+\[\sqrt{4x^2-4x+1}=|2x-1|=2x-1.\]
+<p>Početna nejednačina zato postaje</p>
+\[\begin{aligned}
+2x-1+2\sqrt{-2x^2+10x-8}&amp;\le4x-3\\
+2\sqrt{-2x^2+10x-8}&amp;\le2x-2\\
+\sqrt{-2x^2+10x-8}&amp;\le x-1.
+\end{aligned}\]
+<h3>3. Ekvivalentno kvadriranje</h3>
+<p>Na celom domenu je \(x-1\ge0\), pa su obe strane nenegativne:</p>
+\[\begin{aligned}
+-2x^2+10x-8&amp;\le(x-1)^2\\
+-2x^2+10x-8&amp;\le x^2-2x+1\\
+0&amp;\le3x^2-12x+9\\
+0&amp;\le3(x-1)(x-3).
+\end{aligned}\]
+<p>Proizvod je nenegativan za \(x\le1\) ili \(x\ge3\). Uzimamo presek sa domenom:</p>
+\[S=\bigl(( -\infty,1]\cup[3,+\infty)\bigr)\cap[1,4]=\{1\}\cup[3,4].\]
+<h3>4. Celi brojevi i traženi zbir</h3>
+\[S\cap\mathbb Z=\{1,3,4\},\qquad1^2+3^2+4^2=1+9+16=26.\]</section>
+<section class="card answer"><h2>Odgovor</h2>\[\boxed{S\cap\mathbb Z=\{1,3,4\},\qquad\text{zbir kvadrata}=26,\quad\text{odgovor E}.}\]</section>
+<section class="card check"><h2>Provera</h2><p>Direktna provera celobrojnih kandidata iz domena:</p>
+\[x=1:\quad1+0\le1\quad\checkmark.\]
+\[x=2:\quad3+2\sqrt4=7\not\le5\quad\text{nije rešenje}.\]
+\[x=3:\quad5+2\sqrt4=9\le9\quad\checkmark.\]
+\[x=4:\quad7+0\le13\quad\checkmark.\]
+<p>U domenu nema drugih celih brojeva, pa je brojanje potpuno.</p></section>
+<section class="card note"><h2>Na šta treba paziti</h2><p>Traži se zbir kvadrata, ne zbir rešenja. Takođe, izolovana tačka \(x=1\) mora ostati u skupu rešenja.</p></section>
+<nav><a href="zadatak-11.html">← Prethodni zadatak</a></nav><footer>Mathbrotherhood Powered by ChatGPT</footer></body></html>
