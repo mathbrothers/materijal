@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+<title>Matematičko rešenje</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['ams']}
+  },
+  options: {
+    skipHtmlTags: ['script', 'style', 'textarea', 'pre']
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+body {
+    font-family: Georgia, serif;
+    background: #fafafa;
+    color: #222;
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 20px;
+    line-height: 1.8;
+    font-size: 18px;
+}
+h1 { color: #253b63; }
+.blok {
+    background: white;
+    border-left: 5px solid #4f70b5;
+    border-radius: 9px;
+    padding: 16px 22px;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+mjx-container[display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 0;
+}
+footer {
+    text-align: center;
+    color: #777;
+    margin-top: 35px;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h1>Matematičko rešenje</h1>
+<div class="blok">**Postavka zadatka:**
+U zavisnosti od parametra \(\alpha\) odrediti rang matrice
+\[A=\begin{bmatrix}
+-1 &amp; \alpha &amp; -2 &amp; 0\\
+0 &amp; \alpha-1 &amp; -1 &amp; 0\\
+\alpha &amp; -1 &amp; 1 &amp; 1\\
+-1 &amp; 2\alpha &amp; 0 &amp; 1
+\end{bmatrix}.\]</div>
+<div class="blok">---</div>
+<div class="blok">**Rešenje:**</div>
+<div class="blok">Pošto je \(A\) kvadratna matrica, prvo računamo determinantu. Ekspanzijom po četvrtom stupcu (gde su dva elementa jednaka \(0\)):</div>
+<div class="blok">\[\det A = -M_{34} + M_{44}.\]</div>
+<div class="blok">**Minor \(M_{34}\):**
+\[M_{34}=\det\begin{bmatrix}
+-1 &amp; \alpha &amp; -2\\
+0 &amp; \alpha-1 &amp; -1\\
+-1 &amp; 2\alpha &amp; 0
+\end{bmatrix}
+= -2\alpha + \alpha -2\alpha + 2 = -3\alpha + 2.\]</div>
+<div class="blok">**Minor \(M_{44}\):**
+\[M_{44}=\det\begin{bmatrix}
+-1 &amp; \alpha &amp; -2\\
+0 &amp; \alpha-1 &amp; -1\\
+\alpha &amp; -1 &amp; 1
+\end{bmatrix}
+= -(\alpha-2) - \alpha^2 + 2\alpha(\alpha-1) = \alpha^2 - 3\alpha + 2.\]</div>
+<div class="blok">Dakle:
+\[\det A = -(-3\alpha+2) + (\alpha^2-3\alpha+2) = \alpha^2.\]</div>
+<div class="blok">**Slučaj 1: \(\alpha \neq 0\).**
+Tada \(\det A = \alpha^2 \neq 0\), pa matrica ima pun rang:
+\[\operatorname{rg} A = 4.\]</div>
+<div class="blok">**Slučaj 2: \(\alpha = 0\).**
+Tada \(\det A = 0\), dakle \(\operatorname{rg} A &lt; 4\). Proverimo postoji li nenulti minor reda 3:
+\[\det\begin{bmatrix}
+-1 &amp; 0 &amp; -2\\
+0 &amp; -1 &amp; -1\\
+0 &amp; -1 &amp; 1
+\end{bmatrix}
+= -1\bigl((-1)(1)-(-1)(-1)\bigr) = -1(-2) = 2 \neq 0.\]
+Zato \(\operatorname{rg} A \ge 3\). Pošto je \(\det A = 0\), sledi \(\operatorname{rg} A \le 3\). Prema tome:
+\[\operatorname{rg} A = 3.\]</div>
+<div class="blok">*Provera redukcijom redova za \(\alpha=0\):*
+\[\begin{bmatrix}
+-1&amp;0&amp;-2&amp;0\\
+0&amp;-1&amp;-1&amp;0\\
+0&amp;-1&amp;1&amp;1\\
+-1&amp;0&amp;0&amp;1
+\end{bmatrix}
+\xrightarrow{\substack{R_3\leftarrow R_3-R_2\\ R_4\leftarrow R_4-R_1}}
+\begin{bmatrix}
+-1&amp;0&amp;-2&amp;0\\
+0&amp;-1&amp;-1&amp;0\\
+0&amp;0&amp;2&amp;1\\
+0&amp;0&amp;2&amp;1
+\end{bmatrix}
+\xrightarrow{R_4\leftarrow R_4-R_3}
+\begin{bmatrix}
+-1&amp;0&amp;-2&amp;0\\
+0&amp;-1&amp;-1&amp;0\\
+0&amp;0&amp;2&amp;1\\
+0&amp;0&amp;0&amp;0
+\end{bmatrix}.\]
+Tri nenulta reda u stepenastom obliku potvrđuju rang \(3\).</div>
+<div class="blok">---</div>
+<div class="blok">**Konačan odgovor:**
+\[\operatorname{rg} A =
+\begin{cases}
+4, &amp; \alpha \neq 0,\\[4pt]
+3, &amp; \alpha = 0.
+\end{cases}\]</div>
+<div class="blok">Ugledno, Peđo! 🎓 Ako hoćeš, mogu da dodam i diskusiju linearne/nelinearne sisteme \(Ax=b\) uz ovu matricu.</div>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</body>
+</html>
