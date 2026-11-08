@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FON Matematika 1 — Abelova grupa matrica</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+:root{color-scheme:light;--ink:#172c43;--accent:#175b81;--line:#d5e2ec}*{box-sizing:border-box}body{margin:0;background:#eef3f8;color:var(--ink);font:17px/1.75 system-ui,sans-serif}main{max-width:1040px;margin:auto;padding:40px 22px 70px}header{margin-bottom:24px}h1{font-size:clamp(27px,4vw,42px);line-height:1.2;margin:12px 0}h2{font-size:26px}h3{margin-top:32px;font-size:21px}.eyebrow{color:var(--accent);font-weight:700;letter-spacing:.08em;font-size:13px}.subtitle{color:#506478}.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:18px}.tabs button{font:inherit;font-weight:650;cursor:pointer;border:1px solid var(--line);border-radius:12px;padding:10px 22px;background:white;color:var(--ink)}.tabs button[aria-selected=true]{background:var(--accent);color:white;border-color:var(--accent)}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:22px 32px;box-shadow:0 8px 32px #16375108}.panel[hidden]{display:none}.box{padding:15px 20px;background:#edf6fc;border-left:4px solid #287aa8;border-radius:6px;margin:22px 0}.success{background:#edf8f2;border-color:#32885c}.math{overflow-x:auto;padding:4px 0}li{margin-bottom:10px}footer{font-size:13px;color:#526577;margin-top:24px}button:focus-visible{outline:3px solid #e5a521;outline-offset:3px}@media(max-width:600px){main{padding:24px 12px}.panel{padding:16px}.tabs button{padding:8px 13px}body{font-size:16px}}@media print{body{background:white}.tabs{display:none}.panel[hidden]{display:block!important}.panel{border:0;box-shadow:none;padding:0;break-before:page}#zadatak{break-before:auto}footer{display:none}}
+</style>
+</head>
+<body><main>
+<header><div class="eyebrow">FON · MATEMATIKA 1 · ALGEBARSKE STRUKTURE</div><h1>Grupa gornjetrougaonih matrica</h1><p class="subtitle">Direktan dokaz svih aksioma i komutativnosti, bez korišćenja izomorfizama.</p></header>
+<nav class="tabs" role="tablist" aria-label="Delovi rešenja">
+<button id="tab-zadatak" role="tab" aria-controls="zadatak" aria-selected="true">Zadatak</button>
+<button id="tab-ideja" role="tab" aria-controls="ideja" aria-selected="false" tabindex="-1">Ideja</button>
+<button id="tab-resenje" role="tab" aria-controls="resenje" aria-selected="false" tabindex="-1">Rešenje</button>
+<button id="tab-odgovor" role="tab" aria-controls="odgovor" aria-selected="false" tabindex="-1">Odgovor</button>
+</nav>
+<section class="panel" id="zadatak" role="tabpanel" aria-labelledby="tab-zadatak">
+<h2>Zadatak</h2><p>Dat je skup</p>
+<div class="math">\[G=\left\{\begin{pmatrix}a+b\sqrt2&0&b\\0&c&0\\0&0&a-b\sqrt2\end{pmatrix}:a,b,c\in\mathbb Q,\ a^2+b^2\ne0,\ c\ne0\right\}.\]</div>
+<p>Dokazati da je \(G\) grupa u odnosu na uobičajeno množenje matrica i ispitati da li je Abelova.</p>
+<div class="box"><strong>Zahtev:</strong> sve tvrdnje dokazujemo direktnim računom sa matricama. Ne koristimo izomorfizme.</div>
+<p>Uslov \(a^2+b^2\ne0\) za racionalne brojeve znači da \(a\) i \(b\) nisu istovremeno nula. On ne znači da su oba pojedinačno različita od nule.</p>
+</section>
+<section class="panel" id="ideja" role="tabpanel" aria-labelledby="tab-ideja" hidden>
+<h2>Ideja dokaza</h2><p>Označimo zadatu matricu sa \(M(a,b,c)\). Ovo je samo kraća oznaka za matricu.</p>
+<ol><li><strong>Zatvorenost:</strong> pomnožiti dve proizvoljne matrice. Proizvod treba da bude \(M(A,B,C)\), gde su \(A,B,C\) racionalni i zadovoljavaju uslove skupa.</li><li><strong>Asocijativnost:</strong> dati direktno obrazloženje preko elemenata proizvoda matrica.</li><li><strong>Neutralni element:</strong> proveriti da je \(I_3=M(1,0,1)\) u skupu i da deluje neutralno sa obe strane.</li><li><strong>Inverz:</strong> rešiti jednačine za parametre inverzne matrice i proveriti oba proizvoda.</li><li><strong>Komutativnost:</strong> uporediti proizvod u oba redosleda.</li></ol>
+<div class="box"><strong>Ključna činjenica:</strong> za racionalne \(a,b\), iz \(a^2+b^2\ne0\) sledi \(a^2-2b^2\ne0\). Upravo taj izraz pojavljuje se u imeniocu inverza.</div>
+</section>
+<section class="panel" id="resenje" role="tabpanel" aria-labelledby="tab-resenje" hidden>
+<h2>Detaljno rešenje</h2>
+<p>Za kraći zapis koristimo oznaku</p><div class="math">\[M(a,b,c)=\begin{pmatrix}a+b\sqrt2&0&b\\0&c&0\\0&0&a-b\sqrt2\end{pmatrix}.\]</div>
+<h3>0. Pomoćna činjenica: imenilac inverza nije nula</h3>
+<p>Neka su \(a,b\in\mathbb Q\) i \(a^2+b^2\ne0\). Pretpostavimo da je \(a^2-2b^2=0\).</p>
+<p>Ako je \(b=0\), tada je i \(a=0\), što protivreči uslovu. Ako je \(b\ne0\), dobijamo \((a/b)^2=2\), pa bi racionalan broj \(|a/b|\) bio jednak \(\sqrt2\), što je nemoguće.</p>
+<details><summary>Zašto je √2 iracionalan broj?</summary><p>Kada bi \(\sqrt2=m/n\), za uzajamno proste pozitivne cele brojeve \(m,n\), važilo bi \(m^2=2n^2\). Zato je \(m\) paran, recimo \(m=2k\). Tada \(n^2=2k^2\), pa je i \(n\) paran, suprotno uzajamnoj prostosti.</p></details>
+<div class="box">Dakle, za svaki dozvoljeni par \((a,b)\) važi \(\boxed{a^2-2b^2\ne0}\).</div>
+<h3>1. Zatvorenost za množenje</h3>
+<p>Uzmimo proizvoljne \(X=M(a,b,c)\) i \(Y=M(d,e,f)\) iz \(G\). Tada su svi parametri racionalni i važi</p>
+<div class="math">\[a^2+b^2\ne0,\quad d^2+e^2\ne0,\quad c\ne0,\quad f\ne0.\]</div>
+<p>Direktnim množenjem dobijamo</p>
+<div class="math">\[XY=\begin{pmatrix}(a+b\sqrt2)(d+e\sqrt2)&0&(a+b\sqrt2)e+b(d-e\sqrt2)\\0&cf&0\\0&0&(a-b\sqrt2)(d-e\sqrt2)\end{pmatrix}.\]</div>
+<p>Računamo svaki mogući nenulti element:</p>
+<div class="math">\[\begin{aligned}(XY)_{11}&=ad+2be+(ae+bd)\sqrt2,\\(XY)_{13}&=ae+be\sqrt2+bd-be\sqrt2=ae+bd,\\(XY)_{22}&=cf,\\(XY)_{33}&=ad+2be-(ae+bd)\sqrt2.\end{aligned}\]</div>
+<p>Prema tome,</p><div class="math">\[\boxed{M(a,b,c)M(d,e,f)=M(ad+2be,\ ae+bd,\ cf).}\]</div>
+<p>Stavimo \(A=ad+2be\), \(B=ae+bd\), \(C=cf\). Ovi brojevi su racionalni, a \(C\ne0\). Ostaje da proverimo \(A^2+B^2\ne0\). Važi</p>
+<div class="math">\[\begin{aligned}A^2-2B^2&=(ad+2be)^2-2(ae+bd)^2\\&=a^2d^2+4abde+4b^2e^2-2a^2e^2-4abde-2b^2d^2\\&=(a^2-2b^2)(d^2-2e^2)\ne0.\end{aligned}\]</div>
+<p>Poslednja nejednakost sledi iz pomoćne činjenice primenjene na oba para. Kada bi \(A^2+B^2=0\), realni brojevi \(A,B\) morali bi oba biti nula, pa bi i \(A^2-2B^2=0\), što je protivrečnost. Dakle, \(XY\in G\).</p>
+<h3>2. Asocijativnost</h3>
+<p>Neka su \(X=(x_{ij}),Y=(y_{ij}),Z=(z_{ij})\) proizvoljne matrice iz \(G\). Za sve \(i,j\in\{1,2,3\}\) važi</p>
+<div class="math">\[\begin{aligned}((XY)Z)_{ij}&=\sum_{k=1}^{3}\left(\sum_{\ell=1}^{3}x_{i\ell}y_{\ell k}\right)z_{kj}\\&=\sum_{\ell=1}^{3}x_{i\ell}\left(\sum_{k=1}^{3}y_{\ell k}z_{kj}\right)=(X(YZ))_{ij}.\end{aligned}\]</div>
+<p>Koristili smo samo distributivnost, asocijativnost množenja realnih brojeva i promenu redosleda konačnih suma. Svi odgovarajući elementi su jednaki, pa je \((XY)Z=X(YZ)\). Zatvorenost iz prethodnog koraka obezbeđuje da su proizvodi u \(G\).</p>
+<h3>3. Neutralni element</h3>
+<div class="math">\[E=M(1,0,1)=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=I_3.\]</div>
+<p>Parametri su racionalni, \(1^2+0^2=1\ne0\) i \(c=1\ne0\), pa je \(E\in G\). Direktno, iz formule proizvoda, za svaki \(X=M(a,b,c)\) dobijamo</p>
+<div class="math">\[XE=M(a\cdot1+2b\cdot0,\ a\cdot0+b\cdot1,\ c\cdot1)=X,\]\[EX=M(1\cdot a+2\cdot0\cdot b,\ 1\cdot b+0\cdot a,\ 1\cdot c)=X.\]</div>
+<p>Skup je time i neprazan.</p>
+<h3>4. Inverzni element</h3>
+<p>Neka je \(X=M(a,b,c)\in G\). Tražimo \(N=M(u,v,w)\) takav da je \(XN=E\). Formula proizvoda daje sistem</p>
+<div class="math">\[au+2bv=1,\qquad bu+av=0,\qquad cw=1.\]</div>
+<p>Množenjem prve jednačine sa \(a\) i druge sa \(2b\), pa oduzimanjem, dobijamo \((a^2-2b^2)u=a\). Množenjem druge sa \(a\) i prve sa \(b\), pa oduzimanjem, dobijamo \((a^2-2b^2)v=-b\).</p>
+<p>Označimo \(D=a^2-2b^2\ne0\). Rešenje je</p>
+<div class="math">\[u=\frac aD,\qquad v=-\frac bD,\qquad w=\frac1c.\]</div>
+<p>Svi parametri su racionalni i važi</p>
+<div class="math">\[u^2+v^2=\frac{a^2+b^2}{D^2}\ne0,\qquad w=\frac1c\ne0.\]</div>
+<p>Zato je \(N\in G\). Eksplicitno,</p>
+<div class="math">\[\boxed{X^{-1}=M\!\left(\frac aD,-\frac bD,\frac1c\right)=\begin{pmatrix}\frac{a-b\sqrt2}{D}&0&-\frac bD\\0&\frac1c&0\\0&0&\frac{a+b\sqrt2}{D}\end{pmatrix},\quad D=a^2-2b^2.}\]</div>
+<p><strong>Provera oba redosleda:</strong></p>
+<div class="math">\[XN=M\!\left(\frac{a^2-2b^2}{D},\frac{-ab+ab}{D},1\right)=M(1,0,1)=E,\]\[NX=M\!\left(\frac{a^2-2b^2}{D},\frac{ab-ab}{D},1\right)=M(1,0,1)=E.\]</div>
+<p>Dakle, svaki element ima dvostrani inverz u \(G\). Zajedno sa prethodnim koracima, to dokazuje da je \((G,\cdot)\) grupa.</p>
+<h3>5. Da li je grupa Abelova?</h3>
+<p>Za proizvoljne \(X=M(a,b,c)\) i \(Y=M(d,e,f)\) već smo dobili</p>
+<div class="math">\[XY=M(ad+2be,\ ae+bd,\ cf).\]</div>
+<p>Množenjem obrnutim redosledom dobijamo</p>
+<div class="math">\[YX=M(da+2eb,\ db+ea,\ fc).\]</div>
+<p>Pošto su parametri racionalni brojevi, važi \(ad+2be=da+2eb\), \(ae+bd=db+ea\) i \(cf=fc\). Zato su sve odgovarajuće pozicije ovih matrica jednake, pa je \(XY=YX\).</p>
+<div class="box success"><strong>Zaključak:</strong> \(\boxed{(G,\cdot)\text{ je Abelova grupa.}}\) Dokaz je u celosti izveden direktnim računom sa matricama.</div>
+</section>
+<section class="panel" id="odgovor" role="tabpanel" aria-labelledby="tab-odgovor" hidden>
+<h2>Odgovor za ponavljanje</h2>
+<div class="box success">Zadati skup je <strong>Abelova grupa</strong> u odnosu na množenje matrica.</div>
+<ul><li><strong>Proizvod:</strong> \(M(a,b,c)M(d,e,f)=M(ad+2be,ae+bd,cf)\).</li><li><strong>Zatvorenost:</strong> novi parametri su racionalni, \(cf\ne0\), a identitet \(A^2-2B^2=(a^2-2b^2)(d^2-2e^2)\ne0\) obezbeđuje \(A^2+B^2\ne0\).</li><li><strong>Asocijativnost:</strong> sledi direktno iz formule za elemente matričnog proizvoda.</li><li><strong>Neutralni element:</strong> \(E=M(1,0,1)=I_3\).</li><li><strong>Inverz:</strong> \(M(a,b,c)^{-1}=M\left(\frac{a}{a^2-2b^2},-\frac{b}{a^2-2b^2},\frac1c\right)\).</li><li><strong>Komutativnost:</strong> formula proizvoda daje istu matricu pri zameni redosleda činilaca.</li></ul>
+<p><strong>Zapamti:</strong> \(a^2-2b^2\ne0\) ovde važi zbog racionalnosti \(a,b\) i činjenice da nisu oba nula. U dokazu nije korišćen izomorfizam.</p>
+</section>
+<footer>Jedan HTML fajl · Srpski latinica · MathJax se učitava putem interneta. Za štampanje se prikazuju sve četiri kartice.</footer>
+</main>
+<script>
+const tabs=Array.from(document.querySelectorAll('[role="tab"]'));
+function activate(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!active;});}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>activate(tab));tab.addEventListener('keydown',e=>{let j;if(e.key==='ArrowRight')j=(i+1)%tabs.length;else if(e.key==='ArrowLeft')j=(i+tabs.length-1)%tabs.length;else if(e.key==='Home')j=0;else if(e.key==='End')j=tabs.length-1;else return;e.preventDefault();activate(tabs[j]);tabs[j].focus();});});
+</script></body></html>
