@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matrična jednačina — Rešenje</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 16px;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    min-height: 100vh;
+    color: #1a1a2e;
+  }
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .card {
+    background: linear-gradient(160deg, #ffffff 0%, #f4f7fb 100%);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    border-left: 8px solid;
+  }
+  .card h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+  }
+  .zadatak   { border-left-color: #e94560; }
+  .zadatak h2 { color: #e94560; }
+  .ideja     { border-left-color: #f39c12; }
+  .ideja h2  { color: #e67e22; }
+  .resenje   { border-left-color: #16a085; }
+  .resenje h2 { color: #0e8a72; }
+  .odgovor   { border-left-color: #6c5ce7; }
+  .odgovor h2 { color: #5a4bd1; }
+  .boxed {
+    display: inline-block;
+    padding: 14px 22px;
+    border: 3px solid #6c5ce7;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #efeaff 0%, #ffffff 100%);
+    margin-top: 12px;
+    font-size: 1.1rem;
+  }
+  .signature {
+    text-align: center;
+    color: #dfe6ee;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 34px;
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+  .step-label {
+    font-weight: 700;
+    color: #2c5364;
+    margin: 18px 0 6px;
+  }
+  .formula { overflow-x: auto; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="card zadatak">
+    <h2>Zadatak</h2>
+    <p>Rešiti po \(X\) matričnu jednačinu
+    <span class="formula">\[ D + (X-C)F = 2I, \]</span>
+    gde je</p>
+    <div class="formula">
+    \[
+    D=\begin{bmatrix}1&-2&0\\3&-1&-4\\0&-1&1\end{bmatrix},\quad
+    C=\begin{bmatrix}-4&3&-1\\0&-1&5\\-2&0&1\end{bmatrix},\quad
+    F=\begin{bmatrix}-2&0&1\\0&3&-1\\-2&-1&1\end{bmatrix},
+    \]
+    </div>
+    <p>a \(I\) je jedinična matrica reda 3.</p>
+  </div>
+
+  <div class="card ideja">
+    <h2>Ideja</h2>
+    <p>Izdvajamo \(X\) iz jednačine koristeći pravila matrične algebre. Množenje matrica nije komutativno, pa je bitno da se \((X-C)F\) oslobađa matrice \(F\) množenjem sa <b>desne strane</b> inverznom matricom \(F^{-1}\):</p>
+    <div class="formula">
+    \[
+    (X-C)F = 2I - D \;\;\Longrightarrow\;\; X - C = (2I-D)\,F^{-1} \;\;\Longrightarrow\;\; X = C + (2I-D)\,F^{-1}.
+    \]
+    </div>
+    <p>Pre toga proveravamo da \(F\) ima inverz, tj. da je \(\det F \neq 0\).</p>
+  </div>
+
+  <div class="card resenje">
+    <h2>Rešenje</h2>
+
+    <p class="step-label">Korak 1: Determinanta matrice \(F\)</p>
+    <div class="formula">
+    \[
+    \det F = -2\begin{vmatrix}3&-1\\-1&1\end{vmatrix} + 1\cdot\begin{vmatrix}0&3\\-2&-1\end{vmatrix}
+    = -2(3-1) + (0+6) = -4 + 6 = 2 \neq 0,
+    \]
+    </div>
+    <p>pa matrica \(F\) ima inverznu.</p>
+
+    <p class="step-label">Korak 2: Inverzna matrica \(F^{-1}\)</p>
+    <p>Računanjem kofaktora dobijamo adjungovanu matricu, a kako je \(\det F = 2\):</p>
+    <div class="formula">
+    \[
+    F^{-1}=\frac{1}{\det F}\,\operatorname{adj}F
+    =\frac12\begin{bmatrix}2&-1&-3\\2&0&-2\\6&-2&-6\end{bmatrix}
+    =\begin{bmatrix}1&-\tfrac12&-\tfrac32\\[2pt]1&0&-1\\[2pt]3&-1&-3\end{bmatrix}.
+    \]
+    </div>
+
+    <p class="step-label">Korak 3: Matrica \(2I - D\)</p>
+    <div class="formula">
+    \[
+    2I - D = \begin{bmatrix}2&0&0\\0&2&0\\0&0&2\end{bmatrix} - \begin{bmatrix}1&-2&0\\3&-1&-4\\0&-1&1\end{bmatrix}
+    = \begin{bmatrix}1&2&0\\-3&3&4\\0&1&1\end{bmatrix}.
+    \]
+    </div>
+
+    <p class="step-label">Korak 4: Proizvod \((2I-D)\,F^{-1}\)</p>
+    <div class="formula">
+    \[
+    (2I-D)F^{-1}
+    = \begin{bmatrix}1&2&0\\-3&3&4\\0&1&1\end{bmatrix}
+      \begin{bmatrix}1&-\tfrac12&-\tfrac32\\[2pt]1&0&-1\\[2pt]3&-1&-3\end{bmatrix}
+    = \begin{bmatrix}3&-\tfrac12&-\tfrac72\\[2pt]12&-\tfrac52&-\tfrac{21}{2}\\[2pt]4&-1&-4\end{bmatrix}.
+    \]
+    </div>
+
+    <p class="step-label">Korak 5: Sabiranje sa \(C\)</p>
+    <div class="formula">
+    \[
+    X = C + (2I-D)F^{-1}
+    = \begin{bmatrix}-4&3&-1\\0&-1&5\\-2&0&1\end{bmatrix}
+    + \begin{bmatrix}3&-\tfrac12&-\tfrac72\\[2pt]12&-\tfrac52&-\tfrac{21}{2}\\[2pt]4&-1&-4\end{bmatrix}
+    = \begin{bmatrix}-1&\tfrac52&-\tfrac92\\[2pt]12&-\tfrac72&-\tfrac{11}{2}\\[2pt]2&-1&-3\end{bmatrix}.
+    \]
+    </div>
+  </div>
+
+  <div class="card odgovor">
+    <h2>Odgovor</h2>
+    <p>Rešenje matrične jednačine \(D + (X-C)F = 2I\) je:</p>
+    <div class="boxed formula">
+    \[
+    X=\begin{bmatrix}-1&\tfrac52&-\tfrac92\\[4pt]12&-\tfrac72&-\tfrac{11}{2}\\[4pt]2&-1&-3\end{bmatrix}
+    \]
+    </div>
+  </div>
+
+  <div class="signature">Mathbrotherhood Powered by Kimi K3</div>
+
+</div>
+</body>
+</html>
