@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+<title>Matematičko rešenje</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['ams']}
+  },
+  options: {
+    skipHtmlTags: ['script', 'style', 'textarea', 'pre']
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+body {
+    font-family: Georgia, serif;
+    background: #fafafa;
+    color: #222;
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 20px;
+    line-height: 1.8;
+    font-size: 18px;
+}
+h1 { color: #253b63; }
+.blok {
+    background: white;
+    border-left: 5px solid #4f70b5;
+    border-radius: 9px;
+    padding: 16px 22px;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+mjx-container[display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 0;
+}
+footer {
+    text-align: center;
+    color: #777;
+    margin-top: 35px;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h1>Matematičko rešenje</h1>
+<div class="blok">Postavka zadatka:
+Na polici se nalazi 5 različitih knjiga iz matematike, 3 različite knjige iz statistike i 2 različite knjige iz engleskog. Na koliko načina se može rasporediti ovih 10 knjiga, ako knjige iz matematike ne smeju biti jedna pored druge, a knjige iz engleskog moraju biti jedna pored druge?</div>
+<div class="blok">Neka se dve engleske knjige stave u blok \(E\).
+Unutar bloka \(E\) ima \(2!\) poredaka.</div>
+<div class="blok">Nematematički objekti su
+\(3\) statističke knjige \(+\) blok \(E\)  = \(4\) različita objekta.</div>
+<div class="blok">Neka se najpre poreda tih \(4\) objekta.
+\[4!\]
+načina.</div>
+<div class="blok">Neka je \(x_{1}x_{2}x_{3}x_{4}\) taj red. Između njih i na krajevima postoje
+\(5\) praznih mesta</div>
+<div class="blok">\[\_\,x_{1}\,\_\,x_{2}\,\_\,x_{3}\,\_\,x_{4}\,\_\]</div>
+<div class="blok">u koje se sme ubaciti najviše po jedna matematička knjiga, jer dve matematičke ne smeju biti susedne. Imamo \(5\) različitih matematičkih knjiga i \(5\) mesta, pa ih raspoređujemo sa</div>
+<div class="blok">\[P(5,5)=5!\]</div>
+<div class="blok">načina.</div>
+<div class="blok">Ukupno</div>
+<div class="blok">\[N = 2!\,\cdot\,4!\,\cdot\,5! = 2\cdot 24\cdot 120 = 5\,760\]</div>
+<div class="blok">različitih rasporeda.</div>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</body>
+</html>
