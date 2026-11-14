@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+<title>Matematičko rešenje</title>
+
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']],
+    packages: {'[+]': ['ams']}
+  },
+  options: {
+    skipHtmlTags: ['script', 'style', 'textarea', 'pre']
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+body {
+    font-family: Georgia, serif;
+    background: #fafafa;
+    color: #222;
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 20px;
+    line-height: 1.8;
+    font-size: 18px;
+}
+h1 { color: #253b63; }
+.blok {
+    background: white;
+    border-left: 5px solid #4f70b5;
+    border-radius: 9px;
+    padding: 16px 22px;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+mjx-container[display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 0;
+}
+footer {
+    text-align: center;
+    color: #777;
+    margin-top: 35px;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+<h1>Matematičko rešenje</h1>
+<div class="blok">**Postavka zadatka**</div>
+<div class="blok">Rešiti Gausovom metodom (matričnim zapisom) i diskutovati po parametrima *a* i *b* sistem dat šerifovanom matricom:</div>
+<div class="blok">\[\left[\begin{array}{cccc|c}
+-1 &amp; -a-5 &amp; a+9 &amp; 2a+13 &amp; a+2\\
+-2 &amp; -a-10 &amp; a+18 &amp; 2a+26 &amp; a+4\\
+3 &amp; ab+2a+15 &amp; -2a-27 &amp; 2ab-4a-39 &amp; -ab-2a-6
+\end{array}\right]\]</div>
+<div class="blok">Sistem ima 4 nepoznate \(x_1,x_2,x_3,x_4\) i 3 jednačine.</div>
+<div class="blok">---</div>
+<div class="blok">**Gausova eliminacija**</div>
+<div class="blok">*Eliminacija iz prvog stubca.* \(R_2 \leftarrow R_2 - 2R_1\) i \(R_3 \leftarrow R_3 + 3R_1\):</div>
+<div class="blok">\[R_2&#x27; = \left[0,\; a,\; -a,\; -2a \mid -a\right] = a\,[0,\,1,\,-1,\,-2\mid -1]\]
+\[R_3&#x27; = \left[0,\; a(b-1),\; a,\; 2a(b+1) \mid a(1-b)\right] = a\,[0,\,b-1,\,1,\,2b+2\mid 1-b]\]</div>
+<div class="blok">Dobijamo:</div>
+<div class="blok">\[\left[\begin{array}{cccc|c}
+-1 &amp; -a-5 &amp; a+9 &amp; 2a+13 &amp; a+2\\
+0 &amp; a &amp; -a &amp; -2a &amp; -a\\
+0 &amp; a(b-1) &amp; a &amp; 2a(b+1) &amp; a(1-b)
+\end{array}\right]\]</div>
+<div class="blok">**Slučaj \(a=0\):** \(R_2&#x27;=0,\;R_3&#x27;=0\), rang matrice je 1 (prvi red je \([-1,-5,9,13\mid2]\neq 0\)). Sistem se svodi na jednu jednačinu sa 4 nepoznate.</div>
+<div class="blok">**Slučaj \(a\neq 0\):** delimo \(R_2&#x27;,R_3&#x27;\) sa \(a\) i eliminišemo drugi stubac: \(R_3&#x27;&#x27; \leftarrow R_3&#x27;&#x27; - (b-1)R_2&#x27;&#x27;\):</div>
+<div class="blok">\[R_2&#x27;&#x27; = [0,\,1,\,-1,\,-2\mid -1]\]
+\[R_3&#x27;&#x27;&#x27; = [0,\,0,\, b,\; 4b \mid 0] = b\,[0,\,0,\,1,\,4\mid 0]\]</div>
+<div class="blok">Ešelonirana matrica:</div>
+<div class="blok">\[\left[\begin{array}{cccc|c}
+-1 &amp; -a-5 &amp; a+9 &amp; 2a+13 &amp; a+2\\
+0 &amp; 1 &amp; -1 &amp; -2 &amp; -1\\
+0 &amp; 0 &amp; b &amp; 4b &amp; 0
+\end{array}\right]\]</div>
+<div class="blok">Odavde vidimo rang: \(\operatorname{rg}=3\) ako \(a\neq0,\,b\neq0\); \(\operatorname{rg}=2\) ako \(a\neq0,\,b=0\); \(\operatorname{rg}=1\) ako \(a=0\).</div>
+<div class="blok">---</div>
+<div class="blok">**Diskusija i rešenja**</div>
+<div class="blok">**1) \(a\neq 0\) i \(b\neq 0\)** (rang 3, jedna slobodna promenljiva).
+Iz \(R_3&#x27;&#x27;&#x27;:\; x_3 + 4x_4 = 0 \Rightarrow x_3 = -4x_4\).
+Iz \(R_2&#x27;&#x27;:\; x_2 - x_3 - 2x_4 = -1 \Rightarrow x_2 = -1 - 2x_4\).
+Iz \(R_1\), uvrštavanjem \(x_2,x_3\) (koeficijent uz \(x_4\) se svodi na \(-13\)): \(x_1 = 3 - 13x_4\).</div>
+<div class="blok">Uz \(x_4 = s \in \mathbb{R}\):
+\[\boxed{x_1 = 3 - 13s,\quad x_2 = -1 - 2s,\quad x_3 = -4s,\quad x_4 = s}\]</div>
+<div class="blok">**2) \(a\neq 0\) i \(b=0\)** (rang 2, dve slobodne promenljive).
+\(R_3&#x27;&#x27;&#x27;=0\). Iz \(R_2&#x27;&#x27;:\; x_2 = -1 + x_3 + 2x_4\).
+Iz \(R_1\) (koeficijenti se svode na \(4\) uz \(x_3\) i \(3\) uz \(x_4\)): \(x_1 = 3 + 4x_3 + 3x_4\).</div>
+<div class="blok">Uz \(x_3 = p,\; x_4 = q \in \mathbb{R}\):
+\[\boxed{x_1 = 3 + 4p + 3q,\quad x_2 = -1 + p + 2q,\quad x_3 = p,\quad x_4 = q}\]</div>
+<div class="blok">**3) \(a=0\)** (rang 1, tri slobodne promenljive; parametar \(b\) ne učestvuje).
+Jedina jednačina je \(-x_1 - 5x_2 + 9x_3 + 13x_4 = 2\).</div>
+<div class="blok">Uz \(x_2 = p,\; x_3 = q,\; x_4 = r \in \mathbb{R}\):
+\[\boxed{x_1 = -2 - 5p + 9q + 13r,\quad x_2 = p,\quad x_3 = q,\quad x_4 = r}\]</div>
+<div class="blok">---</div>
+<div class="blok">**Napomena (provera):** za \(a=1,\,b=1,\,s=0\) dobija se \((3,-1,0,0)\), što zaista zadovoljava sva tri reda originalnog sistema; za \(a=1,\,b=0,\,p=1,\,q=0\) tačka \((7,0,1,0)\) takođe zadovoljava sistem. Dakle, klasifikacija po \((a,b)\) je potpuna i konzistentna: rešenje postoji za svake \(a,b\), a broj slobodnih parametara opada sa rastućim rangom (\(3 \to 2 \to 1\)).</div>
+<div class="blok">Ugledam se na tvoj primer: kad treba, rešenje je elegantno i ne zavisi eksplicitno od parametara — ostaju samo uslovi pod kojima rang &quot;pada&quot;. Srećno na času, Peđo! 🙂</div>
+<footer>Mathbrotherhood Powered by ChatGPT</footer>
+</body>
+</html>
