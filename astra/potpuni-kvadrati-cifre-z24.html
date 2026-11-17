@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brojevi sa jedinicama, dvojkama i peticom — potpuni kvadrati | Mathbrotherhood</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>
+:root{--ink:#16223d;--muted:#596780;--navy:#101e3a;--blue:#eaf4ff;--indigo:#f0edff;--amber:#fff5df;--green:#e9f8ef;--emerald:#d9f4e5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fafafa;color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.68}
+.hero{background:radial-gradient(circle at 85% 15%,#365990 0,transparent 36%),linear-gradient(130deg,#101e3a,#1d3560);color:#fff;padding:70px 24px 78px}
+.wrap{max-width:1000px;margin:auto}.eyebrow{color:#a9cffc;text-transform:uppercase;letter-spacing:.21em;font:700 12px system-ui,sans-serif}.hero h1{font-size:clamp(34px,5vw,60px);line-height:1.14;margin:14px 0 18px}.hero p{color:#d6e4fa;font-size:clamp(17px,2vw,22px);max-width:750px}.hero .formula{background:#ffffff16;border:1px solid #ffffff44;border-radius:20px;margin-top:30px;padding:20px 26px;font-size:clamp(18px,2.4vw,27px);overflow-x:auto}
+nav{position:sticky;top:0;z-index:2;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid #e5e9f0;font:600 13px system-ui,sans-serif}nav .wrap{display:flex;gap:20px;flex-wrap:wrap;padding:13px 20px}nav a{color:#304466;text-decoration:none}nav a:hover{text-decoration:underline}
+main{padding:46px 20px 70px}.card{background:white;border-left:7px solid #92c5f3;border-radius:18px;box-shadow:0 12px 40px #16223d0c;margin:0 0 28px;padding:27px 34px}.task{background:var(--blue);border-color:#4a9cdd}.idea{background:var(--indigo);border-color:#7369c7}.analysis{background:var(--amber);border-color:#e5ae41}.solution{background:var(--green);border-color:#36a66c}.answer{background:var(--emerald);border-color:#15814d}h2{font-size:clamp(23px,3vw,30px);margin:0 0 18px;line-height:1.2}h3{margin:28px 0 8px;color:#273e66}.tag{font:700 12px system-ui,sans-serif;letter-spacing:.11em;text-transform:uppercase;color:#66758a;margin-bottom:7px}.math{font-size:clamp(17px,2vw,23px);overflow-x:auto;padding:8px 0}p{font-size:18px;margin:12px 0}.highlight{font-weight:bold;color:#0f6241}.examples{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.example{background:#fff;border:1px solid #e3e8f1;border-radius:15px;padding:19px;text-align:center}.example strong{display:block;color:#425a7b;font:700 13px system-ui,sans-serif;margin-bottom:8px}.example .digits{font:bold 25px Georgia;color:#182d51;white-space:nowrap}.example .root{color:#15814d;font:bold 23px Georgia}.note{font-size:16px;color:var(--muted)}.key{background:#fff;border-radius:13px;padding:14px 18px;border:1px solid #bee0cc}.end{background:var(--navy);color:#b9cdea;text-align:center;padding:27px 18px;font:14px system-ui,sans-serif}.end strong{color:#fff}
+@media(max-width:700px){.hero{padding:45px 18px}.card{padding:22px 18px}.examples{grid-template-columns:1fr}nav .wrap{gap:13px}.hero .formula{padding:15px 8px}}
+@media print{nav{display:none}.hero{color:#16223d;background:#fff;padding:16px}.hero p{color:#16223d}.hero .formula{border:1px solid #ddd}.card{box-shadow:none;break-inside:avoid}main{padding:12px}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<div class="eyebrow">Mathbrotherhood · Dokazivanje · Zadатak 24</div>
+<h1>Broj koji izgleda neobično,<br>a zapravo je potpun kvadrat</h1>
+<p>Od niza jedinica, dvojki i jedne petice do neočekivano jednostavnog kvadratnog korena.</p>
+<div class="formula"> \[ \underbrace{11\ldots1}_{k}\underbrace{22\ldots2}_{k+1}5
+=\left(\underbrace{33\ldots3}_{k}5\right)^2 \] </div>
+</div></header>
+<nav><div class="wrap"><a href="#zadatak">Zadatak</a><a href="#ideja">Ideja</a><a href="#resenje">Rešenje</a><a href="#primeri">Primeri</a><a href="#odgovor">Odgovor</a></div></nav>
+<main class="wrap">
+<section id="zadatak" class="card task"><div class="tag">01 · Polazni problem</div><h2>Zadatak</h2><p>Dokazati da su brojevi oblika</p><div class="math">\[N=\underbrace{11\ldots1}_{k}\underbrace{22\ldots2}_{k+1}5,\qquad k=0,1,2,\ldots\]</div><p>potpuni kvadrati i odrediti oblik broja \(\sqrt N\).</p></section>
+<section id="ideja" class="card idea"><div class="tag">02 · Ključna zamisao</div><h2>Ideja</h2><p>Umesto množenja sve dužih brojeva, <strong>zapišimo niz jednakih cifara pomoću stepena broja 10</strong>:</p><div class="math">\[\underbrace{11\ldots1}_{k}=\frac{10^k-1}{9},\qquad
+\underbrace{22\ldots2}_{k+1}=\frac{2(10^{k+1}-1)}9.\]</div><p>Spajanjem blokova cifara dobijamo jedan algebarski izraz, a zatim prepoznajemo kvadrat binoma.</p></section>
+<section class="card analysis"><div class="tag">03 · Sastavljanje broja</div><h2>Zašto množimo stepenima desetke?</h2><p>Blok od \(k\) jedinica pomeramo ulevo za \(k+2\) mesta (zbog \(k+1\) dvojki i završne petice). Blok dvojki pomeramo za jedno mesto.</p><div class="math">\[
+N=\underbrace{\frac{10^k-1}{9}\cdot10^{k+2}}_{\text{jedinice}}
++\underbrace{\frac{2(10^{k+1}-1)}9\cdot10}_{\text{dvojke}}
++\underbrace{5}_{\text{poslednja cifra}}.
+\]</div></section>
+<section id="resenje" class="card solution"><div class="tag">04 · Dokaz</div><h2>Rešenje — sređivanje izraza</h2><div class="math">\[
+\begin{aligned}
+N&=\frac{10^{2k+2}-10^{k+2}+2\cdot10^{k+2}-20}{9}+5\\[5pt]
+&=\frac{10^{2k+2}+10^{k+2}+25}{9}\\[5pt]
+&=\frac{(10^{k+1}+5)^2}{9}\\[5pt]
+&=\boxed{\left(\frac{10^{k+1}+5}{3}\right)^2}.
+\end{aligned}
+\]</div><p class="key">Dakle, \(N\) je potpun kvadrat: broj \(10^{k+1}+5\) deljiv je sa 3, jer je \(10^{k+1}\equiv1\pmod3\), pa je njihov zbir kongruentan sa \(6\equiv0\pmod3\).</p>
+<h3>Koje cifre ima koren?</h3><div class="math">\[
+\begin{aligned}
+\sqrt N
+&=\frac{10^{k+1}+5}{3}\\
+&=\frac{10^{k+1}-10}{3}+5\\
+&=10\cdot\frac{10^k-1}{3}+5\\
+&=\underbrace{33\ldots3}_{k}5.
+\end{aligned}
+\]</div><p class="note">Za \(k=0\) blok trojki je prazan i koren je samo \(5\).</p></section>
+<section id="primeri" class="card"><div class="tag">05 · Brza provera</div><h2>Uočimo obrazac na primerima</h2><div class="examples">
+<div class="example"><strong>k = 0</strong><div class="digits">25</div><div class="root">= 5²</div></div>
+<div class="example"><strong>k = 1</strong><div class="digits">1225</div><div class="root">= 35²</div></div>
+<div class="example"><strong>k = 2</strong><div class="digits">112225</div><div class="root">= 335²</div></div>
+</div><p class="note">Primeri nam pomažu da pogodimo pravilo; algebarski dokaz pokazuje da važi za svako \(k\ge0\).</p></section>
+<section id="odgovor" class="card answer"><div class="tag">06 · Zaključak</div><h2>Odgovor</h2><p>Za svaki nenegativan ceo broj \(k\) dati broj je potpun kvadrat, i važi:</p><div class="math">\[\boxed{\sqrt{\underbrace{11\ldots1}_{k}\underbrace{22\ldots2}_{k+1}5}
+=\underbrace{33\ldots3}_{k}5.}\]</div><p class="highlight">Jedan blok jedinica, jedan duži blok dvojki, petica na kraju — a koren čine trojke i petica!</p></section>
+</main><footer class="end"><strong>Mathbrotherhood</strong> Powered by ChatGPT</footer>
+</body></html>
