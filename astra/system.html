@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Matematičko rešenje | Mathbrotherhood</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #fafafa;
+      color: #202838;
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 20px;
+      line-height: 1.8;
+      font-size: 19px;
+    }
+    h1 {
+      color: #283e68;
+      font-size: 36px;
+    }
+    .card {
+      padding: 22px 28px;
+      margin: 20px 0;
+      border-radius: 12px;
+      border-left: 6px solid;
+      overflow-x: auto;
+    }
+    .zadatak {
+      background: #eef5ff;
+      border-color: #5278bc;
+    }
+    .ideja {
+      background: #f0edff;
+      border-color: #7161b5;
+    }
+    .resenje {
+      background: #edf9ee;
+      border-color: #398a50;
+    }
+    .napomena {
+      background: #fff0f0;
+      border-color: #c34b4b;
+    }
+    .odgovor {
+      background: #e1f4e5;
+      border-color: #207543;
+    }
+    footer {
+      text-align: center;
+      margin-top: 45px;
+      color: #7a8190;
+      font-size: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Matematičko rešenje</h1>
+
+  <div class="card zadatak">
+    <h2>Zadatak</h2>
+    U zavisnosti od vrednosti realnih parametara \(a\) i \(b\), diskutujte i rešite sistem linearnih algebarskih jednačina:
+    \[
+      \begin{cases}
+        x+y-z=2,\\
+        2x+4y-3z=5,\\
+        ax+y+2z=b.
+      \end{cases}
+    \]
+  </div>
+
+  <div class="card ideja">
+    <h2>Ideja</h2>
+    Primenjujemo Kramerovu metodu. Glavna determinanta \(\Delta\) zavisi od parametra \(a\): ako je \(\Delta\neq0\) (to jest \(a\neq-5\)), sistem ima jedinstveno rešenje
+    \[
+      x=\frac{\Delta_x}{\Delta},\qquad y=\frac{\Delta_y}{\Delta},\qquad z=\frac{\Delta_z}{\Delta}.
+    \]
+    Ako je \(\Delta=0\) (to jest \(a=-5\)), Kramerova metoda ne važi i sistem se rešava direktno, uz proveru konzistentnosti po parametru \(b\).
+  </div>
+
+  <div class="card resenje">
+    <h2>Rešenje</h2>
+
+    Glavna determinanta (Sarusovo pravilo):
+    \[
+      \Delta=
+      \begin{vmatrix}
+        1 & 1 & -1\\
+        2 & 4 & -3\\
+        a & 1 & 2
+      \end{vmatrix}.
+    \]
+    Sarusovo pravilo:
+    \[
+      \Delta=\bigl[1\cdot4\cdot2+1\cdot(-3)\cdot a+(-1)\cdot2\cdot1\bigr]
+      -\bigl[(-1)\cdot4\cdot a+1\cdot(-3)\cdot1+1\cdot2\cdot2\bigr].
+    \]
+    \[
+      \Delta=(8-3a-2)-(-4a-3+4)=(6-3a)-(-4a+1)=5+a.
+    \]
+
+    Za ostale determinante primenom Kramerove metode dobija se samo rezultat:
+    \[
+      \Delta_x=b+7,\qquad \Delta_y=b-a+2,\qquad \Delta_z=2b-3a-1.
+    \]
+
+    <p><strong>Slučaj 1: \(a\neq-5\) (to jest \(\Delta\neq0\)).</strong> Sistem ima jedinstveno rešenje:
+    \[
+      x=\frac{b+7}{a+5},\qquad
+      y=\frac{b-a+2}{a+5},\qquad
+      z=\frac{2b-3a-1}{a+5}.
+    \]
+
+    <p><strong>Slučaj 2: \(a=-5\) (to jest \(\Delta=0\)).</strong> Sistem postaje
+    \[
+      \begin{cases}
+        x+y-z=2,\\
+        2x+4y-3z=5,\\
+        -5x+y+2z=b.
+      \end{cases}
+    \]
+    Proširena matrica se svodi na:
+    \[
+      \left(\begin{array}{ccc|c}
+        1 & 1 & -1 & 2\\
+        0 & 2 & -1 & 1\\
+        0 & 0 & 0 & b+7
+      \end{array}\right).
+    \]
+
+    <p><strong>a) Ako je \(b\neq-7\):</strong> poslednji red glasi \(0=b+7\neq0\), pa sistem nema rešenja (nekonzistentan je).</p>
+
+    <p><strong>b) Ako je \(b=-7\):</strong> rang koeficijentne matrice i proširene matrice su jednaki \(2\), a broj nepoznatih je \(3\), pa sistem ima beskonačno mnogo rešenja. Iz
+    \[
+      x+y-z=2,\qquad 2y-z=1
+    \]
+    uzimamo \(y=t\) (\(t\in\mathbb{R}\)); tada je \(z=2t-1\) i \(x=t+1\). Dakle:
+    \[
+      (x,y,z)=(t+1,\;t,\;2t-1),\qquad t\in\mathbb{R}.
+    \]
+
+  </div>
+
+  <div class="card napomena">
+    <h2>Napomena</h2>
+    Za \(a=-5\) i \(b=-7\) Cramerova metoda ne važi (jer je \(\Delta=0\)), pa se rešenje proverava direktnom zamenom u treću jednačinu:
+    \[
+      -5(t+1)+t+2(2t-1)=-5t-5+t+4t-2=-7.
+    \]
+    Rezultat je tačno, što potvrđuje beskonačnu familiju rešenja.
+  </div>
+
+  <div class="card odgovor">
+    <h2>Odgovor</h2>
+    Ako je \(a\neq-5\): jedinstveno rešenje
+    \[
+      x=\frac{b+7}{a+5},\qquad y=\frac{b-a+2}{a+5},\qquad z=\frac{2b-3a-1}{a+5}.
+    \]
+
+    Ako je \(a=-5\) i \(b\neq-7\): nema rešenja.
+
+    Ako je \(a=-5\) i \(b=-7\): beskonačno mnogo rešenja,
+    \[
+      (x,y,z)=(t+1,\;t,\;2t-1),\qquad t\in\mathbb{R}.
+    \]
+  </div>
+
+  <footer>Mathbrotherhood Powered by Inkling-2-Mini</footer>
+</body>
+</html>
